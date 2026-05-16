@@ -1814,7 +1814,13 @@ const CONTENT = {
       ] // end Act 1 days
     }, // end Act 1
 
-    // ACT 2 PLACEHOLDER — content coming after Act 1 runs
+    // ============================================================
+    // ACT 2 CONTENT — DROP ZONE
+    // Kinetic Theory / States of Matter / Changes of State
+    // Standards: 6.P1U1.1 + 6.P1U1.2
+    // To add Act 2: replace this entire object with the Act 2 content object
+    // See HANDOFF.md for the content object structure
+    // ============================================================
     {
       id:2, label:'Act 2 · Kinetic Theory', standard:'6.P1U1.1',
       days:[
@@ -1830,16 +1836,72 @@ const CONTENT = {
             { letter:'A', text:'Investigate Section C — why are the particles barely moving?',
               subtext:'Something is removing kinetic energy from this section. But what?',
               deltas:{power:-7,hull:0,data:14,morale:2}, branch:'A-cold',
-              consequence:'Act 2 content coming soon.' },
+              consequence:'Act 2 content coming soon — run the reveal to see consequences.' },
             { letter:'B', text:'Investigate Section F — why are the particles moving so fast?',
               subtext:'High risk. Something is adding kinetic energy at an unexplained rate.',
               deltas:{power:-9,hull:-6,data:16,morale:-3}, branch:'B-hot',
-              consequence:'Act 2 content coming soon.' },
+              consequence:'Act 2 content coming soon — run the reveal to see consequences.' },
             { letter:'C', text:'Take readings from both extremes and compare.',
               subtext:'More power, but comparing the extremes may reveal the cause faster.',
               deltas:{power:-12,hull:0,data:20,morale:4}, branch:'C-compare',
-              consequence:'Act 2 content coming soon.' }
+              consequence:'Act 2 content coming soon — run the reveal to see consequences.' }
           ]
+        }
+      ]
+    },
+
+    // ============================================================
+    // ACT 3 CONTENT — DROP ZONE
+    // State Changes (detailed)
+    // Standard: 6.P1U1.2
+    // ============================================================
+    {
+      id:3, label:'Act 3 · State Changes', standard:'6.P1U1.2',
+      days:[
+        {
+          day:1, type:'choice', isReveal:false,
+          actLabel:'Act 3 · State Changes',
+          actTitle:'Coming Soon',
+          gaia:'Act 3 content coming soon.',
+          scenario:'Act 3 content will be added after Act 2 runs in class.',
+          noChoice:true
+        }
+      ]
+    },
+
+    // ============================================================
+    // ACT 4 CONTENT — DROP ZONE
+    // Energy (Kinetic & Potential)
+    // Standard: 6.P4U2.5
+    // ============================================================
+    {
+      id:4, label:'Act 4 · Energy', standard:'6.P4U2.5',
+      days:[
+        {
+          day:1, type:'choice', isReveal:false,
+          actLabel:'Act 4 · Energy',
+          actTitle:'Coming Soon',
+          gaia:'Act 4 content coming soon.',
+          scenario:'Act 4 content will be added after Act 3 runs in class.',
+          noChoice:true
+        }
+      ]
+    },
+
+    // ============================================================
+    // ACT 5 CONTENT — DROP ZONE
+    // Resolution / Synthesis
+    // ============================================================
+    {
+      id:5, label:'Act 5 · Resolution', standard:'Synthesis',
+      days:[
+        {
+          day:1, type:'climax', isReveal:false,
+          actLabel:'Act 5 · Resolution',
+          actTitle:'Coming Soon',
+          gaia:'Act 5 content coming soon.',
+          scenario:'The final act will be added after Act 4 runs in class.',
+          noChoice:true
         }
       ]
     }
@@ -1947,8 +2009,11 @@ function renderClassCards() {
 function selectClass(i) {
   state.selectedHomeClass = i;
   document.querySelectorAll('.class-card').forEach((c,idx) => c.classList.toggle('selected', idx === i));
-  document.getElementById('btn-launch').disabled = false;
   const hasPending = !!state.classes[i].pendingDeltas;
+  const launchBtn = document.getElementById('btn-launch');
+  launchBtn.disabled = false;
+  // Update launch button label based on whether reveal is pending
+  launchBtn.textContent = hasPending ? '▶ Reveal Results + Launch' : '▶ Launch Mission Screen';
   document.getElementById('btn-reveal').disabled = !hasPending;
 }
 
@@ -2046,6 +2111,15 @@ function launchMission() {
     state.activeClass = state.selectedHomeClass;
   }
   if (state.activeClass === null) return;
+
+  // If there are pending deltas waiting, go to reveal first
+  const cls = state.classes[state.activeClass];
+  if (cls.pendingDeltas) {
+    renderRevealScreen(cls);
+    showScreen('screen-reveal');
+    return;
+  }
+
   state.currentPhase = 'story';
   state.selectedChoice = null;
   renderMissionScreen();
