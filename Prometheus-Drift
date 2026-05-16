@@ -1,0 +1,2364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Prometheus Drift — Mission Control</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #020812;
+    --bg-panel: #060f1e;
+    --bg-card: #0a1628;
+    --bg-card2: #0d1d35;
+    --border: #1a3a5c;
+    --border-bright: #2a5a8c;
+    --accent: #00c8ff;
+    --accent-dim: #0080aa;
+    --accent-glow: rgba(0,200,255,0.15);
+    --green: #00ff88;
+    --green-dim: #00aa55;
+    --amber: #ffaa00;
+    --red: #ff3355;
+    --purple: #aa66ff;
+    --text-primary: #e8f4ff;
+    --text-secondary: #7aa8cc;
+    --text-dim: #3a6080;
+    --font-display: 'Orbitron', monospace;
+    --font-mono: 'Share Tech Mono', monospace;
+    --font-body: 'Rajdhani', sans-serif;
+    --gaia-green: #00ff88;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 25%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 45%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 55%, rgba(255,255,255,0.5) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .app { position: relative; z-index: 2; }
+
+  .screen { display: none; min-height: 100vh; }
+  .screen.active { display: flex; flex-direction: column; }
+
+  /* ===================== SETUP SCREEN ===================== */
+  #screen-setup {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .setup-inner { width: 100%; max-width: 600px; }
+
+  .mission-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent-dim);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .setup-title {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 4vw, 40px);
+    font-weight: 900;
+    color: var(--accent);
+    text-shadow: 0 0 40px rgba(0,200,255,0.4);
+    letter-spacing: .05em;
+    margin-bottom: 6px;
+  }
+
+  .setup-sub {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .form-group { margin-bottom: 16px; }
+
+  .form-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .form-input {
+    background: var(--bg-card);
+    border: 1px solid var(--border-bright);
+    border-radius: 4px;
+    padding: 10px 14px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 15px;
+    width: 100%;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { outline: none; border-color: var(--accent); }
+
+  .period-setup-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+  .period-setup-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px;
+  }
+
+  .period-setup-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--accent-dim);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* ===================== HOME SCREEN ===================== */
+  #screen-home {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .home-inner { width: 100%; max-width: 960px; }
+
+  .mission-header { text-align: center; margin-bottom: 2.5rem; }
+
+  .mission-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    color: var(--accent);
+    text-shadow: 0 0 40px rgba(0,200,255,0.5), 0 0 80px rgba(0,200,255,0.2);
+    letter-spacing: .05em;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .mission-subtitle {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-secondary);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .class-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .class-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .class-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
+
+  .class-card:hover { border-color: var(--accent-dim); background: var(--bg-card2); transform: translateY(-2px); }
+  .class-card:hover::before, .class-card.selected::before { transform: scaleX(1); }
+  .class-card.selected { border-color: var(--accent); background: var(--bg-card2); }
+
+  .class-period {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent-dim);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .class-name {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+
+  .class-status {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+
+  .class-branch {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  .branch-nominal { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.25); }
+  .branch-caution { background: rgba(255,170,0,0.1); color: var(--amber); border: 1px solid rgba(255,170,0,0.25); }
+  .branch-critical { background: rgba(255,51,85,0.1); color: var(--red); border: 1px solid rgba(255,51,85,0.25); }
+  .branch-new { background: rgba(0,200,255,0.08); color: var(--accent-dim); border: 1px solid rgba(0,200,255,0.2); }
+
+  .mini-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .mini-stat-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .04em; }
+  .mini-stat-bar { height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; margin-top: 2px; overflow: hidden; }
+  .mini-stat-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
+
+  /* PENDING REVEAL BADGE */
+  .reveal-badge {
+    background: rgba(255,170,0,0.15);
+    border: 1px solid rgba(255,170,0,0.4);
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--amber);
+    margin-bottom: 10px;
+    display: none;
+  }
+  .reveal-badge.visible { display: block; }
+
+  .home-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .btn {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 13px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary { background: var(--accent); color: var(--bg-deep); box-shadow: 0 0 20px rgba(0,200,255,0.3); }
+  .btn-primary:hover { background: #33d4ff; box-shadow: 0 0 30px rgba(0,200,255,0.5); transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .btn-secondary { background: transparent; color: var(--accent); border: 1px solid var(--border-bright); }
+  .btn-secondary:hover { border-color: var(--accent); background: var(--accent-glow); }
+  .btn-secondary:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  .btn-danger { background: transparent; color: var(--red); border: 1px solid rgba(255,51,85,0.35); font-size: 10px; }
+  .btn-danger:hover { background: rgba(255,51,85,0.08); border-color: var(--red); }
+
+  .btn-amber { background: transparent; color: var(--amber); border: 1px solid rgba(255,170,0,0.35); }
+  .btn-amber:hover { background: rgba(255,170,0,0.08); border-color: var(--amber); }
+
+  .btn-green { background: var(--green); color: var(--bg-deep); box-shadow: 0 0 16px rgba(0,255,136,0.3); }
+  .btn-green:hover { box-shadow: 0 0 24px rgba(0,255,136,0.5); transform: translateY(-1px); }
+  .btn-green:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .system-time { text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); margin-top: 8px; }
+
+  /* ===================== MISSION SCREEN ===================== */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: var(--bg-panel);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    gap: 12px;
+  }
+
+  .topbar-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+  .topbar-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .08em;
+  }
+
+  .topbar-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    padding: 3px 10px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+  }
+
+  .topbar-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+  .topbar-btn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .topbar-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
+  .topbar-btn.save-btn { color: var(--green); border-color: rgba(0,255,136,0.3); }
+  .topbar-btn.save-btn:hover { background: rgba(0,255,136,0.08); }
+
+  /* TIMER WIDGET */
+  .timer-widget {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 10px;
+  }
+
+  .timer-readout {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    min-width: 52px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .timer-readout.idle { color: var(--text-dim); }
+  .timer-readout.running { color: var(--green); }
+  .timer-readout.low { color: var(--amber); animation: pulse-amber 1s infinite; }
+  .timer-readout.urgent { color: var(--red); animation: pulse-red 0.5s infinite; }
+  .timer-readout.done { color: var(--red); }
+
+  @keyframes pulse-amber { 0%,100%{opacity:1}50%{opacity:.5} }
+  @keyframes pulse-red { 0%,100%{opacity:1}50%{opacity:.4} }
+
+  .timer-micro-btn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 2px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .timer-micro-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
+
+  /* MAIN LAYOUT */
+  .mission-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr 240px;
+    flex: 1;
+    overflow: hidden;
+    height: calc(100vh - 53px);
+  }
+
+  /* LEFT PANEL */
+  .panel-stats {
+    background: var(--bg-panel);
+    border-right: 1px solid var(--border);
+    padding: 14px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .panel-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  .stat-item { margin-bottom: 12px; }
+
+  .stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+
+  .stat-name { font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+  .stat-value { font-family: var(--font-mono); font-size: 13px; font-weight: 500; }
+
+  .stat-bar-track { height: 7px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+
+  .stat-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+  }
+
+  .stat-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 3px; height: 100%;
+    background: rgba(255,255,255,0.35);
+    border-radius: 2px;
+  }
+
+  .stat-sublabel { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-top: 3px; letter-spacing: .04em; }
+
+  /* FROZEN OVERLAY on stats when pending reveal */
+  .stats-frozen { position: relative; }
+  .stats-frozen::after {
+    content: '⏸ PENDING REVEAL';
+    position: absolute;
+    inset: 0;
+    background: rgba(2,8,18,0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--amber);
+    letter-spacing: .1em;
+    border-radius: 4px;
+  }
+
+  .stat-power .stat-name { color: #00c8ff; }
+  .stat-power .stat-value { color: #00c8ff; }
+  .stat-power .stat-bar-fill { background: linear-gradient(90deg,#005577,#00c8ff); box-shadow: 0 0 6px rgba(0,200,255,0.4); }
+
+  .stat-hull .stat-name { color: #00ff88; }
+  .stat-hull .stat-value { color: #00ff88; }
+  .stat-hull .stat-bar-fill { background: linear-gradient(90deg,#005533,#00ff88); box-shadow: 0 0 6px rgba(0,255,136,0.4); }
+
+  .stat-data .stat-name { color: #aa66ff; }
+  .stat-data .stat-value { color: #aa66ff; }
+  .stat-data .stat-bar-fill { background: linear-gradient(90deg,#440066,#aa66ff); box-shadow: 0 0 6px rgba(170,102,255,0.4); }
+
+  .stat-morale .stat-name { color: #ffaa00; }
+  .stat-morale .stat-value { color: #ffaa00; }
+  .stat-morale .stat-bar-fill { background: linear-gradient(90deg,#553300,#ffaa00); box-shadow: 0 0 6px rgba(255,170,0,0.4); }
+
+  .stat-warning .stat-bar-fill { animation: flicker 2s infinite; }
+  .stat-critical .stat-bar-fill { animation: flicker 0.5s infinite; }
+  @keyframes flicker { 0%,100%{opacity:1}50%{opacity:.55} }
+
+  .failure-counter { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; }
+  .failure-dots { display: flex; gap: 6px; margin-top: 6px; }
+  .failure-dot { width: 13px; height: 13px; border-radius: 50%; border: 1px solid var(--border); background: transparent; transition: all 0.3s; }
+  .failure-dot.active { background: var(--red); border-color: var(--red); box-shadow: 0 0 6px rgba(255,51,85,0.6); }
+  .restriction-notice { font-family: var(--font-mono); font-size: 10px; color: var(--amber); margin-top: 6px; line-height: 1.5; }
+
+  .log-entry { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 7px 9px; margin-bottom: 5px; }
+  .log-date { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-bottom: 2px; }
+  .log-choice { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 4px; }
+  .log-impact { display: flex; gap: 3px; flex-wrap: wrap; }
+  .impact-tag { font-size: 9px; padding: 1px 5px; border-radius: 2px; font-weight: 500; }
+  .impact-pos { background: rgba(0,255,136,0.12); color: var(--green); }
+  .impact-neg { background: rgba(255,51,85,0.12); color: var(--red); }
+  .impact-neu { background: rgba(255,255,255,0.05); color: var(--text-dim); }
+
+  /* CENTER PANEL */
+  .panel-story { display: flex; flex-direction: column; overflow: hidden; }
+
+  .story-content { flex: 1; overflow-y: auto; padding: 22px 26px; }
+
+  .act-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--accent-dim);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .act-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: .04em;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .act-divider { height: 1px; background: linear-gradient(90deg,var(--accent-dim),transparent); margin-bottom: 20px; }
+
+  /* PHASE INDICATOR */
+  .phase-bar {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .phase-step {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .phase-step.active { color: var(--accent); border-color: var(--accent-dim); background: var(--accent-glow); }
+  .phase-step.done { color: var(--green-dim); border-color: rgba(0,255,136,0.2); background: rgba(0,255,136,0.05); }
+  .phase-step:hover:not(.active):not(.done) { border-color: var(--border-bright); color: var(--text-secondary); }
+
+  /* GAIA BOX */
+  .gaia-box {
+    background: var(--bg-card);
+    border: 1px solid rgba(0,255,136,0.2);
+    border-left: 3px solid var(--gaia-green);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+  }
+
+  .gaia-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+
+  .gaia-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--gaia-green);
+    box-shadow: 0 0 8px rgba(0,255,136,0.8);
+    animation: gaia-pulse 2s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes gaia-pulse { 0%,100%{opacity:1}50%{opacity:.35} }
+
+  .gaia-label { font-family: var(--font-mono); font-size: 10px; color: var(--gaia-green); letter-spacing: .1em; text-transform: uppercase; }
+
+  .gaia-text { font-family: var(--font-body); font-size: 16px; color: var(--text-primary); line-height: 1.7; }
+  .gaia-text em { color: var(--gaia-green); font-style: italic; }
+
+  .scenario-text { font-family: var(--font-body); font-size: 16px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 20px; }
+
+  /* PHASE CONTENT PANELS */
+  .phase-panel { display: none; }
+  .phase-panel.active { display: block; }
+
+  /* TIMER PHASE PANEL */
+  .timer-phase-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-bright);
+    border-radius: 8px;
+    padding: 20px 22px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  .timer-phase-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .timer-phase-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .big-timer {
+    font-family: var(--font-display);
+    font-size: 52px;
+    font-weight: 900;
+    letter-spacing: .05em;
+    margin-bottom: 14px;
+    transition: color 0.3s;
+  }
+
+  .big-timer.idle { color: var(--text-dim); }
+  .big-timer.running { color: var(--green); text-shadow: 0 0 30px rgba(0,255,136,0.4); }
+  .big-timer.low { color: var(--amber); text-shadow: 0 0 30px rgba(255,170,0,0.4); animation: pulse-amber 1s infinite; }
+  .big-timer.urgent { color: var(--red); text-shadow: 0 0 30px rgba(255,51,85,0.4); animation: pulse-red 0.5s infinite; }
+  .big-timer.done { color: var(--red); }
+
+  .timer-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+
+  .timer-set-row { display: flex; gap: 6px; align-items: center; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+
+  .timer-input-inline {
+    background: var(--bg-card2);
+    border: 1px solid var(--border-bright);
+    border-radius: 4px;
+    padding: 6px 10px;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    width: 70px;
+    text-align: center;
+  }
+
+  .timer-add-btn {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background: rgba(0,200,255,0.08);
+    border: 1px solid var(--border-bright);
+    color: var(--accent);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .timer-add-btn:hover { background: rgba(0,200,255,0.15); border-color: var(--accent); }
+
+  .timer-start-btn {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    padding: 10px 24px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    background: var(--green);
+    color: var(--bg-deep);
+    box-shadow: 0 0 16px rgba(0,255,136,0.3);
+    transition: all 0.2s;
+  }
+  .timer-start-btn:hover { box-shadow: 0 0 24px rgba(0,255,136,0.5); transform: translateY(-1px); }
+
+  .timer-stop-btn {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,51,85,0.4);
+    cursor: pointer;
+    background: transparent;
+    color: var(--red);
+    transition: all 0.2s;
+  }
+  .timer-stop-btn:hover { background: rgba(255,51,85,0.08); }
+
+  .timer-done-msg {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--gaia-green);
+    font-style: italic;
+    margin-top: 10px;
+    line-height: 1.6;
+    display: none;
+  }
+
+  /* CHOICES AREA */
+  .choices-area {
+    background: var(--bg-panel);
+    border-top: 1px solid var(--border);
+    padding: 16px 22px;
+    flex-shrink: 0;
+  }
+
+  .choices-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 10px; }
+
+  .choices-restricted {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--amber);
+    background: rgba(255,170,0,0.07);
+    border: 1px solid rgba(255,170,0,0.2);
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin-bottom: 8px;
+  }
+
+  .choice-grid { display: grid; gap: 8px; }
+
+  .choice-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 10px;
+    align-items: start;
+  }
+
+  .choice-btn:hover { border-color: var(--accent-dim); background: var(--bg-card2); transform: translateX(2px); }
+  .choice-btn.selected { border-color: var(--accent); background: rgba(0,200,255,0.07); }
+  .choice-btn.eliminated { opacity: 0.3; cursor: not-allowed; }
+
+  .choice-letter { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--accent); padding-top: 1px; }
+  .choice-text { font-family: var(--font-body); font-size: 15px; font-weight: 500; color: var(--text-primary); line-height: 1.4; }
+  .choice-subtext { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); margin-top: 3px; line-height: 1.4; }
+
+  .commit-row { margin-top: 10px; display: flex; gap: 10px; align-items: center; }
+
+  .btn-commit {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    padding: 11px 26px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    background: var(--green);
+    color: var(--bg-deep);
+    box-shadow: 0 0 16px rgba(0,255,136,0.3);
+    transition: all 0.2s;
+  }
+  .btn-commit:hover { box-shadow: 0 0 24px rgba(0,255,136,0.5); transform: translateY(-1px); }
+  .btn-commit:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .commit-note { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); line-height: 1.5; }
+
+  /* RIGHT PANEL */
+  .panel-right {
+    background: var(--bg-panel);
+    border-left: 1px solid var(--border);
+    padding: 14px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .gaia-alert { background: var(--bg-card); border: 1px solid rgba(0,255,136,0.2); border-left: 3px solid var(--gaia-green); border-radius: 5px; padding: 10px 12px; margin-bottom: 6px; }
+  .gaia-alert-text { font-family: var(--font-mono); font-size: 11px; color: var(--gaia-green); line-height: 1.6; font-style: italic; }
+
+  .nav-btn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .nav-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
+  .nav-btn.danger { color: var(--red); border-color: rgba(255,51,85,0.25); }
+  .nav-btn.danger:hover { background: rgba(255,51,85,0.07); border-color: var(--red); }
+
+  .branch-display { background: var(--bg-card); border: 1px solid var(--border); border-radius: 5px; padding: 9px 11px; }
+  .branch-path { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); line-height: 1.6; }
+  .branch-path span { color: var(--accent); }
+
+  .divider-line { height: 1px; background: var(--border); }
+
+  /* ===================== PROCESSING SCREEN ===================== */
+  #screen-processing {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .processing-inner { width: 100%; max-width: 600px; text-align: center; }
+
+  .processing-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+    animation: spin-slow 4s linear infinite;
+    display: inline-block;
+  }
+
+  @keyframes spin-slow { from{transform:rotate(0deg)}to{transform:rotate(360deg)} }
+
+  .processing-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .08em;
+    margin-bottom: 8px;
+    text-shadow: 0 0 30px rgba(0,200,255,0.4);
+  }
+
+  .processing-subtitle {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    letter-spacing: .1em;
+    margin-bottom: 32px;
+  }
+
+  .processing-gaia {
+    background: var(--bg-card);
+    border: 1px solid rgba(0,255,136,0.2);
+    border-left: 3px solid var(--gaia-green);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+    text-align: left;
+  }
+
+  .processing-gaia-text {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--gaia-green);
+    line-height: 1.75;
+    font-style: italic;
+  }
+
+  .processing-choice-recap {
+    background: var(--bg-card);
+    border: 1px solid var(--border-bright);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .processing-choice-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .processing-choice-text {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  .processing-stats-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .processing-stat-chip {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: .06em;
+  }
+
+  .processing-actions { display: flex; gap: 12px; justify-content: center; }
+
+  /* ===================== REVEAL SCREEN ===================== */
+  #screen-reveal {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .reveal-inner { width: 100%; max-width: 700px; }
+
+  .reveal-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--amber);
+    letter-spacing: .06em;
+    margin-bottom: 6px;
+    text-shadow: 0 0 30px rgba(255,170,0,0.4);
+    text-align: center;
+  }
+
+  .reveal-subtitle { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); letter-spacing: .1em; margin-bottom: 28px; text-align: center; }
+
+  .reveal-recap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+  }
+
+  .reveal-recap-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
+  .reveal-recap-text { font-family: var(--font-body); font-size: 15px; color: var(--text-secondary); line-height: 1.5; }
+
+  .reveal-gaia-box {
+    background: var(--bg-card);
+    border: 1px solid rgba(0,255,136,0.25);
+    border-left: 3px solid var(--gaia-green);
+    border-radius: 6px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+  }
+
+  .reveal-gaia-text { font-family: var(--font-body); font-size: 17px; color: var(--text-primary); line-height: 1.75; }
+  .reveal-gaia-text em { color: var(--gaia-green); font-style: italic; }
+  .reveal-gaia-text strong { color: var(--amber); font-weight: 600; }
+
+  /* STAT CHANGE DISPLAY */
+  .stat-changes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .stat-change-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .stat-change-icon { font-size: 18px; flex-shrink: 0; }
+
+  .stat-change-body { flex: 1; }
+  .stat-change-name { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+  .stat-change-bar { height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; margin-bottom: 3px; }
+  .stat-change-fill { height: 100%; border-radius: 3px; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+  .stat-change-delta { font-family: var(--font-mono); font-size: 12px; font-weight: 500; }
+  .delta-pos { color: var(--green); }
+  .delta-neg { color: var(--red); }
+  .delta-neu { color: var(--text-dim); }
+
+  /* ===================== FORENSICS SCREEN ===================== */
+  #screen-forensics {
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem;
+  }
+
+  .forensics-inner { width: 100%; max-width: 800px; }
+
+  .forensics-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--red);
+    text-shadow: 0 0 24px rgba(255,51,85,0.4);
+    letter-spacing: .05em;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+
+  .timeline { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 16px; margin-bottom: 1.5rem; }
+  .timeline-title { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
+
+  .timeline-entry { display: grid; grid-template-columns: 22px 1fr; gap: 10px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .timeline-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .timeline-num { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); padding-top: 2px; }
+  .timeline-date { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-bottom: 2px; }
+  .timeline-choice { font-family: var(--font-body); font-size: 14px; color: var(--text-primary); margin-bottom: 4px; }
+  .timeline-impact { display: flex; gap: 4px; flex-wrap: wrap; }
+
+  .cer-framework { display: grid; gap: 10px; margin-bottom: 1.5rem; }
+  .cer-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
+  .cer-section-label { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
+  .cer-section-prompt { font-family: var(--font-body); font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+  .claim-label { color: var(--red); }
+  .evidence-label { color: var(--amber); }
+  .reasoning-label { color: var(--purple); }
+
+  /* ===================== MODALS ===================== */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.82); z-index: 100; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+  .modal-overlay.visible { display: flex; }
+  .modal { background: var(--bg-panel); border: 1px solid var(--border-bright); border-radius: 8px; padding: 26px; max-width: 480px; width: 90%; }
+  .modal-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--accent); letter-spacing: .05em; margin-bottom: 14px; }
+  .modal-body { font-family: var(--font-body); font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+  .extinction-modal .modal-title { color: var(--red); }
+
+  /* TOAST */
+  .toast { position: fixed; bottom: 20px; right: 20px; background: var(--bg-card); border: 1px solid var(--border-bright); border-radius: 6px; padding: 10px 16px; font-family: var(--font-mono); font-size: 11px; color: var(--accent); z-index: 200; transform: translateY(60px); opacity: 0; transition: all 0.3s; }
+  .toast.visible { transform: translateY(0); opacity: 1; }
+  .toast.success { border-color: rgba(0,255,136,0.4); color: var(--green); }
+  .toast.error { border-color: rgba(255,51,85,0.4); color: var(--red); }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 2px; }
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ===================== SETUP ===================== -->
+<div id="screen-setup" class="screen active">
+  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
+    <div style="width:100%;max-width:600px">
+      <div class="mission-label" style="margin-bottom:8px">Mission Control — Initial Configuration</div>
+      <div class="setup-title">THE PROMETHEUS DRIFT</div>
+      <div class="setup-sub" style="margin-bottom:2rem">First-time setup. This only runs once — you can update settings anytime from the dashboard.</div>
+
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input type="text" class="form-input" id="setup-teacher" placeholder="e.g. Ms. Rodriguez" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Name Your Three Classes</label>
+        <div class="period-setup-grid">
+          <div class="period-setup-card">
+            <div class="period-setup-label">Class 1</div>
+            <input type="text" class="form-input" id="setup-class1" placeholder="e.g. Period 1" />
+          </div>
+          <div class="period-setup-card">
+            <div class="period-setup-label">Class 2</div>
+            <input type="text" class="form-input" id="setup-class2" placeholder="e.g. Period 3" />
+          </div>
+          <div class="period-setup-card">
+            <div class="period-setup-label">Class 3</div>
+            <input type="text" class="form-input" id="setup-class3" placeholder="e.g. Period 5" />
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="completeSetup()">
+        Initialize Mission Control →
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== HOME ===================== -->
+<div id="screen-home" class="screen">
+  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
+    <div style="width:100%;max-width:960px">
+      <div class="mission-header">
+        <div class="mission-label">Global Science Recovery Agency — Mission Control</div>
+        <div class="mission-title">THE PROMETHEUS DRIFT</div>
+        <div class="mission-subtitle">Physical Science Campaign · Teacher Dashboard</div>
+      </div>
+
+      <div class="class-grid" id="class-grid"></div>
+
+      <div class="home-actions">
+        <button class="btn btn-green" id="btn-reveal" onclick="launchReveal()" disabled>
+          ◈ Open Today's Reveal
+        </button>
+        <button class="btn btn-primary" id="btn-launch" onclick="launchMission()" disabled>
+          ▶ Launch Mission Screen
+        </button>
+        <button class="btn btn-secondary" onclick="showForensics()">
+          ⬡ Mission Forensics
+        </button>
+        <button class="btn btn-secondary" onclick="showSetup()">◈ Settings</button>
+        <button class="btn btn-danger" onclick="confirmReset()">↺ Reset to Checkpoint</button>
+        <button class="btn btn-danger" onclick="confirmFullReset()">✕ Full Reset Class</button>
+      </div>
+
+      <div class="system-time" id="system-time"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== REVEAL SCREEN ===================== -->
+<div id="screen-reveal" class="screen">
+  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
+    <div class="reveal-inner">
+      <div class="mission-label" style="text-align:center;margin-bottom:8px" id="reveal-class-label">—</div>
+      <div class="reveal-title">RESULTS ARE IN.</div>
+      <div class="reveal-subtitle">Your decision has been processed. Here is what happened.</div>
+
+      <div class="reveal-recap">
+        <div class="reveal-recap-label">Last Class — The Crew Decided</div>
+        <div class="reveal-recap-text" id="reveal-choice-recap">—</div>
+      </div>
+
+      <div class="reveal-gaia-box">
+        <div class="gaia-header" style="margin-bottom:10px">
+          <div class="gaia-dot"></div>
+          <div class="gaia-label">GAIA — Consequence Report</div>
+        </div>
+        <div class="reveal-gaia-text" id="reveal-gaia-text">Loading consequence data...</div>
+      </div>
+
+      <div class="stat-changes" id="reveal-stat-changes"></div>
+
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="proceedFromReveal()">▶ Continue to Today's Mission</button>
+        <button class="btn btn-secondary" onclick="goHome()">⌂ Back to Dashboard</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MISSION SCREEN ===================== -->
+<div id="screen-mission" class="screen">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-title">PROMETHEUS DRIFT</div>
+      <div class="topbar-tag" id="topbar-period">—</div>
+      <div class="topbar-tag" id="topbar-act" style="color:var(--accent-dim)">—</div>
+    </div>
+    <div class="topbar-right">
+      <!-- TIMER WIDGET -->
+      <div class="timer-widget">
+        <div class="timer-readout idle" id="topbar-timer" onclick="focusTimer()">--:--</div>
+        <button class="timer-micro-btn" onclick="addTimeTopbar(2)">+2m</button>
+        <button class="timer-micro-btn" onclick="addTimeTopbar(5)">+5m</button>
+        <button class="timer-micro-btn" onclick="stopTimer()">■</button>
+      </div>
+      <button class="topbar-btn save-btn" onclick="saveCurrentClass()">💾 Save</button>
+      <button class="topbar-btn" onclick="goHome()">⌂ Home</button>
+    </div>
+  </div>
+
+  <div class="mission-layout">
+    <!-- LEFT: STATS -->
+    <div class="panel-stats">
+      <div>
+        <div class="panel-label">Mission Dashboard</div>
+        <div id="stats-container">
+          <div class="stat-item stat-power">
+            <div class="stat-header">
+              <div class="stat-name">⚡ Power</div>
+              <div class="stat-value" id="stat-power-val">100%</div>
+            </div>
+            <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-power-bar" style="width:100%"></div></div>
+            <div class="stat-sublabel" id="stat-power-status">Reserves nominal</div>
+          </div>
+          <div class="stat-item stat-hull">
+            <div class="stat-header">
+              <div class="stat-name">🛡 Hull</div>
+              <div class="stat-value" id="stat-hull-val">100%</div>
+            </div>
+            <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-hull-bar" style="width:100%"></div></div>
+            <div class="stat-sublabel" id="stat-hull-status">Integrity nominal</div>
+          </div>
+          <div class="stat-item stat-data">
+            <div class="stat-header">
+              <div class="stat-name">📡 Data</div>
+              <div class="stat-value" id="stat-data-val">0%</div>
+            </div>
+            <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-data-bar" style="width:0%"></div></div>
+            <div class="stat-sublabel" id="stat-data-status">Awaiting collection</div>
+          </div>
+          <div class="stat-item stat-morale">
+            <div class="stat-header">
+              <div class="stat-name">👥 Morale</div>
+              <div class="stat-value" id="stat-morale-val">100%</div>
+            </div>
+            <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-morale-bar" style="width:100%"></div></div>
+            <div class="stat-sublabel" id="stat-morale-status">Crew ready</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="failure-counter">
+        <div class="panel-label">Mission Failures</div>
+        <div class="failure-dots">
+          <div class="failure-dot" id="fdot-0"></div>
+          <div class="failure-dot" id="fdot-1"></div>
+          <div class="failure-dot" id="fdot-2"></div>
+        </div>
+        <div class="restriction-notice" id="restriction-notice" style="display:none"></div>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div>
+        <div class="panel-label">Mission Path</div>
+        <div class="branch-display">
+          <div class="branch-path" id="branch-path">Act 1 · <span>Branch A</span> · Day 1</div>
+        </div>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div>
+        <div class="panel-label">Recent Decisions</div>
+        <div id="decision-log-entries">
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);font-style:italic">No decisions yet.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CENTER: STORY -->
+    <div class="panel-story">
+      <div class="story-content">
+        <!-- PHASE BAR -->
+        <div class="phase-bar" id="phase-bar">
+          <div class="phase-step active" data-phase="story" onclick="setPhase('story')">1 · Scenario</div>
+          <div class="phase-step" data-phase="exit" onclick="setPhase('exit')">2 · Exit Ticket</div>
+          <div class="phase-step" data-phase="discuss" onclick="setPhase('discuss')">3 · Discussion</div>
+          <div class="phase-step" data-phase="vote" onclick="setPhase('vote')">4 · Final Vote</div>
+        </div>
+
+        <!-- ACT HEADER -->
+        <div class="act-label" id="content-act-label">Act 1 · Atoms & Molecules</div>
+        <div class="act-title" id="content-act-title">Loading...</div>
+        <div class="act-divider"></div>
+
+        <!-- PHASE 1: STORY / SCENARIO -->
+        <div class="phase-panel active" id="phase-story">
+          <div class="gaia-box">
+            <div class="gaia-header">
+              <div class="gaia-dot"></div>
+              <div class="gaia-label">GAIA — Transmission</div>
+            </div>
+            <div class="gaia-text" id="content-gaia">Establishing connection...</div>
+          </div>
+          <div class="scenario-text" id="content-scenario"></div>
+          <div id="content-extra"></div>
+        </div>
+
+        <!-- PHASE 2: EXIT TICKET -->
+        <div class="phase-panel" id="phase-exit">
+          <div class="timer-phase-box">
+            <div class="timer-phase-title">Exit Ticket</div>
+            <div class="timer-phase-desc">
+              Students complete their individual CER Google Form now.<br>
+              <strong style="color:var(--text-primary)">Claim:</strong> Which choice do you think the crew should make?<br>
+              <strong style="color:var(--text-primary)">Evidence:</strong> What from today's reading supports this?<br>
+              <strong style="color:var(--text-primary)">Reasoning:</strong> Why does that evidence support your claim?
+            </div>
+            <div class="big-timer idle" id="exit-timer-display">--:--</div>
+            <div class="timer-set-row">
+              <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">Minutes:</span>
+              <input type="number" class="timer-input-inline" id="exit-timer-input" value="8" min="1" max="30" />
+              <button class="timer-start-btn" onclick="startPhaseTimer('exit')">▶ Start</button>
+              <button class="timer-stop-btn" onclick="stopTimer()">■ Stop</button>
+            </div>
+            <div class="timer-controls">
+              <button class="timer-add-btn" onclick="addTime(2)">+ 2 min</button>
+              <button class="timer-add-btn" onclick="addTime(5)">+ 5 min</button>
+            </div>
+            <div class="timer-done-msg" id="exit-timer-done">
+              "Time. Please submit your forms now. We will review the evidence as a crew."
+            </div>
+          </div>
+
+          <div class="gaia-box">
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — To The Crew</div></div>
+            <div class="gaia-text" id="exit-gaia-prompt">Before we decide as a crew, each of you must commit your own thinking. What do you believe? What evidence supports it? What is your reasoning? Science begins with individual thought before collective decision.</div>
+          </div>
+        </div>
+
+        <!-- PHASE 3: DISCUSSION -->
+        <div class="phase-panel" id="phase-discuss">
+          <div class="timer-phase-box">
+            <div class="timer-phase-title">Class Discussion</div>
+            <div class="timer-phase-desc">
+              Scientists share evidence and challenge each other's reasoning. New information may change your position — and that is not weakness. That is science.
+            </div>
+            <div class="big-timer idle" id="discuss-timer-display">--:--</div>
+            <div class="timer-set-row">
+              <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">Minutes:</span>
+              <input type="number" class="timer-input-inline" id="discuss-timer-input" value="5" min="1" max="30" />
+              <button class="timer-start-btn" onclick="startPhaseTimer('discuss')">▶ Start</button>
+              <button class="timer-stop-btn" onclick="stopTimer()">■ Stop</button>
+            </div>
+            <div class="timer-controls">
+              <button class="timer-add-btn" onclick="addTime(2)">+ 2 min</button>
+              <button class="timer-add-btn" onclick="addTime(5)">+ 5 min</button>
+            </div>
+            <div class="timer-done-msg" id="discuss-timer-done">
+              "The evidence has been heard. Scientists consider new information before deciding. Are you ready for the final vote?"
+            </div>
+          </div>
+
+          <div class="gaia-box">
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — Discussion Guide</div></div>
+            <div class="gaia-text">
+              A good scientific argument requires three things: a clear claim, specific evidence, and reasoning that connects them. As you listen to your crew members — do their arguments hold up? Does their evidence actually support their claim? Are they reasoning correctly from what we know?
+            </div>
+          </div>
+        </div>
+
+        <!-- PHASE 4: FINAL VOTE -->
+        <div class="phase-panel" id="phase-vote">
+          <div class="gaia-box">
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — Final Vote</div></div>
+            <div class="gaia-text">
+              "New information has been presented. In accordance with scientific protocol — <em>we reconsider</em>. This is the crew's official decision. It will be logged. It will have consequences. Choose carefully."
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CHOICES (always visible at bottom) -->
+      <div class="choices-area" id="choices-area">
+        <div class="choices-label" id="choices-label">Crew Decision — Phase 4: Official Vote</div>
+        <div class="choices-restricted" id="choices-restricted" style="display:none">
+          ⚠ GAIA: "Given our track record, I've limited your options to the most viable paths."
+        </div>
+        <div class="choice-grid" id="choice-grid"></div>
+        <div class="commit-row">
+          <button class="btn-commit" id="btn-commit" onclick="openCommitModal()" disabled>✓ Lock In Decision</button>
+          <div class="commit-note" id="commit-note">Select the crew's official choice, then lock it in.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="panel-right">
+      <div>
+        <div class="panel-label">GAIA Status</div>
+        <div id="gaia-alerts">
+          <div class="gaia-alert"><div class="gaia-alert-text">"All systems monitored. Awaiting crew input."</div></div>
+        </div>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div>
+        <div class="panel-label">Daily Flow</div>
+        <button class="nav-btn" onclick="setPhase('story')">1 · Scenario / Lesson</button>
+        <button class="nav-btn" onclick="setPhase('exit')">2 · Exit Ticket Timer</button>
+        <button class="nav-btn" onclick="setPhase('discuss')">3 · Discussion Timer</button>
+        <button class="nav-btn" onclick="setPhase('vote')">4 · Final Vote</button>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div>
+        <div class="panel-label">Mission Control</div>
+        <button class="nav-btn" onclick="saveCurrentClass()">💾 Save Progress</button>
+        <button class="nav-btn" onclick="showForensics()">⬡ Mission Forensics</button>
+        <button class="nav-btn danger" onclick="triggerExtinction()">☠ Branch Extinction</button>
+        <button class="nav-btn" onclick="goHome()">⌂ Dashboard</button>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div>
+        <div class="panel-label">Story Navigation</div>
+        <button class="nav-btn" onclick="advanceToNextDay()">▶ Next Day</button>
+        <button class="nav-btn" onclick="goToReveal()">◈ Show Reveal Screen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PROCESSING SCREEN ===================== -->
+<div id="screen-processing" class="screen">
+  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
+    <div class="processing-inner">
+      <div class="processing-icon">⚙</div>
+      <div class="processing-title">DECISION LOGGED</div>
+      <div class="processing-subtitle">The Prometheus has registered the crew's command.</div>
+
+      <div class="processing-gaia">
+        <div class="gaia-header" style="margin-bottom:10px">
+          <div class="gaia-dot"></div>
+          <div class="gaia-label">GAIA</div>
+        </div>
+        <div class="processing-gaia-text" id="processing-gaia-msg">
+          "Selection received. I am... processing the implications. The ship's systems have registered your decision and are responding accordingly. Whether that response is favorable — well. You'll find out next class."
+        </div>
+      </div>
+
+      <div class="processing-choice-recap">
+        <div class="processing-choice-label">The Crew's Decision</div>
+        <div class="processing-choice-text" id="processing-choice-text">—</div>
+      </div>
+
+      <div class="processing-stats-row">
+        <div class="processing-stat-chip">⚡ Power — classified</div>
+        <div class="processing-stat-chip">🛡 Hull — classified</div>
+        <div class="processing-stat-chip">📡 Data — classified</div>
+        <div class="processing-stat-chip">👥 Morale — classified</div>
+      </div>
+
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);text-align:center;margin-bottom:24px;line-height:1.6">
+        Stat changes are pending until next class reveal.<br>
+        Save now and find out what happened tomorrow.
+      </div>
+
+      <div class="processing-actions">
+        <button class="btn btn-green" onclick="saveAndGoHome()">💾 Save & Return to Dashboard</button>
+        <button class="btn btn-secondary" onclick="continueMission()">▶ Stay on Mission Screen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== FORENSICS ===================== -->
+<div id="screen-forensics" class="screen">
+  <div style="display:flex;align-items:center;justify-content:flex-start;min-height:100vh;padding:2rem;flex-direction:column">
+    <div class="forensics-inner">
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <div class="mission-label" style="margin-bottom:8px">Post-Mortem Analysis</div>
+        <div class="forensics-title">MISSION DEBRIEF</div>
+      </div>
+
+      <div class="gaia-alert" style="margin-bottom:1.5rem">
+        <div class="gaia-alert-text" id="forensics-gaia-text">"The mission has ended. Before we proceed, we owe it to the Prometheus crew to understand what happened — and why."</div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-title">Last Decisions — Most Recent First (up to 7)</div>
+        <div id="timeline-entries"></div>
+      </div>
+
+      <div class="cer-framework">
+        <div class="cer-section">
+          <div class="cer-section-label claim-label">CLAIM</div>
+          <div class="cer-section-prompt">What caused the mission failure? One clear sentence. What was the primary factor?</div>
+        </div>
+        <div class="cer-section">
+          <div class="cer-section-label evidence-label">EVIDENCE</div>
+          <div class="cer-section-prompt">Which specific choices and stat changes support your claim? Identify the turning point decisions in the log above.</div>
+        </div>
+        <div class="cer-section">
+          <div class="cer-section-label reasoning-label">REASONING</div>
+          <div class="cer-section-prompt">Connect the science to the consequences. Why did those choices, given what we know about atoms / energy / matter, make this outcome inevitable?</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="goHome()">Return to Dashboard</button>
+        <button class="btn btn-secondary" onclick="resumeMission()">Resume Mission</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .app -->
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-commit">
+  <div class="modal">
+    <div class="modal-title">Lock In Crew Decision</div>
+    <div class="modal-body" id="commit-modal-body">Confirm the crew's official vote.</div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('modal-commit')">← Reconsider</button>
+      <button class="btn btn-green" onclick="executeCommit()">✓ Confirmed — Log Decision</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-extinction">
+  <div class="modal extinction-modal">
+    <div class="modal-title">☠ BRANCH EXTINCTION</div>
+    <div class="modal-body">The mission has failed. The crew has survived — the ship has not. Mission Control is pulling you out.<br><br>Before we leave, we conduct a full forensic analysis. Every decision that led here will be reviewed.</div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('modal-extinction')">← Stay on Mission</button>
+      <button class="btn btn-danger" onclick="confirmExtinction()">→ Begin Forensic Analysis</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-reset">
+  <div class="modal">
+    <div class="modal-title">Reset to Checkpoint</div>
+    <div class="modal-body" id="reset-modal-body">Reset this class to the last act checkpoint?</div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('modal-reset')">Cancel</button>
+      <button class="btn btn-danger" onclick="executeReset()">Reset to Checkpoint</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-full-reset">
+  <div class="modal">
+    <div class="modal-title">Full Class Reset</div>
+    <div class="modal-body" id="full-reset-modal-body">This will wipe ALL progress for this class and restart from Day 1, Act 1. This cannot be undone.</div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('modal-full-reset')">Cancel</button>
+      <button class="btn btn-danger" onclick="executeFullReset()">Full Reset</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// STATE
+// ============================================================
+const STORAGE_KEY = 'prometheus_drift_v2';
+
+let state = {
+  configured: false,
+  teacher: '',
+  classes: [
+    { id:0, name:'Period 1', act:1, day:1, branch:'A', failures:0,
+      stats:{power:100,hull:100,data:0,morale:100},
+      pendingDeltas:null, pendingChoiceText:null,
+      decisions:[], checkpoint:null },
+    { id:1, name:'Period 3', act:1, day:1, branch:'A', failures:0,
+      stats:{power:100,hull:100,data:0,morale:100},
+      pendingDeltas:null, pendingChoiceText:null,
+      decisions:[], checkpoint:null },
+    { id:2, name:'Period 5', act:1, day:1, branch:'A', failures:0,
+      stats:{power:100,hull:100,data:0,morale:100},
+      pendingDeltas:null, pendingChoiceText:null,
+      decisions:[], checkpoint:null }
+  ],
+  activeClass: null,
+  selectedHomeClass: null,
+  selectedChoice: null,
+  pendingCommit: null,
+  currentPhase: 'story',
+  // Timer
+  timerInterval: null,
+  timerSeconds: 0,
+  timerRunning: false,
+  activeTimerPhase: null // 'exit' | 'discuss' | null
+};
+
+// ============================================================
+// CONTENT
+// KEY CONCEPT: pendingDeltas are stored but NOT applied until reveal
+// ============================================================
+const CONTENT = {
+  acts: [
+    {
+      id:1, label:'Act 1 · Atoms & Molecules', standard:'6.P1U1.3',
+      days:[
+        {
+          day:1, isReveal:false,
+          actLabel:'Act 1 · Atoms & Molecules',
+          actTitle:'Docking with a Dead Ship',
+          gaia:'Crew, I\'ve been waiting six months for this moment. Welcome aboard the <em>Prometheus</em>. I\'m GAIA — ship\'s AI, systems monitor, and your only functioning crew member until you arrived. The situation is... manageable. Mostly.',
+          scenario:'The Argo has locked on. You\'re inside. Emergency lighting only. The first thing you notice is the walls — sections of the hull material look wrong. Discolored. Brittle in some places, almost soft in others. Before you go anywhere, you need to understand what this ship is made of and whether it\'s safe to move through.',
+          revealGaia: null,
+          choices:[
+            { letter:'A', text:'Run a full atomic scan of the hull material first.', subtext:'Thorough but costs power. You\'ll know exactly what you\'re dealing with at the atomic level.', deltas:{power:-8,hull:0,data:12,morale:5}, branch:'A-scan',
+              consequence:'The atomic scan confirms your instincts — the hull\'s molecular structure has been altered in specific sections. You now have clean data on exactly where it\'s safe to move. You spent power, but the data is worth it.' },
+            { letter:'B', text:'Move cautiously and observe visually as you go.', subtext:'Saves power. You might miss something at the atomic level, but you\'ll cover more ground.', deltas:{power:-2,hull:-5,data:4,morale:0}, branch:'B-observe',
+              consequence:'Moving carefully gets you further in — but a section of flooring gives way slightly under pressure. You caught it in time, but the hull took minor stress. Your visual survey missed what the atoms could have told you.' },
+            { letter:'C', text:'Split up — half the crew scans, half explores.', subtext:'Efficient. But if something goes wrong, you\'re separated.', deltas:{power:-5,hull:-3,data:8,morale:-8}, branch:'C-split',
+              consequence:'Splitting up gets you more information faster — but when a minor alert fires in Section B, half the crew is too far away to respond quickly. Morale drops. Nobody got hurt, but the crew feels the tension of being divided.' }
+          ]
+        },
+        {
+          day:2, isReveal:true,
+          actLabel:'Act 1 · Atoms & Molecules',
+          actTitle:'What the Atoms Tell Us',
+          gaia:'The results are in from yesterday. And the data is telling a story. The damaged hull sections all have something in common — their atomic structure has been altered. The atoms are still there. But they\'re arranged <em>differently</em> than they should be. Something changed them.',
+          scenario:'Today we figure out what that means. The pattern of damage isn\'t random — it follows a path through the ship. Something moved through here and changed the molecular arrangement of the materials it touched. Your job: follow the pattern and find the source.',
+          choices:[
+            { letter:'A', text:'Focus analysis on the most damaged section — highest risk, highest data value.', subtext:'Whatever changed the atoms worst may reveal the most about what happened.', deltas:{power:-10,hull:-4,data:18,morale:3}, branch:'A-damaged',
+              consequence:'The most damaged section yields extraordinary data — the atomic disruption pattern here is unlike anything in the ship\'s design specs. But getting the readings required pushing into a structurally compromised area. Hull took minor damage.' },
+            { letter:'B', text:'Map the full pattern of damage before going deeper.', subtext:'Lower immediate data gain but the pattern itself may be the key.', deltas:{power:-6,hull:0,data:10,morale:5}, branch:'B-pattern',
+              consequence:'Smart call. The full pattern reveals that the damage follows a specific path from the research lab outward — whatever happened started there. You have less data than a deep dive would have gotten, but you know exactly where to look next.' }
+          ]
+        }
+      ]
+    },
+    {
+      id:2, label:'Act 2 · Kinetic Theory', standard:'6.P1U1.1',
+      days:[
+        {
+          day:1, isReveal:false,
+          actLabel:'Act 2 · Kinetic Theory',
+          actTitle:'Something Is Wrong With the Temperature',
+          gaia:'New problem. Or rather — I\'ve been monitoring this for six months and now you\'re here to do something about it. Sections of this ship are operating at temperatures that should be <em>physically impossible</em> given the energy available. The particles are not behaving.',
+          scenario:'Section C is near absolute zero despite being adjacent to the reactor. Section F is hot enough to fail standard equipment. Same ship. Same energy source. Completely different molecular behavior. Kinetic theory tells us that temperature IS particle movement — so something is controlling how fast particles move in each section. What, and why?',
+          choices:[
+            { letter:'A', text:'Investigate the cold section — why are the particles barely moving?', subtext:'Something is removing kinetic energy from this section. But what?', deltas:{power:-7,hull:0,data:14,morale:2}, branch:'A-cold',
+              consequence:'The cold section reveals something extraordinary — a dampening field of unknown origin is suppressing particle movement in a 12-meter radius. This isn\'t a malfunction. Someone — or something — designed this.' },
+            { letter:'B', text:'Investigate the hot section — why are particles moving so fast?', subtext:'High risk. Something is adding kinetic energy to Section F at an unexplained rate.', deltas:{power:-9,hull:-6,data:16,morale:-3}, branch:'B-hot',
+              consequence:'Section F is dangerous — but the data is remarkable. Particle movement here is 40x normal. The source appears to be a feedback loop in the thermal regulation system. Getting readings required taking hull stress from the heat.' },
+            { letter:'C', text:'Take readings from both extremes and compare.', subtext:'More power, but comparing the extremes may reveal the cause faster.', deltas:{power:-12,hull:0,data:20,morale:4}, branch:'C-compare',
+              consequence:'Comparing both extremes reveals the relationship immediately — one is causing the other. Energy is being transferred FROM Section C TO Section F through a pathway that shouldn\'t exist in the ship\'s design. This is the biggest finding yet.' }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+// ============================================================
+// STORAGE
+// ============================================================
+function save() {
+  try {
+    const toSave = { ...state, timerInterval:null, timerRunning:false, timerSeconds:0 };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+  } catch(e) { toast('Storage error: ' + e.message, 'error'); }
+}
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    state = { ...state, ...parsed, timerInterval:null, timerRunning:false, timerSeconds:0 };
+    return true;
+  } catch(e) { return false; }
+}
+
+// ============================================================
+// SETUP
+// ============================================================
+function completeSetup() {
+  const teacher = document.getElementById('setup-teacher').value.trim();
+  if (!teacher) { toast('Please enter your name.', 'error'); return; }
+  state.configured = true;
+  state.teacher = teacher;
+  state.classes[0].name = document.getElementById('setup-class1').value.trim() || 'Period 1';
+  state.classes[1].name = document.getElementById('setup-class2').value.trim() || 'Period 3';
+  state.classes[2].name = document.getElementById('setup-class3').value.trim() || 'Period 5';
+  save();
+  showHome();
+}
+
+function showSetup() {
+  document.getElementById('setup-teacher').value = state.teacher || '';
+  document.getElementById('setup-class1').value = state.classes[0].name;
+  document.getElementById('setup-class2').value = state.classes[1].name;
+  document.getElementById('setup-class3').value = state.classes[2].name;
+  showScreen('screen-setup');
+}
+
+// ============================================================
+// HOME
+// ============================================================
+function showHome() {
+  state.activeClass = null;
+  stopTimer();
+  renderClassCards();
+  updateSystemTime();
+  showScreen('screen-home');
+  document.getElementById('btn-launch').disabled = true;
+  document.getElementById('btn-reveal').disabled = true;
+}
+
+function renderClassCards() {
+  const grid = document.getElementById('class-grid');
+  grid.innerHTML = '';
+  state.classes.forEach((cls, i) => {
+    const hasPending = !!cls.pendingDeltas;
+    const branchClass = cls.failures >= 2 ? 'branch-critical' : cls.failures === 1 ? 'branch-caution' : (cls.day === 1 && cls.act === 1 && !hasPending) ? 'branch-new' : 'branch-nominal';
+    const branchText = cls.failures >= 3 ? 'RESTRICTED' : cls.failures >= 2 ? 'CRITICAL' : cls.failures === 1 ? 'CAUTION' : hasPending ? 'REVEAL READY' : (cls.day === 1 && cls.act === 1) ? 'NOT STARTED' : 'NOMINAL';
+
+    const card = document.createElement('div');
+    card.className = 'class-card';
+    card.id = `class-card-${i}`;
+    card.onclick = () => selectClass(i);
+    card.innerHTML = `
+      <div class="class-period">Class ${i+1}</div>
+      <div class="class-name">${cls.name}</div>
+      <div class="class-status">Act ${cls.act} · Day ${cls.day} · Branch ${cls.branch}</div>
+      ${hasPending ? `<div class="reveal-badge visible">⏳ Results pending — reveal next class</div>` : ''}
+      <div class="class-branch ${branchClass}">${branchText}</div>
+      <div class="mini-stats">
+        <div class="mini-stat">
+          <div class="mini-stat-label">⚡ Power</div>
+          <div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.power}%;background:#00c8ff"></div></div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-label">🛡 Hull</div>
+          <div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.hull}%;background:#00ff88"></div></div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-label">📡 Data</div>
+          <div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.data}%;background:#aa66ff"></div></div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-label">👥 Morale</div>
+          <div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.morale}%;background:#ffaa00"></div></div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function selectClass(i) {
+  state.selectedHomeClass = i;
+  document.querySelectorAll('.class-card').forEach((c,idx) => c.classList.toggle('selected', idx === i));
+  document.getElementById('btn-launch').disabled = false;
+  const hasPending = !!state.classes[i].pendingDeltas;
+  document.getElementById('btn-reveal').disabled = !hasPending;
+}
+
+function updateSystemTime() {
+  const el = document.getElementById('system-time');
+  if (el) el.textContent = `Mission Control · ${new Date().toLocaleDateString()} · ${new Date().toLocaleTimeString()}`;
+  setTimeout(updateSystemTime, 1000);
+}
+
+// ============================================================
+// REVEAL SCREEN
+// ============================================================
+function launchReveal() {
+  const i = state.selectedHomeClass;
+  if (i === null) return;
+  const cls = state.classes[i];
+  if (!cls.pendingDeltas) { toast('No pending reveal for this class.', 'error'); return; }
+  state.activeClass = i;
+  renderRevealScreen(cls);
+  showScreen('screen-reveal');
+}
+
+function renderRevealScreen(cls) {
+  document.getElementById('reveal-class-label').textContent = cls.name + ' — Yesterday\'s Decision';
+  document.getElementById('reveal-choice-recap').textContent = cls.pendingChoiceText || '—';
+
+  // Find consequence text from content
+  const content = getContentForClass(cls);
+  const prevDay = getPrevDayContent(cls);
+  let consequenceText = '';
+  let gaiaText = '"The data is in. Here is what happened as a result of your decision."';
+
+  if (prevDay && cls.pendingChoiceText) {
+    const matchChoice = prevDay.choices?.find(c => c.text === cls.pendingChoiceText);
+    if (matchChoice?.consequence) {
+      consequenceText = matchChoice.consequence;
+      gaiaText = `"${consequenceText}"`;
+    }
+  }
+
+  document.getElementById('reveal-gaia-text').innerHTML = gaiaText.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+  // Show stat changes
+  const changes = document.getElementById('reveal-stat-changes');
+  const deltas = cls.pendingDeltas || {};
+  const statInfo = [
+    { key:'power', icon:'⚡', label:'Power', color:'#00c8ff' },
+    { key:'hull',  icon:'🛡', label:'Hull Integrity', color:'#00ff88' },
+    { key:'data',  icon:'📡', label:'Data Collected', color:'#aa66ff' },
+    { key:'morale',icon:'👥', label:'Crew Morale', color:'#ffaa00' }
+  ];
+
+  changes.innerHTML = statInfo.map(s => {
+    const d = deltas[s.key] || 0;
+    const current = cls.stats[s.key];
+    const future = Math.max(0, Math.min(100, current + d));
+    const deltaClass = d > 0 ? 'delta-pos' : d < 0 ? 'delta-neg' : 'delta-neu';
+    const deltaText = d > 0 ? `+${d}%` : d < 0 ? `${d}%` : '—';
+    return `
+      <div class="stat-change-card">
+        <div class="stat-change-icon">${s.icon}</div>
+        <div class="stat-change-body">
+          <div class="stat-change-name">${s.label}</div>
+          <div class="stat-change-bar"><div class="stat-change-fill" style="width:${future}%;background:${s.color}"></div></div>
+          <div class="stat-change-delta ${deltaClass}">${deltaText} → ${future}%</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function proceedFromReveal() {
+  // NOW apply the pending deltas
+  const cls = state.classes[state.activeClass];
+  if (cls.pendingDeltas) {
+    Object.entries(cls.pendingDeltas).forEach(([key, val]) => {
+      cls.stats[key] = Math.max(0, Math.min(100, cls.stats[key] + val));
+    });
+    cls.pendingDeltas = null;
+    cls.pendingChoiceText = null;
+  }
+  save();
+  launchMission();
+}
+
+// ============================================================
+// MISSION SCREEN
+// ============================================================
+function launchMission() {
+  if (state.selectedHomeClass !== null && state.activeClass === null) {
+    state.activeClass = state.selectedHomeClass;
+  }
+  if (state.activeClass === null) return;
+  state.currentPhase = 'story';
+  state.selectedChoice = null;
+  renderMissionScreen();
+  showScreen('screen-mission');
+}
+
+function renderMissionScreen() {
+  const cls = state.classes[state.activeClass];
+  const content = getContentForClass(cls);
+
+  document.getElementById('topbar-period').textContent = cls.name;
+  document.getElementById('topbar-act').textContent = content.actLabel;
+  document.getElementById('content-act-label').textContent = content.actLabel;
+  document.getElementById('content-act-title').textContent = content.actTitle;
+  document.getElementById('content-gaia').innerHTML = content.gaia;
+  document.getElementById('content-scenario').textContent = content.scenario || '';
+
+  renderChoices(cls, content.choices);
+  renderStats(cls);
+  renderDecisionLog(cls);
+  updateFailureDots(cls);
+  document.getElementById('branch-path').innerHTML = `Act ${cls.act} · <span>Branch ${cls.branch}</span> · Day ${cls.day}`;
+
+  setPhase('story');
+  state.selectedChoice = null;
+  document.getElementById('btn-commit').disabled = true;
+  document.getElementById('commit-note').textContent = 'Select the crew\'s official choice, then lock it in.';
+
+  checkStatAlerts(cls);
+}
+
+function getContentForClass(cls) {
+  const act = CONTENT.acts.find(a => a.id === cls.act) || CONTENT.acts[0];
+  return act.days.find(d => d.day === cls.day) || act.days[0];
+}
+
+function getPrevDayContent(cls) {
+  const act = CONTENT.acts.find(a => a.id === cls.act);
+  if (!act) return null;
+  return act.days.find(d => d.day === cls.day - 1) || null;
+}
+
+// ============================================================
+// PHASE SYSTEM
+// ============================================================
+function setPhase(phase) {
+  state.currentPhase = phase;
+  document.querySelectorAll('.phase-step').forEach(el => {
+    const p = el.dataset.phase;
+    el.classList.remove('active','done');
+    const order = ['story','exit','discuss','vote'];
+    const phaseIdx = order.indexOf(phase);
+    const elIdx = order.indexOf(p);
+    if (elIdx < phaseIdx) el.classList.add('done');
+    else if (elIdx === phaseIdx) el.classList.add('active');
+  });
+  document.querySelectorAll('.phase-panel').forEach(el => el.classList.remove('active'));
+  const panel = document.getElementById('phase-' + phase);
+  if (panel) panel.classList.add('active');
+
+  // Update choices label
+  const label = document.getElementById('choices-label');
+  if (phase === 'vote') {
+    label.textContent = 'Crew Decision — Phase 4: Official Vote';
+    document.getElementById('choices-area').style.opacity = '1';
+    document.getElementById('choices-area').style.pointerEvents = 'auto';
+  } else {
+    label.textContent = 'Crew Decision — Available in Phase 4: Final Vote';
+    document.getElementById('choices-area').style.opacity = '0.4';
+    document.getElementById('choices-area').style.pointerEvents = 'none';
+  }
+}
+
+// ============================================================
+// TIMER
+// ============================================================
+let _timerSeconds = 0;
+let _timerRunning = false;
+let _timerInterval = null;
+let _activeTimerPhase = null;
+
+function startPhaseTimer(phase) {
+  stopTimer();
+  _activeTimerPhase = phase;
+  const inputId = phase === 'exit' ? 'exit-timer-input' : 'discuss-timer-input';
+  const mins = parseInt(document.getElementById(inputId).value) || 5;
+  _timerSeconds = mins * 60;
+  _timerRunning = true;
+  _timerInterval = setInterval(tickTimer, 1000);
+  document.getElementById(`${phase}-timer-done`).style.display = 'none';
+  updateTimerDisplays();
+}
+
+function stopTimer() {
+  _timerRunning = false;
+  if (_timerInterval) { clearInterval(_timerInterval); _timerInterval = null; }
+  updateTimerDisplays();
+}
+
+function addTime(mins) {
+  _timerSeconds += mins * 60;
+  if (!_timerRunning && _timerSeconds > 0 && _activeTimerPhase) {
+    _timerRunning = true;
+    _timerInterval = setInterval(tickTimer, 1000);
+  }
+  updateTimerDisplays();
+}
+
+function addTimeTopbar(mins) { addTime(mins); }
+
+function focusTimer() {
+  if (_activeTimerPhase) setPhase(_activeTimerPhase);
+}
+
+function tickTimer() {
+  if (!_timerRunning) return;
+  _timerSeconds = Math.max(0, _timerSeconds - 1);
+  updateTimerDisplays();
+  if (_timerSeconds === 0) {
+    _timerRunning = false;
+    clearInterval(_timerInterval);
+    onTimerDone();
+  }
+}
+
+function onTimerDone() {
+  if (_activeTimerPhase) {
+    const doneEl = document.getElementById(`${_activeTimerPhase}-timer-done`);
+    if (doneEl) doneEl.style.display = 'block';
+  }
+  toast('Time is up!', '');
+}
+
+function updateTimerDisplays() {
+  const m = Math.floor(_timerSeconds / 60);
+  const s = _timerSeconds % 60;
+  const str = `${m}:${s.toString().padStart(2,'0')}`;
+
+  // Determine color class
+  let cls = 'idle';
+  if (_timerSeconds === 0 && !_timerRunning && _activeTimerPhase) cls = 'done';
+  else if (!_timerRunning) cls = 'idle';
+  else if (_timerSeconds <= 60) cls = 'urgent';
+  else if (_timerSeconds <= 120) cls = 'low';
+  else cls = 'running';
+
+  // Topbar
+  const topbar = document.getElementById('topbar-timer');
+  if (topbar) { topbar.textContent = _timerRunning || _timerSeconds > 0 ? str : '--:--'; topbar.className = 'timer-readout ' + cls; }
+
+  // Phase panels
+  ['exit','discuss'].forEach(phase => {
+    const el = document.getElementById(`${phase}-timer-display`);
+    if (!el) return;
+    if (_activeTimerPhase === phase) { el.textContent = str; el.className = 'big-timer ' + cls; }
+    else if (_activeTimerPhase === null) { el.textContent = '--:--'; el.className = 'big-timer idle'; }
+  });
+}
+
+// ============================================================
+// CHOICES
+// ============================================================
+function renderChoices(cls, choices) {
+  const grid = document.getElementById('choice-grid');
+  grid.innerHTML = '';
+  const restricted = cls.failures >= 2;
+  document.getElementById('choices-restricted').style.display = restricted ? 'block' : 'none';
+
+  if (!choices || choices.length === 0) {
+    grid.innerHTML = '<div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);font-style:italic;padding:6px 0">No vote required for this session.</div>';
+    return;
+  }
+
+  // When restricted, mark lowest-impact option as eliminated
+  choices.forEach((choice, i) => {
+    const isEliminated = restricted && i === choices.length - 1 && choices.length > 2;
+    const btn = document.createElement('div');
+    btn.className = 'choice-btn' + (isEliminated ? ' eliminated' : '');
+    btn.id = `choice-${i}`;
+    if (!isEliminated) btn.onclick = () => selectChoice(i);
+    btn.innerHTML = `
+      <div class="choice-letter">${choice.letter}</div>
+      <div>
+        <div class="choice-text">${choice.text}</div>
+        ${choice.subtext ? `<div class="choice-subtext">${choice.subtext}</div>` : ''}
+      </div>
+    `;
+    grid.appendChild(btn);
+  });
+}
+
+function selectChoice(i) {
+  if (state.currentPhase !== 'vote') {
+    toast('Move to Phase 4: Final Vote to commit a decision.', '');
+    return;
+  }
+  state.selectedChoice = i;
+  document.querySelectorAll('.choice-btn').forEach((b,idx) => b.classList.toggle('selected', idx === i));
+  const content = getContentForClass(state.classes[state.activeClass]);
+  const choice = content.choices[i];
+  document.getElementById('btn-commit').disabled = false;
+  document.getElementById('commit-note').innerHTML = `"${choice.text}"`;
+}
+
+// ============================================================
+// COMMIT FLOW — stats NOT applied until reveal
+// ============================================================
+function openCommitModal() {
+  if (state.selectedChoice === null) return;
+  const cls = state.classes[state.activeClass];
+  const content = getContentForClass(cls);
+  const choice = content.choices[state.selectedChoice];
+  document.getElementById('commit-modal-body').innerHTML = `
+    The crew has officially voted:<br><br>
+    <strong style="color:var(--text-primary)">"${choice.text}"</strong><br><br>
+    <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">This decision will be logged. Consequences will be revealed next class. Stats will update during the reveal.</span>
+  `;
+  state.pendingCommit = choice;
+  document.getElementById('modal-commit').classList.add('visible');
+}
+
+function executeCommit() {
+  closeModal('modal-commit');
+  const cls = state.classes[state.activeClass];
+  const choice = state.pendingCommit;
+
+  // Store deltas as PENDING — do NOT apply yet
+  cls.pendingDeltas = { ...choice.deltas };
+  cls.pendingChoiceText = choice.text;
+  cls.branch = choice.branch || cls.branch;
+
+  // Log the decision
+  cls.decisions.push({
+    date: new Date().toLocaleDateString(),
+    act: cls.act,
+    day: cls.day,
+    choiceText: choice.text,
+    choiceLetter: choice.letter,
+    branch: choice.branch,
+    deltas: choice.deltas
+  });
+
+  // Advance day
+  cls.day += 1;
+
+  // Save checkpoint at act boundaries
+  if (!cls.checkpoint) {
+    cls.checkpoint = { act:cls.act, day:1, stats:{...cls.stats}, branch:cls.branch };
+  }
+
+  save();
+
+  // Show processing screen
+  document.getElementById('processing-choice-text').textContent = choice.text;
+  showScreen('screen-processing');
+}
+
+function saveAndGoHome() {
+  save();
+  goHome();
+}
+
+function continueMission() {
+  renderMissionScreen();
+  showScreen('screen-mission');
+}
+
+function goToReveal() {
+  const cls = state.classes[state.activeClass];
+  if (!cls.pendingDeltas) { toast('No pending reveal for this class yet.', ''); return; }
+  renderRevealScreen(cls);
+  showScreen('screen-reveal');
+}
+
+// ============================================================
+// STATS DISPLAY
+// ============================================================
+function renderStats(cls) {
+  const stats = cls.stats;
+  ['power','hull','data','morale'].forEach(key => {
+    const val = Math.max(0, Math.min(100, stats[key]));
+    document.getElementById(`stat-${key}-val`).textContent = val + '%';
+    document.getElementById(`stat-${key}-bar`).style.width = val + '%';
+    const item = document.querySelector(`.stat-${key}`);
+    item.classList.remove('stat-warning','stat-critical');
+    if (val <= 20) item.classList.add('stat-critical');
+    else if (val <= 30) item.classList.add('stat-warning');
+  });
+  document.getElementById('stat-power-status').textContent = statLabel('power', stats.power);
+  document.getElementById('stat-hull-status').textContent = statLabel('hull', stats.hull);
+  document.getElementById('stat-data-status').textContent = statLabel('data', stats.data);
+  document.getElementById('stat-morale-status').textContent = statLabel('morale', stats.morale);
+}
+
+function statLabel(key, val) {
+  const labels = {
+    power: ['🚨 Critical', '⚠ Low reserves', 'Reserves reduced', 'Reserves nominal'],
+    hull:  ['🚨 Breach imminent', '⚠ Structural concern', 'Minor stress', 'Integrity nominal'],
+    data:  ['Awaiting collection', 'Early collection', 'Building record', 'Strong record'],
+    morale:['🚨 Critical failure', '⚠ Crew struggling', '⚠ Crew strained', 'Crew focused', 'Crew ready']
+  };
+  const thresholds = key === 'morale'
+    ? [[20,'🚨 Critical failure'],[40,'⚠ Crew struggling'],[60,'⚠ Crew strained'],[80,'Crew focused'],[101,'Crew ready']]
+    : [[20,'🚨 ' + (key==='power'?'Critical':'Breach imminent')],[30,'⚠ ' + (key==='power'?'Low reserves':key==='hull'?'Structural concern':'')],[60,'Reduced'],[101,'Nominal']];
+
+  for (const [threshold, label] of thresholds) {
+    if (val < threshold) return label;
+  }
+  return 'Nominal';
+}
+
+function checkStatAlerts(cls) {
+  const alerts = [];
+  const s = cls.stats;
+  if (s.hull <= 20) alerts.push('"Hull integrity is critical. Structural failure is no longer hypothetical."');
+  if (s.power <= 20) alerts.push('"Power reserves near depletion. Essential systems only."');
+  if (s.morale <= 30) alerts.push('"Crew morale is affecting performance. I recommend acknowledging this."');
+  const critCount = [s.power, s.hull, s.morale].filter(v => v <= 20).length;
+  if (critCount >= 2) alerts.push('"Two or more systems critical simultaneously. This is the failure profile I hoped to avoid."');
+
+  const box = document.getElementById('gaia-alerts');
+  box.innerHTML = alerts.length
+    ? alerts.map(a => `<div class="gaia-alert" style="margin-bottom:6px"><div class="gaia-alert-text">${a}</div></div>`).join('')
+    : '<div class="gaia-alert"><div class="gaia-alert-text">"All systems monitored. Awaiting crew input."</div></div>';
+
+  if (s.hull <= 0 || critCount >= 2 && [s.power, s.hull].some(v => v <= 0)) triggerExtinction();
+}
+
+function updateFailureDots(cls) {
+  for (let i = 0; i < 3; i++) {
+    document.getElementById(`fdot-${i}`).classList.toggle('active', i < cls.failures);
+  }
+  const notice = document.getElementById('restriction-notice');
+  if (cls.failures === 0) { notice.style.display = 'none'; return; }
+  notice.style.display = 'block';
+  notice.textContent = cls.failures === 1
+    ? 'One failure logged. Second failure restricts choices.'
+    : cls.failures === 2
+    ? 'GAIA: "Choices are now restricted to the most viable options."'
+    : 'GAIA: "I have narrowed your options significantly. Please try not to make me regret it."';
+}
+
+// ============================================================
+// DECISION LOG
+// ============================================================
+function renderDecisionLog(cls) {
+  const container = document.getElementById('decision-log-entries');
+  const decisions = cls.decisions.slice(-5).reverse();
+  if (decisions.length === 0) {
+    container.innerHTML = '<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);font-style:italic">No decisions yet.</div>';
+    return;
+  }
+  container.innerHTML = decisions.map(d => {
+    const impacts = Object.entries(d.deltas || {}).map(([key, val]) =>
+      `<span class="impact-tag ${val > 0 ? 'impact-pos' : val < 0 ? 'impact-neg' : 'impact-neu'}">${key} ${val > 0 ? '+' : ''}${val || '—'}</span>`
+    ).join('');
+    return `<div class="log-entry">
+      <div class="log-date">${d.date} · Act ${d.act} Day ${d.day}</div>
+      <div class="log-choice">${d.choiceText}</div>
+      <div class="log-impact">${impacts}</div>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function advanceToNextDay() {
+  if (state.activeClass === null) return;
+  const cls = state.classes[state.activeClass];
+  const act = CONTENT.acts.find(a => a.id === cls.act);
+  if (!act) return;
+  const nextDayContent = act.days.find(d => d.day === cls.day + 1);
+  if (nextDayContent) {
+    cls.day += 1;
+  } else {
+    const nextAct = CONTENT.acts.find(a => a.id === cls.act + 1);
+    if (nextAct) {
+      cls.act += 1; cls.day = 1;
+      cls.checkpoint = { act:cls.act, day:1, stats:{...cls.stats}, branch:cls.branch };
+      toast(`Advanced to Act ${cls.act}`, 'success');
+    } else { toast('Campaign complete — all acts finished.', 'success'); return; }
+  }
+  save();
+  renderMissionScreen();
+}
+
+function saveCurrentClass() {
+  save();
+  toast(`${state.classes[state.activeClass]?.name || 'Class'} saved.`, 'success');
+}
+
+function goHome() {
+  save();
+  stopTimer();
+  state.activeClass = null;
+  showHome();
+}
+
+function resumeMission() {
+  if (state.activeClass !== null) { renderMissionScreen(); showScreen('screen-mission'); }
+  else goHome();
+}
+
+// ============================================================
+// EXTINCTION / FORENSICS
+// ============================================================
+function triggerExtinction() { document.getElementById('modal-extinction').classList.add('visible'); }
+
+function confirmExtinction() {
+  closeModal('modal-extinction');
+  const cls = state.classes[state.activeClass];
+  cls.failures = Math.min(3, cls.failures + 1);
+  if (cls.checkpoint) {
+    cls.act = cls.checkpoint.act; cls.day = cls.checkpoint.day;
+    cls.stats = {...cls.checkpoint.stats}; cls.branch = cls.checkpoint.branch;
+  }
+  cls.pendingDeltas = null; cls.pendingChoiceText = null;
+  save();
+  showForensics();
+}
+
+function showForensics() {
+  const idx = state.activeClass !== null ? state.activeClass : state.selectedHomeClass;
+  if (idx === null) { showHome(); return; }
+  const cls = state.classes[idx];
+  const msgs = [
+    '"The mission has ended. Before we proceed, we owe it to the Prometheus crew to understand what happened — and why. Let\'s find out together."',
+    '"We\'ve been here before. That concerns me. Let\'s be more careful this time about identifying where the reasoning failed."',
+    '"Three failures. I\'ve narrowed your future options significantly. But first: let\'s understand why we keep arriving at this moment."'
+  ];
+  document.getElementById('forensics-gaia-text').textContent = msgs[Math.min(cls.failures, msgs.length - 1)];
+  const entries = document.getElementById('timeline-entries');
+  const recent = cls.decisions.slice(-7).reverse();
+  entries.innerHTML = recent.length === 0
+    ? '<div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);font-style:italic;padding:8px">No decisions logged yet.</div>'
+    : recent.map((d,i) => {
+        const impacts = Object.entries(d.deltas || {}).map(([key,val]) =>
+          `<span class="impact-tag ${val>0?'impact-pos':val<0?'impact-neg':'impact-neu'}">${key} ${val>0?'+':''}${val||'—'}</span>`
+        ).join('');
+        return `<div class="timeline-entry">
+          <div class="timeline-num">${i+1}</div>
+          <div>
+            <div class="timeline-date">${d.date} · Act ${d.act} · Day ${d.day}</div>
+            <div class="timeline-choice">${d.choiceLetter ? d.choiceLetter + '. ' : ''}${d.choiceText}</div>
+            <div class="timeline-impact">${impacts}</div>
+          </div>
+        </div>`;
+      }).join('');
+  showScreen('screen-forensics');
+}
+
+// ============================================================
+// RESETS
+// ============================================================
+function confirmReset() {
+  if (state.selectedHomeClass === null) { toast('Select a class first.', 'error'); return; }
+  const cls = state.classes[state.selectedHomeClass];
+  document.getElementById('reset-modal-body').textContent =
+    `Reset ${cls.name} to the last checkpoint (Act ${cls.checkpoint?.act || 1} Day ${cls.checkpoint?.day || 1})? Decisions since then will be lost.`;
+  document.getElementById('modal-reset').classList.add('visible');
+}
+
+function executeReset() {
+  closeModal('modal-reset');
+  const cls = state.classes[state.selectedHomeClass];
+  if (cls.checkpoint) {
+    cls.act = cls.checkpoint.act; cls.day = cls.checkpoint.day;
+    cls.stats = {...cls.checkpoint.stats}; cls.branch = cls.checkpoint.branch;
+  } else {
+    cls.act=1; cls.day=1; cls.branch='A'; cls.stats={power:100,hull:100,data:0,morale:100}; cls.decisions=[];
+  }
+  cls.pendingDeltas = null; cls.pendingChoiceText = null;
+  save(); renderClassCards(); toast(`${cls.name} reset.`, '');
+}
+
+function confirmFullReset() {
+  if (state.selectedHomeClass === null) { toast('Select a class first.', 'error'); return; }
+  document.getElementById('full-reset-modal-body').textContent =
+    `Full reset ${state.classes[state.selectedHomeClass].name}? ALL progress wiped. Cannot be undone.`;
+  document.getElementById('modal-full-reset').classList.add('visible');
+}
+
+function executeFullReset() {
+  closeModal('modal-full-reset');
+  const cls = state.classes[state.selectedHomeClass];
+  cls.act=1; cls.day=1; cls.branch='A'; cls.failures=0;
+  cls.stats={power:100,hull:100,data:0,morale:100};
+  cls.decisions=[]; cls.checkpoint=null;
+  cls.pendingDeltas=null; cls.pendingChoiceText=null;
+  save(); renderClassCards(); toast(`${cls.name} fully reset.`, '');
+}
+
+// ============================================================
+// UTILITIES
+// ============================================================
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('visible'); }
+
+function toast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast visible' + (type ? ' ' + type : '');
+  setTimeout(() => t.classList.remove('visible'), 3000);
+}
+
+// ============================================================
+// BOOT
+// ============================================================
+window.addEventListener('load', () => {
+  const loaded = load();
+  if (loaded && state.configured) showHome();
+  else showScreen('screen-setup');
+});
+</script>
+</body>
+</html>
