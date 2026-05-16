@@ -2161,6 +2161,22 @@ function renderMissionScreen() {
   updateFailureDots(cls);
   document.getElementById('branch-path').innerHTML = 'Act ' + cls.act + ' · <span>Branch ' + cls.branch + '</span> · Day ' + cls.day;
 
+  // Update Next Day button to show locked state if reveal pending
+  const nextDayBtns = document.querySelectorAll('.nav-btn');
+  nextDayBtns.forEach(btn => {
+    if (btn.textContent.includes('Next Day')) {
+      if (cls.pendingDeltas) {
+        btn.style.opacity = '0.4';
+        btn.style.color = 'var(--amber)';
+        btn.title = 'Reveal pending — show results first';
+      } else {
+        btn.style.opacity = '';
+        btn.style.color = '';
+        btn.title = '';
+      }
+    }
+  });
+
   setPhase('story');
   state.selectedChoice = null;
   document.getElementById('btn-commit').disabled = true;
@@ -2737,9 +2753,25 @@ function renderDecisionLog(cls) {
 // ============================================================
 // NAVIGATION
 // ============================================================
+// Cycling GAIA messages for blocked next-day attempts
+let _gaiaBlockIndex = 0;
+const GAIA_BLOCK_MESSAGES = [
+  "Results pending. I'd recommend finding out what happened before creating new things to regret.",
+  "The crew voted. Something happened. You haven't looked yet. Perhaps do that first."
+];
+
 function advanceToNextDay() {
   if (state.activeClass === null) return;
   const cls = state.classes[state.activeClass];
+
+  // Block advancing if a reveal is pending — cliffhanger protection
+  if (cls.pendingDeltas) {
+    const msg = GAIA_BLOCK_MESSAGES[_gaiaBlockIndex % GAIA_BLOCK_MESSAGES.length];
+    _gaiaBlockIndex++;
+    showGaiaBlock(msg);
+    return;
+  }
+
   const act = CONTENT.acts.find(a => a.id === cls.act);
   if (!act) return;
   const nextDayContent = act.days.find(d => d.day === cls.day + 1);
@@ -2750,11 +2782,24 @@ function advanceToNextDay() {
     if (nextAct) {
       cls.act += 1; cls.day = 1;
       cls.checkpoint = { act:cls.act, day:1, stats:{...cls.stats}, branch:cls.branch };
-      toast(`Advanced to Act ${cls.act}`, 'success');
+      toast('Advanced to Act ' + cls.act, 'success');
     } else { toast('Campaign complete — all acts finished.', 'success'); return; }
   }
   save();
   renderMissionScreen();
+}
+
+function showGaiaBlock(msg) {
+  // Show GAIA block message in the gaia alerts panel
+  const box = document.getElementById('gaia-alerts');
+  if (box) {
+    box.innerHTML = '<div class="gaia-alert" style="border-color:rgba(255,170,0,0.4);border-left-color:var(--amber)"><div class="gaia-alert-text" style="color:var(--amber)">' + msg + '</div></div>';
+    // Also flash the stat panel to draw attention
+    setTimeout(() => {
+      if (box) checkStatAlerts(state.classes[state.activeClass]);
+    }, 4000);
+  }
+  toast('Reveal pending — open the reveal screen first.', '');
 }
 
 function saveCurrentClass() {
