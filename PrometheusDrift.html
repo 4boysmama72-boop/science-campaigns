@@ -1316,7 +1316,7 @@
             </div>
           </div>
 
-          <div class="gaia-box">
+          <div class="gaia-box" id="exit-gaia-box">
             <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — To The Crew</div></div>
             <div class="gaia-text" id="exit-gaia-prompt">Before we decide as a crew, each of you must commit your own thinking. What do you believe? What evidence supports it? What is your reasoning? Science begins with individual thought before collective decision.</div>
           </div>
@@ -1349,7 +1349,7 @@
             </div>
           </div>
 
-          <div class="gaia-box">
+          <div class="gaia-box" id="discuss-gaia-box">
             <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — Discussion Guide</div></div>
             <div class="gaia-text">
               A good scientific argument requires three things: a clear claim, specific evidence, and reasoning that connects them. As you listen to your crew members — do their arguments hold up? Does their evidence actually support their claim? Are they reasoning correctly from what we know?
@@ -2161,10 +2161,13 @@ function renderMissionScreen() {
   updateFailureDots(cls);
   document.getElementById('branch-path').innerHTML = 'Act ' + cls.act + ' · <span>Branch ' + cls.branch + '</span> · Day ' + cls.day;
 
-  // Update Next Day button to show locked state if reveal pending
-  const nextDayBtns = document.querySelectorAll('.nav-btn');
-  nextDayBtns.forEach(btn => {
-    if (btn.textContent.includes('Next Day')) {
+  // Update nav buttons based on day type and pending state
+  const dayTypeForNav = cnt.type || 'choice';
+  const isChoiceDayForNav = dayTypeForNav === 'choice' && !cnt.noChoice;
+
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    const txt = btn.textContent;
+    if (txt.includes('Next Day')) {
       if (cls.pendingDeltas) {
         btn.style.opacity = '0.4';
         btn.style.color = 'var(--amber)';
@@ -2174,6 +2177,10 @@ function renderMissionScreen() {
         btn.style.color = '';
         btn.title = '';
       }
+    }
+    // Hide phase nav buttons on non-choice days
+    if (txt.includes('Exit Ticket') || txt.includes('Discussion') || txt.includes('Final Vote')) {
+      btn.style.display = isChoiceDayForNav ? '' : 'none';
     }
   });
 
@@ -2190,6 +2197,12 @@ function renderMissionScreen() {
   const exitText = document.getElementById('exit-prompt-text');
   const exitDesc = document.getElementById('exit-phase-desc');
   const exitTitle = document.getElementById('exit-phase-title');
+
+  // Show/hide the static GAIA boxes based on day type
+  const exitGaiaBox = document.getElementById('exit-gaia-box');
+  const discussGaiaBox = document.getElementById('discuss-gaia-box');
+  if (exitGaiaBox) exitGaiaBox.style.display = hasExitTicket ? '' : 'none';
+  if (discussGaiaBox) discussGaiaBox.style.display = hasDiscussion ? '' : 'none';
 
   if (exitDisplay && exitText) {
     if (hasExitTicket) {
@@ -2415,30 +2428,61 @@ function getPrevDayContent(cls) {
 // PHASE SYSTEM
 // ============================================================
 function setPhase(phase) {
+  // Get current day type to know which phases apply
+  const cls = state.activeClass !== null ? state.classes[state.activeClass] : null;
+  const cnt = cls ? getContentForClass(cls) : null;
+  const dayType = cnt ? (cnt.type || 'choice') : 'choice';
+  const isChoiceDay = dayType === 'choice' && !cnt.noChoice;
+
   state.currentPhase = phase;
+
+  // Show/hide phase bar steps based on day type
   document.querySelectorAll('.phase-step').forEach(el => {
     const p = el.dataset.phase;
     el.classList.remove('active','done');
-    const order = ['story','exit','discuss','vote'];
-    const phaseIdx = order.indexOf(phase);
-    const elIdx = order.indexOf(p);
-    if (elIdx < phaseIdx) el.classList.add('done');
-    else if (elIdx === phaseIdx) el.classList.add('active');
+
+    if (!isChoiceDay && (p === 'exit' || p === 'discuss' || p === 'vote')) {
+      // Hide these steps on non-choice days
+      el.style.display = 'none';
+    } else {
+      el.style.display = '';
+      const order = ['story','exit','discuss','vote'];
+      const phaseIdx = order.indexOf(phase);
+      const elIdx = order.indexOf(p);
+      if (elIdx < phaseIdx) el.classList.add('done');
+      else if (elIdx === phaseIdx) el.classList.add('active');
+    }
   });
+
+  // On non-choice days, force phase to story if vote/exit/discuss requested
+  if (!isChoiceDay && (phase === 'exit' || phase === 'discuss' || phase === 'vote')) {
+    phase = 'story';
+  }
+
   document.querySelectorAll('.phase-panel').forEach(el => el.classList.remove('active'));
   const panel = document.getElementById('phase-' + phase);
   if (panel) panel.classList.add('active');
 
-  // Update choices label
+  // Update choices area
   const label = document.getElementById('choices-label');
-  if (phase === 'vote') {
-    label.textContent = 'Crew Decision — Phase 4: Official Vote';
-    document.getElementById('choices-area').style.opacity = '1';
-    document.getElementById('choices-area').style.pointerEvents = 'auto';
+  const choicesArea = document.getElementById('choices-area');
+
+  if (!isChoiceDay) {
+    // Hide choices entirely on non-choice days
+    if (choicesArea) {
+      choicesArea.style.display = 'none';
+    }
   } else {
-    label.textContent = 'Crew Decision — Available in Phase 4: Final Vote';
-    document.getElementById('choices-area').style.opacity = '0.4';
-    document.getElementById('choices-area').style.pointerEvents = 'none';
+    if (choicesArea) choicesArea.style.display = '';
+    if (phase === 'vote') {
+      if (label) label.textContent = 'Crew Decision — Phase 4: Official Vote';
+      choicesArea.style.opacity = '1';
+      choicesArea.style.pointerEvents = 'auto';
+    } else {
+      if (label) label.textContent = 'Crew Decision — Available in Phase 4: Final Vote';
+      choicesArea.style.opacity = '0.4';
+      choicesArea.style.pointerEvents = 'none';
+    }
   }
 }
 
