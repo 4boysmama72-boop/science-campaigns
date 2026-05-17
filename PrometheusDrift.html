@@ -2441,11 +2441,30 @@ function setPhase(phase) {
     const p = el.dataset.phase;
     el.classList.remove('active','done');
 
-    if (!isChoiceDay && (p === 'exit' || p === 'discuss' || p === 'vote')) {
-      // Hide these steps on non-choice days
-      el.style.display = 'none';
+    if (!isChoiceDay) {
+      // Non-choice days: only show story and exit (repurposed as Work Timer)
+      if (p === 'discuss' || p === 'vote') {
+        el.style.display = 'none';
+      } else {
+        el.style.display = '';
+        // Rename exit step to Work Timer on non-choice days
+        if (p === 'exit') {
+          el.textContent = dayType === 'graph' ? '2 · Work Timer' : '2 · Reading Timer';
+        }
+        if (p === 'story') el.textContent = '1 · Scenario';
+        const order = ['story','exit'];
+        const phaseIdx = order.indexOf(phase === 'discuss' || phase === 'vote' ? 'story' : phase);
+        const elIdx = order.indexOf(p);
+        if (elIdx < phaseIdx) el.classList.add('done');
+        else if (elIdx === phaseIdx) el.classList.add('active');
+      }
     } else {
+      // Choice days: restore original labels and show all steps
       el.style.display = '';
+      if (p === 'exit') el.textContent = '2 · Exit Ticket';
+      if (p === 'story') el.textContent = '1 · Scenario';
+      if (p === 'discuss') el.textContent = '3 · Discussion';
+      if (p === 'vote') el.textContent = '4 · Final Vote';
       const order = ['story','exit','discuss','vote'];
       const phaseIdx = order.indexOf(phase);
       const elIdx = order.indexOf(p);
@@ -2454,8 +2473,8 @@ function setPhase(phase) {
     }
   });
 
-  // On non-choice days, force phase to story if vote/exit/discuss requested
-  if (!isChoiceDay && (phase === 'exit' || phase === 'discuss' || phase === 'vote')) {
+  // On non-choice days, redirect discuss/vote back to story
+  if (!isChoiceDay && (phase === 'discuss' || phase === 'vote')) {
     phase = 'story';
   }
 
