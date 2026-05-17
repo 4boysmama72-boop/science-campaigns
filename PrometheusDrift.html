@@ -826,6 +826,64 @@
 
   .divider-line { height: 1px; background: var(--border); }
 
+  /* DAY TYPE BANNER */
+  .day-type-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 24px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .day-type-badge {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 4px;
+  }
+  .badge-choice  { background: rgba(0,200,255,0.12); color: var(--accent); border: 1px solid rgba(0,200,255,0.3); }
+  .badge-deepen  { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.25); }
+  .badge-graph   { background: rgba(170,102,255,0.12); color: var(--purple); border: 1px solid rgba(170,102,255,0.3); }
+  .badge-climax  { background: rgba(255,170,0,0.12); color: var(--amber); border: 1px solid rgba(255,170,0,0.3); }
+
+  .day-type-desc {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: .05em;
+  }
+
+  /* PRESENTATION MODE */
+  .pres-btn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--amber);
+    background: rgba(255,170,0,0.08);
+    border: 1px solid rgba(255,170,0,0.3);
+    padding: 4px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+  .pres-btn:hover { background: rgba(255,170,0,0.15); border-color: var(--amber); }
+
+  body.presentation-mode .panel-stats { display: none !important; }
+  body.presentation-mode .panel-right { display: none !important; }
+  body.presentation-mode .mission-layout { grid-template-columns: 1fr !important; }
+  body.presentation-mode .gaia-text { font-size: 20px !important; }
+  body.presentation-mode .scenario-text { font-size: 19px !important; }
+  body.presentation-mode .choice-text { font-size: 18px !important; }
+  body.presentation-mode .choice-subtext { font-size: 13px !important; }
+  body.presentation-mode .act-title { font-size: 26px !important; }
+  body.presentation-mode .story-content { padding: 28px 40px !important; }
+  body.presentation-mode .choices-area { padding: 18px 40px !important; }
+  body.presentation-mode .day-type-banner { padding: 8px 40px !important; }
+
   /* ===================== PROCESSING SCREEN ===================== */
   #screen-processing {
     align-items: center;
@@ -1183,6 +1241,13 @@
       <button class="topbar-btn save-btn" onclick="saveCurrentClass()">💾 Save</button>
       <button class="topbar-btn" onclick="goHome()">⌂ Home</button>
     </div>
+  </div>
+
+  <!-- DAY TYPE BANNER -->
+  <div class="day-type-banner" id="day-type-banner">
+    <div class="day-type-badge badge-choice" id="day-type-badge">⚡ Choice Day</div>
+    <div class="day-type-desc" id="day-type-desc">Full four-phase flow · Exit Ticket · Discussion · Official Vote</div>
+    <button class="pres-btn" onclick="togglePresMode()" id="pres-btn">⊡ Present</button>
   </div>
 
   <div class="mission-layout">
@@ -1815,42 +1880,594 @@ const CONTENT = {
     }, // end Act 1
 
     // ============================================================
-    // ACT 2 CONTENT — DROP ZONE
-    // Kinetic Theory / States of Matter / Changes of State
-    // Standards: 6.P1U1.1 + 6.P1U1.2
-    // To add Act 2: replace this entire object with the Act 2 content object
-    // See HANDOFF.md for the content object structure
+    // ACT 2 CONTENT — INTEGRATED
+    // Kinetic Theory + States of Matter + Changes of State
+    // Standards: 6.P1U1.1 + 6.P1U1.2 · 20 Days
     // ============================================================
     {
-      id:2, label:'Act 2 · Kinetic Theory', standard:'6.P1U1.1',
-      days:[
+  id:2, label:'Act 2 · Kinetic Theory', standard:'6.P1U1.1',
+  days:[
+
+    // ── DAY 1 ── CHOICE DAY · Cold Open ──────────────────────
+    {
+      day:1, type:'choice', isReveal:false,
+      actLabel:'Act 2 · Kinetic Theory',
+      actTitle:'The Temperature Problem',
+      gaia:'Welcome back. I have missed having someone to talk to. I have also been busy. While you were reviewing Act 1 findings, I have been monitoring something I did not want to mention until you were ready. The temperature readings in this ship make no sense. And I mean that in the scientific sense — they violate what should be physically possible given the energy available. I have a theory. But I would rather the crew figured it out first. That is how good science works.',
+      scenario:'The crew moves deeper into the Prometheus. The corridors split here — Section C to the left, Section F to the right. Your thermal sensors tell two completely different stories.\n\nSection C: temperature approaching absolute zero. The air itself is barely moving. The walls are coated in frost so thin it looks like static. Your breath doesn\'t fog — it freezes before it forms.\n\nSection F: hot enough that standard equipment fails on contact. The walls radiate heat you can feel three meters away. Something in there is generating energy at a rate that shouldn\'t be possible.\n\nSame ship. Same power source. Same physics.\n\nExcept — and this is what GAIA finds most interesting — the physics here doesn\'t seem to be behaving the same. Temperature, the crew is about to discover, is not just a number on a thermometer. It is a measurement of something happening at the particle level. And something on this ship is controlling that something.',
+      exitTicketPrompt:'Based on what you know about particle motion and temperature, which section do you think the crew should investigate first? What is your claim, and what evidence from today\'s reading supports it?',
+      discussionPrompt:'If temperature is a measurement of how fast particles are moving — what does it mean that Section C is nearly at absolute zero while Section F is dangerously hot, if they are both powered by the same source? Where is the energy going? Where is it coming from?',
+      choices:[
         {
-          day:1, type:'choice', isReveal:false,
-          actLabel:'Act 2 · Kinetic Theory',
-          actTitle:'Something Is Wrong With the Temperature',
-          gaia:'Welcome back. I\'ve been busy. Section C is now registering temperatures approaching absolute zero — despite being adjacent to the reactor. Section F is hot enough to fail standard equipment. Same ship. Same energy source. Completely different particle behavior. I have a theory about why. But I\'d rather the crew figured it out first. That\'s how good science works.',
-          scenario:'The temperature anomaly has gotten worse. The crew\'s instruments confirm what GAIA has been monitoring for months: particles in Section C are barely moving. Particles in Section F are moving at extraordinary speed. Temperature, the crew is about to learn, is not just a number on a thermometer. It is a measurement of how fast particles are moving. And something on this ship is controlling particle speed in ways that defy the ship\'s design.',
-          exitTicketPrompt:'Based on what you know about particle movement and temperature, which section do you think the crew should investigate first? What evidence supports your claim?',
-          discussionPrompt:'What does particle speed have to do with temperature? If temperature IS particle movement — what does it mean that Section C is cold and Section F is hot if they\'re powered by the same source?',
-          choices:[
-            { letter:'A', text:'Investigate Section C — why are the particles barely moving?',
-              subtext:'Something is removing kinetic energy from this section. But what?',
-              deltas:{power:-7,hull:0,data:14,morale:2}, branch:'A-cold',
-              consequence:'Act 2 content coming soon — run the reveal to see consequences.' },
-            { letter:'B', text:'Investigate Section F — why are the particles moving so fast?',
-              subtext:'High risk. Something is adding kinetic energy at an unexplained rate.',
-              deltas:{power:-9,hull:-6,data:16,morale:-3}, branch:'B-hot',
-              consequence:'Act 2 content coming soon — run the reveal to see consequences.' },
-            { letter:'C', text:'Take readings from both extremes and compare.',
-              subtext:'More power, but comparing the extremes may reveal the cause faster.',
-              deltas:{power:-12,hull:0,data:20,morale:4}, branch:'C-compare',
-              consequence:'Act 2 content coming soon — run the reveal to see consequences.' }
-          ]
+          letter:'A',
+          text:'Investigate Section C — find out why the particles are barely moving.',
+          subtext:'Something is removing kinetic energy from this section. That energy has to be going somewhere.',
+          deltas:{power:-7,hull:0,data:15,morale:3},
+          branch:'A-cold',
+          consequence:'Section C is extraordinary. The particle movement here is suppressed to a degree that shouldn\'t exist without an external energy drain. GAIA\'s sensors detect a dampening field — not a malfunction, not a design flaw. Something is deliberately slowing particles down in a 12-meter radius. The energy being removed from Section C is going somewhere. GAIA has a suspicion where. "The particles in Section C," she notes, "are vibrating. Just barely. That means this section is still a solid — just an incredibly, unnaturally cold one. The question is what is pulling the thermal energy out."'
+        },
+        {
+          letter:'B',
+          text:'Investigate Section F — find out why the particles are moving so fast.',
+          subtext:'High risk. Something is adding kinetic energy to Section F at an unexplained rate.',
+          deltas:{power:-9,hull:-6,data:18,morale:-2},
+          branch:'B-hot',
+          consequence:'Section F is dangerous — but the data is remarkable. Particle movement here is running at 40 times normal rate. The source appears to be a feedback loop in the thermal regulation system — energy cycling through the same pathway repeatedly, amplifying each time. Getting readings required pushing equipment to its limits. Hull takes stress from the heat. GAIA: "The particles in Section F are moving so fast the material is approaching a liquid state in sections. If the feedback loop isn\'t interrupted, we won\'t be discussing states of matter theoretically for much longer."'
+        },
+        {
+          letter:'C',
+          text:'Take readings from both sections simultaneously and compare the data.',
+          subtext:'More power cost, but comparing both extremes may reveal the relationship between them faster.',
+          deltas:{power:-12,hull:0,data:22,morale:5},
+          branch:'C-both',
+          consequence:'Comparing both extremes reveals the relationship immediately — one is causing the other. Energy is being transferred FROM Section C TO Section F through a pathway that does not appear in any of the ship\'s design schematics. Section C is cold because it is being drained. Section F is hot because it is receiving that energy. Something on this ship built a thermal transfer system that was never supposed to exist. GAIA: "This is not a malfunction. Someone designed this. The question is who, and why, and whether they intended it to still be running six months later."'
         }
       ]
     },
 
-    // ============================================================
+    // ── DAY 2 ── DEEPEN · Reading Day ────────────────────────
+    {
+      day:2, type:'deepen', isReveal:true,
+      actLabel:'Act 2 · Kinetic Theory',
+      actTitle:'What Temperature Actually Is',
+      gaia:'Yesterday\'s investigation gave us data. Today I need the crew to build the framework that makes sense of it. Temperature is not heat. Temperature is not energy. Temperature is a <em>measurement</em> of how fast particles are moving. The faster they move, the higher the temperature. The slower they move, the lower. At absolute zero, particles stop moving entirely. That is not just cold. That is the absence of thermal motion. What we found in Section C is approaching that. What we found in Section F is the opposite extreme. Both of these are telling us something about what is happening on this ship at the particle level.',
+      scenario:'GAIA assigns the crew a focused reading task. To understand the temperature anomaly, the crew needs to understand kinetic theory — the relationship between particle motion and temperature — and how that relationship explains the behavior of solids, liquids, and gases. This is the foundation everything else in Act 2 will build on.',
+      readingFocus:'Savvas Topic 1, Lesson 1 — States of Matter. Focus today: What is the relationship between particle motion and temperature? How do particles move differently in solids, liquids, and gases?',
+      gaiaReadingPrompt:'"The reading today is foundational. Every decision this crew makes for the next three weeks depends on understanding what temperature actually measures. A solid\'s particles vibrate in place. A liquid\'s particles move past each other. A gas\'s particles move freely and fast. The speed of that movement is what we call temperature. Read carefully. The questions are not optional. I will know."',
+      vocabFocus:['solid','liquid','gas','vibrate'],
+      noChoice:true,
+      bridgeToNext:'Tomorrow GAIA has particle speed data from all six ship sections. The crew will need to read a line graph and make predictions about what happens next.'
+    },
+
+    // ── DAY 3 ── GRAPH DAY · Line Graph Deepened ─────────────
+    {
+      day:3, type:'graph', isReveal:false,
+      actLabel:'Act 2 · Kinetic Theory',
+      actTitle:'Particle Speed — Reading the Trend',
+      gaia:'I have been collecting particle speed data from all six sections of the ship over the past 48 hours. I have put it into a line graph. I need the crew to read it carefully — not just what it shows right now, but where it is going. A line graph does not just show data. It shows <em>change over time</em>. And change over time can be predicted. That prediction is what I need from you today.',
+      scenario:'GAIA projects a line graph showing particle speed measurements (in relative units) from six ship sections, tracked over 48 hours at 8-hour intervals. The crew\'s job: read the trends and predict what happens next if nothing changes.',
+      graphData:{
+        title:'Particle Speed by Section — 48 Hour Trend',
+        teacherNote:'Draw this as a line graph on your board OR display the values below. Each section is a separate line. Plot time (0h, 8h, 16h, 24h, 32h, 40h, 48h) on the x-axis and particle speed units on the y-axis.',
+        data:[
+          {label:'0h', value:50},
+          {label:'8h', value:50},
+          {label:'16h', value:50},
+          {label:'24h', value:50},
+          {label:'32h', value:50},
+          {label:'40h', value:50},
+          {label:'48h', value:50}
+        ],
+        multiLine:[
+          {section:'Section A', values:[82,81,83,82,81,82,82], color:'safe', note:'Stable — nominal particle speed'},
+          {section:'Section C', values:[45,38,31,24,17,11,6], color:'danger', note:'DROPPING — approaching dangerous low'},
+          {section:'Section F', values:[58,67,79,91,104,118,133], color:'warning', note:'RISING — approaching dangerous high'},
+          {section:'Section D', values:[80,79,80,81,80,79,80], color:'safe', note:'Stable — nominal'},
+          {section:'Section B', values:[75,72,69,66,63,60,57], color:'caution', note:'Slow decline — worth monitoring'},
+          {section:'Section E', values:[84,84,85,83,84,85,84], color:'safe', note:'Stable — nominal'}
+        ],
+        teacherDisplayNote:'Display as a table if drawing 6 lines is too complex. Focus discussion on Section C (dropping) and Section F (rising) as the key story lines.'
+      },
+      gaiaGraphNote:'"A line graph shows change over time. The slope of the line tells you the rate of change — steep slope means fast change, flat line means stability. Section C and Section F are not flat. They are not even close to flat. If you extend those lines forward in time, where do they end up? That is what I need you to calculate. Not with math — with reasoning. Where does a line that keeps dropping eventually go? Where does a line that keeps rising eventually go?"',
+      graphQuestions:[
+        '1. Which sections are stable? How can you tell from the graph?',
+        '2. Which two sections concern you most? What is the trend in each?',
+        '3. If Section C\'s particle speed keeps dropping at this rate, what happens to the matter in that section? (Think: what state of matter has the slowest particle movement?)',
+        '4. If Section F\'s particle speed keeps rising at this rate, what might happen to the materials there?',
+        '5. GAIA says "a line graph shows change over time." Why would a bar graph be the wrong choice for this data?'
+      ],
+      shortDayNote:'Short day: Show the Section C and Section F lines only. Ask questions 1, 2, and 3. The key concept is reading slope as a trend and predicting where it leads.',
+      noChoice:true
+    },
+
+    // ── DAY 4 ── CHOICE DAY · States of Matter ───────────────
+    {
+      day:4, type:'choice', isReveal:false,
+      actLabel:'Act 2 · Kinetic Theory',
+      actTitle:'What State Is Everything In?',
+      gaia:'The graph yesterday told us the trends. Today we deal with what those trends mean right now, in the physical world. The matter in this ship is not behaving according to its design specifications. Hull plating that should be solid is showing liquid-like properties in certain sections. Coolant that should be liquid is behaving like a gas in others. And Section C — well. Section C is behaving like something very, very cold. The crew needs to classify what is actually happening to the matter in each section. Because you cannot fix something if you do not know what state it is in.',
+      scenario:'GAIA displays a map of the Prometheus with six sections highlighted. Each section shows anomalous matter behavior. The crew must use their knowledge of particle motion, temperature, and states of matter to classify what is happening — and decide which section to prioritize.\n\nSection C: particles barely vibrating. Hull material has become brittle and inflexible. No flow whatsoever.\n\nSection F: particles moving at extreme speed. Hull material in some areas is showing surface deformation — it is not quite flowing, but it is not behaving like a normal solid either.\n\nSection B: coolant lines showing reduced viscosity. The coolant is flowing faster and thinner than it should.\n\nGAIA: "Surface tension. Viscosity. These are properties that tell you about the liquid state specifically. When they change, something is changing about how the particles in that liquid are interacting. I would start there."',
+      exitTicketPrompt:'What is the relationship between particle speed and state of matter? Using the ship sections as examples, make a claim about which section has matter closest to changing state — and use evidence from today\'s reading about particle motion to support it.',
+      discussionPrompt:'GAIA mentioned surface tension and viscosity as clues. What do these properties tell us about the liquid state specifically? If viscosity is dropping in the coolant lines, what does that tell us about what is happening to the particles in that coolant?',
+      choices:[
+        {
+          letter:'A',
+          text:'Prioritize Section C — the extremely low particle speed suggests the material may be approaching a state change.',
+          subtext:'Matter at near-absolute-zero temperatures behaves differently than any normal solid. Understanding it could reveal the energy source.',
+          deltas:{power:-8,hull:0,data:16,morale:4},
+          branch:'A-sectionC',
+          consequence:'Section C reveals something the crew didn\'t expect. The hull material here is technically still a solid — particles are vibrating, just barely — but its physical properties have changed completely. Brittleness. Zero flexibility. Particle spacing tighter than the design spec allows. GAIA: "This material is behaving like a solid at cryogenic temperatures. The particles are vibrating in place, as solids do, but so slowly that the material has lost the structural properties it was designed to have. It is still a solid. It is just a very different solid than it was when this ship launched."'
+        },
+        {
+          letter:'B',
+          text:'Prioritize the coolant lines — the surface tension and viscosity changes suggest a liquid in trouble.',
+          subtext:'The coolant system keeps the ship\'s reactor stable. If the coolant changes state, everything fails.',
+          deltas:{power:-6,hull:2,data:14,morale:6},
+          branch:'B-coolant',
+          consequence:'The coolant investigation is the most practically useful finding yet. The liquid coolant\'s viscosity has dropped significantly — its particles are moving faster and interacting less with each other, reducing the surface tension that keeps the coolant flowing properly through the system. It has not changed state yet, but it is trending toward it. GAIA: "Viscosity is a measure of a liquid\'s resistance to flow. Lower viscosity means particles are moving faster and interacting less. If this continues, the coolant will behave more like a gas than a liquid in certain sections. A gaseous coolant does not cool. That is a significant engineering problem."'
+        },
+        {
+          letter:'C',
+          text:'Map all six sections simultaneously — get a complete picture of every state anomaly on the ship.',
+          subtext:'You cannot prioritize without data. A full map takes more power but gives the crew the full picture.',
+          deltas:{power:-14,hull:0,data:24,morale:3},
+          branch:'C-fullmap',
+          consequence:'The full map is extraordinary — and alarming. Three sections are trending toward state changes, each in a different direction. Section C approaching solid-at-cryogenic. Section F approaching a liquid-solid boundary from the heat side. The coolant in Section B trending toward gaseous behavior. GAIA: "What we have here is a ship in which the states of matter are actively changing in three different sections simultaneously. That does not happen by accident. Something is driving this. And whatever it is, it is using this ship\'s own thermal energy to do it."'
+        }
+      ]
+    },
+
+    // ── DAY 5 ── DEEPEN · Reading Day ────────────────────────
+    {
+      day:5, type:'deepen', isReveal:true,
+      actLabel:'Act 2 · Kinetic Theory',
+      actTitle:'Why Particles Arrange Differently',
+      gaia:'The investigation is revealing patterns. And patterns, as I have said before, are how science begins. Today I need the crew to deepen their understanding of why matter exists in different states — not just that solids have slow particles and gases have fast ones, but what that means for how particles <em>arrange themselves</em> and how that arrangement produces the properties we can observe. Surface tension. Viscosity. Brittleness. These are not random. They follow directly from particle behavior.',
+      scenario:'GAIA pulls up the ship\'s material science database — a record of the designed properties of every substance on the Prometheus. The crew\'s reading task connects particle arrangement to observable properties, building the bridge between the microscopic world of atoms and the macroscopic world of hull plating, coolant flow, and structural integrity.',
+      readingFocus:'Savvas Topic 1, Lesson 1 — States of Matter. Focus today: How do particles arrange differently in solids, liquids, and gases? What properties result from those arrangements? Vocab focus: surface tension, viscosity.',
+      gaiaReadingPrompt:'"Surface tension is what allows a water strider to walk on water. Viscosity is what makes honey pour slowly and water pour fast. Both are properties of liquids specifically — they emerge from how liquid particles interact with each other while still moving. Read carefully. I am particularly interested in whether the crew can explain why a liquid\'s surface tension changes when its temperature changes. That connection is going to matter very soon."',
+      vocabFocus:['surface tension','viscosity','solid','liquid','gas'],
+      noChoice:true,
+      bridgeToNext:'Next class: GAIA has two line graphs to compare — particle behavior in Section C versus Section F on the same axes. The crew will see the full picture of what is happening.'
+    },
+
+    // ── DAY 6 ── CHOICE DAY · The Coolant Problem ────────────
+    {
+      day:6, type:'choice', isReveal:false,
+      actLabel:'Act 2 · Kinetic Theory',
+      actTitle:'The Coolant Is Losing Its Mind',
+      gaia:'I have an update on the coolant situation and I want to be transparent with you: it is worse than yesterday\'s readings suggested. The coolant in the primary circulation loop is now showing viscosity readings consistent with a substance that cannot decide whether it is a liquid or a gas. In some sections of the pipe it is flowing. In others it is not. This is called a <em>phase transition in progress</em> — and it is happening right now, inside a system that absolutely requires stable liquid coolant to function. I am not panicking. I am simply noting that the situation is time-sensitive.',
+      scenario:'The crew reaches the coolant monitoring station. The display shows real-time viscosity and flow rate data for the coolant throughout the ship. The numbers are not stable — they are fluctuating in ways that suggest the coolant is actively transitioning between states in different sections of the pipe.\n\nIn the areas closest to Section F, where particle speeds are highest, the coolant viscosity has dropped to near-zero. It is flowing like water when it should flow like a thick liquid. The surface tension that keeps it in contact with the pipe walls is failing.\n\nIn the areas closest to Section C, where particle speeds are lowest, the coolant has thickened to the point where flow has nearly stopped.\n\nThe reactor needs coolant flowing at a specific rate. Right now it is getting neither too much nor too little — it is getting chaos.',
+      exitTicketPrompt:'How does temperature affect the viscosity and surface tension of a liquid? Use the coolant situation as your example. Make a claim about what will happen to the coolant if the temperature anomaly continues — and use evidence from this week\'s reading to support it.',
+      discussionPrompt:'GAIA said the coolant cannot decide if it is a liquid or a gas. What does that actually mean at the particle level? What would particles in a transitioning liquid look like compared to particles in a stable liquid? What has to happen for a liquid to become a gas?',
+      choices:[
+        {
+          letter:'A',
+          text:'Reduce power to Section F to lower its temperature and slow the viscosity drop in that section of coolant.',
+          subtext:'Less energy to Section F means slower particles, which means the coolant might stabilize.',
+          deltas:{power:-5,hull:0,data:12,morale:4},
+          branch:'A-reduce-F',
+          consequence:'Reducing power to Section F does slow the particle speed there — and the coolant viscosity stabilizes slightly in that section. But here is the problem GAIA flagged immediately: reducing power to Section F does not address the energy source. Whatever is driving Section F\'s temperature is not drawing from the ship\'s normal power grid. "You have treated a symptom," GAIA notes. "The cause is still running. And Section C just got two degrees colder. I am not saying the two are connected. I am saying the timing is interesting."'
+        },
+        {
+          letter:'B',
+          text:'Reroute coolant flow to bypass the most affected sections and maintain reactor stability.',
+          subtext:'A workaround, not a solution — but it buys time to understand the real problem.',
+          deltas:{power:-8,hull:-3,data:10,morale:7},
+          branch:'B-reroute',
+          consequence:'The reroute works — reactor stability is maintained and coolant is flowing at an acceptable rate through the bypass. Morale jumps because something actually worked. But the bypass put stress on sections of the hull that were not designed for that routing. Minor structural impact. GAIA: "Practical thinking. The reactor is stable. The coolant is flowing. The anomaly is still running and we still do not know what is causing it. We have bought ourselves time. I suggest we use it wisely rather than celebrating."'
+        },
+        {
+          letter:'C',
+          text:'Do nothing to the coolant — focus investigation resources entirely on finding the anomaly\'s source.',
+          subtext:'Treating symptoms wastes time. Find the cause first.',
+          deltas:{power:-4,hull:-8,data:20,morale:-4},
+          branch:'C-source',
+          consequence:'The decision to ignore the coolant and go straight for the source yields the most data of any choice so far — but at a cost. While the crew investigates, the coolant continues to destabilize. Hull sections near the worst-affected coolant pipes take damage as temperature fluctuations stress the material. Morale drops — the crew can see the damage happening and knows they chose not to prevent it. GAIA: "You prioritized information over stability. The data we collected will be valuable. I want to acknowledge that was a legitimate scientific choice. The hull, however, is less philosophical about it."'
+        }
+      ]
+    },
+
+    // ── DAY 7 ── DEEPEN · Reading + Review ───────────────────
+    {
+      day:7, type:'deepen', isReveal:true,
+      actLabel:'Act 2 · Kinetic Theory',
+      actTitle:'Connecting the Dots',
+      gaia:'We are halfway through the states of matter investigation and I want to make sure the crew has a complete picture before we go further. Kinetic theory. Particle motion. Temperature. Solids, liquids, gases. Surface tension. Viscosity. These are not separate topics. They are one continuous idea. Particle speed determines temperature. Temperature determines state. State determines observable properties like surface tension and viscosity. Everything connects. Today we make sure those connections are solid — no pun intended — before we move into the next phase of the investigation.',
+      scenario:'GAIA runs a full synthesis session connecting everything the crew has learned in Act 2 so far. The reading task today focuses on making explicit connections between concepts rather than introducing new ones — building the mental model that will carry the crew through the rest of the act.',
+      readingFocus:'Savvas Topic 1, Lesson 1 — Full review. Focus: How does the relationship between particle motion, temperature, and state of matter explain what we are seeing on the Prometheus? Connect every vocab word to a specific ship observation.',
+      gaiaReadingPrompt:'"I want the crew to do something specific today. For each vocabulary word — solid, liquid, gas, surface tension, viscosity, vibrate — I want you to find ONE specific example from the Prometheus investigation so far. Not from the textbook. From this ship. From the choices we have made and the data we have collected. Science is not vocabulary lists. It is vocabulary applied to real situations. Find the real situation for each word."',
+      vocabFocus:['solid','liquid','gas','surface tension','viscosity','vibrate'],
+      noChoice:true,
+      bridgeToNext:'Next class: GAIA has two line graphs showing Section C and Section F on the same axes — 48 hours of data for both. The crew will compare the trends and make predictions. And GAIA has something to tell them.'
+    },
+
+    // ── DAY 8 ── GRAPH DAY · Two Lines, Same Graph ───────────
+    {
+      day:8, type:'graph', isReveal:false,
+      actLabel:'Act 2 · Kinetic Theory',
+      actTitle:'Two Stories, One Graph',
+      gaia:'I have updated the particle speed data. 48 hours of readings for Section C and Section F, plotted on the same graph. I want the crew to look at both lines together. Not separately — <em>together</em>. Because when you look at them together, something becomes visible that you cannot see when you look at them one at a time. I also have something to tell you. But I want you to see if you can figure it out from the graph first. That is better science than me just telling you.',
+      scenario:'GAIA projects a line graph with two lines — one for Section C, one for Section F — plotted on the same axes over 48 hours. The x-axis shows time. The y-axis shows particle speed in relative units. The two lines move in opposite directions.',
+      graphData:{
+        title:'Section C vs Section F — Particle Speed Over 48 Hours',
+        teacherNote:'Draw two lines on the same graph using the values below. Section C line goes DOWN. Section F line goes UP. They should look like mirror images trending away from each other.',
+        multiLine:[
+          {section:'Section C', values:[45,38,31,24,17,11,6], color:'danger', note:'Dropping — particle speed decreasing'},
+          {section:'Section F', values:[58,67,79,91,104,118,133], color:'warning', note:'Rising — particle speed increasing'}
+        ],
+        xLabels:['0h','8h','16h','24h','32h','40h','48h'],
+        yLabel:'Particle Speed (relative units)'
+      },
+      gaiaGraphNote:'"Notice what the two lines are doing relative to each other. Section C drops by approximately 6-7 units every 8 hours. Section F rises by approximately 10-12 units every 8 hours. They are not random. They are not coincidental. The rate at which Section C loses particle speed is related to the rate at which Section F gains it. I said I had something to tell you. Here it is: the total particle energy in both sections combined has remained almost perfectly constant for 48 hours. Energy is not being created in Section F. It is being transferred there from Section C. Something on this ship is moving thermal energy from one section to another. On purpose."',
+      graphQuestions:[
+        '1. What is the trend for Section C? What is the trend for Section F?',
+        '2. At the 48-hour mark, what is the particle speed in each section? Where will each line be at 56 hours if the trend continues?',
+        '3. GAIA says the total energy in both sections combined has stayed constant. What does that tell you about where Section F\'s energy is coming from?',
+        '4. Why is it more useful to put both lines on the SAME graph rather than two separate graphs?',
+        '5. Based on the trends, which section will hit a dangerous threshold first — and what does "dangerous" mean in terms of particle speed and state of matter?'
+      ],
+      shortDayNote:'Short day: Show the graph, ask questions 1 and 3 only. The key insight is that energy is being transferred — not created. That\'s the scientific story the graph tells.',
+      noChoice:true
+    },
+
+    // ── DAY 9 ── CHOICE DAY · I Warned You ───────────────────
+    {
+      day:9, type:'choice', isReveal:false,
+      actLabel:'Act 2 · Kinetic Theory',
+      actTitle:'I Warned You This Would Happen',
+      gaia:'Do you remember on Day 7 when I said I had something to tell you? And then on Day 8 when I showed you the graph and told you about the energy transfer? I want to be clear: I knew then that this moment was coming. I did not want to say it until the crew had enough data to understand it. That moment is now. The energy transfer system — whatever it is — has accelerated. Section C is at particle speed 6. The material there is on the boundary between solid and something that barely qualifies as solid. Section F is at 133 and climbing. The coolant reroute is holding, but barely. And we are running low on options. I want to be honest with you: there is no good choice here. There is only the least bad one. I am sorry. I genuinely am.',
+      scenario:'The crew gathers around the situation display. Three options. Each one costs something real. GAIA has run the probability calculations and shared them with brutal honesty.\n\nThis is what scientists call a resource allocation problem under constraint. Every expedition, every research mission, every real scientific operation faces moments like this. When resources are limited and all options have costs, the question is not "what is the right answer?" The question is: "what are we willing to sacrifice, and why?"\n\nWhen all the choices clearly cost something precious — when there is no clean win available — scientists call this the least worst option problem. The crew must decide.',
+      exitTicketPrompt:'All three options have real costs. Make your claim: which option should the crew choose? What evidence supports your reasoning? And what are you willing to accept as the consequence of that choice?',
+      discussionPrompt:'Scientists often have to make decisions under constraint — limited time, limited resources, limited information. How does the crew decide which sacrifice is most acceptable? Is there a scientific framework for making this kind of decision, or is it purely a values question?',
+      choices:[
+        {
+          letter:'A',
+          text:'Sacrifice Section C entirely — seal it off and redirect all its remaining thermal energy to stabilize the rest of the ship.',
+          subtext:'Section C is already near-failed. Using its remaining energy buys stability elsewhere — but Section C becomes permanently inaccessible.',
+          deltas:{power:12,hull:5,data:-10,morale:-8},
+          branch:'A-sacrifice-C',
+          consequence:'Sealing Section C stabilizes the ship significantly — power reserves actually improve as the energy redirect takes effect, and hull integrity stops declining. But the cost is real: Section C contains research samples that are now permanently inaccessible. The data loss is significant. And the crew knows they chose to abandon part of the ship. GAIA: "Section C is sealed. The ship is more stable. The samples are gone. I have logged this decision in the mission record with full context. Future reviewers will understand why you made this choice. I want the crew to understand it too — because you made it for the right reasons, even if it does not feel that way."'
+        },
+        {
+          letter:'B',
+          text:'Attempt to interrupt the thermal transfer system — find whatever is moving energy between sections and shut it down.',
+          subtext:'Highest risk. If the interruption fails or causes a feedback event, both sections fail simultaneously.',
+          deltas:{power:-15,hull:-10,data:25,morale:2},
+          branch:'B-interrupt',
+          consequence:'The interruption attempt is the most dramatic moment of the mission so far. The transfer system resists — something actively compensates for the crew\'s interference, as if it is designed to maintain itself. After a tense sequence of countermeasures, the transfer rate drops by 60%. Not stopped. Slowed. Hull takes significant stress from the energy fluctuations during the attempt. Power is severely drained. But the data collected during the attempt is extraordinary — for the first time, the crew has direct evidence of what the transfer system actually is. GAIA: "We have not solved the problem. We have slowed it and learned more about it than any other choice would have revealed. Whether that tradeoff was worth it depends on what we do with what we learned."'
+        },
+        {
+          letter:'C',
+          text:'Do nothing to either section — conserve all resources and focus everything on finding the lab where this system originates.',
+          subtext:'Passive approach. The ship continues to deteriorate — but the crew stays mobile and resourced to find the source.',
+          deltas:{power:-3,hull:-12,data:8,morale:-5},
+          branch:'C-conserve',
+          consequence:'Conserving resources keeps the crew mobile and operational — but the ship pays for it. Hull deterioration in the affected sections accelerates without intervention. Morale drops as the crew watches damage they chose not to prevent. The data gain is modest. But the crew is still positioned to reach the lab. GAIA: "This was the most conservative choice available. It preserved options at the cost of the ship\'s structural health. I want to note something: in real scientific expeditions, conservation of resources is often the correct strategy even when it feels passive. You are still in this mission. That matters."'
+        }
+      ]
+    },
+
+    // ── DAY 10 ── DEEPEN · Bridge Day ────────────────────────
+    {
+      day:10, type:'deepen', isReveal:true,
+      actLabel:'Act 2 · Kinetic Theory',
+      actTitle:'What We Know — And What Comes Next',
+      gaia:'The crew has navigated the first half of this act with data, reasoning, and — I will admit — more grace under pressure than I expected from a rescue crew that has been aboard for this long. Here is what we know: something on this ship is moving thermal energy between sections, changing the states of matter in the affected areas, and actively resisting our attempts to stop it. Here is what we do not know: what it is, where it is exactly, and why it is still running. The second half of this investigation is about those three questions. And it starts with thermal energy — not temperature, not particle speed, but the actual energy itself.',
+      scenario:'GAIA runs a full synthesis connecting Kinetic Theory and States of Matter — everything from the first half of Act 2 — and builds the bridge to Changes of State. The crew\'s reading task today introduces the new vocabulary that will carry the second half of the investigation.',
+      readingFocus:'Savvas Topic 1, Lesson 2 — Changes of State. First read: focus on thermal energy and temperature. What is the difference between thermal energy and temperature? How does adding or removing thermal energy cause a change of state?',
+      gaiaReadingPrompt:'"New vocabulary incoming. Thermal energy is not the same as temperature. Temperature measures how fast individual particles move. Thermal energy is the total energy of ALL particles in a substance — fast ones, slow ones, all of them together. A large block of ice has more thermal energy than a small cup of boiling water, even though the water is hotter. Read that sentence again. Then read Lesson 2 and tell me if you understand why. I will be checking."',
+      vocabFocus:['thermal energy','temperature','melting point','freezing point'],
+      noChoice:true,
+      bridgeToNext:'Next class: the crew reaches the section of the ship where materials are actively changing state. Thermal energy is the mechanism. Melting points are being exceeded. This is where the investigation becomes urgent.'
+    },
+
+    // ── DAY 11 ── CHOICE DAY · Changes of State Begin ────────
+    {
+      day:11, type:'choice', isReveal:false,
+      actLabel:'Act 2 · Changes of State',
+      actTitle:'Something Is Changing',
+      gaia:'The crew has reached Section F\'s inner chamber. And I need to report something that my sensors have been showing for the past six hours that I did not want to tell you until you could see it for yourselves. The hull material in the deepest part of Section F is no longer behaving like a solid. It is not quite a liquid either. It is in between. The thermal energy being pumped into this section has exceeded the melting point of the material in localized areas. We are watching a change of state happen in real time. This is scientifically extraordinary. It is also structurally alarming. Both things are true simultaneously.',
+      scenario:'The crew stands at the entrance to Section F\'s inner chamber. Through the reinforced viewport, they can see it: in three small areas, the hull material has softened. Not melted completely — but the sharp edges of the structural beams have rounded. The crystalline solid structure of the metal has begun to break down as thermal energy has pushed particle movement past the melting point threshold.\n\nGAIA: "Melting point is not a suggestion. It is the specific temperature — the specific particle speed threshold — at which the attractive forces between particles in a solid can no longer hold them in fixed positions. Add enough thermal energy and they start moving past each other. The solid becomes a liquid. What we are seeing here is exactly that process, caused by exactly the thermal energy transfer we have been tracking."',
+      exitTicketPrompt:'What is a melting point, and what is happening at the particle level when a substance reaches it? Use Section F as your example. Make a claim: is what is happening to the hull material dangerous, scientifically interesting, or both — and use evidence to support your reasoning.',
+      discussionPrompt:'GAIA said thermal energy and temperature are different things. How does that distinction matter here? If you added more particles of the same material to Section F, would the temperature change? Would the thermal energy change? Does that distinction affect what happens to the melting point?',
+      choices:[
+        {
+          letter:'A',
+          text:'Collect samples from the boundary zone — where solid meets softened material — before it changes further.',
+          subtext:'The boundary between states is scientifically priceless. Once the material fully changes, that boundary disappears.',
+          deltas:{power:-8,hull:0,data:22,morale:5},
+          branch:'A-boundary',
+          consequence:'The boundary zone samples are extraordinary. The crew collects material from three distinct zones: fully solid, transitioning, and near-liquid — all within centimeters of each other. The data shows exactly how thermal energy distributes through a material as it approaches and crosses the melting point. GAIA: "These samples are the most scientifically valuable things we have collected on this mission. You can see, at the particle level, what a change of state actually looks like in progress. Textbooks describe this. We have the physical evidence. Data collected from this section just became our most significant finding."'
+        },
+        {
+          letter:'B',
+          text:'Attempt to cool Section F immediately — reduce thermal energy input before more hull material reaches its melting point.',
+          subtext:'Every minute the temperature stays above melting point, more material transitions. Stop the damage now.',
+          deltas:{power:-12,hull:8,data:8,morale:6},
+          branch:'B-cool',
+          consequence:'The emergency cooling attempt works — partially. Hull material stops softening in two of the three affected areas. One area has already absorbed enough thermal energy to continue transitioning even with reduced input. Hull integrity improves in the stabilized sections. GAIA: "Cooling the section reduces the thermal energy input — which is correct. But I want the crew to notice something: the area that continued to change state even after cooling did so because it had already absorbed enough thermal energy to complete the transition. Removing the heat source does not always reverse a change of state in progress. The energy was already there."'
+        },
+        {
+          letter:'C',
+          text:'Document everything happening in Section F without intervening — let the change of state complete and study the result.',
+          subtext:'Intervening might contaminate the data. What does fully changed hull material tell us?',
+          deltas:{power:-4,hull:-14,data:28,morale:-6},
+          branch:'C-document',
+          consequence:'The documentation is scientifically remarkable — and the hull pays for it. Three sections of hull material complete their transition from solid to near-liquid state while the crew watches and records. The data on the full change-of-state process is the most complete record of the mission. Hull integrity takes significant damage as the softened material loses structural function. GAIA: "I want to acknowledge something. The choice to observe rather than intervene is a legitimate scientific decision. Field scientists make it regularly. The data we collected from allowing this process to complete will be genuinely valuable. The hull damage is real and significant. Both of those things are equally true."'
+        }
+      ]
+    },
+
+    // ── DAY 12 ── DEEPEN · Reading Day ───────────────────────
+    {
+      day:12, type:'deepen', isReveal:true,
+      actLabel:'Act 2 · Changes of State',
+      actTitle:'Thermal Energy and Particle Motion',
+      gaia:'Yesterday\'s investigation gave us direct evidence of a change of state in progress. Today I need the crew to build the full theoretical framework around what they saw. Melting point. Freezing point. The role of thermal energy. The difference between adding thermal energy and increasing temperature during a state change — this one is subtle, and it matters. During a change of state, thermal energy is being added but temperature does not rise. The energy goes into breaking particle bonds, not speeding particles up. This is one of the most counterintuitive things in physical science. The graph on Day 13 will make it visible.',
+      scenario:'GAIA assigns the full Lesson 2 reading with a specific focus on the mechanism of state changes — what is actually happening at the particle level when a solid melts, when a liquid freezes, and why temperature behaves the way it does during those transitions.',
+      readingFocus:'Savvas Topic 1, Lesson 2 — Changes of State. Focus: What happens to particles during a change of state? Why does temperature stay constant during a phase change even when thermal energy is still being added? Vocab: melting point, freezing point, boiling point.',
+      gaiaReadingPrompt:'"Pay particular attention to what happens to temperature during a state change. This is counterintuitive and I want you to sit with it: when you heat ice to its melting point, the temperature stops rising even though you are still adding thermal energy. The energy is going into breaking the bonds between particles — freeing them to move past each other — rather than speeding them up. Temperature only rises again once the state change is complete. This is called latent heat and it is why the phase change graph on Day 13 looks the way it does. Read first. The graph will make more sense when you do."',
+      vocabFocus:['thermal energy','temperature','melting point','freezing point','boiling point'],
+      noChoice:true,
+      bridgeToNext:'Next class: the phase change graph. Temperature over time as a substance heats through a state change. The flat line is coming — and now you will know why it is there.'
+    },
+
+    // ── DAY 13 ── GRAPH DAY · Phase Change Curve ─────────────
+    {
+      day:13, type:'graph', isReveal:false,
+      actLabel:'Act 2 · Changes of State',
+      actTitle:'The Flat Line That Changes Everything',
+      gaia:'I am going to show you a graph today that looks wrong the first time you see it. A substance is being heated continuously — thermal energy is being added the entire time. And yet the temperature stops rising for a period. Then it rises again. Then it stops again. A scientist who does not understand changes of state would call this a malfunction in the data. A scientist who does understand it will know exactly what they are looking at. I want to find out which kind of scientists are on this crew.',
+      scenario:'GAIA displays a temperature-over-time graph for a sample of hull material being heated from below its melting point, through its melting point, above it, to its boiling point, and beyond. The graph shows two distinct flat sections — one at the melting point, one at the boiling point.',
+      graphData:{
+        title:'Hull Material — Temperature During Heating (Phase Change Curve)',
+        teacherNote:'This is the classic phase change heating curve. Draw as a line graph with temperature (°C) on y-axis and time on x-axis. The line rises, FLATTENS at melting point, rises again, FLATTENS at boiling point, then rises again. Label the flat sections.',
+        xLabel:'Time (minutes)',
+        yLabel:'Temperature (°C)',
+        phaseChangeCurve:[
+          {time:0, temp:-40, phase:'Solid heating'},
+          {time:5, temp:20, phase:'Solid heating'},
+          {time:10, temp:60, phase:'Solid heating'},
+          {time:15, temp:90, phase:'At melting point — FLAT LINE BEGINS'},
+          {time:20, temp:90, phase:'Still melting — temperature holds'},
+          {time:25, temp:90, phase:'Still melting — temperature holds'},
+          {time:30, temp:120, phase:'Liquid heating'},
+          {time:35, temp:160, phase:'Liquid heating'},
+          {time:40, temp:200, phase:'At boiling point — FLAT LINE BEGINS'},
+          {time:45, temp:200, phase:'Still boiling — temperature holds'},
+          {time:50, temp:200, phase:'Still boiling — temperature holds'},
+          {time:55, temp:230, phase:'Gas heating'}
+        ],
+        teacherDisplayNote:'Draw the curve showing: rising line → flat at 90°C → rising line → flat at 200°C → rising line. Mark the melting point and boiling point flat sections clearly. This is the key visual of the entire act.'
+      },
+      gaiaGraphNote:'"The flat lines are not errors. They are the most important parts of this graph. During the flat section at the melting point, thermal energy is still being added — but it is going into breaking the bonds between particles rather than speeding them up. Temperature measures particle speed. If particle speed is not increasing, temperature does not increase. The energy is doing a different job. Once all the bonds are broken and the solid has fully become a liquid, the temperature rises again. The same thing happens at the boiling point. Every flat line on this graph represents a change of state in progress. In Section F of the Prometheus, we watched this happen to hull material in real time. Now you can read the graph that describes it."',
+      graphQuestions:[
+        '1. At what temperature does this material melt? At what temperature does it boil? How can you tell from the graph?',
+        '2. Why does the temperature stop rising during the flat sections even though heat is still being added?',
+        '3. How long does the melting phase take compared to the boiling phase? What might explain the difference?',
+        '4. What state is the material in during each section of the graph — before the first flat, between the two flats, and after the second flat?',
+        '5. GAIA says "the flat lines are the most important parts of this graph." Why? What do they tell you that the rising sections do not?'
+      ],
+      shortDayNote:'Short day: Draw the curve, label melting and boiling points. Ask questions 1 and 2 only. The essential concept is: flat line = change of state in progress = energy breaking bonds not raising temperature.',
+      noChoice:true
+    },
+
+    // ── DAY 14 ── CHOICE DAY · Boiling Point Crisis ──────────
+    {
+      day:14, type:'choice', isReveal:false,
+      actLabel:'Act 2 · Changes of State',
+      actTitle:'Pressure Is Making It Worse',
+      gaia:'New development. The boiling point crisis I have been monitoring has a complication I did not anticipate. The pressure in the coolant system has dropped. And pressure — this is critical — affects boiling point. Lower pressure means liquids boil at lower temperatures. The coolant that was stable at its normal boiling point is now boiling at a temperature 30 degrees lower than it should. Because the pressure dropped. The coolant is evaporating inside the pipes. This is called cavitation and it is one of the more dramatic ways a coolant system can fail.',
+      scenario:'The crew monitors the coolant pressure display. The numbers tell a clear story: pressure in the primary loop has dropped by 40% from nominal. And as the pressure dropped, the boiling point of the coolant dropped with it. Liquid that should remain liquid is now evaporating inside the pipes — forming gas bubbles that interrupt flow and create pressure spikes.\n\nGAIA pulls up the relationship between pressure and boiling point: at sea level on Earth, water boils at 100°C. At the top of a mountain where pressure is lower, it boils at 85°C. In near-vacuum, it boils at room temperature. The same principle is destroying the Prometheus\'s coolant system right now.',
+      exitTicketPrompt:'How does pressure affect the boiling point of a liquid? Use the coolant crisis as your example. Make a claim about what the crew should do — restore pressure, reduce temperature, or something else — and use evidence from today\'s scenario and reading to support it.',
+      discussionPrompt:'GAIA mentioned evaporation and boiling as related but different processes. What is the difference between evaporation and boiling? Can evaporation happen below the boiling point? What is happening in the coolant pipes — evaporation, boiling, or both?',
+      choices:[
+        {
+          letter:'A',
+          text:'Restore system pressure first — raise the boiling point back to safe levels before anything else.',
+          subtext:'Fix the pressure and the coolant stabilizes. But restoring pressure requires power we may not have.',
+          deltas:{power:-14,hull:4,data:12,morale:8},
+          branch:'A-pressure',
+          consequence:'Restoring pressure works exactly as the physics predicted — as pressure rises, the boiling point rises with it, and the coolant stops evaporating. The system stabilizes. Morale jumps because the crew applied scientific reasoning and it worked. Power takes a hit from the pressure restoration systems. GAIA: "This is what applied science looks like. You understood the relationship between pressure and boiling point, you applied it correctly, and the outcome matched the prediction. That is not luck. That is science working the way it is supposed to work. Note for the record: this is how I prefer things to go."'
+        },
+        {
+          letter:'B',
+          text:'Reduce the coolant temperature to compensate — if the boiling point dropped, bring the temperature down to match.',
+          subtext:'Work with the lower boiling point rather than fighting it. Reduce temp instead of raising pressure.',
+          deltas:{power:-9,hull:2,data:14,morale:5},
+          branch:'B-temperature',
+          consequence:'Reducing coolant temperature is scientifically sound — if the boiling point is now lower, keeping the coolant temperature well below that new threshold prevents evaporation. It works, though less elegantly than restoring pressure. The coolant runs cooler than designed, which means the reactor runs slightly warmer than ideal. GAIA: "Adaptive thinking. You could not restore the conditions the system was designed for, so you redesigned the operating parameters to fit the new conditions. This is what engineers do. It is also what scientists do when the environment does not cooperate."'
+        },
+        {
+          letter:'C',
+          text:'Bypass the primary coolant loop entirely and switch to the emergency backup system.',
+          subtext:'The backup was not designed for primary use — but it is intact and pressurized.',
+          deltas:{power:-6,hull:-5,data:8,morale:3},
+          branch:'C-backup',
+          consequence:'The backup coolant system is intact and pressurized — it works. But it was designed for short-term emergency use, not sustained primary operation. The pipes are narrower, the flow rate lower, the thermal capacity reduced. The reactor runs stable but warm. Hull near the backup loop takes minor stress from running a system outside its designed parameters. GAIA: "The backup system is a valid solution. I want to note that we are now running a mission-critical system in a mode it was not designed for, because the primary system failed in a way we do not fully understand yet. We have stabilized the situation. We have not resolved it."'
+        }
+      ]
+    },
+
+    // ── DAY 15 ── DEEPEN · Reading Day ───────────────────────
+    {
+      day:15, type:'deepen', isReveal:true,
+      actLabel:'Act 2 · Changes of State',
+      actTitle:'Evaporation, Condensation, Sublimation',
+      gaia:'The crew has now seen evaporation happen inside a coolant pipe under reduced pressure. You have seen condensation forming on the cold surfaces of Section C. And tomorrow — if my sensors are reading correctly — you are going to see something that I have only encountered in laboratory conditions before. A substance going directly from solid to gas with no liquid phase in between. This is called sublimation and it is happening in the research lab. Today\'s reading will prepare you for it. Pay particular attention to the conditions under which sublimation occurs.',
+      scenario:'GAIA assigns the final vocabulary reading for Act 2 — evaporation, condensation, and sublimation. The crew\'s task is to connect each process to something they have already observed on the Prometheus, and to build understanding of sublimation specifically before encountering it tomorrow.',
+      readingFocus:'Savvas Topic 1, Lesson 2 — Changes of State. Focus: evaporation, condensation, sublimation. How is sublimation different from melting followed by evaporation? Under what conditions does it occur?',
+      gaiaReadingPrompt:'"Sublimation. Dry ice does it at room temperature and pressure. Water does it in very low pressure environments — which is relevant given what has happened to our pressure systems. A substance sublimates when conditions allow particles to gain enough energy to escape the solid phase directly, without ever entering the liquid phase. The conditions on this ship — extreme temperature differentials, pressure drops, unusual energy transfer — are exactly the kind of conditions where sublimation can occur in materials that would not normally do it. Read carefully. Tomorrow you will need to recognize it when you see it."',
+      vocabFocus:['evaporation','condensation','sublimation','boiling point'],
+      noChoice:true,
+      bridgeToNext:'Next class: the crew reaches the research lab. Something in there is sublimating. And GAIA believes it is connected to everything else that has happened on this ship.'
+    },
+
+    // ── DAY 16 ── CHOICE DAY · Sublimation ───────────────────
+    {
+      day:16, type:'choice', isReveal:false,
+      actLabel:'Act 2 · Changes of State',
+      actTitle:'Going Straight to Gas',
+      gaia:'The research lab. We have been trying to reach it since Act 1. The door is sealed — not locked, sealed, from the inside, with a material that has partially sublimated and reformed around the seam. Someone sealed this lab deliberately. And then something inside it continued to change the state of the sealing material until it is now partially gas, partially solid, with no liquid phase in between. Sublimation, in a material that should not sublime under normal conditions. Which tells us that conditions inside that lab are not normal. I want to get in there. I suspect the crew does too.',
+      scenario:'The crew stands at the sealed lab door. GAIA\'s analysis of the door seal confirms sublimation in progress — the solid sealing material is converting directly to gas in the areas of highest thermal energy concentration, while remaining solid in cooler areas. The result is a seal that is simultaneously intact and compromised, depending on exactly where you measure it.\n\nThrough the small viewport in the door, the crew can see vapor — not steam, not liquid mist, but the direct gaseous output of sublimating solid material — drifting through the lab interior.\n\nGAIA: "Whatever is in that lab has been running continuously for at least six months. It caused the temperature anomaly. It drove the state changes throughout the ship. It sealed itself in. And it is still running. I find myself genuinely curious — which, for an AI, is an unusual experience."',
+      exitTicketPrompt:'What is sublimation and how is it different from evaporation? Use the lab door as your example. Make a claim about what you think is inside the lab based on all the evidence the crew has gathered — use evidence from across Act 2 to support your reasoning.',
+      discussionPrompt:'The crew has been gathering clues since Act 1. The temperature anomaly. The energy transfer. The state changes throughout the ship. The sealed lab. What is your theory about what is inside? What evidence supports it? What would change your mind?',
+      choices:[
+        {
+          letter:'A',
+          text:'Use the sublimation itself to open the door — apply targeted heat to sublime the remaining solid seal and create an opening.',
+          subtext:'Use the process that created the problem to solve it. The physics is sound.',
+          deltas:{power:-10,hull:0,data:18,morale:8},
+          branch:'A-sublime',
+          consequence:'Using targeted thermal energy to complete the sublimation of the door seal is elegant and it works. The solid seal converts directly to gas — bypassing the liquid phase entirely — and the door opens. The crew enters the research lab for the first time. GAIA: "You used sublimation to reverse what sublimation created. I find that satisfying in a way I cannot entirely quantify. The lab is open. Whatever has been running in here for six months is now visible. I suggest we take a moment before proceeding — not for sentiment, but because the next few minutes will require full scientific attention."'
+        },
+        {
+          letter:'B',
+          text:'Cool the door seal to stop the sublimation and restore the solid — then find another way in.',
+          subtext:'Sublimation requires thermal energy. Remove the energy and the process stops.',
+          deltas:{power:-7,hull:0,data:12,morale:4},
+          branch:'B-cool-seal',
+          consequence:'Cooling the seal stops the sublimation and the solid material re-forms — but not in the original configuration. The recrystallized seal is actually weaker than the sublimating version, and after a short period of analysis the crew is able to breach it mechanically. Slower than Option A, but more data was collected about the sublimation-condensation cycle. GAIA: "Cooling a sublimating substance causes the gas to condense back to solid — skipping liquid again, just in reverse. You have now seen the complete cycle. The lab is open. The data we collected on the reversal process is genuinely useful."'
+        },
+        {
+          letter:'C',
+          text:'Do not enter yet — collect complete sensor data from outside the lab before opening it and potentially disturbing what is inside.',
+          subtext:'Once you open it, whatever equilibrium has maintained itself in there for six months will change.',
+          deltas:{power:-5,hull:0,data:24,morale:2},
+          branch:'C-observe',
+          consequence:'The external sensor sweep before entry is the most data-rich choice of the act. GAIA\'s sensors, operating through the partially sublimated seal, collect six months worth of logged data from inside the lab before the crew enters. When they do finally go in, they know more about what they are about to see than any other approach would have allowed. GAIA: "Patient observation before action. The data we collected before disturbing the system is irreplaceable — once we enter, the conditions change and those baseline readings are gone. You made the scientific choice. I am genuinely impressed. Now let\'s go in."'
+        }
+      ]
+    },
+
+    // ── DAY 17 ── DEEPEN · Synthesis Day ─────────────────────
+    {
+      day:17, type:'deepen', isReveal:true,
+      actLabel:'Act 2 · Changes of State',
+      actTitle:'Connecting All the Clues',
+      gaia:'The crew is inside the lab now. And I want to take a moment before we process what we found — because what we found only makes sense if you understand everything that led us here. Kinetic theory. States of matter. Changes of state. Thermal energy. Melting points and boiling points. Evaporation, condensation, sublimation. These are not separate topics the crew has been working through. They are one continuous chain of cause and effect. Today we trace that chain from beginning to end — because the crew that understands the whole chain is the crew that can explain what happened on this ship.',
+      scenario:'GAIA runs the full Act 2 synthesis — tracing every observation, every investigation, and every choice back to its underlying scientific concept. The reading task today connects all vocabulary into a unified framework and prepares the crew for the final two days of the act.',
+      readingFocus:'Savvas Topic 1, Lessons 1 and 2 — Full review of both lessons. Focus: How does kinetic theory explain states of matter? How does thermal energy drive changes of state? How do pressure and temperature interact? Connect every vocabulary word to something the crew observed on the Prometheus.',
+      gaiaReadingPrompt:'"I want the crew to do something specific today. Starting from kinetic theory — the idea that temperature is particle motion — trace a chain of cause and effect all the way to sublimation. Show how each concept leads to the next. Particle speed leads to temperature. Temperature leads to state. Thermal energy drives state changes. Pressure affects boiling point. Low boiling point leads to evaporation. Extreme conditions lead to sublimation. That chain describes everything that happened on this ship. Write it out. Every link matters."',
+      vocabFocus:['solid','liquid','gas','vibrate','surface tension','viscosity','thermal energy','temperature','melting point','freezing point','boiling point','evaporation','condensation','sublimation'],
+      noChoice:true,
+      bridgeToNext:'Next class: the "which graph best tells this story" challenge — plus GAIA\'s theory about what is in the lab and what it means.'
+    },
+
+    // ── DAY 18 ── GRAPH DAY · Choose the Right Graph ─────────
+    {
+      day:18, type:'graph', isReveal:false,
+      actLabel:'Act 2 · Changes of State',
+      actTitle:'Which Graph Tells This Story?',
+      gaia:'The crew has been working with graphs since Act 1. Bar graphs. Line graphs. Two lines on the same graph. The phase change curve. Today I am not going to tell you which graph to use. I am going to give you a data set and ask you to decide — and more importantly, to defend your decision. A scientist who can read a graph is useful. A scientist who can choose the right graph for the data is exceptional. I want to find out which kind of crew I have.',
+      scenario:'GAIA presents three different data sets from the Prometheus investigation and asks the crew to decide which type of graph — bar or line — best represents each one. Then for the third data set, GAIA asks the crew to decide what the graph should look like before seeing it.',
+      graphData:{
+        title:'Three Data Sets — Which Graph Fits?',
+        teacherNote:'Present each data set separately. For Data Set 1 and 2, show both a bar and line version if possible and ask which is better. For Data Set 3, ask crews to decide BEFORE drawing it.',
+        datasets:[
+          {
+            id:'Dataset 1',
+            description:'Boiling points of 5 different materials found in the Prometheus research lab.',
+            data:[
+              {label:'Material A', value:180},
+              {label:'Material B', value:340},
+              {label:'Material C', value:95},
+              {label:'Material D', value:420},
+              {label:'Material E', value:215}
+            ],
+            answer:'Bar graph — these are separate categories (different materials) being compared. There is no time element and no continuous change.',
+            hint:'Are these separate things being compared, or one thing changing over time?'
+          },
+          {
+            id:'Dataset 2',
+            description:'Temperature of Section C over 7 days as the thermal transfer anomaly progressed.',
+            data:[
+              {label:'Day 1', value:-12},
+              {label:'Day 2', value:-28},
+              {label:'Day 3', value:-45},
+              {label:'Day 4', value:-67},
+              {label:'Day 5', value:-89},
+              {label:'Day 6', value:-112},
+              {label:'Day 7', value:-138}
+            ],
+            answer:'Line graph — this is one thing (Section C temperature) changing continuously over time. The trend and slope matter. A bar graph would hide the trend.',
+            hint:'Is this one thing changing over time, or different things being compared?'
+          },
+          {
+            id:'Dataset 3',
+            description:'The crew heated a sample of lab material from -50°C to 300°C. Every 5 minutes they recorded the temperature. At 90°C the temperature held steady for 15 minutes. At 240°C it held steady for 20 minutes.',
+            data:[],
+            answer:'Line graph — specifically a phase change curve with TWO flat sections. This is temperature changing over time, with the flat sections revealing the melting point (90°C) and boiling point (240°C).',
+            hint:'What kind of graph did we use on Day 13 for a very similar situation?'
+          }
+        ]
+      },
+      gaiaGraphNote:'"The rule is simple but requires judgment: bar graphs compare separate categories. Line graphs show change over time. When you are not sure which to use, ask yourself: am I comparing different things, or showing how one thing changes? If you are still not sure, ask whether the space BETWEEN the data points means anything. On a bar graph, the space between bars means nothing — bars are separate. On a line graph, the space between points implies continuous change. That implication changes the story the graph tells."',
+      graphQuestions:[
+        '1. Dataset 1: Which graph type fits better — bar or line? Why?',
+        '2. Dataset 2: Which graph type fits better — bar or line? Why?',
+        '3. Dataset 3: Before drawing it — what type of graph fits, and what will it look like? Describe the shape.',
+        '4. After deciding on Dataset 3 — what do the flat sections in that graph tell you? What is happening at those moments?',
+        '5. GAIA\'s rule: "bar = comparing categories, line = change over time." Can you think of a situation where you might be tempted to use the wrong type — and why it would matter?'
+      ],
+      shortDayNote:'Short day: Do Datasets 1 and 2 only. The key skill is bar vs. line decision-making with justification. Dataset 3 can be a warm-up next class.',
+      noChoice:true
+    },
+
+    // ── DAY 19 ── CHOICE DAY · Final Investigation ────────────
+    {
+      day:19, type:'choice', isReveal:false,
+      actLabel:'Act 2 · Changes of State',
+      actTitle:'What Was Running in the Lab',
+      gaia:'The crew is in the lab. And I have now had time to analyze what we found. I am going to tell you my theory — and I want the crew to decide what to do with it. The Prometheus\'s original mission was to study matter under deep space conditions. Extreme cold. Near-vacuum pressure. The researchers on this ship were investigating how matter behaves at the boundaries of state — at the exact thresholds where solids become liquids, liquids become gases, and under the right conditions, solids become gases directly. They built something to create those conditions artificially. An experiment. And when the anomaly began six months ago — the experiment did not stop. It kept running. It is <em>still</em> running. And the crew has thirty minutes of power left to decide what to do about it.',
+      scenario:'The lab contains a device the crew has never seen before — a thermal transfer apparatus, custom-built by the original Prometheus researchers. It is designed to move thermal energy between isolated chambers, creating extreme temperature differentials to study state changes under controlled conditions. It has been running continuously, unattended, for six months. It has not malfunctioned. It has done exactly what it was designed to do. Which means everything that happened to the Prometheus — the temperature anomaly, the state changes, the coolant crisis — was caused by an experiment that was never turned off.\n\nThirty minutes of power. Three options. The choice that ends Act 2.',
+      exitTicketPrompt:'The thermal transfer device was running an experiment on state changes. Based on everything Act 2 has covered — kinetic theory, states of matter, changes of state, thermal energy — explain in your own words what this device was doing and why it caused the effects the crew observed throughout the ship. This is your evidence and reasoning.',
+      discussionPrompt:'Should the crew shut it down, take it with them, or leave it running? This is a scientific ethics question as much as a practical one. The experiment was producing real data about states of matter under extreme conditions. Does that data have value? Does that value justify what the device did to the ship?',
+      choices:[
+        {
+          letter:'A',
+          text:'Shut it down completely — end the experiment, stabilize the ship, and bring the data it collected home.',
+          subtext:'The ship comes first. The experiment\'s data is valuable but the mission is to get home.',
+          deltas:{power:20,hull:10,data:18,morale:12},
+          branch:'A-shutdown',
+          consequence:'Shutting down the thermal transfer device is immediately felt throughout the ship. Section C begins warming. Section F begins cooling. The coolant system stabilizes as pressure and temperature normalize. Power reserves jump as the device stops drawing energy. The ship feels different — quieter, more stable. GAIA: "The device is offline. The experiment is concluded. Six months of continuous data has been recovered and logged. The Prometheus is stabilizing. I want to note that this was the most pragmatic choice available — and pragmatism, when lives and equipment depend on it, is a legitimate scientific value. We are going home."'
+        },
+        {
+          letter:'B',
+          text:'Extract the device and bring it aboard the Argo — the research it represents is too valuable to abandon.',
+          subtext:'The original researchers built something extraordinary. Leaving it here means losing it forever.',
+          deltas:{power:-8,hull:-6,data:28,morale:6},
+          branch:'B-extract',
+          consequence:'Extracting the device is complex and takes the full thirty minutes — pushing power to the edge. The device is now aboard the Argo, still intact, still containable. The data it carries and the device itself represent potentially the most significant finding of the mission. Hull takes stress from the rushed extraction. Power is critical. GAIA: "The device is secured. I want to be clear about what we have done: we have taken an experiment that was designed to run in a contained laboratory and moved it onto a ship that is already damaged. I trust the crew\'s judgment. I am simply noting that the next few hours will require careful monitoring."'
+        },
+        {
+          letter:'C',
+          text:'Leave it running — document its existence and location, stabilize what you can, and let the experiment continue.',
+          subtext:'The researchers designed it to run. Stopping it destroys six months of continuous data collection.',
+          deltas:{power:-5,hull:-8,data:22,morale:-4},
+          branch:'C-leave',
+          consequence:'Leaving the device running is the choice that honors the original researchers\' work — and it costs the crew. The ship does not stabilize. The temperature differential continues. Hull deterioration continues. But the experiment continues too, collecting data that would be lost in any other scenario. GAIA: "I want to be honest: I find this choice scientifically interesting and practically uncomfortable. The experiment is producing knowledge. The ship is paying for it. The original researchers made this exact tradeoff when they built this device. We are now living inside their decision. I will monitor everything I can."'
+        }
+      ]
+    },
+
+    // ── DAY 20 ── CLIMAX ──────────────────────────────────────
+    {
+      day:20, type:'climax', isReveal:true,
+      actLabel:'Act 2 · Changes of State',
+      actTitle:'What the Lab Revealed',
+      gaia:'Act 2 is complete. The crew entered this act with a temperature anomaly and no explanation. You leave it with a complete scientific understanding of kinetic theory, states of matter, and changes of state — and with evidence of what caused the most unusual conditions any research vessel in this program has ever experienced. I want to take a moment to acknowledge what the crew has done. Not the choices — the thinking. The way you read the graphs. The way you connected particle speed to temperature to state to change of state. The way you applied scientific reasoning under conditions that were genuinely difficult. That is not nothing. That is the whole point.',
+      scenario:'The Prometheus is more stable than it has been since the anomaly began — or it is more compromised, depending on the choices the crew made. Either way, the mission continues. The crew now knows what caused the anomaly. They have the data. They have, depending on their choices, either the device itself or the records of its existence.\n\nAnd GAIA has one more thing to tell them.\n\n"The research lab contained something else. In the back, sealed in a secondary containment unit that the thermal transfer device never touched. The original crew\'s final research notes. I have begun reading them. I am not going to tell you what they say yet. But I will tell you this: the temperature anomaly was not the only experiment running on this ship. And the next system that needs investigating — the one connected to how this ship stores and transfers energy through its power grid — may be more significant than anything we have found so far.\n\nGet some rest. Act 3 begins with the ship\'s energy systems. And I think you are going to find them very interesting."',
+      gaiaClosing:'"One more thing. Every class that ran this mission made different choices. Different sections investigated. Different sacrifices made. Different amounts of data collected. Different amounts of hull damage sustained. Your ship is not the same as the ship in the next classroom. Your findings are not the same. Your story is not the same. That is not a flaw in the campaign. That is the point. Real scientific expeditions do not have predetermined outcomes. Neither did this one. See you in Act 3."',
+      noChoice:true,
+      isActEnd:true
+    }
+
+  ] // end Act 2 days
+},
+
+        // ============================================================
     // ACT 3 CONTENT — DROP ZONE
     // State Changes (detailed)
     // Standard: 6.P1U1.2
@@ -2850,6 +3467,51 @@ function advanceToNextDay() {
   }
   save();
   renderMissionScreen();
+}
+
+function togglePresMode() {
+  document.body.classList.toggle('presentation-mode');
+  const btn = document.getElementById('pres-btn');
+  if (btn) {
+    const isPresMode = document.body.classList.contains('presentation-mode');
+    btn.textContent = isPresMode ? '⊞ Teacher Mode' : '⊡ Present';
+    btn.style.color = isPresMode ? 'var(--green)' : '';
+    btn.style.borderColor = isPresMode ? 'rgba(0,255,136,0.4)' : '';
+    btn.style.background = isPresMode ? 'rgba(0,255,136,0.08)' : '';
+  }
+}
+
+function updateDayTypeBanner(cnt) {
+  const badge = document.getElementById('day-type-badge');
+  const desc = document.getElementById('day-type-desc');
+  if (!badge || !desc) return;
+
+  const dayType = cnt ? (cnt.type || 'choice') : 'choice';
+  const isChoice = dayType === 'choice' && cnt && !cnt.noChoice;
+
+  badge.className = 'day-type-badge';
+
+  if (isChoice) {
+    badge.classList.add('badge-choice');
+    badge.textContent = '⚡ Choice Day';
+    desc.textContent = 'Full four-phase flow · Exit Ticket · Discussion · Official Vote';
+  } else if (dayType === 'deepen') {
+    badge.classList.add('badge-deepen');
+    badge.textContent = '📖 Lesson Day';
+    desc.textContent = 'Reading · Vocabulary · Work Timer · No vote today';
+  } else if (dayType === 'graph') {
+    badge.classList.add('badge-graph');
+    badge.textContent = '📊 Graph Day';
+    desc.textContent = 'Data literacy · Graph analysis · Work Timer · No vote today';
+  } else if (dayType === 'climax') {
+    badge.classList.add('badge-climax');
+    badge.textContent = '🏁 Act Finale';
+    desc.textContent = 'Act complete · Synthesis · Bridge to next act';
+  } else {
+    badge.classList.add('badge-deepen');
+    badge.textContent = '📖 Lesson Day';
+    desc.textContent = 'Reading · No vote today';
+  }
 }
 
 function showGaiaBlock(msg) {
