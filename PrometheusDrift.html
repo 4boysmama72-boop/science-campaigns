@@ -1421,7 +1421,7 @@
       <div>
         <div class="panel-label">Mission Path</div>
         <div class="branch-display">
-          <div class="branch-path" id="branch-path">Act 1 · <span>Branch A</span> · Day 1</div>
+          <div class="branch-path" id="branch-path">Sector 1 · <span>Branch A</span> · Day 1</div>
         </div>
       </div>
 
@@ -1736,7 +1736,7 @@
 <div class="modal-overlay" id="modal-full-reset">
   <div class="modal">
     <div class="modal-title">Full Class Reset</div>
-    <div class="modal-body" id="full-reset-modal-body">This will wipe ALL progress for this class and restart from Day 1, Act 1. This cannot be undone.</div>
+    <div class="modal-body" id="full-reset-modal-body">This will wipe ALL progress for this class and restart from Day 1, Sector 1. This cannot be undone.</div>
     <div class="modal-actions">
       <button class="btn btn-secondary" onclick="closeModal('modal-full-reset')">Cancel</button>
       <button class="btn btn-danger" onclick="executeFullReset()">Full Reset</button>
@@ -1945,7 +1945,7 @@ const CONTENT = {
             '4. What is the trend in Section C\'s temperature? If it keeps going at this rate, what might happen?',
             '5. A bar graph is best for comparing SEPARATE CATEGORIES. A line graph is best for showing CHANGE OVER TIME. Can you think of one example of each from your own life?'
           ],
-          gaiaGraphNote:'"I made a mistake. The bar graph made it look like six separate events. The line graph shows what this actually is: a continuous drop. A trend. The temperature in Section C has been falling steadily for six months and shows no sign of stopping. That is a very different story than six separate cold readings. The graph you choose changes the story the data tells. Choose carefully."',
+          gaiaGraphNote:'"I made a mistake. The bar graph made it look like six separate events. The line graph shows what this sectorually is: a continuous drop. A trend. The temperature in Section C has been falling steadily for six months and shows no sign of stopping. That is a very different story than six separate cold readings. The graph you choose changes the story the data tells. Choose carefully."',
           shortDayNote:'Short day: Show both graphs. Ask questions 1, 2, and 3 only. Key concept is bar = categories, line = change over time. That\'s enough.',
           noChoice:true
         },
@@ -1986,7 +1986,7 @@ const CONTENT = {
           gaiaReadingPrompt:'"Review the full lesson today. I want you to be able to draw a diagram — in your head, on paper, wherever — that shows how atoms become elements, elements form molecules, molecules make compounds, and substances mix without bonding into mixtures. That hierarchy is the architecture of everything on this ship. And everything in the universe, for that matter. No pun intended. Actually, pun very much intended."',
           vocabFocus:['matter','substance','physical property','chemical property','atom','element','molecule','compound','mixture'],
           noChoice:true,
-          bridgeToNext:'Next class: Act 1 climax. The crew presents findings. Every decision made over two weeks led here — and results will be different for every class.'
+          bridgeToNext:'Next class: Sector 1 climax. The crew presents findings. Every decision made over two weeks led here — and results will be different for every class.'
         },
 
         // DAY 10 — Act Climax
@@ -1995,8 +1995,8 @@ const CONTENT = {
           actLabel:'Sector 1 · Atoms & Molecules',
           actTitle:'What We Know Now',
           gaia:'Mission Control is requesting a full status report on the Prometheus investigation — Phase 1. I\'ve compiled the crew\'s findings. But before I transmit it, I need the crew to review and confirm the conclusions. This is how science works: you don\'t just collect data. You synthesize it. You make claims. You support them with evidence. You explain your reasoning. And then — only then — do you share your findings. In this case, with Mission Control. Which amounts to the same thing.',
-          scenario:'The crew looks at everything they\'ve found. The Prometheus\'s matter has been changed at every level. Elements disrupted. Compounds reformed. Mixtures contaminated. Physical properties altered. Chemical properties transformed. The ship is not what it was when it launched.\n\nAnd the pattern of changes, GAIA believes, all points to a single source. Somewhere deeper in the ship. In the section the crew hasn\'t reached yet. Where the temperature is still dropping. Where the atoms themselves seem to be behaving according to rules that shouldn\'t exist.\n\n"Act 1 is complete," GAIA says. "You know what this ship is made of. Act 2 will tell you why it\'s behaving the way it is. Get some rest, crew. Things are about to get stranger."',
-          gaiaClosing:'"One more thing. The decisions you made — every choice, every vote, every piece of evidence you argued over — they mattered. The data we have, the hull status, the morale of this crew, the power we have left: all of it reflects your choices. Different crews made different decisions. Different ships are in different conditions. That is not a coincidence. That is science. See you in Act 2."',
+          scenario:'The crew looks at everything they\'ve found. The Prometheus\'s matter has been changed at every level. Elements disrupted. Compounds reformed. Mixtures contaminated. Physical properties altered. Chemical properties transformed. The ship is not what it was when it launched.\n\nAnd the pattern of changes, GAIA believes, all points to a single source. Somewhere deeper in the ship. In the section the crew hasn\'t reached yet. Where the temperature is still dropping. Where the atoms themselves seem to be behaving according to rules that shouldn\'t exist.\n\n"Sector 1 is complete," GAIA says. "You know what this ship is made of. Act 2 will tell you why it\'s behaving the way it is. Get some rest, crew. Things are about to get stranger."',
+          gaiaClosing:'"One more thing. The decisions you made — every choice, every vote, every piece of evidence you argued over — they mattered. The data we have, the hull status, the morale of this crew, the power we have left: all of it reflects your choices. Different crews made different decisions. Different ships are in different conditions. That is not a coincidence. That is science. See you in Sector 2."',
           noChoice:true,
           isActEnd:true
         }
@@ -2018,7 +2018,7 @@ const CONTENT = {
       day:1, type:'choice', isReveal:false,
       actLabel:'Sector 2 · Kinetic Theory',
       actTitle:'The Temperature Problem',
-      gaia:'Welcome back. I have missed having someone to talk to. I have also been busy. While you were reviewing Act 1 findings, I have been monitoring something I did not want to mention until you were ready. The temperature readings in this ship make no sense. And I mean that in the scientific sense — they violate what should be physically possible given the energy available. I have a theory. But I would rather the crew figured it out first. That is how good science works.',
+      gaia:'Welcome back. I have missed having someone to talk to. I have also been busy. While you were reviewing Sector 1 findings, I have been monitoring something I did not want to mention until you were ready. The temperature readings in this ship make no sense. And I mean that in the scientific sense — they violate what should be physically possible given the energy available. I have a theory. But I would rather the crew figured it out first. That is how good science works.',
       scenario:'The crew moves deeper into the Prometheus. The corridors split here — Section C to the left, Section F to the right. Your thermal sensors tell two completely different stories.\n\nSection C: temperature approaching absolute zero. The air itself is barely moving. The walls are coated in frost so thin it looks like static. Your breath doesn\'t fog — it freezes before it forms.\n\nSection F: hot enough that standard equipment fails on contact. The walls radiate heat you can feel three meters away. Something in there is generating energy at a rate that shouldn\'t be possible.\n\nSame ship. Same power source. Same physics.\n\nExcept — and this is what GAIA finds most interesting — the physics here doesn\'t seem to be behaving the same. Temperature, the crew is about to discover, is not just a number on a thermometer. It is a measurement of something happening at the particle level. And something on this ship is controlling that something.',
       exitTicketPrompt:'Based on what you know about particle motion and temperature, which section do you think the crew should investigate first? What is your claim, and what evidence from today\'s reading supports it?',
       discussionPrompt:'If temperature is a measurement of how fast particles are moving — what does it mean that Section C is nearly at absolute zero while Section F is dangerously hot, if they are both powered by the same source? Where is the energy going? Where is it coming from?',
@@ -2056,7 +2056,7 @@ const CONTENT = {
       actLabel:'Sector 2 · Kinetic Theory',
       actTitle:'What Temperature Actually Is',
       gaia:'Yesterday\'s investigation gave us data. Today I need the crew to build the framework that makes sense of it. Temperature is not heat. Temperature is not energy. Temperature is a <em>measurement</em> of how fast particles are moving. The faster they move, the higher the temperature. The slower they move, the lower. At absolute zero, particles stop moving entirely. That is not just cold. That is the absence of thermal motion. What we found in Section C is approaching that. What we found in Section F is the opposite extreme. Both of these are telling us something about what is happening on this ship at the particle level.',
-      scenario:'GAIA assigns the crew a focused reading task. To understand the temperature anomaly, the crew needs to understand kinetic theory — the relationship between particle motion and temperature — and how that relationship explains the behavior of solids, liquids, and gases. This is the foundation everything else in Act 2 will build on.',
+      scenario:'GAIA assigns the crew a focused reading task. To understand the temperature anomaly, the crew needs to understand kinetic theory — the relationship between particle motion and temperature — and how that relationship explains the behavior of solids, liquids, and gases. This is the foundation everything else in Sector 2 will build on.',
       readingFocus:'Savvas Topic 1, Lesson 1 — States of Matter. Focus today: What is the relationship between particle motion and temperature? How do particles move differently in solids, liquids, and gases?',
       gaiaReadingPrompt:'"The reading today is foundational. Every decision this crew makes for the next three weeks depends on understanding what temperature actually measures. A solid\'s particles vibrate in place. A liquid\'s particles move past each other. A gas\'s particles move freely and fast. The speed of that movement is what we call temperature. Read carefully. The questions are not optional. I will know."',
       vocabFocus:['solid','liquid','gas','vibrate'],
@@ -2199,7 +2199,7 @@ const CONTENT = {
       actLabel:'Sector 2 · Kinetic Theory',
       actTitle:'Connecting the Dots',
       gaia:'We are halfway through the states of matter investigation and I want to make sure the crew has a complete picture before we go further. Kinetic theory. Particle motion. Temperature. Solids, liquids, gases. Surface tension. Viscosity. These are not separate topics. They are one continuous idea. Particle speed determines temperature. Temperature determines state. State determines observable properties like surface tension and viscosity. Everything connects. Today we make sure those connections are solid — no pun intended — before we move into the next phase of the investigation.',
-      scenario:'GAIA runs a full synthesis session connecting everything the crew has learned in Act 2 so far. The reading task today focuses on making explicit connections between concepts rather than introducing new ones — building the mental model that will carry the crew through the rest of the act.',
+      scenario:'GAIA runs a full synthesis session connecting everything the crew has learned in Sector 2 so far. The reading task today focuses on making explicit connections between concepts rather than introducing new ones — building the mental model that will carry the crew through the rest of the sector.',
       readingFocus:'Savvas Topic 1, Lesson 1 — Full review. Focus: How does the relationship between particle motion, temperature, and state of matter explain what we are seeing on the Prometheus? Connect every vocab word to a specific ship observation.',
       gaiaReadingPrompt:'"I want the crew to do something specific today. For each vocabulary word — solid, liquid, gas, surface tension, viscosity, vibrate — I want you to find ONE specific example from the Prometheus investigation so far. Not from the textbook. From this ship. From the choices we have made and the data we have collected. Science is not vocabulary lists. It is vocabulary applied to real situations. Find the real situation for each word."',
       vocabFocus:['solid','liquid','gas','surface tension','viscosity','vibrate'],
@@ -2278,8 +2278,8 @@ const CONTENT = {
       day:10, type:'deepen', isReveal:true,
       actLabel:'Sector 2 · Kinetic Theory',
       actTitle:'What We Know — And What Comes Next',
-      gaia:'The crew has navigated the first half of this act with data, reasoning, and — I will admit — more grace under pressure than I expected from a rescue crew that has been aboard for this long. Here is what we know: something on this ship is moving thermal energy between sections, changing the states of matter in the affected areas, and actively resisting our attempts to stop it. Here is what we do not know: what it is, where it is exactly, and why it is still running. The second half of this investigation is about those three questions. And it starts with thermal energy — not temperature, not particle speed, but the actual energy itself.',
-      scenario:'GAIA runs a full synthesis connecting Kinetic Theory and States of Matter — everything from the first half of Act 2 — and builds the bridge to Changes of State. The crew\'s reading task today introduces the new vocabulary that will carry the second half of the investigation.',
+      gaia:'The crew has navigated the first half of this sector with data, reasoning, and — I will admit — more grace under pressure than I expected from a rescue crew that has been aboard for this long. Here is what we know: something on this ship is moving thermal energy between sections, changing the states of matter in the affected areas, and actively resisting our attempts to stop it. Here is what we do not know: what it is, where it is exactly, and why it is still running. The second half of this investigation is about those three questions. And it starts with thermal energy — not temperature, not particle speed, but the sectorual energy itself.',
+      scenario:'GAIA runs a full synthesis connecting Kinetic Theory and States of Matter — everything from the first half of Sector 2 — and builds the bridge to Changes of State. The crew\'s reading task today introduces the new vocabulary that will carry the second half of the investigation.',
       readingFocus:'Savvas Topic 1, Lesson 2 — Changes of State. First read: focus on thermal energy and temperature. What is the difference between thermal energy and temperature? How does adding or removing thermal energy cause a change of state?',
       gaiaReadingPrompt:'"New vocabulary incoming. Thermal energy is not the same as temperature. Temperature measures how fast individual particles move. Thermal energy is the total energy of ALL particles in a substance — fast ones, slow ones, all of them together. A large block of ice has more thermal energy than a small cup of boiling water, even though the water is hotter. Read that sentence again. Then read Lesson 2 and tell me if you understand why. I will be checking."',
       vocabFocus:['thermal energy','temperature','melting point','freezing point'],
@@ -2421,7 +2421,7 @@ const CONTENT = {
       actLabel:'Sector 2 · Changes of State',
       actTitle:'Evaporation, Condensation, Sublimation',
       gaia:'The crew has now seen evaporation happen inside a coolant pipe under reduced pressure. You have seen condensation forming on the cold surfaces of Section C. And tomorrow — if my sensors are reading correctly — you are going to see something that I have only encountered in laboratory conditions before. A substance going directly from solid to gas with no liquid phase in between. This is called sublimation and it is happening in the research lab. Today\'s reading will prepare you for it. Pay particular attention to the conditions under which sublimation occurs.',
-      scenario:'GAIA assigns the final vocabulary reading for Act 2 — evaporation, condensation, and sublimation. The crew\'s task is to connect each process to something they have already observed on the Prometheus, and to build understanding of sublimation specifically before encountering it tomorrow.',
+      scenario:'GAIA assigns the final vocabulary reading for Sector 2 — evaporation, condensation, and sublimation. The crew\'s task is to connect each process to something they have already observed on the Prometheus, and to build understanding of sublimation specifically before encountering it tomorrow.',
       readingFocus:'Savvas Topic 1, Lesson 2 — Changes of State. Focus: evaporation, condensation, sublimation. How is sublimation different from melting followed by evaporation? Under what conditions does it occur?',
       gaiaReadingPrompt:'"Sublimation. Dry ice does it at room temperature and pressure. Water does it in very low pressure environments — which is relevant given what has happened to our pressure systems. A substance sublimates when conditions allow particles to gain enough energy to escape the solid phase directly, without ever entering the liquid phase. The conditions on this ship — extreme temperature differentials, pressure drops, unusual energy transfer — are exactly the kind of conditions where sublimation can occur in materials that would not normally do it. Read carefully. Tomorrow you will need to recognize it when you see it."',
       vocabFocus:['evaporation','condensation','sublimation','boiling point'],
@@ -2434,10 +2434,10 @@ const CONTENT = {
       day:16, type:'choice', isReveal:false,
       actLabel:'Sector 2 · Changes of State',
       actTitle:'Going Straight to Gas',
-      gaia:'The research lab. We have been trying to reach it since Act 1. The door is sealed — not locked, sealed, from the inside, with a material that has partially sublimated and reformed around the seam. Someone sealed this lab deliberately. And then something inside it continued to change the state of the sealing material until it is now partially gas, partially solid, with no liquid phase in between. Sublimation, in a material that should not sublime under normal conditions. Which tells us that conditions inside that lab are not normal. I want to get in there. I suspect the crew does too.',
+      gaia:'The research lab. We have been trying to reach it since Sector 1. The door is sealed — not locked, sealed, from the inside, with a material that has partially sublimated and reformed around the seam. Someone sealed this lab deliberately. And then something inside it continued to change the state of the sealing material until it is now partially gas, partially solid, with no liquid phase in between. Sublimation, in a material that should not sublime under normal conditions. Which tells us that conditions inside that lab are not normal. I want to get in there. I suspect the crew does too.',
       scenario:'The crew stands at the sealed lab door. GAIA\'s analysis of the door seal confirms sublimation in progress — the solid sealing material is converting directly to gas in the areas of highest thermal energy concentration, while remaining solid in cooler areas. The result is a seal that is simultaneously intact and compromised, depending on exactly where you measure it.\n\nThrough the small viewport in the door, the crew can see vapor — not steam, not liquid mist, but the direct gaseous output of sublimating solid material — drifting through the lab interior.\n\nGAIA: "Whatever is in that lab has been running continuously for at least six months. It caused the temperature anomaly. It drove the state changes throughout the ship. It sealed itself in. And it is still running. I find myself genuinely curious — which, for an AI, is an unusual experience."',
-      exitTicketPrompt:'What is sublimation and how is it different from evaporation? Use the lab door as your example. Make a claim about what you think is inside the lab based on all the evidence the crew has gathered — use evidence from across Act 2 to support your reasoning.',
-      discussionPrompt:'The crew has been gathering clues since Act 1. The temperature anomaly. The energy transfer. The state changes throughout the ship. The sealed lab. What is your theory about what is inside? What evidence supports it? What would change your mind?',
+      exitTicketPrompt:'What is sublimation and how is it different from evaporation? Use the lab door as your example. Make a claim about what you think is inside the lab based on all the evidence the crew has gathered — use evidence from across Sector 2 to support your reasoning.',
+      discussionPrompt:'The crew has been gathering clues since Sector 1. The temperature anomaly. The energy transfer. The state changes throughout the ship. The sealed lab. What is your theory about what is inside? What evidence supports it? What would change your mind?',
       choices:[
         {
           letter:'A',
@@ -2461,7 +2461,7 @@ const CONTENT = {
           subtext:'Once you open it, whatever equilibrium has maintained itself in there for six months will change.',
           deltas:{power:-5,hull:0,data:24,morale:2},
           branch:'C-observe',
-          consequence:'The external sensor sweep before entry is the most data-rich choice of the act. GAIA\'s sensors, operating through the partially sublimated seal, collect six months worth of logged data from inside the lab before the crew enters. When they do finally go in, they know more about what they are about to see than any other approach would have allowed. GAIA: "Patient observation before action. The data we collected before disturbing the system is irreplaceable — once we enter, the conditions change and those baseline readings are gone. You made the scientific choice. I am genuinely impressed. Now let\'s go in."'
+          consequence:'The external sensor sweep before entry is the most data-rich choice of the sector. GAIA\'s sensors, operating through the partially sublimated seal, collect six months worth of logged data from inside the lab before the crew enters. When they do finally go in, they know more about what they are about to see than any other approach would have allowed. GAIA: "Patient observation before action. The data we collected before disturbing the system is irreplaceable — once we enter, the conditions change and those baseline readings are gone. You made the scientific choice. I am genuinely impressed. Now let\'s go in."'
         }
       ]
     },
@@ -2472,7 +2472,7 @@ const CONTENT = {
       actLabel:'Sector 2 · Changes of State',
       actTitle:'Connecting All the Clues',
       gaia:'The crew is inside the lab now. And I want to take a moment before we process what we found — because what we found only makes sense if you understand everything that led us here. Kinetic theory. States of matter. Changes of state. Thermal energy. Melting points and boiling points. Evaporation, condensation, sublimation. These are not separate topics the crew has been working through. They are one continuous chain of cause and effect. Today we trace that chain from beginning to end — because the crew that understands the whole chain is the crew that can explain what happened on this ship.',
-      scenario:'GAIA runs the full Act 2 synthesis — tracing every observation, every investigation, and every choice back to its underlying scientific concept. The reading task today connects all vocabulary into a unified framework and prepares the crew for the final two days of the act.',
+      scenario:'GAIA runs the full Sector 2 synthesis — tracing every observation, every investigation, and every choice back to its underlying scientific concept. The reading task today connects all vocabulary into a unified framework and prepares the crew for the final two days of the sector.',
       readingFocus:'Savvas Topic 1, Lessons 1 and 2 — Full review of both lessons. Focus: How does kinetic theory explain states of matter? How does thermal energy drive changes of state? How do pressure and temperature interact? Connect every vocabulary word to something the crew observed on the Prometheus.',
       gaiaReadingPrompt:'"I want the crew to do something specific today. Starting from kinetic theory — the idea that temperature is particle motion — trace a chain of cause and effect all the way to sublimation. Show how each concept leads to the next. Particle speed leads to temperature. Temperature leads to state. Thermal energy drives state changes. Pressure affects boiling point. Low boiling point leads to evaporation. Extreme conditions lead to sublimation. That chain describes everything that happened on this ship. Write it out. Every link matters."',
       vocabFocus:['solid','liquid','gas','vibrate','surface tension','viscosity','thermal energy','temperature','melting point','freezing point','boiling point','evaporation','condensation','sublimation'],
@@ -2485,7 +2485,7 @@ const CONTENT = {
       day:18, type:'graph', isReveal:false,
       actLabel:'Sector 2 · Changes of State',
       actTitle:'Which Graph Tells This Story?',
-      gaia:'The crew has been working with graphs since Act 1. Bar graphs. Line graphs. Two lines on the same graph. The phase change curve. Today I am not going to tell you which graph to use. I am going to give you a data set and ask you to decide — and more importantly, to defend your decision. A scientist who can read a graph is useful. A scientist who can choose the right graph for the data is exceptional. I want to find out which kind of crew I have.',
+      gaia:'The crew has been working with graphs since Sector 1. Bar graphs. Line graphs. Two lines on the same graph. The phase change curve. Today I am not going to tell you which graph to use. I am going to give you a data set and ask you to decide — and more importantly, to defend your decision. A scientist who can read a graph is useful. A scientist who can choose the right graph for the data is exceptional. I want to find out which kind of crew I have.',
       scenario:'GAIA presents three different data sets from the Prometheus investigation and asks the crew to decide which type of graph — bar or line — best represents each one. Then for the third data set, GAIA asks the crew to decide what the graph should look like before seeing it.',
       graphData:{
         title:'Three Data Sets — Which Graph Fits?',
@@ -2547,7 +2547,7 @@ const CONTENT = {
       actTitle:'What Was Running in the Lab',
       gaia:'The crew is in the lab. And I have now had time to analyze what we found. I am going to tell you my theory — and I want the crew to decide what to do with it. The Prometheus\'s original mission was to study matter under deep space conditions. Extreme cold. Near-vacuum pressure. The researchers on this ship were investigating how matter behaves at the boundaries of state — at the exact thresholds where solids become liquids, liquids become gases, and under the right conditions, solids become gases directly. They built something to create those conditions artificially. An experiment. And when the anomaly began six months ago — the experiment did not stop. It kept running. It is <em>still</em> running. And the crew has thirty minutes of power left to decide what to do about it.',
       scenario:'The lab contains a device the crew has never seen before — a thermal transfer apparatus, custom-built by the original Prometheus researchers. It is designed to move thermal energy between isolated chambers, creating extreme temperature differentials to study state changes under controlled conditions. It has been running continuously, unattended, for six months. It has not malfunctioned. It has done exactly what it was designed to do. Which means everything that happened to the Prometheus — the temperature anomaly, the state changes, the coolant crisis — was caused by an experiment that was never turned off.\n\nThirty minutes of power. Three options. The choice that ends Act 2.',
-      exitTicketPrompt:'The thermal transfer device was running an experiment on state changes. Based on everything Act 2 has covered — kinetic theory, states of matter, changes of state, thermal energy — explain in your own words what this device was doing and why it caused the effects the crew observed throughout the ship. This is your evidence and reasoning.',
+      exitTicketPrompt:'The thermal transfer device was running an experiment on state changes. Based on everything Sector 2 has covered — kinetic theory, states of matter, changes of state, thermal energy — explain in your own words what this device was doing and why it caused the effects the crew observed throughout the ship. This is your evidence and reasoning.',
       discussionPrompt:'Should the crew shut it down, take it with them, or leave it running? This is a scientific ethics question as much as a practical one. The experiment was producing real data about states of matter under extreme conditions. Does that data have value? Does that value justify what the device did to the ship?',
       choices:[
         {
@@ -2582,7 +2582,7 @@ const CONTENT = {
       day:20, type:'climax', isReveal:true,
       actLabel:'Sector 2 · Changes of State',
       actTitle:'What the Lab Revealed',
-      gaia:'Act 2 is complete. The crew entered this act with a temperature anomaly and no explanation. You leave it with a complete scientific understanding of kinetic theory, states of matter, and changes of state — and with evidence of what caused the most unusual conditions any research vessel in this program has ever experienced. I want to take a moment to acknowledge what the crew has done. Not the choices — the thinking. The way you read the graphs. The way you connected particle speed to temperature to state to change of state. The way you applied scientific reasoning under conditions that were genuinely difficult. That is not nothing. That is the whole point.',
+      gaia:'Sector 2 is complete. The crew entered this sector with a temperature anomaly and no explanation. You leave it with a complete scientific understanding of kinetic theory, states of matter, and changes of state — and with evidence of what caused the most unusual conditions any research vessel in this program has ever experienced. I want to take a moment to acknowledge what the crew has done. Not the choices — the thinking. The way you read the graphs. The way you connected particle speed to temperature to state to change of state. The way you applied scientific reasoning under conditions that were genuinely difficult. That is not nothing. That is the whole point.',
       scenario:'The Prometheus is more stable than it has been since the anomaly began — or it is more compromised, depending on the choices the crew made. Either way, the mission continues. The crew now knows what caused the anomaly. They have the data. They have, depending on their choices, either the device itself or the records of its existence.\n\nAnd GAIA has one more thing to tell them.\n\n"The research lab contained something else. In the back, sealed in a secondary containment unit that the thermal transfer device never touched. The original crew\'s final research notes. I have begun reading them. I am not going to tell you what they say yet. But I will tell you this: the temperature anomaly was not the only experiment running on this ship. And the next system that needs investigating — the one connected to how this ship stores and transfers energy through its power grid — may be more significant than anything we have found so far.\n\nGet some rest. Act 3 begins with the ship\'s energy systems. And I think you are going to find them very interesting."',
       gaiaClosing:'"You have been watching the other crews\' stats on the board all year. You have seen other classes sacrifice hull integrity for data. You have seen others play it safe and come out with more power but less to show for it. You already know your stories are different. What I want you to understand is why. Every divergence on that board traces back to a specific decision this crew made, on a specific day, for specific reasons. That is not a game mechanic. That is how real science works. Different teams. Different methods. Different findings. All of it valid. All of it true. The Prometheus does not have one story. It has three. And you wrote yours. See you in Sector 3."',
       noChoice:true,
@@ -2604,8 +2604,8 @@ const CONTENT = {
           day:1, type:'choice', isReveal:false,
           actLabel:'Sector 3 · State Changes',
           actTitle:'Coming Soon',
-          gaia:'Act 3 content coming soon.',
-          scenario:'Act 3 content will be added after Act 2 runs in class.',
+          gaia:'Sector 3 content coming soon.',
+          scenario:'Sector 3 content will be added after Sector 2 runs in class.',
           noChoice:true
         }
       ]
@@ -2623,8 +2623,8 @@ const CONTENT = {
           day:1, type:'choice', isReveal:false,
           actLabel:'Sector 4 · Energy',
           actTitle:'Coming Soon',
-          gaia:'Act 4 content coming soon.',
-          scenario:'Act 4 content will be added after Act 3 runs in class.',
+          gaia:'Sector 4 content coming soon.',
+          scenario:'Sector 4 content will be added after Sector 3 runs in class.',
           noChoice:true
         }
       ]
@@ -2641,8 +2641,8 @@ const CONTENT = {
           day:1, type:'climax', isReveal:false,
           actLabel:'Sector 5 · Resolution',
           actTitle:'Coming Soon',
-          gaia:'Act 5 content coming soon.',
-          scenario:'The final act will be added after Act 4 runs in class.',
+          gaia:'Sector 5 content coming soon.',
+          scenario:'The final sector will be added after Sector 4 runs in class.',
           noChoice:true
         }
       ]
@@ -2897,7 +2897,7 @@ function renderMissionScreen() {
 
   if (cnt.discussionPrompt) extra.innerHTML += '<div style="background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.2);border-left:3px solid var(--purple);border-radius:6px;padding:13px 15px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--purple);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Discussion Guide — Phase 3</div><div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.6">' + cnt.discussionPrompt + '</div></div>';
 
-  if (cnt.bridgeToNext) extra.innerHTML += '<div style="background:rgba(0,200,255,0.05);border:1px solid rgba(0,200,255,0.15);border-radius:6px;padding:9px 13px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);line-height:1.6">⟶ ' + cnt.bridgeToNext + '</div></div>';
+  // bridgeToNext is teacher-only — shown in right panel teacher notes, not center panel
 
   renderChoices(cls, cnt.noChoice ? [] : (cnt.choices || []));
   renderStats(cls);
@@ -2990,50 +2990,84 @@ function populateDayJump() {
   const sel = document.getElementById('day-jump-select');
   if (!sel || state.activeClass === null) return;
   const cls = state.classes[state.activeClass];
-  const act = CONTENT.acts.find(a => a.id === cls.act);
-  if (!act) return;
   sel.innerHTML = '<option value="">— Jump to Day —</option>';
-  act.days.forEach(d => {
-    const typeLabels = {choice:'⚡', deepen:'📖', graph:'📊', climax:'🏁'};
-    const icon = typeLabels[d.type || 'choice'] || '';
-    const opt = document.createElement('option');
-    opt.value = d.day;
-    opt.textContent = icon + ' Day ' + d.day + ' — ' + (d.actTitle || 'Day ' + d.day);
-    if (d.day === cls.day) opt.selected = true;
-    sel.appendChild(opt);
+  // Show ALL sectors and days
+  CONTENT.acts.forEach(act => {
+    const groupLabel = document.createElement('optgroup');
+    groupLabel.label = act.label;
+    act.days.forEach(d => {
+      const typeLabels = {choice:'⚡', deepen:'📖', graph:'📊', climax:'🏁'};
+      const icon = typeLabels[d.type || 'choice'] || '';
+      const opt = document.createElement('option');
+      opt.value = act.id + '-' + d.day; // encode sector-day
+      opt.textContent = icon + ' Day ' + d.day + ' — ' + (d.actTitle || 'Day ' + d.day);
+      if (act.id === cls.act && d.day === cls.day) opt.selected = true;
+      groupLabel.appendChild(opt);
+    });
+    sel.appendChild(groupLabel);
   });
 }
 
-function jumpToDay(dayNum) {
-  if (!dayNum || state.activeClass === null) return;
+function jumpToDay(val) {
+  if (!val || state.activeClass === null) return;
+  const parts = val.split('-');
+  if (parts.length < 2) return;
+  const sectorId = parseInt(parts[0]);
+  const dayNum = parseInt(parts[1]);
   const cls = state.classes[state.activeClass];
-  cls.day = parseInt(dayNum);
+  cls.act = sectorId;
+  cls.day = dayNum;
   save();
   renderMissionScreen();
   populateDayJump();
 }
 
 function showGraphAnswer() {
-  const cls = state.classes[state.activeClass];
-  const cnt = getContentForClass(cls);
   const extra = document.getElementById('content-extra');
   if (!extra) return;
-  // Add answer graph for Day 18 style days
+
   const answerDiv = document.createElement('div');
-  answerDiv.style.cssText = 'background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.3);border-left:3px solid var(--purple);border-radius:6px;padding:14px 16px;margin-top:14px';
-  answerDiv.innerHTML = '<div style="font-family:var(--font-mono);font-size:9px;color:var(--purple);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">GAIA — Correct Graph Reveal</div>' +
-    '<div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:10px">"Dataset 3 is a phase change curve — a line graph with two flat sections. It should look like this:"</div>' +
-    renderPhaseChangeCurve({
-      phaseChangeCurve:[
-        {time:0,temp:-50,phase:'Solid'},{time:5,temp:10,phase:'Solid'},
-        {time:10,temp:50,phase:'Solid'},{time:15,temp:90,phase:'Melting'},
-        {time:20,temp:90,phase:'Melting'},{time:25,temp:90,phase:'Melting'},
-        {time:30,temp:130,phase:'Liquid'},{time:35,temp:175,phase:'Liquid'},
-        {time:40,temp:240,phase:'Boiling'},{time:45,temp:240,phase:'Boiling'},
-        {time:50,temp:240,phase:'Boiling'},{time:55,temp:275,phase:'Gas'}
-      ]
-    }) +
-    '<div style="font-family:var(--font-mono);font-size:11px;color:var(--purple);margin-top:8px;font-style:italic">"Two flat sections. First flat = melting point. Second flat = boiling point. The flat sections are where state changes happen — energy breaks bonds instead of raising temperature."</div>';
+  answerDiv.style.cssText = 'margin-top:16px';
+
+  // GAIA intro
+  let html = '<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.25);border-left:3px solid var(--gaia-green);border-radius:6px;padding:14px 16px;margin-bottom:14px">';
+  html += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">GAIA — Graph Answers</div>';
+  html += '<div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">"Let us review. A good scientist does not just pick a graph type — they know why that type serves the data. Here are the correct answers, and more importantly, the reasoning."</div>';
+  html += '</div>';
+
+  // Dataset 1 answer
+  html += '<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:12px 14px;margin-bottom:10px">';
+  html += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Dataset 1 — Answer</div>';
+  html += '<div style="font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--green);margin-bottom:6px">✓ Bar Graph</div>';
+  html += '<div style="font-family:var(--font-body);font-size:13px;color:var(--text-secondary);line-height:1.6">Five different materials being compared by boiling point. These are separate categories — there is no continuous change, no trend over time. A bar graph compares separate things. The space between bars means nothing. Bar graph every time.</div>';
+  html += '</div>';
+
+  // Dataset 2 answer
+  html += '<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:12px 14px;margin-bottom:10px">';
+  html += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Dataset 2 — Answer</div>';
+  html += '<div style="font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--green);margin-bottom:6px">✓ Line Graph</div>';
+  html += '<div style="font-family:var(--font-body);font-size:13px;color:var(--text-secondary);line-height:1.6">One location — Section C — tracked over seven days. This is one thing changing continuously over time. The space between the data points implies continuous change. The slope tells you the rate of decline. A bar graph would hide that trend entirely. Line graph.</div>';
+  html += '</div>';
+
+  // Dataset 3 answer — phase change curve
+  html += '<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:12px 14px;margin-bottom:10px">';
+  html += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Dataset 3 — Answer</div>';
+  html += '<div style="font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--green);margin-bottom:6px">✓ Line Graph — Phase Change Curve</div>';
+  html += '<div style="font-family:var(--font-body);font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:10px">Temperature changing over time — line graph. But this one has two flat sections where temperature holds steady during state changes. Compare your drawing to the correct version below.</div>';
+  html += renderPhaseChangeCurve({
+    phaseChangeCurve:[
+      {time:0,temp:-50,phase:'Solid'},{time:5,temp:10,phase:'Solid'},
+      {time:10,temp:50,phase:'Solid'},{time:15,temp:90,phase:'Melting'},
+      {time:20,temp:90,phase:'Melting'},{time:25,temp:90,phase:'Melting'},
+      {time:30,temp:130,phase:'Liquid'},{time:35,temp:175,phase:'Liquid'},
+      {time:40,temp:240,phase:'Boiling'},{time:45,temp:240,phase:'Boiling'},
+      {time:50,temp:240,phase:'Boiling'},{time:55,temp:275,phase:'Gas'}
+    ]
+  });
+  html += '<div style="font-family:var(--font-mono);font-size:11px;color:var(--gaia-green);margin-top:8px;font-style:italic">"First flat = melting point. Second flat = boiling point. During each flat section, thermal energy is breaking particle bonds — not raising temperature. This is why the graph looks the way it does."</div>';
+  html += '</div>';
+
+  answerDiv.innerHTML = html;
   extra.appendChild(answerDiv);
   document.getElementById('btn-show-answer').style.display = 'none';
 }
@@ -3113,7 +3147,7 @@ function renderGraphContent(c) {
     c.graphQuestions.forEach(q => { h += '<div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px;padding-left:10px;border-left:2px solid var(--border-bright)">' + q + '</div>'; });
     h += '</div>';
   }
-  if (c.shortDayNote) h += '<div style="background:rgba(255,170,0,0.05);border:1px solid rgba(255,170,0,0.15);border-radius:6px;padding:9px 13px"><div style="font-family:var(--font-mono);font-size:10px;color:var(--amber);line-height:1.6">⏱ Short Day: ' + c.shortDayNote + '</div></div>';
+  // shortDayNote — teacher panel only
   return h;
 }
 
@@ -3928,7 +3962,7 @@ function updateDayTypeBanner(cnt) {
   } else if (dayType === 'climax') {
     badge.classList.add('badge-climax');
     badge.textContent = '🏁 Sector Finale';
-    desc.textContent = 'Sector complete · Synthesis · Bridge to next act';
+    desc.textContent = 'Sector complete · Synthesis · Bridge to next sector';
   } else {
     badge.classList.add('badge-deepen');
     badge.textContent = '📖 Lesson Day';
