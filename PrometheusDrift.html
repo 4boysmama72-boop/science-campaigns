@@ -1457,6 +1457,9 @@
         </div>
       </div>
 
+      <!-- TEACHER NOTES PANEL -->
+      <div id="teacher-note-panel" style="display:none"></div>
+
       <div class="divider-line"></div>
 
       <div>
@@ -1483,6 +1486,15 @@
         <div class="panel-label">Story Navigation</div>
         <button class="nav-btn" onclick="advanceToNextDay()">▶ Next Day</button>
         <button class="nav-btn" onclick="goToReveal()">◈ Show Reveal Screen</button>
+        <div style="margin-top:6px">
+          <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Jump to Day</div>
+          <div style="display:flex;gap:4px;align-items:center">
+            <select id="day-jump-select" style="background:var(--bg-card);border:1px solid var(--border);border-radius:3px;color:var(--text-secondary);font-family:var(--font-mono);font-size:10px;padding:4px 6px;flex:1" onchange="jumpToDay(this.value)">
+              <option value="">— Select Day —</option>
+            </select>
+          </div>
+        </div>
+        <button class="nav-btn" id="btn-show-answer" style="display:none;color:var(--purple);border-color:rgba(170,102,255,0.3)" onclick="showGraphAnswer()">◈ Show Answer Graph</button>
       </div>
     </div>
   </div>
@@ -2847,7 +2859,95 @@ function renderMissionScreen() {
     }
   }
 
+  updateDayTypeBanner(cnt);
+  updateTeacherNotePanel(cnt);
+  populateDayJump();
+
+  // Show "Show Answer Graph" button only on graph days that have datasets
+  const answerBtn = document.getElementById('btn-show-answer');
+  if (answerBtn) {
+    const hasDatasets = cnt.graphData && cnt.graphData.datasets;
+    answerBtn.style.display = hasDatasets ? '' : 'none';
+  }
+
   checkStatAlerts(cls);
+}
+
+function populateDayJump() {
+  const sel = document.getElementById('day-jump-select');
+  if (!sel || state.activeClass === null) return;
+  const cls = state.classes[state.activeClass];
+  const act = CONTENT.acts.find(a => a.id === cls.act);
+  if (!act) return;
+  sel.innerHTML = '<option value="">— Jump to Day —</option>';
+  act.days.forEach(d => {
+    const typeLabels = {choice:'⚡', deepen:'📖', graph:'📊', climax:'🏁'};
+    const icon = typeLabels[d.type || 'choice'] || '';
+    const opt = document.createElement('option');
+    opt.value = d.day;
+    opt.textContent = icon + ' Day ' + d.day + ' — ' + (d.actTitle || 'Day ' + d.day);
+    if (d.day === cls.day) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+function jumpToDay(dayNum) {
+  if (!dayNum || state.activeClass === null) return;
+  const cls = state.classes[state.activeClass];
+  cls.day = parseInt(dayNum);
+  save();
+  renderMissionScreen();
+  populateDayJump();
+}
+
+function showGraphAnswer() {
+  const cls = state.classes[state.activeClass];
+  const cnt = getContentForClass(cls);
+  const extra = document.getElementById('content-extra');
+  if (!extra) return;
+  // Add answer graph for Day 18 style days
+  const answerDiv = document.createElement('div');
+  answerDiv.style.cssText = 'background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.3);border-left:3px solid var(--purple);border-radius:6px;padding:14px 16px;margin-top:14px';
+  answerDiv.innerHTML = '<div style="font-family:var(--font-mono);font-size:9px;color:var(--purple);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">GAIA — Correct Graph Reveal</div>' +
+    '<div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:10px">"Dataset 3 is a phase change curve — a line graph with two flat sections. It should look like this:"</div>' +
+    renderPhaseChangeCurve({
+      phaseChangeCurve:[
+        {time:0,temp:-50,phase:'Solid'},{time:5,temp:10,phase:'Solid'},
+        {time:10,temp:50,phase:'Solid'},{time:15,temp:90,phase:'Melting'},
+        {time:20,temp:90,phase:'Melting'},{time:25,temp:90,phase:'Melting'},
+        {time:30,temp:130,phase:'Liquid'},{time:35,temp:175,phase:'Liquid'},
+        {time:40,temp:240,phase:'Boiling'},{time:45,temp:240,phase:'Boiling'},
+        {time:50,temp:240,phase:'Boiling'},{time:55,temp:275,phase:'Gas'}
+      ]
+    }) +
+    '<div style="font-family:var(--font-mono);font-size:11px;color:var(--purple);margin-top:8px;font-style:italic">"Two flat sections. First flat = melting point. Second flat = boiling point. The flat sections are where state changes happen — energy breaks bonds instead of raising temperature."</div>';
+  extra.appendChild(answerDiv);
+  document.getElementById('btn-show-answer').style.display = 'none';
+}
+
+function updateTeacherNotePanel(cnt) {
+  const panel = document.getElementById('teacher-note-panel');
+  if (!panel) return;
+  const notes = [];
+  if (cnt.graphData) {
+    const gd = cnt.graphData;
+    if (gd.teacherNote) notes.push({label:'Graph Note', text:gd.teacherNote});
+    if (gd.teacherDisplayNote) notes.push({label:'Display Note', text:gd.teacherDisplayNote});
+    if (gd.multiLine) gd.multiLine.forEach(l => { if (l.note) notes.push({label:l.section, text:l.note}); });
+    if (gd.datasets) gd.datasets.forEach(ds => { if (ds.answer) notes.push({label:ds.id + ' — Answer', text:ds.answer}); if (ds.hint) notes.push({label:ds.id + ' — Hint', text:ds.hint}); });
+    if (gd.teacherNoteData) notes.push({label:'Data Note', text:gd.teacherNoteData});
+  }
+  if (cnt.shortDayNote) notes.push({label:'⏱ Short Day', text:cnt.shortDayNote});
+  if (cnt.bridgeToNext) notes.push({label:'→ Next Class', text:cnt.bridgeToNext});
+  if (notes.length === 0) { panel.style.display = 'none'; return; }
+  panel.style.display = 'block';
+  panel.innerHTML = '<div class="panel-label">Teacher Notes</div>' +
+    notes.map(n =>
+      '<div style="background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.2);border-radius:4px;padding:7px 10px;margin-bottom:5px">' +
+      '<div style="font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px">' + n.label + '</div>' +
+      '<div style="font-family:var(--font-body);font-size:12px;color:var(--text-secondary);line-height:1.5">' + n.text + '</div>' +
+      '</div>'
+    ).join('');
 }
 
 function renderDeepenContent(c) {
@@ -2888,11 +2988,6 @@ function renderGraphContent(c) {
       h += '<div><div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);text-align:center;margin-bottom:6px;letter-spacing:.06em">VERSION 1: BAR GRAPH</div>' + renderBarGraphFromData(gd) + '</div>';
       h += '<div><div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);text-align:center;margin-bottom:6px;letter-spacing:.06em">VERSION 2: LINE GRAPH</div>' + renderLineGraph(gd) + '</div>';
       h += '</div>';
-    }
-
-    // Show teacher display note if present
-    if (gd.teacherDisplayNote) {
-      h += '<div style="background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.2);border-radius:4px;padding:8px 12px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:10px;color:var(--amber);line-height:1.6">📋 ' + gd.teacherDisplayNote + '</div></div>';
     }
 
     h += '</div>';
@@ -3050,8 +3145,18 @@ function renderMultiLineGraph(gd) {
   const yMax = Math.ceil(maxVal / 10) * 10 + 10;
   const yRange = yMax - yMin;
 
-  const colors = { safe:'#00ff88', caution:'#ffaa00', warning:'#ff8800', danger:'#ff3355', info:'#00c8ff' };
-  const lineColors = ['#00c8ff','#ff3355','#00ff88','#ffaa00','#aa66ff','#ff8800'];
+  // Fixed colors per section — consistent across Day 3 AND Day 8
+  // Section C = red (danger/dropping), Section F = orange (warning/rising)
+  // These must match between graphs so kids can track same section across days
+  const SECTION_COLORS = {
+    'Section A': '#00ff88',  // green — stable
+    'Section B': '#00c8ff',  // cyan — slow decline
+    'Section C': '#ff3355',  // red — dropping (danger)
+    'Section D': '#aa66ff',  // purple — stable
+    'Section E': '#7be3ff',  // light blue — stable
+    'Section F': '#ff8800',  // orange — rising (warning)
+  };
+  const fallbackColors = ['#00ff88','#00c8ff','#ff3355','#aa66ff','#7be3ff','#ff8800'];
 
   let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;max-width:540px;margin:0 auto">';
 
@@ -3073,7 +3178,7 @@ function renderMultiLineGraph(gd) {
   // Draw each line
   lines.forEach((line, li) => {
     const vals = line.values || [];
-    const col = colors[line.color] || lineColors[li % lineColors.length];
+    const col = SECTION_COLORS[line.section] || fallbackColors[li % fallbackColors.length];
     const points = vals.map((v, i) => {
       const x = padL + (chartW * i / (vals.length - 1));
       const y = padT + chartH - (chartH * (v - yMin) / yRange);
@@ -3199,7 +3304,7 @@ function renderDatasetComparison(gd) {
       h += '<div style="font-family:var(--font-mono);font-size:11px;color:var(--amber);padding:8px;background:rgba(255,170,0,0.06);border-radius:4px">Draw this graph based on the description above — describe its shape before drawing.</div>';
     }
 
-    h += '<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);margin-top:6px">Hint: ' + (ds.hint || '') + '</div>';
+    // Hints moved to teacher panel — not shown to students
     h += '</div>';
   });
   return h;
