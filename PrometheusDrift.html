@@ -883,6 +883,83 @@
   body.presentation-mode .story-content { padding: 28px 40px !important; }
   body.presentation-mode .choices-area { padding: 18px 40px !important; }
   body.presentation-mode .day-type-banner { padding: 8px 40px !important; }
+  body.presentation-mode #pres-stats-bar { display: flex !important; }
+  body:not(.presentation-mode) #pres-stats-bar { display: none !important; }
+
+  /* PRESENTATION STATS BAR */
+  #pres-stats-bar {
+    display: none;
+    align-items: center;
+    gap: 0;
+    background: var(--bg-panel);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 40px;
+    flex-shrink: 0;
+  }
+
+  .pres-stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    padding: 0 16px;
+    border-right: 1px solid var(--border);
+  }
+  .pres-stat:last-child { border-right: none; }
+
+  .pres-stat-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .pres-stat-body { flex: 1; }
+
+  .pres-stat-label {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .pres-stat-bar-track {
+    height: 8px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .pres-stat-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .pres-stat-value {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    min-width: 42px;
+    text-align: right;
+  }
+
+  .pres-power .pres-stat-label { color: #00c8ff; }
+  .pres-power .pres-stat-value { color: #00c8ff; }
+  .pres-power .pres-stat-bar-fill { background: linear-gradient(90deg,#005577,#00c8ff); box-shadow: 0 0 6px rgba(0,200,255,0.5); }
+
+  .pres-hull .pres-stat-label { color: #00ff88; }
+  .pres-hull .pres-stat-value { color: #00ff88; }
+  .pres-hull .pres-stat-bar-fill { background: linear-gradient(90deg,#005533,#00ff88); box-shadow: 0 0 6px rgba(0,255,136,0.5); }
+
+  .pres-data .pres-stat-label { color: #aa66ff; }
+  .pres-data .pres-stat-value { color: #aa66ff; }
+  .pres-data .pres-stat-bar-fill { background: linear-gradient(90deg,#440066,#aa66ff); box-shadow: 0 0 6px rgba(170,102,255,0.5); }
+
+  .pres-morale .pres-stat-label { color: #ffaa00; }
+  .pres-morale .pres-stat-value { color: #ffaa00; }
+  .pres-morale .pres-stat-bar-fill { background: linear-gradient(90deg,#553300,#ffaa00); box-shadow: 0 0 6px rgba(255,170,0,0.5); }
 
   /* ===================== PROCESSING SCREEN ===================== */
   #screen-processing {
@@ -1248,6 +1325,42 @@
     <div class="day-type-badge badge-choice" id="day-type-badge">⚡ Choice Day</div>
     <div class="day-type-desc" id="day-type-desc">Full four-phase flow · Exit Ticket · Discussion · Official Vote</div>
     <button class="pres-btn" onclick="togglePresMode()" id="pres-btn">⊡ Present</button>
+  </div>
+
+  <!-- PRESENTATION MODE STATS BAR — visible to class when projecting -->
+  <div id="pres-stats-bar">
+    <div class="pres-stat pres-power">
+      <div class="pres-stat-icon">⚡</div>
+      <div class="pres-stat-body">
+        <div class="pres-stat-label">Power</div>
+        <div class="pres-stat-bar-track"><div class="pres-stat-bar-fill" id="pres-power-bar" style="width:100%"></div></div>
+      </div>
+      <div class="pres-stat-value" id="pres-power-val">100%</div>
+    </div>
+    <div class="pres-stat pres-hull">
+      <div class="pres-stat-icon">🛡</div>
+      <div class="pres-stat-body">
+        <div class="pres-stat-label">Hull</div>
+        <div class="pres-stat-bar-track"><div class="pres-stat-bar-fill" id="pres-hull-bar" style="width:100%"></div></div>
+      </div>
+      <div class="pres-stat-value" id="pres-hull-val">100%</div>
+    </div>
+    <div class="pres-stat pres-data">
+      <div class="pres-stat-icon">📡</div>
+      <div class="pres-stat-body">
+        <div class="pres-stat-label">Data</div>
+        <div class="pres-stat-bar-track"><div class="pres-stat-bar-fill" id="pres-data-bar" style="width:0%"></div></div>
+      </div>
+      <div class="pres-stat-value" id="pres-data-val">0%</div>
+    </div>
+    <div class="pres-stat pres-morale">
+      <div class="pres-stat-icon">👥</div>
+      <div class="pres-stat-body">
+        <div class="pres-stat-label">Morale</div>
+        <div class="pres-stat-bar-track"><div class="pres-stat-bar-fill" id="pres-morale-bar" style="width:100%"></div></div>
+      </div>
+      <div class="pres-stat-value" id="pres-morale-val">100%</div>
+    </div>
   </div>
 
   <div class="mission-layout">
@@ -2471,7 +2584,7 @@ const CONTENT = {
       actTitle:'What the Lab Revealed',
       gaia:'Act 2 is complete. The crew entered this act with a temperature anomaly and no explanation. You leave it with a complete scientific understanding of kinetic theory, states of matter, and changes of state — and with evidence of what caused the most unusual conditions any research vessel in this program has ever experienced. I want to take a moment to acknowledge what the crew has done. Not the choices — the thinking. The way you read the graphs. The way you connected particle speed to temperature to state to change of state. The way you applied scientific reasoning under conditions that were genuinely difficult. That is not nothing. That is the whole point.',
       scenario:'The Prometheus is more stable than it has been since the anomaly began — or it is more compromised, depending on the choices the crew made. Either way, the mission continues. The crew now knows what caused the anomaly. They have the data. They have, depending on their choices, either the device itself or the records of its existence.\n\nAnd GAIA has one more thing to tell them.\n\n"The research lab contained something else. In the back, sealed in a secondary containment unit that the thermal transfer device never touched. The original crew\'s final research notes. I have begun reading them. I am not going to tell you what they say yet. But I will tell you this: the temperature anomaly was not the only experiment running on this ship. And the next system that needs investigating — the one connected to how this ship stores and transfers energy through its power grid — may be more significant than anything we have found so far.\n\nGet some rest. Act 3 begins with the ship\'s energy systems. And I think you are going to find them very interesting."',
-      gaiaClosing:'"One more thing. Every class that ran this mission made different choices. Different sections investigated. Different sacrifices made. Different amounts of data collected. Different amounts of hull damage sustained. Your ship is not the same as the ship in the next classroom. Your findings are not the same. Your story is not the same. That is not a flaw in the campaign. That is the point. Real scientific expeditions do not have predetermined outcomes. Neither did this one. See you in Act 3."',
+      gaiaClosing:'"You have been watching the other crews\' stats on the board all year. You have seen other classes sacrifice hull integrity for data. You have seen others play it safe and come out with more power but less to show for it. You already know your stories are different. What I want you to understand is why. Every divergence on that board traces back to a specific decision this crew made, on a specific day, for specific reasons. That is not a game mechanic. That is how real science works. Different teams. Different methods. Different findings. All of it valid. All of it true. The Prometheus does not have one story. It has three. And you wrote yours. See you in Sector 3."',
       noChoice:true,
       isActEnd:true
     }
@@ -3283,28 +3396,33 @@ function renderDatasetComparison(gd) {
   const datasets = gd.datasets || [];
   let h = '';
   datasets.forEach((ds, i) => {
-    h += '<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:12px 14px;margin-bottom:10px">';
-    h += '<div style="font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">' + ds.id + '</div>';
-    h += '<div style="font-family:var(--font-body);font-size:13px;color:var(--text-secondary);margin-bottom:10px;line-height:1.5">' + ds.description + '</div>';
+    h += '<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:14px 16px;margin-bottom:12px">';
+    h += '<div style="font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">' + ds.id + '</div>';
+    h += '<div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);margin-bottom:12px;line-height:1.6">' + ds.description + '</div>';
 
     if (ds.data && ds.data.length > 0) {
-      // Show as simple visual table
-      const maxVal = Math.max(...ds.data.map(d => Math.abs(d.value)));
-      h += '<div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">';
+      // DATA TABLE ONLY — no graph — kids decide which type fits
+      h += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Raw Data — No Graph Yet</div>';
+      const cols = ds.data.length;
+      h += '<table style="width:100%;border-collapse:collapse;margin-bottom:10px">';
+      h += '<tr>';
       ds.data.forEach(d => {
-        const pct = (Math.abs(d.value) / maxVal * 100).toFixed(0);
-        h += '<div style="text-align:center;flex:1;min-width:40px">';
-        h += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);margin-bottom:2px">' + d.label + '</div>';
-        h += '<div style="height:' + Math.max(8, Math.round(pct * 0.4)) + 'px;background:var(--accent);opacity:0.7;border-radius:2px;margin-bottom:2px"></div>';
-        h += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent)">' + d.value + '</div>';
-        h += '</div>';
+        h += '<td style="text-align:center;background:var(--bg-card);border:1px solid var(--border);padding:5px 4px;font-family:var(--font-mono);font-size:10px;color:var(--accent)">' + d.label + '</td>';
       });
-      h += '</div>';
+      h += '</tr><tr>';
+      ds.data.forEach(d => {
+        h += '<td style="text-align:center;background:var(--bg-card);border:1px solid var(--border);padding:6px 4px;font-family:var(--font-mono);font-size:12px;color:var(--text-primary);font-weight:500">' + d.value + '</td>';
+      });
+      h += '</tr></table>';
+      h += '<div style="font-family:var(--font-body);font-size:14px;color:var(--amber);font-weight:600">Which graph type fits this data — bar or line? Why?</div>';
     } else {
-      h += '<div style="font-family:var(--font-mono);font-size:11px;color:var(--amber);padding:8px;background:rgba(255,170,0,0.06);border-radius:4px">Draw this graph based on the description above — describe its shape before drawing.</div>';
+      // Dataset 3 — description only, kids draw from scratch
+      h += '<div style="background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.2);border-left:3px solid var(--purple);border-radius:4px;padding:12px 14px;margin-bottom:8px">';
+      h += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--purple);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">Your Challenge</div>';
+      h += '<div style="font-family:var(--font-body);font-size:14px;color:var(--text-primary);line-height:1.6">Based on the description above — decide which graph type fits, then sketch what it should look like. Describe the shape before you draw it.</div>';
+      h += '</div>';
+      h += '<div style="font-family:var(--font-body);font-size:14px;color:var(--amber);font-weight:600">When ready — your teacher will reveal the correct graph.</div>';
     }
-
-    // Hints moved to teacher panel — not shown to students
     h += '</div>';
   });
   return h;
@@ -3623,12 +3741,22 @@ function renderStats(cls) {
   const stats = cls.stats;
   ['power','hull','data','morale'].forEach(key => {
     const val = Math.max(0, Math.min(100, stats[key]));
-    document.getElementById(`stat-${key}-val`).textContent = val + '%';
-    document.getElementById(`stat-${key}-bar`).style.width = val + '%';
-    const item = document.querySelector(`.stat-${key}`);
-    item.classList.remove('stat-warning','stat-critical');
-    if (val <= 20) item.classList.add('stat-critical');
-    else if (val <= 30) item.classList.add('stat-warning');
+    // Update side panel stats
+    const valEl = document.getElementById('stat-' + key + '-val');
+    const barEl = document.getElementById('stat-' + key + '-bar');
+    if (valEl) valEl.textContent = val + '%';
+    if (barEl) barEl.style.width = val + '%';
+    const item = document.querySelector('.stat-' + key);
+    if (item) {
+      item.classList.remove('stat-warning','stat-critical');
+      if (val <= 20) item.classList.add('stat-critical');
+      else if (val <= 30) item.classList.add('stat-warning');
+    }
+    // Update presentation bar stats
+    const presVal = document.getElementById('pres-' + key + '-val');
+    const presBar = document.getElementById('pres-' + key + '-bar');
+    if (presVal) presVal.textContent = val + '%';
+    if (presBar) presBar.style.width = val + '%';
   });
   document.getElementById('stat-power-status').textContent = statLabel('power', stats.power);
   document.getElementById('stat-hull-status').textContent = statLabel('hull', stats.hull);
