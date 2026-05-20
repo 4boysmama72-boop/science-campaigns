@@ -598,10 +598,10 @@
 
   .gaia-label { font-family: var(--font-mono); font-size: 10px; color: var(--gaia-green); letter-spacing: .1em; text-transform: uppercase; }
 
-  .gaia-text { font-family: var(--font-body); font-size: 16px; color: var(--text-primary); line-height: 1.7; }
+  .gaia-text { font-family: var(--font-body); font-size: 20px; color: var(--text-primary); line-height: 1.7; }
   .gaia-text em { color: var(--gaia-green); font-style: italic; }
 
-  .scenario-text { font-family: var(--font-body); font-size: 16px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 20px; }
+  .scenario-text { font-family: var(--font-body); font-size: 20px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 20px; }
 
   /* PHASE CONTENT PANELS */
   .phase-panel { display: none; }
@@ -761,9 +761,9 @@
   .choice-btn.selected { border-color: var(--accent); background: rgba(0,200,255,0.07); }
   .choice-btn.eliminated { opacity: 0.3; cursor: not-allowed; }
 
-  .choice-letter { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--accent); padding-top: 1px; }
-  .choice-text { font-family: var(--font-body); font-size: 15px; font-weight: 500; color: var(--text-primary); line-height: 1.4; }
-  .choice-subtext { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); margin-top: 3px; line-height: 1.4; }
+  .choice-letter { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--accent); padding-top: 1px; }
+  .choice-text { font-family: var(--font-body); font-size: 18px; font-weight: 500; color: var(--text-primary); line-height: 1.4; }
+  .choice-subtext { font-family: var(--font-mono); font-size: 14px; color: var(--text-secondary); margin-top: 3px; line-height: 1.4; }
 
   .commit-row { margin-top: 10px; display: flex; gap: 10px; align-items: center; }
 
@@ -875,11 +875,11 @@
   body.presentation-mode .panel-stats { display: none !important; }
   body.presentation-mode .panel-right { display: none !important; }
   body.presentation-mode .mission-layout { grid-template-columns: 1fr !important; }
-  body.presentation-mode .gaia-text { font-size: 20px !important; }
-  body.presentation-mode .scenario-text { font-size: 19px !important; }
-  body.presentation-mode .choice-text { font-size: 18px !important; }
-  body.presentation-mode .choice-subtext { font-size: 13px !important; }
-  body.presentation-mode .act-title { font-size: 26px !important; }
+  body.presentation-mode .gaia-text { font-size: 24px !important; }
+  body.presentation-mode .scenario-text { font-size: 22px !important; }
+  body.presentation-mode .choice-text { font-size: 20px !important; }
+  body.presentation-mode .choice-subtext { font-size: 16px !important; }
+  body.presentation-mode .act-title { font-size: 28px !important; }
   body.presentation-mode .story-content { padding: 28px 40px !important; }
   body.presentation-mode .choices-area { padding: 18px 40px !important; }
   body.presentation-mode .day-type-banner { padding: 8px 40px !important; }
@@ -2893,9 +2893,9 @@ function renderMissionScreen() {
   else if (dayType === 'graph') extra.innerHTML += renderGraphContent(cnt);
   else if (dayType === 'climax') extra.innerHTML += renderClimaxContent(cnt);
 
-  if (cnt.exitTicketPrompt) extra.innerHTML += '<div style="background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.2);border-left:3px solid var(--amber);border-radius:6px;padding:13px 15px;margin-top:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Exit Ticket Prompt — Phase 2</div><div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.6">' + cnt.exitTicketPrompt + '</div></div>';
+  if (cnt.exitTicketPrompt) extra.innerHTML += '<div style="background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.2);border-left:3px solid var(--amber);border-radius:6px;padding:13px 15px;margin-top:14px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Exit Ticket Prompt — Phase 2</div><div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6">' + cnt.exitTicketPrompt + '</div></div>';
 
-  if (cnt.discussionPrompt) extra.innerHTML += '<div style="background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.2);border-left:3px solid var(--purple);border-radius:6px;padding:13px 15px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--purple);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Discussion Guide — Phase 3</div><div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.6">' + cnt.discussionPrompt + '</div></div>';
+  if (cnt.discussionPrompt) extra.innerHTML += '<div style="background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.2);border-left:3px solid var(--purple);border-radius:6px;padding:13px 15px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--purple);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Discussion Guide — Phase 3</div><div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6">' + cnt.discussionPrompt + '</div></div>';
 
   // bridgeToNext is teacher-only — shown in right panel teacher notes, not center panel
 
@@ -3160,7 +3160,17 @@ function renderBarGraph(gd) {
   const barW = Math.floor(chartW / bars.length * 0.6);
   const gap = Math.floor(chartW / bars.length);
 
-  const colors = {safe:'#00ff88', caution:'#ffaa00', warning:'#ff8800', danger:'#ff3355'};
+  // Section colors — unique per section, consistent across all graphs
+  const sectionColors = {
+    'Section A': '#00ff88', 'Sec A': '#00ff88',
+    'Section B': '#00c8ff', 'Sec B': '#00c8ff',
+    'Section C': '#ff3355', 'Sec C': '#ff3355',
+    'Section D': '#aa66ff', 'Sec D': '#aa66ff',
+    'Section E': '#7be3ff', 'Sec E': '#7be3ff',
+    'Section F': '#ff8800', 'Sec F': '#ff8800'
+  };
+  // Status colors used only when no section name matches
+  const statusColors = {safe:'#00ff88', caution:'#ffaa00', warning:'#ff8800', danger:'#ff3355'};
 
   let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:0 auto">';
 
@@ -3169,7 +3179,7 @@ function renderBarGraph(gd) {
     const y = padT + chartH - (pct/maxVal * chartH * (maxVal/100));
     const yy = padT + chartH * (1 - pct/100);
     svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
-    svg += '<text x="' + (padL-6) + '" y="' + (yy+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.3)" text-anchor="end">' + pct + '</text>';
+    svg += '<text x="' + (padL-6) + '" y="' + (yy+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="13" fill="rgba(255,255,255,0.5)" text-anchor="end">' + pct + '</text>';
   });
 
   // Bars
@@ -3177,20 +3187,21 @@ function renderBarGraph(gd) {
     const bh = (b.value / 100) * chartH;
     const x = padL + gap * i + gap/2 - barW/2;
     const y = padT + chartH - bh;
-    const col = colors[b.status] || '#00c8ff';
+    // Use section color if label matches a section, else fall back to status color
+    const col = sectionColors[b.label] || sectionColors[b.label.replace('Section ','Sec ')] || statusColors[b.status] || '#00c8ff';
     svg += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + barW + '" height="' + bh.toFixed(1) + '" fill="' + col + '" opacity="0.85" rx="2"/>';
-    svg += '<text x="' + (x + barW/2).toFixed(1) + '" y="' + (y-4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="' + col + '" text-anchor="middle">' + b.value + '%</text>';
-    // X labels — wrap if needed
+    svg += '<text x="' + (x + barW/2).toFixed(1) + '" y="' + (y-5).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="13" fill="' + col + '" text-anchor="middle">' + b.value + '%</text>';
+    // X labels
     const label = b.label.replace('Section ', 'Sec ');
-    svg += '<text x="' + (x + barW/2).toFixed(1) + '" y="' + (padT + chartH + 16).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">' + label + '</text>';
+    svg += '<text x="' + (x + barW/2).toFixed(1) + '" y="' + (padT + chartH + 18).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="13" fill="rgba(255,255,255,0.7)" text-anchor="middle">' + label + '</text>';
   });
 
   // Axes
   svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
   svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
 
-  // Y axis label
-  svg += '<text x="12" y="' + (padT + chartH/2) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.3)" text-anchor="middle" transform="rotate(-90,12,' + (padT+chartH/2) + ')">' + (gd.yLabel || '% Remaining') + '</text>';
+  // Y axis label — horizontal text above axis, not rotated tiny SVG
+  svg += '<text x="' + padL + '" y="' + (padT-2) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)" text-anchor="start">' + (gd.yLabel || '% Remaining') + ' →</text>';
 
   svg += '</svg>';
   return svg;
@@ -3211,7 +3222,7 @@ function renderBarGraphFromData(gd) {
   [0,25,50,75,100].forEach(pct => {
     const yy = padT + chartH * (1 - pct/100);
     svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
-    svg += '<text x="' + (padL-4) + '" y="' + (yy+3).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)" text-anchor="end">' + Math.round(maxVal * pct/100) + '</text>';
+    svg += '<text x="' + (padL-4) + '" y="' + (yy+3).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">' + Math.round(maxVal * pct/100) + '</text>';
   });
 
   data.forEach((d, i) => {
@@ -3220,12 +3231,12 @@ function renderBarGraphFromData(gd) {
     const x = padL + gap*i + gap/2 - barW/2;
     const y = padT + chartH - bh;
     svg += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + barW + '" height="' + bh.toFixed(1) + '" fill="#378ADD" opacity="0.8" rx="2"/>';
-    svg += '<text x="' + (x+barW/2).toFixed(1) + '" y="' + (padT+chartH+14).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="8" fill="rgba(255,255,255,0.4)" text-anchor="middle">' + d.label.replace('Month ','M') + '</text>';
+    svg += '<text x="' + (x+barW/2).toFixed(1) + '" y="' + (padT+chartH+16).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.6)" text-anchor="middle">' + d.label.replace('Month ','M') + '</text>';
   });
 
   svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
   svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
-  svg += '<text x="' + (W/2) + '" y="' + (H-2) + '" font-family="Share Tech Mono,monospace" font-size="8" fill="rgba(255,255,255,0.25)" text-anchor="middle">Month</text>';
+  svg += '<text x="' + (W/2) + '" y="' + (H-2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle">Month</text>';
   svg += '</svg>';
   return svg;
 }
@@ -3245,7 +3256,7 @@ function renderLineGraph(gd) {
     const yy = padT + chartH * (pct/100);
     svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
     const labelVal = Math.round(maxVal * (1 - pct/100));
-    svg += '<text x="' + (padL-4) + '" y="' + (yy+3).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)" text-anchor="end">-' + labelVal + '</text>';
+    svg += '<text x="' + (padL-4) + '" y="' + (yy+3).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">-' + labelVal + '</text>';
   });
 
   // Build points
@@ -3263,15 +3274,15 @@ function renderLineGraph(gd) {
   // Dots and labels
   points.forEach((p,i) => {
     svg += '<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="4" fill="#ff3355" stroke="var(--bg-deep)" stroke-width="1.5"/>';
-    svg += '<text x="' + p.x.toFixed(1) + '" y="' + (padT+chartH+14).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="8" fill="rgba(255,255,255,0.4)" text-anchor="middle">' + p.d.label.replace('Month ','M') + '</text>';
+    svg += '<text x="' + p.x.toFixed(1) + '" y="' + (padT+chartH+16).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.6)" text-anchor="middle">' + p.d.label.replace('Month ','M') + '</text>';
   });
 
   // Trend arrow annotation
-  svg += '<text x="' + (W-padR-2) + '" y="' + (points[points.length-1].y - 6).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="8" fill="#ff3355" text-anchor="end">↓ DROPPING</text>';
+  svg += '<text x="' + (W-padR-2) + '" y="' + (points[points.length-1].y - 6).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="#ff3355" text-anchor="end">↓ DROPPING</text>';
 
   svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
   svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
-  svg += '<text x="' + (W/2) + '" y="' + (H-2) + '" font-family="Share Tech Mono,monospace" font-size="8" fill="rgba(255,255,255,0.25)" text-anchor="middle">Month</text>';
+  svg += '<text x="' + (W/2) + '" y="' + (H-2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle">Month</text>';
   svg += '</svg>';
   return svg;
 }
@@ -3312,14 +3323,14 @@ function renderMultiLineGraph(gd) {
     const yVal = yMin + (yRange * i / 4);
     const yPos = padT + chartH - (chartH * i / 4);
     svg += '<line x1="' + padL + '" y1="' + yPos.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yPos.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
-    svg += '<text x="' + (padL-4) + '" y="' + (yPos+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.3)" text-anchor="end">' + Math.round(yVal) + '</text>';
+    svg += '<text x="' + (padL-4) + '" y="' + (yPos+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">' + Math.round(yVal) + '</text>';
   }
 
   // X axis labels
   const numPoints = xLabels.length;
   xLabels.forEach((label, i) => {
     const x = padL + (chartW * i / (numPoints - 1));
-    svg += '<text x="' + x.toFixed(1) + '" y="' + (padT + chartH + 14) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.35)" text-anchor="middle">' + label + '</text>';
+    svg += '<text x="' + x.toFixed(1) + '" y="' + (padT + chartH + 14) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.55)" text-anchor="middle">' + label + '</text>';
   });
 
   // Draw each line
@@ -3343,7 +3354,7 @@ function renderMultiLineGraph(gd) {
     // Legend on right
     const legendY = padT + 14 + (li * 18);
     svg += '<circle cx="' + (W-padR+10) + '" cy="' + legendY + '" r="4" fill="' + col + '"/>';
-    svg += '<text x="' + (W-padR+18) + '" y="' + (legendY+4) + '" font-family="Share Tech Mono,monospace" font-size="8" fill="rgba(255,255,255,0.6)">' + (line.section || 'Line ' + (li+1)) + '</text>';
+    svg += '<text x="' + (W-padR+18) + '" y="' + (legendY+4) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.7)">' + (line.section || 'Line ' + (li+1)) + '</text>';
   });
 
   // Axes
@@ -3352,7 +3363,7 @@ function renderMultiLineGraph(gd) {
 
   // Y axis label
   if (gd.yLabel) {
-    svg += '<text x="12" y="' + (padT + chartH/2) + '" font-family="Share Tech Mono,monospace" font-size="8" fill="rgba(255,255,255,0.25)" text-anchor="middle" transform="rotate(-90,12,' + (padT+chartH/2) + ')">' + gd.yLabel + '</text>';
+    svg += '<text x="12" y="' + (padT + chartH/2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,' + (padT+chartH/2) + ')">' + gd.yLabel + '</text>';
   }
 
   svg += '</svg>';
@@ -3379,7 +3390,7 @@ function renderPhaseChangeCurve(gd) {
     const yPos = padT + chartH * i / 4;
     const yVal = maxTemp - (tempRange * i / 4);
     svg += '<line x1="' + padL + '" y1="' + yPos.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yPos.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
-    svg += '<text x="' + (padL-4) + '" y="' + (yPos+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.3)" text-anchor="end">' + Math.round(yVal) + '°</text>';
+    svg += '<text x="' + (padL-4) + '" y="' + (yPos+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">' + Math.round(yVal) + '°</text>';
   }
 
   // Build points
@@ -3405,7 +3416,7 @@ function renderPhaseChangeCurve(gd) {
     if (!labeled.has(key)) {
       labeled.add(key);
       const label = key < 150 ? 'MELTING POINT' : 'BOILING POINT';
-      svg += '<text x="' + (p.x - 2).toFixed(1) + '" y="' + (p.y - 8).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="8" fill="#ffaa00" text-anchor="middle">' + label + ' (' + key + '°C)</text>';
+      svg += '<text x="' + (p.x - 2).toFixed(1) + '" y="' + (p.y - 8).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="#ffaa00" text-anchor="middle">' + label + ' (' + key + '°C)</text>';
       svg += '<line x1="' + p.x.toFixed(1) + '" y1="' + (p.y-4).toFixed(1) + '" x2="' + p.x.toFixed(1) + '" y2="' + (p.y+4).toFixed(1) + '" stroke="#ffaa00" stroke-width="1" stroke-dasharray="2,2"/>';
     }
   });
@@ -3413,14 +3424,14 @@ function renderPhaseChangeCurve(gd) {
   // Axes
   svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
   svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
-  svg += '<text x="' + (padL + chartW/2) + '" y="' + (H-2) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.25)" text-anchor="middle">Time (minutes) →</text>';
-  svg += '<text x="12" y="' + (padT + chartH/2) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.25)" text-anchor="middle" transform="rotate(-90,12,' + (padT+chartH/2) + ')">Temperature (°C)</text>';
+  svg += '<text x="' + (padL + chartW/2) + '" y="' + (H-2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle">Time (minutes) →</text>';
+  svg += '<text x="12" y="' + (padT + chartH/2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,' + (padT+chartH/2) + ')">Temperature (°C)</text>';
 
   // Legend
   svg += '<rect x="' + (padL+10) + '" y="' + (padT+8) + '" width="8" height="3" fill="#00c8ff" rx="1"/>';
-  svg += '<text x="' + (padL+22) + '" y="' + (padT+12) + '" font-family="Share Tech Mono,monospace" font-size="8" fill="rgba(255,255,255,0.5)">Heating (temp rising)</text>';
+  svg += '<text x="' + (padL+22) + '" y="' + (padT+12) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.6)">Heating (temp rising)</text>';
   svg += '<rect x="' + (padL+10) + '" y="' + (padT+22) + '" width="8" height="3" fill="#ffaa00" rx="1"/>';
-  svg += '<text x="' + (padL+22) + '" y="' + (padT+26) + '" font-family="Share Tech Mono,monospace" font-size="8" fill="rgba(255,255,255,0.5)">State change (temp flat)</text>';
+  svg += '<text x="' + (padL+22) + '" y="' + (padT+26) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.6)">State change (temp flat)</text>';
 
   svg += '</svg>';
   return svg;
@@ -3558,8 +3569,8 @@ function setPhase(phase) {
       choicesArea.style.opacity = '1';
       choicesArea.style.pointerEvents = 'auto';
     } else {
-      if (label) label.textContent = 'Crew Decision — Available in Phase 4: Final Vote';
-      choicesArea.style.opacity = '0.4';
+      if (label) label.textContent = 'Choices — Vote opens in Phase 4';
+      choicesArea.style.opacity = '1';
       choicesArea.style.pointerEvents = 'none';
     }
   }
