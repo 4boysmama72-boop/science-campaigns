@@ -1750,7 +1750,7 @@
 // ============================================================
 // STATE
 // ============================================================
-const STORAGE_KEY = 'prometheus_drift_v3';
+const STORAGE_KEY = 'prometheus_drift_v4';
 
 let state = {
   configured: false,
@@ -2906,43 +2906,6 @@ const CONTENT = {
         }
 
       ] // end Sector 3 days
-    },
-
-    // ============================================================
-    // ACT 4 CONTENT — DROP ZONE
-    // Energy (Kinetic & Potential)
-    // Standard: 6.P4U2.5
-    // ============================================================
-    {
-      id:4, label:'Sector 4 · Energy', standard:'6.P4U2.5',
-      days:[
-        {
-          day:1, type:'choice', isReveal:false,
-          actLabel:'Sector 4 · Energy',
-          actTitle:'Coming Soon',
-          gaia:'Sector 4 content coming soon.',
-          scenario:'Sector 4 content will be added after Sector 3 runs in class.',
-          noChoice:true
-        }
-      ]
-    },
-
-    // ============================================================
-    // ACT 5 CONTENT — DROP ZONE
-    // Resolution / Synthesis
-    // ============================================================
-    {
-      id:5, label:'Sector 5 · Resolution', standard:'Synthesis',
-      days:[
-        {
-          day:1, type:'climax', isReveal:false,
-          actLabel:'Sector 5 · Resolution',
-          actTitle:'Coming Soon',
-          gaia:'Sector 5 content coming soon.',
-          scenario:'The final sector will be added after Sector 4 runs in class.',
-          noChoice:true
-        }
-      ]
     }
 
   ] // end acts
@@ -3594,8 +3557,7 @@ function renderBarGraphFromData(gd) {
   const barW = Math.floor(chartW / data.length * 0.55);
   const gap = chartW / data.length;
 
-  let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xm
-lns="http://www.w3.org/2000/svg" style="width:100%;display:block">';
+  let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">';
 
   [0,25,50,75,100].forEach(pct => {
     const yy = padT + chartH * (1 - pct/100);
