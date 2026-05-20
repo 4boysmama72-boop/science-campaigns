@@ -3610,3 +3610,883 @@ function renderLineGraph(gd) {
   const chartW = W - padL - padR;
   const chartH = H - padT - padB;
   const gap = chartW / 
+(data.length - 1);
+
+  let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">';
+
+  [0,25,50,75,100].forEach(pct => {
+    const yy = padT + chartH * (pct/100);
+    svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
+    const labelVal = Math.round(maxVal * (1 - pct/100));
+    svg += '<text x="' + (padL-4) + '" y="' + (yy+3).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">-' + labelVal + '</text>';
+  });
+
+  // Build points
+  const points = data.map((d, i) => {
+    const val = Math.abs(d.value);
+    const x = padL + gap * i;
+    const y = padT + (val/maxVal) * chartH;
+    return {x, y, d};
+  });
+
+  // Line path
+  let pathD = points.map((p,i) => (i===0?'M':'L') + p.x.toFixed(1) + ' ' + p.y.toFixed(1)).join(' ');
+  svg += '<path d="' + pathD + '" fill="none" stroke="#ff3355" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+
+  // Dots and labels
+  points.forEach((p,i) => {
+    svg += '<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="4" fill="#ff3355" stroke="var(--bg-deep)" stroke-width="1.5"/>';
+    svg += '<text x="' + p.x.toFixed(1) + '" y="' + (padT+chartH+16).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.6)" text-anchor="middle">' + p.d.label.replace('Month ','M') + '</text>';
+  });
+
+  // Trend arrow annotation
+  svg += '<text x="' + (W-padR-2) + '" y="' + (points[points.length-1].y - 6).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="#ff3355" text-anchor="end">↓ DROPPING</text>';
+
+  svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
+  svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
+  svg += '<text x="' + (W/2) + '" y="' + (H-2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle">Month</text>';
+  svg += '</svg>';
+  return svg;
+}
+
+function renderMultiLineGraph(gd) {
+  const lines = gd.multiLine || [];
+  const xLabels = gd.xLabels || ['0h','8h','16h','24h','32h','40h','48h'];
+  const W = 540, H = 220, padL = 52, padB = 44, padT = 14, padR = 100;
+  const chartW = W - padL - padR;
+  const chartH = H - padT - padB;
+
+  // Find value range across all lines
+  const allVals = lines.flatMap(l => l.values || []);
+  const minVal = Math.min(...allVals);
+  const maxVal = Math.max(...allVals);
+  const range = maxVal - minVal || 1;
+  const yMin = Math.floor(minVal / 10) * 10 - 10;
+  const yMax = Math.ceil(maxVal / 10) * 10 + 10;
+  const yRange = yMax - yMin;
+
+  // Fixed colors per section — consistent across Day 3 AND Day 8
+  // Section C = red (danger/dropping), Section F = orange (warning/rising)
+  // These must match between graphs so kids can track same section across days
+  const SECTION_COLORS = {
+    'Section A': '#00ff88',  // green — stable
+    'Section B': '#00c8ff',  // cyan — slow decline
+    'Section C': '#ff3355',  // red — dropping (danger)
+    'Section D': '#aa66ff',  // purple — stable
+    'Section E': '#7be3ff',  // light blue — stable
+    'Section F': '#ff8800',  // orange — rising (warning)
+  };
+  const fallbackColors = ['#00ff88','#00c8ff','#ff3355','#aa66ff','#7be3ff','#ff8800'];
+
+  let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;max-width:540px;margin:0 auto">';
+
+  // Grid lines
+  for (let i = 0; i <= 4; i++) {
+    const yVal = yMin + (yRange * i / 4);
+    const yPos = padT + chartH - (chartH * i / 4);
+    svg += '<line x1="' + padL + '" y1="' + yPos.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yPos.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
+    svg += '<text x="' + (padL-4) + '" y="' + (yPos+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">' + Math.round(yVal) + '</text>';
+  }
+
+  // X axis labels
+  const numPoints = xLabels.length;
+  xLabels.forEach((label, i) => {
+    const x = padL + (chartW * i / (numPoints - 1));
+    svg += '<text x="' + x.toFixed(1) + '" y="' + (padT + chartH + 14) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.55)" text-anchor="middle">' + label + '</text>';
+  });
+
+  // Draw each line
+  lines.forEach((line, li) => {
+    const vals = line.values || [];
+    const col = SECTION_COLORS[line.section] || fallbackColors[li % fallbackColors.length];
+    const points = vals.map((v, i) => {
+      const x = padL + (chartW * i / (vals.length - 1));
+      const y = padT + chartH - (chartH * (v - yMin) / yRange);
+      return {x, y};
+    });
+
+    // Line path
+    const pathD = points.map((p,i) => (i===0?'M':'L') + p.x.toFixed(1) + ' ' + p.y.toFixed(1)).join(' ');
+    svg += '<path d="' + pathD + '" fill="none" stroke="' + col + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>';
+
+    // End dot
+    const last = points[points.length-1];
+    svg += '<circle cx="' + last.x.toFixed(1) + '" cy="' + last.y.toFixed(1) + '" r="3" fill="' + col + '"/>';
+
+    // Legend on right
+    const legendY = padT + 14 + (li * 18);
+    svg += '<circle cx="' + (W-padR+10) + '" cy="' + legendY + '" r="4" fill="' + col + '"/>';
+    svg += '<text x="' + (W-padR+18) + '" y="' + (legendY+4) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.7)">' + (line.section || 'Line ' + (li+1)) + '</text>';
+  });
+
+  // Axes
+  svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
+  svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
+
+  // Y axis label
+  if (gd.yLabel) {
+    svg += '<text x="12" y="' + (padT + chartH/2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,' + (padT+chartH/2) + ')">' + gd.yLabel + '</text>';
+  }
+
+  svg += '</svg>';
+  return svg;
+}
+
+function renderPhaseChangeCurve(gd) {
+  const curve = gd.phaseChangeCurve || [];
+  const W = 520, H = 220, padL = 52, padB = 44, padT = 14, padR = 16;
+  const chartW = W - padL - padR;
+  const chartH = H - padT - padB;
+
+  const temps = curve.map(p => p.temp);
+  const times = curve.map(p => p.time);
+  const minTemp = Math.min(...temps) - 20;
+  const maxTemp = Math.max(...temps) + 20;
+  const maxTime = Math.max(...times);
+  const tempRange = maxTemp - minTemp;
+
+  let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;max-width:520px;margin:0 auto">';
+
+  // Grid
+  for (let i = 0; i <= 4; i++) {
+    const yPos = padT + chartH * i / 4;
+    const yVal = maxTemp - (tempRange * i / 4);
+    svg += '<line x1="' + padL + '" y1="' + yPos.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yPos.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
+    svg += '<text x="' + (padL-4) + '" y="' + (yPos+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">' + Math.round(yVal) + '°</text>';
+  }
+
+  // Build points
+  const points = curve.map(p => ({
+    x: padL + (p.time / maxTime) * chartW,
+    y: padT + chartH * (1 - (p.temp - minTemp) / tempRange),
+    phase: p.phase, time: p.time, temp: p.temp
+  }));
+
+  // Color segments
+  for (let i = 0; i < points.length - 1; i++) {
+    const p1 = points[i], p2 = points[i+1];
+    const isFlat = Math.abs(p1.temp - p2.temp) < 2;
+    const col = isFlat ? '#ffaa00' : '#00c8ff';
+    svg += '<line x1="' + p1.x.toFixed(1) + '" y1="' + p1.y.toFixed(1) + '" x2="' + p2.x.toFixed(1) + '" y2="' + p2.y.toFixed(1) + '" stroke="' + col + '" stroke-width="2.5" stroke-linecap="round"/>';
+  }
+
+  // Flat line labels
+  const flatPoints = points.filter((p,i) => i > 0 && i < points.length-1 && Math.abs(p.temp - points[i-1].temp) < 2 && Math.abs(p.temp - points[i+1].temp) < 2);
+  const labeled = new Set();
+  flatPoints.forEach(p => {
+    const key = Math.round(p.temp);
+    if (!labeled.has(key)) {
+      labeled.add(key);
+      const label = key < 150 ? 'MELTING POINT' : 'BOILING POINT';
+      svg += '<text x="' + (p.x - 2).toFixed(1) + '" y="' + (p.y - 8).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="#ffaa00" text-anchor="middle">' + label + ' (' + key + '°C)</text>';
+      svg += '<line x1="' + p.x.toFixed(1) + '" y1="' + (p.y-4).toFixed(1) + '" x2="' + p.x.toFixed(1) + '" y2="' + (p.y+4).toFixed(1) + '" stroke="#ffaa00" stroke-width="1" stroke-dasharray="2,2"/>';
+    }
+  });
+
+  // Axes
+  svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
+  svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
+  svg += '<text x="' + (padL + chartW/2) + '" y="' + (H-2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle">Time (minutes) →</text>';
+  svg += '<text x="12" y="' + (padT + chartH/2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,' + (padT+chartH/2) + ')">Temperature (°C)</text>';
+
+  // Legend
+  svg += '<rect x="' + (padL+10) + '" y="' + (padT+8) + '" width="8" height="3" fill="#00c8ff" rx="1"/>';
+  svg += '<text x="' + (padL+22) + '" y="' + (padT+12) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.6)">Heating (temp rising)</text>';
+  svg += '<rect x="' + (padL+10) + '" y="' + (padT+22) + '" width="8" height="3" fill="#ffaa00" rx="1"/>';
+  svg += '<text x="' + (padL+22) + '" y="' + (padT+26) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.6)">State change (temp flat)</text>';
+
+  svg += '</svg>';
+  return svg;
+}
+
+function renderDatasetComparison(gd) {
+  const datasets = gd.datasets || [];
+  let h = '';
+  datasets.forEach((ds, i) => {
+    h += '<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:14px 16px;margin-bottom:12px">';
+    h += '<div style="font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">' + ds.id + '</div>';
+    h += '<div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);margin-bottom:12px;line-height:1.6">' + ds.description + '</div>';
+
+    if (ds.data && ds.data.length > 0) {
+      // DATA TABLE ONLY — no graph — kids decide which type fits
+      h += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Raw Data — No Graph Yet</div>';
+      const cols = ds.data.length;
+      h += '<table style="width:100%;border-collapse:collapse;margin-bottom:10px">';
+      h += '<tr>';
+      ds.data.forEach(d => {
+        h += '<td style="text-align:center;background:var(--bg-card);border:1px solid var(--border);padding:5px 4px;font-family:var(--font-mono);font-size:10px;color:var(--accent)">' + d.label + '</td>';
+      });
+      h += '</tr><tr>';
+      ds.data.forEach(d => {
+        h += '<td style="text-align:center;background:var(--bg-card);border:1px solid var(--border);padding:6px 4px;font-family:var(--font-mono);font-size:12px;color:var(--text-primary);font-weight:500">' + d.value + '</td>';
+      });
+      h += '</tr></table>';
+      h += '<div style="font-family:var(--font-body);font-size:14px;color:var(--amber);font-weight:600">Which graph type fits this data — bar or line? Why?</div>';
+    } else {
+      // Dataset 3 — description only, kids draw from scratch
+      h += '<div style="background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.2);border-left:3px solid var(--purple);border-radius:4px;padding:12px 14px;margin-bottom:8px">';
+      h += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--purple);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">Your Challenge</div>';
+      h += '<div style="font-family:var(--font-body);font-size:14px;color:var(--text-primary);line-height:1.6">Based on the description above — decide which graph type fits, then sketch what it should look like. Describe the shape before you draw it.</div>';
+      h += '</div>';
+      h += '<div style="font-family:var(--font-body);font-size:14px;color:var(--amber);font-weight:600">When ready — your teacher will reveal the correct graph.</div>';
+    }
+    h += '</div>';
+  });
+  return h;
+}
+
+function renderClimaxContent(c) {
+  let h = '';
+  if (c.gaiaClosing) h += '<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.3);border-left:3px solid var(--gaia-green);border-radius:6px;padding:15px 17px;margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px">GAIA — Closing Transmission</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--gaia-green);line-height:1.75;font-style:italic">' + c.gaiaClosing + '</div></div>';
+  if (c.isActEnd) h += '<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:14px;text-align:center"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:5px">SECTOR 1 COMPLETE</div><div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)">Use Story Navigation → Next Day to advance to Sector 2</div></div>';
+  return h;
+}
+
+
+function getContentForClass(cls) {
+  const act = CONTENT.acts.find(a => a.id === cls.act) || CONTENT.acts[0];
+  return act.days.find(d => d.day === cls.day) || act.days[0];
+}
+
+function getPrevDayContent(cls) {
+  // After commit, cls.day has been incremented — so previous day is cls.day - 1
+  const act = CONTENT.acts.find(a => a.id === cls.act);
+  if (!act) return null;
+  const prevDay = cls.day - 1;
+  if (prevDay < 1) return null;
+  return act.days.find(d => d.day === prevDay) || null;
+}
+
+// ============================================================
+// PHASE SYSTEM
+// ============================================================
+function setPhase(phase) {
+  // Get current day type to know which phases apply
+  const cls = state.activeClass !== null ? state.classes[state.activeClass] : null;
+  const cnt = cls ? getContentForClass(cls) : null;
+  const dayType = cnt ? (cnt.type || 'choice') : 'choice';
+  const isChoiceDay = dayType === 'choice' && !cnt.noChoice;
+
+  state.currentPhase = phase;
+
+  // Show/hide phase bar steps based on day type
+  document.querySelectorAll('.phase-step').forEach(el => {
+    const p = el.dataset.phase;
+    el.classList.remove('active','done');
+
+    if (!isChoiceDay) {
+      // Non-choice days: only show story and exit (repurposed as Work Timer)
+      if (p === 'discuss' || p === 'vote') {
+        el.style.display = 'none';
+      } else {
+        el.style.display = '';
+        // Rename exit step to Work Timer on non-choice days
+        if (p === 'exit') {
+          el.textContent = dayType === 'graph' ? '2 · Work Timer' : '2 · Reading Timer';
+        }
+        if (p === 'story') el.textContent = '1 · Scenario';
+        const order = ['story','exit'];
+        const phaseIdx = order.indexOf(phase === 'discuss' || phase === 'vote' ? 'story' : phase);
+        const elIdx = order.indexOf(p);
+        if (elIdx < phaseIdx) el.classList.add('done');
+        else if (elIdx === phaseIdx) el.classList.add('active');
+      }
+    } else {
+      // Choice days: restore original labels and show all steps
+      el.style.display = '';
+      if (p === 'exit') el.textContent = '2 · Exit Ticket';
+      if (p === 'story') el.textContent = '1 · Scenario';
+      if (p === 'discuss') el.textContent = '3 · Discussion';
+      if (p === 'vote') el.textContent = '4 · Final Vote';
+      const order = ['story','exit','discuss','vote'];
+      const phaseIdx = order.indexOf(phase);
+      const elIdx = order.indexOf(p);
+      if (elIdx < phaseIdx) el.classList.add('done');
+      else if (elIdx === phaseIdx) el.classList.add('active');
+    }
+  });
+
+  // On non-choice days, redirect discuss/vote back to story
+  if (!isChoiceDay && (phase === 'discuss' || phase === 'vote')) {
+    phase = 'story';
+  }
+
+  document.querySelectorAll('.phase-panel').forEach(el => el.classList.remove('active'));
+  const panel = document.getElementById('phase-' + phase);
+  if (panel) panel.classList.add('active');
+
+  // Update choices area
+  const label = document.getElementById('choices-label');
+  const choicesArea = document.getElementById('choices-area');
+
+  if (!isChoiceDay) {
+    // Hide choices entirely on non-choice days
+    if (choicesArea) {
+      choicesArea.style.display = 'none';
+    }
+  } else {
+    if (choicesArea) choicesArea.style.display = '';
+    if (phase === 'vote') {
+      if (label) label.textContent = 'Crew Decision — Phase 4: Official Vote';
+      choicesArea.style.opacity = '1';
+      choicesArea.style.pointerEvents = 'auto';
+    } else {
+      if (label) label.textContent = 'Choices — Vote opens in Phase 4';
+      choicesArea.style.opacity = '1';
+      choicesArea.style.pointerEvents = 'none';
+    }
+  }
+}
+
+// ============================================================
+// TIMER
+// ============================================================
+let _timerSeconds = 0;
+let _timerRunning = false;
+let _timerInterval = null;
+let _activeTimerPhase = null;
+
+function startPhaseTimer(phase) {
+  stopTimer();
+  _activeTimerPhase = phase;
+  const inputId = phase === 'exit' ? 'exit-timer-input' : 'discuss-timer-input';
+  const mins = parseInt(document.getElementById(inputId).value) || 5;
+  _timerSeconds = mins * 60;
+  _timerRunning = true;
+  _timerInterval = setInterval(tickTimer, 1000);
+  document.getElementById(`${phase}-timer-done`).style.display = 'none';
+  updateTimerDisplays();
+}
+
+function stopTimer() {
+  _timerRunning = false;
+  if (_timerInterval) { clearInterval(_timerInterval); _timerInterval = null; }
+  updateTimerDisplays();
+}
+
+function addTime(mins) {
+  _timerSeconds += mins * 60;
+  if (!_timerRunning && _timerSeconds > 0 && _activeTimerPhase) {
+    _timerRunning = true;
+    _timerInterval = setInterval(tickTimer, 1000);
+  }
+  updateTimerDisplays();
+}
+
+function addTimeTopbar(mins) { addTime(mins); }
+
+function focusTimer() {
+  if (_activeTimerPhase) setPhase(_activeTimerPhase);
+}
+
+function tickTimer() {
+  if (!_timerRunning) return;
+  _timerSeconds = Math.max(0, _timerSeconds - 1);
+  updateTimerDisplays();
+  if (_timerSeconds === 0) {
+    _timerRunning = false;
+    clearInterval(_timerInterval);
+    onTimerDone();
+  }
+}
+
+function onTimerDone() {
+  if (_activeTimerPhase) {
+    const doneEl = document.getElementById(`${_activeTimerPhase}-timer-done`);
+    if (doneEl) doneEl.style.display = 'block';
+  }
+  toast('Time is up!', '');
+}
+
+function updateTimerDisplays() {
+  const m = Math.floor(_timerSeconds / 60);
+  const s = _timerSeconds % 60;
+  const str = `${m}:${s.toString().padStart(2,'0')}`;
+
+  // Determine color class
+  let cls = 'idle';
+  if (_timerSeconds === 0 && !_timerRunning && _activeTimerPhase) cls = 'done';
+  else if (!_timerRunning) cls = 'idle';
+  else if (_timerSeconds <= 60) cls = 'urgent';
+  else if (_timerSeconds <= 120) cls = 'low';
+  else cls = 'running';
+
+  // Topbar
+  const topbar = document.getElementById('topbar-timer');
+  if (topbar) { topbar.textContent = _timerRunning || _timerSeconds > 0 ? str : '--:--'; topbar.className = 'timer-readout ' + cls; }
+
+  // Phase panels
+  ['exit','discuss'].forEach(phase => {
+    const el = document.getElementById(`${phase}-timer-display`);
+    if (!el) return;
+    if (_activeTimerPhase === phase) { el.textContent = str; el.className = 'big-timer ' + cls; }
+    else if (_activeTimerPhase === null) { el.textContent = '--:--'; el.className = 'big-timer idle'; }
+  });
+}
+
+// ============================================================
+// CHOICES
+// ============================================================
+function renderChoices(cls, choices) {
+  const grid = document.getElementById('choice-grid');
+  grid.innerHTML = '';
+  const restricted = cls.failures >= 2;
+  document.getElementById('choices-restricted').style.display = restricted ? 'block' : 'none';
+
+  if (!choices || choices.length === 0) {
+    grid.innerHTML = '<div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);font-style:italic;padding:6px 0">No vote required for this session.</div>';
+    return;
+  }
+
+  // When restricted, mark lowest-impact option as eliminated
+  choices.forEach((choice, i) => {
+    const isEliminated = restricted && i === choices.length - 1 && choices.length > 2;
+    const btn = document.createElement('div');
+    btn.className = 'choice-btn' + (isEliminated ? ' eliminated' : '');
+    btn.id = `choice-${i}`;
+    if (!isEliminated) btn.onclick = () => selectChoice(i);
+    btn.innerHTML = `
+      <div class="choice-letter">${choice.letter}</div>
+      <div>
+        <div class="choice-text">${choice.text}</div>
+        ${choice.subtext ? `<div class="choice-subtext">${choice.subtext}</div>` : ''}
+      </div>
+    `;
+    grid.appendChild(btn);
+  });
+}
+
+function selectChoice(i) {
+  if (state.currentPhase !== 'vote') {
+    toast('Move to Phase 4: Final Vote to commit a decision.', '');
+    return;
+  }
+  state.selectedChoice = i;
+  document.querySelectorAll('.choice-btn').forEach((b,idx) => b.classList.toggle('selected', idx === i));
+  const content = getContentForClass(state.classes[state.activeClass]);
+  const choice = content.choices[i];
+  document.getElementById('btn-commit').disabled = false;
+  document.getElementById('commit-note').innerHTML = '"' + choice.text + '"';
+}
+
+// ============================================================
+// COMMIT FLOW — stats NOT applied until reveal
+// ============================================================
+function openCommitModal() {
+  if (state.selectedChoice === null) return;
+  const cls = state.classes[state.activeClass];
+  const cnt2 = getContentForClass(cls);
+  if (!cnt2.choices || cnt2.choices.length === 0) return;
+  const choice = cnt2.choices[state.selectedChoice];
+  document.getElementById('commit-modal-body').innerHTML =
+    'The crew has officially voted:<br><br>' +
+    '<strong style="color:var(--text-primary)">' + choice.text + '</strong><br><br>' +
+    '<span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">This decision will be logged. Consequences will be revealed next class. Stats will update during the reveal.</span>';
+  state.pendingCommit = choice;
+  document.getElementById('modal-commit').classList.add('visible');
+}
+
+function executeCommit() {
+  closeModal('modal-commit');
+  const cls = state.classes[state.activeClass];
+  const choice = state.pendingCommit;
+
+  // Store deltas as PENDING — do NOT apply yet
+  cls.pendingDeltas = { ...choice.deltas };
+  cls.pendingChoiceText = choice.text;
+  cls.pendingChoiceLetter = choice.letter;
+  cls.pendingConsequence = choice.consequence || null;
+  cls.branch = choice.branch || cls.branch;
+
+  // Log the decision
+  cls.decisions.push({
+    date: new Date().toLocaleDateString(),
+    act: cls.act,
+    day: cls.day,
+    choiceText: choice.text,
+    choiceLetter: choice.letter,
+    branch: choice.branch,
+    deltas: choice.deltas
+  });
+
+  // Advance day
+  cls.day += 1;
+
+  // Save checkpoint at act boundaries
+  if (!cls.checkpoint) {
+    cls.checkpoint = { act:cls.act, day:1, stats:{...cls.stats}, branch:cls.branch };
+  }
+
+  save();
+
+  // Show processing screen
+  document.getElementById('processing-choice-text').textContent = choice.text;
+  showScreen('screen-processing');
+}
+
+function saveAndGoHome() {
+  save();
+  goHome();
+}
+
+function continueMission() {
+  renderMissionScreen();
+  showScreen('screen-mission');
+}
+
+function goToReveal() {
+  const cls = state.classes[state.activeClass];
+  if (!cls.pendingDeltas) { toast('No pending reveal for this class yet.', ''); return; }
+  renderRevealScreen(cls);
+  showScreen('screen-reveal');
+}
+
+// ============================================================
+// STATS DISPLAY
+// ============================================================
+function renderStats(cls) {
+  const stats = cls.stats;
+  ['power','hull','data','morale'].forEach(key => {
+    const val = Math.max(0, Math.min(100, stats[key]));
+    // Update side panel stats
+    const valEl = document.getElementById('stat-' + key + '-val');
+    const barEl = document.getElementById('stat-' + key + '-bar');
+    if (valEl) valEl.textContent = val + '%';
+    if (barEl) barEl.style.width = val + '%';
+    const item = document.querySelector('.stat-' + key);
+    if (item) {
+      item.classList.remove('stat-warning','stat-critical');
+      if (val <= 20) item.classList.add('stat-critical');
+      else if (val <= 30) item.classList.add('stat-warning');
+    }
+    // Update presentation bar stats
+    const presVal = document.getElementById('pres-' + key + '-val');
+    const presBar = document.getElementById('pres-' + key + '-bar');
+    if (presVal) presVal.textContent = val + '%';
+    if (presBar) presBar.style.width = val + '%';
+  });
+  document.getElementById('stat-power-status').textContent = statLabel('power', stats.power);
+  document.getElementById('stat-hull-status').textContent = statLabel('hull', stats.hull);
+  document.getElementById('stat-data-status').textContent = statLabel('data', stats.data);
+  document.getElementById('stat-morale-status').textContent = statLabel('morale', stats.morale);
+}
+
+function statLabel(key, val) {
+  if (key === 'power') {
+    if (val <= 0)  return '🚨 Depleted';
+    if (val <= 20) return '🚨 Critical — rationing';
+    if (val <= 30) return '⚠ Low reserves';
+    if (val <= 60) return 'Reserves reduced';
+    return 'Reserves nominal';
+  }
+  if (key === 'hull') {
+    if (val <= 0)  return '🚨 Breach imminent';
+    if (val <= 20) return '🚨 Structural failure risk';
+    if (val <= 40) return '⚠ Structural concern';
+    if (val <= 70) return 'Minor stress fractures';
+    return 'Integrity nominal';
+  }
+  if (key === 'data') {
+    if (val === 0) return 'Awaiting collection';
+    if (val <= 20) return 'Early collection';
+    if (val <= 50) return 'Building record';
+    if (val <= 80) return 'Strong record';
+    return '✓ Comprehensive record';
+  }
+  if (key === 'morale') {
+    if (val <= 20) return '🚨 Critical morale failure';
+    if (val <= 40) return '⚠ Crew struggling';
+    if (val <= 60) return '⚠ Crew strained';
+    if (val <= 80) return 'Crew focused';
+    return 'Crew ready';
+  }
+  return 'Nominal';
+}
+
+function checkStatAlerts(cls) {
+  const alerts = [];
+  const s = cls.stats;
+  if (s.hull <= 20) alerts.push('"Hull integrity is critical. Structural failure is no longer hypothetical."');
+  if (s.power <= 20) alerts.push('"Power reserves near depletion. Essential systems only."');
+  if (s.morale <= 30) alerts.push('"Crew morale is affecting performance. I recommend acknowledging this."');
+  const critCount = [s.power, s.hull, s.morale].filter(v => v <= 20).length;
+  if (critCount >= 2) alerts.push('"Two or more systems critical simultaneously. This is the failure profile I hoped to avoid."');
+
+  const box = document.getElementById('gaia-alerts');
+  box.innerHTML = alerts.length
+    ? alerts.map(a => `<div class="gaia-alert" style="margin-bottom:6px"><div class="gaia-alert-text">${a}</div></div>`).join('')
+    : '<div class="gaia-alert"><div class="gaia-alert-text">"All systems monitored. Awaiting crew input."</div></div>';
+
+  if (s.hull <= 0 || critCount >= 2 && [s.power, s.hull].some(v => v <= 0)) triggerExtinction();
+}
+
+function updateFailureDots(cls) {
+  for (let i = 0; i < 3; i++) {
+    document.getElementById(`fdot-${i}`).classList.toggle('active', i < cls.failures);
+  }
+  const notice = document.getElementById('restriction-notice');
+  if (cls.failures === 0) { notice.style.display = 'none'; return; }
+  notice.style.display = 'block';
+  notice.textContent = cls.failures === 1
+    ? 'One failure logged. Second failure restricts choices.'
+    : cls.failures === 2
+    ? 'GAIA: "Choices are now restricted to the most viable options."'
+    : 'GAIA: "I have narrowed your options significantly. Please try not to make me regret it."';
+}
+
+// ============================================================
+// DECISION LOG
+// ============================================================
+function renderDecisionLog(cls) {
+  const container = document.getElementById('decision-log-entries');
+  const decisions = cls.decisions.slice(-5).reverse();
+  if (decisions.length === 0) {
+    container.innerHTML = '<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);font-style:italic">No decisions yet.</div>';
+    return;
+  }
+  container.innerHTML = decisions.map(d => {
+    const impacts = Object.entries(d.deltas || {}).map(([key, val]) =>
+      `<span class="impact-tag ${val > 0 ? 'impact-pos' : val < 0 ? 'impact-neg' : 'impact-neu'}">${key} ${val > 0 ? '+' : ''}${val || '—'}</span>`
+    ).join('');
+    return `<div class="log-entry">
+      <div class="log-date">${d.date} · Sector ${d.act} Day ${d.day}</div>
+      <div class="log-choice">${d.choiceText}</div>
+      <div class="log-impact">${impacts}</div>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+// Cycling GAIA messages for blocked next-day attempts
+let _gaiaBlockIndex = 0;
+const GAIA_BLOCK_MESSAGES = [
+  "Results pending. I'd recommend finding out what happened before creating new things to regret.",
+  "The crew voted. Something happened. You haven't looked yet. Perhaps do that first."
+];
+
+function advanceToNextDay() {
+  if (state.activeClass === null) return;
+  const cls = state.classes[state.activeClass];
+
+  // Block advancing if a reveal is pending — cliffhanger protection
+  if (cls.pendingDeltas) {
+    const msg = GAIA_BLOCK_MESSAGES[_gaiaBlockIndex % GAIA_BLOCK_MESSAGES.length];
+    _gaiaBlockIndex++;
+    showGaiaBlock(msg);
+    return;
+  }
+
+  const act = CONTENT.acts.find(a => a.id === cls.act);
+  if (!act) return;
+  const nextDayContent = act.days.find(d => d.day === cls.day + 1);
+  if (nextDayContent) {
+    cls.day += 1;
+  } else {
+    const nextAct = CONTENT.acts.find(a => a.id === cls.act + 1);
+    if (nextAct) {
+      cls.act += 1; cls.day = 1;
+      cls.checkpoint = { act:cls.act, day:1, stats:{...cls.stats}, branch:cls.branch };
+      toast('Advanced to Sector ' + cls.act, 'success');
+    } else { toast('Campaign complete — all sectors complete.', 'success'); return; }
+  }
+  save();
+  renderMissionScreen();
+}
+
+function togglePresMode() {
+  document.body.classList.toggle('presentation-mode');
+  const btn = document.getElementById('pres-btn');
+  if (btn) {
+    const isPresMode = document.body.classList.contains('presentation-mode');
+    btn.textContent = isPresMode ? '⊞ Teacher Mode' : '⊡ Present';
+    btn.style.color = isPresMode ? 'var(--green)' : '';
+    btn.style.borderColor = isPresMode ? 'rgba(0,255,136,0.4)' : '';
+    btn.style.background = isPresMode ? 'rgba(0,255,136,0.08)' : '';
+  }
+}
+
+function updateDayTypeBanner(cnt) {
+  const badge = document.getElementById('day-type-badge');
+  const desc = document.getElementById('day-type-desc');
+  if (!badge || !desc) return;
+
+  // Robust day type detection
+  const dayType = (cnt && cnt.type) ? cnt.type : 'choice';
+  const hasNoChoice = cnt && (cnt.noChoice === true);
+  const hasChoices = cnt && cnt.choices && cnt.choices.length > 0;
+  const isChoice = dayType === 'choice' && !hasNoChoice && hasChoices;
+
+  badge.className = 'day-type-badge';
+
+  if (isChoice) {
+    badge.classList.add('badge-choice');
+    badge.textContent = '⚡ Choice Day';
+    desc.textContent = 'Full four-phase flow · Exit Ticket · Discussion · Official Vote';
+  } else if (dayType === 'deepen') {
+    badge.classList.add('badge-deepen');
+    badge.textContent = '📖 Lesson Day';
+    desc.textContent = 'Reading · Vocabulary · Work Timer · No vote today';
+  } else if (dayType === 'graph') {
+    badge.classList.add('badge-graph');
+    badge.textContent = '📊 Graph Day';
+    desc.textContent = 'Data literacy · Graph analysis · Work Timer · No vote today';
+  } else if (dayType === 'climax') {
+    badge.classList.add('badge-climax');
+    badge.textContent = '🏁 Sector Finale';
+    desc.textContent = 'Sector complete · Synthesis · Bridge to next sector';
+  } else {
+    badge.classList.add('badge-deepen');
+    badge.textContent = '📖 Lesson Day';
+    desc.textContent = 'Reading · No vote today';
+  }
+}
+
+function showGaiaBlock(msg) {
+  // Show GAIA block message in the gaia alerts panel
+  const box = document.getElementById('gaia-alerts');
+  if (box) {
+    box.innerHTML = '<div class="gaia-alert" style="border-color:rgba(255,170,0,0.4);border-left-color:var(--amber)"><div class="gaia-alert-text" style="color:var(--amber)">' + msg + '</div></div>';
+    // Also flash the stat panel to draw attention
+    setTimeout(() => {
+      if (box) checkStatAlerts(state.classes[state.activeClass]);
+    }, 4000);
+  }
+  toast('Reveal pending — open the reveal screen first.', '');
+}
+
+function saveCurrentClass() {
+  save();
+  toast(`${state.classes[state.activeClass]?.name || 'Class'} saved.`, 'success');
+}
+
+function goHome() {
+  save();
+  stopTimer();
+  state.activeClass = null;
+  showHome();
+}
+
+function resumeMission() {
+  if (state.activeClass !== null) { renderMissionScreen(); showScreen('screen-mission'); }
+  else goHome();
+}
+
+// ============================================================
+// EXTINCTION / FORENSICS
+// ============================================================
+function triggerExtinction() { document.getElementById('modal-extinction').classList.add('visible'); }
+
+function confirmExtinction() {
+  closeModal('modal-extinction');
+  const cls = state.classes[state.activeClass];
+  cls.failures = Math.min(3, cls.failures + 1);
+  if (cls.checkpoint) {
+    cls.act = cls.checkpoint.act; cls.day = cls.checkpoint.day;
+    cls.stats = {...cls.checkpoint.stats}; cls.branch = cls.checkpoint.branch;
+  }
+  cls.pendingDeltas = null; cls.pendingChoiceText = null;
+  save();
+  showForensics();
+}
+
+function showForensics() {
+  const idx = state.activeClass !== null ? state.activeClass : state.selectedHomeClass;
+  if (idx === null) { showHome(); return; }
+  const cls = state.classes[idx];
+  const msgs = [
+    '"The mission has ended. Before we proceed, we owe it to the Prometheus crew to understand what happened — and why. Let\'s find out together."',
+    '"We\'ve been here before. That concerns me. Let\'s be more careful this time about identifying where the reasoning failed."',
+    '"Three failures. I\'ve narrowed your future options significantly. But first: let\'s understand why we keep arriving at this moment."'
+  ];
+  document.getElementById('forensics-gaia-text').textContent = msgs[Math.min(cls.failures, msgs.length - 1)];
+  const entries = document.getElementById('timeline-entries');
+  const recent = cls.decisions.slice(-7).reverse();
+  entries.innerHTML = recent.length === 0
+    ? '<div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);font-style:italic;padding:8px">No decisions logged yet.</div>'
+    : recent.map((d,i) => {
+        const impacts = Object.entries(d.deltas || {}).map(([key,val]) =>
+          `<span class="impact-tag ${val>0?'impact-pos':val<0?'impact-neg':'impact-neu'}">${key} ${val>0?'+':''}${val||'—'}</span>`
+        ).join('');
+        return `<div class="timeline-entry">
+          <div class="timeline-num">${i+1}</div>
+          <div>
+            <div class="timeline-date">${d.date} · Sector ${d.act} · Day ${d.day}</div>
+            <div class="timeline-choice">${d.choiceLetter ? d.choiceLetter + '. ' : ''}${d.choiceText}</div>
+            <div class="timeline-impact">${impacts}</div>
+          </div>
+        </div>`;
+      }).join('');
+  showScreen('screen-forensics');
+}
+
+// ============================================================
+// RESETS
+// ============================================================
+function confirmReset() {
+  if (state.selectedHomeClass === null) { toast('Select a class first.', 'error'); return; }
+  const cls = state.classes[state.selectedHomeClass];
+  document.getElementById('reset-modal-body').textContent =
+    `Reset ${cls.name} to the last checkpoint (Act ${cls.checkpoint?.act || 1} Day ${cls.checkpoint?.day || 1})? Decisions since then will be lost.`;
+  document.getElementById('modal-reset').classList.add('visible');
+}
+
+function executeReset() {
+  closeModal('modal-reset');
+  const cls = state.classes[state.selectedHomeClass];
+  if (cls.checkpoint) {
+    cls.act = cls.checkpoint.act; cls.day = cls.checkpoint.day;
+    cls.stats = {...cls.checkpoint.stats}; cls.branch = cls.checkpoint.branch;
+  } else {
+    cls.act=1; cls.day=1; cls.branch='A'; cls.stats={power:100,hull:100,data:0,morale:100}; cls.decisions=[];
+  }
+  cls.pendingDeltas = null; cls.pendingChoiceText = null;
+  save(); renderClassCards(); toast(`${cls.name} reset.`, '');
+}
+
+function confirmFullReset() {
+  if (state.selectedHomeClass === null) { toast('Select a class first.', 'error'); return; }
+  document.getElementById('full-reset-modal-body').textContent =
+    `Full reset ${state.classes[state.selectedHomeClass].name}? ALL progress wiped. Cannot be undone.`;
+  document.getElementById('modal-full-reset').classList.add('visible');
+}
+
+function executeFullReset() {
+  closeModal('modal-full-reset');
+  const cls = state.classes[state.selectedHomeClass];
+  cls.act=1; cls.day=1; cls.branch='A'; cls.failures=0;
+  cls.stats={power:100,hull:100,data:0,morale:100};
+  cls.decisions=[]; cls.checkpoint=null;
+  cls.pendingDeltas=null; cls.pendingChoiceText=null;
+  save(); renderClassCards(); toast(`${cls.name} fully reset.`, '');
+}
+
+// ============================================================
+// UTILITIES
+// ============================================================
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('visible'); }
+
+function toast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast visible' + (type ? ' ' + type : '');
+  setTimeout(() => t.classList.remove('visible'), 3000);
+}
+
+// ============================================================
+// BOOT
+// ============================================================
+window.addEventListener('load', () => {
+  const loaded = load();
+  if (loaded && state.configured) showHome();
+  else showScreen('screen-setup');
+});
+</script>
+</body>
+</html>
