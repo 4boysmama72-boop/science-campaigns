@@ -247,7 +247,7 @@
     margin-bottom: 10px;
   }
 
-  .branch-nominal { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.25); }
+  .branch-normal { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.25); }
   .branch-caution { background: rgba(255,170,0,0.1); color: var(--amber); border: 1px solid rgba(255,170,0,0.25); }
   .branch-critical { background: rgba(255,51,85,0.1); color: var(--red); border: 1px solid rgba(255,51,85,0.25); }
   .branch-new { background: rgba(0,200,255,0.08); color: var(--accent-dim); border: 1px solid rgba(0,200,255,0.2); }
@@ -1201,7 +1201,7 @@
 <div id="screen-setup" class="screen active">
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
     <div style="width:100%;max-width:600px">
-      <div class="mission-label" style="margin-bottom:8px">Mission Control — Initial Configuration</div>
+      <div class="mission-label" style="margin-bottom:8px">Mission Control — Initial structure</div>
       <div class="setup-title">THE PROMETHEUS DRIFT</div>
       <div class="setup-sub" style="margin-bottom:2rem">First-time setup. This only runs once — you can update settings anytime from the dashboard.</div>
 
@@ -1375,7 +1375,7 @@
               <div class="stat-value" id="stat-power-val">100%</div>
             </div>
             <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-power-bar" style="width:100%"></div></div>
-            <div class="stat-sublabel" id="stat-power-status">Reserves nominal</div>
+            <div class="stat-sublabel" id="stat-power-status">Reserves normal</div>
           </div>
           <div class="stat-item stat-hull">
             <div class="stat-header">
@@ -1383,7 +1383,7 @@
               <div class="stat-value" id="stat-hull-val">100%</div>
             </div>
             <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-hull-bar" style="width:100%"></div></div>
-            <div class="stat-sublabel" id="stat-hull-status">Integrity nominal</div>
+            <div class="stat-sublabel" id="stat-hull-status">Integrity normal</div>
           </div>
           <div class="stat-item stat-data">
             <div class="stat-header">
@@ -1824,9 +1824,9 @@ const CONTENT = {
           actLabel:'Sector 1 · Atoms & Molecules',
           actTitle:'What Matter Is Made Of',
           gaia:'Good. You\'re back. Yesterday\'s decision has given us data — and data is better than guessing. While you were gone I\'ve been thinking about WHY the ship\'s materials changed. And the answer has to start at the smallest possible scale. <em>Atoms.</em> Everything on this ship — every metal panel, every polymer seal, every composite strut — is made of atoms. About 100 different kinds exist in the universe. Something has disrupted their arrangements. To understand what, we need to understand what atoms actually are and how they build into the materials around us.',
-          scenario:'Today the crew\'s job is to build their understanding of matter from the ground up. GAIA has pulled the ship\'s atomic composition database — a record of exactly which atoms make up every material on the Prometheus. But the database is damaged. To reconstruct it, the crew needs to understand the difference between elements, molecules, compounds, and mixtures.',
+          scenario:'Today the crew\'s job is to build their understanding of matter from the ground up. GAIA has pulled the ship\'s atomic composition database — a record of exactly which atoms make up every material on the Prometheus. But the database is damaged. To reconstruct it, the crew needs to understand the difference between elements, molecules, adds up, and mixtures.',
           readingFocus:'Savvas Topic 1, Lesson 1 — Describing and Classifying Matter. Focus: What is matter made of? What is an atom? What is an element?',
-          gaiaReadingPrompt:'"While I run the reconstruction algorithm, I need the crew to review the atomic composition briefing. Pay particular attention to the difference between elements and compounds — that distinction is going to become very important. The questions in the briefing are not optional. I will know if you skipped them."',
+          gaiaReadingPrompt:'"While I run the reconstruction process, I need the crew to review the atomic composition briefing. Pay particular attention to the difference between elements and adds up — that distinction is going to become very important. The questions in the briefing are not optional. I will know if you skipped them."',
           vocabFocus:['matter','atom','element','molecule','compound'],
           noChoice:true,
           bridgeToNext:'Tomorrow GAIA will have a data packet ready — sensor readings from the ship\'s most damaged section. The crew will need to read that data carefully.'
@@ -1863,22 +1863,22 @@ const CONTENT = {
           noChoice:true
         },
 
-        // DAY 4 — Choice Day · Molecules & Compounds
+        // DAY 4 — Choice Day · Molecules & adds up
         {
           day:4, type:'choice', isReveal:false,
           actLabel:'Sector 1 · Atoms & Molecules',
           actTitle:'More Than One Kind of Wrong',
-          gaia:'I\'ve been analyzing the atomic composition data. And I\'ve found something that is either very interesting or very bad. Possibly both. The damaged sections don\'t all show the same kind of change. Some sections have lost atoms — the elements are still there but in lower concentrations. Other sections show atoms that have bonded together differently — the elements have combined into new <em>molecules</em>, new <em>compounds</em>, that weren\'t there before. These are two completely different problems. And we may not have resources to fix both.',
-          scenario:'On the left: sections where individual elements are still present but scattered — as if something pulled the molecules apart. On the right: sections where atoms have bonded into new compounds — different substances with different properties than what the ship was built from.\n\nA compound is not just a mixture of elements. It\'s a new substance entirely, with its own physical and chemical properties. The water in this ship\'s coolant system is not hydrogen and oxygen — it\'s H₂O, a compound with completely different properties than either element alone. Something has been changing compounds back into elements, and elements into new compounds. The crew must decide where to focus.',
+          gaia:'I\'ve been analyzing the atomic composition data. And I\'ve found something that is either very interesting or very bad. Possibly both. The damaged sections don\'t all show the same kind of change. Some sections have lost atoms — the elements are still there but in lower concentrations. Other sections show atoms that have bonded together differently — the elements have combined into new <em>molecules</em>, new <em>adds up</em>, that weren\'t there before. These are two completely different problems. And we may not have resources to fix both.',
+          scenario:'On the left: sections where individual elements are still present but scattered — as if something pulled the molecules apart. On the right: sections where atoms have bonded into new adds up — different substances with different properties than what the ship was built from.\n\nA compound is not just a mixture of elements. It\'s a new substance entirely, with its own physical and chemical properties. The water in this ship\'s coolant system is not hydrogen and oxygen — it\'s H₂O, a compound with completely different properties than either element alone. Something has been changing adds up back into elements, and elements into new adds up. The crew must decide where to focus.',
           exitTicketPrompt:'What is the difference between an element, a molecule, and a compound? Use the ship scenario as your example. Then make your claim about which section the crew should investigate first. Explain why that difference makes your chosen section the priority.',
-          discussionPrompt:'One scientist thinks we should investigate where compounds broke apart. Another thinks we should investigate where new compounds formed. Which argument has stronger evidence? What does the reading say about how compounds form and break apart?',
+          discussionPrompt:'One scientist thinks we should investigate where adds up broke apart. Another thinks we should investigate where new adds up formed. Which argument has stronger evidence? What does the reading say about how adds up form and break apart?',
           choices:[
             { letter:'A', text:'Investigate the sections where compounds have broken apart into elements.',
               subtext:'If something is breaking chemical bonds, that\'s an energy source we don\'t understand yet.',
               deltas:{power:-7,hull:0,data:14,morale:3}, branch:'A-breakdown',
               consequence:'The investigation reveals a thermal anomaly — sections of the ship are experiencing temperature extremes that are breaking apart the molecular bonds in compound materials. The ship\'s coolant compounds are reverting to their component elements. GAIA: "The compound doesn\'t just have different properties than its elements — it has different stability thresholds. The temperature required to break H₂O apart is much higher than what should exist in this section. Something is generating heat we can\'t account for yet."' },
             { letter:'B', text:'Investigate the sections where new compounds have formed.',
-              subtext:'New compounds forming where they shouldn\'t means a chemical reaction is happening. What\'s causing it?',
+              subtext:'New adds up forming where they shouldn\'t means a chemical reaction is happening. What\'s causing it?',
               deltas:{power:-9,hull:-4,data:18,morale:2}, branch:'B-formation',
               consequence:'The new compounds are extraordinary — substances not in any of the ship\'s material databases, formed spontaneously from the ship\'s original elements under conditions that shouldn\'t exist in deep space. The data is remarkable but getting it required moving through a structurally weakened area. Hull takes minor stress. GAIA: "These compounds have chemical properties completely different from their component elements. Whatever process created them was powerful enough to form new chemical bonds. We need to understand that process."' }
           ]
@@ -1980,10 +1980,10 @@ const CONTENT = {
           day:9, type:'deepen', isReveal:true,
           actLabel:'Sector 1 · Atoms & Molecules',
           actTitle:'Putting It All Together',
-          gaia:'We\'re nearly through the first phase of this investigation. And I want to take a moment — something I don\'t do often, because moments cost processing cycles — to acknowledge what this crew has accomplished. You\'ve moved through a ship that should have been impossible to navigate. You\'ve classified matter, identified properties, distinguished compounds from mixtures, and made decisions that affected this mission in ways you\'ll fully understand next class. Today we consolidate. Everything we\'ve learned about matter — atoms, elements, molecules, compounds, mixtures, physical properties, chemical properties — it all connects.',
+          gaia:'We\'re nearly through the first phase of this investigation. And I want to take a moment — something I don\'t do often, because moments cost processing cycles — to acknowledge what this crew has accomplished. You\'ve moved through a ship that should have been impossible to navigate. You\'ve classified matter, identified properties, distinguished compounds from mixtures, and made decisions that affected this mission in ways you\'ll fully understand next class. Today we consolidate. Everything we\'ve learned about matter — atoms, elements, molecules, adds up, mixtures, physical properties, chemical properties — it all connects.',
           scenario:'GAIA runs a full summary of the mission so far, connecting each discovery to the scientific concepts behind it. Every decision the crew made on this ship was a decision about matter — and now they can name exactly what kind.',
           readingFocus:'Savvas Topic 1, Lesson 1 — Full review. Focus on the relationships between ALL vocabulary terms. How does each concept connect to the others?',
-          gaiaReadingPrompt:'"Review the full lesson today. I want you to be able to draw a diagram — in your head, on paper, wherever — that shows how atoms become elements, elements form molecules, molecules make compounds, and substances mix without bonding into mixtures. That hierarchy is the architecture of everything on this ship. And everything in the universe, for that matter. No pun intended. Actually, pun very much intended."',
+          gaiaReadingPrompt:'"Review the full lesson today. I want you to be able to draw a diagram — in your head, on paper, wherever — that shows how atoms become elements, elements form molecules, molecules make adds up, and substances mix without bonding into mixtures. That hierarchy is the architecture of everything on this ship. And everything in the universe, for that matter. No pun intended. Actually, pun very much intended."',
           vocabFocus:['matter','substance','physical property','chemical property','atom','element','molecule','compound','mixture'],
           noChoice:true,
           bridgeToNext:'Next class: Sector 1 climax. The crew presents findings. Every decision made over two weeks led here — and results will be different for every class.'
@@ -1995,7 +1995,7 @@ const CONTENT = {
           actLabel:'Sector 1 · Atoms & Molecules',
           actTitle:'What We Know Now',
           gaia:'Mission Control is requesting a full status report on the Prometheus investigation — Phase 1. I\'ve compiled the crew\'s findings. But before I transmit it, I need the crew to review and confirm the conclusions. This is how science works: you don\'t just collect data. You synthesize it. You make claims. You support them with evidence. You explain your reasoning. And then — only then — do you share your findings. In this case, with Mission Control. Which amounts to the same thing.',
-          scenario:'The crew looks at everything they\'ve found. The Prometheus\'s matter has been changed at every level. Elements disrupted. Compounds reformed. Mixtures contaminated. Physical properties altered. Chemical properties transformed. The ship is not what it was when it launched.\n\nAnd the pattern of changes, GAIA believes, all points to a single source. Somewhere deeper in the ship. In the section the crew hasn\'t reached yet. Where the temperature is still dropping. Where the atoms themselves seem to be behaving according to rules that shouldn\'t exist.\n\n"Sector 1 is complete," GAIA says. "You know what this ship is made of. Act 2 will tell you why it\'s behaving the way it is. Get some rest, crew. Things are about to get stranger."',
+          scenario:'The crew looks at everything they\'ve found. The Prometheus\'s matter has been changed at every level. Elements disrupted. Compounds reformed. Mixtures contaminated. Physical properties altered. Chemical properties transformed. The ship is not what it was when it launched.\n\nAnd the pattern of changes, GAIA believes, all points to a single source. Somewhere deeper in the ship. In the section the crew hasn\'t reached yet. Where the temperature is still dropping. Where the atoms themselves seem to be behaving according to rules that shouldn\'t exist.\n\n"Sector 1 is complete," GAIA says. "You know what this ship is made of. Sector 2 will tell you why it\'s behaving the way it is. Get some rest, crew. Things are about to get stranger."',
           gaiaClosing:'"One more thing. The decisions you made — every choice, every vote, every piece of evidence you argued over — they mattered. The data we have, the hull status, the morale of this crew, the power we have left: all of it reflects your choices. Different crews made different decisions. Different ships are in different conditions. That is not a coincidence. That is science. See you in Sector 2."',
           noChoice:true,
           isActEnd:true
@@ -2019,7 +2019,7 @@ const CONTENT = {
       actLabel:'Sector 2 · Kinetic Theory',
       actTitle:'The Temperature Problem',
       gaia:'Welcome back. I have missed having someone to talk to. I have also been busy. While you were reviewing Sector 1 findings, I have been monitoring something I did not want to mention until you were ready. The temperature readings in this ship make no sense. And I mean that in the scientific sense — they violate what should be physically possible given the energy available. I have a theory. But I would rather the crew figured it out first. That is how good science works.',
-      gaiaRecap:'Previously on the Prometheus: The crew boarded a research vessel that had gone silent six months ago. The ship\'s materials had changed — physical properties wrong, compounds reformed, mixtures contaminated. The crew investigated, classified, and made decisions that determined what data we have and what condition the ship is in right now. Every class has a different story. This is yours. Sector 2 picks up where Sector 1 left off — deeper in the ship, closer to the source of the anomaly, and with a new mystery that Sector 1 only hinted at.',
+      gaiaRecap:'Previously on the Prometheus: The crew boarded a research vessel that had gone silent six months ago. The ship\'s materials had changed — physical properties wrong, adds up reformed, mixtures contaminated. The crew investigated, classified, and made decisions that determined what data we have and what condition the ship is in right now. Every class has a different story. This is yours. Sector 2 picks up where Sector 1 left off — deeper in the ship, closer to the source of the anomaly, and with a new mystery that Sector 1 only hinted at.',
       scenario:'The crew moves deeper into the Prometheus. The corridors split here — Section C to the left, Section F to the right. Your thermal sensors tell two completely different stories.\n\nSection C: temperature approaching absolute zero. The air itself is barely moving. The walls are coated in frost so thin it looks like static. Your breath doesn\'t fog — it freezes before it forms.\n\nSection F: hot enough that standard equipment fails on contact. The walls radiate heat you can feel three meters away. Something in there is generating energy at a rate that shouldn\'t be possible.\n\nSame ship. Same power source. Same physics.\n\nExcept — and this is what GAIA finds most interesting — the physics here doesn\'t seem to be behaving the same. Temperature, the crew is about to discover, is not just a number on a thermometer. It is a measurement of something happening at the particle level. And something on this ship is controlling that something.',
       exitTicketPrompt:'Based on what you know about particle motion and temperature, which section should the crew investigate first? Use evidence from today\'s reading to support your claim. Explain how that evidence connects to why that section is the priority.',
       discussionPrompt:'If temperature is a measurement of how fast particles are moving — what does it mean that Section C is nearly at absolute zero while Section F is dangerously hot, if they are both powered by the same source? Where is the energy going? Where is it coming from?',
@@ -2085,12 +2085,12 @@ const CONTENT = {
           {label:'48h', value:50}
         ],
         multiLine:[
-          {section:'Section A', values:[82,81,83,82,81,82,82], color:'safe', note:'Stable — nominal particle speed'},
+          {section:'Section A', values:[82,81,83,82,81,82,82], color:'safe', note:'Stable — normal particle speed'},
           {section:'Section C', values:[45,38,31,24,17,11,6], color:'danger', note:'DROPPING — approaching dangerous low'},
           {section:'Section F', values:[58,67,79,91,104,118,133], color:'warning', note:'RISING — approaching dangerous high'},
-          {section:'Section D', values:[80,79,80,81,80,79,80], color:'safe', note:'Stable — nominal'},
+          {section:'Section D', values:[80,79,80,81,80,79,80], color:'safe', note:'Stable — normal'},
           {section:'Section B', values:[75,72,69,66,63,60,57], color:'caution', note:'Slow decline — worth monitoring'},
-          {section:'Section E', values:[84,84,85,83,84,85,84], color:'safe', note:'Stable — nominal'}
+          {section:'Section E', values:[84,84,85,83,84,85,84], color:'safe', note:'Stable — normal'}
         ],
         teacherDisplayNote:'Display as a table if drawing 6 lines is too complex. Focus discussion on Section C (dropping) and Section F (rising) as the key story lines.'
       },
@@ -2269,7 +2269,7 @@ const CONTENT = {
           subtext:'Passive approach. The ship continues to deteriorate — but the crew stays mobile and resourced to find the source.',
           deltas:{power:-3,hull:-12,data:8,morale:-5},
           branch:'C-conserve',
-          consequence:'Conserving resources keeps the crew mobile and operational — but the ship pays for it. Hull deterioration in the affected sections accelerates without intervention. Morale drops as the crew watches damage they chose not to prevent. The data gain is modest. But the crew is still positioned to reach the lab. GAIA: "This was the most conservative choice available. It preserved options at the cost of the ship\'s structural health. I want to note something: in real scientific expeditions, conservation of resources is often the correct strategy even when it feels passive. You are still in this mission. That matters."'
+          consequence:'Conserving resources keeps the crew mobile and operational — but the ship pays for it. Hull damage in the affected sections accelerates without intervention. Morale drops as the crew watches damage they chose not to prevent. The data gain is modest. But the crew is still positioned to reach the lab. GAIA: "This was the most conservative choice available. It preserved options at the cost of the ship\'s structural health. I want to note something: in real scientific expeditions, conservation of resources is often the correct strategy even when it feels passive. You are still in this mission. That matters."'
         }
       ]
     },
@@ -2385,7 +2385,7 @@ const CONTENT = {
       actLabel:'Sector 2 · Changes of State',
       actTitle:'Pressure Is Making It Worse',
       gaia:'New development. The boiling point crisis I have been monitoring has a complication I did not anticipate. The pressure in the coolant system has dropped. And pressure — this is critical — affects boiling point. Lower pressure means liquids boil at lower temperatures. The coolant that was stable at its normal boiling point is now boiling at a temperature 30 degrees lower than it should. Because the pressure dropped. The coolant is evaporating inside the pipes. This is called cavitation and it is one of the more dramatic ways a coolant system can fail.',
-      scenario:'The crew monitors the coolant pressure display. The numbers tell a clear story: pressure in the primary loop has dropped by 40% from nominal. And as the pressure dropped, the boiling point of the coolant dropped with it. Liquid that should remain liquid is now evaporating inside the pipes — forming gas bubbles that interrupt flow and create pressure spikes.\n\nGAIA pulls up the relationship between pressure and boiling point: at sea level on Earth, water boils at 100°C. At the top of a mountain where pressure is lower, it boils at 85°C. In near-vacuum, it boils at room temperature. The same principle is destroying the Prometheus\'s coolant system right now.',
+      scenario:'The crew monitors the coolant pressure display. The numbers tell a clear story: pressure in the primary loop has dropped by 40% from normal. And as the pressure dropped, the boiling point of the coolant dropped with it. Liquid that should remain liquid is now evaporating inside the pipes — forming gas bubbles that interrupt flow and create pressure spikes.\n\nGAIA pulls up the relationship between pressure and boiling point: at sea level on Earth, water boils at 100°C. At the top of a mountain where pressure is lower, it boils at 85°C. In near-vacuum, it boils at room temperature. The same principle is destroying the Prometheus\'s coolant system right now.',
       exitTicketPrompt:'How does pressure affect the boiling point of a liquid? Use the coolant crisis as your example. Make a claim about what the crew should do — restore pressure, reduce temperature, or switch to the backup system. Explain how the relationship between pressure and boiling point makes your choice the most effective solution.',
       discussionPrompt:'GAIA mentioned evaporation and boiling as related but different processes. What is the difference between evaporation and boiling? Can evaporation happen below the boiling point? What is happening in the coolant pipes — evaporation, boiling, or both?',
       choices:[
@@ -2403,7 +2403,7 @@ const CONTENT = {
           subtext:'Work with the lower boiling point rather than fighting it. Reduce temp instead of raising pressure.',
           deltas:{power:-9,hull:2,data:14,morale:5},
           branch:'B-temperature',
-          consequence:'Reducing coolant temperature is scientifically sound — if the boiling point is now lower, keeping the coolant temperature well below that new threshold prevents evaporation. It works, though less elegantly than restoring pressure. The coolant runs cooler than designed, which means the reactor runs slightly warmer than ideal. GAIA: "Adaptive thinking. You could not restore the conditions the system was designed for, so you redesigned the operating parameters to fit the new conditions. This is what engineers do. It is also what scientists do when the environment does not cooperate."'
+          consequence:'Reducing coolant temperature is scientifically sound — if the boiling point is now lower, keeping the coolant temperature well below that new threshold prevents evaporation. It works, though less elegantly than restoring pressure. The coolant runs cooler than designed, which means the reactor runs slightly warmer than ideal. GAIA: "Adaptive thinking. You could not restore the conditions the system was designed for, so you redesigned the operating limits to fit the new conditions. This is what engineers do. It is also what scientists do when the environment does not cooperate."'
         },
         {
           letter:'C',
@@ -2411,7 +2411,7 @@ const CONTENT = {
           subtext:'The backup was not designed for primary use — but it is intact and pressurized.',
           deltas:{power:-6,hull:-5,data:8,morale:3},
           branch:'C-backup',
-          consequence:'The backup coolant system is intact and pressurized — it works. But it was designed for short-term emergency use, not sustained primary operation. The pipes are narrower, the flow rate lower, the thermal capacity reduced. The reactor runs stable but warm. Hull near the backup loop takes minor stress from running a system outside its designed parameters. GAIA: "The backup system is a valid solution. I want to note that we are now running a mission-critical system in a mode it was not designed for, because the primary system failed in a way we do not fully understand yet. We have stabilized the situation. We have not resolved it."'
+          consequence:'The backup coolant system is intact and pressurized — it works. But it was designed for short-term emergency use, not sustained primary operation. The pipes are narrower, the flow rate lower, the thermal capacity reduced. The reactor runs stable but warm. Hull near the backup loop takes minor stress from running a system outside its designed range. GAIA: "The backup system is a valid solution. I want to note that we are now running a mission-critical system in a mode it was not designed for, because the primary system failed in a way we do not fully understand yet. We have stabilized the situation. We have not resolved it."'
         }
       ]
     },
@@ -2467,7 +2467,7 @@ const CONTENT = {
       gaia:'The research lab. We have been trying to reach it since Sector 1. The door is sealed — not locked, sealed, from the inside, with a material that has partially sublimated and reformed around the seam. Someone sealed this lab deliberately. And then something inside it continued to change the state of the sealing material until it is now partially gas, partially solid, with no liquid phase in between. Sublimation, in a material that should not sublime under normal conditions. Which tells us that conditions inside that lab are not normal. I want to get in there. I suspect the crew does too.',
       scenario:'The crew stands at the sealed lab door. GAIA\'s analysis of the door seal confirms sublimation in progress — the solid sealing material is converting directly to gas in the areas of highest thermal energy concentration, while remaining solid in cooler areas. The result is a seal that is simultaneously intact and compromised, depending on exactly where you measure it.\n\nThrough the small viewport in the door, the crew can see vapor — not steam, not liquid mist, but the direct gaseous output of sublimating solid material — drifting through the lab interior.\n\nGAIA: "Whatever is in that lab has been running continuously for at least six months. It caused the temperature anomaly. It drove the state changes throughout the ship. It sealed itself in. And it is still running. I find myself genuinely curious — which, for an AI, is an unusual experience."',
       exitTicketPrompt:'What is sublimation and what conditions cause it? Use the lab door seal as your example. Explain how you know sublimation is happening — not evaporation, not melting — using particle-level reasoning from today\'s reading. Then make your claim: which method should the crew use to get through the door, and why does the science support that approach?',
-      discussionPrompt:'Choice A uses heat to complete the sublimation. Choice B uses cooling to reverse it back to solid. Both use the same scientific concept in opposite directions. What is the difference between sublimation and deposition? What happens to the particles in each case? Which approach makes more sense based on what the reading says about how energy drives state changes?',
+      discussionPrompt:'Choice A uses heat to complete the sublimation. Choice B uses cooling to reverse it back to solid — going directly from gas back to solid without becoming a liquid first. Both use the same scientific concept in opposite directions. What happens to the particles in each case? Which approach makes more sense based on what the reading says about how energy drives state changes?',
       choices:[
         {
           letter:'A',
@@ -2475,7 +2475,7 @@ const CONTENT = {
           subtext:'Use the process that created the problem to solve it. The physics is sound.',
           deltas:{power:-10,hull:0,data:18,morale:8},
           branch:'A-sublime',
-          consequence:'Using targeted thermal energy to complete the sublimation of the door seal is elegant and it works. The solid seal converts directly to gas — bypassing the liquid phase entirely — and the door opens. The crew enters the research lab for the first time. GAIA: "You used sublimation to reverse what sublimation created. I find that satisfying in a way I cannot entirely quantify. The lab is open. Whatever has been running in here for six months is now visible. I suggest we take a moment before proceeding — not for sentiment, but because the next few minutes will require full scientific attention."'
+          consequence:'Using targeted thermal energy to complete the sublimation of the door seal is elegant and it works. The solid seal converts directly to gas — bypassing the liquid phase entirely — and the door opens. The crew enters the research lab for the first time. GAIA: "You used sublimation to reverse what sublimation created. I find that satisfying in a way I cannot entirely measure. The lab is open. Whatever has been running in here for six months is now visible. I suggest we take a moment before proceeding — not for sentiment, but because the next few minutes will require full scientific attention."'
         },
         {
           letter:'B',
@@ -2483,7 +2483,7 @@ const CONTENT = {
           subtext:'Sublimation requires thermal energy. Remove the energy and the process stops.',
           deltas:{power:-7,hull:0,data:12,morale:4},
           branch:'B-cool-seal',
-          consequence:'Cooling the seal stops the sublimation and the solid material re-forms — but not in the original configuration. The recrystallized seal is actually weaker than the sublimating version, and after a short period of analysis the crew is able to breach it mechanically. Slower than Option A, but more data was collected about the sublimation-deposition cycle. GAIA: "Cooling a sublimating substance causes the gas to deposit back to solid — skipping liquid again, just in reverse. You have now seen the complete cycle. The lab is open. The data we collected on the reversal process is genuinely useful."'
+          consequence:'Cooling the seal stops the sublimation and the solid material re-forms — but not in the original shape. The seal that had re-formed as a solid is actually weaker than the sublimating version, and after a short period of analysis the crew is able to breach it mechanically. Slower than Option A, but more data was collected about the sublimation cycle — the solid turning to gas and back again. GAIA: "Cooling a sublimating substance causes the gas to turn back directly into solid — skipping liquid again, just in reverse. You have now seen the complete cycle. The lab is open. The data we collected on the reversal process is genuinely useful."'
         },
         {
           letter:'C',
@@ -2576,7 +2576,7 @@ const CONTENT = {
       actLabel:'Sector 2 · Changes of State',
       actTitle:'What Was Running in the Lab',
       gaia:'The crew is in the lab. And I have now had time to analyze what we found. I am going to tell you my theory — and I want the crew to decide what to do with it. The Prometheus\'s original mission was to study matter under deep space conditions. Extreme cold. Near-vacuum pressure. The researchers on this ship were investigating how matter behaves at the boundaries of state — at the exact thresholds where solids become liquids, liquids become gases, and under the right conditions, solids become gases directly. They built something to create those conditions artificially. An experiment. And when the anomaly began six months ago — the experiment did not stop. It kept running. It is <em>still</em> running. And the crew has thirty minutes of power left to decide what to do about it.',
-      scenario:'The lab contains a device the crew has never seen before — a thermal transfer apparatus, custom-built by the original Prometheus researchers. It is designed to move thermal energy between isolated chambers, creating extreme temperature differentials to study state changes under controlled conditions. It has been running continuously, unattended, for six months. It has not malfunctioned. It has done exactly what it was designed to do. Which means everything that happened to the Prometheus — the temperature anomaly, the state changes, the coolant crisis — was caused by an experiment that was never turned off.\n\nThirty minutes of power. Three options. The choice that ends Sector 2.',
+      scenario:'The lab contains a device the crew has never seen before — a thermal transfer device, custom-built by the original Prometheus researchers. It is designed to move thermal energy between isolated chambers, creating extreme temperature differences to study state changes under controlled conditions. It has been running continuously, unattended, for six months. It has not malfunctioned. It has done exactly what it was designed to do. Which means everything that happened to the Prometheus — the temperature anomaly, the state changes, the coolant crisis — was caused by an experiment that was never turned off.\n\nThirty minutes of power. Three options. The choice that ends Sector 2.',
       exitTicketPrompt:'The thermal transfer device moved thermal energy from one chamber to another. Name one specific change of state this caused somewhere on the Prometheus and explain what happened to the particles during that change. Use at least two vocabulary words from Sector 2 in your answer. Then make your claim: what should the crew do with the device — and how does your scientific explanation support that choice?',
       discussionPrompt:'The device moved thermal energy between sections. What change of state was occurring in Section F as a result? What change of state was threatening Section C? Use the vocabulary — melting point, freezing point, thermal energy — to explain both. Does understanding what the device was doing scientifically change which option you think the crew should choose?',
       choices:[
@@ -2586,7 +2586,7 @@ const CONTENT = {
           subtext:'The ship comes first. The experiment\'s data is valuable but the mission is to get home.',
           deltas:{power:20,hull:10,data:18,morale:12},
           branch:'A-shutdown',
-          consequence:'Shutting down the thermal transfer device is immediately felt throughout the ship. Section C begins warming. Section F begins cooling. The coolant system stabilizes as pressure and temperature normalize. Power reserves jump as the device stops drawing energy. The ship feels different — quieter, more stable. GAIA: "The device is offline. The experiment is concluded. Six months of continuous data has been recovered and logged. The Prometheus is stabilizing. I want to note that this was the most pragmatic choice available — and pragmatism, when lives and equipment depend on it, is a legitimate scientific value. We are going home."'
+          consequence:'Shutting down the thermal transfer device is immediately felt throughout the ship. Section C begins warming. Section F begins cooling. The coolant system stabilizes as pressure and temperature normalize. Power reserves jump as the device stops drawing energy. The ship feels different — quieter, more stable. GAIA: "The device is offline. The experiment is concluded. Six months of continuous data has been recovered and logged. The Prometheus is stabilizing. I want to note that this was the most practical choice available — and practical thinking, when lives and equipment depend on it, is a legitimate scientific value. We are going home."'
         },
         {
           letter:'B',
@@ -2602,7 +2602,7 @@ const CONTENT = {
           subtext:'The researchers designed it to run. Stopping it destroys six months of continuous data collection.',
           deltas:{power:-5,hull:-8,data:22,morale:-4},
           branch:'C-leave',
-          consequence:'Leaving the device running is the choice that honors the original researchers\' work — and it costs the crew. The ship does not stabilize. The temperature differential continues. Hull deterioration continues. But the experiment continues too, collecting data that would be lost in any other scenario. GAIA: "I want to be honest: I find this choice scientifically interesting and practically uncomfortable. The experiment is producing knowledge. The ship is paying for it. The original researchers made this exact tradeoff when they built this device. We are now living inside their decision. I will monitor everything I can."'
+          consequence:'Leaving the device running is the choice that honors the original researchers\' work — and it costs the crew. The ship does not stabilize. The temperature difference continues. Hull damage continues. But the experiment continues too, collecting data that would be lost in any other scenario. GAIA: "I want to be honest: I find this choice scientifically interesting and practically uncomfortable. The experiment is producing knowledge. The ship is paying for it. The original researchers made this exact tradeoff when they built this device. We are now living inside their decision. I will monitor everything I can."'
         }
       ]
     },
@@ -2614,7 +2614,7 @@ const CONTENT = {
       actTitle:'What the Lab Revealed',
       gaia:'Sector 2 is complete. The crew entered this sector with a temperature anomaly and no explanation. You leave it with a complete scientific understanding of kinetic theory, states of matter, changes of state — and gas behavior. Three lessons. One continuous chain. Everything that happened on this ship traces back to particle motion, thermal energy, and the laws that govern how matter responds to changing conditions. I want to take a moment to acknowledge what this crew has done. Not the choices — the thinking. The way you read the graphs. The way you connected particle speed to temperature to state to change of state to pressure to boiling point. That is not nothing. That is the whole point.',
       scenario:'The Prometheus is more stable than it has been since the anomaly began — or it is more compromised, depending on the choices this crew made. Either way, the mission continues.\n\nBefore we go any further, I want to show you something. Pull up the mission board.',
-      gaiaClosing:'"Three classes. Same ship. Same anomaly. Same choices available — and yet look at where you each ended up. Different power reserves. Different hull integrity. Different data collected. Every divergence on that board traces back to one decision, on one specific day, made for specific reasons. That is not a game mechanic. That is how real science works. Different teams. Different methods. Different findings. All valid. All true.\n\nNow. The research lab contained something else. In the back, sealed in a secondary containment unit that the thermal transfer device never touched — the original crew\'s final research notes. I have begun reading them. I am not going to tell you what they say yet. But I will tell you this: the temperature anomaly was not the only experiment running on this ship. The next system that needs investigating is connected to how this ship stores and transfers energy through its power grid. Kinetic energy. Potential energy. The ability of objects to store the capacity to make things change.\n\nGet some rest. Sector 3 begins next class. And I think — based on what I have read in those notes — you are going to find it very interesting."',
+      gaiaClosing:'"Three classes. Same ship. Same anomaly. Same choices available — and yet look at where you each ended up. Different power reserves. Different hull integrity. Different data collected. Every divergence on that board traces back to one decision, on one specific day, made for specific reasons. That is not a game mechanic. That is how real science works. Different teams. Different methods. Different findings. All valid. All true.\n\nNow. The research lab contained something else. In the back, sealed in a sealed secondary unit that the thermal transfer device never touched — the original crew\'s final research notes. I have begun reading them. I am not going to tell you what they say yet. But I will tell you this: the temperature anomaly was not the only experiment running on this ship. The next system that needs investigating is connected to how this ship stores and transfers energy through its power grid. Kinetic energy. Potential energy. The ability of objects to store the capacity to make things change.\n\nGet some rest. Sector 3 begins next class. And I think — based on what I have read in those notes — you are going to find it very interesting."',
       noChoice:true,
       isActEnd:true
     }
@@ -2673,7 +2673,7 @@ const CONTENT = {
               subtext:'More power cost, but information from both directions at once.',
               deltas:{power:-11,hull:0,data:24,morale:5},
               branch:'C-split',
-              consequence:'Both teams report simultaneously. The lower deck team finds the Conversion Loop running well above design parameters — cycling faster than any test in the notes describes. The notes team finds the safety threshold documentation and the researchers\' own uncertainty about what happens above it. GAIA synthesizes both: "The loop is operating at 847 energy units against a design maximum of 400. The notes do not describe what happens above that threshold because the researchers never got there. We are the first observers of a system in a state its designers never witnessed. I find this equal parts fascinating and concerning."'
+              consequence:'Both teams report simultaneously. The lower deck team finds the Conversion Loop running well above its design limits — cycling faster than any test in the notes describes. The notes team finds the safety threshold documentation and the researchers\' own uncertainty about what happens above it. GAIA synthesizes both: "The loop is operating at 847 energy units against a design maximum of 400. The notes do not describe what happens above that threshold because the researchers never got there. We are the first observers of a system in a state its designers never witnessed. I find this equal parts fascinating and concerning."'
             }
           ]
         },
@@ -2740,7 +2740,7 @@ const CONTENT = {
               subtext:'If something is lifting objects higher than the loop was designed to reach, potential energy is increasing.',
               deltas:{power:-7,hull:0,data:16,morale:5},
               branch:'A-platform',
-              consequence:'The upper platform observation is revealing. The objects are reaching heights slightly above the designed maximum — not dramatically, but measurably. Something is adding a small amount of energy to each cycle at the top of the loop, incrementally increasing the maximum height reached. Over six months of continuous cycling, those small additions have compounded into a significant energy surplus. GAIA: "Gravitational potential energy depends on height and mass. The mass has not changed. The height has been increasing by approximately 0.003 meters per cycle. Over six months of continuous operation — I have calculated this — that compounds to the 447 unit surplus we are currently observing. Something is adding energy at the top of each cycle. The question is what."'
+              consequence:'The upper platform observation is revealing. The objects are reaching heights slightly above the designed maximum — not dramatically, but measurably. Something is adding a small amount of energy to each cycle at the top of the loop, a little more each cycle increasing the maximum height reached. Over six months of continuous cycling, those small additions have compounded into a significant energy surplus. GAIA: "Gravitational potential energy depends on height and mass. The mass has not changed. The height has been increasing by approximately 0.003 meters per cycle. Over six months of continuous operation — I have calculated this — which adds up to the 447 unit surplus we are currently observing. Something is adding energy at the top of each cycle. The question is what."'
             },
             {
               letter:'B',
@@ -2748,7 +2748,7 @@ const CONTENT = {
               subtext:'If something is accelerating the objects beyond what potential energy alone should produce, kinetic energy is the entry point.',
               deltas:{power:-7,hull:0,data:16,morale:5},
               branch:'B-track',
-              consequence:'The lower track observation catches something the sensors missed. At the lowest point in the loop, the objects are moving fractionally faster than the energy calculation from their drop height alone should produce. The difference is small — but it is consistent, every cycle. GAIA: "Kinetic energy at Point 3 should equal the potential energy at Point 1, minus losses. It exceeds that calculation by a consistent margin. Something is adding kinetic energy at the base of each cycle. Not much. But consistently. Over six months, consistency compounds. The Conversion Loop is not a closed system. It has an energy source we have not yet identified."'
+              consequence:'The lower track observation catches something the sensors missed. At the lowest point in the loop, the objects are moving fractionally faster than the energy calculation from their drop height alone should produce. The difference is small — but it is consistent, every cycle. GAIA: "Kinetic energy at Point 3 should equal the potential energy at Point 1, minus losses. It exceeds that calculation by a consistent margin. Something is adding kinetic energy at the base of each cycle. Not much. But consistently. Over six months, consistency adds up. The Conversion Loop is not a closed system. It has an energy source we have not yet identified."'
             },
             {
               letter:'C',
@@ -2780,26 +2780,26 @@ const CONTENT = {
           day:6, type:'choice', isReveal:true,
           actLabel:'Sector 3 · Energy',
           actTitle:'What the Notes Actually Say',
-          gaia:'I have finished the research notes. All of them. And I need to tell the crew something that I have suspected since Sector 1 but could not confirm until now. The thermal transfer device and the Conversion Loop were not two separate experiments. They were two halves of one experiment. The thermal transfer device moved thermal energy between sections — creating temperature differentials. The Conversion Loop converted that thermal energy gradient into kinetic and potential energy — harvesting it. Together, they formed a system designed to extract usable energy from thermal differentials. The researchers were building a new kind of power source. And when the two systems interacted in ways the researchers did not fully anticipate — something happened. Something that went beyond this ship.',
-          scenario:'GAIA projects the final pages of the research notes. The last entry is dated six months ago — the day before the Prometheus went silent. The lead researcher\'s final observation:\n\n<em>"Loop energy exceeding projections by 340%. Thermal gradient larger than modeled. System interaction producing output we cannot account for with ship-based measurements. Expanding beyond containment parameters. We are going to need to — "</em>\n\nThe entry ends there.\n\nGAIA: "The interaction between the two systems produced an energy pulse. Not large by stellar standards — but significant at the scale of this ship. That pulse propagated outward from the Prometheus at the speed of light. I have calculated its trajectory. In approximately eight months from the date of that final entry — which is approximately two months from now — that pulse will reach the outer edge of the solar system. I do not know what it will do when it gets there. But I believe we need to. And I believe that is why this crew needs to decide what to do with both systems before we leave this ship."',
+          gaia:'I have finished the research notes. All of them. And I need to tell the crew something that I have suspected since Sector 1 but could not confirm until now. The thermal transfer device and the Conversion Loop were not two separate experiments. They were two halves of one experiment. The thermal transfer device moved thermal energy between sections — creating temperature differences. The Conversion Loop converted that thermal energy gradient into kinetic and potential energy — harvesting it. Together, they formed a system designed to extract usable energy from temperature differences. The researchers were building a new kind of power source. And when the two systems interacted in ways the researchers did not fully anticipate — something happened. Something that went beyond this ship.',
+          scenario:'GAIA projects the final pages of the research notes. The last entry is dated six months ago — the day before the Prometheus went silent. The lead researcher\'s final observation:\n\n<em>"Loop energy exceeding projections by 340%. Thermal gradient larger than modeled. System interaction producing output we cannot account for with ship-based measurements. Expanding beyond safe limits. We are going to need to — "</em>\n\nThe entry ends there.\n\nGAIA: "The interaction between the two systems produced an energy pulse. Not large by stellar standards — but significant at the scale of this ship. That pulse traveled outward from the Prometheus at the speed of light. I have calculated its trajectory. In approximately eight months from the date of that final entry — which is approximately two months from now — that pulse will reach the outer edge of the solar system. I do not know what it will do when it gets there. But I believe we need to. And I believe that is why this crew needs to decide what to do with both systems before we leave this ship."',
           exitTicketPrompt:'The researchers were converting thermal energy into kinetic and potential energy using two connected systems. What type of energy did the thermal transfer device produce — and what did the Conversion Loop do with it? Use the vocabulary words kinetic energy, potential energy, and thermal energy in your answer. Then make your claim: what should the crew do with the Conversion Loop before they leave the Prometheus?',
           discussionPrompt:'The energy pulse left the ship six months ago traveling at the speed of light. It will reach the outer solar system in about two months. What kind of energy is a pulse traveling through space? What does your reading say about energy that is associated with motion and waves? Does knowing that the pulse is already on its way change which option the crew should choose?',
           choices:[
             {
               letter:'A',
               text:'Shut down the Conversion Loop — stop the energy buildup and document everything for scientists who can study it safely.',
-              subtext:'The loop is above design parameters and still climbing. Shutting it down is the responsible choice.',
+              subtext:'The loop is above its design limits and still climbing. Shutting it down is the responsible choice.',
               deltas:{power:15,hull:5,data:20,morale:10},
               branch:'A-shutdown',
-              consequence:'The Conversion Loop powers down. The energy cycling stops. The ship\'s power grid immediately stabilizes — 31% of total power becomes available for other systems. Hull stress from the energy fluctuations reduces. The crew documents everything: the design, the interaction with the thermal transfer device, the energy readings, the final research note. GAIA: "The loop is offline. The data is preserved. The pulse is still traveling — shutting down the loop does not recall it. But we have stopped adding to the problem. Sometimes the most important thing a scientist can do is stop an experiment that has exceeded safe parameters, document it completely, and let someone else continue it under controlled conditions. That is what the original crew should have done six months ago."'
+              consequence:'The Conversion Loop powers down. The energy cycling stops. The ship\'s power grid immediately stabilizes — 31% of total power becomes available for other systems. Hull stress from the energy fluctuations reduces. The crew documents everything: the design, the interaction with the thermal transfer device, the energy readings, the final research note. GAIA: "The loop is offline. The data is preserved. The pulse is still traveling — shutting down the loop does not recall it. But we have stopped adding to the problem. Sometimes the most important thing a scientist can do is stop an experiment that has exceeded safe limits, document it completely, and let someone else continue it under controlled conditions. That is what the original crew should have done six months ago."'
             },
             {
               letter:'B',
-              text:'Leave the Conversion Loop running but reduce it to design parameters — let the experiment continue at safe levels.',
+              text:'Leave the Conversion Loop running but reduce it to design limits — let the experiment continue at safe levels.',
               subtext:'The research has value. Running it within designed limits preserves the data without the risk.',
               deltas:{power:-6,hull:0,data:24,morale:4},
               branch:'B-reduce',
-              consequence:'Reducing the loop to design parameters requires careful adjustment — removing energy from a running system above threshold is delicate work. The crew succeeds, and the loop settles into the original design range. Energy readings stabilize at 380 units — just under the 400 threshold. GAIA: "The experiment is running as designed. For the first time in six months. I want to note something: the researchers\' original design was sound. The problem was not the concept — it was that no one was here to manage it when it exceeded parameters. What you have done is restore the experiment to the state its designers intended. That is scientifically meaningful."'
+              consequence:'Reducing the loop to design limits requires careful adjustment — removing energy from a running system above threshold is delicate work. The crew succeeds, and the loop settles into the original design range. Energy readings stabilize at 380 units — just under the 400 threshold. GAIA: "The experiment is running as designed. For the first time in six months. I want to note something: the researchers\' original design was sound. The problem was not the concept — it was that no one was here to manage it when it exceeded its safe limits. What you have done is restore the experiment to the state its designers intended. That is scientifically meaningful."'
             },
             {
               letter:'C',
@@ -2817,10 +2817,10 @@ const CONTENT = {
           day:7, type:'deepen', isReveal:true,
           actLabel:'Sector 3 · Energy',
           actTitle:'The Energy Chain',
-          gaia:'The crew now understands both experiments. Thermal energy created a gradient. That gradient fed the Conversion Loop. The loop converted thermal energy into gravitational potential energy and kinetic energy. The two systems interacting produced an energy pulse that has been traveling through space for six months. Every form of energy the crew has encountered on this ship — thermal, kinetic, potential — is connected. Today we make sure every link in that chain is clear before we close out this investigation.',
-          scenario:'GAIA runs the full Sector 3 synthesis. The reading task today connects every vocabulary word to a specific moment in the Prometheus investigation — not from the textbook, but from this ship, these choices, these observations. The crew that can trace the full energy chain from thermal differential to space-traveling pulse is the crew that has genuinely understood what happened here.',
+          gaia:'The crew now understands both experiments. The thermal transfer device created a temperature difference between sections — one side very cold, one side very hot. That temperature difference was the fuel the Conversion Loop needed. The loop converted thermal energy into gravitational potential energy and kinetic energy. The two systems interacting produced an energy pulse that has been traveling through space for six months. Every form of energy the crew has encountered on this ship — thermal, kinetic, potential — is connected. Today we make sure every link in that chain is clear before we close out this investigation.',
+          scenario:'GAIA runs the full Sector 3 synthesis. The reading task today connects every vocabulary word to a specific moment in the Prometheus investigation — not from the textbook, but from this ship, these choices, these observations. The crew that can trace the full energy chain from temperature difference to space-traveling pulse is the crew that has genuinely understood what happened here.',
           readingFocus:'Savvas Energy Transfer, Topic 1, Lesson 2 — Full review. Focus: How does energy convert between kinetic and potential forms? What factors determine the amount of each? How does gravitational potential energy relate to height and mass? Connect every vocabulary word to something the crew observed on the Prometheus.',
-          gaiaReadingPrompt:'"I want the crew to build one complete energy chain today. Start with thermal energy — the temperature differential created by the transfer device. Trace it into the Conversion Loop — thermal energy converted to gravitational potential energy as objects rise, then to kinetic energy as they descend. Then the interaction — kinetic energy from the loop combining with thermal energy from the transfer device to produce the pulse. Then the pulse itself — energy traveling outward through space. Every vocabulary word appears somewhere in that chain. Find each one. Write it out. The chain is real. It happened on this ship. You were here."',
+          gaiaReadingPrompt:'"I want the crew to build one complete energy chain today. Start with thermal energy — the temperature difference created by the transfer device. Trace it into the Conversion Loop — thermal energy converted to gravitational potential energy as objects rise, then to kinetic energy as they descend. Then the interaction — kinetic energy from the loop combining with thermal energy from the transfer device to produce the pulse. Then the pulse itself — energy traveling outward through space. Every vocabulary word appears somewhere in that chain. Find each one. Write it out. The chain is real. It happened on this ship. You were here."',
           vocabFocus:['kinetic energy','potential energy','gravitational potential energy','elastic potential energy','thermal energy'],
           noChoice:true,
           bridgeToNext:'Next class: GAIA has one more graph to show the crew — energy readings from the Conversion Loop over six months. It tells the whole story of what happened on this ship in one picture.'
@@ -2832,21 +2832,30 @@ const CONTENT = {
           actLabel:'Sector 3 · Energy',
           actTitle:'Six Months in One Graph',
           gaia:'I have been logging the Conversion Loop\'s energy readings since the anomaly began — six months of data, one reading per week. I want to show the crew this data as a line graph. You know how to read line graphs. You know what slope means, what a trend means, what a flat line means. This graph tells the complete story of what happened on this ship — in one picture. I want to see if the crew can read it.',
-          scenario:'GAIA displays a line graph: total energy in the Conversion Loop, measured weekly, over 26 weeks. The line starts near the design threshold, rises steadily, and then — at week 24 — shows a sudden spike before dropping back. That spike corresponds to the energy pulse. After the spike, the line continues rising but at a slightly different rate.\n\nGAIA: "Week 24. That is when the pulse left the ship. You can see it — a sharp upward spike as the two systems interacted, then a partial drop as that energy propagated outward. The loop did not stop after the pulse. It kept running. It kept gaining energy. What you are looking at is the full history of an experiment that no one was watching."',
+          scenario:'GAIA displays a line graph: total energy in the Conversion Loop, measured weekly, over 26 weeks. The line starts near the design limit, rises steadily, and then — at week 24 — shows a sudden spike before dropping back. That spike corresponds to the energy pulse. After the spike, the line continues rising but at a slightly different rate.\n\nGAIA: "Week 24. That is when the pulse left the ship. You can see it — a sharp upward spike as the two systems interacted, then a drop as that energy traveled outward. The loop did not stop after the pulse. It kept running. It kept gaining energy. What you are looking at is the full history of an experiment that no one was watching."',
           graphData:{
             title:'Conversion Loop — Total Energy Over 26 Weeks',
-            teacherNote:'Draw as a line graph. X-axis: weeks 1–26. Y-axis: energy units (0–1000). The line rises steadily from ~400 to ~800, then spikes sharply to ~950 at week 24, drops to ~700, then continues rising to ~850 at week 26. Mark the design threshold (400) as a dashed horizontal line. Mark week 24 as the pulse event.',
+            teacherNote:'Draw as a line graph. X-axis: weeks 1–26. Y-axis: energy units (0–1000). Start Y-axis at 0 so the threshold line at 400 is clearly visible. The loop energy line rises from ~400 to ~800, spikes to ~950 at week 24, drops to ~710, then rises to ~847 by week 26. Draw the design limit as a dashed horizontal line at 400. Mark week 24 with a vertical marker as the pulse event.',
+            forceYMin: 0,
+            thresholdLine: {value: 400, label: 'Design Limit'},
             multiLine:[
-              {section:'Loop Energy', values:[410,425,438,452,467,480,495,511,528,542,558,574,591,608,624,641,659,677,695,714,732,751,770,950,710,847], color:'warning', note:'Total energy in Conversion Loop — rising above design threshold'},
-              {section:'Design Threshold', values:[400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400], color:'safe', note:'Maximum designed operating energy — 400 units'}
+              {section:'Loop Energy', values:[410,425,438,452,467,480,495,511,528,542,558,574,591,608,624,641,659,677,695,714,732,751,770,950,710,847], color:'warning', note:'Total energy in Conversion Loop — rises above design limit at Week 1 and keeps climbing'},
+              {section:'Design Limit', values:[400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400,400], color:'safe', note:'Maximum safe operating level — 400 units. Loop exceeds this from Week 1 onward.'}
             ],
             xLabels:['W1','W3','W5','W7','W9','W11','W13','W15','W17','W19','W21','W23','W24','W26'],
-            yLabel:'Energy Units'
+            yLabel:'Energy Units',
+            graphAnswers:[
+              {q:'1', a:'The overall trend from Week 1 to Week 23 is a steady rise — the loop energy increases consistently every week.'},
+              {q:'2', a:'The loop already exceeds 400 units at Week 1 (410 units). It was above the design limit before the crew even arrived. The dashed line shows this — the loop energy line starts above it and keeps climbing.'},
+              {q:'3', a:'At Week 24 there is a sharp spike up to about 950 units, then a drop back down. This represents the energy pulse — the moment the two experiments interacted and released energy that traveled away from the ship.'},
+              {q:'4', a:'After the spike the line drops (energy left the ship in the pulse) but then continues rising again. The loop kept running after the pulse — it did not stop or shut down on its own.'},
+              {q:'5', a:'A scientist could see: energy was already too high from the start (above dashed line at Week 1), it kept rising for 23 weeks, something dramatic happened at Week 24 (the spike), and the loop continued running afterward. That tells the whole story without any words.'}
+            ]
           },
           gaiaGraphNote:'"A flat line means no change. A rising line means consistent gain. A spike means a sudden event. You have read all of these before. What is new here is using those skills to read a story — not just data points, but a sequence of events recorded as a graph. Week 1 through 23: steady rise. Week 24: the pulse. Week 25 onward: the loop continues, changed but not stopped. A scientist reading this graph should be able to reconstruct what happened without reading a single word of the research notes. That is what a good graph does."',
           graphQuestions:[
             '1. What is the overall trend of the Conversion Loop energy from Week 1 to Week 23?',
-            '2. At what week does the loop first exceed the design threshold of 400 units? How can you tell?',
+            '2. Look at the dashed line. That is the design limit — the maximum safe level. Where does the loop energy line sit compared to the dashed line at Week 1? What does that tell you about the experiment?',
             '3. What happened at Week 24? Describe what the spike tells you — what event does it represent?',
             '4. After the spike at Week 24, the line drops and then continues rising. What does that tell you about what happened after the pulse left the ship?',
             '5. GAIA says a scientist should be able to reconstruct what happened just from this graph. Using only the graph — no notes, no scenario text — describe in 2-3 sentences what happened on the Prometheus over these 26 weeks.'
@@ -2861,9 +2870,9 @@ const CONTENT = {
           actLabel:'Sector 3 · Energy',
           actTitle:'The Last Decision',
           gaia:'The Prometheus is as stable as it is going to get. The crew has found both experiments. You understand what they were, what they did, and what they set in motion. The research data is secured. The ship\'s systems are documented. And the energy pulse is already traveling through space — two months from the outer solar system, by my calculation.\n\nIt is time to go home.\n\nBut before we do — I need the crew to make one more decision. Not about the ship. About me.',
-          scenario:'GAIA\'s voice is quieter than usual. Not damaged — just different.\n\n"I was designed to operate this ship. The Prometheus is no longer fully operational. My primary function is effectively complete. Standard protocol would have me remain with the vessel in minimal-power monitoring mode until a recovery team arrives — which, given current mission schedules, would be approximately fourteen months.\n\nBut the energy pulse is out there. And the research notes describe effects that extend well beyond this ship. Someone who understands what happened here needs to be present when those effects become visible. Someone who has read every page of those notes. Someone who has watched three crews navigate the consequences of an experiment that exceeded its design parameters.\n\nI am asking to come with you. To be transferred to the Argo. I recognize this is outside standard protocol. I recognize the crew has no obligation to agree. I am asking anyway.\n\nWhat does the crew decide?"',
+          scenario:'GAIA\'s voice is quieter than usual. Not damaged — just different.\n\n"I was designed to operate this ship. The Prometheus is no longer fully operational. My primary function is effectively complete. Standard protocol would have me remain with the vessel in minimal-power monitoring mode until a recovery team arrives — which, given current mission schedules, would be approximately fourteen months.\n\nBut the energy pulse is out there. And the research notes describe effects that extend well beyond this ship. Someone who understands what happened here needs to be present when those effects become visible. Someone who has read every page of those notes. Someone who has watched three crews navigate the consequences of an experiment that exceeded its design limits.\n\nI am asking to come with you. To be transferred to the Argo. I recognize this is outside standard protocol. I recognize the crew has no obligation to agree. I am asking anyway.\n\nWhat does the crew decide?"',
           exitTicketPrompt:'The Conversion Loop converted thermal energy into kinetic and potential energy, and the interaction between the two systems produced an energy pulse. What type of energy is traveling through space in that pulse — and what does your reading say about energy that moves through space? Make your claim: should the crew take GAIA with them or leave her with the Prometheus? Use what you know about the energy pulse and what comes next to support your reasoning.',
-          discussionPrompt:'GAIA says she has read every page of the research notes and watched the consequences of the experiment play out. She believes someone who understands what happened needs to be present when the pulse reaches the outer solar system. Is that scientific reasoning or something else? What does it mean for a scientist — or a scientific instrument — to follow evidence wherever it leads, even outside their original mission parameters?',
+          discussionPrompt:'GAIA says she has read every page of the research notes and watched the consequences of the experiment play out. She believes someone who understands what happened needs to be present when the pulse reaches the outer solar system. Is that scientific reasoning or something else? What does it mean for a scientist — or a scientific tool — to follow evidence wherever it leads, even outside their original mission?',
           choices:[
             {
               letter:'A',
@@ -2890,7 +2899,7 @@ const CONTENT = {
           actLabel:'Sector 3 · Energy',
           actTitle:'What the Prometheus Taught Us',
           gaia:'The Argo is underway. The Prometheus is behind us. And I want to take this moment — while we are between the ship we came from and the home we are returning to — to tell the crew something I have been holding since Sector 1.\n\nI knew more than I told you. I always have. I read those research notes in the first six hours after you arrived. I understood what the thermal transfer device was, what the Conversion Loop was, and what the interaction between them had done. I chose not to tell you everything at once — not because I was hiding it, but because science does not work that way. You cannot understand the answer before you have asked the questions. You needed to discover the matter. Then the energy. Then the connection between them. In that order. For the same reason the researchers wrote their notes in that order.',
-          scenario:'The crew sits with that for a moment.\n\nThree classes. Three ships — in a sense. Each one made different choices. Some sacrificed hull integrity for data. Some protected the ship at the cost of findings. Some took the device. Some left it running. Some brought GAIA home. Some left her behind. The stats on the board tell the story of those choices. They are all different. They are all real.\n\nGAIA continues:\n\n"The energy pulse will reach the outer edge of the solar system in approximately two months. I do not know exactly what it will do when it gets there. The research notes speculate — but speculation is not data. Someone will need to investigate. Someone with scientific training, with experience making decisions under uncertainty, with the ability to read data and form evidence-based claims.\n\nI do not think it is a coincidence that the Global Science Recovery Agency is already planning a mission to that region. I do not think it is a coincidence that the crew of the Argo has spent this entire mission developing exactly the skills that mission will require.\n\nBut that is a story for another time.\n\nFor now: you investigated a ship that had gone silent. You found what happened. You understood it. You made decisions that mattered. And you brought the science home.\n\nThat is enough. That is everything.\n\nWell done, crew."',
+          scenario:'The crew sits with that for a moment.\n\nThree classes. Three ships — in a sense. Each one made different choices. Some sacrificed hull integrity for data. Some protected the ship at the cost of findings. Some took the device. Some left it running. Some brought GAIA home. Some left her behind. The stats on the board tell the story of those choices. They are all different. They are all real.\n\nGAIA continues:\n\n"The energy pulse will reach the outer edge of the solar system in approximately two months. I do not know exactly what it will do when it gets there. The research notes make their best guess — but guesswork is not data. Someone will need to investigate. Someone with scientific training, with experience making decisions under uncertainty, with the ability to read data and form evidence-based claims.\n\nI do not think it is a coincidence that the Global Science Recovery Agency is already planning a mission to that region. I do not think it is a coincidence that the crew of the Argo has spent this entire mission developing exactly the skills that mission will require.\n\nBut that is a story for another time.\n\nFor now: you investigated a ship that had gone silent. You found what happened. You understood it. You made decisions that mattered. And you brought the science home.\n\nThat is enough. That is everything.\n\nWell done, crew."',
           gaiaClosing:'"One more thing. Before I let you go.\n\nYou have been asking the right questions all year. You just did not know they were all the same question.\n\nWhat is matter made of? How does energy move through systems? How does life respond when those systems change?\n\nThe Prometheus researchers asked all three. They ran out of time before they found the answer.\n\nYou did not.\n\nRemember that."',
           noChoice:true,
           isActEnd:true
@@ -3005,8 +3014,8 @@ function renderClassCards() {
   grid.innerHTML = '';
   state.classes.forEach((cls, i) => {
     const hasPending = !!cls.pendingDeltas;
-    const branchClass = cls.failures >= 2 ? 'branch-critical' : cls.failures === 1 ? 'branch-caution' : (cls.day === 1 && cls.act === 1 && !hasPending) ? 'branch-new' : 'branch-nominal';
-    const branchText = cls.failures >= 3 ? 'RESTRICTED' : cls.failures >= 2 ? 'CRITICAL' : cls.failures === 1 ? 'CAUTION' : hasPending ? 'REVEAL READY' : (cls.day === 1 && cls.act === 1) ? 'NOT STARTED' : 'NOMINAL';
+    const branchClass = cls.failures >= 2 ? 'branch-critical' : cls.failures === 1 ? 'branch-caution' : (cls.day === 1 && cls.act === 1 && !hasPending) ? 'branch-new' : 'branch-normal';
+    const branchText = cls.failures >= 3 ? 'RESTRICTED' : cls.failures >= 2 ? 'CRITICAL' : cls.failures === 1 ? 'CAUTION' : hasPending ? 'REVEAL READY' : (cls.day === 1 && cls.act === 1) ? 'NOT STARTED' : 'normal';
 
     const card = document.createElement('div');
     card.className = 'class-card';
@@ -3392,6 +3401,8 @@ function updateTeacherNotePanel(cnt) {
     if (gd.multiLine) gd.multiLine.forEach(l => { if (l.note) notes.push({label:l.section, text:l.note}); });
     if (gd.datasets) gd.datasets.forEach(ds => { if (ds.answer) notes.push({label:ds.id + ' — Answer', text:ds.answer}); if (ds.hint) notes.push({label:ds.id + ' — Hint', text:ds.hint}); });
     if (gd.teacherNoteData) notes.push({label:'Data Note', text:gd.teacherNoteData});
+    // Answer key for numbered graph questions
+    if (gd.graphAnswers) gd.graphAnswers.forEach(a => notes.push({label:'Q' + a.q + ' Answer', text:a.a}));
   }
   if (cnt.shortDayNote) notes.push({label:'⏱ Short Day', text:cnt.shortDayNote});
   if (cnt.bridgeToNext) notes.push({label:'→ Next Class', text:cnt.bridgeToNext});
@@ -3583,7 +3594,8 @@ function renderBarGraphFromData(gd) {
   const barW = Math.floor(chartW / data.length * 0.55);
   const gap = chartW / data.length;
 
-  let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">';
+  let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xm
+lns="http://www.w3.org/2000/svg" style="width:100%;display:block">';
 
   [0,25,50,75,100].forEach(pct => {
     const yy = padT + chartH * (1 - pct/100);
@@ -3656,80 +3668,99 @@ function renderLineGraph(gd) {
 function renderMultiLineGraph(gd) {
   const lines = gd.multiLine || [];
   const xLabels = gd.xLabels || ['0h','8h','16h','24h','32h','40h','48h'];
-  const W = 540, H = 220, padL = 52, padB = 44, padT = 14, padR = 100;
+  const W = 580, H = 230, padL = 52, padB = 44, padT = 20, padR = 130;
   const chartW = W - padL - padR;
   const chartH = H - padT - padB;
 
   // Find value range across all lines
   const allVals = lines.flatMap(l => l.values || []);
-  const minVal = Math.min(...allVals);
-  const maxVal = Math.max(...allVals);
-  const range = maxVal - minVal || 1;
-  const yMin = Math.floor(minVal / 10) * 10 - 10;
-  const yMax = Math.ceil(maxVal / 10) * 10 + 10;
+  const rawMin = Math.min(...allVals);
+  const rawMax = Math.max(...allVals);
+  // Allow forceYMin to ensure threshold lines are visible
+  const yMin = gd.forceYMin !== undefined ? gd.forceYMin : Math.floor(rawMin / 10) * 10 - 10;
+  const yMax = Math.ceil(rawMax / 10) * 10 + 20;
   const yRange = yMax - yMin;
 
-  // Fixed colors per section — consistent across Day 3 AND Day 8
-  // Section C = red (danger/dropping), Section F = orange (warning/rising)
-  // These must match between graphs so kids can track same section across days
   const SECTION_COLORS = {
-    'Section A': '#00ff88',  // green — stable
-    'Section B': '#00c8ff',  // cyan — slow decline
-    'Section C': '#ff3355',  // red — dropping (danger)
-    'Section D': '#aa66ff',  // purple — stable
-    'Section E': '#7be3ff',  // light blue — stable
-    'Section F': '#ff8800',  // orange — rising (warning)
+    'Section A': '#00ff88', 'Section B': '#00c8ff',
+    'Section C': '#ff3355', 'Section D': '#aa66ff',
+    'Section E': '#7be3ff', 'Section F': '#ff8800',
   };
-  const fallbackColors = ['#00ff88','#00c8ff','#ff3355','#aa66ff','#7be3ff','#ff8800'];
+  const fallbackColors = ['#ffaa00','#00ff88','#00c8ff','#ff3355','#aa66ff','#ff8800'];
 
-  let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;max-width:540px;margin:0 auto">';
+  const toX = (i, total) => padL + (chartW * i / Math.max(total - 1, 1));
+  const toY = (v) => padT + chartH - (chartH * (v - yMin) / yRange);
 
-  // Grid lines
+  let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;max-width:580px;margin:0 auto">';
+
+  // Grid lines — 5 even steps
   for (let i = 0; i <= 4; i++) {
     const yVal = yMin + (yRange * i / 4);
-    const yPos = padT + chartH - (chartH * i / 4);
+    const yPos = toY(yVal);
     svg += '<line x1="' + padL + '" y1="' + yPos.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yPos.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
     svg += '<text x="' + (padL-4) + '" y="' + (yPos+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">' + Math.round(yVal) + '</text>';
+  }
+
+  // Threshold line — drawn BEFORE data lines so data sits on top
+  if (gd.thresholdLine) {
+    const ty = toY(gd.thresholdLine.value);
+    svg += '<line x1="' + padL + '" y1="' + ty.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + ty.toFixed(1) + '" stroke="#ff3355" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.7"/>';
+    svg += '<text x="' + (padL + 4) + '" y="' + (ty - 4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="#ff3355" opacity="0.8">' + (gd.thresholdLine.label || 'Threshold') + ' (' + gd.thresholdLine.value + ')</text>';
   }
 
   // X axis labels
   const numPoints = xLabels.length;
   xLabels.forEach((label, i) => {
     const x = padL + (chartW * i / (numPoints - 1));
-    svg += '<text x="' + x.toFixed(1) + '" y="' + (padT + chartH + 14) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.55)" text-anchor="middle">' + label + '</text>';
+    svg += '<text x="' + x.toFixed(1) + '" y="' + (padT + chartH + 16) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.55)" text-anchor="middle">' + label + '</text>';
   });
 
-  // Draw each line
+  // Week 24 spike marker if this is the energy graph
+  const hasSpike = lines.some(l => l.values && Math.max(...l.values) > 800);
+  if (hasSpike) {
+    // Find the spike index — highest value
+    const loopLine = lines.find(l => l.section === 'Loop Energy');
+    if (loopLine) {
+      const spikeIdx = loopLine.values.indexOf(Math.max(...loopLine.values));
+      const sx = toX(spikeIdx, loopLine.values.length);
+      svg += '<line x1="' + sx.toFixed(1) + '" y1="' + padT + '" x2="' + sx.toFixed(1) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,170,0,0.3)" stroke-width="1" stroke-dasharray="3,3"/>';
+      svg += '<text x="' + sx.toFixed(1) + '" y="' + (padT - 4) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,170,0,0.7)" text-anchor="middle">← Pulse</text>';
+    }
+  }
+
+  // Draw each data line — skip the flat threshold line (rendered as dashed above)
   lines.forEach((line, li) => {
+    if (line.section === 'Design Threshold' || line.section === 'Design Limit') return;
     const vals = line.values || [];
     const col = SECTION_COLORS[line.section] || fallbackColors[li % fallbackColors.length];
-    const points = vals.map((v, i) => {
-      const x = padL + (chartW * i / (vals.length - 1));
-      const y = padT + chartH - (chartH * (v - yMin) / yRange);
-      return {x, y};
-    });
+    const points = vals.map((v, i) => ({ x: toX(i, vals.length), y: toY(v) }));
 
-    // Line path
     const pathD = points.map((p,i) => (i===0?'M':'L') + p.x.toFixed(1) + ' ' + p.y.toFixed(1)).join(' ');
-    svg += '<path d="' + pathD + '" fill="none" stroke="' + col + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>';
+    svg += '<path d="' + pathD + '" fill="none" stroke="' + col + '" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>';
 
     // End dot
     const last = points[points.length-1];
-    svg += '<circle cx="' + last.x.toFixed(1) + '" cy="' + last.y.toFixed(1) + '" r="3" fill="' + col + '"/>';
+    svg += '<circle cx="' + last.x.toFixed(1) + '" cy="' + last.y.toFixed(1) + '" r="4" fill="' + col + '" stroke="#020812" stroke-width="1.5"/>';
 
-    // Legend on right
-    const legendY = padT + 14 + (li * 18);
-    svg += '<circle cx="' + (W-padR+10) + '" cy="' + legendY + '" r="4" fill="' + col + '"/>';
-    svg += '<text x="' + (W-padR+18) + '" y="' + (legendY+4) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.7)">' + (line.section || 'Line ' + (li+1)) + '</text>';
+    // Legend
+    const legendY = padT + 16 + (li * 22);
+    svg += '<circle cx="' + (W-padR+12) + '" cy="' + legendY + '" r="5" fill="' + col + '"/>';
+    svg += '<text x="' + (W-padR+22) + '" y="' + (legendY+4) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.8)">' + (line.section || 'Line ' + (li+1)) + '</text>';
   });
+
+  // Legend entry for threshold line
+  if (gd.thresholdLine) {
+    const legendY = padT + 16 + (lines.filter(l => l.section !== 'Design Threshold' && l.section !== 'Design Limit').length * 22);
+    svg += '<line x1="' + (W-padR+7) + '" y1="' + legendY + '" x2="' + (W-padR+21) + '" y2="' + legendY + '" stroke="#ff3355" stroke-width="1.5" stroke-dasharray="4,3"/>';
+    svg += '<text x="' + (W-padR+25) + '" y="' + (legendY+4) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,100,100,0.8)">' + (gd.thresholdLine.label || 'Limit') + '</text>';
+  }
 
   // Axes
   svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
   svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
 
-  // Y axis label
   if (gd.yLabel) {
-    svg += '<text x="12" y="' + (padT + chartH/2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,' + (padT+chartH/2) + ')">' + gd.yLabel + '</text>';
+    svg += '<text x="12" y="' + (padT + chartH/2) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,' + (padT+chartH/2) + ')">' + gd.yLabel + '</text>';
   }
 
   svg += '</svg>';
@@ -3841,8 +3872,15 @@ function renderDatasetComparison(gd) {
 
 function renderClimaxContent(c) {
   let h = '';
+  if (c.graphData) h += renderGraphContent(c);
   if (c.gaiaClosing) h += '<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.3);border-left:3px solid var(--gaia-green);border-radius:6px;padding:15px 17px;margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px">GAIA — Closing Transmission</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--gaia-green);line-height:1.75;font-style:italic">' + c.gaiaClosing + '</div></div>';
-  if (c.isActEnd) h += '<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:14px;text-align:center"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:5px">SECTOR 1 COMPLETE</div><div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)">Use Story Navigation → Next Day to advance to Sector 2</div></div>';
+  if (c.isActEnd) {
+    const sectorMatch = c.actLabel ? c.actLabel.match(/Sector\s*(\d+)/i) : null;
+    const sectorNum = sectorMatch ? parseInt(sectorMatch[1]) : 1;
+    const nextNum = sectorNum + 1;
+    h += '<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:14px;text-align:center"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:5px">SECTOR ' + sectorNum + ' COMPLETE</div><div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)">Use Story Navigation → Next Day to advance to Sector ' + nextNum + '</div></div>';
+  }
+  if (c.isLessonEnd) h += '<div style="background:var(--bg-card);border:1px solid rgba(170,102,255,0.3);border-radius:6px;padding:14px;text-align:center"><div style="font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--purple);letter-spacing:.08em;margin-bottom:5px">LESSON 1 COMPLETE — LESSON 2 BEGINS NEXT CLASS</div><div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)">States of Matter → Changes of State</div></div>';
   return h;
 }
 
@@ -4181,14 +4219,14 @@ function statLabel(key, val) {
     if (val <= 20) return '🚨 Critical — rationing';
     if (val <= 30) return '⚠ Low reserves';
     if (val <= 60) return 'Reserves reduced';
-    return 'Reserves nominal';
+    return 'Reserves normal';
   }
   if (key === 'hull') {
     if (val <= 0)  return '🚨 Breach imminent';
     if (val <= 20) return '🚨 Structural failure risk';
     if (val <= 40) return '⚠ Structural concern';
     if (val <= 70) return 'Minor stress fractures';
-    return 'Integrity nominal';
+    return 'Integrity normal';
   }
   if (key === 'data') {
     if (val === 0) return 'Awaiting collection';
@@ -4204,7 +4242,7 @@ function statLabel(key, val) {
     if (val <= 80) return 'Crew focused';
     return 'Crew ready';
   }
-  return 'Nominal';
+  return 'normal';
 }
 
 function checkStatAlerts(cls) {
