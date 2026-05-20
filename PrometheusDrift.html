@@ -1750,7 +1750,7 @@
 // ============================================================
 // STATE
 // ============================================================
-const STORAGE_KEY = 'prometheus_drift_v2';
+const STORAGE_KEY = 'prometheus_drift_v3';
 
 let state = {
   configured: false,
@@ -2954,6 +2954,11 @@ function load() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return false;
     const parsed = JSON.parse(raw);
+    // Version guard — if saved state is missing expected structure, start fresh
+    if (!parsed.classes || !Array.isArray(parsed.classes) || parsed.classes.length !== 3) {
+      localStorage.removeItem(STORAGE_KEY);
+      return false;
+    }
     state = { ...state, ...parsed, timerInterval:null, timerRunning:false, timerSeconds:0 };
     return true;
   } catch(e) { return false; }
@@ -3609,8 +3614,7 @@ function renderLineGraph(gd) {
   const W = 280, H = 180, padL = 40, padB = 36, padT = 10, padR = 8;
   const chartW = W - padL - padR;
   const chartH = H - padT - padB;
-  const gap = chartW / 
-(data.length - 1);
+  const gap = chartW / (data.length - 1);
 
   let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">';
 
