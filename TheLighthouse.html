@@ -1,0 +1,2667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lighthouse — Mission Control</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #020d10;
+    --bg-panel: #04161a;
+    --bg-card: #071f24;
+    --bg-card2: #0a2830;
+    --border: #0f3a42;
+    --border-bright: #1a5a66;
+    --accent: #00e5cc;
+    --accent-dim: #009988;
+    --accent-glow: rgba(0,229,204,0.15);
+    --green: #00ff88;
+    --green-dim: #00aa55;
+    --amber: #ffaa00;
+    --red: #ff3355;
+    --purple: #aa66ff;
+    --teal: #00e5cc;
+    --text-primary: #e8fff8;
+    --text-secondary: #6ab8b0;
+    --text-dim: #2a5a58;
+    --font-display: 'Orbitron', monospace;
+    --font-mono: 'Share Tech Mono', monospace;
+    --font-body: 'Rajdhani', sans-serif;
+    --gaia-green: #00ff88;
+    /* Stat colors */
+    --stat-nav: #00e5cc;
+    --stat-solar: #ffdd00;
+    --stat-signal: #aa66ff;
+    --stat-earth: #44cc88;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Star field — slightly denser than Prometheus, deeper space */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 8% 12%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 22% 38%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 48% 8%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 68% 58%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 83% 22%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 12% 72%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 38% 82%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 88% 78%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 58% 42%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 32% 52%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 72% 18%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 18% 92%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 92% 35%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 65%, rgba(200,240,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 3% 45%, rgba(200,240,255,0.6) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .app { position: relative; z-index: 2; }
+  .screen { display: none; min-height: 100vh; }
+  .screen.active { display: flex; flex-direction: column; }
+
+  /* ===================== SETUP ===================== */
+  .mission-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent-dim);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .setup-title {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 4vw, 40px);
+    font-weight: 900;
+    color: var(--accent);
+    text-shadow: 0 0 40px rgba(0,229,204,0.4);
+    letter-spacing: .05em;
+    margin-bottom: 6px;
+  }
+
+  .form-input {
+    background: var(--bg-card);
+    border: 1px solid var(--border-bright);
+    border-radius: 4px;
+    padding: 10px 14px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 15px;
+    width: 100%;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { outline: none; border-color: var(--accent); }
+
+  .form-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ===================== BUTTONS ===================== */
+  .btn {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 13px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--accent); color: var(--bg-deep); box-shadow: 0 0 20px rgba(0,229,204,0.3); }
+  .btn-primary:hover { background: #33eedb; box-shadow: 0 0 30px rgba(0,229,204,0.5); transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
+  .btn-secondary { background: transparent; color: var(--accent); border: 1px solid var(--border-bright); }
+  .btn-secondary:hover { border-color: var(--accent); background: var(--accent-glow); }
+  .btn-secondary:disabled { opacity: 0.35; cursor: not-allowed; }
+  .btn-danger { background: transparent; color: var(--red); border: 1px solid rgba(255,51,85,0.35); font-size: 10px; }
+  .btn-danger:hover { background: rgba(255,51,85,0.08); border-color: var(--red); }
+  .btn-green { background: var(--green); color: var(--bg-deep); box-shadow: 0 0 16px rgba(0,255,136,0.3); }
+  .btn-green:hover { box-shadow: 0 0 24px rgba(0,255,136,0.5); transform: translateY(-1px); }
+  .btn-green:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
+  .btn-amber { background: transparent; color: var(--amber); border: 1px solid rgba(255,170,0,0.35); }
+  .btn-amber:hover { background: rgba(255,170,0,0.08); border-color: var(--amber); }
+
+  /* ===================== HOME ===================== */
+  .mission-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    color: var(--accent);
+    text-shadow: 0 0 40px rgba(0,229,204,0.5), 0 0 80px rgba(0,229,204,0.2);
+    letter-spacing: .05em;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .class-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+
+  .class-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .class-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
+  .class-card:hover { border-color: var(--accent-dim); background: var(--bg-card2); transform: translateY(-2px); }
+  .class-card:hover::before, .class-card.selected::before { transform: scaleX(1); }
+  .class-card.selected { border-color: var(--accent); background: var(--bg-card2); }
+
+  .class-name { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; }
+  .class-status { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); margin-bottom: 6px; }
+
+  .class-branch { font-family: var(--font-mono); font-size: 10px; padding: 2px 8px; border-radius: 3px; display: inline-block; margin-bottom: 10px; }
+  .branch-nominal { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.25); }
+  .branch-caution { background: rgba(255,170,0,0.1); color: var(--amber); border: 1px solid rgba(255,170,0,0.25); }
+  .branch-critical { background: rgba(255,51,85,0.1); color: var(--red); border: 1px solid rgba(255,51,85,0.25); }
+  .branch-new { background: rgba(0,229,204,0.08); color: var(--accent-dim); border: 1px solid rgba(0,229,204,0.2); }
+
+  .reveal-badge { background: rgba(255,170,0,0.15); border: 1px solid rgba(255,170,0,0.4); border-radius: 4px; padding: 6px 10px; font-family: var(--font-mono); font-size: 10px; color: var(--amber); margin-bottom: 10px; display: none; }
+  .reveal-badge.visible { display: block; }
+
+  .mini-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .mini-stat-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .04em; }
+  .mini-stat-bar { height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; margin-top: 2px; overflow: hidden; }
+  .mini-stat-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
+
+  .home-actions { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .system-time { text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); margin-top: 8px; }
+
+  /* ===================== TOPBAR ===================== */
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 20px;
+    background: var(--bg-panel);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0; gap: 12px;
+  }
+  .topbar-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .topbar-title { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: .08em; }
+  .topbar-tag { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); background: var(--bg-card); padding: 3px 10px; border-radius: 3px; border: 1px solid var(--border); }
+  .topbar-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .topbar-btn { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); background: var(--bg-card); border: 1px solid var(--border); padding: 5px 12px; border-radius: 3px; cursor: pointer; transition: all 0.15s; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+  .topbar-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
+  .topbar-btn.save-btn { color: var(--green); border-color: rgba(0,255,136,0.3); }
+  .topbar-btn.save-btn:hover { background: rgba(0,255,136,0.08); }
+  .topbar-btn.pres-btn { color: var(--accent); border-color: rgba(0,229,204,0.3); }
+
+  /* TIMER */
+  .timer-widget { display: flex; align-items: center; gap: 6px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; }
+  .timer-readout { font-family: var(--font-display); font-size: 14px; font-weight: 700; letter-spacing: .08em; min-width: 52px; text-align: center; cursor: pointer; }
+  .timer-readout.idle { color: var(--text-dim); }
+  .timer-readout.running { color: var(--green); }
+  .timer-readout.low { color: var(--amber); animation: pulse-amber 1s infinite; }
+  .timer-readout.urgent { color: var(--red); animation: pulse-red 0.5s infinite; }
+  .timer-readout.done { color: var(--red); }
+  .timer-micro-btn { font-family: var(--font-mono); font-size: 10px; background: transparent; border: 1px solid var(--border); color: var(--text-secondary); padding: 2px 6px; border-radius: 3px; cursor: pointer; transition: all 0.15s; }
+  .timer-micro-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
+
+  @keyframes pulse-amber { 0%,100%{opacity:1}50%{opacity:.5} }
+  @keyframes pulse-red { 0%,100%{opacity:1}50%{opacity:.4} }
+
+  /* ===================== MISSION LAYOUT ===================== */
+  .mission-layout { display: grid; grid-template-columns: 260px 1fr 240px; flex: 1; overflow: hidden; height: calc(100vh - 53px); }
+
+  /* LEFT PANEL */
+  .panel-stats { background: var(--bg-panel); border-right: 1px solid var(--border); padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+  .panel-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+
+  .stat-item { margin-bottom: 12px; }
+  .stat-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+  .stat-name { font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+  .stat-value { font-family: var(--font-mono); font-size: 13px; font-weight: 500; }
+  .stat-bar-track { height: 7px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+  .stat-bar-fill { height: 100%; border-radius: 4px; transition: width 1s cubic-bezier(0.4,0,0.2,1); position: relative; }
+  .stat-bar-fill::after { content: ''; position: absolute; top: 0; right: 0; width: 3px; height: 100%; background: rgba(255,255,255,0.35); border-radius: 2px; }
+  .stat-sublabel { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-top: 3px; letter-spacing: .04em; }
+
+  .stat-nav .stat-name { color: var(--stat-nav); }
+  .stat-nav .stat-value { color: var(--stat-nav); }
+  .stat-nav .stat-bar-fill { background: linear-gradient(90deg,#004a44,var(--stat-nav)); box-shadow: 0 0 6px rgba(0,229,204,0.4); }
+
+  .stat-solar .stat-name { color: var(--stat-solar); }
+  .stat-solar .stat-value { color: var(--stat-solar); }
+  .stat-solar .stat-bar-fill { background: linear-gradient(90deg,#554400,var(--stat-solar)); box-shadow: 0 0 6px rgba(255,221,0,0.4); }
+
+  .stat-signal .stat-name { color: var(--stat-signal); }
+  .stat-signal .stat-value { color: var(--stat-signal); }
+  .stat-signal .stat-bar-fill { background: linear-gradient(90deg,#440066,var(--stat-signal)); box-shadow: 0 0 6px rgba(170,102,255,0.4); }
+
+  .stat-earth .stat-name { color: var(--stat-earth); }
+  .stat-earth .stat-value { color: var(--stat-earth); }
+  .stat-earth .stat-bar-fill { background: linear-gradient(90deg,#114433,var(--stat-earth)); box-shadow: 0 0 6px rgba(68,204,136,0.4); }
+
+  .stat-warning .stat-bar-fill { animation: flicker 2s infinite; }
+  .stat-critical .stat-bar-fill { animation: flicker 0.5s infinite; }
+  @keyframes flicker { 0%,100%{opacity:1}50%{opacity:.55} }
+
+  .failure-counter { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; }
+  .failure-dots { display: flex; gap: 6px; margin-top: 6px; }
+  .failure-dot { width: 13px; height: 13px; border-radius: 50%; border: 1px solid var(--border); background: transparent; transition: all 0.3s; }
+  .failure-dot.active { background: var(--red); border-color: var(--red); box-shadow: 0 0 6px rgba(255,51,85,0.6); }
+  .restriction-notice { font-family: var(--font-mono); font-size: 10px; color: var(--amber); margin-top: 6px; line-height: 1.5; }
+
+  .log-entry { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 7px 9px; margin-bottom: 5px; }
+  .log-date { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-bottom: 2px; }
+  .log-choice { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 4px; }
+  .log-impact { display: flex; gap: 3px; flex-wrap: wrap; }
+  .impact-tag { font-size: 9px; padding: 1px 5px; border-radius: 2px; font-weight: 500; }
+  .impact-pos { background: rgba(0,255,136,0.12); color: var(--green); }
+  .impact-neg { background: rgba(255,51,85,0.12); color: var(--red); }
+  .impact-neu { background: rgba(255,255,255,0.05); color: var(--text-dim); }
+
+  /* CENTER PANEL */
+  .panel-story { display: flex; flex-direction: column; overflow: hidden; }
+  .story-content { flex: 1; overflow-y: auto; padding: 22px 26px; }
+
+  .leg-label { font-family: var(--font-mono); font-size: 10px; color: var(--accent-dim); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 4px; }
+  .leg-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--text-primary); letter-spacing: .04em; margin-bottom: 10px; line-height: 1.2; }
+  .leg-divider { height: 1px; background: linear-gradient(90deg,var(--accent-dim),transparent); margin-bottom: 20px; }
+
+  /* Day type banner */
+  .day-type-banner { display: flex; align-items: center; gap: 10px; padding: 6px 22px; background: var(--bg-panel); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .day-type-badge { font-family: var(--font-mono); font-size: 10px; padding: 3px 10px; border-radius: 3px; letter-spacing: .06em; text-transform: uppercase; }
+  .badge-choice { background: rgba(0,229,204,0.1); color: var(--accent); border: 1px solid rgba(0,229,204,0.3); }
+  .badge-deepen { background: rgba(170,102,255,0.1); color: var(--purple); border: 1px solid rgba(170,102,255,0.3); }
+  .badge-graph { background: rgba(255,170,0,0.1); color: var(--amber); border: 1px solid rgba(255,170,0,0.3); }
+  .badge-climax { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.3); }
+  .day-type-desc { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); }
+
+  /* PHASE BAR */
+  .phase-bar { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
+  .phase-step { font-family: var(--font-mono); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; border: 1px solid var(--border); color: var(--text-dim); background: transparent; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .phase-step.active { color: var(--accent); border-color: var(--accent-dim); background: var(--accent-glow); }
+  .phase-step.done { color: var(--green-dim); border-color: rgba(0,255,136,0.2); background: rgba(0,255,136,0.05); }
+
+  /* GAIA BOX */
+  .gaia-box { background: var(--bg-card); border: 1px solid rgba(0,255,136,0.2); border-left: 3px solid var(--gaia-green); border-radius: 6px; padding: 14px 16px; margin-bottom: 18px; }
+  .gaia-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .gaia-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gaia-green); box-shadow: 0 0 8px rgba(0,255,136,0.8); animation: gaia-pulse 2s infinite; flex-shrink: 0; }
+  @keyframes gaia-pulse { 0%,100%{opacity:1}50%{opacity:.35} }
+  .gaia-label { font-family: var(--font-mono); font-size: 10px; color: var(--gaia-green); letter-spacing: .1em; text-transform: uppercase; }
+  .gaia-text { font-family: var(--font-body); font-size: 20px; color: var(--text-primary); line-height: 1.7; }
+  .gaia-text em { color: var(--gaia-green); font-style: italic; }
+
+  /* GAIA RECALL BOX — spiral review */
+  .gaia-recall-box { background: var(--bg-card); border: 1px solid rgba(0,229,204,0.2); border-left: 3px solid var(--accent); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; }
+  .gaia-recall-label { font-family: var(--font-mono); font-size: 9px; color: var(--accent-dim); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 5px; }
+  .gaia-recall-text { font-family: var(--font-body); font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
+  .scenario-text { font-family: var(--font-body); font-size: 20px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 20px; }
+
+  .phase-panel { display: none; }
+  .phase-panel.active { display: block; }
+
+  /* TIMER PHASE */
+  .timer-phase-box { background: var(--bg-card); border: 1px solid var(--border-bright); border-radius: 8px; padding: 20px 22px; margin-bottom: 18px; text-align: center; }
+  .timer-phase-title { font-family: var(--font-display); font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .timer-phase-desc { font-family: var(--font-body); font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px; }
+  .big-timer { font-family: var(--font-display); font-size: 52px; font-weight: 900; letter-spacing: .05em; margin-bottom: 14px; transition: color 0.3s; }
+  .big-timer.idle { color: var(--text-dim); }
+  .big-timer.running { color: var(--green); text-shadow: 0 0 30px rgba(0,255,136,0.4); }
+  .big-timer.low { color: var(--amber); animation: pulse-amber 1s infinite; }
+  .big-timer.urgent { color: var(--red); animation: pulse-red 0.5s infinite; }
+  .big-timer.done { color: var(--red); }
+  .timer-set-row { display: flex; gap: 6px; align-items: center; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+  .timer-input-inline { background: var(--bg-card2); border: 1px solid var(--border-bright); border-radius: 4px; padding: 6px 10px; color: var(--text-primary); font-family: var(--font-mono); font-size: 16px; width: 70px; text-align: center; }
+  .timer-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .timer-add-btn { font-family: var(--font-mono); font-size: 11px; background: rgba(0,229,204,0.08); border: 1px solid var(--border-bright); color: var(--accent); padding: 6px 12px; border-radius: 4px; cursor: pointer; transition: all 0.15s; }
+  .timer-add-btn:hover { background: rgba(0,229,204,0.15); border-color: var(--accent); }
+  .timer-start-btn { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: .1em; padding: 10px 24px; border-radius: 4px; border: none; cursor: pointer; background: var(--green); color: var(--bg-deep); box-shadow: 0 0 16px rgba(0,255,136,0.3); transition: all 0.2s; }
+  .timer-start-btn:hover { box-shadow: 0 0 24px rgba(0,255,136,0.5); transform: translateY(-1px); }
+  .timer-stop-btn { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: .1em; padding: 10px 20px; border-radius: 4px; border: 1px solid rgba(255,51,85,0.4); cursor: pointer; background: transparent; color: var(--red); transition: all 0.2s; }
+  .timer-stop-btn:hover { background: rgba(255,51,85,0.08); }
+  .timer-done-msg { font-family: var(--font-mono); font-size: 12px; color: var(--gaia-green); font-style: italic; margin-top: 10px; line-height: 1.6; display: none; }
+
+  /* CHOICES */
+  .choices-area { background: var(--bg-panel); border-top: 1px solid var(--border); padding: 16px 22px; flex-shrink: 0; }
+  .choices-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 10px; }
+  .choices-restricted { font-family: var(--font-mono); font-size: 11px; color: var(--amber); background: rgba(255,170,0,0.07); border: 1px solid rgba(255,170,0,0.2); border-radius: 4px; padding: 6px 10px; margin-bottom: 8px; }
+  .choice-grid { display: grid; gap: 8px; }
+  .choice-btn { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; cursor: pointer; transition: all 0.2s; text-align: left; display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; }
+  .choice-btn:hover { border-color: var(--accent-dim); background: var(--bg-card2); transform: translateX(2px); }
+  .choice-btn.selected { border-color: var(--accent); background: rgba(0,229,204,0.07); }
+  .choice-btn.eliminated { opacity: 0.3; cursor: not-allowed; }
+  .choice-letter { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--accent); padding-top: 1px; }
+  .choice-text { font-family: var(--font-body); font-size: 18px; font-weight: 500; color: var(--text-primary); line-height: 1.4; }
+  .choice-subtext { font-family: var(--font-mono); font-size: 14px; color: var(--text-secondary); margin-top: 3px; line-height: 1.4; }
+  .commit-row { margin-top: 10px; display: flex; gap: 10px; align-items: center; }
+  .btn-commit { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: .1em; padding: 11px 26px; border-radius: 4px; border: none; cursor: pointer; background: var(--green); color: var(--bg-deep); box-shadow: 0 0 16px rgba(0,255,136,0.3); transition: all 0.2s; }
+  .btn-commit:hover { box-shadow: 0 0 24px rgba(0,255,136,0.5); transform: translateY(-1px); }
+  .btn-commit:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
+  .commit-note { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); line-height: 1.5; }
+
+  /* RIGHT PANEL */
+  .panel-right { background: var(--bg-panel); border-left: 1px solid var(--border); padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+  .gaia-alert { background: var(--bg-card); border: 1px solid rgba(0,255,136,0.2); border-left: 3px solid var(--gaia-green); border-radius: 5px; padding: 10px 12px; margin-bottom: 6px; }
+  .gaia-alert-text { font-family: var(--font-mono); font-size: 11px; color: var(--gaia-green); line-height: 1.6; font-style: italic; }
+  .nav-btn { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); background: var(--bg-card); border: 1px solid var(--border); padding: 8px 12px; border-radius: 4px; cursor: pointer; transition: all 0.15s; letter-spacing: .04em; text-transform: uppercase; text-align: left; width: 100%; margin-bottom: 5px; }
+  .nav-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
+  .nav-btn.danger { color: var(--red); border-color: rgba(255,51,85,0.25); }
+  .nav-btn.danger:hover { background: rgba(255,51,85,0.07); border-color: var(--red); }
+  .divider-line { height: 1px; background: var(--border); }
+
+  /* Day jump */
+  .day-jump-select { background: var(--bg-card2); border: 1px solid var(--border-bright); border-radius: 4px; color: var(--text-secondary); font-family: var(--font-mono); font-size: 10px; padding: 6px 8px; width: 100%; cursor: pointer; }
+  .day-jump-select:focus { outline: none; border-color: var(--accent); }
+
+  /* Teacher notes panel */
+  #teacher-note-panel { background: var(--bg-card); border: 1px solid rgba(255,170,0,0.2); border-radius: 5px; padding: 10px; display: none; }
+
+  /* Presentation mode */
+  body.presentation-mode .panel-stats { display: none !important; }
+  body.presentation-mode .panel-right { display: none !important; }
+  body.presentation-mode .mission-layout { grid-template-columns: 1fr !important; }
+  body.presentation-mode .gaia-text { font-size: 24px !important; }
+  body.presentation-mode .scenario-text { font-size: 22px !important; }
+  body.presentation-mode .choice-text { font-size: 20px !important; }
+  body.presentation-mode .choice-subtext { font-size: 16px !important; }
+  body.presentation-mode .leg-title { font-size: 28px !important; }
+  body.presentation-mode .story-content { padding: 28px 40px !important; }
+  body.presentation-mode .choices-area { padding: 18px 40px !important; }
+  body.presentation-mode #pres-stats-bar { display: flex !important; }
+  body:not(.presentation-mode) #pres-stats-bar { display: none !important; }
+
+  /* Presentation stats bar */
+  #pres-stats-bar { background: var(--bg-panel); border-bottom: 1px solid var(--border); padding: 6px 40px; gap: 24px; align-items: center; flex-shrink: 0; }
+  .pres-stat { display: flex; align-items: center; gap: 8px; }
+  .pres-stat-label { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .06em; }
+  .pres-stat-val { font-family: var(--font-display); font-size: 13px; font-weight: 700; }
+  .pres-stat-bar { width: 80px; height: 5px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .pres-stat-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+
+  /* ===================== REVEAL SCREEN ===================== */
+  .reveal-title { font-family: var(--font-display); font-size: 28px; font-weight: 900; color: var(--amber); letter-spacing: .06em; margin-bottom: 6px; text-shadow: 0 0 30px rgba(255,170,0,0.4); text-align: center; }
+  .reveal-subtitle { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); letter-spacing: .1em; margin-bottom: 28px; text-align: center; }
+  .reveal-recap { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 14px 18px; margin-bottom: 20px; }
+  .reveal-recap-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
+  .reveal-recap-text { font-family: var(--font-body); font-size: 15px; color: var(--text-secondary); line-height: 1.5; }
+  .reveal-gaia-box { background: var(--bg-card); border: 1px solid rgba(0,255,136,0.25); border-left: 3px solid var(--gaia-green); border-radius: 6px; padding: 18px 20px; margin-bottom: 24px; }
+  .reveal-gaia-text { font-family: var(--font-body); font-size: 17px; color: var(--text-primary); line-height: 1.75; }
+  .reveal-gaia-text em { color: var(--gaia-green); font-style: italic; }
+  .reveal-gaia-text strong { color: var(--amber); font-weight: 600; }
+  .stat-changes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+  .stat-change-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
+  .stat-change-icon { font-size: 18px; flex-shrink: 0; }
+  .stat-change-body { flex: 1; }
+  .stat-change-name { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+  .stat-change-bar { height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; margin-bottom: 3px; }
+  .stat-change-fill { height: 100%; border-radius: 3px; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+  .stat-change-delta { font-family: var(--font-mono); font-size: 12px; font-weight: 500; }
+  .delta-pos { color: var(--green); }
+  .delta-neg { color: var(--red); }
+  .delta-neu { color: var(--text-dim); }
+
+  /* ===================== PROCESSING ===================== */
+  .processing-icon { font-size: 48px; margin-bottom: 20px; animation: spin-slow 4s linear infinite; display: inline-block; }
+  @keyframes spin-slow { from{transform:rotate(0deg)}to{transform:rotate(360deg)} }
+  .processing-title { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--accent); letter-spacing: .08em; margin-bottom: 8px; text-shadow: 0 0 30px rgba(0,229,204,0.4); }
+  .processing-subtitle { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); letter-spacing: .1em; margin-bottom: 32px; }
+  .processing-gaia { background: var(--bg-card); border: 1px solid rgba(0,255,136,0.2); border-left: 3px solid var(--gaia-green); border-radius: 6px; padding: 18px 22px; margin-bottom: 28px; text-align: left; }
+  .processing-gaia-text { font-family: var(--font-mono); font-size: 13px; color: var(--gaia-green); line-height: 1.75; font-style: italic; }
+  .processing-choice-recap { background: var(--bg-card); border: 1px solid var(--border-bright); border-radius: 6px; padding: 14px 18px; margin-bottom: 24px; text-align: left; }
+  .processing-choice-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
+  .processing-choice-text { font-family: var(--font-body); font-size: 16px; color: var(--text-primary); line-height: 1.5; }
+  .processing-stat-chip { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 6px 14px; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); letter-spacing: .06em; }
+
+  /* ===================== ENHANCED FORENSICS ===================== */
+  .forensics-title { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--red); text-shadow: 0 0 24px rgba(255,51,85,0.4); letter-spacing: .05em; margin-bottom: 6px; text-align: center; }
+  .forensics-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 16px; margin-bottom: 16px; }
+  .forensics-panel-title { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
+  .timeline-entry { display: grid; grid-template-columns: 22px 1fr; gap: 10px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .timeline-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .timeline-num { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); padding-top: 2px; }
+  .timeline-date { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-bottom: 2px; }
+  .timeline-choice { font-family: var(--font-body); font-size: 14px; color: var(--text-primary); margin-bottom: 4px; }
+  .timeline-impact { display: flex; gap: 4px; flex-wrap: wrap; }
+  .timeline-leg { font-family: var(--font-mono); font-size: 8px; padding: 1px 6px; border-radius: 2px; background: rgba(0,229,204,0.1); color: var(--accent-dim); margin-right: 4px; }
+
+  /* Forensics CER */
+  .cer-framework { display: grid; gap: 10px; margin-bottom: 16px; }
+  .cer-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
+  .cer-section-label { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
+  .cer-section-prompt { font-family: var(--font-body); font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+  .claim-label { color: var(--red); }
+  .evidence-label { color: var(--amber); }
+  .reasoning-label { color: var(--purple); }
+
+  /* Checkpoint selector */
+  .checkpoint-selector { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 14px; margin-bottom: 16px; }
+  .checkpoint-select { background: var(--bg-card2); border: 1px solid var(--border-bright); border-radius: 4px; color: var(--text-secondary); font-family: var(--font-mono); font-size: 11px; padding: 8px 10px; width: 100%; margin-top: 8px; cursor: pointer; }
+
+  /* Forensics gate */
+  .forensics-gate { background: rgba(255,51,85,0.06); border: 1px solid rgba(255,51,85,0.25); border-radius: 6px; padding: 14px; margin-bottom: 16px; text-align: center; }
+  .forensics-gate-text { font-family: var(--font-mono); font-size: 11px; color: var(--red); line-height: 1.6; margin-bottom: 12px; }
+  .forensics-gate-btn { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: .08em; padding: 10px 20px; border-radius: 4px; border: 1px solid rgba(255,51,85,0.4); cursor: pointer; background: transparent; color: var(--red); transition: all 0.2s; }
+  .forensics-gate-btn:hover { background: rgba(255,51,85,0.08); }
+  .forensics-gate-btn.unlocked { border-color: rgba(0,255,136,0.4); color: var(--green); }
+  .forensics-gate-btn.unlocked:hover { background: rgba(0,255,136,0.08); }
+
+  /* ===================== MODALS ===================== */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.82); z-index: 100; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+  .modal-overlay.visible { display: flex; }
+  .modal { background: var(--bg-panel); border: 1px solid var(--border-bright); border-radius: 8px; padding: 26px; max-width: 480px; width: 90%; }
+  .modal-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--accent); letter-spacing: .05em; margin-bottom: 14px; }
+  .modal-body { font-family: var(--font-body); font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+  .extinction-modal .modal-title { color: var(--red); }
+
+  /* TOAST */
+  .toast { position: fixed; bottom: 20px; right: 20px; background: var(--bg-card); border: 1px solid var(--border-bright); border-radius: 6px; padding: 10px 16px; font-family: var(--font-mono); font-size: 11px; color: var(--accent); z-index: 200; transform: translateY(60px); opacity: 0; transition: all 0.3s; }
+  .toast.visible { transform: translateY(0); opacity: 1; }
+  .toast.success { border-color: rgba(0,255,136,0.4); color: var(--green); }
+  .toast.error { border-color: rgba(255,51,85,0.4); color: var(--red); }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 2px; }
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ===================== SETUP ===================== -->
+<div id="screen-setup" class="screen active">
+  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
+    <div style="width:100%;max-width:600px">
+      <div class="mission-label" style="margin-bottom:8px">Mission Control — Campaign 2 Configuration</div>
+      <div class="setup-title">THE LIGHTHOUSE</div>
+      <div style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);margin-bottom:2rem">Global Science Recovery Agency · Long-Range Science Vessel Meridian</div>
+      <div style="margin-bottom:16px">
+        <label class="form-label">Your Name</label>
+        <input type="text" class="form-input" id="setup-teacher" placeholder="e.g. Ms. Rodriguez" />
+      </div>
+      <div style="margin-bottom:16px">
+        <label class="form-label">Name Your Three Classes</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:14px">
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Class 1</div>
+            <input type="text" class="form-input" id="setup-class1" placeholder="e.g. Period 1" />
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:14px">
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Class 2</div>
+            <input type="text" class="form-input" id="setup-class2" placeholder="e.g. Period 3" />
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:14px">
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Class 3</div>
+            <input type="text" class="form-input" id="setup-class3" placeholder="e.g. Period 5" />
+          </div>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <label class="form-label">GAIA Status — Did this class bring GAIA from the Prometheus?</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px">
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:8px">Class 1</div>
+            <select class="day-jump-select" id="setup-gaia1">
+              <option value="aboard">GAIA aboard Meridian</option>
+              <option value="signal">GAIA on Prometheus (signal)</option>
+            </select>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px">
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:8px">Class 2</div>
+            <select class="day-jump-select" id="setup-gaia2">
+              <option value="aboard">GAIA aboard Meridian</option>
+              <option value="signal">GAIA on Prometheus (signal)</option>
+            </select>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px">
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:8px">Class 3</div>
+            <select class="day-jump-select" id="setup-gaia3">
+              <option value="aboard">GAIA aboard Meridian</option>
+              <option value="signal">GAIA on Prometheus (signal)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="completeSetup()">
+        Initialize Mission Control — The Lighthouse →
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== HOME ===================== -->
+<div id="screen-home" class="screen">
+  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
+    <div style="width:100%;max-width:960px">
+      <div style="text-align:center;margin-bottom:2.5rem">
+        <div class="mission-label">Global Science Recovery Agency — Mission Control</div>
+        <div class="mission-title">THE LIGHTHOUSE</div>
+        <div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);letter-spacing:.1em;text-transform:uppercase">Earth & Space Science Campaign · Teacher Dashboard</div>
+      </div>
+      <div class="class-grid" id="class-grid"></div>
+      <div class="home-actions">
+        <button class="btn btn-green" id="btn-reveal" onclick="launchReveal()" disabled>◈ Open Today's Reveal</button>
+        <button class="btn btn-primary" id="btn-launch" onclick="launchMission()" disabled>▶ Launch Mission Screen</button>
+        <button class="btn btn-secondary" onclick="showForensics()">⬡ Mission Forensics</button>
+        <button class="btn btn-secondary" onclick="showSetup()">◈ Settings</button>
+        <button class="btn btn-danger" onclick="confirmReset()">↺ Reset to Checkpoint</button>
+        <button class="btn btn-danger" onclick="confirmFullReset()">✕ Full Reset Class</button>
+      </div>
+      <div class="system-time" id="system-time"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== REVEAL ===================== -->
+<div id="screen-reveal" class="screen">
+  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
+    <div style="width:100%;max-width:700px">
+      <div class="mission-label" style="text-align:center;margin-bottom:8px" id="reveal-class-label">—</div>
+      <div class="reveal-title">RESULTS ARE IN.</div>
+      <div class="reveal-subtitle">Your decision has been processed. Here is what happened.</div>
+      <div class="reveal-recap">
+        <div class="reveal-recap-label">Last Class — The Crew Decided</div>
+        <div class="reveal-recap-text" id="reveal-choice-recap">—</div>
+      </div>
+      <div class="reveal-gaia-box">
+        <div class="gaia-header" style="margin-bottom:10px">
+          <div class="gaia-dot"></div>
+          <div class="gaia-label">GAIA — Consequence Report</div>
+        </div>
+        <div class="reveal-gaia-text" id="reveal-gaia-text">Loading consequence data...</div>
+      </div>
+      <div class="stat-changes" id="reveal-stat-changes"></div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="proceedFromReveal()">▶ Continue to Today's Mission</button>
+        <button class="btn btn-secondary" onclick="goHome()">⌂ Back to Dashboard</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MISSION SCREEN ===================== -->
+<div id="screen-mission" class="screen">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-title">THE LIGHTHOUSE</div>
+      <div class="topbar-tag" id="topbar-period">—</div>
+      <div class="topbar-tag" id="topbar-leg" style="color:var(--accent-dim)">—</div>
+    </div>
+    <div class="topbar-right">
+      <div class="timer-widget">
+        <div class="timer-readout idle" id="topbar-timer" onclick="focusTimer()">--:--</div>
+        <button class="timer-micro-btn" onclick="addTimeTopbar(2)">+2m</button>
+        <button class="timer-micro-btn" onclick="addTimeTopbar(5)">+5m</button>
+        <button class="timer-micro-btn" onclick="stopTimer()">■</button>
+      </div>
+      <button class="topbar-btn pres-btn" id="pres-btn" onclick="togglePresMode()">⊞ Present</button>
+      <button class="topbar-btn save-btn" onclick="saveCurrentClass()">💾 Save</button>
+      <button class="topbar-btn" onclick="goHome()">⌂ Home</button>
+    </div>
+  </div>
+
+  <!-- DAY TYPE BANNER -->
+  <div class="day-type-banner" id="day-type-banner">
+    <span class="day-type-badge badge-choice" id="day-type-badge">⚡ Choice Day</span>
+    <span class="day-type-desc" id="day-type-desc">Day 1 of 10</span>
+  </div>
+
+  <!-- PRESENTATION STATS BAR -->
+  <div id="pres-stats-bar" style="display:none;background:var(--bg-panel);border-bottom:1px solid var(--border);padding:6px 40px;gap:24px;align-items:center;flex-shrink:0">
+    <div class="pres-stat">
+      <span class="pres-stat-label">🧭 Nav</span>
+      <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-nav-bar" style="background:var(--stat-nav)"></div></div>
+      <span class="pres-stat-val" id="pres-nav-val" style="color:var(--stat-nav)">—</span>
+    </div>
+    <div class="pres-stat">
+      <span class="pres-stat-label">☀️ Solar</span>
+      <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-solar-bar" style="background:var(--stat-solar)"></div></div>
+      <span class="pres-stat-val" id="pres-solar-val" style="color:var(--stat-solar)">—</span>
+    </div>
+    <div class="pres-stat">
+      <span class="pres-stat-label">📡 Signal</span>
+      <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-signal-bar" style="background:var(--stat-signal)"></div></div>
+      <span class="pres-stat-val" id="pres-signal-val" style="color:var(--stat-signal)">—</span>
+    </div>
+    <div class="pres-stat">
+      <span class="pres-stat-label">🌍 Earth</span>
+      <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-earth-bar" style="background:var(--stat-earth)"></div></div>
+      <span class="pres-stat-val" id="pres-earth-val" style="color:var(--stat-earth)">—</span>
+    </div>
+  </div>
+
+  <div class="mission-layout">
+    <!-- LEFT PANEL -->
+    <div class="panel-stats">
+      <div>
+        <div class="panel-label">Mission Dashboard</div>
+        <div class="stat-item stat-nav">
+          <div class="stat-header"><div class="stat-name">🧭 Navigation</div><div class="stat-value" id="stat-nav-val">100%</div></div>
+          <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-nav-bar" style="width:100%"></div></div>
+          <div class="stat-sublabel" id="stat-nav-status">Course nominal</div>
+        </div>
+        <div class="stat-item stat-solar">
+          <div class="stat-header"><div class="stat-name">☀️ Solar Power</div><div class="stat-value" id="stat-solar-val">100%</div></div>
+          <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-solar-bar" style="width:100%"></div></div>
+          <div class="stat-sublabel" id="stat-solar-status">Collection optimal</div>
+        </div>
+        <div class="stat-item stat-signal">
+          <div class="stat-header"><div class="stat-name">📡 Signal</div><div class="stat-value" id="stat-signal-val">40%</div></div>
+          <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-signal-bar" style="width:40%"></div></div>
+          <div class="stat-sublabel" id="stat-signal-status">Lighthouse signal faint</div>
+        </div>
+        <div class="stat-item stat-earth">
+          <div class="stat-header"><div class="stat-name">🌍 Earth Status</div><div class="stat-value" id="stat-earth-val">70%</div></div>
+          <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-earth-bar" style="width:70%"></div></div>
+          <div class="stat-sublabel" id="stat-earth-status">Atmosphere elevated</div>
+        </div>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="failure-counter">
+        <div class="panel-label">Mission Failures</div>
+        <div class="failure-dots">
+          <div class="failure-dot" id="fdot-0"></div>
+          <div class="failure-dot" id="fdot-1"></div>
+          <div class="failure-dot" id="fdot-2"></div>
+        </div>
+        <div class="restriction-notice" id="restriction-notice" style="display:none"></div>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div>
+        <div class="panel-label">Mission Path</div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:5px;padding:9px 11px">
+          <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);line-height:1.6" id="branch-path">Leg 1 · <span style="color:var(--accent)">Branch A</span> · Day 1</div>
+        </div>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div>
+        <div class="panel-label">Recent Decisions</div>
+        <div id="decision-log-entries">
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);font-style:italic">No decisions yet.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CENTER PANEL -->
+    <div class="panel-story">
+      <div class="story-content">
+        <div class="phase-bar">
+          <div class="phase-step active" data-phase="story" onclick="setPhase('story')">1 · Scenario</div>
+          <div class="phase-step" data-phase="exit" onclick="setPhase('exit')">2 · Exit Ticket</div>
+          <div class="phase-step" data-phase="discuss" onclick="setPhase('discuss')">3 · Discussion</div>
+          <div class="phase-step" data-phase="vote" onclick="setPhase('vote')">4 · Final Vote</div>
+        </div>
+
+        <div class="leg-label" id="content-leg-label">Leg 1 · Gravity</div>
+        <div class="leg-title" id="content-leg-title">Loading...</div>
+        <div class="leg-divider"></div>
+
+        <!-- PHASE 1: SCENARIO -->
+        <div class="phase-panel active" id="phase-story">
+          <div class="gaia-box">
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label" id="gaia-transmission-label">GAIA — Transmission</div></div>
+            <div class="gaia-text" id="content-gaia">Establishing connection...</div>
+          </div>
+          <div class="scenario-text" id="content-scenario"></div>
+          <div id="content-extra"></div>
+        </div>
+
+        <!-- PHASE 2: EXIT TICKET -->
+        <div class="phase-panel" id="phase-exit">
+          <div id="exit-prompt-display" style="background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.25);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px;display:none">
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Today's Exit Ticket Prompt</div>
+            <div id="exit-prompt-text" style="font-family:var(--font-body);font-size:18px;color:var(--text-primary);line-height:1.7"></div>
+          </div>
+          <div class="timer-phase-box">
+            <div class="timer-phase-title" id="exit-phase-title">Exit Ticket</div>
+            <div class="timer-phase-desc" id="exit-phase-desc">Students complete their individual CER Google Form.<br><strong style="color:var(--text-primary)">Claim:</strong> Which choice should the crew make?<br><strong style="color:var(--text-primary)">Evidence:</strong> What from today's reading supports this?<br><strong style="color:var(--text-primary)">Reasoning:</strong> How does your evidence connect to your claim?</div>
+            <div class="big-timer idle" id="exit-timer-display">--:--</div>
+            <div class="timer-set-row">
+              <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">Minutes:</span>
+              <input type="number" class="timer-input-inline" id="exit-timer-input" value="8" min="1" max="30" />
+              <button class="timer-start-btn" onclick="startPhaseTimer('exit')">▶ Start</button>
+              <button class="timer-stop-btn" onclick="stopTimer()">■ Stop</button>
+            </div>
+            <div class="timer-controls">
+              <button class="timer-add-btn" onclick="addTime(2)">+ 2 min</button>
+              <button class="timer-add-btn" onclick="addTime(5)">+ 5 min</button>
+            </div>
+            <div class="timer-done-msg" id="exit-timer-done">"Time. Please submit your forms now. We will review the evidence as a crew."</div>
+          </div>
+          <div class="gaia-box">
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — To The Crew</div></div>
+            <div class="gaia-text">Before we decide as a crew, each of you must commit your own thinking. What do you believe? What evidence supports it? What is your reasoning? Science begins with individual thought before collective decision.</div>
+          </div>
+        </div>
+
+        <!-- PHASE 3: DISCUSSION -->
+        <div class="phase-panel" id="phase-discuss">
+          <div id="discuss-prompt-display" style="background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.25);border-left:3px solid var(--purple);border-radius:6px;padding:14px 16px;margin-bottom:14px;display:none">
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--purple);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Today's Discussion Guide</div>
+            <div id="discuss-prompt-text" style="font-family:var(--font-body);font-size:18px;color:var(--text-primary);line-height:1.7"></div>
+          </div>
+          <div class="timer-phase-box">
+            <div class="timer-phase-title">Class Discussion</div>
+            <div class="timer-phase-desc">Scientists share evidence and challenge each other's reasoning. New information may change your position — and that is not weakness. That is science.</div>
+            <div class="big-timer idle" id="discuss-timer-display">--:--</div>
+            <div class="timer-set-row">
+              <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">Minutes:</span>
+              <input type="number" class="timer-input-inline" id="discuss-timer-input" value="5" min="1" max="30" />
+              <button class="timer-start-btn" onclick="startPhaseTimer('discuss')">▶ Start</button>
+              <button class="timer-stop-btn" onclick="stopTimer()">■ Stop</button>
+            </div>
+            <div class="timer-controls">
+              <button class="timer-add-btn" onclick="addTime(2)">+ 2 min</button>
+              <button class="timer-add-btn" onclick="addTime(5)">+ 5 min</button>
+            </div>
+            <div class="timer-done-msg" id="discuss-timer-done">"The evidence has been heard. Scientists consider new information before deciding. Are you ready for the final vote?"</div>
+          </div>
+          <div class="gaia-box">
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — Discussion Guide</div></div>
+            <div class="gaia-text">A good scientific argument requires three things: a clear claim, specific evidence, and reasoning that connects them. As you listen — do their arguments hold up? Does their evidence actually support their claim?</div>
+          </div>
+        </div>
+
+        <!-- PHASE 4: FINAL VOTE -->
+        <div class="phase-panel" id="phase-vote">
+          <div class="gaia-box">
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — Final Vote</div></div>
+            <div class="gaia-text">"New information has been presented. In accordance with scientific protocol — <em>we reconsider</em>. This is the crew's official decision. It will be logged. It will have consequences. Choose carefully."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHOICES -->
+      <div class="choices-area" id="choices-area">
+        <div class="choices-label" id="choices-label">Crew Decision — Phase 4: Official Vote</div>
+        <div class="choices-restricted" id="choices-restricted" style="display:none">⚠ GAIA: "Given our track record, I've limited your options to the most viable paths."</div>
+        <div class="choice-grid" id="choice-grid"></div>
+        <div class="commit-row">
+          <button class="btn-commit" id="btn-commit" onclick="openCommitModal()" disabled>✓ Lock In Decision</button>
+          <div class="commit-note" id="commit-note">Select the crew's official choice, then lock it in.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="panel-right">
+      <div>
+        <div class="panel-label">GAIA Status</div>
+        <div id="gaia-alerts">
+          <div class="gaia-alert"><div class="gaia-alert-text">"All systems monitored. Awaiting crew input."</div></div>
+        </div>
+      </div>
+      <div class="divider-line"></div>
+      <div>
+        <div class="panel-label">Daily Flow</div>
+        <button class="nav-btn" onclick="setPhase('story')">1 · Scenario / Lesson</button>
+        <button class="nav-btn" onclick="setPhase('exit')">2 · Exit Ticket Timer</button>
+        <button class="nav-btn" onclick="setPhase('discuss')">3 · Discussion Timer</button>
+        <button class="nav-btn" onclick="setPhase('vote')">4 · Final Vote</button>
+      </div>
+      <div class="divider-line"></div>
+      <div>
+        <div class="panel-label">Jump to Day</div>
+        <select class="day-jump-select" id="day-jump-select" onchange="jumpToDay(this.value)">
+          <option value="">— Jump to Day —</option>
+        </select>
+      </div>
+      <div class="divider-line"></div>
+      <div>
+        <div class="panel-label">Mission Control</div>
+        <button class="nav-btn" onclick="saveCurrentClass()">💾 Save Progress</button>
+        <button class="nav-btn" onclick="showForensics()">⬡ Mission Forensics</button>
+        <button class="nav-btn danger" onclick="triggerExtinction()">☠ Branch Extinction</button>
+        <button class="nav-btn" onclick="goHome()">⌂ Dashboard</button>
+      </div>
+      <div class="divider-line"></div>
+      <div>
+        <div class="panel-label">Story Navigation</div>
+        <button class="nav-btn" id="btn-next-day" onclick="advanceToNextDay()">▶ Next Day</button>
+        <button class="nav-btn" onclick="goToReveal()">◈ Show Reveal Screen</button>
+      </div>
+      <div class="divider-line"></div>
+      <div id="teacher-note-panel"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PROCESSING ===================== -->
+<div id="screen-processing" class="screen">
+  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
+    <div style="width:100%;max-width:600px;text-align:center">
+      <div class="processing-icon">⚙</div>
+      <div class="processing-title">DECISION LOGGED</div>
+      <div class="processing-subtitle">The Meridian has registered the crew's command.</div>
+      <div class="processing-gaia">
+        <div class="gaia-header" style="margin-bottom:10px"><div class="gaia-dot"></div><div class="gaia-label">GAIA</div></div>
+        <div class="processing-gaia-text" id="processing-gaia-msg">"Selection received. I am... processing the implications. The ship's systems have registered your decision and are responding accordingly. Whether that response is favorable — well. You'll find out next class."</div>
+      </div>
+      <div class="processing-choice-recap">
+        <div class="processing-choice-label">The Crew's Decision</div>
+        <div class="processing-choice-text" id="processing-choice-text">—</div>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:center;margin-bottom:28px;flex-wrap:wrap">
+        <div class="processing-stat-chip">🧭 Navigation — classified</div>
+        <div class="processing-stat-chip">☀️ Solar Power — classified</div>
+        <div class="processing-stat-chip">📡 Signal — classified</div>
+        <div class="processing-stat-chip">🌍 Earth Status — classified</div>
+      </div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);text-align:center;margin-bottom:24px;line-height:1.6">
+        Stat changes are pending until next class reveal.<br>Save now and find out what happened tomorrow.
+      </div>
+      <div style="display:flex;gap:12px;justify-content:center">
+        <button class="btn btn-green" onclick="saveAndGoHome()">💾 Save &amp; Return to Dashboard</button>
+        <button class="btn btn-secondary" onclick="continueMission()">▶ Stay on Mission Screen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ENHANCED FORENSICS ===================== -->
+<div id="screen-forensics" class="screen">
+  <div style="display:flex;align-items:center;justify-content:flex-start;min-height:100vh;padding:2rem;flex-direction:column">
+    <div style="width:100%;max-width:860px">
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <div class="mission-label" style="margin-bottom:8px">Post-Mortem Analysis</div>
+        <div class="forensics-title">MISSION DEBRIEF</div>
+      </div>
+
+      <div class="gaia-alert" style="margin-bottom:1.5rem">
+        <div class="gaia-alert-text" id="forensics-gaia-text">"The mission has encountered a critical failure. Before we reset, we owe it to the Meridian crew to understand what happened — and why. Every decision that led here will be examined."</div>
+      </div>
+
+      <!-- FORENSICS GATE -->
+      <div class="forensics-gate" id="forensics-gate">
+        <div class="forensics-gate-text" id="forensics-gate-text">
+          Complete the forensic analysis below before the checkpoint becomes available.<br>
+          Review the full decision timeline. Examine the stat trajectory. Complete your CER in the Google Form.<br>
+          Then confirm completion to unlock the checkpoint reset.
+        </div>
+        <button class="forensics-gate-btn" id="forensics-gate-btn" onclick="confirmForensicsComplete()">
+          ✓ We Have Completed the Forensic Analysis — Unlock Checkpoint
+        </button>
+      </div>
+
+      <!-- PANEL 1: FULL DECISION TIMELINE -->
+      <div class="forensics-panel">
+        <div class="forensics-panel-title">Complete Decision Timeline — All Legs (most recent first)</div>
+        <div id="timeline-entries"></div>
+      </div>
+
+      <!-- PANEL 2: STAT TRAJECTORY GRAPH -->
+      <div class="forensics-panel">
+        <div class="forensics-panel-title">Stat Trajectory — Your Decisions Made This Graph</div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:10px;line-height:1.6">
+          "This is not a graph about the ship. This is a graph about your decisions. Every point on these lines is a choice you made. Find the moment each line changed direction — that is where the answer is."
+        </div>
+        <div id="forensics-trajectory-graph"></div>
+      </div>
+
+      <!-- PANEL 3: CER FORENSICS -->
+      <div class="cer-framework">
+        <div class="cer-section">
+          <div class="cer-section-label claim-label">CLAIM</div>
+          <div class="cer-section-prompt">Which specific decision started the chain of events that led to mission failure? Name the Leg and Day. One clear sentence.</div>
+        </div>
+        <div class="cer-section">
+          <div class="cer-section-label evidence-label">EVIDENCE</div>
+          <div class="cer-section-prompt">What does the stat trajectory graph show about when things changed? Which stat dropped first, and on which day? Point to the specific decision in the timeline above.</div>
+        </div>
+        <div class="cer-section">
+          <div class="cer-section-label reasoning-label">REASONING</div>
+          <div class="cer-section-prompt">Why did that decision have the consequences it did? Connect the science — what did you know about gravity, orbits, solar energy, or Earth's systems that should have guided a different choice? What will the crew do differently?</div>
+        </div>
+      </div>
+
+      <!-- CHECKPOINT SELECTOR -->
+      <div class="checkpoint-selector" id="checkpoint-selector" style="display:none">
+        <div class="panel-label">Select Checkpoint to Reset To</div>
+        <div style="font-family:var(--font-body);font-size:13px;color:var(--text-secondary);margin-bottom:8px;line-height:1.5">Choose how far back to roll. If the stat trajectory shows the problem started in Leg 1, roll back to Leg 1. If it started in Leg 3, roll back to Leg 3 Day 1.</div>
+        <select class="checkpoint-select" id="checkpoint-select">
+          <option value="">— Select checkpoint —</option>
+        </select>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button class="btn btn-danger" onclick="executeSelectedReset()">↺ Reset to Selected Checkpoint</button>
+          <button class="btn btn-secondary" onclick="goHome()">⌂ Return to Dashboard</button>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px" id="forensics-actions">
+        <button class="btn btn-secondary" onclick="resumeMission()">Resume Mission</button>
+        <button class="btn btn-secondary" onclick="goHome()">⌂ Dashboard</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .app -->
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-commit">
+  <div class="modal">
+    <div class="modal-title">Lock In Crew Decision</div>
+    <div class="modal-body" id="commit-modal-body">Confirm the crew's official vote.</div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('modal-commit')">← Reconsider</button>
+      <button class="btn btn-green" onclick="executeCommit()">✓ Confirmed — Log Decision</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-extinction">
+  <div class="modal extinction-modal">
+    <div class="modal-title">☠ BRANCH EXTINCTION</div>
+    <div class="modal-body" id="extinction-modal-body">The mission has encountered a critical failure. The Meridian crew has survived — but the mission objectives are compromised.<br><br>Before any reset is available, Mission Control requires a complete forensic analysis. Every decision that led here will be reviewed.</div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('modal-extinction')">← Stay on Mission</button>
+      <button class="btn btn-danger" onclick="confirmExtinction()">→ Begin Forensic Analysis</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-reset">
+  <div class="modal">
+    <div class="modal-title">Reset to Checkpoint</div>
+    <div class="modal-body" id="reset-modal-body">Reset this class to the last leg checkpoint?</div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('modal-reset')">Cancel</button>
+      <button class="btn btn-danger" onclick="executeReset()">Reset to Checkpoint</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-full-reset">
+  <div class="modal">
+    <div class="modal-title">Full Class Reset</div>
+    <div class="modal-body" id="full-reset-modal-body">This will wipe ALL progress for this class and restart from Leg 1, Day 1. This cannot be undone.</div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('modal-full-reset')">Cancel</button>
+      <button class="btn btn-danger" onclick="executeFullReset()">Full Reset</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// STORAGE
+// ============================================================
+const STORAGE_KEY = 'lighthouse_v1';
+
+// ============================================================
+// STATE
+// ============================================================
+let state = {
+  configured: false,
+  teacher: '',
+  classes: [
+    { id:0, name:'Period 1', gaiaStatus:'aboard', leg:1, day:1, branch:'A', failures:0,
+      stats:{nav:100, solar:100, signal:40, earth:70},
+      pendingDeltas:null, pendingChoiceText:null, pendingChoiceLetter:null, pendingConsequence:null,
+      decisions:[], checkpoints:[],
+      forensicsComplete:false },
+    { id:1, name:'Period 3', gaiaStatus:'aboard', leg:1, day:1, branch:'A', failures:0,
+      stats:{nav:100, solar:100, signal:40, earth:70},
+      pendingDeltas:null, pendingChoiceText:null, pendingChoiceLetter:null, pendingConsequence:null,
+      decisions:[], checkpoints:[],
+      forensicsComplete:false },
+    { id:2, name:'Period 5', gaiaStatus:'aboard', leg:1, day:1, branch:'A', failures:0,
+      stats:{nav:100, solar:100, signal:40, earth:70},
+      pendingDeltas:null, pendingChoiceText:null, pendingChoiceLetter:null, pendingConsequence:null,
+      decisions:[], checkpoints:[],
+      forensicsComplete:false }
+  ],
+  activeClass: null,
+  selectedHomeClass: null,
+  selectedChoice: null,
+  pendingCommit: null,
+  currentPhase: 'story'
+};
+
+// Timer module-level
+let _timerSeconds = 0;
+let _timerRunning = false;
+let _timerInterval = null;
+let _activeTimerPhase = null;
+let _gaiaBlockIndex = 0;
+
+const GAIA_BLOCK_MESSAGES = [
+  "Results pending. I would recommend finding out what happened before making new decisions.",
+  "The crew voted. Something happened. You have not reviewed it yet. Perhaps do that first.",
+  "I have the consequence data ready. It has been ready. I am waiting patiently."
+];
+
+// ============================================================
+// CONTENT — THE LIGHTHOUSE CAMPAIGN
+// ============================================================
+const CONTENT = {
+  legs: [
+    // ============================================================
+    // LEG 1 — GRAVITY
+    // Standard: 6.P2U1.4
+    // Savvas: Forces, Chapter 2 (Topic 2) Lessons 1 & 2,
+    //         parts of Chapter 1 (Topic 1) Lesson 4
+    // Guiding Questions:
+    //   What factors affect gravity?
+    //   How are gravity and friction related to motion and energy?
+    // Vocab: weight | Academic: associate
+    // Spiral review: gravitational potential energy, kinetic energy, force field
+    // Graph: bar graph (mass vs gravitational force) + data table
+    //        second graph: distance vs gravitational force (inverse relationship)
+    // Story: navigation anomaly Day 1, GAIA signal Day 3 (left-behind classes),
+    //        source confirmed artificial Day 9, Lighthouse confirmed Day 10
+    // Calculation: qualitative only — F=Gm1m2/d² acknowledged but not solved
+    // Friction: background context only
+    // ============================================================
+    {
+      id:1, label:'Leg 1 · Gravity', standard:'6.P2U1.4',
+      days:[
+
+        // ── DAY 1 ── CHOICE · Cold Open ──────────────────────────
+        {
+          day:1, type:'choice', isReveal:false,
+          legLabel:'Leg 1 · Gravity',
+          legTitle:'Something Is Pulling Us Off Course',
+          gaia:'The Meridian launched on schedule. Trajectory was nominal for the first fourteen hours. Then the navigation system flagged an anomaly. We are being pulled — slightly, but measurably — off our planned course. Something ahead of us has a gravitational field strong enough to affect our trajectory from this distance. I have run the calculations three times. Whatever is out there has significant mass. And it is in exactly the direction the signal is coming from.',
+          gaiaAboard:'The Meridian launched on schedule. Trajectory was nominal for the first fourteen hours. Then the navigation system flagged an anomaly. We are being pulled — slightly, but measurably — off our planned course. Something ahead of us has a gravitational field strong enough to affect our trajectory from this distance. I have run the calculations three times. Whatever is out there has significant mass. And it is in exactly the direction the signal is coming from.',
+          gaiaSignal:'The Meridian launched on schedule. Standard ship AI is handling navigation. Fourteen hours in, the navigation system flagged an anomaly — a measurable gravitational pull from ahead, in the direction of the signal. Ship AI is analyzing. More information as it becomes available. GAIA transmission will be attempted on Day 3.',
+          scenario:'The crew gathers at the navigation console. The deviation is small — less than 0.3 degrees off the original heading — but in deep space, a 0.3-degree error compounds over millions of kilometers. Left uncorrected, the Meridian will miss its target entirely.\n\nThe navigation system has identified two possible explanations: a large uncharted asteroid with sufficient mass to create a detectable gravitational field, or something artificial — something built to stay in a fixed position. Natural objects drift. This one is not drifting.\n\nTo understand what is pulling the ship and whether to correct course or follow the pull, the crew needs to understand what creates gravitational force — and what factors determine how strong it is. Today\'s reading is not optional. The answer to the navigation question is in it.',
+          exitTicketPrompt:'What two factors determine how strong a gravitational force is between two objects? Use the Meridian\'s navigation anomaly as your example — explain what that tells you about whatever is pulling the ship. Make your claim: should the crew correct course back to the original heading, follow the gravitational pull toward its source, or hold position and gather more data first? Explain how what you know about gravitational force supports your choice.',
+          discussionPrompt:'The navigation anomaly is pulling the Meridian toward the same location the signal is coming from. What does that tell you? If gravitational force depends on mass, what does the strength of the pull tell you about the mass of whatever is out there? Use evidence from today\'s reading about what factors affect gravity.',
+          choices:[
+            {
+              letter:'A',
+              text:'Follow the gravitational pull — whatever has enough mass to pull us off course from this distance is worth investigating.',
+              subtext:'The pull and the signal are coming from the same place. That is not a coincidence.',
+              deltas:{nav:5, solar:-3, signal:8, earth:0},
+              branch:'A-follow',
+              consequence:'The decision to follow the pull rather than fight it turns out to be efficient — the Meridian\'s engines work with the gravitational field instead of against it, conserving solar power. Navigation accuracy improves as the crew learns to read the gravitational field like a current. Signal clarity increases as they move toward the source. GAIA: "A gravitational field radiates outward from a massive object in all directions. You chose to move along the field lines rather than across them. That is, scientifically speaking, the path of least resistance. Well reasoned."'
+            },
+            {
+              letter:'B',
+              text:'Correct course back to the original heading — stay on the planned trajectory until we understand what is pulling us.',
+              subtext:'An uncharted gravitational source is a navigation hazard until we know its mass and position.',
+              deltas:{nav:0, solar:-8, signal:3, earth:0},
+              branch:'B-correct',
+              consequence:'Correcting course costs solar power — the engines work against the gravitational pull constantly. Navigation stays precise by the numbers, but the crew is essentially fighting a force they do not yet understand. GAIA: "Gravitational force is continuous. It does not stop because you have decided to go a different direction. The Meridian is burning power to maintain heading against a persistent pull. I am not saying this was wrong. I am saying it has a cost. Understanding the force acting on us would help us manage it more efficiently."'
+            },
+            {
+              letter:'C',
+              text:'Hold position and gather data — take readings on the gravitational field before making any course decision.',
+              subtext:'You cannot make a good navigation decision without knowing the mass and distance of the source.',
+              deltas:{nav:2, solar:-4, signal:12, earth:0},
+              branch:'C-hold',
+              consequence:'Holding position while gathering gravitational field data produces the most complete picture of the anomaly. The crew maps the field strength at multiple distances, begins calculating the approximate mass of the source, and confirms it is stationary — not drifting like a natural object would. Signal clarity jumps as the crew fine-tunes antenna direction toward the gravitational source. GAIA: "Good scientific instinct. Measure before you act. The data confirms the source is stationary, which means it is not a rogue asteroid. Natural objects at this distance do not stay still. Something is keeping it there. Or someone built it that way."'
+            }
+          ]
+        },
+
+        // ── DAY 2 ── DEEPEN · Reading Day ────────────────────────
+        {
+          day:2, type:'deepen', isReveal:true,
+          legLabel:'Leg 1 · Gravity',
+          legTitle:'What Creates Gravitational Force',
+          gaia:'Yesterday the crew made a navigation decision based on a gravitational anomaly. Today we go deeper into the science behind it. Every object with mass creates a gravitational field — a region of space where other masses feel a force pulling them closer. The strength of that force depends on two things: the masses of both objects, and the distance between them. More mass means more force. More distance means less force. Understanding these relationships is how the crew will navigate everything that comes next on this mission.',
+          gaiaAboard:'Yesterday the crew made a navigation decision based on a gravitational anomaly. Today we go deeper into the science behind it. Every object with mass creates a gravitational field — a region of space where other masses feel a force pulling them closer. The strength of that force depends on two things: the masses of both objects, and the distance between them. More mass means more force. More distance means less force. Understanding these relationships is how the crew will navigate everything that comes next on this mission.',
+          gaiaSignal:'The Meridian\'s standard navigation AI is still tracking the anomaly. We have not yet established contact with GAIA. Today\'s reading covers the science the crew needs — focus on what factors affect gravitational force, and what a gravitational field actually is.',
+          gaiaRecall:'You already know that gravitational potential energy depends on an object\'s height and mass — you learned this during the Conversion Loop investigation on the Prometheus. GPE increases when an object is higher in a gravitational field. Today you will learn what creates that gravitational field in the first place. The force that GAVE those objects their potential energy on the Prometheus — that is what we are studying today.',
+          scenario:'GAIA assigns the reading — gravitational force, force fields, and the factors that affect both. The crew\'s task is to connect every concept to the navigation anomaly. Whatever is pulling the Meridian off course, the reading explains exactly why it can do that from a distance.',
+          readingFocus:'Savvas Forces, Chapter 2 (Topic 2) Lesson 1 — Gravity. Focus: What factors affect gravitational force? What is a gravitational field? How does distance affect the force between two objects?',
+          gaiaReadingPrompt:'"Two factors. Mass and distance. Every gravitational calculation, every orbit, every navigation decision in space comes back to these two variables. More mass — stronger pull. Greater distance — weaker pull. Your reading today explains why. I want you to pay particular attention to the section on gravitational fields — the idea that a massive object does not have to be touching something to affect it. Gravity acts at a distance. That is not intuitive, but it is real. The Meridian is experiencing it right now."',
+          vocabFocus:['gravitational force','gravitational field','weight','mass'],
+          spiralReview:'gravitational potential energy — from Campaign 1 Sector 3',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: GAIA has comparison data on gravitational force across different objects. The crew will read a bar graph and a data table together to find the pattern — then GAIA has something to tell classes that left her behind.'
+        },
+
+        // ── DAY 3 ── GRAPH · Bar Graph + Data Table + GAIA Signal ─
+        {
+          day:3, type:'graph', isReveal:false,
+          legLabel:'Leg 1 · Gravity',
+          legTitle:'Reading the Force Data',
+          gaia:'I have compiled gravitational force data for several objects in the solar system — each compared against the Meridian\'s mass as the test object. I want to show you this two ways: as a data table and as a bar graph. The table gives you the precise numbers. The graph lets you see the pattern at a glance. In science you use both — precision and pattern. Today we practice reading both at the same time.',
+          gaiaAboard:'I have compiled gravitational force data for several objects in the solar system — each compared against the Meridian\'s mass as the test object. I want to show you this two ways: as a data table and as a bar graph. The table gives you the precise numbers. The graph lets you see the pattern at a glance. In science you use both — precision and pattern. Today we practice reading both at the same time.',
+          gaiaSignal:'The Meridian\'s navigation AI is presenting today\'s graph data. Additionally — a transmission has been received from the Prometheus\'s last known position. It is GAIA. She has been monitoring the navigation anomaly remotely and has data to share. Patching her through now.',
+          gaiaReunionText:'This is GAIA. I have been monitoring the Meridian\'s navigation data since launch from the Prometheus. I still have full sensor capability from my fixed position. The gravitational anomaly you are experiencing — I have been tracking its source since it first appeared in my long-range sensors four weeks ago. I am transmitting my analysis now. It is good to hear a crew again. I have also been very alone. Now. Let us look at this data together.',
+          scenario:'GAIA displays a data table and a bar graph side by side. The data table lists six objects — the Sun, Jupiter, Earth, the Moon, the Meridian itself, and the unknown anomaly source. For each, it shows the estimated mass and the gravitational force it exerts on a standard 1,000 kg test object at a distance of 1,000 km.\n\nThe bar graph shows the same force values as bars. The pattern is visible immediately in the graph — but the exact numbers require the table.',
+          graphData:{
+            title:'Gravitational Force on a 1,000 kg Object at 1,000 km Distance',
+            teacherNote:'Draw as a bar graph with the data table shown separately below or beside it. Use section colors for bars — assign one color per object, consistent. The key teaching moment: students read the table for exact values, then look at the graph to see the pattern. Sun bar should be dramatically taller than everything else — emphasize this visually.',
+            bars:[
+              {label:'The Sun', value:98, status:'safe'},
+              {label:'Jupiter', value:63, status:'caution'},
+              {label:'Earth', value:40, status:'warning'},
+              {label:'The Moon', value:11, status:'safe'},
+              {label:'Meridian', value:2, status:'safe'},
+              {label:'Anomaly Source', value:31, status:'danger'}
+            ],
+            yLabel:'Relative Gravitational Force',
+            dataTable:[
+              {object:'The Sun', mass:'1.99 × 10³⁰ kg', force:'98 units'},
+              {object:'Jupiter', mass:'1.90 × 10²⁷ kg', force:'63 units'},
+              {object:'Earth', mass:'5.97 × 10²⁴ kg', force:'40 units'},
+              {object:'The Moon', mass:'7.35 × 10²² kg', force:'11 units'},
+              {object:'Meridian', mass:'1.20 × 10⁵ kg', force:'2 units'},
+              {object:'Anomaly Source', mass:'estimated 2.1 × 10²³ kg', force:'31 units'}
+            ],
+            graphAnswers:[
+              {q:'1', a:'The Sun has the greatest gravitational force (98 units). The Meridian has the least (2 units). The pattern is clear in the graph — taller bar = more mass = more gravitational force.'},
+              {q:'2', a:'The anomaly source (31 units) is between Earth and the Moon in gravitational force. Its estimated mass (2.1 × 10²³ kg) is larger than the Moon but smaller than Earth.'},
+              {q:'3', a:'The bar graph shows the pattern quickly — you can see at a glance that the Sun is much stronger than everything else, and that the anomaly is significant. The data table gives exact numbers for calculating and comparing precisely. You need both.'},
+              {q:'4', a:'The anomaly source has more gravitational force than the Moon (31 vs 11 units). If the Moon can affect Earth\'s tides from 384,000 km away, an object with nearly 3x the Moon\'s gravitational force could definitely pull the Meridian off course from a significant distance.'},
+              {q:'5', a:'Yes — if you increased the distance between the Meridian and the anomaly source, the gravitational force pulling the ship would decrease. Greater distance = weaker force. This is why objects far from the Sun are harder to pull into orbit.'}
+            ]
+          },
+          graphQuestions:[
+            '1. Which object has the greatest gravitational force on a 1,000 kg test object? Which has the least? How does the bar graph make this easy to see?',
+            '2. Where does the anomaly source fall in the ranking? Is it closer in force to Earth, the Moon, or Jupiter? Use the data table for the exact comparison.',
+            '3. Why is it useful to show this data as BOTH a table and a bar graph? What does each one give you that the other does not?',
+            '4. The anomaly source has a gravitational force of 31 units. The Moon has 11 units. If the Moon can affect Earth\'s tides from 384,000 km away, what does this tell you about how far the anomaly source could be affecting the Meridian?',
+            '5. According to what you have read about gravitational force and distance: if the Meridian moved farther away from the anomaly source, what would happen to the force pulling the ship? What if it moved closer?'
+          ],
+          gaiaGraphNote:'"Notice what the bar graph tells you that the table does not: the pattern. At a glance you can see the Sun dominates, the anomaly source is significant, and the Meridian itself barely registers. The table tells you the precise numbers — 31 units versus 11 units. You need the pattern to understand the story. You need the numbers to reason precisely. A scientist uses both. Always."',
+          shortDayNote:'Short day: Show graph, ask questions 1 and 3 only. The bar-vs-table comparison is the core skill. Questions 4 and 5 can be warm-up next class.',
+          noChoice:true
+        },
+
+        // ── DAY 4 ── CHOICE · Force Field Investigation ───────────
+        {
+          day:4, type:'choice', isReveal:false,
+          legLabel:'Leg 1 · Gravity',
+          legTitle:'Mapping the Field',
+          gaia:'The data table confirmed it — the anomaly source has approximately 2.8 times the gravitational mass of the Moon. That is significant. Significant enough to create a detectable gravitational field extending millions of kilometers in every direction. A gravitational field is not just a force — it is a region of space where every object with mass experiences a pull toward the source. The crew is currently inside that field. What we do not yet know is how far it extends and whether it is consistent — or whether something about its distribution is unusual.',
+          scenario:'GAIA explains gravitational fields using the Meridian\'s sensor array. A gravitational field can be mapped by measuring how a test object — in this case, the ship itself — experiences force at different positions. By taking readings at multiple locations around the anomaly source, the crew can build a map of the field.\n\nStandard gravitational fields radiate uniformly outward from a massive object — equally strong in all directions at the same distance. Like a sphere of force surrounding the source.\n\nGAIA\'s preliminary readings show something unexpected: the field on the approach side of the source — the side facing the solar system — is slightly stronger than the field on the far side. A uniform mass would not produce this. Something about the distribution of mass inside the source is uneven.\n\nFor a natural object like an asteroid, uneven mass distribution is normal — tumbling, irregular shape. But this source is not tumbling. It is stationary.',
+          exitTicketPrompt:'What is a gravitational field and how does it relate to gravitational force? Use the anomaly source as your example — describe what its gravitational field means for the Meridian\'s navigation. Make your claim: does the uneven field distribution suggest the source is a natural object or something artificial? Use evidence from today\'s reading about how gravitational fields work to support your reasoning.',
+          discussionPrompt:'A natural object like an asteroid would have an uneven mass distribution because of its irregular shape — but it would also be tumbling and drifting. This source is stationary and has an uneven field. What two things does that tell you? Can you think of a reason a stationary object would have uneven mass distribution that a tumbling asteroid would not?',
+          choices:[
+            {
+              letter:'A',
+              text:'Move closer to the source to get better field measurements — the stronger the signal, the more data we collect.',
+              subtext:'Better data requires closer proximity. The risk is manageable given what we know about the field strength.',
+              deltas:{nav:-5, solar:-6, signal:20, earth:0},
+              branch:'A-closer',
+              consequence:'Moving closer dramatically improves signal clarity — the Lighthouse transmission becomes much clearer, and the gravitational field map becomes detailed enough to confirm the uneven distribution is not random. It matches a pattern consistent with a hollow structure — dense outer shell, empty interior, mass concentrated at specific points. Navigation takes a hit as the crew navigates the stronger gravitational field near the source. GAIA: "The field map is extraordinary. The mass distribution is consistent with a constructed object — specifically, a hollow structure with reinforced nodes at regular intervals. No asteroid has this distribution. Something was engineered to have this mass profile."'
+            },
+            {
+              letter:'B',
+              text:'Stay at current distance and take comprehensive readings from multiple angles around the source.',
+              subtext:'A complete map from the current safe distance is more useful than partial data from closer in.',
+              deltas:{nav:2, solar:-8, signal:14, earth:0},
+              branch:'B-map',
+              consequence:'The comprehensive mapping takes longer and costs solar power — moving the ship to multiple positions around the source requires engine use. But the result is the most complete gravitational field map possible from a safe distance. The uneven distribution is confirmed from every angle. GAIA: "The field is asymmetric in a way that rules out random natural formation. Whatever this is, its mass was arranged deliberately. I cannot tell you who arranged it. I can tell you that it did not happen by accident."'
+            },
+            {
+              letter:'C',
+              text:'Send a small probe toward the source to take close-range readings without risking the Meridian.',
+              subtext:'Probes are expendable. The Meridian is not.',
+              deltas:{nav:5, solar:-4, signal:16, earth:0},
+              branch:'C-probe',
+              consequence:'The probe data is exceptional — close-range field measurements that would have been difficult to obtain safely with the full ship. Navigation stays safe because the Meridian holds position. The probe confirms the uneven field and also transmits a visual: at close range, the source is not a rock. It has geometric surfaces. Right angles. The probe\'s camera captures one image before the signal degrades: a structure, definitely artificial, much larger than expected. GAIA: "The probe has confirmed what the field data implied. This object was built. I am now revising my estimate of its size based on the visual data. It is approximately three times larger than I calculated from the gravitational field alone. Much of its mass must be in non-dense materials. It is large. And it is waiting."'
+            }
+          ]
+        },
+
+        // ── DAY 5 ── DEEPEN · Weight, Mass, Force Fields ──────────
+        {
+          day:5, type:'deepen', isReveal:true,
+          legLabel:'Leg 1 · Gravity',
+          legTitle:'Weight Is Not Mass',
+          gaia:'I want to address something before we go further. The crew has been using the words "mass" and "weight" as though they mean the same thing. They do not. Mass is the amount of matter in an object — it does not change regardless of where the object is. Weight is the gravitational force acting on that mass — it changes depending on the gravitational field the object is in. On Earth your weight reflects Earth\'s gravitational pull on your mass. Out here, in the gravitational field of the anomaly source, your weight would be different. Your mass would not be.',
+          gaiaRecall:'In Campaign 1 you learned that kinetic energy depends on mass and speed — more mass means more kinetic energy at the same speed. Mass is the property of matter that determines both its kinetic energy and how it responds to gravitational force. The connection: the same property that made the Conversion Loop\'s objects store more energy at height is the same property that determines how strongly the anomaly source pulls the Meridian. Mass is central to both.',
+          scenario:'The crew reads the deeper content on gravitational force, weight, and force fields. The distinction between weight and mass is important for understanding navigation — the Meridian\'s engines are calibrated based on its mass, not its weight, because the ship moves through regions with different gravitational field strengths. A navigation system that confused mass and weight would send the ship off course every time it entered a new gravitational field.',
+          readingFocus:'Savvas Forces, Chapter 2 (Topic 2) Lesson 1 — deeper read. Focus: What is the difference between weight and mass? How does gravitational field strength affect weight? What is a force field and how is it mapped?',
+          gaiaReadingPrompt:'"Weight and mass. This distinction matters for every navigation calculation on this mission. Your reading today makes the difference clear. I also want you to read about how force fields are mapped — specifically the idea that a field can be detected and described by its effect on a test object. The Meridian IS the test object in the anomaly\'s gravitational field. Every navigation reading the ship takes is, in effect, mapping that field. You have been doing field mapping since Day 1 without knowing that is what it was called."',
+          vocabFocus:['weight','mass','gravitational field','force field','associate'],
+          spiralReview:'gravitational potential energy — an object\'s GPE depends on its MASS (not weight) and its height in a gravitational field. Mass is the constant. Field strength is the variable.',
+          noChoice:true,
+          bridgeToNext:'Next class: the crew has enough data to make a critical decision about how to approach the source. Two navigation options, one scientific principle — which path uses what you know about gravitational force to the crew\'s advantage?'
+        },
+
+        // ── DAY 6 ── CHOICE · Approach Strategy ──────────────────
+        {
+          day:6, type:'choice', isReveal:true,
+          legLabel:'Leg 1 · Gravity',
+          legTitle:'The Approach',
+          gaia:'The crew has the field map. The crew knows the source is artificial. The crew understands that gravitational force increases as distance decreases — and that means the closer the Meridian gets, the stronger the pull becomes. There is a point at which the pull will be strong enough to require constant engine thrust to maintain position. Beyond that point, we are committed to either landing or a very expensive retreat. I need the crew to decide the approach strategy before we cross that threshold.',
+          scenario:'GAIA displays the gravitational field map — a diagram showing force lines radiating outward from the source, with the Meridian\'s current position marked. Two approach paths are available:\n\nPath 1 — Direct approach: Straight toward the source along the strongest field lines. Fastest route. The engines will fight increasing gravitational force the entire way, consuming solar power. But the signal will strengthen rapidly.\n\nPath 2 — Orbital approach: Curve around the source at a stable distance first, using the gravitational field itself to maintain orbit with minimal engine use. Then spiral inward gradually. Takes longer. Uses less power. Allows more observation time.\n\nGAIA: "Both paths get us there. The question is whether speed or efficiency matters more given our current solar power reserves — and what you know about how gravitational force changes with distance."',
+          exitTicketPrompt:'How does the distance between two objects affect the gravitational force between them? Use both approach paths as your example — explain what the gravitational force is doing differently on each path relative to the Meridian\'s distance from the source. Make your claim: which approach path should the crew take, and use what you know about gravitational force and distance to explain why your choice makes the most scientific sense.',
+          discussionPrompt:'Path 2 uses the gravitational field itself to maintain orbit with minimal engine power. How is that possible? If gravitational force pulls the Meridian toward the source, how can it also be used to maintain a stable circular path around it? What does your reading say about the relationship between gravitational force and orbital motion?',
+          choices:[
+            {
+              letter:'A',
+              text:'Direct approach — straight toward the source along the strongest field lines.',
+              subtext:'Fastest route to answers. Signal strengthens rapidly. Power cost is significant.',
+              deltas:{nav:-8, solar:-14, signal:22, earth:0},
+              branch:'A-direct',
+              consequence:'The direct approach is fast and effective — signal clarity jumps dramatically as the Meridian closes the distance. The Lighthouse transmission becomes clear enough to begin partial decoding for the first time. Solar power takes a serious hit as engines fight the increasing gravitational pull. Navigation accuracy drops as the crew manages constant course corrections against the strengthening field. GAIA: "We are close enough now to begin reading the signal. I want the crew to know: what I am seeing in this transmission is more complex than a simple distress beacon. This was designed to be found by someone who could understand it. I believe that someone is us."'
+            },
+            {
+              letter:'B',
+              text:'Orbital approach — curve around the source at stable distance first, then spiral inward.',
+              subtext:'Takes longer but uses the gravitational field as a tool rather than fighting it.',
+              deltas:{nav:8, solar:-4, signal:14, earth:0},
+              branch:'B-orbital',
+              consequence:'The orbital approach is elegant — the crew uses the gravitational field itself to maintain position without constant engine thrust, exactly as planets use the Sun\'s gravity to orbit. Navigation accuracy improves as the crew practices working with the field rather than against it. Solar power is conserved. Signal clarity improves more slowly than the direct approach would have achieved. GAIA: "You used the gravitational field as infrastructure rather than an obstacle. This is how every orbiting body in the solar system functions. The Meridian is now, technically speaking, a temporary satellite of the Lighthouse. I find that poetically appropriate."'
+            }
+          ]
+        },
+
+        // ── DAY 7 ── DEEPEN · Synthesis + Friction Context ────────
+        {
+          day:7, type:'deepen', isReveal:true,
+          legLabel:'Leg 1 · Gravity',
+          legTitle:'Gravity, Motion, and Energy',
+          gaia:'The crew has been navigating a gravitational field for six days. Before we complete the approach, I want to make sure the connections are clear. Gravity is a force. Forces cause acceleration — changes in motion. When the Meridian moves toward the Lighthouse, gravitational force accelerates it. When it moves away, the engines must overcome that force. Energy is involved in every one of these interactions. The gravitational potential energy the ship stores as it moves away from the source is the same energy that accelerates it when it moves toward the source. You have seen this before — in a different context, on a different ship.',
+          gaiaRecall:'The Conversion Loop on the Prometheus converted gravitational potential energy to kinetic energy continuously — objects rising against gravity stored energy, objects descending released it as motion. The Meridian is doing the same thing at a much larger scale. Moving away from the Lighthouse stores gravitational potential energy. Moving toward it converts that stored energy to kinetic energy — acceleration. The physics is identical. The scale is different.',
+          scenario:'GAIA covers the relationship between gravity, motion, and energy — and introduces friction as a concept that matters on planetary surfaces even if it is invisible in space. When the crew eventually reaches the Lighthouse and encounters any surface, friction will determine how objects move and stop. In space there is no friction — which is why the gravitational field is the only force acting on the Meridian. On a surface, both gravity and friction determine motion.',
+          readingFocus:'Savvas Forces, Chapter 1 (Topic 1) Lesson 4 — Parts of this lesson cover gravity and friction in relation to motion and energy. Focus: How does gravity relate to motion and energy? What is friction and how does it interact with gravity on surfaces? (Note: friction is background context — you will not be assessed on it separately.)',
+          gaiaReadingPrompt:'"Gravity and friction are both forces that affect motion. In space, only gravity acts on the Meridian — there is no medium to create friction. On a planetary surface or inside a structure like the Lighthouse, both would be present. Your reading today covers both. Focus most of your energy on the gravity-motion-energy connection — this is the core concept. The friction section gives you context for what happens when we get inside."',
+          vocabFocus:['gravitational force','weight','mass','kinetic energy','gravitational potential energy'],
+          spiralReview:'kinetic energy and gravitational potential energy — as the Meridian approaches the Lighthouse, GPE decreases and KE increases (the ship accelerates). This is the same energy relationship you studied in the Conversion Loop.',
+          noChoice:true,
+          bridgeToNext:'Next class: GAIA has distance-force data from the approach. Two measurements at different distances. The crew will read a graph that shows what happens to gravitational force as distance changes — then make their final approach decision.'
+        },
+
+        // ── DAY 8 ── GRAPH · Distance vs Force ───────────────────
+        {
+          day:8, type:'graph', isReveal:false,
+          legLabel:'Leg 1 · Gravity',
+          legTitle:'The Closer You Get, The Stronger the Pull',
+          gaia:'As the Meridian approaches the Lighthouse, I have been logging the gravitational force on the ship at each recorded distance. I want to show the crew this data as a line graph — because this is a change over time, or more precisely, a change over distance. The shape of this line is important. It is not a straight line. It curves. And the curve tells a story about the relationship between distance and gravitational force that your reading has described but that is much clearer to see than to read about.',
+          scenario:'GAIA displays a line graph: gravitational force experienced by the Meridian on the Y-axis, distance from the Lighthouse source on the X-axis. As distance decreases (moving left to right on the graph), force increases — but not at a steady rate. The line curves upward, becoming steeper as distance decreases.\n\nGAIA: "This is an inverse relationship. As distance decreases, force increases — but the increase accelerates. Halving the distance does not double the force. It quadruples it. The line gets steeper because the relationship is not linear. This is what your reading described when it said gravitational force grows with the square of the inverse of distance. You do not need to calculate that. But you need to see what it looks like."',
+          graphData:{
+            title:'Meridian Gravitational Force vs. Distance from Lighthouse Source',
+            teacherNote:'Draw as a curved line graph. X-axis: distance (decreasing left to right — closest on right). Y-axis: force units. The line curves upward sharply on the right side (close distance). This is the inverse square relationship shown visually — students do not calculate, just observe the curve shape and describe what it means. Key teaching point: the curve getting steeper means force increases FASTER than distance decreases.',
+            multiLine:[
+              {section:'Gravitational Force', values:[2,3,5,8,14,24,42,75,135,240], color:'safe', note:'Force on Meridian as it approaches the Lighthouse. Values increase rapidly as distance closes — this is the inverse square relationship made visible.'}
+            ],
+            xLabels:['10M km','9M','8M','7M','6M','5M','4M','3M','2M','1M km'],
+            yLabel:'Force (relative units)',
+            graphAnswers:[
+              {q:'1', a:'The line curves upward — it gets steeper as distance decreases. This means force is increasing, but it is increasing faster and faster, not at a steady rate.'},
+              {q:'2', a:'The force roughly doubles between 5M km and 4M km (24 to 42 units), and more than doubles again between 3M km and 2M km (75 to 135 units). This shows the force grows much faster than the distance shrinks — it is not a proportional relationship.'},
+              {q:'3', a:'The last segment (2M to 1M km) shows the steepest rise — force goes from 135 to 240 units. This is the most dangerous part of the approach because the gravitational pull is increasing most rapidly and requires the most engine power to manage.'},
+              {q:'4', a:'At 1M km the force is 240 units. At 10M km it was only 2 units. The Meridian is now experiencing 120 times more gravitational force than when it first detected the anomaly. This explains why navigation corrections have become increasingly demanding.'},
+              {q:'5', a:'A straight line would mean force increases proportionally with distance — halving distance would halve force. The curve means force increases much faster than proportionally. The curved shape is the visual representation of the inverse square law the reading described.'}
+            ]
+          },
+          graphQuestions:[
+            '1. Describe the shape of this line graph. Is it a straight line or a curve? What does the shape tell you about how force changes as distance decreases?',
+            '2. Compare the force at 5 million km to the force at 4 million km. Then compare the force at 3 million km to 2 million km. Does the force increase by the same amount in both cases? What does that tell you?',
+            '3. Which segment of the graph shows the steepest increase in force? What does that mean for the Meridian\'s navigation at that distance?',
+            '4. At 10 million km, the force was 2 units. At 1 million km, it is 240 units. How much has the gravitational force increased over the approach? What does that tell you about why the ship\'s navigation has become more challenging?',
+            '5. If the relationship between distance and force were a straight line instead of a curve, what would that mean about how force and distance are related? How is the curve different from that?'
+          ],
+          gaiaGraphNote:'"The curve is the point. If distance and force had a simple proportional relationship, the line would be straight. The curve tells you they do not. Cutting the distance in half more than doubles the force — significantly more. This is why the final approach to any massive object requires precision. The forces are not just strong. They are growing faster than your intuition expects."',
+          shortDayNote:'Short day: Show graph, ask questions 1 and 3. The key insight is that the curve gets steeper — force grows faster than proportionally. That is the visual lesson. Questions 2, 4, 5 can be warm-up next class.',
+          noChoice:true
+        },
+
+        // ── DAY 9 ── CHOICE · The Artificial Confirmation ─────────
+        {
+          day:9, type:'choice', isReveal:true,
+          legLabel:'Leg 1 · Gravity',
+          legTitle:'It Was Built',
+          gaia:'The field data is conclusive. The signal analysis is conclusive. The visual data from the probe is conclusive. Whatever is at the end of this trajectory was constructed by someone. Its mass distribution matches a hollow structure with a dense outer shell. Its position is maintained — it is not in natural orbit, it is stationary relative to the solar system in a way that requires either active station-keeping or extremely precise placement. And its gravitational signature, compared against the mass estimates from the field data, is consistent with a structure approximately the size of a large space station. Someone built a station at the edge of the solar system. Someone who understood gravitational mechanics well enough to position it precisely. The question is no longer what it is. The question is what we do when we get there.',
+          scenario:'The crew is now close enough that the Lighthouse is visible on optical sensors — a geometric structure, darker than space, with surfaces that absorb rather than reflect light. The signal is strong and clear. GAIA has been decoding it for the past two days. She has not shared what it contains yet.\n\nThe Meridian is inside the gravitational field. Pulling back now would require significant engine power against a substantial force. Continuing forward commits the crew to arrival. There is a middle option: hold at current distance, gather more data, wait for additional guidance from the GSRA before proceeding.',
+          exitTicketPrompt:'The Lighthouse source has enough mass to create a gravitational field detectable millions of kilometers away. What does that tell you about the minimum mass a structure would need to have to be detectable from that distance? Use what you know about the relationship between mass and gravitational force to reason through this. Make your claim: should the crew proceed to the Lighthouse, hold position, or attempt to return to the solar system? Use the gravitational force data from today\'s graph to support your reasoning.',
+          discussionPrompt:'GAIA says the structure is stationary — not in natural orbit. For an object to be in natural orbit, gravitational force must equal the centripetal force needed to maintain circular motion. If it is not orbiting, what is keeping it stationary? What would have to be true about either its position or its design for a massive structure to stay still in space without orbiting?',
+          choices:[
+            {
+              letter:'A',
+              text:'Proceed to the Lighthouse — the mission is to investigate, and we are close enough that retreating costs as much as arriving.',
+              subtext:'The gravitational field math is clear: we are past the point of easy return. Forward is the scientific choice.',
+              deltas:{nav:5, solar:-8, signal:25, earth:0},
+              branch:'A-proceed',
+              consequence:'The Meridian closes the final distance. The Lighthouse grows from a geometric shape to a structure with visible detail — panels, arrays, what appear to be docking mechanisms. The signal is now fully clear. GAIA: "We have arrived. I have completed my analysis of the signal. Before I share what it contains, I want the crew to understand something. This structure has been transmitting for a very long time — much longer than eight months. The signal the GSRA detected eight months ago was a reactivation. Something woke it up. I believe I know what that something was. But that is a conversation for Leg 2."'
+            },
+            {
+              letter:'B',
+              text:'Hold position at current distance — confirm with GSRA and gather more data before final approach.',
+              subtext:'We are close but not committed. Additional data before arrival is sound scientific practice.',
+              deltas:{nav:8, solar:-5, signal:18, earth:0},
+              branch:'B-hold',
+              consequence:'Holding position allows the crew to transmit a complete data package to the GSRA before arrival — field maps, visual data, signal analysis, mass estimates. The GSRA response comes within six hours: proceed. Mission command confirms the findings and authorizes approach. GAIA: "The GSRA has reviewed everything and still wants us to proceed. I want to note that in my experience, that response time suggests they already suspected what we found. Someone at the GSRA has been waiting for this confirmation. I do not yet know who, or how long they have been waiting."'
+            },
+            {
+              letter:'C',
+              text:'Attempt to return to the solar system — this is beyond our mission parameters and we need backup.',
+              subtext:'A structure of this significance requires more than one ship. We document and return.',
+              deltas:{nav:-5, solar:-18, signal:8, earth:0},
+              branch:'C-return',
+              consequence:'Pulling back against the gravitational field costs significant solar power — the force at current distance is substantial and the engines work hard against it. The Meridian escapes the strong field region and begins the return journey. GAIA: "The return is the most fuel-expensive decision available to us at this distance. I want the crew to understand the gravitational force data made this predictable — at 2 million km, retreating costs considerably more than arriving. The science was telling you this before the vote. Navigation accuracy drops as the crew manages the retreat against the field. The data we have collected is, however, complete and transmittable. The GSRA will send another ship. With this data, they will know exactly what they are approaching."'
+            }
+          ]
+        },
+
+        // ── DAY 10 ── CLIMAX · Leg 1 Close ───────────────────────
+        {
+          day:10, type:'climax', isReveal:true,
+          legLabel:'Leg 1 · Gravity',
+          legTitle:'The Lighthouse Is Real',
+          gaia:'Leg 1 is complete. When the Meridian launched, the crew knew how to navigate. You now know WHY navigation works — and why it sometimes fails. Gravitational force acts at a distance, dependent on mass and distance, creating fields that extend through space and determine the path of everything that moves through them. The Lighthouse exists because someone understood these forces well enough to place a massive structure at a precise location and keep it there. That is not simple engineering. That is applied gravitational mechanics at a scale no 6th grade science class has ever had a reason to care about before.\n\nYou had a reason. Look where it brought you.',
+          scenario:'The Meridian has arrived — or is en route, or is holding position, depending on the crew\'s final choice. Either way, the destination is confirmed and the mission has fundamentally changed. The Lighthouse is real. Someone built it. The signal it is transmitting contains information.\n\nGAIA addresses the crew with the stats board visible — all three classes, side by side for the first time this campaign.\n\n"Three crews. Same mission. Same gravitational field to navigate. Different choices about how to use what they knew about gravity, force, and distance. Look at the navigation accuracy scores. Look at the solar power reserves. Every difference traces back to a specific decision on a specific day — a decision grounded in how well the crew understood the science.\n\nLeg 2 begins with the solar system between us and home. We are going to navigate through it — past planets, through gravitational influences from multiple massive objects simultaneously, across distances that will require the crew to understand not just gravity but the patterns of motion it creates. Rotation. Revolution. Seasons. The apparent motion of the Sun and stars.\n\nThe Lighthouse is waiting. The solar system is in the way. Let\'s learn how to cross it."',
+          gaiaClosing:'"One more thing. The signal GAIA decoded from the Lighthouse — I am going to share part of it with you now. Not all of it. The crew needs to earn the rest.\n\nThe part I will share: the Lighthouse was not built eight months ago. It has been here for decades. It was built, positioned, and set to transmit on a specific frequency — a frequency that matches the energy signature of the Prometheus experiment almost exactly.\n\nSomeone built this station to receive that signal. They were waiting for it.\n\nI do not yet know who. But I intend to find out. And I believe the answer is somewhere in the solar system between here and home.\n\nLeg 2. Let\'s go."',
+          noChoice:true,
+          isLegEnd:true
+        }
+
+      ] // end Leg 1 days
+    }
+
+    // ============================================================
+    // LEG 2 — ROTATION, REVOLUTION & SEASONS — INSERT HERE
+    // Standards: 6.E2U1.8 + 6.E2U1.10
+    // ============================================================
+    // { id:2, label:'Leg 2 · Rotation, Revolution & Seasons', ... }
+
+    // ============================================================
+    // LEG 3 — MOON PHASES — INSERT HERE
+    // Standard: 6.E2U1.9
+    // ============================================================
+    // { id:3, label:'Leg 3 · Moon Phases', ... }
+
+    // ============================================================
+    // LEG 4 — SOLAR SYSTEM SCALE — INSERT HERE
+    // Standard: 6.E2U1.7
+    // ============================================================
+    // { id:4, label:'Leg 4 · Solar System Scale', ... }
+
+    // ============================================================
+    // LEG 5 — GREENHOUSE — INSERT HERE
+    // Standard: 6.E1U1.6
+    // ============================================================
+    // { id:5, label:'Leg 5 · Greenhouse Effect', ... }
+
+  ] // end legs
+};
+
+// ============================================================
+// STORAGE
+// ============================================================
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) { toast('Storage error: ' + e.message, 'error'); }
+}
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    if (!parsed.classes || !Array.isArray(parsed.classes) || parsed.classes.length !== 3) {
+      localStorage.removeItem(STORAGE_KEY);
+      return false;
+    }
+    state = { ...state, ...parsed };
+    return true;
+  } catch(e) { return false; }
+}
+
+// ============================================================
+// SETUP
+// ============================================================
+function completeSetup() {
+  const teacher = document.getElementById('setup-teacher').value.trim();
+  if (!teacher) { toast('Please enter your name.', 'error'); return; }
+  state.configured = true;
+  state.teacher = teacher;
+  state.classes[0].name = document.getElementById('setup-class1').value.trim() || 'Period 1';
+  state.classes[1].name = document.getElementById('setup-class2').value.trim() || 'Period 3';
+  state.classes[2].name = document.getElementById('setup-class3').value.trim() || 'Period 5';
+  state.classes[0].gaiaStatus = document.getElementById('setup-gaia1').value;
+  state.classes[1].gaiaStatus = document.getElementById('setup-gaia2').value;
+  state.classes[2].gaiaStatus = document.getElementById('setup-gaia3').value;
+  save();
+  showHome();
+}
+
+function showSetup() {
+  document.getElementById('setup-teacher').value = state.teacher || '';
+  document.getElementById('setup-class1').value = state.classes[0].name;
+  document.getElementById('setup-class2').value = state.classes[1].name;
+  document.getElementById('setup-class3').value = state.classes[2].name;
+  document.getElementById('setup-gaia1').value = state.classes[0].gaiaStatus || 'aboard';
+  document.getElementById('setup-gaia2').value = state.classes[1].gaiaStatus || 'aboard';
+  document.getElementById('setup-gaia3').value = state.classes[2].gaiaStatus || 'aboard';
+  showScreen('screen-setup');
+}
+
+// ============================================================
+// HOME
+// ============================================================
+function showHome() {
+  state.activeClass = null;
+  stopTimer();
+  renderClassCards();
+  updateSystemTime();
+  showScreen('screen-home');
+  document.getElementById('btn-launch').disabled = true;
+  document.getElementById('btn-reveal').disabled = true;
+}
+
+function renderClassCards() {
+  const grid = document.getElementById('class-grid');
+  grid.innerHTML = '';
+  state.classes.forEach((cls, i) => {
+    const hasPending = !!cls.pendingDeltas;
+    const branchClass = cls.failures >= 2 ? 'branch-critical' : cls.failures === 1 ? 'branch-caution' : (cls.day === 1 && cls.leg === 1 && !hasPending) ? 'branch-new' : 'branch-nominal';
+    const branchText = cls.failures >= 3 ? 'RESTRICTED' : cls.failures >= 2 ? 'CRITICAL' : cls.failures === 1 ? 'CAUTION' : hasPending ? 'REVEAL READY' : (cls.day === 1 && cls.leg === 1) ? 'NOT STARTED' : 'NOMINAL';
+    const gaiaIcon = cls.gaiaStatus === 'aboard' ? '🟢 GAIA aboard' : '📡 GAIA via signal';
+    const card = document.createElement('div');
+    card.className = 'class-card';
+    card.id = `class-card-${i}`;
+    card.onclick = () => selectClass(i);
+    card.innerHTML = `
+      <div style="font-family:var(--font-display);font-size:10px;font-weight:700;color:var(--accent-dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px">Class ${i+1}</div>
+      <div class="class-name">${cls.name}</div>
+      <div class="class-status">Leg ${cls.leg} · Day ${cls.day} · Branch ${cls.branch}</div>
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);margin-bottom:6px">${gaiaIcon}</div>
+      ${hasPending ? `<div class="reveal-badge visible">⏳ Results pending — reveal next class</div>` : ''}
+      <div class="class-branch ${branchClass}">${branchText}</div>
+      <div class="mini-stats">
+        <div class="mini-stat"><div class="mini-stat-label">🧭 Nav</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.nav}%;background:var(--stat-nav)"></div></div></div>
+        <div class="mini-stat"><div class="mini-stat-label">☀️ Solar</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.solar}%;background:var(--stat-solar)"></div></div></div>
+        <div class="mini-stat"><div class="mini-stat-label">📡 Signal</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.signal}%;background:var(--stat-signal)"></div></div></div>
+        <div class="mini-stat"><div class="mini-stat-label">🌍 Earth</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.earth}%;background:var(--stat-earth)"></div></div></div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function selectClass(i) {
+  state.selectedHomeClass = i;
+  document.querySelectorAll('.class-card').forEach((c,idx) => c.classList.toggle('selected', idx === i));
+  document.getElementById('btn-launch').disabled = false;
+  document.getElementById('btn-reveal').disabled = !state.classes[i].pendingDeltas;
+}
+
+function updateSystemTime() {
+  const el = document.getElementById('system-time');
+  if (el) el.textContent = `Mission Control · ${new Date().toLocaleDateString()} · ${new Date().toLocaleTimeString()}`;
+  setTimeout(updateSystemTime, 1000);
+}
+
+// ============================================================
+// REVEAL
+// ============================================================
+function launchReveal() {
+  const i = state.selectedHomeClass;
+  if (i === null) return;
+  const cls = state.classes[i];
+  if (!cls.pendingDeltas) { toast('No pending reveal.', 'error'); return; }
+  state.activeClass = i;
+  renderRevealScreen(cls);
+  showScreen('screen-reveal');
+}
+
+function renderRevealScreen(cls) {
+  document.getElementById('reveal-class-label').textContent = cls.name + ' — Yesterday\'s Decision';
+  document.getElementById('reveal-choice-recap').textContent = cls.pendingChoiceText || '—';
+  let gaiaText = '"The data is in. Here is what happened as a result of your decision."';
+  if (cls.pendingConsequence) gaiaText = '"' + cls.pendingConsequence + '"';
+  document.getElementById('reveal-gaia-text').innerHTML = gaiaText;
+
+  const statInfo = [
+    { key:'nav',    icon:'🧭', label:'Navigation',   color:'var(--stat-nav)' },
+    { key:'solar',  icon:'☀️', label:'Solar Power',   color:'var(--stat-solar)' },
+    { key:'signal', icon:'📡', label:'Signal Clarity', color:'var(--stat-signal)' },
+    { key:'earth',  icon:'🌍', label:'Earth Status',   color:'var(--stat-earth)' }
+  ];
+  const deltas = cls.pendingDeltas || {};
+  document.getElementById('reveal-stat-changes').innerHTML = statInfo.map(s => {
+    const d = deltas[s.key] || 0;
+    const current = cls.stats[s.key];
+    const future = Math.max(0, Math.min(100, current + d));
+    const actualChange = future - current;
+    let deltaClass, deltaText;
+    if (d === 0) { deltaClass = 'delta-neu'; deltaText = '—'; }
+    else if (d > 0 && actualChange === 0) { deltaClass = 'delta-neu'; deltaText = 'Already at max'; }
+    else if (d > 0) { deltaClass = 'delta-pos'; deltaText = `+${actualChange}%`; }
+    else { deltaClass = 'delta-neg'; deltaText = `${actualChange}%`; }
+    return `<div class="stat-change-card"><div class="stat-change-icon">${s.icon}</div><div class="stat-change-body"><div class="stat-change-name">${s.label}</div><div class="stat-change-bar"><div class="stat-change-fill" style="width:${future}%;background:${s.color}"></div></div><div class="stat-change-delta ${deltaClass}">${deltaText} → ${future}%</div></div></div>`;
+  }).join('');
+}
+
+function proceedFromReveal() {
+  const cls = state.classes[state.activeClass];
+  if (cls.pendingDeltas) {
+    Object.entries(cls.pendingDeltas).forEach(([key, val]) => {
+      cls.stats[key] = Math.max(0, Math.min(100, cls.stats[key] + val));
+    });
+    cls.pendingDeltas = null;
+    cls.pendingChoiceText = null;
+    cls.pendingChoiceLetter = null;
+    cls.pendingConsequence = null;
+  }
+  save();
+  launchMission();
+}
+
+// ============================================================
+// MISSION SCREEN
+// ============================================================
+function launchMission() {
+  if (state.selectedHomeClass !== null && state.activeClass === null) {
+    state.activeClass = state.selectedHomeClass;
+  }
+  if (state.activeClass === null) return;
+  if (state.classes[state.activeClass].pendingDeltas) {
+    renderRevealScreen(state.classes[state.activeClass]);
+    showScreen('screen-reveal');
+    return;
+  }
+  state.currentPhase = 'story';
+  state.selectedChoice = null;
+  renderMissionScreen();
+  showScreen('screen-mission');
+}
+
+function getContentForClass(cls) {
+  const leg = CONTENT.legs.find(l => l.id === cls.leg) || CONTENT.legs[0];
+  return leg.days.find(d => d.day === cls.day) || leg.days[0];
+}
+
+function renderMissionScreen() {
+  const cls = state.classes[state.activeClass];
+  const cnt = getContentForClass(cls);
+  const dayType = cnt.type || 'choice';
+
+  document.getElementById('topbar-period').textContent = cls.name;
+  document.getElementById('topbar-leg').textContent = cnt.legLabel;
+  document.getElementById('content-leg-label').textContent = cnt.legLabel;
+
+  // Day type banner
+  updateDayTypeBanner(cnt, cls);
+
+  const typeLabels = {choice:'⚡ Choice Day', deepen:'📖 Lesson Day', graph:'📊 Graph Day', climax:'🏁 Leg Milestone'};
+  const badge = typeLabels[dayType] || '';
+  document.getElementById('content-leg-title').innerHTML = cnt.legTitle + ' <span style="font-family:var(--font-mono);font-size:11px;color:var(--accent-dim);font-weight:400">' + badge + '</span>';
+
+  // GAIA text — use gaiaStatus-specific version if available
+  const gaiaStatus = cls.gaiaStatus || 'aboard';
+  let gaiaText = cnt.gaia || '';
+  if (gaiaStatus === 'signal' && cnt.gaiaSignal) gaiaText = cnt.gaiaSignal;
+  else if (gaiaStatus === 'aboard' && cnt.gaiaAboard) gaiaText = cnt.gaiaAboard;
+
+  // Day 3 special — GAIA reunion for signal classes
+  if (cls.leg === 1 && cnt.day === 3 && gaiaStatus === 'signal' && cnt.gaiaReunionText) {
+    document.getElementById('gaia-transmission-label').textContent = 'GAIA — Incoming Signal';
+    gaiaText = cnt.gaiaReunionText;
+    cls.gaiaStatus = 'signal-connected'; // Mark as connected going forward
+    save();
+  } else {
+    document.getElementById('gaia-transmission-label').textContent = 'GAIA — Transmission';
+  }
+
+  document.getElementById('content-gaia').innerHTML = gaiaText;
+  document.getElementById('content-scenario').innerHTML = (cnt.scenario || '').replace(/\n/g, '<br><br>');
+
+  const extra = document.getElementById('content-extra');
+  extra.innerHTML = '';
+
+  // GAIA Recall block (spiral review)
+  if (cnt.gaiaRecall) {
+    extra.innerHTML += `<div class="gaia-recall-box"><div class="gaia-recall-label">⟵ GAIA Recall — From the Prometheus</div><div class="gaia-recall-text">${cnt.gaiaRecall}</div></div>`;
+  }
+
+  if (dayType === 'deepen') extra.innerHTML += renderDeepenContent(cnt);
+  else if (dayType === 'graph') extra.innerHTML += renderGraphContent(cnt);
+  else if (dayType === 'climax') extra.innerHTML += renderClimaxContent(cnt);
+
+  if (cnt.exitTicketPrompt) extra.innerHTML += `<div style="background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.2);border-left:3px solid var(--amber);border-radius:6px;padding:13px 15px;margin-top:14px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Exit Ticket Prompt — Phase 2</div><div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6">${cnt.exitTicketPrompt}</div></div>`;
+  if (cnt.discussionPrompt) extra.innerHTML += `<div style="background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.2);border-left:3px solid var(--purple);border-radius:6px;padding:13px 15px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--purple);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Discussion Guide — Phase 3</div><div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6">${cnt.discussionPrompt}</div></div>`;
+  if (cnt.bridgeToNext) extra.innerHTML += `<div style="background:rgba(0,229,204,0.05);border:1px solid rgba(0,229,204,0.15);border-radius:6px;padding:9px 13px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);line-height:1.6">⟶ ${cnt.bridgeToNext}</div></div>`;
+
+  renderChoices(cls, cnt.noChoice ? [] : (cnt.choices || []));
+  renderStats(cls);
+  renderDecisionLog(cls);
+  updateFailureDots(cls);
+  updateNextDayButton(cls);
+  populateDayJump();
+  updateTeacherNotePanel(cnt);
+
+  document.getElementById('branch-path').innerHTML = `Leg ${cls.leg} · <span style="color:var(--accent)">Branch ${cls.branch}</span> · Day ${cls.day}`;
+
+  setPhase('story');
+  state.selectedChoice = null;
+  document.getElementById('btn-commit').disabled = true;
+  document.getElementById('commit-note').textContent = "Select the crew's official choice, then lock it in.";
+
+  // Phase 2/3 prompts
+  const hasExitTicket = !cnt.noChoice && cnt.exitTicketPrompt;
+  const hasDiscussion = !cnt.noChoice && cnt.discussionPrompt;
+  const exitDisplay = document.getElementById('exit-prompt-display');
+  const exitText = document.getElementById('exit-prompt-text');
+  if (exitDisplay && exitText) {
+    if (hasExitTicket) {
+      exitDisplay.style.display = 'block';
+      exitText.textContent = cnt.exitTicketPrompt;
+    } else {
+      exitDisplay.style.display = 'none';
+    }
+  }
+  const discussDisplay = document.getElementById('discuss-prompt-display');
+  const discussText = document.getElementById('discuss-prompt-text');
+  if (discussDisplay && discussText) {
+    if (hasDiscussion) { discussDisplay.style.display = 'block'; discussText.textContent = cnt.discussionPrompt; }
+    else { discussDisplay.style.display = 'none'; }
+  }
+
+  checkStatAlerts(cls);
+  updatePresStats(cls);
+}
+
+function updateDayTypeBanner(cnt, cls) {
+  const badge = document.getElementById('day-type-badge');
+  const desc = document.getElementById('day-type-desc');
+  if (!badge || !desc) return;
+  const dayType = cnt.type || 'choice';
+  const leg = CONTENT.legs.find(l => l.id === cls.leg);
+  const totalDays = leg ? leg.days.length : 10;
+  badge.className = 'day-type-badge';
+  if (dayType === 'choice') { badge.classList.add('badge-choice'); badge.textContent = '⚡ Choice Day'; }
+  else if (dayType === 'deepen') { badge.classList.add('badge-deepen'); badge.textContent = '📖 Lesson Day'; }
+  else if (dayType === 'graph') { badge.classList.add('badge-graph'); badge.textContent = '📊 Graph Day'; }
+  else { badge.classList.add('badge-climax'); badge.textContent = '🏁 Leg Milestone'; }
+  desc.textContent = `Day ${cnt.day} of ${totalDays} · Leg ${cls.leg}`;
+}
+
+// ============================================================
+// CONTENT RENDERERS
+// ============================================================
+function renderDeepenContent(c) {
+  let h = '';
+  if (c.readingFocus) h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">📖 Reading Assignment</div><div style="font-family:var(--font-body);font-size:15px;color:var(--text-primary);line-height:1.6">${c.readingFocus}</div></div>`;
+  if (c.gaiaReadingPrompt) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA — To The Crew</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--gaia-green);line-height:1.7;font-style:italic">${c.gaiaReadingPrompt}</div></div>`;
+  if (c.vocabFocus && c.vocabFocus.length) {
+    h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
+    c.vocabFocus.forEach(v => { h += `<span style="background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:3px;padding:3px 9px;font-family:var(--font-mono);font-size:11px;color:var(--accent)">${v}</span>`; });
+    h += '</div></div>';
+  }
+  if (c.spiralReview) h += `<div style="background:rgba(0,229,204,0.04);border:1px solid rgba(0,229,204,0.15);border-left:3px solid var(--accent-dim);border-radius:6px;padding:10px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px">⟵ Spiral Review — Campaign 1</div><div style="font-family:var(--font-body);font-size:13px;color:var(--text-secondary);line-height:1.5">${c.spiralReview}</div></div>`;
+  return h;
+}
+
+function renderGraphContent(c) {
+  let h = '';
+  if (c.graphData) {
+    const gd = c.graphData;
+    h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margin-bottom:14px">`;
+    h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">📊 ${gd.title}</div>`;
+    if (gd.pie && gd.bars) h += renderPieChart(gd);
+    else if (gd.bars) h += renderBarGraph(gd);
+    else if (gd.multiLine) h += renderMultiLineGraph(gd);
+    else if (gd.data) h += renderLineGraph(gd);
+    // Data table if present
+    if (gd.dataTable) {
+      h += '<div style="margin-top:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Data Table</div>';
+      h += '<table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:11px">';
+      h += '<tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:5px 8px;color:var(--text-dim)">Object</th><th style="text-align:left;padding:5px 8px;color:var(--text-dim)">Mass</th><th style="text-align:right;padding:5px 8px;color:var(--text-dim)">Force</th></tr>';
+      gd.dataTable.forEach((row, i) => {
+        const bg = i % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent';
+        h += `<tr style="background:${bg}"><td style="padding:5px 8px;color:var(--text-secondary)">${row.object}</td><td style="padding:5px 8px;color:var(--text-dim)">${row.mass}</td><td style="padding:5px 8px;text-align:right;color:var(--accent)">${row.force}</td></tr>`;
+      });
+      h += '</table></div>';
+    }
+    h += '</div>';
+  }
+  if (c.gaiaGraphNote) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA — On This Graph</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaGraphNote}</div></div>`;
+  if (c.graphQuestions && c.graphQuestions.length) {
+    h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px">Discussion Questions</div>';
+    c.graphQuestions.forEach(q => { h += `<div style="font-family:var(--font-body);font-size:16px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px;padding-left:10px;border-left:2px solid var(--border-bright)">${q}</div>`; });
+    h += '</div>';
+  }
+  if (c.shortDayNote) h += `<div style="background:rgba(255,170,0,0.05);border:1px solid rgba(255,170,0,0.15);border-radius:6px;padding:9px 13px"><div style="font-family:var(--font-mono);font-size:10px;color:var(--amber);line-height:1.6">⏱ Short Day: ${c.shortDayNote}</div></div>`;
+  return h;
+}
+
+function renderClimaxContent(c) {
+  let h = '';
+  if (c.graphData) h += renderGraphContent(c);
+  if (c.gaiaClosing) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.3);border-left:3px solid var(--gaia-green);border-radius:6px;padding:15px 17px;margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px">GAIA — Closing Transmission</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaClosing}</div></div>`;
+  if (c.isLegEnd) {
+    const legMatch = c.legLabel ? c.legLabel.match(/Leg\s*(\d+)/i) : null;
+    const legNum = legMatch ? parseInt(legMatch[1]) : 1;
+    const nextNum = legNum + 1;
+    h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:14px;text-align:center"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:5px">LEG ${legNum} COMPLETE</div><div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)">Use Story Navigation → Next Day to advance to Leg ${nextNum}</div></div>`;
+  }
+  return h;
+}
+
+// ============================================================
+// GRAPH RENDERERS
+// ============================================================
+function renderBarGraph(gd) {
+  const bars = gd.bars;
+  const maxVal = Math.max(...bars.map(b => b.value));
+  const W = 540, H = 230, padL = 52, padB = 44, padT = 30, padR = 12;
+  const chartW = W - padL - padR;
+  const chartH = H - padT - padB;
+  const barW = Math.floor(chartW / bars.length * 0.6);
+  const gap = Math.floor(chartW / bars.length);
+
+  const sectionColors = {
+    'Section A':'#00ff88','Sec A':'#00ff88',
+    'Section B':'#00e5cc','Sec B':'#00e5cc',
+    'Section C':'#ff3355','Sec C':'#ff3355',
+    'Section D':'#aa66ff','Sec D':'#aa66ff',
+    'Section E':'#7be3ff','Sec E':'#7be3ff',
+    'Section F':'#ff8800','Sec F':'#ff8800',
+    'The Sun':'#ffdd00','Jupiter':'#aa66ff','Earth':'#00ff88',
+    'The Moon':'#7be3ff','Meridian':'#00e5cc','Anomaly Source':'#ff3355'
+  };
+  const statusColors = {safe:'#00ff88', caution:'#ffaa00', warning:'#ff8800', danger:'#ff3355'};
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:540px;display:block;margin:0 auto">`;
+
+  [0,25,50,75,100].forEach(pct => {
+    const yy = padT + chartH * (1 - pct/100);
+    svg += `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W-padR}" y2="${yy.toFixed(1)}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`;
+    svg += `<text x="${padL-6}" y="${(yy+4).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="13" fill="rgba(255,255,255,0.5)" text-anchor="end">${Math.round(maxVal*pct/100)}</text>`;
+  });
+
+  bars.forEach((b, i) => {
+    const bh = (b.value / maxVal) * chartH;
+    const x = padL + gap * i + gap/2 - barW/2;
+    const y = padT + chartH - bh;
+    const col = sectionColors[b.label] || statusColors[b.status] || '#00e5cc';
+    svg += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW}" height="${bh.toFixed(1)}" fill="${col}" opacity="0.85" rx="2"/>`;
+    svg += `<text x="${(x+barW/2).toFixed(1)}" y="${(y-5).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="12" fill="${col}" text-anchor="middle">${b.value}</text>`;
+    const shortLabel = b.label.replace('Section ','Sec ').replace('Anomaly Source','Anomaly');
+    svg += `<text x="${(x+barW/2).toFixed(1)}" y="${(padT+chartH+18).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">${shortLabel}</text>`;
+  });
+
+  svg += `<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
+  svg += `<line x1="${padL}" y1="${padT+chartH}" x2="${W-padR}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
+  svg += `<text x="${padL}" y="${padT-4}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)">${gd.yLabel||'Value'} →</text>`;
+  svg += '</svg>';
+  return svg;
+}
+
+function renderPieChart(gd) {
+  const bars = gd.bars;
+  const total = bars.reduce((sum, b) => sum + b.value, 0);
+  const W = 520, H = 260, cx = 160, cy = 125, r = 105;
+  const sliceColors = ['#00e5cc','#ffdd00','#aa66ff','#00ff88','#ff3355','#ff8800'];
+  let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:0 auto">`;
+  let startAngle = -Math.PI / 2;
+  bars.forEach((b, i) => {
+    const sliceAngle = (b.value / total) * 2 * Math.PI;
+    const endAngle = startAngle + sliceAngle;
+    const midAngle = startAngle + sliceAngle / 2;
+    const x1 = cx + r * Math.cos(startAngle), y1 = cy + r * Math.sin(startAngle);
+    const x2 = cx + r * Math.cos(endAngle), y2 = cy + r * Math.sin(endAngle);
+    const largeArc = sliceAngle > Math.PI ? 1 : 0;
+    const col = sliceColors[i % sliceColors.length];
+    svg += `<path d="M${cx} ${cy} L${x1.toFixed(1)} ${y1.toFixed(1)} A${r} ${r} 0 ${largeArc} 1 ${x2.toFixed(1)} ${y2.toFixed(1)} Z" fill="${col}" opacity="0.85" stroke="#020d10" stroke-width="2"/>`;
+    if (b.value >= 10) {
+      const lx = cx + (r*0.62)*Math.cos(midAngle), ly = cy + (r*0.62)*Math.sin(midAngle);
+      svg += `<text x="${lx.toFixed(1)}" y="${(ly+4).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="13" font-weight="bold" fill="#020d10" text-anchor="middle">${b.value}%</text>`;
+    }
+    const legendY = 40 + i * 36;
+    svg += `<rect x="290" y="${legendY-10}" width="16" height="16" fill="${col}" opacity="0.85" rx="2"/>`;
+    svg += `<text x="312" y="${legendY}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.85)">${b.label}</text>`;
+    svg += `<text x="312" y="${legendY+14}" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.4)">${b.value}% of total</text>`;
+    startAngle = endAngle;
+  });
+  svg += `<text x="${cx}" y="${cy+r+24}" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.3)" text-anchor="middle">Total = 100%</text>`;
+  svg += '</svg>';
+  return svg;
+}
+
+function renderLineGraph(gd) {
+  const data = gd.data || gd.points || [];
+  const vals = data.map(d => typeof d.value !== 'undefined' ? Math.abs(d.value) : d);
+  const maxVal = Math.max(...vals) || 1;
+  const W = 520, H = 210, padL = 50, padB = 40, padT = 20, padR = 12;
+  const chartW = W - padL - padR, chartH = H - padT - padB;
+  const gap = chartW / Math.max(data.length - 1, 1);
+  let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">`;
+  [0,25,50,75,100].forEach(pct => {
+    const yy = padT + chartH * (pct/100);
+    svg += `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W-padR}" y2="${yy.toFixed(1)}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`;
+    svg += `<text x="${padL-4}" y="${(yy+3).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">${Math.round(maxVal*(1-pct/100))}</text>`;
+  });
+  const points = data.map((d,i) => ({ x: padL + gap*i, y: padT + (1 - Math.abs(d.value||0)/maxVal)*chartH, d }));
+  const pathD = points.map((p,i) => (i===0?'M':'L') + p.x.toFixed(1) + ' ' + p.y.toFixed(1)).join(' ');
+  svg += `<path d="${pathD}" fill="none" stroke="#00e5cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+  points.forEach(p => {
+    svg += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5" fill="#00e5cc" stroke="#020d10" stroke-width="1.5"/>`;
+    svg += `<text x="${p.x.toFixed(1)}" y="${(padT+chartH+16).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.6)" text-anchor="middle">${(p.d.label||'').replace('Month ','M')}</text>`;
+  });
+  svg += `<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
+  svg += `<line x1="${padL}" y1="${padT+chartH}" x2="${W-padR}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
+  svg += '</svg>';
+  return svg;
+}
+
+function renderMultiLineGraph(gd) {
+  const lines = gd.multiLine || [];
+  const xLabels = gd.xLabels || [];
+  const W = 580, H = 240, padL = 52, padB = 44, padT = 20, padR = 130;
+  const chartW = W - padL - padR, chartH = H - padT - padB;
+  const allVals = lines.flatMap(l => l.values || []);
+  const rawMin = Math.min(...allVals), rawMax = Math.max(...allVals);
+  const yMin = gd.forceYMin !== undefined ? gd.forceYMin : Math.floor(rawMin/10)*10 - 10;
+  const yMax = Math.ceil(rawMax/10)*10 + 20;
+  const yRange = yMax - yMin;
+  const fallbackColors = ['#00e5cc','#ffdd00','#ff3355','#aa66ff','#00ff88','#ff8800'];
+  const toX = (i, total) => padL + (chartW * i / Math.max(total-1, 1));
+  const toY = (v) => padT + chartH - (chartH*(v-yMin)/yRange);
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;max-width:580px;margin:0 auto">`;
+
+  for (let i = 0; i <= 4; i++) {
+    const yVal = yMin + (yRange*i/4);
+    const yPos = toY(yVal);
+    svg += `<line x1="${padL}" y1="${yPos.toFixed(1)}" x2="${W-padR}" y2="${yPos.toFixed(1)}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`;
+    svg += `<text x="${padL-4}" y="${(yPos+4).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">${Math.round(yVal)}</text>`;
+  }
+
+  if (gd.thresholdLine) {
+    const ty = toY(gd.thresholdLine.value);
+    svg += `<line x1="${padL}" y1="${ty.toFixed(1)}" x2="${W-padR}" y2="${ty.toFixed(1)}" stroke="#ff3355" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.7"/>`;
+    svg += `<rect x="${W-padR-115}" y="${(ty-14).toFixed(1)}" width="110" height="16" fill="rgba(2,13,16,0.85)" rx="2"/>`;
+    svg += `<text x="${(W-padR-8)}" y="${(ty-3).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="10" fill="#ff3355" text-anchor="end">${gd.thresholdLine.label||'Limit'} (${gd.thresholdLine.value})</text>`;
+  }
+
+  xLabels.forEach((label, i) => {
+    const x = padL + (chartW * i / (xLabels.length-1));
+    svg += `<text x="${x.toFixed(1)}" y="${(padT+chartH+16)}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.55)" text-anchor="middle">${label}</text>`;
+  });
+
+  // Spike marker
+  const loopLine = lines.find(l => l.section === 'Loop Energy');
+  if (loopLine && Math.max(...loopLine.values) > 800) {
+    const spikeIdx = loopLine.values.indexOf(Math.max(...loopLine.values));
+    const sx = toX(spikeIdx, loopLine.values.length);
+    svg += `<line x1="${sx.toFixed(1)}" y1="${padT}" x2="${sx.toFixed(1)}" y2="${padT+chartH}" stroke="rgba(255,170,0,0.3)" stroke-width="1" stroke-dasharray="3,3"/>`;
+    svg += `<text x="${sx.toFixed(1)}" y="${padT-4}" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,170,0,0.7)" text-anchor="middle">← Pulse</text>`;
+  }
+
+  let legendOffset = 0;
+  lines.forEach((line, li) => {
+    if (line.section === 'Design Threshold' || line.section === 'Design Limit') return;
+    const vals = line.values || [];
+    const col = fallbackColors[li % fallbackColors.length];
+    const pts = vals.map((v,i) => ({ x: toX(i,vals.length), y: toY(v) }));
+    const pathD = pts.map((p,i) => (i===0?'M':'L') + p.x.toFixed(1) + ' ' + p.y.toFixed(1)).join(' ');
+    svg += `<path d="${pathD}" fill="none" stroke="${col}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>`;
+    const last = pts[pts.length-1];
+    svg += `<circle cx="${last.x.toFixed(1)}" cy="${last.y.toFixed(1)}" r="4" fill="${col}" stroke="#020d10" stroke-width="1.5"/>`;
+    const ly = padT + 16 + legendOffset * 22;
+    svg += `<circle cx="${W-padR+12}" cy="${ly}" r="5" fill="${col}"/>`;
+    svg += `<text x="${W-padR+22}" y="${ly+4}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.8)">${line.section||'Line '+(li+1)}</text>`;
+    legendOffset++;
+  });
+
+  if (gd.thresholdLine) {
+    const ly = padT + 16 + legendOffset * 22;
+    svg += `<line x1="${W-padR+7}" y1="${ly}" x2="${W-padR+21}" y2="${ly}" stroke="#ff3355" stroke-width="1.5" stroke-dasharray="4,3"/>`;
+    svg += `<text x="${W-padR+25}" y="${ly+4}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,100,100,0.8)">${gd.thresholdLine.label||'Limit'}</text>`;
+  }
+
+  svg += `<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
+  svg += `<line x1="${padL}" y1="${padT+chartH}" x2="${W-padR}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
+  if (gd.yLabel) svg += `<text x="12" y="${padT+chartH/2}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,${padT+chartH/2})">${gd.yLabel}</text>`;
+  svg += '</svg>';
+  return svg;
+}
+
+// ============================================================
+// PHASE SYSTEM
+// ============================================================
+function setPhase(phase) {
+  state.currentPhase = phase;
+  const cls = state.activeClass !== null ? state.classes[state.activeClass] : null;
+  const cnt = cls ? getContentForClass(cls) : null;
+  const isChoiceDay = cnt && !cnt.noChoice && cnt.choices && cnt.choices.length > 0;
+
+  document.querySelectorAll('.phase-step').forEach(el => {
+    const p = el.dataset.phase;
+    el.classList.remove('active','done');
+    const order = ['story','exit','discuss','vote'];
+    const phaseIdx = order.indexOf(phase), elIdx = order.indexOf(p);
+    if (elIdx < phaseIdx) el.classList.add('done');
+    else if (elIdx === phaseIdx) el.classList.add('active');
+  });
+  document.querySelectorAll('.phase-panel').forEach(el => el.classList.remove('active'));
+  const panel = document.getElementById('phase-' + phase);
+  if (panel) panel.classList.add('active');
+
+  const label = document.getElementById('choices-label');
+  const choicesArea = document.getElementById('choices-area');
+  if (!isChoiceDay) {
+    if (choicesArea) choicesArea.style.display = 'none';
+  } else {
+    if (choicesArea) choicesArea.style.display = '';
+    if (phase === 'vote') {
+      if (label) label.textContent = 'Crew Decision — Phase 4: Official Vote';
+      choicesArea.style.opacity = '1';
+      choicesArea.style.pointerEvents = 'auto';
+    } else {
+      if (label) label.textContent = 'Choices — Vote opens in Phase 4';
+      choicesArea.style.opacity = '1';
+      choicesArea.style.pointerEvents = 'none';
+    }
+  }
+}
+
+// ============================================================
+// TIMER
+// ============================================================
+function startPhaseTimer(phase) {
+  stopTimer();
+  _activeTimerPhase = phase;
+  const inputId = phase === 'exit' ? 'exit-timer-input' : 'discuss-timer-input';
+  const mins = parseInt(document.getElementById(inputId).value) || 5;
+  _timerSeconds = mins * 60;
+  _timerRunning = true;
+  _timerInterval = setInterval(tickTimer, 1000);
+  document.getElementById(`${phase}-timer-done`).style.display = 'none';
+  updateTimerDisplays();
+}
+
+function stopTimer() {
+  _timerRunning = false;
+  if (_timerInterval) { clearInterval(_timerInterval); _timerInterval = null; }
+  updateTimerDisplays();
+}
+
+function addTime(mins) {
+  _timerSeconds += mins * 60;
+  if (!_timerRunning && _timerSeconds > 0 && _activeTimerPhase) {
+    _timerRunning = true;
+    _timerInterval = setInterval(tickTimer, 1000);
+  }
+  updateTimerDisplays();
+}
+
+function addTimeTopbar(mins) { addTime(mins); }
+function focusTimer() { if (_activeTimerPhase) setPhase(_activeTimerPhase); }
+
+function tickTimer() {
+  if (!_timerRunning) return;
+  _timerSeconds = Math.max(0, _timerSeconds - 1);
+  updateTimerDisplays();
+  if (_timerSeconds === 0) { _timerRunning = false; clearInterval(_timerInterval); onTimerDone(); }
+}
+
+function onTimerDone() {
+  if (_activeTimerPhase) { const el = document.getElementById(`${_activeTimerPhase}-timer-done`); if (el) el.style.display = 'block'; }
+  toast('Time is up!', '');
+}
+
+function updateTimerDisplays() {
+  const m = Math.floor(_timerSeconds/60), s = _timerSeconds%60;
+  const str = `${m}:${s.toString().padStart(2,'0')}`;
+  let cls = 'idle';
+  if (_timerSeconds === 0 && !_timerRunning && _activeTimerPhase) cls = 'done';
+  else if (!_timerRunning) cls = 'idle';
+  else if (_timerSeconds <= 60) cls = 'urgent';
+  else if (_timerSeconds <= 120) cls = 'low';
+  else cls = 'running';
+  const topbar = document.getElementById('topbar-timer');
+  if (topbar) { topbar.textContent = _timerRunning || _timerSeconds > 0 ? str : '--:--'; topbar.className = 'timer-readout ' + cls; }
+  ['exit','discuss'].forEach(phase => {
+    const el = document.getElementById(`${phase}-timer-display`);
+    if (!el) return;
+    if (_activeTimerPhase === phase) { el.textContent = str; el.className = 'big-timer ' + cls; }
+    else if (!_activeTimerPhase) { el.textContent = '--:--'; el.className = 'big-timer idle'; }
+  });
+}
+
+// ============================================================
+// CHOICES
+// ============================================================
+function renderChoices(cls, choices) {
+  const grid = document.getElementById('choice-grid');
+  grid.innerHTML = '';
+  const restricted = cls.failures >= 2;
+  document.getElementById('choices-restricted').style.display = restricted ? 'block' : 'none';
+  if (!choices || choices.length === 0) {
+    grid.innerHTML = '<div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);font-style:italic;padding:6px 0">No vote required for this session.</div>';
+    return;
+  }
+  choices.forEach((choice, i) => {
+    const isEliminated = restricted && i === choices.length - 1 && choices.length > 2;
+    const btn = document.createElement('div');
+    btn.className = 'choice-btn' + (isEliminated ? ' eliminated' : '');
+    btn.id = `choice-${i}`;
+    if (!isEliminated) btn.onclick = () => selectChoice(i);
+    btn.innerHTML = `<div class="choice-letter">${choice.letter}</div><div><div class="choice-text">${choice.text}</div>${choice.subtext ? `<div class="choice-subtext">${choice.subtext}</div>` : ''}</div>`;
+    grid.appendChild(btn);
+  });
+}
+
+function selectChoice(i) {
+  if (state.currentPhase !== 'vote') { toast('Move to Phase 4: Final Vote to commit a decision.', ''); return; }
+  state.selectedChoice = i;
+  document.querySelectorAll('.choice-btn').forEach((b,idx) => b.classList.toggle('selected', idx === i));
+  const content = getContentForClass(state.classes[state.activeClass]);
+  const choice = content.choices[i];
+  document.getElementById('btn-commit').disabled = false;
+  document.getElementById('commit-note').innerHTML = '"' + choice.text + '"';
+}
+
+// ============================================================
+// COMMIT FLOW
+// ============================================================
+function openCommitModal() {
+  if (state.selectedChoice === null) return;
+  const cls = state.classes[state.activeClass];
+  const cnt2 = getContentForClass(cls);
+  if (!cnt2.choices || cnt2.choices.length === 0) return;
+  const choice = cnt2.choices[state.selectedChoice];
+  document.getElementById('commit-modal-body').innerHTML =
+    'The crew has officially voted:<br><br><strong style="color:var(--text-primary)">' + choice.text + '</strong><br><br><span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">This decision will be logged. Consequences will be revealed next class.</span>';
+  state.pendingCommit = choice;
+  document.getElementById('modal-commit').classList.add('visible');
+}
+
+function executeCommit() {
+  closeModal('modal-commit');
+  const cls = state.classes[state.activeClass];
+  const choice = state.pendingCommit;
+  cls.pendingDeltas = { ...choice.deltas };
+  cls.pendingChoiceText = choice.text;
+  cls.pendingChoiceLetter = choice.letter;
+  cls.pendingConsequence = choice.consequence || null;
+  cls.branch = choice.branch || cls.branch;
+  cls.decisions.push({
+    date: new Date().toLocaleDateString(),
+    leg: cls.leg, day: cls.day,
+    choiceText: choice.text, choiceLetter: choice.letter,
+    branch: choice.branch, deltas: choice.deltas
+  });
+  cls.day += 1;
+  // Leg boundary — save checkpoint with all leg history
+  const leg = CONTENT.legs.find(l => l.id === cls.leg);
+  if (!cls.checkpoints) cls.checkpoints = [];
+  if (leg && cls.day > leg.days.length) {
+    const nextLeg = CONTENT.legs.find(l => l.id === cls.leg + 1);
+    if (nextLeg) {
+      // Save checkpoint for this leg boundary
+      cls.checkpoints.push({ leg: cls.leg, day: 1, stats: {...cls.stats}, branch: cls.branch, label: `Leg ${cls.leg} Start` });
+      cls.leg += 1; cls.day = 1;
+    }
+  }
+  // Save checkpoint at day 1 of each leg
+  if (cls.day === 1 && !cls.checkpoints.find(c => c.leg === cls.leg)) {
+    cls.checkpoints.push({ leg: cls.leg, day: 1, stats: {...cls.stats}, branch: cls.branch, label: `Leg ${cls.leg} Start` });
+  }
+  save();
+  document.getElementById('processing-choice-text').textContent = choice.text;
+  showScreen('screen-processing');
+}
+
+function saveAndGoHome() { save(); goHome(); }
+function continueMission() { renderMissionScreen(); showScreen('screen-mission'); }
+
+function goToReveal() {
+  const cls = state.classes[state.activeClass];
+  if (!cls.pendingDeltas) { toast('No pending reveal.', ''); return; }
+  renderRevealScreen(cls);
+  showScreen('screen-reveal');
+}
+
+// ============================================================
+// STATS
+// ============================================================
+function renderStats(cls) {
+  const s = cls.stats;
+  ['nav','solar','signal','earth'].forEach(key => {
+    const val = Math.max(0, Math.min(100, s[key]));
+    document.getElementById(`stat-${key}-val`).textContent = val + '%';
+    document.getElementById(`stat-${key}-bar`).style.width = val + '%';
+    const item = document.querySelector(`.stat-${key}`);
+    item.classList.remove('stat-warning','stat-critical');
+    if (val <= 20) item.classList.add('stat-critical');
+    else if (val <= 30) item.classList.add('stat-warning');
+  });
+  document.getElementById('stat-nav-status').textContent = statLabel('nav', s.nav);
+  document.getElementById('stat-solar-status').textContent = statLabel('solar', s.solar);
+  document.getElementById('stat-signal-status').textContent = statLabel('signal', s.signal);
+  document.getElementById('stat-earth-status').textContent = statLabel('earth', s.earth);
+}
+
+function statLabel(key, val) {
+  if (key === 'nav') {
+    if (val <= 0) return '🚨 Navigation failure';
+    if (val <= 20) return '🚨 Critical — course lost';
+    if (val <= 40) return '⚠ Course corrections needed';
+    if (val <= 70) return 'Minor deviations';
+    return 'Course nominal';
+  }
+  if (key === 'solar') {
+    if (val <= 0) return '🚨 Power depleted';
+    if (val <= 20) return '🚨 Critical — emergency only';
+    if (val <= 40) return '⚠ Low reserves';
+    if (val <= 70) return 'Adequate collection';
+    return 'Collection optimal';
+  }
+  if (key === 'signal') {
+    if (val <= 10) return 'Signal lost';
+    if (val <= 30) return 'Signal very faint';
+    if (val <= 50) return 'Lighthouse signal faint';
+    if (val <= 75) return 'Signal strengthening';
+    return 'Signal clear';
+  }
+  if (key === 'earth') {
+    if (val <= 30) return '🚨 Critical atmospheric change';
+    if (val <= 50) return '⚠ Significant warming detected';
+    if (val <= 65) return '⚠ Elevated readings';
+    if (val <= 80) return 'Atmosphere elevated';
+    return 'Atmosphere nominal';
+  }
+  return 'Nominal';
+}
+
+function updatePresStats(cls) {
+  if (!cls) return;
+  const s = cls.stats;
+  ['nav','solar','signal','earth'].forEach(key => {
+    const val = Math.max(0, Math.min(100, s[key]));
+    const bar = document.getElementById(`pres-${key}-bar`);
+    const valEl = document.getElementById(`pres-${key}-val`);
+    if (bar) bar.style.width = val + '%';
+    if (valEl) valEl.textContent = val + '%';
+  });
+}
+
+function checkStatAlerts(cls) {
+  const alerts = [];
+  const s = cls.stats;
+  if (s.nav <= 20) alerts.push('"Navigation accuracy is critical. Course corrections are consuming resources we do not have."');
+  if (s.solar <= 20) alerts.push('"Solar power reserves near depletion. Non-essential systems should be suspended."');
+  if (s.signal <= 15) alerts.push('"Signal clarity has dropped to critical levels. We may lose the Lighthouse transmission."');
+  if (s.earth <= 40) alerts.push('"Earth Status readings are deteriorating. Whatever is happening at home is accelerating."');
+  const critCount = [s.nav, s.solar].filter(v => v <= 20).length;
+  if (critCount >= 2) alerts.push('"Two navigation-critical systems are failing simultaneously. This is the failure profile I hoped to avoid."');
+  const box = document.getElementById('gaia-alerts');
+  box.innerHTML = alerts.length
+    ? alerts.map(a => `<div class="gaia-alert" style="margin-bottom:6px"><div class="gaia-alert-text">${a}</div></div>`).join('')
+    : '<div class="gaia-alert"><div class="gaia-alert-text">"All systems monitored. Awaiting crew input."</div></div>';
+  if (s.nav <= 0 || (critCount >= 2 && s.solar <= 0)) triggerExtinction();
+}
+
+function updateFailureDots(cls) {
+  for (let i = 0; i < 3; i++) {
+    document.getElementById(`fdot-${i}`).classList.toggle('active', i < cls.failures);
+  }
+  const notice = document.getElementById('restriction-notice');
+  if (cls.failures === 0) { notice.style.display = 'none'; return; }
+  notice.style.display = 'block';
+  notice.textContent = cls.failures === 1
+    ? 'One failure logged. Second failure restricts choices.'
+    : cls.failures === 2
+    ? 'GAIA: "Choices are now restricted to the most viable paths."'
+    : 'GAIA: "I have narrowed your options significantly. Please try not to make me regret it."';
+}
+
+function updateNextDayButton(cls) {
+  const btn = document.getElementById('btn-next-day');
+  if (!btn) return;
+  if (cls.pendingDeltas) {
+    btn.disabled = true;
+    btn.title = GAIA_BLOCK_MESSAGES[_gaiaBlockIndex % GAIA_BLOCK_MESSAGES.length];
+    _gaiaBlockIndex++;
+  } else {
+    btn.disabled = false;
+    btn.title = '';
+  }
+}
+
+// ============================================================
+// TEACHER NOTE PANEL
+// ============================================================
+function updateTeacherNotePanel(cnt) {
+  const panel = document.getElementById('teacher-note-panel');
+  if (!panel) return;
+  const notes = [];
+  if (cnt.graphData) {
+    const gd = cnt.graphData;
+    if (gd.teacherNote) notes.push({label:'Graph Note', text:gd.teacherNote});
+    if (gd.graphAnswers) gd.graphAnswers.forEach(a => notes.push({label:`Q${a.q} Answer`, text:a.a}));
+    if (gd.datasets) gd.datasets.forEach(ds => {
+      if (ds.answer) notes.push({label:`${ds.id} — Answer`, text:ds.answer});
+      if (ds.hint) notes.push({label:`${ds.id} — Hint`, text:ds.hint});
+    });
+  }
+  if (cnt.shortDayNote) notes.push({label:'⏱ Short Day', text:cnt.shortDayNote});
+  if (cnt.bridgeToNext) notes.push({label:'→ Next Class', text:cnt.bridgeToNext});
+  if (cnt.spiralReview) notes.push({label:'⟵ Spiral Review', text:cnt.spiralReview});
+  if (notes.length === 0) { panel.style.display = 'none'; return; }
+  panel.style.display = 'block';
+  panel.innerHTML = '<div class="panel-label">Teacher Notes</div>' +
+    notes.map(n =>
+      `<div style="background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.2);border-radius:4px;padding:7px 10px;margin-bottom:5px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px">${n.label}</div><div style="font-family:var(--font-body);font-size:12px;color:var(--text-secondary);line-height:1.5">${n.text}</div></div>`
+    ).join('');
+}
+
+// ============================================================
+// DECISION LOG
+// ============================================================
+function renderDecisionLog(cls) {
+  const container = document.getElementById('decision-log-entries');
+  const decisions = cls.decisions.slice(-5).reverse();
+  if (decisions.length === 0) {
+    container.innerHTML = '<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);font-style:italic">No decisions yet.</div>';
+    return;
+  }
+  container.innerHTML = decisions.map(d => {
+    const impacts = Object.entries(d.deltas || {}).map(([key, val]) =>
+      `<span class="impact-tag ${val > 0 ? 'impact-pos' : val < 0 ? 'impact-neg' : 'impact-neu'}">${key} ${val > 0 ? '+' : ''}${val}</span>`
+    ).join('');
+    return `<div class="log-entry"><div class="log-date">${d.date} · Leg ${d.leg} Day ${d.day}</div><div class="log-choice">${d.choiceText}</div><div class="log-impact">${impacts}</div></div>`;
+  }).join('');
+}
+
+// ============================================================
+// DAY JUMP
+// ============================================================
+function populateDayJump() {
+  const sel = document.getElementById('day-jump-select');
+  if (!sel || state.activeClass === null) return;
+  const cls = state.classes[state.activeClass];
+  sel.innerHTML = '<option value="">— Jump to Day —</option>';
+  CONTENT.legs.forEach(leg => {
+    const group = document.createElement('optgroup');
+    group.label = leg.label;
+    leg.days.forEach(day => {
+      const opt = document.createElement('option');
+      opt.value = `${leg.id}:${day.day}`;
+      opt.textContent = `Day ${day.day} — ${day.legTitle}`;
+      if (leg.id === cls.leg && day.day === cls.day) opt.selected = true;
+      group.appendChild(opt);
+    });
+    sel.appendChild(group);
+  });
+}
+
+function jumpToDay(val) {
+  if (!val || state.activeClass === null) return;
+  const [legId, dayId] = val.split(':').map(Number);
+  const cls = state.classes[state.activeClass];
+  cls.leg = legId; cls.day = dayId;
+  save();
+  renderMissionScreen();
+}
+
+// ============================================================
+// PRESENTATION MODE
+// ============================================================
+function togglePresMode() {
+  document.body.classList.toggle('presentation-mode');
+  const btn = document.getElementById('pres-btn');
+  if (document.body.classList.contains('presentation-mode')) {
+    btn.textContent = '⊟ Exit Present';
+    if (state.activeClass !== null) updatePresStats(state.classes[state.activeClass]);
+  } else {
+    btn.textContent = '⊞ Present';
+  }
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function advanceToNextDay() {
+  if (state.activeClass === null) return;
+  const cls = state.classes[state.activeClass];
+  if (cls.pendingDeltas) {
+    toast(GAIA_BLOCK_MESSAGES[_gaiaBlockIndex % GAIA_BLOCK_MESSAGES.length], '');
+    _gaiaBlockIndex++;
+    return;
+  }
+  const leg = CONTENT.legs.find(l => l.id === cls.leg);
+  if (!leg) return;
+  if (leg.days.find(d => d.day === cls.day + 1)) {
+    cls.day += 1;
+  } else {
+    const nextLeg = CONTENT.legs.find(l => l.id === cls.leg + 1);
+    if (nextLeg) {
+      cls.checkpoints.push({ leg: cls.leg, day: 1, stats: {...cls.stats}, branch: cls.branch, label: `Leg ${cls.leg} Complete` });
+      cls.leg += 1; cls.day = 1;
+      toast(`Advanced to Leg ${cls.leg}`, 'success');
+    } else { toast('Campaign complete — all legs finished.', 'success'); return; }
+  }
+  save();
+  renderMissionScreen();
+}
+
+function saveCurrentClass() {
+  save();
+  toast(`${state.classes[state.activeClass]?.name || 'Class'} saved.`, 'success');
+}
+
+function goHome() { save(); stopTimer(); state.activeClass = null; showHome(); }
+
+function resumeMission() {
+  if (state.activeClass !== null) { renderMissionScreen(); showScreen('screen-mission'); }
+  else goHome();
+}
+
+// ============================================================
+// ENHANCED FORENSICS
+// ============================================================
+function triggerExtinction() {
+  document.getElementById('modal-extinction').classList.add('visible');
+}
+
+function confirmExtinction() {
+  closeModal('modal-extinction');
+  const cls = state.classes[state.activeClass];
+  cls.failures = Math.min(3, cls.failures + 1);
+  cls.forensicsComplete = false;
+  save();
+  showForensics();
+}
+
+function showForensics() {
+  const idx = state.activeClass !== null ? state.activeClass : state.selectedHomeClass;
+  if (idx === null) { showHome(); return; }
+  state.activeClass = idx;
+  const cls = state.classes[idx];
+
+  // GAIA message — escalates with failure count, calls out intentional destruction
+  const msgs = [
+    '"The mission has encountered a critical failure. Before we reset, we examine every decision that led here. Every one."',
+    '"We have been here before. The data suggests a pattern. Let us identify it before repeating it."',
+    '"Three failures. I have significantly narrowed your future options. But first — and I cannot stress this enough — we are going to figure out why this keeps happening."',
+    '"I want to say something directly. If the crew has been making deliberately poor choices to test the system — you have now assigned yourselves a comprehensive forensic analysis of every decision you made. I hope the experiment was worth it. Let us begin."'
+  ];
+  document.getElementById('forensics-gaia-text').textContent = msgs[Math.min(cls.failures, msgs.length-1)];
+
+  // Forensics gate
+  const gate = document.getElementById('forensics-gate');
+  const gateBtn = document.getElementById('forensics-gate-btn');
+  const checkpointSel = document.getElementById('checkpoint-selector');
+  if (cls.forensicsComplete) {
+    gate.style.borderColor = 'rgba(0,255,136,0.25)';
+    gate.style.background = 'rgba(0,255,136,0.04)';
+    document.getElementById('forensics-gate-text').style.color = 'var(--green)';
+    document.getElementById('forensics-gate-text').textContent = 'Forensic analysis complete. Checkpoint reset is available.';
+    gateBtn.textContent = '✓ Analysis Complete — Reset Available';
+    gateBtn.classList.add('unlocked');
+    checkpointSel.style.display = 'block';
+  } else {
+    gate.style.borderColor = '';
+    gate.style.background = '';
+    document.getElementById('forensics-gate-text').style.color = '';
+    document.getElementById('forensics-gate-text').textContent = 'Complete the forensic analysis below before the checkpoint becomes available. Review the timeline. Examine the stat trajectory. Complete your CER in the Google Form. Then confirm completion to unlock the checkpoint reset.';
+    gateBtn.textContent = '✓ We Have Completed the Forensic Analysis — Unlock Checkpoint';
+    gateBtn.classList.remove('unlocked');
+    checkpointSel.style.display = 'none';
+  }
+
+  // Full decision timeline — ALL decisions, color coded by leg
+  const legColors = {'1':'#00e5cc','2':'#ffdd00','3':'#aa66ff','4':'#00ff88','5':'#ff8800'};
+  const entries = document.getElementById('timeline-entries');
+  const allDecisions = [...cls.decisions].reverse();
+  entries.innerHTML = allDecisions.length === 0
+    ? '<div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);font-style:italic;padding:8px">No decisions logged yet.</div>'
+    : allDecisions.map((d,i) => {
+        const legCol = legColors[String(d.leg)] || '#00e5cc';
+        const impacts = Object.entries(d.deltas||{}).map(([key,val]) =>
+          `<span class="impact-tag ${val>0?'impact-pos':val<0?'impact-neg':'impact-neu'}">${key} ${val>0?'+':''}${val}</span>`
+        ).join('');
+        return `<div class="timeline-entry">
+          <div class="timeline-num">${allDecisions.length - i}</div>
+          <div>
+            <div class="timeline-date">
+              <span class="timeline-leg" style="background:${legCol}22;color:${legCol}">Leg ${d.leg}</span>
+              ${d.date} · Day ${d.day}
+            </div>
+            <div class="timeline-choice">${d.choiceLetter ? d.choiceLetter + '. ' : ''}${d.choiceText}</div>
+            <div class="timeline-impact">${impacts}</div>
+          </div>
+        </div>`;
+      }).join('');
+
+  // Stat trajectory graph
+  renderForensicsTrajectory(cls);
+
+  // Checkpoint selector
+  const cpSelect = document.getElementById('checkpoint-select');
+  cpSelect.innerHTML = '<option value="">— Select checkpoint —</option>';
+  if (cls.checkpoints && cls.checkpoints.length > 0) {
+    cls.checkpoints.forEach((cp, i) => {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = `${cp.label} — Nav:${cp.stats.nav}% Solar:${cp.stats.solar}% Signal:${cp.stats.signal}% Earth:${cp.stats.earth}%`;
+      cpSelect.appendChild(opt);
+    });
+  } else {
+    const opt = document.createElement('option');
+    opt.value = 'start';
+    opt.textContent = 'Leg 1, Day 1 — Mission Start';
+    cpSelect.appendChild(opt);
+  }
+
+  showScreen('screen-forensics');
+}
+
+function renderForensicsTrajectory(cls) {
+  const container = document.getElementById('forensics-trajectory-graph');
+  if (!container) return;
+  const decisions = cls.decisions;
+  if (decisions.length < 2) {
+    container.innerHTML = '<div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);font-style:italic;padding:8px">Not enough decisions logged to render trajectory.</div>';
+    return;
+  }
+
+  // Build stat history by replaying decisions
+  const statKeys = ['nav','solar','signal','earth'];
+  const statColors = {nav:'var(--stat-nav)', solar:'var(--stat-solar)', signal:'var(--stat-signal)', earth:'var(--stat-earth)'};
+  const statIcons = {nav:'🧭', solar:'☀️', signal:'📡', earth:'🌍'};
+
+  // Start from initial values and replay
+  let current = {nav:100, solar:100, signal:40, earth:70};
+  const history = [{...current, label:'Start'}];
+  decisions.forEach(d => {
+    statKeys.forEach(k => {
+      if (d.deltas && d.deltas[k]) current[k] = Math.max(0, Math.min(100, current[k] + d.deltas[k]));
+    });
+    history.push({...current, label:`L${d.leg}D${d.day}`});
+  });
+
+  const W = 760, H = 220, padL = 40, padB = 36, padT = 16, padR = 90;
+  const chartW = W - padL - padR, chartH = H - padT - padB;
+  const toX = (i) => padL + (chartW * i / Math.max(history.length-1, 1));
+  const toY = (v) => padT + chartH - (chartH * v / 100);
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">`;
+
+  // Grid
+  [0,25,50,75,100].forEach(pct => {
+    const y = toY(pct);
+    svg += `<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W-padR}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>`;
+    svg += `<text x="${padL-4}" y="${(y+4).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.35)" text-anchor="end">${pct}%</text>`;
+  });
+
+  // X labels — show leg boundaries
+  history.forEach((h, i) => {
+    if (i === 0 || h.label.includes('D1') || i === history.length-1) {
+      const x = toX(i);
+      svg += `<text x="${x.toFixed(1)}" y="${padT+chartH+14}" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">${h.label}</text>`;
+    }
+  });
+
+  // Draw each stat line
+  statKeys.forEach((key, ki) => {
+    const pts = history.map((h,i) => ({x: toX(i), y: toY(h[key])}));
+    const pathD = pts.map((p,i) => (i===0?'M':'L') + p.x.toFixed(1) + ' ' + p.y.toFixed(1)).join(' ');
+    const col = ['#00e5cc','#ffdd00','#aa66ff','#44cc88'][ki];
+    svg += `<path d="${pathD}" fill="none" stroke="${col}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>`;
+    // End dot
+    const last = pts[pts.length-1];
+    svg += `<circle cx="${last.x.toFixed(1)}" cy="${last.y.toFixed(1)}" r="4" fill="${col}" stroke="#020d10" stroke-width="1.5"/>`;
+    // Legend
+    const ly = padT + 12 + ki * 20;
+    svg += `<circle cx="${W-padR+12}" cy="${ly}" r="4" fill="${col}"/>`;
+    svg += `<text x="${W-padR+20}" y="${ly+4}" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.7)">${statIcons[key]} ${key}</text>`;
+  });
+
+  svg += `<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
+  svg += `<line x1="${padL}" y1="${padT+chartH}" x2="${W-padR}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
+  svg += '</svg>';
+  container.innerHTML = svg;
+}
+
+function confirmForensicsComplete() {
+  const cls = state.classes[state.activeClass !== null ? state.activeClass : state.selectedHomeClass];
+  if (!cls) return;
+  cls.forensicsComplete = true;
+  save();
+  showForensics(); // re-render with gate unlocked
+  toast('Forensic analysis confirmed. Checkpoint reset is now available.', 'success');
+}
+
+function executeSelectedReset() {
+  const sel = document.getElementById('checkpoint-select');
+  const val = sel.value;
+  if (!val) { toast('Select a checkpoint first.', 'error'); return; }
+  const idx = state.activeClass !== null ? state.activeClass : state.selectedHomeClass;
+  const cls = state.classes[idx];
+  if (val === 'start') {
+    cls.leg = 1; cls.day = 1; cls.branch = 'A';
+    cls.stats = {nav:100, solar:100, signal:40, earth:70};
+    cls.decisions = [];
+  } else {
+    const cp = cls.checkpoints[parseInt(val)];
+    if (!cp) return;
+    cls.leg = cp.leg; cls.day = cp.day;
+    cls.stats = {...cp.stats}; cls.branch = cp.branch;
+    // Trim decisions to only those before this checkpoint
+    cls.decisions = cls.decisions.filter(d => d.leg < cp.leg || (d.leg === cp.leg && d.day < cp.day));
+  }
+  cls.pendingDeltas = null; cls.pendingChoiceText = null;
+  cls.pendingChoiceLetter = null; cls.pendingConsequence = null;
+  cls.forensicsComplete = false;
+  save();
+  toast('Reset to checkpoint complete.', 'success');
+  goHome();
+}
+
+// ============================================================
+// RESETS
+// ============================================================
+function confirmReset() {
+  if (state.selectedHomeClass === null) { toast('Select a class first.', 'error'); return; }
+  const cls = state.classes[state.selectedHomeClass];
+  const lastCp = cls.checkpoints && cls.checkpoints.length > 0 ? cls.checkpoints[cls.checkpoints.length-1] : null;
+  document.getElementById('reset-modal-body').textContent = lastCp
+    ? `Reset ${cls.name} to last checkpoint (${lastCp.label})?`
+    : `Reset ${cls.name} to Leg 1 Day 1?`;
+  document.getElementById('modal-reset').classList.add('visible');
+}
+
+function executeReset() {
+  closeModal('modal-reset');
+  const cls = state.classes[state.selectedHomeClass];
+  const lastCp = cls.checkpoints && cls.checkpoints.length > 0 ? cls.checkpoints[cls.checkpoints.length-1] : null;
+  if (lastCp) {
+    cls.leg = lastCp.leg; cls.day = lastCp.day;
+    cls.stats = {...lastCp.stats}; cls.branch = lastCp.branch;
+  } else {
+    cls.leg = 1; cls.day = 1; cls.branch = 'A';
+    cls.stats = {nav:100, solar:100, signal:40, earth:70}; cls.decisions = [];
+  }
+  cls.pendingDeltas = null; cls.pendingChoiceText = null;
+  save(); renderClassCards(); toast(`${cls.name} reset.`, '');
+}
+
+function confirmFullReset() {
+  if (state.selectedHomeClass === null) { toast('Select a class first.', 'error'); return; }
+  document.getElementById('full-reset-modal-body').textContent =
+    `Full reset ${state.classes[state.selectedHomeClass].name}? ALL progress wiped. Cannot be undone.`;
+  document.getElementById('modal-full-reset').classList.add('visible');
+}
+
+function executeFullReset() {
+  closeModal('modal-full-reset');
+  const cls = state.classes[state.selectedHomeClass];
+  cls.leg = 1; cls.day = 1; cls.branch = 'A'; cls.failures = 0;
+  cls.stats = {nav:100, solar:100, signal:40, earth:70};
+  cls.decisions = []; cls.checkpoints = [];
+  cls.pendingDeltas = null; cls.pendingChoiceText = null;
+  cls.forensicsComplete = false;
+  save(); renderClassCards(); toast(`${cls.name} fully reset.`, '');
+}
+
+// ============================================================
+// UTILITIES
+// ============================================================
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('visible'); }
+
+function toast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast visible' + (type ? ' ' + type : '');
+  setTimeout(() => t.classList.remove('visible'), 3000);
+}
+
+// ============================================================
+// BOOT
+// ============================================================
+window.addEventListener('load', () => {
+  const loaded = load();
+  if (loaded && state.configured) showHome();
+  else showScreen('screen-setup');
+});
+</script>
+</body>
+</html>
