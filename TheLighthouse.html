@@ -894,7 +894,7 @@
       <div class="processing-title">DECISION LOGGED</div>
       <div class="processing-subtitle">The Meridian has registered the crew's command.</div>
       <div class="processing-gaia">
-        <div class="gaia-header" style="margin-bottom:10px"><div class="gaia-dot"></div><div class="gaia-label">GAIA</div></div>
+        <div class="gaia-header" style="margin-bottom:10px"><div id="proc-ai-dot" class="gaia-dot"></div><div id="proc-ai-label" class="gaia-label">GAIA</div></div>
         <div class="processing-gaia-text" id="processing-gaia-msg">"Selection received. I am... processing the implications. The ship's systems have registered your decision and are responding accordingly. Whether that response is favorable — well. You'll find out next class."</div>
       </div>
       <div class="processing-choice-recap">
@@ -1170,6 +1170,7 @@ const CONTENT = {
           meridianMode:true,
           gaiaRecall:'You already know that gravitational potential energy depends on an object\'s height and mass — you learned this during the Conversion Loop investigation on the Prometheus. GPE increases when an object is higher in a gravitational field. Today you will learn what creates that gravitational field in the first place. The force that GAVE those objects their potential energy on the Prometheus — that is what we are studying today.',
           scenario:'GAIA assigns the reading — gravitational force, force fields, and the factors that affect both. The crew\'s task is to connect every concept to the navigation anomaly. Whatever is pulling the Meridian off course, the reading explains exactly why it can do that from a distance.',
+          scenarioSignal:'Today\'s reading covers gravitational force and force fields. The navigation anomaly detected yesterday is caused by a gravitational force acting at a distance. The reading explains what creates that force, what factors determine its strength, and what a force field is. Crew task: connect each concept to the navigation anomaly.',
           readingFocus:'Savvas Forces, Chapter 2 (Topic 2) Lesson 1 — Gravity. Focus: What factors affect gravitational force? What is a gravitational field? How does distance affect the force between two objects?',
           gaiaReadingPrompt:'"Two factors. Mass and distance. Every gravitational calculation, every orbit, every navigation decision in space comes back to these two variables. More mass — stronger pull. Greater distance — weaker pull. Your reading today explains why. I want you to pay particular attention to the section on gravitational fields — the idea that a massive object does not have to be touching something to affect it. Gravity acts at a distance. That is not intuitive, but it is real. The Meridian is experiencing it right now."',
           vocabFocus:['gravitational force','gravitational field','weight','mass'],
@@ -1245,7 +1246,7 @@ const CONTENT = {
               subtext:'Better data requires closer proximity. The risk is manageable given what we know about the field strength.',
               deltas:{nav:-5, solar:-6, signal:20, earth:0},
               branch:'A-closer',
-              consequence:'Moving closer dramatically improves signal clarity — the Lighthouse transmission becomes much clearer, and the gravitational field map becomes detailed enough to confirm the uneven distribution is not random. It matches a pattern consistent with a hollow structure — dense outer shell, empty interior, mass concentrated at specific points. Navigation takes a hit as the crew navigates the stronger gravitational field near the source. GAIA: "The field map is extraordinary. The mass distribution is consistent with a constructed object — specifically, a hollow structure with reinforced nodes at regular intervals. No asteroid has this distribution. Something was engineered to have this mass profile."'
+              consequence:'Moving closer dramatically improves signal clarity — the Lighthouse transmission becomes much clearer, and the gravitational field map becomes detailed enough to confirm the uneven distribution is not random. It matches a pattern consistent with a hollow structure — dense outer shell, empty interior, mass concentrated at specific points. Navigation takes a hit as the crew navigates the stronger gravitational field near the source. The field map is extraordinary. The mass distribution is consistent with a constructed object — specifically, a hollow structure with reinforced nodes at regular intervals. No asteroid has this distribution. Something was engineered to have this mass profile.'
             },
             {
               letter:'B',
@@ -1253,7 +1254,7 @@ const CONTENT = {
               subtext:'A complete map from the current safe distance is more useful than partial data from closer in.',
               deltas:{nav:2, solar:-8, signal:14, earth:0},
               branch:'B-map',
-              consequence:'The comprehensive mapping takes longer and costs solar power — moving the ship to multiple positions around the source requires engine use. But the result is the most complete gravitational field map possible from a safe distance. The uneven distribution is confirmed from every angle. GAIA: "The field is asymmetric in a way that rules out random natural formation. Whatever this is, its mass was arranged deliberately. I cannot tell you who arranged it. I can tell you that it did not happen by accident."'
+              consequence:'The comprehensive mapping takes longer and costs solar power — moving the ship to multiple positions around the source requires engine use. But the result is the most complete gravitational field map possible from a safe distance. The uneven distribution is confirmed from every angle. The field is asymmetric in a way that rules out random natural formation. Whatever this is, its mass was arranged deliberately. I cannot tell you who arranged it. I can tell you that it did not happen by accident.'
             },
             {
               letter:'C',
@@ -1261,7 +1262,7 @@ const CONTENT = {
               subtext:'Probes are expendable. The Meridian is not.',
               deltas:{nav:5, solar:-4, signal:16, earth:0},
               branch:'C-probe',
-              consequence:'The probe data is exceptional — close-range field measurements that would have been difficult to obtain safely with the full ship. Navigation stays safe because the Meridian holds position. The probe confirms the uneven field and also transmits a visual: at close range, the source is not a rock. It has geometric surfaces. Right angles. The probe\'s camera captures one image before the signal degrades: a structure, definitely artificial, much larger than expected. GAIA: "The probe has confirmed what the field data implied. This object was built. I am now revising my estimate of its size based on the visual data. It is approximately three times larger than I calculated from the gravitational field alone. Much of its mass must be in non-dense materials. It is large. And it is waiting."'
+              consequence:'The probe data is exceptional — close-range field measurements that would have been difficult to obtain safely with the full ship. Navigation stays safe because the Meridian holds position. The probe confirms the uneven field and also transmits a visual: at close range, the source is not a rock. It has geometric surfaces. Right angles. The probe\'s camera captures one image before the signal degrades: a structure, definitely artificial, much larger than expected. The probe has confirmed what the field data implied. This object was built. I am now revising my estimate of its size based on the visual data. It is approximately three times larger than I calculated from the gravitational field alone. Much of its mass must be in non-dense materials. It is large. And it is waiting.'
             }
           ]
         },
@@ -1298,7 +1299,7 @@ const CONTENT = {
               subtext:'Fastest route to answers. Signal strengthens rapidly. Power cost is significant.',
               deltas:{nav:-8, solar:-14, signal:22, earth:0},
               branch:'A-direct',
-              consequence:'The direct approach is fast and effective — signal clarity jumps dramatically as the Meridian closes the distance. The Lighthouse transmission becomes clear enough to begin partial decoding for the first time. Solar power takes a serious hit as engines fight the increasing gravitational pull. Navigation accuracy drops as the crew manages constant course corrections against the strengthening field. GAIA: "We are close enough now to begin reading the signal. I want the crew to know: what I am seeing in this transmission is more complex than a simple distress beacon. This was designed to be found by someone who could understand it. I believe that someone is us."'
+              consequence:'The direct approach is fast and effective — signal clarity jumps dramatically as the Meridian closes the distance. The Lighthouse transmission becomes clear enough to begin partial decoding for the first time. Solar power takes a serious hit as engines fight the increasing gravitational pull. Navigation accuracy drops as the crew manages constant course corrections against the strengthening field. We are close enough now to begin reading the signal. I want the crew to know: what I am seeing in this transmission is more complex than a simple distress beacon. This was designed to be found by someone who could understand it. I believe that someone is us.'
             },
             {
               letter:'B',
@@ -1306,7 +1307,7 @@ const CONTENT = {
               subtext:'Takes longer but uses the gravitational field as a tool rather than fighting it.',
               deltas:{nav:8, solar:-4, signal:14, earth:0},
               branch:'B-orbital',
-              consequence:'The orbital approach is elegant — the crew uses the gravitational field itself to maintain position without constant engine thrust, exactly as planets use the Sun\'s gravity to orbit. Navigation accuracy improves as the crew practices working with the field rather than against it. Solar power is conserved. Signal clarity improves more slowly than the direct approach would have achieved. GAIA: "You used the gravitational field as infrastructure rather than an obstacle. This is how every orbiting body in the solar system functions. The Meridian is now, technically speaking, a temporary satellite of the Lighthouse. I find that poetically appropriate."'
+              consequence:'The orbital approach is elegant — the crew uses the gravitational field itself to maintain position without constant engine thrust, exactly as planets use the Sun\'s gravity to orbit. Navigation accuracy improves as the crew practices working with the field rather than against it. Solar power is conserved. Signal clarity improves more slowly than the direct approach would have achieved. You used the gravitational field as infrastructure rather than an obstacle. This is how every orbiting body in the solar system functions. The Meridian is now, technically speaking, a temporary satellite of the Lighthouse. I find that poetically appropriate.'
             }
           ]
         },
@@ -1378,7 +1379,7 @@ const CONTENT = {
               subtext:'The gravitational field math is clear: we are past the point of easy return. Forward is the scientific choice.',
               deltas:{nav:5, solar:-8, signal:25, earth:0},
               branch:'A-proceed',
-              consequence:'The Meridian closes the final distance. The Lighthouse grows from a geometric shape to a structure with visible detail — panels, arrays, what appear to be docking mechanisms. The signal is now fully clear. GAIA: "We have arrived. I have completed my analysis of the signal. Before I share what it contains, I want the crew to understand something. This structure has been transmitting for a very long time — much longer than eight months. The signal the GSRA detected eight months ago was a reactivation. Something woke it up. I believe I know what that something was. But that is a conversation for Leg 2."'
+              consequence:'The Meridian closes the final distance. The Lighthouse grows from a geometric shape to a structure with visible detail — panels, arrays, what appear to be docking mechanisms. The signal is now fully clear. We have arrived. I have completed my analysis of the signal. Before I share what it contains, I want the crew to understand something. This structure has been transmitting for a very long time — much longer than eight months. The signal the GSRA detected eight months ago was a reactivation. Something woke it up. I believe I know what that something was. But that is a conversation for Leg 2.'
             },
             {
               letter:'B',
@@ -1386,7 +1387,7 @@ const CONTENT = {
               subtext:'We are close but not committed. Additional data before arrival is sound scientific practice.',
               deltas:{nav:8, solar:-5, signal:18, earth:0},
               branch:'B-hold',
-              consequence:'Holding position allows the crew to transmit a complete data package to the GSRA before arrival — field maps, visual data, signal analysis, mass estimates. The GSRA response comes within six hours: proceed. Mission command confirms the findings and authorizes approach. GAIA: "The GSRA has reviewed everything and still wants us to proceed. I want to note that in my experience, that response time suggests they already suspected what we found. Someone at the GSRA has been waiting for this confirmation. I do not yet know who, or how long they have been waiting."'
+              consequence:'Holding position allows the crew to transmit a complete data package to the GSRA before arrival — field maps, visual data, signal analysis, mass estimates. The GSRA response comes within six hours: proceed. Mission command confirms the findings and authorizes approach. The GSRA has reviewed everything and still wants us to proceed. I want to note that in my experience, that response time suggests they already suspected what we found. Someone at the GSRA has been waiting for this confirmation. I do not yet know who, or how long they have been waiting.'
             },
             {
               letter:'C',
@@ -1394,7 +1395,7 @@ const CONTENT = {
               subtext:'A structure of this significance requires more than one ship. We document and return.',
               deltas:{nav:-5, solar:-18, signal:8, earth:0},
               branch:'C-return',
-              consequence:'Pulling back against the gravitational field costs significant solar power — the force at current distance is substantial and the engines work hard against it. The Meridian escapes the strong field region and begins the return journey. GAIA: "The return is the most fuel-expensive decision available to us at this distance. I want the crew to understand the gravitational force data made this predictable — at 2 million km, retreating costs considerably more than arriving. The science was telling you this before the vote. Navigation accuracy drops as the crew manages the retreat against the field. The data we have collected is, however, complete and transmittable. The GSRA will send another ship. With this data, they will know exactly what they are approaching."'
+              consequence:'Pulling back against the gravitational field costs significant solar power — the force at current distance is substantial and the engines work hard against it. The Meridian escapes the strong field region and begins the return journey. The return is the most fuel-expensive decision available to us at this distance. I want the crew to understand the gravitational force data made this predictable — at 2 million km, retreating costs considerably more than arriving. The science was telling you this before the vote. Navigation accuracy drops as the crew manages the retreat against the field. The data we have collected is, however, complete and transmittable. The GSRA will send another ship. With this data, they will know exactly what they are approaching.'
             }
           ]
         },
@@ -1459,7 +1460,7 @@ const CONTENT = {
               subtext:'Standard navigation protocol. The orbital models are well-tested. Trust the math.',
               deltas:{nav:5, solar:-4, signal:8, earth:-2},
               branch:'A-direct-nav',
-              consequence:'The direct trajectory calculation is efficient and uses minimal power. The orbital models for Earth\'s revolution are precise — 365.25 days per orbit, consistent for billions of years. The 47-day projection puts Earth exactly where standard models predict. Navigation accuracy improves as the crew commits to a confirmed heading. GAIA: "Earth\'s revolution is one of the most reliable constants in the solar system. The orbital model has not been wrong in recorded history. Trusting it was the correct call. We are on course."'
+              consequence:'The direct trajectory calculation is efficient and uses minimal power. The orbital models for Earth\'s revolution are precise — 365.25 days per orbit, consistent for billions of years. The 47-day projection puts Earth exactly where standard models predict. Navigation accuracy improves as the crew commits to a confirmed heading. Earth\'s revolution is one of the most reliable constants in the solar system. The orbital model has not been wrong in recorded history. Trusting it was the correct call. We are on course.'
             },
             {
               letter:'B',
@@ -1467,7 +1468,7 @@ const CONTENT = {
               subtext:'Fresh data is always better than projected data. The 48-hour delay is worth the accuracy.',
               deltas:{nav:8, solar:-6, signal:10, earth:-2},
               branch:'B-observe-first',
-              consequence:'The 48-hour observation window produces the most accurate position data available. Fresh measurements confirm the orbital model — Earth is exactly where it should be. Navigation accuracy jumps significantly because the course is locked based on observed position rather than projected position. Solar power cost reflects the extended sensor operation. GAIA: "Observation before projection. The data confirms the model, which means the model is reliable. But now we also know the model is reliable because we checked — not just because we assumed. That distinction matters in science."'
+              consequence:'The 48-hour observation window produces the most accurate position data available. Fresh measurements confirm the orbital model — Earth is exactly where it should be. Navigation accuracy jumps significantly because the course is locked based on observed position rather than projected position. Solar power cost reflects the extended sensor operation. Observation before projection. The data confirms the model, which means the model is reliable. But now we also know the model is reliable because we checked — not just because we assumed. That distinction matters in science.'
             },
             {
               letter:'C',
@@ -1475,7 +1476,7 @@ const CONTENT = {
               subtext:'The Moon has enough mass to create a detectable gravitational pull. Ignoring it is a navigation risk.',
               deltas:{nav:10, solar:-8, signal:12, earth:-2},
               branch:'C-moon-calc',
-              consequence:'Including the Moon in the trajectory calculation is more expensive but more precise. The Moon\'s gravitational influence at the Meridian\'s closest approach distance is small — but detectable, and over 47 days it compounds. The corrected trajectory is more accurate than either alternative. Signal clarity improves as the crew fine-tunes antenna direction during the extended calculation. GAIA: "The Moon has enough mass to matter at close range. You accounted for it. Navigation accuracy reflects that decision. This is also your first practical application of what you are about to read — orbital mechanics is not just theory. It is navigation."'
+              consequence:'Including the Moon in the trajectory calculation is more expensive but more precise. The Moon\'s gravitational influence at the Meridian\'s closest approach distance is small — but detectable, and over 47 days it compounds. The corrected trajectory is more accurate than either alternative. Signal clarity improves as the crew fine-tunes antenna direction during the extended calculation. The Moon has enough mass to matter at close range. You accounted for it. Navigation accuracy reflects that decision. This is also your first practical application of what you are about to read — orbital mechanics is not just theory. It is navigation.'
             }
           ]
         },
@@ -1500,7 +1501,7 @@ const CONTENT = {
 
         // ── DAY 3 ── GRAPH · Mean/Median/Mode/Range ──────────────
         {
-          day:3, type:'graph', isReveal:false,
+          day:3, type:'graph', isReveal:false, rawDataOnly:true,
           legLabel:'Leg 2 · Earth, Moon & Seasons',
           legTitle:'Making Sense of the Numbers First',
           gaia:'I have daylight data. Hours of sunlight per day, recorded once per month, for an entire year at a location in the Northern Hemisphere. Before I show you a graph of this data, I want the crew to work with the raw numbers. A graph shows you the shape of the data. But first you need to understand what the numbers actually say — what is typical, what is the middle value, what repeats, and how much variation exists. These are not graphing skills. These are data skills. Every scientist needs them before they make any graph at all.',
@@ -1559,7 +1560,7 @@ const CONTENT = {
               subtext:'The same geometry creating Earth\'s seasons affects solar collection on the Meridian. Optimize now.',
               deltas:{nav:0, solar:14, signal:6, earth:-2},
               branch:'A-solar-optimize',
-              consequence:'Adjusting the solar panels based on the current sunlight angle — the same geometry causing Earth\'s northern summer — produces the highest solar collection of the mission so far. The angle between the Sun and the Meridian\'s panels is nearly optimal at this position. Solar power reserves jump significantly. GAIA: "The same principle that causes seasons on Earth determines solar collection efficiency on this ship. When the panels face the Sun at a perpendicular angle, collection is maximized. When the angle is shallow, the energy spreads across a larger panel area and collection drops. You have just applied seasonal geometry to ship engineering."'
+              consequence:'Adjusting the solar panels based on the current sunlight angle — the same geometry causing Earth\'s northern summer — produces the highest solar collection of the mission so far. The angle between the Sun and the Meridian\'s panels is nearly optimal at this position. Solar power reserves jump significantly. The same principle that causes seasons on Earth determines solar collection efficiency on this ship. When the panels face the Sun at a perpendicular angle, collection is maximized. When the angle is shallow, the energy spreads across a larger panel area and collection drops. You have just applied seasonal geometry to ship engineering.'
             },
             {
               letter:'B',
@@ -1567,7 +1568,7 @@ const CONTENT = {
               subtext:'This view of a tilted planet receiving differential sunlight cannot be replicated from the surface. Document it.',
               deltas:{nav:0, solar:-6, signal:18, earth:-2},
               branch:'B-document-seasons',
-              consequence:'The sensor data collected from this observation position is extraordinary — a complete picture of seasonal energy variation across Earth\'s surface, taken simultaneously from a single external vantage point. No Earth-based measurement could capture this. Signal clarity jumps as the data package is transmitted back to GSRA. Solar power costs reflect extended sensor operation. GAIA: "Scientists have been inferring Earth\'s seasonal geometry from surface measurements for centuries. What you just documented is what those inferences describe — seen directly, from outside, all at once. The data has been transmitted. Someone at GSRA is going to be very pleased."'
+              consequence:'The sensor data collected from this observation position is extraordinary — a complete picture of seasonal energy variation across Earth\'s surface, taken simultaneously from a single external vantage point. No Earth-based measurement could capture this. Signal clarity jumps as the data package is transmitted back to GSRA. Solar power costs reflect extended sensor operation. Scientists have been inferring Earth\'s seasonal geometry from surface measurements for centuries. What you just documented is what those inferences describe — seen directly, from outside, all at once. The data has been transmitted. Someone at GSRA is going to be very pleased.'
             },
             {
               letter:'C',
@@ -1575,7 +1576,7 @@ const CONTENT = {
               subtext:'The mission is the Lighthouse. Document what you can without slowing down.',
               deltas:{nav:4, solar:-2, signal:5, earth:-2},
               branch:'C-maintain-heading',
-              consequence:'Maintaining heading conserves resources and keeps the mission on schedule. The crew logs the seasonal observation data as a secondary finding — not the mission priority, but worth noting. Navigation accuracy stays strong on the committed heading. GAIA: "Reasonable prioritization. The Lighthouse is the mission. Earth\'s seasonal geometry has been observed and logged. We proceed. I will note that the observation window for this particular view of Earth\'s tilt closes as we move outward — what was visible here will not be visible from our next position. The logged data preserves it."'
+              consequence:'Maintaining heading conserves resources and keeps the mission on schedule. The crew logs the seasonal observation data as a secondary finding — not the mission priority, but worth noting. Navigation accuracy stays strong on the committed heading. Reasonable prioritization. The Lighthouse is the mission. Earth\'s seasonal geometry has been observed and logged. We proceed. I will note that the observation window for this particular view of Earth\'s tilt closes as we move outward — what was visible here will not be visible from our next position. The logged data preserves it.'
             }
           ]
         },
@@ -1675,7 +1676,7 @@ const CONTENT = {
               subtext:'Gravity assists are real navigation techniques. The Moon\'s pull, used correctly, adds velocity without burning solar power.',
               deltas:{nav:8, solar:12, signal:10, earth:-2},
               branch:'A-moon-slingshot',
-              consequence:'The lunar gravity assist works exactly as orbital mechanics predicts. The Meridian passes close to the Moon, trading a slight course deviation for significant velocity gain — the Moon\'s gravitational pull accelerates the ship, and inertia carries that acceleration forward after the closest approach. Solar power reserves jump because the engines do less work. Navigation accuracy improves as the crew successfully executes a precision orbital maneuver. GAIA: "Gravity assist. The Moon pulls the Meridian, the Meridian\'s inertia carries that velocity outward, and the Moon loses an immeasurably small amount of its own orbital energy in the exchange. This is how spacecraft reach the outer solar system without carrying impossibly large fuel loads. You just did it."'
+              consequence:'The lunar gravity assist works exactly as orbital mechanics predicts. The Meridian passes close to the Moon, trading a slight course deviation for significant velocity gain — the Moon\'s gravitational pull accelerates the ship, and inertia carries that acceleration forward after the closest approach. Solar power reserves jump because the engines do less work. Navigation accuracy improves as the crew successfully executes a precision orbital maneuver. Gravity assist. The Moon pulls the Meridian, the Meridian\'s inertia carries that velocity outward, and the Moon loses an immeasurably small amount of its own orbital energy in the exchange. This is how spacecraft reach the outer solar system without carrying impossibly large fuel loads. You just did it.'
             },
             {
               letter:'B',
@@ -1683,7 +1684,7 @@ const CONTENT = {
               subtext:'Precision navigation. Use the engines to counteract both gravitational pulls and stay exactly on the planned heading.',
               deltas:{nav:5, solar:-10, signal:8, earth:-2},
               branch:'B-precision-nav',
-              consequence:'Maintaining planned trajectory through the combined gravitational field of Earth and Moon requires constant engine correction — inertia carries the ship forward but gravity from two sources constantly nudges it off course. Navigation accuracy stays high because the heading never deviates. Solar power takes a significant hit from continuous engine use. GAIA: "Precise. Expensive. The engines fought both gravitational fields simultaneously to hold the planned course. The law of universal gravitation does not make exceptions for planned trajectories. Every deviation required a correction. You corrected them all. We are exactly on heading."'
+              consequence:'Maintaining planned trajectory through the combined gravitational field of Earth and Moon requires constant engine correction — inertia carries the ship forward but gravity from two sources constantly nudges it off course. Navigation accuracy stays high because the heading never deviates. Solar power takes a significant hit from continuous engine use. Precise. Expensive. The engines fought both gravitational fields simultaneously to hold the planned course. The law of universal gravitation does not make exceptions for planned trajectories. Every deviation required a correction. You corrected them all. We are exactly on heading.'
             },
             {
               letter:'C',
@@ -1691,7 +1692,7 @@ const CONTENT = {
               subtext:'The deviation is within safe parameters. Use it scientifically rather than correcting it.',
               deltas:{nav:-5, solar:-4, signal:15, earth:-2},
               branch:'C-allow-deviation',
-              consequence:'Allowing the gravitational deviation produces excellent data — real-time measurements of Earth\'s gravitational field at multiple distances, more detailed than anything in the Meridian\'s database. Signal clarity jumps as the data is processed and transmitted. Navigation accuracy drops because the planned heading is no longer intact — recovering the correct trajectory will require additional course correction in the next leg. GAIA: "The data is valuable. The navigation cost is real. This is a genuine scientific trade-off — knowledge acquired at the expense of efficiency. I am not going to tell you it was wrong. I am going to note that the heading recovery in Leg 3 will require additional resources."'
+              consequence:'Allowing the gravitational deviation produces excellent data — real-time measurements of Earth\'s gravitational field at multiple distances, more detailed than anything in the Meridian\'s database. Signal clarity jumps as the data is processed and transmitted. Navigation accuracy drops because the planned heading is no longer intact — recovering the correct trajectory will require additional course correction in the next leg. The data is valuable. The navigation cost is real. This is a genuine scientific trade-off — knowledge acquired at the expense of efficiency. I am not going to tell you it was wrong. I am going to note that the heading recovery in Leg 3 will require additional resources.'
             }
           ]
         },
@@ -1716,10 +1717,10 @@ const CONTENT = {
 
         // ── DAY 9 ── GRAPH · Stem and Leaf ───────────────────────
         {
-          day:9, type:'graph', isReveal:false,
+          day:9, type:'graph', isReveal:false, rawDataOnly:true,
           legLabel:'Leg 2 · Earth, Moon & Seasons',
           legTitle:'The Moon\'s Cycle in Numbers',
-          gaia:'The Meridian\'s sensors have been logging the Moon\'s orbital angle — its position in its orbit around Earth — every day for the past 29 days. One complete lunar cycle. I want to show you this data in a way that makes the distribution visible before you graph it. Not a bar graph. Not a line graph. A stem and leaf plot. You have been organizing data since Day 3. A stem and leaf plot is a tool that organizes numbers so their distribution — how they are spread out, where they cluster — is visible at a glance. And it makes finding the median much easier than a list does.',
+          gaia:'The Meridian\'s sensors have been logging the Moon\'s orbital angle — its position in its orbit around Earth — every day for the past 29 days. One complete lunar cycle. I am going to give the crew the raw numbers. Your task is to organize them into a stem and leaf plot — a tool that arranges numbers by their tens digit so the distribution of the data becomes visible. The stems are the tens digits. The leaves are the ones digits. Once you have built it, finding the median is a matter of counting to the middle. I want to see if the crew can build one from scratch.',
           scenario:'GAIA displays 29 daily measurements of the Moon\'s orbital completion percentage — how far through its 29.5-day cycle the Moon was on each observation day. The measurements range from 3% (Day 1, just past new moon) to 99% (Day 29, nearly back to new moon).\n\nGAIA: "A stem and leaf plot works by splitting each number into two parts: the tens digit becomes the stem, the ones digit becomes the leaf. All numbers in the same tens group share a stem. The leaves branch out from it. When you finish, the shape of the data — where values cluster, where they spread — is visible without drawing a single graph."',
           graphData:{
             title:'Moon Orbital Completion % — 29 Daily Observations',
@@ -2089,7 +2090,9 @@ function renderMissionScreen() {
   }
 
   document.getElementById('content-gaia').innerHTML = gaiaText;
-  document.getElementById('content-scenario').innerHTML = (cnt.scenario || '').replace(/\n/g, '<br><br>');
+  // scenarioSignal override for Meridian mode days
+  const scenarioText = isMeridianMode && cnt.scenarioSignal ? cnt.scenarioSignal : cnt.scenario || '';
+  document.getElementById('content-scenario').innerHTML = scenarioText.replace(/\n/g, '<br><br>');
 
   const extra = document.getElementById('content-extra');
   extra.innerHTML = '';
@@ -2109,22 +2112,6 @@ function renderMissionScreen() {
   }
 
   if (cnt.bridgeToNext) extra.innerHTML += `<div style="background:rgba(0,229,204,0.05);border:1px solid rgba(0,229,204,0.15);border-radius:6px;padding:9px 13px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);line-height:1.6">⟶ ${cnt.bridgeToNext}</div></div>`;
-
-  // ── Phase bar & choices visibility ───────────────────────
-  const phasebar = document.querySelector('.phase-bar');
-  const choicesArea = document.getElementById('choices-area');
-  if (isChoiceDay) {
-    if (phasebar) phasebar.querySelectorAll('.phase-step').forEach(el => { el.style.display = ''; });
-    if (choicesArea) choicesArea.style.display = '';
-  } else {
-    // Non-choice days: hide phase steps 2-4 and choices entirely
-    if (phasebar) {
-      phasebar.querySelectorAll('.phase-step').forEach((el, i) => {
-        el.style.display = i === 0 ? '' : 'none';
-      });
-    }
-    if (choicesArea) choicesArea.style.display = 'none';
-  }
 
   // ── Update phase panel AI boxes for Meridian vs GAIA ────
   const aiColor = isMeridianMode ? '#7eb8d4' : 'var(--gaia-green)';
@@ -2181,6 +2168,9 @@ function renderMissionScreen() {
   document.getElementById('branch-path').innerHTML = `Leg ${cls.leg} · <span style="color:var(--accent)">Branch ${cls.branch}</span> · Day ${cls.day}`;
 
   setPhase('story');
+  // Apply phase visibility AFTER setPhase so it wins
+  applyPhaseVisibility(isChoiceDay);
+
   state.selectedChoice = null;
   document.getElementById('btn-commit').disabled = true;
   document.getElementById('commit-note').textContent = "Select the crew's official choice, then lock it in.";
@@ -2201,15 +2191,21 @@ function renderMissionScreen() {
 
   // Processing screen — use Meridian Systems voice when appropriate
   const procMsg = document.getElementById('processing-gaia-msg');
+  const procDot = document.getElementById('proc-ai-dot');
+  const procLabel = document.getElementById('proc-ai-label');
   if (procMsg) {
     if (isMeridianMode) {
       procMsg.textContent = 'Decision logged. Consequence data is pending. Results will be available at the start of the next session. Ship systems are responding to the crew\'s command. Current stat changes are classified until the next reveal.';
       procMsg.parentElement.className = 'processing-meridian';
       procMsg.className = 'processing-meridian-text';
+      if (procDot) procDot.className = 'meridian-indicator';
+      if (procLabel) procLabel.textContent = 'MERIDIAN SYSTEMS';
     } else {
       procMsg.textContent = '"Selection received. I am... processing the implications. The ship\'s systems have registered your decision and are responding accordingly. Whether that response is favorable — well. You\'ll find out next class."';
       procMsg.parentElement.className = 'processing-gaia';
       procMsg.className = 'processing-gaia-text';
+      if (procDot) procDot.className = 'gaia-dot';
+      if (procLabel) procLabel.textContent = 'GAIA';
     }
   }
 
@@ -2238,7 +2234,7 @@ function updateDayTypeBanner(cnt, cls) {
 function renderDeepenContent(c) {
   let h = '';
   if (c.readingFocus) h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">📖 Reading Assignment</div><div style="font-family:var(--font-body);font-size:15px;color:var(--text-primary);line-height:1.6">${c.readingFocus}</div></div>`;
-  if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS — Reading Focus' : 'GAIA — To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-mono);font-size:13px;color:${rdColor};line-height:1.7;font-style:italic">${c.gaiaReadingPrompt}</div></div>`; }
+  if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS — Reading Focus' : 'GAIA — To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${c.gaiaReadingPrompt}</div></div>`; }
   if (c.vocabFocus && c.vocabFocus.length) {
     h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
     c.vocabFocus.forEach(v => { h += `<span style="background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:3px;padding:3px 9px;font-family:var(--font-mono);font-size:11px;color:var(--accent)">${v}</span>`; });
@@ -2254,11 +2250,29 @@ function renderGraphContent(c) {
     const gd = c.graphData;
     h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margin-bottom:14px">`;
     h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">📊 ${gd.title}</div>`;
-    if (gd.pie && gd.bars) h += renderPieChart(gd);
-    else if (gd.bars && gd.bars2) h += renderDoubleBarGraph(gd);
-    else if (gd.bars) h += renderBarGraph(gd);
-    else if (gd.multiLine) h += renderMultiLineGraph(gd);
-    else if (gd.data) h += renderLineGraph(gd);
+
+    // rawDataOnly: show data as a formatted list/table, not a rendered chart
+    if (c.rawDataOnly && gd.bars) {
+      h += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:8px">';
+      gd.bars.forEach(b => {
+        h += `<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:4px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">`;
+        h += `<span style="font-family:var(--font-mono);font-size:13px;color:var(--text-secondary)">${b.label}</span>`;
+        h += `<span style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--accent)">${b.value}</span>`;
+        h += `</div>`;
+      });
+      h += '</div>';
+      if (gd.yLabel) h += `<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);margin-top:4px">Values in: ${gd.yLabel}</div>`;
+    } else if (gd.pie && gd.bars) {
+      h += renderPieChart(gd);
+    } else if (gd.bars && gd.bars2) {
+      h += renderDoubleBarGraph(gd);
+    } else if (gd.bars) {
+      h += renderBarGraph(gd);
+    } else if (gd.multiLine) {
+      h += renderMultiLineGraph(gd);
+    } else if (gd.data) {
+      h += renderLineGraph(gd);
+    }
     // Data table if present
     if (gd.dataTable) {
       h += '<div style="margin-top:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Data Table</div>';
@@ -2352,7 +2366,7 @@ function renderDoubleBarGraph(gd) {
   const bars2 = gd.bars2;
   const allVals = [...bars1.map(b=>b.value), ...bars2.map(b=>b.value)];
   const maxVal = Math.max(...allVals);
-  const W = 580, H = 260, padL = 52, padB = 44, padT = 46, padR = 14;
+  const W = 620, H = 270, padL = 52, padB = 52, padT = 46, padR = 14;
   const chartW = W - padL - padR;
   const chartH = H - padT - padB;
   const groupW = chartW / bars1.length;
@@ -2390,13 +2404,13 @@ function renderDoubleBarGraph(gd) {
     svg += `<text x="${(groupX + groupW/2).toFixed(1)}" y="${(padT+chartH+16).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">${b.label}</text>`;
   });
 
-  // Legend
-  const legendY = padT - 2;
-  const legendX = W - padR - 200;
-  svg += `<rect x="${legendX}" y="${legendY-10}" width="14" height="14" fill="${colors[0]}" opacity="0.85" rx="2"/>`;
-  svg += `<text x="${legendX+18}" y="${legendY}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.8)">${labels[0]}</text>`;
-  svg += `<rect x="${legendX+110}" y="${legendY-10}" width="14" height="14" fill="${colors[1]}" opacity="0.85" rx="2"/>`;
-  svg += `<text x="${legendX+128}" y="${legendY}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.8)">${labels[1]}</text>`;
+  // Legend — below chart to avoid overlap
+  const legendBaseY = padT + chartH + 34;
+  const legendCenterX = padL + chartW / 2;
+  svg += `<rect x="${legendCenterX-120}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[0]}" opacity="0.85" rx="2"/>`;
+  svg += `<text x="${legendCenterX-102}" y="${legendBaseY}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.85)">${labels[0]}</text>`;
+  svg += `<rect x="${legendCenterX+20}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[1]}" opacity="0.85" rx="2"/>`;
+  svg += `<text x="${legendCenterX+38}" y="${legendBaseY}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.85)">${labels[1]}</text>`;
 
   // Axes
   svg += `<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
@@ -2535,6 +2549,25 @@ function renderMultiLineGraph(gd) {
 }
 
 // ============================================================
+// PHASE VISIBILITY — controls what phases are shown
+// ============================================================
+function applyPhaseVisibility(isChoiceDay) {
+  const phasebar = document.querySelector('.phase-bar');
+  const choicesArea = document.getElementById('choices-area');
+  if (isChoiceDay) {
+    if (phasebar) phasebar.querySelectorAll('.phase-step').forEach(el => { el.style.display = ''; });
+    if (choicesArea) choicesArea.style.display = '';
+  } else {
+    if (phasebar) {
+      phasebar.querySelectorAll('.phase-step').forEach((el, i) => {
+        el.style.display = i === 0 ? '' : 'none';
+      });
+    }
+    if (choicesArea) choicesArea.style.display = 'none';
+  }
+}
+
+// ============================================================
 // PHASE SYSTEM
 // ============================================================
 function setPhase(phase) {
@@ -2544,8 +2577,6 @@ function setPhase(phase) {
   const isChoiceDay = cnt && !cnt.noChoice && cnt.choices && cnt.choices.length > 0;
 
   document.querySelectorAll('.phase-step').forEach(el => {
-    // Don't touch hidden steps — renderMissionScreen controls their visibility
-    if (el.style.display === 'none') return;
     const p = el.dataset.phase;
     el.classList.remove('active','done');
     const order = ['story','exit','discuss','vote'];
@@ -2558,22 +2589,8 @@ function setPhase(phase) {
   const panel = document.getElementById('phase-' + phase);
   if (panel) panel.classList.add('active');
 
-  const label = document.getElementById('choices-label');
-  const choicesArea = document.getElementById('choices-area');
-  if (!isChoiceDay) {
-    if (choicesArea) choicesArea.style.display = 'none';
-  } else {
-    if (choicesArea) choicesArea.style.display = '';
-    if (phase === 'vote') {
-      if (label) label.textContent = 'Crew Decision — Phase 4: Official Vote';
-      choicesArea.style.opacity = '1';
-      choicesArea.style.pointerEvents = 'auto';
-    } else {
-      if (label) label.textContent = 'Choices — Vote opens in Phase 4';
-      choicesArea.style.opacity = '1';
-      choicesArea.style.pointerEvents = 'none';
-    }
-  }
+  // Always re-apply visibility after any phase change
+  applyPhaseVisibility(isChoiceDay);
 }
 
 // ============================================================
