@@ -619,7 +619,7 @@
       <div class="reveal-gaia-box">
         <div class="gaia-header" style="margin-bottom:10px">
           <div class="gaia-dot"></div>
-          <div class="gaia-label">GAIA — Consequence Report</div>
+          <div class="gaia-label" id="reveal-source-label">GAIA — Consequence Report</div>
         </div>
         <div class="reveal-gaia-text" id="reveal-gaia-text">Loading consequence data...</div>
       </div>
@@ -788,9 +788,9 @@
             </div>
             <div class="timer-done-msg" id="exit-timer-done">"Time. Please submit your forms now. We will review the evidence as a crew."</div>
           </div>
-          <div class="gaia-box">
-            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — To The Crew</div></div>
-            <div class="gaia-text">Before we decide as a crew, each of you must commit your own thinking. What do you believe? What evidence supports it? What is your reasoning? Science begins with individual thought before collective decision.</div>
+          <div id="exit-ai-box" class="gaia-box">
+            <div class="gaia-header"><div id="exit-ai-dot" class="gaia-dot"></div><div id="exit-ai-label" class="gaia-label">GAIA — To The Crew</div></div>
+            <div id="exit-ai-text" class="gaia-text">Before we decide as a crew, each of you must commit your own thinking. What do you believe? What evidence supports it? What is your reasoning? Science begins with individual thought before collective decision.</div>
           </div>
         </div>
 
@@ -816,17 +816,17 @@
             </div>
             <div class="timer-done-msg" id="discuss-timer-done">"The evidence has been heard. Scientists consider new information before deciding. Are you ready for the final vote?"</div>
           </div>
-          <div class="gaia-box">
-            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — Discussion Guide</div></div>
-            <div class="gaia-text">A good scientific argument requires three things: a clear claim, specific evidence, and reasoning that connects them. As you listen — do their arguments hold up? Does their evidence actually support their claim?</div>
+          <div id="discuss-ai-box" class="gaia-box">
+            <div class="gaia-header"><div id="discuss-ai-dot" class="gaia-dot"></div><div id="discuss-ai-label" class="gaia-label">GAIA — Discussion Guide</div></div>
+            <div id="discuss-ai-text" class="gaia-text">A good scientific argument requires three things: a clear claim, specific evidence, and reasoning that connects them. As you listen — do their arguments hold up? Does their evidence actually support their claim?</div>
           </div>
         </div>
 
         <!-- PHASE 4: FINAL VOTE -->
         <div class="phase-panel" id="phase-vote">
-          <div class="gaia-box">
-            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — Final Vote</div></div>
-            <div class="gaia-text">"New information has been presented. In accordance with scientific protocol — <em>we reconsider</em>. This is the crew's official decision. It will be logged. It will have consequences. Choose carefully."</div>
+          <div id="vote-ai-box" class="gaia-box">
+            <div class="gaia-header"><div id="vote-ai-dot" class="gaia-dot"></div><div id="vote-ai-label" class="gaia-label">GAIA — Final Vote</div></div>
+            <div id="vote-ai-text" class="gaia-text">"New information has been presented. In accordance with scientific protocol — <em>we reconsider</em>. This is the crew's official decision. It will be logged. It will have consequences. Choose carefully."</div>
           </div>
         </div>
       </div>
@@ -1175,7 +1175,7 @@ const CONTENT = {
           vocabFocus:['gravitational force','gravitational field','weight','mass'],
           spiralReview:'gravitational potential energy — from Campaign 1 Sector 3',
           noChoice:true,
-          bridgeToNext:'Tomorrow: GAIA has comparison data on gravitational force across different objects. The crew will read a bar graph and a data table together to find the pattern — then GAIA has something to tell classes that left her behind.'
+          bridgeToNext:'Tomorrow: comparison data on gravitational force across different objects. The crew will read a bar graph and a data table together to find the pattern — and a long-range signal will arrive.'
         },
 
         // ── DAY 3 ── GRAPH · Bar Graph + Data Table + GAIA Signal ─
@@ -1935,8 +1935,36 @@ function launchReveal() {
 function renderRevealScreen(cls) {
   document.getElementById('reveal-class-label').textContent = cls.name + ' — Yesterday\'s Decision';
   document.getElementById('reveal-choice-recap').textContent = cls.pendingChoiceText || '—';
+
+  // Determine if this reveal is for a Meridian-mode day
+  const leg = CONTENT.legs.find(l => l.id === cls.leg) || CONTENT.legs[0];
+  // The pending choice was made on the previous day
+  const prevDay = cls.day - 1 > 0 ? cls.day - 1 : 1;
+  const prevCnt = leg.days.find(d => d.day === prevDay) || leg.days[0];
+  const wasMeridian = prevCnt && prevCnt.meridianMode && (cls.gaiaStatus === 'signal');
+
+  // Update reveal source label
+  const sourceLabel = document.getElementById('reveal-source-label');
+  if (sourceLabel) {
+    sourceLabel.textContent = wasMeridian ? 'MERIDIAN SYSTEMS — Consequence Report' : 'GAIA — Consequence Report';
+  }
+
+  // Style the reveal GAIA box
+  const revealBox = document.querySelector('.reveal-gaia-box');
+  if (revealBox) {
+    if (wasMeridian) {
+      revealBox.style.borderColor = 'rgba(126,184,212,0.25)';
+      revealBox.style.borderLeftColor = '#7eb8d4';
+    } else {
+      revealBox.style.borderColor = 'rgba(0,255,136,0.25)';
+      revealBox.style.borderLeftColor = 'var(--gaia-green)';
+    }
+  }
+
   let gaiaText = '"The data is in. Here is what happened as a result of your decision."';
-  if (cls.pendingConsequence) gaiaText = '"' + cls.pendingConsequence + '"';
+  if (cls.pendingConsequence) gaiaText = wasMeridian
+    ? cls.pendingConsequence  // no quotes for Meridian
+    : '"' + cls.pendingConsequence + '"';
   document.getElementById('reveal-gaia-text').innerHTML = gaiaText;
 
   const statInfo = [
@@ -2005,7 +2033,7 @@ function renderMissionScreen() {
   const dayType = cnt.type || 'choice';
   const isChoiceDay = dayType === 'choice' && !cnt.noChoice && cnt.choices && cnt.choices.length > 0;
   const gaiaStatus = cls.gaiaStatus || 'aboard';
-  const isMeridianMode = cnt.meridianMode && (gaiaStatus === 'signal');
+  let isMeridianMode = cnt.meridianMode && (gaiaStatus === 'signal');
 
   document.getElementById('topbar-period').textContent = cls.name;
   document.getElementById('topbar-leg').textContent = cnt.legLabel;
@@ -2017,24 +2045,22 @@ function renderMissionScreen() {
   const badge = typeLabels[dayType] || '';
   document.getElementById('content-leg-title').innerHTML = cnt.legTitle + ' <span style="font-family:var(--font-mono);font-size:11px;color:var(--accent-dim);font-weight:400">' + badge + '</span>';
 
-  // ── GAIA / MERIDIAN SYSTEMS box ───────────────────────────
-  const gaiaBox = document.getElementById('phase-story');
+  // ── GAIA / MERIDIAN SYSTEMS routing ───────────────────────
   let gaiaText = cnt.gaia || '';
   if (gaiaStatus === 'signal' && cnt.gaiaSignal) gaiaText = cnt.gaiaSignal;
   else if (gaiaStatus === 'aboard' && cnt.gaiaAboard) gaiaText = cnt.gaiaAboard;
 
-  // Day 3 reunion
-  if (cls.leg === 1 && cnt.day === 3 && (gaiaStatus === 'signal') && cnt.gaiaReunionText) {
-    // Show Meridian Systems intro THEN GAIA signal beneath it
+  // Day 3 reunion — overrides Meridian mode
+  if (cls.leg === 1 && cnt.day === 3 && gaiaStatus === 'signal' && cnt.gaiaReunionText) {
     document.getElementById('gaia-transmission-label').textContent = 'GAIA — Incoming Signal';
     gaiaText = cnt.gaiaReunionText;
     cls.gaiaStatus = 'signal-connected';
+    isMeridianMode = false;
     save();
-    isMeridianMode && (isMeridianMode = false);
   }
 
   // Swap GAIA box for Meridian Systems box when in meridian mode
-  const gaiaBoxEl = document.querySelector('.gaia-box');
+  const gaiaBoxEl = document.querySelector('.gaia-box, .meridian-box');
   if (isMeridianMode) {
     document.getElementById('gaia-transmission-label').textContent = 'MERIDIAN SYSTEMS';
     if (gaiaBoxEl) {
@@ -2088,10 +2114,10 @@ function renderMissionScreen() {
   const phasebar = document.querySelector('.phase-bar');
   const choicesArea = document.getElementById('choices-area');
   if (isChoiceDay) {
-    if (phasebar) phasebar.style.display = 'flex';
+    if (phasebar) phasebar.querySelectorAll('.phase-step').forEach(el => { el.style.display = ''; });
     if (choicesArea) choicesArea.style.display = '';
   } else {
-    // Non-choice days: hide phase bar steps 2-4 and choices area
+    // Non-choice days: hide phase steps 2-4 and choices entirely
     if (phasebar) {
       phasebar.querySelectorAll('.phase-step').forEach((el, i) => {
         el.style.display = i === 0 ? '' : 'none';
@@ -2099,6 +2125,50 @@ function renderMissionScreen() {
     }
     if (choicesArea) choicesArea.style.display = 'none';
   }
+
+  // ── Update phase panel AI boxes for Meridian vs GAIA ────
+  const aiColor = isMeridianMode ? '#7eb8d4' : 'var(--gaia-green)';
+  const aiDotClass = isMeridianMode ? 'meridian-indicator' : 'gaia-dot';
+  const aiBoxClass = isMeridianMode ? 'meridian-box' : 'gaia-box';
+
+  // Exit ticket panel
+  const exitBox = document.getElementById('exit-ai-box');
+  const exitDot = document.getElementById('exit-ai-dot');
+  const exitLabelEl = document.getElementById('exit-ai-label');
+  const exitTextEl = document.getElementById('exit-ai-text');
+  if (exitBox) exitBox.className = aiBoxClass;
+  if (exitDot) exitDot.className = aiDotClass;
+  if (exitLabelEl) exitLabelEl.textContent = isMeridianMode ? 'MERIDIAN SYSTEMS' : 'GAIA — To The Crew';
+  if (exitTextEl) exitTextEl.className = isMeridianMode ? 'meridian-text' : 'gaia-text';
+  if (exitTextEl) exitTextEl.textContent = isMeridianMode
+    ? 'Each crew member should record their individual analysis before a collective decision is made. Document your observations, the evidence supporting them, and your recommended course of action.'
+    : 'Before we decide as a crew, each of you must commit your own thinking. What do you believe? What evidence supports it? What is your reasoning? Science begins with individual thought before collective decision.';
+
+  // Discussion panel
+  const discussBox = document.getElementById('discuss-ai-box');
+  const discussDot = document.getElementById('discuss-ai-dot');
+  const discussLabelEl = document.getElementById('discuss-ai-label');
+  const discussTextEl = document.getElementById('discuss-ai-text');
+  if (discussBox) discussBox.className = aiBoxClass;
+  if (discussDot) discussDot.className = aiDotClass;
+  if (discussLabelEl) discussLabelEl.textContent = isMeridianMode ? 'MERIDIAN SYSTEMS' : 'GAIA — Discussion Guide';
+  if (discussTextEl) discussTextEl.className = isMeridianMode ? 'meridian-text' : 'gaia-text';
+  if (discussTextEl) discussTextEl.textContent = isMeridianMode
+    ? 'Crew members should compare individual analyses. Note where assessments differ and identify which data points support each position. A collective recommendation will be submitted at the end of this phase.'
+    : 'A good scientific argument requires three things: a clear claim, specific evidence, and reasoning that connects them. As you listen — do their arguments hold up? Does their evidence actually support their claim?';
+
+  // Vote panel
+  const voteBox = document.getElementById('vote-ai-box');
+  const voteDot = document.getElementById('vote-ai-dot');
+  const voteLabelEl = document.getElementById('vote-ai-label');
+  const voteTextEl = document.getElementById('vote-ai-text');
+  if (voteBox) voteBox.className = aiBoxClass;
+  if (voteDot) voteDot.className = aiDotClass;
+  if (voteLabelEl) voteLabelEl.textContent = isMeridianMode ? 'MERIDIAN SYSTEMS' : 'GAIA — Final Vote';
+  if (voteTextEl) voteTextEl.className = isMeridianMode ? 'meridian-text' : 'gaia-text';
+  if (voteTextEl) voteTextEl.innerHTML = isMeridianMode
+    ? 'Collective decision required. Select the crew\'s official course of action. This decision will be logged and implemented. Consequences will be assessed and reported at the start of the next session.'
+    : '"New information has been presented. In accordance with scientific protocol — <em>we reconsider</em>. This is the crew\'s official decision. It will be logged. It will have consequences. Choose carefully."';
 
   renderChoices(cls, isChoiceDay ? (cnt.choices || []) : []);
   renderStats(cls);
@@ -2168,7 +2238,7 @@ function updateDayTypeBanner(cnt, cls) {
 function renderDeepenContent(c) {
   let h = '';
   if (c.readingFocus) h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">📖 Reading Assignment</div><div style="font-family:var(--font-body);font-size:15px;color:var(--text-primary);line-height:1.6">${c.readingFocus}</div></div>`;
-  if (c.gaiaReadingPrompt) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA — To The Crew</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--gaia-green);line-height:1.7;font-style:italic">${c.gaiaReadingPrompt}</div></div>`;
+  if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS — Reading Focus' : 'GAIA — To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-mono);font-size:13px;color:${rdColor};line-height:1.7;font-style:italic">${c.gaiaReadingPrompt}</div></div>`; }
   if (c.vocabFocus && c.vocabFocus.length) {
     h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
     c.vocabFocus.forEach(v => { h += `<span style="background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:3px;padding:3px 9px;font-family:var(--font-mono);font-size:11px;color:var(--accent)">${v}</span>`; });
@@ -2196,7 +2266,7 @@ function renderGraphContent(c) {
       h += '<tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:6px 8px;color:var(--text-dim)">Object</th><th style="text-align:left;padding:6px 8px;color:var(--text-dim)">Mass</th><th style="text-align:right;padding:6px 8px;color:var(--text-dim)">Force</th></tr>';
       gd.dataTable.forEach((row, i) => {
         const bg = i % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent';
-        h += `<tr style="background:${bg}"><td style="padding:6px 8px;color:var(--text-secondary)">${row.object}</td><td style="padding:6px 8px;color:var(--text-dim)">${row.mass}</td><td style="padding:6px 8px;text-align:right;color:var(--accent)">${row.force}</td></tr>`;
+        h += `<tr style="background:${bg}"><td style="padding:6px 8px;color:var(--text-secondary)">${row.object}</td><td style="padding:6px 8px;color:var(--text-secondary)">${row.mass}</td><td style="padding:6px 8px;text-align:right;color:var(--accent)">${row.force}</td></tr>`;
       });
       h += '</table></div>';
     }
@@ -2474,6 +2544,8 @@ function setPhase(phase) {
   const isChoiceDay = cnt && !cnt.noChoice && cnt.choices && cnt.choices.length > 0;
 
   document.querySelectorAll('.phase-step').forEach(el => {
+    // Don't touch hidden steps — renderMissionScreen controls their visibility
+    if (el.style.display === 'none') return;
     const p = el.dataset.phase;
     el.classList.remove('active','done');
     const order = ['story','exit','discuss','vote'];
@@ -2481,6 +2553,7 @@ function setPhase(phase) {
     if (elIdx < phaseIdx) el.classList.add('done');
     else if (elIdx === phaseIdx) el.classList.add('active');
   });
+
   document.querySelectorAll('.phase-panel').forEach(el => el.classList.remove('active'));
   const panel = document.getElementById('phase-' + phase);
   if (panel) panel.classList.add('active');
