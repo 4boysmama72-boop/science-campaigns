@@ -1750,7 +1750,7 @@
 // ============================================================
 // STATE
 // ============================================================
-const STORAGE_KEY = 'prometheus_drift_v4';
+const STORAGE_KEY = 'prometheus_drift_v5';
 
 let state = {
   configured: false,
@@ -2922,18 +2922,63 @@ function save() {
 }
 
 function load() {
+  // Try current key first
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return false;
-    const parsed = JSON.parse(raw);
-    // Version guard — if saved state is missing expected structure, start fresh
-    if (!parsed.classes || !Array.isArray(parsed.classes) || parsed.classes.length !== 3) {
-      localStorage.removeItem(STORAGE_KEY);
-      return false;
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed.classes && Array.isArray(parsed.classes) && parsed.classes.length === 3) {
+        state = { ...state, ...parsed, timerInterval:null, timerRunning:false, timerSeconds:0 };
+        return true;
+      }
     }
-    state = { ...state, ...parsed, timerInterval:null, timerRunning:false, timerSeconds:0 };
-    return true;
-  } catch(e) { return false; }
+  } catch(e) { /* fall through to migration */ }
+
+  // Try migrating from any older key
+  const oldKeys = [
+    'prometheus_drift_v4',
+    'prometheus_drift_v3',
+    'prometheus_drift_v2',
+    'prometheus_drift_v1',
+    'prometheus_drift'
+  ];
+  for (const oldKey of oldKeys) {
+    if (oldKey === STORAGE_KEY) continue;
+    try {
+      const raw = localStorage.getItem(oldKey);
+      if (!raw) continue;
+      const parsed = JSON.parse(raw);
+      if (!parsed.classes || !Array.isArray(parsed.classes) || parsed.classes.length !== 3) continue;
+
+      // Migrate: patch any missing fields onto each class
+      const defaultClass = state.classes[0];
+      parsed.classes = parsed.classes.map((cls, i) => ({
+        ...defaultClass,
+        ...cls,
+        id: i,
+        // Ensure new fields exist with safe defaults if missing
+        decisions: cls.decisions || [],
+        checkpoints: cls.checkpoints || [],
+        forensicsComplete: cls.forensicsComplete || false,
+        stats: {
+          power:  cls.stats?.power  ?? 100,
+          hull:   cls.stats?.hull   ?? 100,
+          data:   cls.stats?.data   ?? 50,
+          morale: cls.stats?.morale ?? 80
+        }
+      }));
+
+      state = { ...state, ...parsed, timerInterval:null, timerRunning:false, timerSeconds:0 };
+      // Save immediately under the new key and clean up old one
+      save();
+      localStorage.removeItem(oldKey);
+      toast('Progress migrated from previous version.', 'success');
+      return true;
+    } catch(e) { continue; }
+  }
+
+  // Nothing usable found — fresh start
+  return false;
 }
 
 // ============================================================
@@ -3554,7 +3599,8 @@ function renderBarGraphFromData(gd) {
   const W = 280, H = 180, padL = 40, padB = 36, padT = 10, padR = 8;
   const chartW = W - padL - padR;
   const chartH = H - padT - padB;
-  const barW = Math.floor(chartW / data.length * 0.55);
+  const barW = Ma
+th.floor(chartW / data.length * 0.55);
   const gap = chartW / data.length;
 
   let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">';
@@ -3575,8 +3621,7 @@ function renderBarGraphFromData(gd) {
   });
 
   svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
-  svg += '<line x
-1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
+  svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
   svg += '<text x="' + (W/2) + '" y="' + (H-2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle">Month</text>';
   svg += '</svg>';
   return svg;
