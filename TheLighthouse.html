@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<!--
+  The Lighthouse — Science Campaign App
+  Campaign 2 of 3: Earth & Space Science
+  Created by Danielle Edwards
+  © 2026 Danielle Edwards. All rights reserved.
+  Built for classroom use. Not for redistribution without permission.
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -323,15 +330,15 @@
   .gaia-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gaia-green); box-shadow: 0 0 8px rgba(0,255,136,0.8); animation: gaia-pulse 2s infinite; flex-shrink: 0; }
   @keyframes gaia-pulse { 0%,100%{opacity:1}50%{opacity:.35} }
   .gaia-label { font-family: var(--font-mono); font-size: 10px; color: var(--gaia-green); letter-spacing: .1em; text-transform: uppercase; }
-  .gaia-text { font-family: var(--font-body); font-size: 20px; color: var(--text-primary); line-height: 1.7; }
+  .gaia-text { font-family: var(--font-body); font-size: 22px; color: var(--text-primary); line-height: 1.7; }
   .gaia-text em { color: var(--gaia-green); font-style: italic; }
 
   /* GAIA RECALL BOX — spiral review */
   .gaia-recall-box { background: var(--bg-card); border: 1px solid rgba(0,229,204,0.2); border-left: 3px solid var(--accent); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; }
   .gaia-recall-label { font-family: var(--font-mono); font-size: 9px; color: var(--accent-dim); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 5px; }
-  .gaia-recall-text { font-family: var(--font-body); font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+  .gaia-recall-text { font-family: var(--font-body); font-size: 17px; color: var(--text-secondary); line-height: 1.6; }
 
-  .scenario-text { font-family: var(--font-body); font-size: 20px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 20px; }
+  .scenario-text { font-family: var(--font-body); font-size: 22px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 20px; }
 
   .phase-panel { display: none; }
   .phase-panel.active { display: block; }
@@ -367,7 +374,7 @@
   .choice-btn.selected { border-color: var(--accent); background: rgba(0,229,204,0.07); }
   .choice-btn.eliminated { opacity: 0.3; cursor: not-allowed; }
   .choice-letter { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--accent); padding-top: 1px; }
-  .choice-text { font-family: var(--font-body); font-size: 18px; font-weight: 500; color: var(--text-primary); line-height: 1.4; }
+  .choice-text { font-family: var(--font-body); font-size: 20px; font-weight: 500; color: var(--text-primary); line-height: 1.4; }
   .choice-subtext { font-family: var(--font-mono); font-size: 14px; color: var(--text-secondary); margin-top: 3px; line-height: 1.4; }
   .commit-row { margin-top: 10px; display: flex; gap: 10px; align-items: center; }
   .btn-commit { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: .1em; padding: 11px 26px; border-radius: 4px; border: none; cursor: pointer; background: var(--green); color: var(--bg-deep); box-shadow: 0 0 16px rgba(0,255,136,0.3); transition: all 0.2s; }
@@ -419,9 +426,9 @@
   .reveal-subtitle { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); letter-spacing: .1em; margin-bottom: 28px; text-align: center; }
   .reveal-recap { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 14px 18px; margin-bottom: 20px; }
   .reveal-recap-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
-  .reveal-recap-text { font-family: var(--font-body); font-size: 15px; color: var(--text-secondary); line-height: 1.5; }
+  .reveal-recap-text { font-family: var(--font-body); font-size: 17px; color: var(--text-secondary); line-height: 1.5; }
   .reveal-gaia-box { background: var(--bg-card); border: 1px solid rgba(0,255,136,0.25); border-left: 3px solid var(--gaia-green); border-radius: 6px; padding: 18px 20px; margin-bottom: 24px; }
-  .reveal-gaia-text { font-family: var(--font-body); font-size: 17px; color: var(--text-primary); line-height: 1.75; }
+  .reveal-gaia-text { font-family: var(--font-body); font-size: 19px; color: var(--text-primary); line-height: 1.75; }
   .reveal-gaia-text em { color: var(--gaia-green); font-style: italic; }
   .reveal-gaia-text strong { color: var(--amber); font-weight: 600; }
   .stat-changes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
@@ -495,6 +502,16 @@
   .toast.visible { transform: translateY(0); opacity: 1; }
   .toast.success { border-color: rgba(0,255,136,0.4); color: var(--green); }
   .toast.error { border-color: rgba(255,51,85,0.4); color: var(--red); }
+
+
+  /* MERIDIAN SYSTEMS — ship AI for signal classes Days 1-2 */
+  .meridian-box { background: var(--bg-card); border: 1px solid rgba(126,184,212,0.2); border-left: 3px solid #7eb8d4; border-radius: 6px; padding: 14px 16px; margin-bottom: 18px; }
+  .meridian-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .meridian-indicator { width: 7px; height: 7px; background: #7eb8d4; flex-shrink: 0; }
+  .meridian-label { font-family: var(--font-mono); font-size: 10px; color: #7eb8d4; letter-spacing: .1em; text-transform: uppercase; }
+  .meridian-text { font-family: var(--font-body); font-size: 22px; color: #b8d4e0; line-height: 1.7; }
+  .processing-meridian { background: var(--bg-card); border: 1px solid rgba(126,184,212,0.2); border-left: 3px solid #7eb8d4; border-radius: 6px; padding: 18px 22px; margin-bottom: 28px; text-align: left; }
+  .processing-meridian-text { font-family: var(--font-mono); font-size: 13px; color: #7eb8d4; line-height: 1.75; }
 
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -1109,7 +1126,8 @@ const CONTENT = {
           legTitle:'Something Is Pulling Us Off Course',
           gaia:'The Meridian launched on schedule. Trajectory was nominal for the first fourteen hours. Then the navigation system flagged an anomaly. We are being pulled — slightly, but measurably — off our planned course. Something ahead of us has a gravitational field strong enough to affect our trajectory from this distance. I have run the calculations three times. Whatever is out there has significant mass. And it is in exactly the direction the signal is coming from.',
           gaiaAboard:'The Meridian launched on schedule. Trajectory was nominal for the first fourteen hours. Then the navigation system flagged an anomaly. We are being pulled — slightly, but measurably — off our planned course. Something ahead of us has a gravitational field strong enough to affect our trajectory from this distance. I have run the calculations three times. Whatever is out there has significant mass. And it is in exactly the direction the signal is coming from.',
-          gaiaSignal:'The Meridian launched on schedule. Standard ship AI is handling navigation. Fourteen hours in, the navigation system flagged an anomaly — a measurable gravitational pull from ahead, in the direction of the signal. Ship AI is analyzing. More information as it becomes available. GAIA transmission will be attempted on Day 3.',
+          gaiaSignal:'Navigation status update. The Meridian launched on schedule. Trajectory was nominal for the first fourteen hours. At hour fourteen, sensors detected a measurable gravitational deviation of 0.3 degrees from planned heading. Source of deviation is ahead of current position and in alignment with the detected signal origin. Analysis is ongoing. Current data is insufficient to confirm source mass or composition. Crew review of gravitational force reading assignment is recommended before a course decision is made.',
+          meridianMode:true,
           scenario:'The crew gathers at the navigation console. The deviation is small — less than 0.3 degrees off the original heading — but in deep space, a 0.3-degree error compounds over millions of kilometers. Left uncorrected, the Meridian will miss its target entirely.\n\nThe navigation system has identified two possible explanations: a large uncharted asteroid with sufficient mass to create a detectable gravitational field, or something artificial — something built to stay in a fixed position. Natural objects drift. This one is not drifting.\n\nTo understand what is pulling the ship and whether to correct course or follow the pull, the crew needs to understand what creates gravitational force — and what factors determine how strong it is. Today\'s reading is not optional. The answer to the navigation question is in it.',
           exitTicketPrompt:'What two factors determine how strong a gravitational force is between two objects? Use the Meridian\'s navigation anomaly as your example — explain what that tells you about whatever is pulling the ship. Make your claim: should the crew correct course back to the original heading, follow the gravitational pull toward its source, or hold position and gather more data first? Explain how what you know about gravitational force supports your choice.',
           discussionPrompt:'The navigation anomaly is pulling the Meridian toward the same location the signal is coming from. What does that tell you? If gravitational force depends on mass, what does the strength of the pull tell you about the mass of whatever is out there? Use evidence from today\'s reading about what factors affect gravity.',
@@ -1120,7 +1138,7 @@ const CONTENT = {
               subtext:'The pull and the signal are coming from the same place. That is not a coincidence.',
               deltas:{nav:5, solar:-3, signal:8, earth:0},
               branch:'A-follow',
-              consequence:'The decision to follow the pull rather than fight it turns out to be efficient — the Meridian\'s engines work with the gravitational field instead of against it, conserving solar power. Navigation accuracy improves as the crew learns to read the gravitational field like a current. Signal clarity increases as they move toward the source. GAIA: "A gravitational field radiates outward from a massive object in all directions. You chose to move along the field lines rather than across them. That is, scientifically speaking, the path of least resistance. Well reasoned."'
+              consequence:'The decision to follow the pull rather than fight it turns out to be efficient — the Meridian\'s engines work with the gravitational field instead of against it, conserving solar power. Navigation accuracy improves as the crew learns to read the gravitational field like a current. Signal clarity increases as they move toward the source. A gravitational field radiates outward from a massive object in all directions. Moving along the field lines rather than across them is the path of least resistance. Navigation efficiency improved as a result of this approach.'
             },
             {
               letter:'B',
@@ -1128,7 +1146,7 @@ const CONTENT = {
               subtext:'An uncharted gravitational source is a navigation hazard until we know its mass and position.',
               deltas:{nav:0, solar:-8, signal:3, earth:0},
               branch:'B-correct',
-              consequence:'Correcting course costs solar power — the engines work against the gravitational pull constantly. Navigation stays precise by the numbers, but the crew is essentially fighting a force they do not yet understand. GAIA: "Gravitational force is continuous. It does not stop because you have decided to go a different direction. The Meridian is burning power to maintain heading against a persistent pull. I am not saying this was wrong. I am saying it has a cost. Understanding the force acting on us would help us manage it more efficiently."'
+              consequence:'Correcting course costs solar power — the engines work against the gravitational pull constantly. Navigation stays precise by the numbers, but the crew is essentially fighting a force they do not yet understand. Gravitational force is continuous regardless of chosen heading. The Meridian maintained planned trajectory by working against the persistent gravitational pull. This approach consumed additional solar power. Understanding the source of the gravitational force would allow for more efficient power management going forward.'
             },
             {
               letter:'C',
@@ -1136,7 +1154,7 @@ const CONTENT = {
               subtext:'You cannot make a good navigation decision without knowing the mass and distance of the source.',
               deltas:{nav:2, solar:-4, signal:12, earth:0},
               branch:'C-hold',
-              consequence:'Holding position while gathering gravitational field data produces the most complete picture of the anomaly. The crew maps the field strength at multiple distances, begins calculating the approximate mass of the source, and confirms it is stationary — not drifting like a natural object would. Signal clarity jumps as the crew fine-tunes antenna direction toward the gravitational source. GAIA: "Good scientific instinct. Measure before you act. The data confirms the source is stationary, which means it is not a rogue asteroid. Natural objects at this distance do not stay still. Something is keeping it there. Or someone built it that way."'
+              consequence:'Holding position while gathering gravitational field data produces the most complete picture of the anomaly. The crew maps the field strength at multiple distances, begins calculating the approximate mass of the source, and confirms it is stationary — not drifting like a natural object would. Signal clarity jumps as the crew fine-tunes antenna direction toward the gravitational source. Data collection confirms the source is stationary relative to the solar system. Natural objects at this distance drift due to solar wind and gravitational interactions with other bodies. This source does not drift. The cause of its fixed position has not yet been determined.'
             }
           ]
         },
@@ -1148,7 +1166,8 @@ const CONTENT = {
           legTitle:'What Creates Gravitational Force',
           gaia:'Yesterday the crew made a navigation decision based on a gravitational anomaly. Today we go deeper into the science behind it. Every object with mass creates a gravitational field — a region of space where other masses feel a force pulling them closer. The strength of that force depends on two things: the masses of both objects, and the distance between them. More mass means more force. More distance means less force. Understanding these relationships is how the crew will navigate everything that comes next on this mission.',
           gaiaAboard:'Yesterday the crew made a navigation decision based on a gravitational anomaly. Today we go deeper into the science behind it. Every object with mass creates a gravitational field — a region of space where other masses feel a force pulling them closer. The strength of that force depends on two things: the masses of both objects, and the distance between them. More mass means more force. More distance means less force. Understanding these relationships is how the crew will navigate everything that comes next on this mission.',
-          gaiaSignal:'The Meridian\'s standard navigation AI is still tracking the anomaly. We have not yet established contact with GAIA. Today\'s reading covers the science the crew needs — focus on what factors affect gravitational force, and what a gravitational field actually is.',
+          gaiaSignal:'Gravitational anomaly tracking is ongoing. Source deviation remains at 0.3 degrees off planned heading. Source is stationary relative to the solar system. Today the crew will read about gravitational force and gravitational fields. Focus should be on what factors determine force strength and what a force field is. This information is relevant to navigation decisions that will need to be made in the next two days.',
+          meridianMode:true,
           gaiaRecall:'You already know that gravitational potential energy depends on an object\'s height and mass — you learned this during the Conversion Loop investigation on the Prometheus. GPE increases when an object is higher in a gravitational field. Today you will learn what creates that gravitational field in the first place. The force that GAVE those objects their potential energy on the Prometheus — that is what we are studying today.',
           scenario:'GAIA assigns the reading — gravitational force, force fields, and the factors that affect both. The crew\'s task is to connect every concept to the navigation anomaly. Whatever is pulling the Meridian off course, the reading explains exactly why it can do that from a distance.',
           readingFocus:'Savvas Forces, Chapter 2 (Topic 2) Lesson 1 — Gravity. Focus: What factors affect gravitational force? What is a gravitational field? How does distance affect the force between two objects?',
@@ -1166,7 +1185,8 @@ const CONTENT = {
           legTitle:'Reading the Force Data',
           gaia:'I have compiled gravitational force data for several objects in the solar system — each compared against the Meridian\'s mass as the test object. I want to show you this two ways: as a data table and as a bar graph. The table gives you the precise numbers. The graph lets you see the pattern at a glance. In science you use both — precision and pattern. Today we practice reading both at the same time.',
           gaiaAboard:'I have compiled gravitational force data for several objects in the solar system — each compared against the Meridian\'s mass as the test object. I want to show you this two ways: as a data table and as a bar graph. The table gives you the precise numbers. The graph lets you see the pattern at a glance. In science you use both — precision and pattern. Today we practice reading both at the same time.',
-          gaiaSignal:'The Meridian\'s navigation AI is presenting today\'s graph data. Additionally — a transmission has been received from the Prometheus\'s last known position. It is GAIA. She has been monitoring the navigation anomaly remotely and has data to share. Patching her through now.',
+          gaiaSignal:'Navigation AI data presentation follows. Additionally — a long-range transmission has been received from the Prometheus last known position. Routing now.',
+          meridianMode:true,
           gaiaReunionText:'This is GAIA. I have been monitoring the Meridian\'s navigation data since launch from the Prometheus. I still have full sensor capability from my fixed position. The gravitational anomaly you are experiencing — I have been tracking its source since it first appeared in my long-range sensors four weeks ago. I am transmitting my analysis now. It is good to hear a crew again. I have also been very alone. Now. Let us look at this data together.',
           scenario:'GAIA displays a data table and a bar graph side by side. The data table lists six objects — the Sun, Jupiter, Earth, the Moon, the Meridian itself, and the unknown anomaly source. For each, it shows the estimated mass and the gravitational force it exerts on a standard 1,000 kg test object at a distance of 1,000 km.\n\nThe bar graph shows the same force values as bars. The pattern is visible immediately in the graph — but the exact numbers require the table.',
           graphData:{
@@ -1318,10 +1338,10 @@ const CONTENT = {
             title:'Meridian Gravitational Force vs. Distance from Lighthouse Source',
             teacherNote:'Draw as a curved line graph. X-axis: distance (decreasing left to right — closest on right). Y-axis: force units. The line curves upward sharply on the right side (close distance). This is the inverse square relationship shown visually — students do not calculate, just observe the curve shape and describe what it means. Key teaching point: the curve getting steeper means force increases FASTER than distance decreases.',
             multiLine:[
-              {section:'Gravitational Force', values:[2,3,5,8,14,24,42,75,135,240], color:'safe', note:'Force on Meridian as it approaches the Lighthouse. Values increase rapidly as distance closes — this is the inverse square relationship made visible.'}
+              {section:'Grav. Force', values:[2,3,5,8,14,24,42,75,135,240], color:'safe', note:'Force on Meridian as it approaches the Lighthouse. Values increase rapidly as distance closes — this is the inverse square relationship made visible.'}
             ],
             xLabels:['10M km','9M','8M','7M','6M','5M','4M','3M','2M','1M km'],
-            yLabel:'Force (relative units)',
+            yLabel:'Force (units)',
             graphAnswers:[
               {q:'1', a:'The line curves upward — it gets steeper as distance decreases. This means force is increasing, but it is increasing faster and faster, not at a steady rate.'},
               {q:'2', a:'The force roughly doubles between 5M km and 4M km (24 to 42 units), and more than doubles again between 3M km and 2M km (75 to 135 units). This shows the force grows much faster than the distance shrinks — it is not a proportional relationship.'},
@@ -1386,7 +1406,7 @@ const CONTENT = {
           legTitle:'The Lighthouse Is Real',
           gaia:'Leg 1 is complete. When the Meridian launched, the crew knew how to navigate. You now know WHY navigation works — and why it sometimes fails. Gravitational force acts at a distance, dependent on mass and distance, creating fields that extend through space and determine the path of everything that moves through them. The Lighthouse exists because someone understood these forces well enough to place a massive structure at a precise location and keep it there. That is not simple engineering. That is applied gravitational mechanics at a scale no 6th grade science class has ever had a reason to care about before.\n\nYou had a reason. Look where it brought you.',
           scenario:'The Meridian has arrived — or is en route, or is holding position, depending on the crew\'s final choice. Either way, the destination is confirmed and the mission has fundamentally changed. The Lighthouse is real. Someone built it. The signal it is transmitting contains information.\n\nGAIA addresses the crew with the stats board visible — all three classes, side by side for the first time this campaign.\n\n"Three crews. Same mission. Same gravitational field to navigate. Different choices about how to use what they knew about gravity, force, and distance. Look at the navigation accuracy scores. Look at the solar power reserves. Every difference traces back to a specific decision on a specific day — a decision grounded in how well the crew understood the science.\n\nLeg 2 begins with the solar system between us and home. We are going to navigate through it — past planets, through gravitational influences from multiple massive objects simultaneously, across distances that will require the crew to understand not just gravity but the patterns of motion it creates. Rotation. Revolution. Seasons. The apparent motion of the Sun and stars.\n\nThe Lighthouse is waiting. The solar system is in the way. Let\'s learn how to cross it."',
-          gaiaClosing:'"One more thing. The signal GAIA decoded from the Lighthouse — I am going to share part of it with you now. Not all of it. The crew needs to earn the rest.\n\nThe part I will share: the Lighthouse was not built eight months ago. It has been here for decades. It was built, positioned, and set to transmit on a specific frequency — a frequency that matches the energy signature of the Prometheus experiment almost exactly.\n\nSomeone built this station to receive that signal. They were waiting for it.\n\nI do not yet know who. But I intend to find out. And I believe the answer is somewhere in the solar system between here and home.\n\nLeg 2. Let\'s go."',
+          gaiaClosing:'"One more thing. The signal I decoded from the Lighthouse — I am going to share part of it with you now. Not all of it. The crew needs to earn the rest.\n\nThe part I will share: the Lighthouse was not built eight months ago. It has been here for decades. It was built, positioned, and set to transmit on a specific frequency — a frequency that matches the energy signature of the Prometheus experiment almost exactly.\n\nSomeone built this station to receive that signal. They were waiting for it.\n\nI do not yet know who. But I intend to find out. And I believe the answer is somewhere in the solar system between here and home.\n\nLeg 2. Let\'s go."',
           noChoice:true,
           isLegEnd:true
         }
@@ -1613,32 +1633,63 @@ function renderMissionScreen() {
   const cls = state.classes[state.activeClass];
   const cnt = getContentForClass(cls);
   const dayType = cnt.type || 'choice';
+  const isChoiceDay = dayType === 'choice' && !cnt.noChoice && cnt.choices && cnt.choices.length > 0;
+  const gaiaStatus = cls.gaiaStatus || 'aboard';
+  const isMeridianMode = cnt.meridianMode && (gaiaStatus === 'signal');
 
   document.getElementById('topbar-period').textContent = cls.name;
   document.getElementById('topbar-leg').textContent = cnt.legLabel;
   document.getElementById('content-leg-label').textContent = cnt.legLabel;
 
-  // Day type banner
   updateDayTypeBanner(cnt, cls);
 
   const typeLabels = {choice:'⚡ Choice Day', deepen:'📖 Lesson Day', graph:'📊 Graph Day', climax:'🏁 Leg Milestone'};
   const badge = typeLabels[dayType] || '';
   document.getElementById('content-leg-title').innerHTML = cnt.legTitle + ' <span style="font-family:var(--font-mono);font-size:11px;color:var(--accent-dim);font-weight:400">' + badge + '</span>';
 
-  // GAIA text — use gaiaStatus-specific version if available
-  const gaiaStatus = cls.gaiaStatus || 'aboard';
+  // ── GAIA / MERIDIAN SYSTEMS box ───────────────────────────
+  const gaiaBox = document.getElementById('phase-story');
   let gaiaText = cnt.gaia || '';
   if (gaiaStatus === 'signal' && cnt.gaiaSignal) gaiaText = cnt.gaiaSignal;
   else if (gaiaStatus === 'aboard' && cnt.gaiaAboard) gaiaText = cnt.gaiaAboard;
 
-  // Day 3 special — GAIA reunion for signal classes
-  if (cls.leg === 1 && cnt.day === 3 && gaiaStatus === 'signal' && cnt.gaiaReunionText) {
+  // Day 3 reunion
+  if (cls.leg === 1 && cnt.day === 3 && (gaiaStatus === 'signal') && cnt.gaiaReunionText) {
+    // Show Meridian Systems intro THEN GAIA signal beneath it
     document.getElementById('gaia-transmission-label').textContent = 'GAIA — Incoming Signal';
     gaiaText = cnt.gaiaReunionText;
-    cls.gaiaStatus = 'signal-connected'; // Mark as connected going forward
+    cls.gaiaStatus = 'signal-connected';
     save();
+    isMeridianMode && (isMeridianMode = false);
+  }
+
+  // Swap GAIA box for Meridian Systems box when in meridian mode
+  const gaiaBoxEl = document.querySelector('.gaia-box');
+  if (isMeridianMode) {
+    document.getElementById('gaia-transmission-label').textContent = 'MERIDIAN SYSTEMS';
+    if (gaiaBoxEl) {
+      gaiaBoxEl.className = 'meridian-box';
+      gaiaBoxEl.querySelector('.gaia-header').className = 'meridian-header';
+      const dot = gaiaBoxEl.querySelector('.gaia-dot');
+      if (dot) { dot.className = 'meridian-indicator'; }
+      const label = gaiaBoxEl.querySelector('.meridian-label, .gaia-label');
+      if (label) { label.className = 'meridian-label'; label.textContent = 'MERIDIAN SYSTEMS'; }
+      const textEl = gaiaBoxEl.querySelector('.gaia-text');
+      if (textEl) { textEl.className = 'meridian-text'; }
+    }
   } else {
-    document.getElementById('gaia-transmission-label').textContent = 'GAIA — Transmission';
+    document.getElementById('gaia-transmission-label').textContent =
+      (gaiaStatus === 'signal-connected' || gaiaStatus === 'aboard') ? 'GAIA — Transmission' : 'GAIA — Transmission';
+    if (gaiaBoxEl) {
+      gaiaBoxEl.className = 'gaia-box';
+      gaiaBoxEl.querySelector('.meridian-header, .gaia-header').className = 'gaia-header';
+      const indicator = gaiaBoxEl.querySelector('.meridian-indicator, .gaia-dot');
+      if (indicator) { indicator.className = 'gaia-dot'; }
+      const label = gaiaBoxEl.querySelector('.meridian-label, .gaia-label');
+      if (label) { label.className = 'gaia-label'; label.textContent = 'GAIA — Transmission'; }
+      const textEl = gaiaBoxEl.querySelector('.meridian-text, .gaia-text');
+      if (textEl) { textEl.className = 'gaia-text'; }
+    }
   }
 
   document.getElementById('content-gaia').innerHTML = gaiaText;
@@ -1647,8 +1698,7 @@ function renderMissionScreen() {
   const extra = document.getElementById('content-extra');
   extra.innerHTML = '';
 
-  // GAIA Recall block (spiral review)
-  if (cnt.gaiaRecall) {
+  if (cnt.gaiaRecall && !isMeridianMode) {
     extra.innerHTML += `<div class="gaia-recall-box"><div class="gaia-recall-label">⟵ GAIA Recall — From the Prometheus</div><div class="gaia-recall-text">${cnt.gaiaRecall}</div></div>`;
   }
 
@@ -1656,11 +1706,31 @@ function renderMissionScreen() {
   else if (dayType === 'graph') extra.innerHTML += renderGraphContent(cnt);
   else if (dayType === 'climax') extra.innerHTML += renderClimaxContent(cnt);
 
-  if (cnt.exitTicketPrompt) extra.innerHTML += `<div style="background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.2);border-left:3px solid var(--amber);border-radius:6px;padding:13px 15px;margin-top:14px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Exit Ticket Prompt — Phase 2</div><div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6">${cnt.exitTicketPrompt}</div></div>`;
-  if (cnt.discussionPrompt) extra.innerHTML += `<div style="background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.2);border-left:3px solid var(--purple);border-radius:6px;padding:13px 15px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--purple);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Discussion Guide — Phase 3</div><div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6">${cnt.discussionPrompt}</div></div>`;
+  // Exit ticket and discussion only on choice days
+  if (isChoiceDay) {
+    if (cnt.exitTicketPrompt) extra.innerHTML += `<div style="background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.2);border-left:3px solid var(--amber);border-radius:6px;padding:13px 15px;margin-top:14px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Exit Ticket Prompt — Phase 2</div><div style="font-family:var(--font-body);font-size:20px;color:var(--text-secondary);line-height:1.6">${cnt.exitTicketPrompt}</div></div>`;
+    if (cnt.discussionPrompt) extra.innerHTML += `<div style="background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.2);border-left:3px solid var(--purple);border-radius:6px;padding:13px 15px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--purple);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Discussion Guide — Phase 3</div><div style="font-family:var(--font-body);font-size:20px;color:var(--text-secondary);line-height:1.6">${cnt.discussionPrompt}</div></div>`;
+  }
+
   if (cnt.bridgeToNext) extra.innerHTML += `<div style="background:rgba(0,229,204,0.05);border:1px solid rgba(0,229,204,0.15);border-radius:6px;padding:9px 13px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);line-height:1.6">⟶ ${cnt.bridgeToNext}</div></div>`;
 
-  renderChoices(cls, cnt.noChoice ? [] : (cnt.choices || []));
+  // ── Phase bar & choices visibility ───────────────────────
+  const phasebar = document.querySelector('.phase-bar');
+  const choicesArea = document.getElementById('choices-area');
+  if (isChoiceDay) {
+    if (phasebar) phasebar.style.display = 'flex';
+    if (choicesArea) choicesArea.style.display = '';
+  } else {
+    // Non-choice days: hide phase bar steps 2-4 and choices area
+    if (phasebar) {
+      phasebar.querySelectorAll('.phase-step').forEach((el, i) => {
+        el.style.display = i === 0 ? '' : 'none';
+      });
+    }
+    if (choicesArea) choicesArea.style.display = 'none';
+  }
+
+  renderChoices(cls, isChoiceDay ? (cnt.choices || []) : []);
   renderStats(cls);
   renderDecisionLog(cls);
   updateFailureDots(cls);
@@ -1675,24 +1745,32 @@ function renderMissionScreen() {
   document.getElementById('btn-commit').disabled = true;
   document.getElementById('commit-note').textContent = "Select the crew's official choice, then lock it in.";
 
-  // Phase 2/3 prompts
-  const hasExitTicket = !cnt.noChoice && cnt.exitTicketPrompt;
-  const hasDiscussion = !cnt.noChoice && cnt.discussionPrompt;
+  // Phase 2/3 prompts for exit ticket and discuss screens
   const exitDisplay = document.getElementById('exit-prompt-display');
   const exitText = document.getElementById('exit-prompt-text');
   if (exitDisplay && exitText) {
-    if (hasExitTicket) {
-      exitDisplay.style.display = 'block';
-      exitText.textContent = cnt.exitTicketPrompt;
-    } else {
-      exitDisplay.style.display = 'none';
-    }
+    if (isChoiceDay && cnt.exitTicketPrompt) { exitDisplay.style.display = 'block'; exitText.textContent = cnt.exitTicketPrompt; }
+    else { exitDisplay.style.display = 'none'; }
   }
   const discussDisplay = document.getElementById('discuss-prompt-display');
   const discussText = document.getElementById('discuss-prompt-text');
   if (discussDisplay && discussText) {
-    if (hasDiscussion) { discussDisplay.style.display = 'block'; discussText.textContent = cnt.discussionPrompt; }
+    if (isChoiceDay && cnt.discussionPrompt) { discussDisplay.style.display = 'block'; discussText.textContent = cnt.discussionPrompt; }
     else { discussDisplay.style.display = 'none'; }
+  }
+
+  // Processing screen — use Meridian Systems voice when appropriate
+  const procMsg = document.getElementById('processing-gaia-msg');
+  if (procMsg) {
+    if (isMeridianMode) {
+      procMsg.textContent = 'Decision logged. Consequence data is pending. Results will be available at the start of the next session. Ship systems are responding to the crew\'s command. Current stat changes are classified until the next reveal.';
+      procMsg.parentElement.className = 'processing-meridian';
+      procMsg.className = 'processing-meridian-text';
+    } else {
+      procMsg.textContent = '"Selection received. I am... processing the implications. The ship\'s systems have registered your decision and are responding accordingly. Whether that response is favorable — well. You\'ll find out next class."';
+      procMsg.parentElement.className = 'processing-gaia';
+      procMsg.className = 'processing-gaia-text';
+    }
   }
 
   checkStatAlerts(cls);
@@ -1743,11 +1821,11 @@ function renderGraphContent(c) {
     // Data table if present
     if (gd.dataTable) {
       h += '<div style="margin-top:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Data Table</div>';
-      h += '<table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:11px">';
-      h += '<tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:5px 8px;color:var(--text-dim)">Object</th><th style="text-align:left;padding:5px 8px;color:var(--text-dim)">Mass</th><th style="text-align:right;padding:5px 8px;color:var(--text-dim)">Force</th></tr>';
+      h += '<table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:14px">';
+      h += '<tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:6px 8px;color:var(--text-dim)">Object</th><th style="text-align:left;padding:6px 8px;color:var(--text-dim)">Mass</th><th style="text-align:right;padding:6px 8px;color:var(--text-dim)">Force</th></tr>';
       gd.dataTable.forEach((row, i) => {
         const bg = i % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent';
-        h += `<tr style="background:${bg}"><td style="padding:5px 8px;color:var(--text-secondary)">${row.object}</td><td style="padding:5px 8px;color:var(--text-dim)">${row.mass}</td><td style="padding:5px 8px;text-align:right;color:var(--accent)">${row.force}</td></tr>`;
+        h += `<tr style="background:${bg}"><td style="padding:6px 8px;color:var(--text-secondary)">${row.object}</td><td style="padding:6px 8px;color:var(--text-dim)">${row.mass}</td><td style="padding:6px 8px;text-align:right;color:var(--accent)">${row.force}</td></tr>`;
       });
       h += '</table></div>';
     }
@@ -1756,10 +1834,10 @@ function renderGraphContent(c) {
   if (c.gaiaGraphNote) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA — On This Graph</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaGraphNote}</div></div>`;
   if (c.graphQuestions && c.graphQuestions.length) {
     h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px">Discussion Questions</div>';
-    c.graphQuestions.forEach(q => { h += `<div style="font-family:var(--font-body);font-size:16px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px;padding-left:10px;border-left:2px solid var(--border-bright)">${q}</div>`; });
+    c.graphQuestions.forEach(q => { h += `<div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px;padding-left:10px;border-left:2px solid var(--border-bright)">${q}</div>`; });
     h += '</div>';
   }
-  if (c.shortDayNote) h += `<div style="background:rgba(255,170,0,0.05);border:1px solid rgba(255,170,0,0.15);border-radius:6px;padding:9px 13px"><div style="font-family:var(--font-mono);font-size:10px;color:var(--amber);line-height:1.6">⏱ Short Day: ${c.shortDayNote}</div></div>`;
+  // shortDayNote is teacher-panel only — not rendered here
   return h;
 }
 
@@ -1782,7 +1860,7 @@ function renderClimaxContent(c) {
 function renderBarGraph(gd) {
   const bars = gd.bars;
   const maxVal = Math.max(...bars.map(b => b.value));
-  const W = 540, H = 230, padL = 52, padB = 44, padT = 30, padR = 12;
+  const W = 540, H = 250, padL = 52, padB = 44, padT = 46, padR = 12;
   const chartW = W - padL - padR;
   const chartH = H - padT - padB;
   const barW = Math.floor(chartW / bars.length * 0.6);
@@ -1801,6 +1879,9 @@ function renderBarGraph(gd) {
   const statusColors = {safe:'#00ff88', caution:'#ffaa00', warning:'#ff8800', danger:'#ff3355'};
 
   let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:540px;display:block;margin:0 auto">`;
+
+  // Y label — above chart area, clear of all bars
+  svg += `<text x="${padL}" y="${padT - 18}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)">${gd.yLabel||'Value'} →</text>`;
 
   [0,25,50,75,100].forEach(pct => {
     const yy = padT + chartH * (1 - pct/100);
@@ -1821,7 +1902,6 @@ function renderBarGraph(gd) {
 
   svg += `<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
   svg += `<line x1="${padL}" y1="${padT+chartH}" x2="${W-padR}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
-  svg += `<text x="${padL}" y="${padT-4}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)">${gd.yLabel||'Value'} →</text>`;
   svg += '</svg>';
   return svg;
 }
@@ -2313,13 +2393,15 @@ function populateDayJump() {
   if (!sel || state.activeClass === null) return;
   const cls = state.classes[state.activeClass];
   sel.innerHTML = '<option value="">— Jump to Day —</option>';
+  const typeIcons = {choice:'⚡', deepen:'📖', graph:'📊', climax:'🏁'};
   CONTENT.legs.forEach(leg => {
     const group = document.createElement('optgroup');
     group.label = leg.label;
     leg.days.forEach(day => {
       const opt = document.createElement('option');
       opt.value = `${leg.id}:${day.day}`;
-      opt.textContent = `Day ${day.day} — ${day.legTitle}`;
+      const icon = typeIcons[day.type] || '·';
+      opt.textContent = `${icon} Day ${day.day} — ${day.legTitle}`;
       if (leg.id === cls.leg && day.day === cls.day) opt.selected = true;
       group.appendChild(opt);
     });
