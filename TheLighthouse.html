@@ -1412,25 +1412,395 @@ const CONTENT = {
         }
 
       ] // end Leg 1 days
-    }
+    },
 
     // ============================================================
-    // LEG 2 — ROTATION, REVOLUTION & SEASONS — INSERT HERE
-    // Standards: 6.E2U1.8 + 6.E2U1.10
+    // LEG 2 — EARTH, MOON & SEASONS
+    // Standards: 6.E2U1.8 + 6.E2U1.9 + 6.E2U1.10
+    // Savvas: Earth's Place in Universe, Ch1 (Topic 1) Lesson 2
+    //   Earth's Movement in Space
+    //   Sections: How Earth Moves (rotation, revolution)
+    //             The Seasons (day length, solstices, equinoxes)
+    //             Gravity and Orbits (gravity, inertia, orbital motion)
+    // Guiding Questions:
+    //   How does Earth's motion affect the amount of daylight and seasons?
+    //   Why do Earth and the Moon remain in orbit?
+    // Vocab: axis, rotation, revolution, orbit, solstice, equinox,
+    //        gravity, law of universal gravitation, inertia
+    // Academic vocab: hypothesize
+    // Graph progression:
+    //   Day 3 — mean/median/mode/range (introduced with daylight data)
+    //   Day 6 — double bar graph (daylight hours N vs S hemisphere)
+    //   Day 9 — stem and leaf plot (Moon phase cycle data)
+    // Story: Meridian passing inner solar system, navigation needs
+    //        understanding of Earth/Moon motion, Lighthouse signal
+    //        growing stronger as crew moves outward
+    // 11 days: 3 choice, 4 deepen, 3 graph, 1 climax
     // ============================================================
-    // { id:2, label:'Leg 2 · Rotation, Revolution & Seasons', ... }
+    {
+      id:2, label:'Leg 2 · Earth, Moon & Seasons', standard:'6.E2U1.8 + 6.E2U1.9 + 6.E2U1.10',
+      days:[
+
+        // ── DAY 1 ── CHOICE · Cold Open ──────────────────────────
+        {
+          day:1, type:'choice', isReveal:true,
+          legLabel:'Leg 2 · Earth, Moon & Seasons',
+          legTitle:'Navigation Requires Knowing Where Things Will Be',
+          gaia:'Leg 1 is behind us. The Lighthouse is confirmed — real, artificial, waiting. Now we have to cross the inner solar system to get to the outer edge, and that crossing is not as simple as pointing the ship in the right direction. Every object in this solar system is moving. The planets orbit the Sun. The Moon orbits Earth. Earth rotates on its own axis. If the crew does not understand those motions — their speed, their patterns, their predictability — navigation becomes guesswork. And guesswork in space is expensive.',
+          gaiaAboard:'Leg 1 is behind us. The Lighthouse is confirmed — real, artificial, waiting. Now we have to cross the inner solar system to get to the outer edge, and that crossing is not as simple as pointing the ship in the right direction. Every object in this solar system is moving. The planets orbit the Sun. The Moon orbits Earth. Earth rotates on its own axis. If the crew does not understand those motions — their speed, their patterns, their predictability — navigation becomes guesswork. And guesswork in space is expensive.',
+          gaiaSignal:'The Meridian has entered the inner solar system transit phase. Navigation requires accurate modeling of object positions — planets, moons, and Earth itself are all in motion. Crew familiarity with orbital motion patterns is required for accurate course projection. Today\'s scenario presents the first navigation decision of this transit.',
+          scenario:'The Meridian is crossing the inner solar system. The navigation system needs to project where Earth and the Moon will be at a specific future date — not where they are right now, but where they will be in 47 days, when the ship\'s trajectory will bring it closest to Earth\'s orbital path.\n\nTo make that projection, the crew needs to understand Earth\'s motion. How fast does Earth rotate? How long does it take to complete one revolution around the Sun? How does the Moon\'s orbit around Earth interact with both of those movements?\n\nGAIA has flagged a choice that needs to be made now, before the navigation calculation is locked in.',
+          exitTicketPrompt:'What is the difference between rotation and revolution? Use Earth as your example. Make your claim: to project where Earth will be in 47 days, which type of motion is more important to calculate precisely — rotation or revolution — and why does that matter for the Meridian\'s navigation? Use evidence from today\'s reading to explain your reasoning.',
+          discussionPrompt:'GAIA says navigation requires knowing where things WILL BE, not just where they are. What does that tell you about how rotation and revolution are different kinds of information? One repeats every 24 hours. The other repeats every 365 days. For a 47-day navigation window, which one gives you more useful predictions — and how does your reading explain why?',
+          choices:[
+            {
+              letter:'A',
+              text:'Lock in a direct trajectory now — use current Earth position data and standard orbital models to project the 47-day position.',
+              subtext:'Standard navigation protocol. The orbital models are well-tested. Trust the math.',
+              deltas:{nav:5, solar:-4, signal:8, earth:-2},
+              branch:'A-direct-nav',
+              consequence:'The direct trajectory calculation is efficient and uses minimal power. The orbital models for Earth\'s revolution are precise — 365.25 days per orbit, consistent for billions of years. The 47-day projection puts Earth exactly where standard models predict. Navigation accuracy improves as the crew commits to a confirmed heading. GAIA: "Earth\'s revolution is one of the most reliable constants in the solar system. The orbital model has not been wrong in recorded history. Trusting it was the correct call. We are on course."'
+            },
+            {
+              letter:'B',
+              text:'Take 48 hours to gather fresh observational data on Earth\'s current position before locking in the trajectory.',
+              subtext:'Fresh data is always better than projected data. The 48-hour delay is worth the accuracy.',
+              deltas:{nav:8, solar:-6, signal:10, earth:-2},
+              branch:'B-observe-first',
+              consequence:'The 48-hour observation window produces the most accurate position data available. Fresh measurements confirm the orbital model — Earth is exactly where it should be. Navigation accuracy jumps significantly because the course is locked based on observed position rather than projected position. Solar power cost reflects the extended sensor operation. GAIA: "Observation before projection. The data confirms the model, which means the model is reliable. But now we also know the model is reliable because we checked — not just because we assumed. That distinction matters in science."'
+            },
+            {
+              letter:'C',
+              text:'Calculate trajectory using both Earth and Moon positions — the Moon\'s gravity will affect the Meridian\'s course as it passes near Earth\'s orbital path.',
+              subtext:'The Moon has enough mass to create a detectable gravitational pull. Ignoring it is a navigation risk.',
+              deltas:{nav:10, solar:-8, signal:12, earth:-2},
+              branch:'C-moon-calc',
+              consequence:'Including the Moon in the trajectory calculation is more expensive but more precise. The Moon\'s gravitational influence at the Meridian\'s closest approach distance is small — but detectable, and over 47 days it compounds. The corrected trajectory is more accurate than either alternative. Signal clarity improves as the crew fine-tunes antenna direction during the extended calculation. GAIA: "The Moon has enough mass to matter at close range. You accounted for it. Navigation accuracy reflects that decision. This is also your first practical application of what you are about to read — orbital mechanics is not just theory. It is navigation."'
+            }
+          ]
+        },
+
+        // ── DAY 2 ── DEEPEN · Earth's Movement ───────────────────
+        {
+          day:2, type:'deepen', isReveal:true,
+          legLabel:'Leg 2 · Earth, Moon & Seasons',
+          legTitle:'How Earth Moves',
+          gaia:'Yesterday the crew made a navigation decision based on Earth\'s motion. Today we go deeper into what that motion actually is. Rotation. Revolution. Two completely different kinds of movement, happening simultaneously, at different speeds, with different effects. Rotation gives us day and night. Revolution gives us the year. Both are happening right now — and from out here, watching Earth move against the background of stars, both are visible in ways they never are from the surface.',
+          gaiaAboard:'Yesterday the crew made a navigation decision based on Earth\'s motion. Today we go deeper into what that motion actually is. Rotation. Revolution. Two completely different kinds of movement, happening simultaneously, at different speeds, with different effects. Rotation gives us day and night. Revolution gives us the year. Both are happening right now — and from out here, watching Earth move against the background of stars, both are visible in ways they never are from the surface.',
+          gaiaSignal:'Navigation analysis continues. Today\'s reading covers Earth\'s rotational and revolutionary motion. Focus should be on the difference between these two types of movement, the time each takes to complete one cycle, and how Earth\'s tilted axis affects both.',
+          gaiaRecall:'In Leg 1 you learned that gravitational force depends on mass and distance — and that this force keeps objects in orbit. Today you will read about what orbital motion actually looks like for Earth specifically. The gravitational force you already understand is exactly what keeps Earth on its 365-day revolution around the Sun. The same force. A much larger scale.',
+          scenario:'GAIA assigns the first section of today\'s reading — How Earth Moves. The crew\'s task: understand the difference between rotation and revolution precisely enough to explain why one creates day and night while the other creates the year. From the Meridian\'s position in space, both movements are observable simultaneously — Earth rotating on its axis while also moving along its orbital path around the Sun.',
+          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 1 (Topic 1) Lesson 2 — How Earth Moves. Focus: What is rotation? What is revolution? What is Earth\'s axis and how does its tilt affect motion? How long does each type of movement take?',
+          gaiaReadingPrompt:'"Two motions. Rotation — Earth spinning on its own axis, completing one full turn every 24 hours. Revolution — Earth traveling along its orbital path around the Sun, completing one full loop every 365.25 days. The axis is the imaginary line through Earth\'s poles that rotation happens around. It is tilted — not straight up and down relative to Earth\'s orbit. That tilt is the most important fact in this entire lesson. Everything about seasons comes from that tilt. Read carefully. The tilt is the answer to more questions than the reading explicitly asks."',
+          vocabFocus:['axis','rotation','revolution','orbit'],
+          spiralReview:'From Leg 1: orbital motion requires gravitational force to maintain — the same gravitational force between Earth and Sun that you calculated data for is exactly what keeps Earth on its 365-day revolution. Rotation is separate — Earth spins independently of the gravitational pull that keeps it in orbit.',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: GAIA has daylight data from multiple Earth locations across all 12 months. Before we graph it, we are going to make sense of the numbers first — finding patterns in the data before we visualize it.'
+        },
+
+        // ── DAY 3 ── GRAPH · Mean/Median/Mode/Range ──────────────
+        {
+          day:3, type:'graph', isReveal:false,
+          legLabel:'Leg 2 · Earth, Moon & Seasons',
+          legTitle:'Making Sense of the Numbers First',
+          gaia:'I have daylight data. Hours of sunlight per day, recorded once per month, for an entire year at a location in the Northern Hemisphere. Before I show you a graph of this data, I want the crew to work with the raw numbers. A graph shows you the shape of the data. But first you need to understand what the numbers actually say — what is typical, what is the middle value, what repeats, and how much variation exists. These are not graphing skills. These are data skills. Every scientist needs them before they make any graph at all.',
+          scenario:'GAIA displays 12 data values — hours of daylight recorded on the 15th of each month at a location in the Northern Hemisphere. No graph yet. Just the numbers.\n\nThe crew\'s task: find the mean, median, mode, and range of this data set before tomorrow\'s graph day. GAIA explains each measure and why it matters for understanding seasonal patterns.',
+          graphData:{
+            title:'Hours of Daylight — Northern Hemisphere (Monthly, 15th of Each Month)',
+            teacherNote:'This is a statistics introduction day — no graph is drawn yet. Students work with the raw data to find mean, median, mode, and range. Walk through each calculation with the class. Tomorrow they will graph this same data. Key connection: mean tells you the average day length for the year, median tells you the middle value, mode shows any repeating pattern, range shows how extreme the seasonal variation is.',
+            bars:[
+              {label:'Jan', value:9},
+              {label:'Feb', value:10},
+              {label:'Mar', value:12},
+              {label:'Apr', value:13},
+              {label:'May', value:15},
+              {label:'Jun', value:15},
+              {label:'Jul', value:14},
+              {label:'Aug', value:13},
+              {label:'Sep', value:12},
+              {label:'Oct', value:11},
+              {label:'Nov', value:10},
+              {label:'Dec', value:9}
+            ],
+            yLabel:'Hours of Daylight',
+            graphAnswers:[
+              {q:'Mean', a:'Mean = sum of all values ÷ number of values. Sum = 9+10+12+13+15+15+14+13+12+11+10+9 = 143. Mean = 143 ÷ 12 = 11.9 hours. The average day length across the year is about 12 hours.'},
+              {q:'Median', a:'Put values in order: 9, 9, 10, 10, 11, 12, 12, 13, 13, 14, 15, 15. With 12 values, median is the average of the 6th and 7th values: (12+12)÷2 = 12 hours. The middle day length is 12 hours.'},
+              {q:'Mode', a:'Mode = value that appears most often. Both 9, 10, 12, 13, and 15 appear twice. This data set is multimodal — multiple values repeat equally. Worth discussing: what does it mean when several values repeat?'},
+              {q:'Range', a:'Range = maximum − minimum = 15 − 9 = 6 hours. The difference between the longest and shortest day is 6 hours. This number tells you how extreme the seasonal variation is at this location.'},
+              {q:'Interpretation', a:'The mean and median are both close to 12 hours — which makes sense because Earth\'s tilt causes roughly equal amounts of long and short days across a full year. The range of 6 hours shows significant seasonal variation. Tomorrow\'s graph will make this variation visible as a shape.'}
+            ]
+          },
+          gaiaGraphNote:'"Four measures. Mean: the mathematical average — add all values, divide by how many. Median: the middle value when arranged in order. Mode: the value that appears most often. Range: the difference between the highest and lowest. Each one tells you something different about the same data. Mean tells you the typical value. Median is less affected by extreme values. Mode shows patterns. Range shows variation. A scientist uses all four — not just one. Tomorrow you will see what this data looks like as a graph. Today you understand what it says."',
+          graphQuestions:[
+            '1. Find the MEAN hours of daylight. Show your work: add all 12 values, then divide by 12.',
+            '2. Arrange the 12 values in order from smallest to largest. Find the MEDIAN — the middle value. (Hint: with 12 values, the median is the average of the 6th and 7th values.)',
+            '3. Find the MODE — which value or values appear most often?',
+            '4. Find the RANGE — subtract the smallest value from the largest. What does this number tell you about seasonal variation at this location?',
+            '5. The mean and median are both close to 12 hours. Why does that make scientific sense given what you read about Earth\'s axis and revolution?'
+          ],
+          shortDayNote:'Short day: Do questions 1 and 4 only — mean and range. Mean shows the typical day length, range shows the seasonal variation. Those two numbers tell the most important story. Return to median and mode next class as warm-up.',
+          noChoice:true
+        },
+
+        // ── DAY 4 ── CHOICE · Seasons ────────────────────────────
+        {
+          day:4, type:'choice', isReveal:false,
+          legLabel:'Leg 2 · Earth, Moon & Seasons',
+          legTitle:'The Planet Looks Different From Up Here',
+          gaia:'The crew is passing Earth at a distance. And I want to draw your attention to something I have been tracking since we entered this region. The Northern Hemisphere is receiving noticeably more direct sunlight than the Southern Hemisphere right now. The Sun\'s rays are hitting the Northern Hemisphere at a steeper angle — more concentrated energy per unit of surface area. The Southern Hemisphere is receiving the same sunlight at a shallower angle, spread across more surface. This difference is not random. It is the direct result of Earth\'s tilted axis and its current position in its revolution around the Sun. The crew is watching a season happen in real time.',
+          scenario:'From the Meridian\'s position, the crew can observe something that is impossible to see from Earth\'s surface — the geometry of sunlight hitting a tilted planet. The Northern Hemisphere is angled toward the Sun. The Southern Hemisphere is angled away.\n\nGAIA displays sensor readings showing solar energy intensity at multiple Earth locations simultaneously:\n\n• Northern Hemisphere (45°N): 380 watts per square meter\n• Equator (0°): 340 watts per square meter\n• Southern Hemisphere (45°S): 210 watts per square meter\n\nGAIA: "The equator receives relatively consistent energy year-round because the tilt affects it less. The poles experience the most dramatic seasonal variation. The crew is currently observing Northern Hemisphere summer. In six months, when Earth has moved to the opposite side of its orbit, these numbers reverse. The tilt stays the same. The position in the orbit changes. That is the entire explanation for seasons."',
+          exitTicketPrompt:'What causes seasons on Earth — and what does NOT cause them? Use the sensor readings GAIA displayed and what you know about Earth\'s tilted axis to explain. Make your claim: based on what the crew is observing right now, is the Northern Hemisphere experiencing summer or winter — and how does Earth\'s position in its orbit explain that? Use evidence from today\'s reading to connect the axis tilt to the energy intensity difference.',
+          discussionPrompt:'Some people think seasons are caused by Earth being closer to the Sun in summer and farther in winter. The crew can see from here that this is not true — Earth is roughly the same distance from the Sun all year. What IS causing the difference in energy intensity between the Northern and Southern hemispheres right now? What would change about those sensor readings in six months when Earth has moved to the other side of its orbit?',
+          choices:[
+            {
+              letter:'A',
+              text:'Adjust the Meridian\'s solar panels to maximize collection from the current angle of sunlight hitting the ship.',
+              subtext:'The same geometry creating Earth\'s seasons affects solar collection on the Meridian. Optimize now.',
+              deltas:{nav:0, solar:14, signal:6, earth:-2},
+              branch:'A-solar-optimize',
+              consequence:'Adjusting the solar panels based on the current sunlight angle — the same geometry causing Earth\'s northern summer — produces the highest solar collection of the mission so far. The angle between the Sun and the Meridian\'s panels is nearly optimal at this position. Solar power reserves jump significantly. GAIA: "The same principle that causes seasons on Earth determines solar collection efficiency on this ship. When the panels face the Sun at a perpendicular angle, collection is maximized. When the angle is shallow, the energy spreads across a larger panel area and collection drops. You have just applied seasonal geometry to ship engineering."'
+            },
+            {
+              letter:'B',
+              text:'Use the current observation position to take the most complete sensor reading of Earth\'s seasonal variation before moving on.',
+              subtext:'This view of a tilted planet receiving differential sunlight cannot be replicated from the surface. Document it.',
+              deltas:{nav:0, solar:-6, signal:18, earth:-2},
+              branch:'B-document-seasons',
+              consequence:'The sensor data collected from this observation position is extraordinary — a complete picture of seasonal energy variation across Earth\'s surface, taken simultaneously from a single external vantage point. No Earth-based measurement could capture this. Signal clarity jumps as the data package is transmitted back to GSRA. Solar power costs reflect extended sensor operation. GAIA: "Scientists have been inferring Earth\'s seasonal geometry from surface measurements for centuries. What you just documented is what those inferences describe — seen directly, from outside, all at once. The data has been transmitted. Someone at GSRA is going to be very pleased."'
+            },
+            {
+              letter:'C',
+              text:'Maintain current heading without adjustment — the observation is complete and the Lighthouse is the priority.',
+              subtext:'The mission is the Lighthouse. Document what you can without slowing down.',
+              deltas:{nav:4, solar:-2, signal:5, earth:-2},
+              branch:'C-maintain-heading',
+              consequence:'Maintaining heading conserves resources and keeps the mission on schedule. The crew logs the seasonal observation data as a secondary finding — not the mission priority, but worth noting. Navigation accuracy stays strong on the committed heading. GAIA: "Reasonable prioritization. The Lighthouse is the mission. Earth\'s seasonal geometry has been observed and logged. We proceed. I will note that the observation window for this particular view of Earth\'s tilt closes as we move outward — what was visible here will not be visible from our next position. The logged data preserves it."'
+            }
+          ]
+        },
+
+        // ── DAY 5 ── DEEPEN · Seasons, Day Length, Solstices ─────
+        {
+          day:5, type:'deepen', isReveal:true,
+          legLabel:'Leg 2 · Earth, Moon & Seasons',
+          legTitle:'Why Days Get Longer and Shorter',
+          gaia:'Yesterday the crew observed a season from space. Today we read about exactly why it works the way it does. The daylight data from Day 3 told you that summer days are longer and winter days are shorter — the numbers showed it clearly. Today\'s reading explains the mechanism. Earth\'s tilted axis. Solstices at the extremes. Equinoxes in the middle. The data you calculated the mean and range for on Day 3 will make much more sense after today\'s reading.',
+          gaiaAboard:'Yesterday the crew observed a season from space. Today we read about exactly why it works the way it does. The daylight data from Day 3 told you that summer days are longer and winter days are shorter — the numbers showed it clearly. Today\'s reading explains the mechanism. Earth\'s tilted axis. Solstices at the extremes. Equinoxes in the middle. The data you calculated the mean and range for on Day 3 will make much more sense after today\'s reading.',
+          gaiaSignal:'Navigation data update: Meridian is maintaining course through the inner solar system. Today\'s reading covers the mechanisms behind seasonal day length variation — solstices, equinoxes, and the relationship between axis tilt and the amount of daylight received at different latitudes.',
+          gaiaRecall:'On Day 3 you found that the range of daylight hours across the year was 6 hours — from 9 hours in December to 15 hours in June. Today\'s reading explains exactly why that range exists. The range is not random. It is a direct consequence of Earth\'s 23.5-degree axis tilt. A planet with no tilt would have the same day length year-round — a range of zero. Earth\'s tilt is what creates that 6-hour difference.',
+          scenario:'GAIA assigns the seasons section of today\'s reading — day length, solstices, and equinoxes. The crew\'s task: connect the vocabulary to the daylight data they already calculated. June 15th had 15 hours of daylight — that is close to the summer solstice, the longest day of the year. December 15th had 9 hours — close to the winter solstice, the shortest. March and September each had 12 hours — close to the equinoxes, when day and night are nearly equal.',
+          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 1 (Topic 1) Lesson 2 — The Seasons: Day Length, Solstices, and Equinoxes. Focus: What causes day length to change across the year? What is a solstice and when does it occur? What is an equinox and what makes it different from a solstice?',
+          gaiaReadingPrompt:'"Solstice: the two points in Earth\'s orbit where the axis tilt points most directly toward or away from the Sun. Maximum day length difference. Summer solstice in the Northern Hemisphere — around June 21 — longest day of the year. Winter solstice — around December 21 — shortest day. Equinox: the two points where neither hemisphere is tilted toward or away from the Sun. Day and night are approximately equal. Spring equinox around March 21, fall equinox around September 22. The crew already has data for all of these. The reading gives the words. The numbers from Day 3 gave you the pattern. Connect them."',
+          vocabFocus:['solstice','equinox','axis','rotation','revolution'],
+          spiralReview:'From Day 3: the mean daylight across the year was 11.9 hours — close to 12. That near-12-hour average is not a coincidence. Over a full revolution, Earth\'s tilt causes roughly equal amounts of long and short days, which average out near 12. The equinoxes — exactly 12 hours — are the anchor points that make this work.',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: the same daylight data from Day 3, now shown as a double bar graph — Northern Hemisphere and Southern Hemisphere side by side. The graph will show what today\'s reading describes. Two hemispheres, same planet, opposite seasons.'
+        },
+
+        // ── DAY 6 ── GRAPH · Double Bar Graph ────────────────────
+        {
+          day:6, type:'graph', isReveal:false,
+          legLabel:'Leg 2 · Earth, Moon & Seasons',
+          legTitle:'Two Hemispheres, One Planet, Opposite Seasons',
+          gaia:'You have the Northern Hemisphere data from Day 3. I have now added the Southern Hemisphere data for the same months. Same planet. Same Sun. Same orbital position. Opposite results. When it is summer in the Northern Hemisphere, it is winter in the Southern Hemisphere — and the daylight hours reflect this exactly. I want to show both data sets at the same time, in the same graph. For that we need a new graph type. You have used bar graphs that show one value per category. Today we add a second bar to each category — one for each hemisphere. Same x-axis. Same y-axis. Two bars per month.',
+          scenario:'GAIA displays a double bar graph — twelve months across the x-axis, hours of daylight on the y-axis. For each month, two bars sit side by side: one for the Northern Hemisphere, one for the Southern Hemisphere. When the Northern bar is tall, the Southern bar is short. When the Northern bar is short, the Southern bar is tall. At March and September, both bars are approximately equal.\n\nGAIA: "This is the same type of graph you already know — a bar graph. The only difference is two bars per category instead of one. One color for each hemisphere. The double bar graph is the right tool here because we are comparing two related data sets across the same categories. A single bar graph would force us to show them separately and lose the comparison."',
+          graphData:{
+            title:'Hours of Daylight — Northern vs. Southern Hemisphere (Monthly)',
+            teacherNote:'Draw as a double bar graph. X-axis: 12 months. Y-axis: hours of daylight (0-16). Two bars per month — one color for Northern Hemisphere, one for Southern. Key visual: the bars are mirror images of each other. When Northern is at its peak (Jun = 15h), Southern is at its lowest (Jun = 9h). They cross near equal at March and September (equinoxes ~12h each). This visual is the entire explanation of why seasons are opposite in each hemisphere.',
+            bars:[
+              {label:'Jan', value:9, status:'safe'},
+              {label:'Feb', value:10, status:'safe'},
+              {label:'Mar', value:12, status:'safe'},
+              {label:'Apr', value:13, status:'safe'},
+              {label:'May', value:15, status:'safe'},
+              {label:'Jun', value:15, status:'safe'},
+              {label:'Jul', value:14, status:'safe'},
+              {label:'Aug', value:13, status:'safe'},
+              {label:'Sep', value:12, status:'safe'},
+              {label:'Oct', value:11, status:'safe'},
+              {label:'Nov', value:10, status:'safe'},
+              {label:'Dec', value:9, status:'safe'}
+            ],
+            bars2:[
+              {label:'Jan', value:15},
+              {label:'Feb', value:14},
+              {label:'Mar', value:12},
+              {label:'Apr', value:11},
+              {label:'May', value:9},
+              {label:'Jun', value:9},
+              {label:'Jul', value:10},
+              {label:'Aug', value:11},
+              {label:'Sep', value:12},
+              {label:'Oct', value:13},
+              {label:'Nov', value:14},
+              {label:'Dec', value:15}
+            ],
+            yLabel:'Hours of Daylight',
+            legend:['Northern Hemisphere','Southern Hemisphere'],
+            legendColors:['#00e5cc','#ffdd00'],
+            graphAnswers:[
+              {q:'1', a:'June — Northern Hemisphere has 15 hours (maximum). December — Southern Hemisphere has 15 hours (maximum). They are at opposite months because when one hemisphere tilts toward the Sun, the other tilts away.'},
+              {q:'2', a:'March and September — both hemispheres show approximately 12 hours. These are the equinoxes — when neither hemisphere is tilted toward or away from the Sun, producing equal day and night everywhere.'},
+              {q:'3', a:'The Northern Hemisphere bars are mirror images of the Southern bars. When Northern is high, Southern is low, and vice versa. This shows that the same Earth position in orbit produces opposite seasons in each hemisphere — because the tilt points one hemisphere toward the Sun while pointing the other away.'},
+              {q:'4', a:'A single bar graph would show only one hemisphere\'s data, losing the comparison entirely. The double bar graph makes the mirror-image relationship visible at a glance. You need to see both hemispheres simultaneously to understand that seasons are opposite — not separate.'},
+              {q:'5', a:'Calculate mean for Northern: 143÷12 = 11.9 hours. Calculate mean for Southern: same calculation, same answer = 11.9 hours. They are equal because Earth\'s tilt gives each hemisphere the same total annual sunlight — just at different times of year.'}
+            ]
+          },
+          gaiaGraphNote:'"Two bars per month. One color per hemisphere. Same x-axis, same y-axis. This is a double bar graph — the same bar graph you have been using since Sector 1 of the Prometheus mission, with one addition. When you have two related data sets to compare across the same categories, you put them side by side. The comparison is the point. You could make two separate bar graphs — but then the mirror-image relationship disappears. The double bar graph keeps both stories on the same picture."',
+          graphQuestions:[
+            '1. In which month does the Northern Hemisphere have the most daylight? In which month does the Southern Hemisphere have the most? What explains why these months are different?',
+            '2. Find the two months where both hemispheres show approximately equal daylight hours. What are these points called — and what is Earth\'s position in its orbit at those moments?',
+            '3. Describe the overall pattern of the two sets of bars. What does the shape of the double bar graph tell you about the relationship between the seasons in each hemisphere?',
+            '4. Why is a double bar graph a better choice here than two separate bar graphs? What would you lose by separating them?',
+            '5. Calculate the mean daylight hours for both hemispheres. Are they the same or different? What does that tell you about Earth\'s total annual sunlight?'
+          ],
+          shortDayNote:'Short day: Show the graph, ask questions 1 and 3 only. The mirror-image pattern is the key visual — Northern high when Southern low, and vice versa. That visual IS the explanation for opposite seasons. Questions 2, 4, 5 can be warm-up next class.',
+          noChoice:true
+        },
+
+        // ── DAY 7 ── CHOICE · Gravity and Orbits ─────────────────
+        {
+          day:7, type:'choice', isReveal:false,
+          legLabel:'Leg 2 · Earth, Moon & Seasons',
+          legTitle:'What Keeps Everything From Flying Apart',
+          gaia:'The crew has been navigating through a solar system full of objects in motion. Earth orbits the Sun. The Moon orbits Earth. The Meridian follows a planned trajectory through all of it. None of these motions are accidents. They are the result of two forces in precise balance — gravity pulling inward and inertia carrying objects forward. Change one without the other and orbits break down. The Meridian\'s navigation systems depend on understanding this balance. And right now, something is testing it.',
+          scenario:'The Meridian is approaching the region where Earth\'s gravitational field and the Moon\'s gravitational field both have measurable effects on the ship\'s trajectory. The navigation system is tracking both simultaneously.\n\nEarth\'s pull at current distance: 18 force units\nMoon\'s pull at current distance: 4 force units\nMeridian\'s current velocity: sufficient for stable trajectory if no correction is made\n\nThe question is not whether to correct — the question is how to use what the crew knows about gravity, inertia, and orbital motion to navigate this region most efficiently.\n\nGAIA: "An object in motion stays in motion unless acted upon by a force. That is inertia. Gravity is the force acting on the Meridian right now — two sources of it simultaneously. The crew\'s job is to decide how to respond."',
+          exitTicketPrompt:'What is the law of universal gravitation, and what is inertia? Use the Meridian\'s current navigation situation as your example — explain how both gravity and inertia are affecting the ship right now. Make your claim: which navigation approach gives the crew the best balance between using gravitational forces efficiently and maintaining course control? Use evidence from today\'s reading to connect the science to your choice.',
+          discussionPrompt:'GAIA says orbits are a balance between gravity pulling inward and inertia carrying objects forward. If the Meridian had no inertia — if it were completely still — what would happen? If it had no gravity acting on it — if it were somehow shielded — what would happen? What does that tell you about why orbital motion requires both forces working together?',
+          choices:[
+            {
+              letter:'A',
+              text:'Use the Moon\'s gravitational field as a slingshot — adjust course to pass close to the Moon and use its gravity to accelerate toward the outer solar system.',
+              subtext:'Gravity assists are real navigation techniques. The Moon\'s pull, used correctly, adds velocity without burning solar power.',
+              deltas:{nav:8, solar:12, signal:10, earth:-2},
+              branch:'A-moon-slingshot',
+              consequence:'The lunar gravity assist works exactly as orbital mechanics predicts. The Meridian passes close to the Moon, trading a slight course deviation for significant velocity gain — the Moon\'s gravitational pull accelerates the ship, and inertia carries that acceleration forward after the closest approach. Solar power reserves jump because the engines do less work. Navigation accuracy improves as the crew successfully executes a precision orbital maneuver. GAIA: "Gravity assist. The Moon pulls the Meridian, the Meridian\'s inertia carries that velocity outward, and the Moon loses an immeasurably small amount of its own orbital energy in the exchange. This is how spacecraft reach the outer solar system without carrying impossibly large fuel loads. You just did it."'
+            },
+            {
+              letter:'B',
+              text:'Maintain planned trajectory — navigate between Earth and Moon without allowing either gravitational field to alter course.',
+              subtext:'Precision navigation. Use the engines to counteract both gravitational pulls and stay exactly on the planned heading.',
+              deltas:{nav:5, solar:-10, signal:8, earth:-2},
+              branch:'B-precision-nav',
+              consequence:'Maintaining planned trajectory through the combined gravitational field of Earth and Moon requires constant engine correction — inertia carries the ship forward but gravity from two sources constantly nudges it off course. Navigation accuracy stays high because the heading never deviates. Solar power takes a significant hit from continuous engine use. GAIA: "Precise. Expensive. The engines fought both gravitational fields simultaneously to hold the planned course. The law of universal gravitation does not make exceptions for planned trajectories. Every deviation required a correction. You corrected them all. We are exactly on heading."'
+            },
+            {
+              letter:'C',
+              text:'Allow Earth\'s gravitational field to curve the trajectory slightly — use the deviation to collect additional sensor data on Earth\'s gravitational field strength.',
+              subtext:'The deviation is within safe parameters. Use it scientifically rather than correcting it.',
+              deltas:{nav:-5, solar:-4, signal:15, earth:-2},
+              branch:'C-allow-deviation',
+              consequence:'Allowing the gravitational deviation produces excellent data — real-time measurements of Earth\'s gravitational field at multiple distances, more detailed than anything in the Meridian\'s database. Signal clarity jumps as the data is processed and transmitted. Navigation accuracy drops because the planned heading is no longer intact — recovering the correct trajectory will require additional course correction in the next leg. GAIA: "The data is valuable. The navigation cost is real. This is a genuine scientific trade-off — knowledge acquired at the expense of efficiency. I am not going to tell you it was wrong. I am going to note that the heading recovery in Leg 3 will require additional resources."'
+            }
+          ]
+        },
+
+        // ── DAY 8 ── DEEPEN · Gravity, Inertia, Moon Phases ──────
+        {
+          day:8, type:'deepen', isReveal:true,
+          legLabel:'Leg 2 · Earth, Moon & Seasons',
+          legTitle:'Orbital Motion and the Moon\'s Changing Face',
+          gaia:'Yesterday the crew navigated using gravitational force and inertia. Today we read about why those forces produce the specific pattern of orbital motion we observe — and extend that understanding to the Moon. The Moon orbits Earth for the same reason Earth orbits the Sun: gravity pulling inward, inertia carrying forward, in continuous balance. And as the Moon orbits, its position relative to Earth and Sun changes. From Earth\'s surface, that changing position produces what looks like the Moon\'s changing shape. The Moon does not actually change shape. The crew knows better — from out here you can see exactly what is happening.',
+          gaiaAboard:'Yesterday the crew navigated using gravitational force and inertia. Today we read about why those forces produce the specific pattern of orbital motion we observe — and extend that understanding to the Moon. The Moon orbits Earth for the same reason Earth orbits the Sun: gravity pulling inward, inertia carrying forward, in continuous balance. And as the Moon orbits, its position relative to Earth and Sun changes. From Earth\'s surface, that changing position produces what looks like the Moon\'s changing shape. The Moon does not actually change shape. The crew knows better — from out here you can see exactly what is happening.',
+          gaiaSignal:'Navigation deepen day. Today\'s reading covers gravitational force, inertia, and orbital motion — with application to both Earth\'s orbit around the Sun and the Moon\'s orbit around Earth. The section on Moon phases extends the orbital mechanics concept to explain apparent shape changes as seen from Earth\'s surface.',
+          gaiaRecall:'From Leg 1: gravitational force depends on mass and distance. The Moon has 1/81 the mass of Earth — which is why its gravitational pull on the Meridian during yesterday\'s navigation was only 4 force units compared to Earth\'s 18. Same distance from the Meridian, very different force. Same law. Different mass.',
+          scenario:'GAIA assigns the gravity and orbits section of today\'s reading, plus the Moon phases content. The connection between them: Moon phases are a direct result of orbital motion — the Moon orbiting Earth while Earth orbits the Sun, changing which portion of the Moon\'s sunlit side faces Earth at any given time. From the Meridian\'s external position, the crew can see the Moon\'s full sphere illuminated on one side — phases are a perspective phenomenon, not a physical change in the Moon.',
+          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 1 (Topic 1) Lesson 2 — Gravity and Orbits, plus Moon Phases content (Standard 6.E2U1.9). Focus: What is the law of universal gravitation? What is inertia? How do both produce orbital motion? How does the Moon\'s orbital position create the appearance of phases from Earth?',
+          gaiaReadingPrompt:'"Law of universal gravitation: every object with mass attracts every other object with mass. The force depends on both masses and the distance between them. You already know this from Leg 1 — today the reading gives it its formal name. Inertia: an object in motion stays in motion unless a force acts on it. In orbit, gravity IS that force — constantly redirecting inertia into a curved path instead of a straight line. Moon phases: the Moon does not change shape. It is always a sphere, always half illuminated by the Sun. What changes is which illuminated portion faces Earth as the Moon moves around its orbit. New moon — illuminated side faces away from Earth. Full moon — illuminated side faces Earth. Everything in between is geometry."',
+          vocabFocus:['gravity','law of universal gravitation','inertia','orbit','revolution'],
+          spiralReview:'From Campaign 1 Sector 3: kinetic energy and potential energy are both involved in orbital motion. A satellite in orbit has kinetic energy from its velocity and gravitational potential energy from its height. The balance between them is exactly what GAIA described yesterday — inertia (kinetic energy) and gravity (potential energy) in continuous exchange. Orbital motion is the Conversion Loop at a solar system scale.',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: Moon phase cycle data shown as a stem and leaf plot. Same orbital mechanics you read about today — shown as a data distribution.'
+        },
+
+        // ── DAY 9 ── GRAPH · Stem and Leaf ───────────────────────
+        {
+          day:9, type:'graph', isReveal:false,
+          legLabel:'Leg 2 · Earth, Moon & Seasons',
+          legTitle:'The Moon\'s Cycle in Numbers',
+          gaia:'The Meridian\'s sensors have been logging the Moon\'s orbital angle — its position in its orbit around Earth — every day for the past 29 days. One complete lunar cycle. I want to show you this data in a way that makes the distribution visible before you graph it. Not a bar graph. Not a line graph. A stem and leaf plot. You have been organizing data since Day 3. A stem and leaf plot is a tool that organizes numbers so their distribution — how they are spread out, where they cluster — is visible at a glance. And it makes finding the median much easier than a list does.',
+          scenario:'GAIA displays 29 daily measurements of the Moon\'s orbital completion percentage — how far through its 29.5-day cycle the Moon was on each observation day. The measurements range from 3% (Day 1, just past new moon) to 99% (Day 29, nearly back to new moon).\n\nGAIA: "A stem and leaf plot works by splitting each number into two parts: the tens digit becomes the stem, the ones digit becomes the leaf. All numbers in the same tens group share a stem. The leaves branch out from it. When you finish, the shape of the data — where values cluster, where they spread — is visible without drawing a single graph."',
+          graphData:{
+            title:'Moon Orbital Completion % — 29 Daily Observations',
+            teacherNote:'Draw as a stem and leaf plot on the board. Stems: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Leaves branch to the right. Data is roughly evenly distributed 3-99 because we are measuring consecutive days of a continuous cycle — each day advances roughly 3.4% through the cycle (100%÷29.5 days). Key teaching points: (1) stems organize the tens, leaves show the ones; (2) count all values to find the median (29 values, median is the 15th value); (3) the even distribution shows a continuous cycle with no clustering — unlike seasonal data which clusters at extremes. This contrast with the daylight data is worth discussing.',
+            bars:[
+              {label:'3', value:3},{label:'7', value:7},{label:'10', value:10},
+              {label:'14', value:14},{label:'17', value:17},{label:'21', value:21},
+              {label:'24', value:24},{label:'28', value:28},{label:'31', value:31},
+              {label:'34', value:34},{label:'38', value:38},{label:'41', value:41},
+              {label:'45', value:45},{label:'48', value:48},{label:'52', value:52},
+              {label:'55', value:55},{label:'59', value:59},{label:'62', value:62},
+              {label:'66', value:66},{label:'69', value:69},{label:'72', value:72},
+              {label:'76', value:76},{label:'79', value:79},{label:'83', value:83},
+              {label:'86', value:86},{label:'90', value:90},{label:'93', value:93},
+              {label:'97', value:97},{label:'99', value:99}
+            ],
+            yLabel:'Moon Orbital % Complete',
+            graphAnswers:[
+              {q:'Stem and Leaf', a:'Stems 0-9 (tens digit). Leaves (ones digit): 0|3,7 / 1|0,4,7 / 2|1,4,8 / 3|1,4,8 / 4|1,5,8 / 5|2,5,9 / 6|2,6,9 / 7|2,6,9 / 8|3,6,0 / 9|0,3,7,9. Total: 29 values.'},
+              {q:'Median', a:'29 values — median is the 15th value when arranged in order. Count from smallest: the 15th value is 52. The median orbital completion is 52% — approximately the halfway point through the cycle, which corresponds to a full moon (Moon is opposite the Sun from Earth\'s perspective).'},
+              {q:'Distribution', a:'Values are roughly evenly spread from 3 to 99. No clustering at either extreme. This makes sense — a continuous 29.5-day cycle produces data points that advance steadily, not data that piles up at specific values.'},
+              {q:'Contrast with daylight data', a:'Daylight data clustered near the extremes (many values near 9 and 15) because seasons slow down at the solstices. Moon phase data is evenly spread because the Moon\'s orbit is a continuous cycle without seasonal acceleration or deceleration.'},
+              {q:'Phase connection', a:'Day 1 (3%) = new moon, just started. Day 15 (52%) = approximately full moon, halfway through cycle. Day 29 (99%) = nearly back to new moon. The orbital position percentage directly corresponds to which phase is visible from Earth.'}
+            ]
+          },
+          gaiaGraphNote:'"A stem and leaf plot organizes numbers by splitting them: tens digit is the stem, ones digit is the leaf. All values with the same tens digit share a stem. You can see the distribution — where values are dense, where they spread — without drawing bars or plotting points. And you can find the median by counting to the middle value directly from the organized list. Compare the shape of this plot to what the daylight data would look like as a stem and leaf: the daylight data would cluster near 9 and near 15, with a gap in the middle. This Moon data spreads evenly. Different shapes. Different scientific stories."',
+          graphQuestions:[
+            '1. Build the stem and leaf plot: separate each value into its tens digit (stem) and ones digit (leaf). Organize all 29 values.',
+            '2. Use your stem and leaf plot to find the median — count to the 15th value. What is it? What Moon phase does that correspond to?',
+            '3. Describe the distribution of this data. Does it cluster anywhere, or spread evenly? Why does that make scientific sense for a continuous orbital cycle?',
+            '4. How is the shape of this stem and leaf plot different from what the daylight data would look like? What does that difference tell you about the difference between seasonal patterns and orbital cycles?',
+            '5. The Moon completes one full orbit in 29.5 days. If the data went to Day 30, what would the orbital completion percentage be — and what phase would the Moon be in?'
+          ],
+          shortDayNote:'Short day: Build the stem and leaf plot as a class (question 1) and find the median (question 2). Those two tasks are the core skill. Questions 3-5 can be warm-up next class or homework.',
+          noChoice:true
+        },
+
+        // ── DAY 10 ── DEEPEN · Synthesis ─────────────────────────
+        {
+          day:10, type:'deepen', isReveal:true,
+          legLabel:'Leg 2 · Earth, Moon & Seasons',
+          legTitle:'Motion, Light, and Gravity — The Full Picture',
+          gaia:'The crew has covered a great deal in this leg. Rotation. Revolution. Seasons. Solstices and equinoxes. Gravity and inertia. Orbital motion. Moon phases. These are not separate topics. They are one connected system. Earth rotates — giving us day and night. Earth revolves — and its tilted axis creates seasons. Gravity and inertia keep Earth in orbit and the Moon in orbit around Earth. The Moon\'s orbital position creates phases. Every piece connects. Today we make sure all the connections are clear before moving on.',
+          gaiaAboard:'The crew has covered a great deal in this leg. Rotation. Revolution. Seasons. Solstices and equinoxes. Gravity and inertia. Orbital motion. Moon phases. These are not separate topics. They are one connected system. Today we trace that system from beginning to end.',
+          gaiaSignal:'Navigation synthesis day. Today\'s reading connects all concepts from Leg 2 — Earth\'s motion, seasonal variation, gravitational forces, orbital mechanics, and Moon phases — into a unified framework. All vocabulary should be connected to ship observations made during the inner solar system transit.',
+          gaiaRecall:'From Campaign 1: the Conversion Loop converted between kinetic energy and potential energy continuously. Orbital motion is the same exchange at a planetary scale — a satellite\'s kinetic energy (from inertia) and gravitational potential energy (from height in a gravitational field) exchange continuously to maintain the curved path of orbit. The Conversion Loop was a small, engineered version of what every moon and planet does naturally.',
+          scenario:'GAIA assigns the full Leg 2 synthesis reading — all sections of Lesson 2 reviewed together. The crew\'s task: trace one complete chain connecting Earth\'s axis tilt to Moon phases. The chain: Earth\'s tilted axis causes seasons as it revolves around the Sun. The same gravitational force that keeps Earth in that revolution also keeps the Moon in orbit around Earth. As the Moon orbits, its position relative to Earth and Sun changes — producing the phases the crew has been tracking in data. One system. All connected.',
+          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 1 (Topic 1) Lesson 2 — Full review of all three sections. Focus: How do rotation and revolution connect to seasons? How do gravity and inertia connect to orbital motion? How does orbital position connect to Moon phases? Connect every vocabulary word to something the Meridian observed during the inner solar system transit.',
+          gaiaReadingPrompt:'"I want the crew to trace the full chain today. Start with Earth\'s axis tilt — 23.5 degrees. That tilt, combined with revolution, creates seasons. The same gravity that drives revolution also holds the Moon in orbit around Earth. The Moon\'s orbital position, relative to Earth and Sun, determines which portion of its sunlit side faces Earth — producing phases. All vocabulary from this leg appears somewhere in that chain. Rotation. Revolution. Axis. Orbit. Solstice. Equinox. Gravity. Law of universal gravitation. Inertia. Find each one in the chain. Write it out."',
+          vocabFocus:['axis','rotation','revolution','orbit','solstice','equinox','gravity','law of universal gravitation','inertia','hypothesize'],
+          spiralReview:'Full Campaign 1 and Leg 1 connection: matter (Campaign 1) → energy (Campaign 1) → gravitational force (Leg 1) → orbital motion (Leg 2). The gravitational force you calculated data tables for in Leg 1 is the same force that keeps Earth tilted into seasons, keeps the Moon producing phases, and will keep the Meridian on course as it travels toward the outer solar system.',
+          noChoice:true,
+          bridgeToNext:'Next class: Leg 2 climax — crew clears the Earth-Moon system, signal strengthens, and GAIA shares the next piece of what the Lighthouse transmission contains.'
+        },
+
+        // ── DAY 11 ── CLIMAX · Leg 2 Close ───────────────────────
+        {
+          day:11, type:'climax', isReveal:true,
+          legLabel:'Leg 2 · Earth, Moon & Seasons',
+          legTitle:'Past the Earth-Moon System',
+          gaia:'The Meridian has cleared the Earth-Moon system. Behind us: the planet where the Prometheus experiment began, the Moon whose orbital mechanics you now understand, and the inner solar system that makes up almost everything humanity has ever known or observed directly. Ahead: the outer solar system. Distances that will require a completely different way of thinking about scale. And the Lighthouse, whose signal is now noticeably stronger than when we entered this leg.\n\nI want to acknowledge what the crew has done in Leg 2. You navigated through a region where two gravitational fields acted on the ship simultaneously. You observed seasonal geometry from outside the planet — something no scientist on Earth\'s surface can do. You worked with data at three levels: raw numbers, statistical measures, and two different graph types. And you connected orbital mechanics to the Moon phases that Earth\'s inhabitants have been observing for all of human history without being able to see exactly why they happen.\n\nYou now know why.',
+          scenario:'The Meridian accelerates toward the outer solar system. The signal from the Lighthouse is stronger. Clear enough now for GAIA to have decoded more of its content. Three classes. Three different paths through the Earth-Moon system. Different navigation choices, different solar power reserves, different signal clarity levels — all visible on the stats board.\n\nGAIA addresses the crew:\n\n"Look at the numbers across all three classes. Different choices. Different outcomes. The same gravitational fields, the same orbital mechanics, the same seasons — but the decisions made about how to use that knowledge produced different results. That is science in a mission context. Same laws. Different applications."\n\n"Now. The Lighthouse signal. I have decoded more of it. The content is becoming clear. I am not going to share all of it — the crew needs to understand the scale of what we are crossing before the full context will mean anything. But I will share this: the Lighthouse was not built to transmit to Earth. It was built to transmit to whatever came looking for it. It was built for us.\n\nLeg 3 covers the scale of the solar system — the distances between here and the Lighthouse. I need the crew to understand those distances before I show you what the transmission actually says. The scale matters. Trust me on this one."',
+          gaiaClosing:'"One more thing before we move on. The daylight data you analyzed — the double bar graph, the mean, the seasonal variation — that data is not just a science exercise. Earth\'s seasonal patterns are changing. The mean is shifting. The range is increasing. The greenhouse data from the Lighthouse will explain why. You calculated the baseline. In Leg 5, you will see what has changed. Keep that in mind.\n\nLeg 3. The scale of everything. Let\'s go."',
+          noChoice:true,
+          isLegEnd:true
+        }
+
+      ] // end Leg 2 days
+    },
 
     // ============================================================
-    // LEG 3 — MOON PHASES — INSERT HERE
-    // Standard: 6.E2U1.9
-    // ============================================================
-    // { id:3, label:'Leg 3 · Moon Phases', ... }
-
-    // ============================================================
-    // LEG 4 — SOLAR SYSTEM SCALE — INSERT HERE
+    // LEG 3 — SOLAR SYSTEM SCALE — INSERT HERE
     // Standard: 6.E2U1.7
     // ============================================================
-    // { id:4, label:'Leg 4 · Solar System Scale', ... }
+    // { id:3, label:'Leg 3 · Solar System Scale', ... }
+
+    // ============================================================
+    // LEG 4 — GREENHOUSE — INSERT HERE
+    // Standard: 6.E1U1.6
+    // ============================================================
+    // { id:4, label:'Leg 4 · Greenhouse Effect', ... }
 
     // ============================================================
     // LEG 5 — GREENHOUSE — INSERT HERE
@@ -1815,6 +2185,7 @@ function renderGraphContent(c) {
     h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margin-bottom:14px">`;
     h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">📊 ${gd.title}</div>`;
     if (gd.pie && gd.bars) h += renderPieChart(gd);
+    else if (gd.bars && gd.bars2) h += renderDoubleBarGraph(gd);
     else if (gd.bars) h += renderBarGraph(gd);
     else if (gd.multiLine) h += renderMultiLineGraph(gd);
     else if (gd.data) h += renderLineGraph(gd);
@@ -1906,9 +2277,66 @@ function renderBarGraph(gd) {
   return svg;
 }
 
+function renderDoubleBarGraph(gd) {
+  const bars1 = gd.bars;
+  const bars2 = gd.bars2;
+  const allVals = [...bars1.map(b=>b.value), ...bars2.map(b=>b.value)];
+  const maxVal = Math.max(...allVals);
+  const W = 580, H = 260, padL = 52, padB = 44, padT = 46, padR = 14;
+  const chartW = W - padL - padR;
+  const chartH = H - padT - padB;
+  const groupW = chartW / bars1.length;
+  const barW = Math.floor(groupW * 0.38);
+  const colors = gd.legendColors || ['#00e5cc','#ffdd00'];
+  const labels = gd.legend || ['Data Set 1','Data Set 2'];
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;display:block;margin:0 auto">`;
+
+  // Y label above chart
+  svg += `<text x="${padL}" y="${padT - 18}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)">${gd.yLabel||'Value'} →</text>`;
+
+  // Grid lines
+  [0,25,50,75,100].forEach(pct => {
+    const yy = padT + chartH * (1 - pct/100);
+    svg += `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W-padR}" y2="${yy.toFixed(1)}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`;
+    svg += `<text x="${padL-6}" y="${(yy+4).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.5)" text-anchor="end">${Math.round(maxVal*pct/100)}</text>`;
+  });
+
+  // Draw both sets of bars
+  bars1.forEach((b, i) => {
+    const groupX = padL + groupW * i;
+    const gap = groupW * 0.06;
+    const x1 = groupX + gap;
+    const x2 = x1 + barW + gap;
+    const bh1 = (b.value / maxVal) * chartH;
+    const bh2 = (bars2[i].value / maxVal) * chartH;
+    const y1 = padT + chartH - bh1;
+    const y2 = padT + chartH - bh2;
+
+    svg += `<rect x="${x1.toFixed(1)}" y="${y1.toFixed(1)}" width="${barW}" height="${bh1.toFixed(1)}" fill="${colors[0]}" opacity="0.85" rx="2"/>`;
+    svg += `<rect x="${x2.toFixed(1)}" y="${y2.toFixed(1)}" width="${barW}" height="${bh2.toFixed(1)}" fill="${colors[1]}" opacity="0.85" rx="2"/>`;
+
+    // X label centered on group
+    svg += `<text x="${(groupX + groupW/2).toFixed(1)}" y="${(padT+chartH+16).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">${b.label}</text>`;
+  });
+
+  // Legend
+  const legendY = padT - 2;
+  const legendX = W - padR - 200;
+  svg += `<rect x="${legendX}" y="${legendY-10}" width="14" height="14" fill="${colors[0]}" opacity="0.85" rx="2"/>`;
+  svg += `<text x="${legendX+18}" y="${legendY}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.8)">${labels[0]}</text>`;
+  svg += `<rect x="${legendX+110}" y="${legendY-10}" width="14" height="14" fill="${colors[1]}" opacity="0.85" rx="2"/>`;
+  svg += `<text x="${legendX+128}" y="${legendY}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.8)">${labels[1]}</text>`;
+
+  // Axes
+  svg += `<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
+  svg += `<line x1="${padL}" y1="${padT+chartH}" x2="${W-padR}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
+  svg += '</svg>';
+  return svg;
+}
+
 function renderPieChart(gd) {
   const bars = gd.bars;
-  const total = bars.reduce((sum, b) => sum + b.value, 0);
   const W = 520, H = 260, cx = 160, cy = 125, r = 105;
   const sliceColors = ['#00e5cc','#ffdd00','#aa66ff','#00ff88','#ff3355','#ff8800'];
   let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:0 auto">`;
