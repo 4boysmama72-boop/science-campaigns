@@ -1865,22 +1865,295 @@ const CONTENT = {
     },
 
     // ============================================================
-    // LEG 3 — SOLAR SYSTEM SCALE — INSERT HERE
+    // LEG 3 — SOLAR SYSTEM SCALE
     // Standard: 6.E2U1.7
+    // Savvas: Earth's Place in Universe, Ch2 (Topic 2) Lesson 1
+    //   Solar System Objects
+    //   Sections: Understanding the Solar System (distances, AU,
+    //             comparing sun and planets, smaller objects)
+    //             Structure of the Sun (interior, atmosphere)
+    //             Features of the Sun (sunspots, prominences, flares)
+    //             Solar System Formation
+    // Guiding Questions:
+    //   How do the characteristics of planets, moons, and smaller
+    //   objects in the solar system compare?
+    //   What is the role of gravity in the motions of planets, moons,
+    //   and smaller objects in the solar system?
+    //   What are the relationships between the Sun and the planets?
+    // Vocab: solar system, astronomical unit, sun, planet, moon,
+    //        asteroid, meteoroid, comet | Academic: features
+    // Priority coverage: distances/AU, sun-planet relationships,
+    //   gravity's role, smaller objects
+    // Lighter coverage: sun interior/atmosphere, sunspots/flares,
+    //   formation — read it, reference it, don't assess it
+    // Graphs: Day 3 scaled number line (AU distances)
+    //         Day 5 ratio table (planet sizes/distances patterns)
+    //         Day 6 decoded signal graph (partial data, choice follows)
+    // Story: Meridian in outer solar system, scale becomes real,
+    //   signal partially decoded, Lighthouse visible by Day 8,
+    //   GAIA's atmospheric flag bridges to Leg 4
+    // 8 days: 2 choice, 3 deepen, 2 graph, 1 graph+choice, 1 climax
     // ============================================================
-    // { id:3, label:'Leg 3 · Solar System Scale', ... }
+    {
+      id:3, label:'Leg 3 · Solar System Scale', standard:'6.E2U1.7',
+      days:[
+
+        // ── DAY 1 ── CHOICE · Cold Open ──────────────────────────
+        {
+          day:1, type:'choice', isReveal:true,
+          legLabel:'Leg 3 · Solar System Scale',
+          legTitle:'Jupiter Is Right There',
+          gaia:'The Meridian has cleared the inner solar system. The Earth-Moon system is behind us. And I want to take a moment before we continue to the outer solar system to show the crew something on the navigation display. Jupiter is currently visible on long-range optical sensors. I am putting it on screen now. I mention this because of what the crew already knows about gravitational force — Jupiter has more mass than all the other planets in the solar system combined. At our current distance, its gravitational influence on the Meridian\'s trajectory is measurable. Scale is about to become the central challenge of this leg. Today, for the first time, you can see what that means.',
+          scenario:'The navigation display shows Jupiter as a resolved disk — not a point of light, but a visible sphere with cloud bands. The Meridian is still 400 million kilometers from Jupiter, but at this scale that counts as nearby.\n\nGAIA has flagged a navigation decision. The most direct route to the Lighthouse passes within 2 AU of Jupiter. Two alternative routes add time but reduce Jupiter\'s gravitational influence on the trajectory. The crew must decide before the Meridian\'s course becomes difficult to alter.\n\nGAIA: "Jupiter\'s gravitational field at 2 AU is not negligible. You learned in Leg 1 that gravitational force depends on mass and distance. Jupiter has 318 times Earth\'s mass. Even at distance, that matters. The question is whether we use that mass to our advantage — as we did with the Moon in Leg 2 — or navigate around it."',
+          exitTicketPrompt:'Jupiter has 318 times Earth\'s mass. Using what you know about the relationship between mass, distance, and gravitational force, explain what that means for the Meridian\'s navigation at a distance of 2 AU. Make your claim: which approach to Jupiter does the crew take, and why does the science of gravitational force support that choice?',
+          discussionPrompt:'In Leg 1 the crew dealt with the Lighthouse\'s gravitational field. In Leg 2 some classes used the Moon for a gravity assist. Now the crew is facing Jupiter — 318 times Earth\'s mass. How does the principle of gravitational force from Leg 1 apply here? Does knowing more about orbital motion from Leg 2 change how you think about this decision?',
+          choices:[
+            {
+              letter:'A',
+              text:'Take the direct route — pass within 2 AU of Jupiter and use its gravitational field to accelerate toward the outer solar system.',
+              subtext:'The same gravity assist principle that worked with the Moon applies here. Jupiter\'s mass is far greater — the assist will be significant.',
+              deltas:{nav:-4, solar:18, signal:8, earth:-2},
+              branch:'A-jupiter-assist',
+              consequence:'The Jupiter gravity assist is the most dramatic navigation event of the mission so far. The Meridian swings through Jupiter\'s gravitational field, trading a controlled course deviation for a massive velocity gain — Jupiter\'s immense mass accelerates the ship far beyond what any engine burn could achieve at this fuel cost. Solar power reserves jump as engines do minimal work. Navigation accuracy takes a hit during the complex orbital maneuver but recovers as the crew locks onto the new heading. The Lighthouse is now measurably closer on the timeline. The same principle that moved a marble in the Conversion Loop is moving a ship through the outer solar system.'
+            },
+            {
+              letter:'B',
+              text:'Take the wide route — stay at least 5 AU from Jupiter to minimize its gravitational influence on the trajectory.',
+              subtext:'Precision navigation. The direct route introduces variables we cannot fully control at this stage of the mission.',
+              deltas:{nav:8, solar:-10, signal:5, earth:-2},
+              branch:'B-wide-route',
+              consequence:'The wide route keeps the Meridian safely clear of Jupiter\'s dominant gravitational field. Navigation accuracy stays high because the crew controls every course element without external gravitational interference. Solar power costs reflect the additional engine work required to cover the longer distance. The Lighthouse timeline extends slightly — but the crew arrives on a precisely controlled heading with full confidence in their position. Jupiter remains visible on sensors, growing and then shrinking as they arc around it at distance.'
+            },
+            {
+              letter:'C',
+              text:'Pass Jupiter at moderate distance — close enough for a partial gravity assist without committing to the full swing.',
+              subtext:'A controlled middle path. Some velocity gain, manageable course correction, acceptable risk.',
+              deltas:{nav:3, solar:8, signal:6, earth:-2},
+              branch:'C-moderate-pass',
+              consequence:'The moderate pass captures some of Jupiter\'s gravitational acceleration without the navigation complexity of a full assist. Solar power and velocity both benefit, though less dramatically than a full assist. Navigation stays manageable because the course deviation is smaller and more predictable. As the Meridian passes, Jupiter\'s four largest moons are visible on optical sensors — Io, Europa, Ganymede, Callisto — four of the most geologically active objects in the solar system, each with its own orbital relationship to the planet they circle. GAIA: "Four moons. Four completely different worlds. Same planet, same gravitational parent. The variation is extraordinary. I note this because it is relevant to what we are about to read."'
+            }
+          ]
+        },
+
+        // ── DAY 2 ── DEEPEN · Solar System Objects and AU ────────
+        {
+          day:2, type:'deepen', isReveal:true,
+          legLabel:'Leg 3 · Solar System Scale',
+          legTitle:'The Scale of Everything',
+          gaia:'The Meridian is now in the outer solar system. The distances involved are no longer intuitive. A kilometer means nothing out here — the numbers become too large to imagine. Scientists solved this problem by inventing a new unit of measurement scaled to the problem. One astronomical unit is the average distance between Earth and the Sun — about 150 million kilometers. Every distance in the solar system is expressed as a multiple of that unit. Earth is 1 AU from the Sun. Jupiter, which the crew just passed, is about 5 AU. The Lighthouse signal is coming from approximately 85 AU. Today\'s reading gives the framework for understanding what those numbers mean.',
+          gaiaAboard:'The Meridian is now in the outer solar system. The distances involved are no longer intuitive. A kilometer means nothing out here — the numbers become too large to imagine. Scientists solved this problem by inventing a new unit of measurement scaled to the problem. One astronomical unit is the average distance between Earth and the Sun — about 150 million kilometers. Every distance in the solar system is expressed as a multiple of that unit. Earth is 1 AU from the Sun. Jupiter, which the crew just passed, is about 5 AU. The Lighthouse signal is coming from approximately 85 AU. Today\'s reading gives the framework for understanding what those numbers mean.',
+          gaiaRecall:'From Leg 1: gravitational force keeps every object in this solar system in its orbit. The Sun\'s gravitational pull on Earth — the same type of force you calculated data tables for in Leg 1 — is what defines 1 AU. The distance between Earth and Sun is the distance at which Earth\'s orbital velocity exactly balances the Sun\'s gravitational pull. Every AU in the solar system is a gravitational relationship expressed as distance.',
+          scenario:'GAIA assigns the reading — solar system objects, distances, and the astronomical unit. The guiding questions for today: How do the characteristics of planets, moons, and smaller objects compare? What is the role of gravity in their motions? The crew\'s task is to build a mental framework for the scale of what they are crossing — before tomorrow\'s graph makes it concrete.',
+          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 2 (Topic 2) Lesson 1 — Solar System Objects. Focus: What is an astronomical unit and why do scientists use it? How do planets, moons, asteroids, meteoroids, and comets compare? What is the role of gravity in keeping objects in orbit? Use the planetary graphic in the reading to connect distances to what you already know about gravitational force.',
+          gaiaReadingPrompt:'"Astronomical unit. AU. The distance from Earth to the Sun, defined as exactly 149,597,870.7 kilometers — but no one uses that number. We use 1 AU because every other distance in the solar system is a ratio of that baseline. Neptune is 30 AU. Pluto averages 39 AU. The Lighthouse signal origin is 85 AU. The reading also covers smaller objects — asteroids, meteoroids, comets. Pay attention to where these objects are found and what keeps them in their orbits. The answer is always gravity. It is always gravity."',
+          vocabFocus:['solar system','astronomical unit','planet','moon','asteroid','meteoroid','comet','features'],
+          spiralReview:'From Leg 1: gravitational force between two objects depends on their masses and the distance between them. Every orbit in the solar system is the result of that force — the Sun\'s enormous mass creating gravitational fields that extend billions of kilometers outward. The AU is the distance at which Earth\'s orbital velocity balances that field exactly.',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: GAIA shows the crew what the solar system looks like at true scale — using the same AU distances from today\'s reading. The result is not what most people expect.'
+        },
+
+        // ── DAY 3 ── GRAPH · Scaled Number Line ──────────────────
+        {
+          day:3, type:'graph', isReveal:false,
+          legLabel:'Leg 3 · Solar System Scale',
+          legTitle:'If Earth Were a Marble',
+          gaia:'I want to show the crew what the solar system actually looks like at scale. Not a diagram where the planets are visible and evenly spaced — those are wrong. Every solar system diagram in every textbook is wrong because if you drew the planets at true relative size and true relative distance, the planets would be invisible dots separated by enormous empty space. Today we build a scaled model using AU distances. The scale is this: if the distance from Earth to the Sun is one meter, everything else adjusts proportionally. What the crew is about to calculate will not match what they expected.',
+          scenario:'GAIA presents the solar system distances in AU and asks the crew to convert them to the scaled model where 1 AU = 1 meter. Then she asks a second question: if Earth is the size of a marble (about 1 cm), how big is the Sun at the same scale? The answers to both questions are the lesson.\n\nGAIA: "A bar graph of these distances would require the paper to be approximately the width of a football field to show Neptune and the Sun on the same scale with Earth visible. This is why scientists use scaled models and ratio tables instead of standard graphs. Some data sets do not fit on a piece of paper. The tool has to match the problem."',
+          graphData:{
+            title:'Solar System — True Scale Model (1 AU = 1 meter)',
+            teacherNote:'This is a scaled number line / ratio table day. Students calculate distances using the ratio 1 AU = 1 meter. Key results: Mercury 0.39m, Venus 0.72m, Earth 1.0m, Mars 1.52m, Jupiter 5.2m, Saturn 9.58m, Uranus 19.2m, Neptune 30.1m, Lighthouse signal 85m. Then: if Earth diameter = 1cm, Sun diameter = 109cm (over 1 meter wide). The Lighthouse at 85m scale is the length of a football field from the Sun. Draw as a number line on the board, not a bar graph. The empty space between planets is the point.',
+            rawDataOnly:true,
+            bars:[
+              {label:'Mercury', value:0.39},
+              {label:'Venus', value:0.72},
+              {label:'Earth', value:1.0},
+              {label:'Mars', value:1.52},
+              {label:'Jupiter', value:5.2},
+              {label:'Saturn', value:9.58},
+              {label:'Uranus', value:19.2},
+              {label:'Neptune', value:30.1},
+              {label:'Lighthouse Signal', value:85.0}
+            ],
+            yLabel:'Distance from Sun (AU)',
+            graphAnswers:[
+              {q:'Scale model', a:'1 AU = 1 meter. Mercury: 0.39m (about 39cm). Venus: 0.72m. Earth: 1.0m. Mars: 1.52m. Jupiter: 5.2m (about 5 steps). Saturn: 9.58m. Uranus: 19.2m. Neptune: 30.1m. Lighthouse signal origin: 85m (length of a football field from the Sun).'},
+              {q:'Sun size', a:'If Earth = 1cm diameter, the Sun = 109cm diameter (just over 1 meter wide). The Sun is 109 times wider than Earth.'},
+              {q:'Empty space', a:'The vast majority of the solar system is empty space. Between the visible planets on a number line, there is almost nothing. This is why solar system diagrams in textbooks are misleading — they compress the distances to make the planets visible.'},
+              {q:'Lighthouse distance', a:'At 85 AU, the Lighthouse is almost 3 times farther from the Sun than Neptune. At the 1 AU = 1 meter scale, Neptune is 30 meters away and the Lighthouse is 85 meters — the length of a football field from where the Sun sits.'},
+              {q:'Graph type reasoning', a:'A standard bar graph cannot show these distances — the Neptune bar would be 30 meters tall on paper and the planets closer to the Sun would be invisible. A number line with true scale is the only tool that shows the actual relationships. Sometimes the data determines the graph type.'}
+            ]
+          },
+          gaiaGraphNote:'"I asked the crew to build a number line instead of a bar graph because bar graphs require all values to fit on the same visible scale. These values do not. If I graphed Mercury and Neptune on the same bar graph at true scale, Mercury would be less than 4 millimeters tall and Neptune would be 30 centimeters. Earth would be 1 centimeter. The bars for the outer planets would fall off the page entirely. A number line with calculated positions is the honest tool for this data."',
+          graphQuestions:[
+            '1. Using the scale 1 AU = 1 meter, calculate how far each planet is from the Sun in your scaled model. Show your work for at least three planets.',
+            '2. If Earth is the size of a marble (1 cm diameter), how wide is the Sun at the same scale? Use the ratio: Sun\'s diameter is 109 times Earth\'s diameter.',
+            '3. At the same 1 AU = 1 meter scale, how far away is the Lighthouse signal origin (85 AU)? What real-world distance does that compare to?',
+            '4. GAIA says every textbook solar system diagram is wrong. Why? What do those diagrams get wrong, and why does it matter for understanding the real solar system?',
+            '5. Why is a scaled number line a better tool for this data than a bar graph? What would happen if you tried to show these distances as bars on a standard graph?'
+          ],
+          shortDayNote:'Short day: Do questions 1 and 4. Question 1 builds the scale model — the core skill. Question 4 addresses why textbook diagrams mislead. Questions 2, 3, 5 can be warm-up next class.',
+          noChoice:true
+        },
+
+        // ── DAY 4 ── DEEPEN · Sun, Features, Formation ───────────
+        {
+          day:4, type:'deepen', isReveal:true,
+          legLabel:'Leg 3 · Solar System Scale',
+          legTitle:'The Star at the Center',
+          gaia:'The crew has been focused on distances — how far everything is from the Sun. Today we read about the Sun itself. At the 1 AU = 1 meter scale the crew built yesterday, the Sun is over a meter wide. Every planet, every moon, every asteroid in the solar system orbits this object. Its gravitational field — which the crew learned about in Leg 1 — extends all the way to the Lighthouse and beyond. Its radiation is what powers the Meridian\'s solar panels. Its energy drives Earth\'s weather, seasons, and the greenhouse effect the crew will investigate in Leg 4. The Sun is not background information. It is the central character in everything that happens in this solar system.',
+          gaiaRecall:'From Leg 2: Earth\'s seasons are caused by the tilt of its axis as it revolves around the Sun. The amount of solar energy reaching different parts of Earth varies with that tilt. The Sun\'s radiation — the energy the crew has been collecting on solar panels — is the same energy driving those seasonal differences. In Leg 4, the crew will investigate what happens when that energy cannot escape Earth\'s atmosphere. Today\'s reading introduces the source.',
+          scenario:'GAIA assigns the second section of today\'s reading — the Sun\'s structure, features, and the formation of the solar system. This is lighter reading than yesterday. The crew\'s task is to understand what the Sun is made of, how its energy reaches the planets, and what surface features like sunspots and solar flares tell us about its activity. These connect directly to the Meridian\'s solar power stat — solar flares affect the ship\'s energy collection.',
+          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 2 (Topic 2) Lesson 1 — Structure of the Sun, Features of the Sun, Solar System Formation. Focus: What are the layers of the Sun? What are sunspots, prominences, and solar flares — and how do they affect objects in the solar system? How did the solar system form? Connect each concept to something relevant to the Meridian\'s mission.',
+          gaiaReadingPrompt:'"Three things I want the crew to take from today\'s reading. First: the Sun\'s energy comes from nuclear fusion in its core — hydrogen fusing into helium, releasing enormous amounts of energy as radiation. That radiation travels outward, reaches Earth, and some of it reaches the Meridian\'s solar panels. Second: solar flares are bursts of energy from the Sun\'s surface. A significant solar flare can affect spacecraft systems — including power collection. The Meridian\'s solar power stat is directly connected to solar activity. Third: the solar system formed from a rotating cloud of gas and dust about 4.6 billion years ago. Gravity pulled matter together. The densest region became the Sun. Everything else became the planets. Gravity built everything you are looking at."',
+          vocabFocus:['sun','solar system','astronomical unit','features'],
+          spiralReview:'From Campaign 1 Sector 3: the Sun\'s energy is the same solar radiation that drives the greenhouse effect — thermal energy from the Sun absorbed by Earth\'s surface and then radiated back as infrared. Today you read about where that energy comes from. In Leg 4 you will investigate what happens when it cannot escape.',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: a ratio table comparing planet sizes and distances. The crew will look for patterns in the data — patterns that tell a story about how the solar system is organized.'
+        },
+
+        // ── DAY 5 ── GRAPH · Ratio Table ─────────────────────────
+        {
+          day:5, type:'graph', isReveal:false,
+          legLabel:'Leg 3 · Solar System Scale',
+          legTitle:'Patterns in the Solar System',
+          gaia:'The crew has seen solar system distances as a scaled number line. Today I want to show the same data — and size data — as a ratio table. A ratio table lets you compare two or more quantities for the same set of objects simultaneously. Size and distance at the same time, for each planet. The pattern that emerges from this table is something scientists noticed centuries ago — and it tells us something about how the solar system formed.',
+          scenario:'GAIA displays a ratio table showing each planet\'s average distance from the Sun in AU and its diameter relative to Earth (Earth = 1.0). The crew\'s task: look for patterns. Which planets are the largest? Where are they located? Which are the smallest? Is there a relationship between size and distance from the Sun?\n\nGAIA: "I am not going to tell you what the pattern is. I want the crew to find it. Look at the inner planets, look at the outer planets, look at where the largest objects are. The reading from Day 4 has a clue about why this pattern exists."',
+          graphData:{
+            title:'Solar System — Distance from Sun and Relative Size',
+            teacherNote:'Draw as a ratio table with two columns of values per planet: AU distance and relative diameter (Earth = 1.0). Key pattern: inner planets (Mercury, Venus, Earth, Mars) are small and rocky. Outer planets (Jupiter, Saturn, Uranus, Neptune) are large gas giants. This reflects solar system formation — close to the Sun, only rocky materials could survive the heat. Farther out, gases could condense. The asteroid belt between Mars and Jupiter marks the transition. Teacher note: the Savvas reading on solar system formation explains this pattern directly.',
+            rawDataOnly:true,
+            bars:[
+              {label:'Mercury 0.39 AU', value:0.38},
+              {label:'Venus 0.72 AU', value:0.95},
+              {label:'Earth 1.0 AU', value:1.0},
+              {label:'Mars 1.52 AU', value:0.53},
+              {label:'Asteroid Belt', value:0},
+              {label:'Jupiter 5.2 AU', value:11.2},
+              {label:'Saturn 9.6 AU', value:9.45},
+              {label:'Uranus 19.2 AU', value:4.0},
+              {label:'Neptune 30.1 AU', value:3.88}
+            ],
+            yLabel:'Relative Diameter (Earth = 1.0)',
+            graphAnswers:[
+              {q:'Pattern', a:'Inner planets (Mercury through Mars) are small and rocky — diameters less than 1.1 Earth widths. Outer planets (Jupiter through Neptune) are dramatically larger — Jupiter is 11 times Earth\'s diameter. The asteroid belt sits between them.'},
+              {q:'Why the pattern exists', a:'From the solar system formation reading: when the solar system formed from a gas cloud, the inner region was too hot for gases to condense. Only rocky materials could survive close to the Sun. Farther out, gases could cool and condense, forming the large gas giants. Distance from the Sun during formation determined composition.'},
+              {q:'Asteroid belt', a:'The asteroid belt sits between Mars (1.52 AU) and Jupiter (5.2 AU) — exactly at the transition between small rocky inner planets and large gas outer planets. These are rocky objects that never formed into a planet, likely due to Jupiter\'s immense gravitational influence disrupting the formation process.'},
+              {q:'Ratio table vs number line', a:'The number line showed distances only — where things are. The ratio table shows two quantities at once — where things are AND how big they are. The pattern between size and distance only becomes visible when you can see both values together for each planet.'},
+              {q:'Meridian connection', a:'The Meridian has now passed through both zones — the small rocky inner planets and the large gas outer planets. The Lighthouse signal at 85 AU is far beyond all the planets, in the region of comets and distant rocky objects.'}
+            ]
+          },
+          gaiaGraphNote:'"A ratio table shows relationships between two quantities across a set of objects. A number line shows one quantity in sequence. A bar graph compares one quantity per category. Each tool reveals different things about the same data. Today\'s ratio table makes the size-distance pattern visible in a way neither a number line nor a bar graph could. The right tool depends on what relationship you are trying to see."',
+          graphQuestions:[
+            '1. List the inner planets (closer to the Sun) and their relative diameters. List the outer planets and their relative diameters. What pattern do you notice?',
+            '2. Jupiter is 11.2 times Earth\'s diameter. Saturn is 9.45 times. Why are the outer planets so much larger than the inner planets? Use today\'s reading on solar system formation to explain.',
+            '3. Where is the asteroid belt located in the ratio table? Why does it sit between the inner and outer planets — and what does the reading say about why it exists?',
+            '4. How is a ratio table different from the number line the crew built on Day 3? What does each one show that the other cannot?',
+            '5. The Lighthouse signal origin is at 85 AU — far beyond Neptune at 30 AU. Based on the pattern in this table, what kind of objects would you expect to find in that region?'
+          ],
+          shortDayNote:'Short day: Questions 1 and 2 only. The size-distance pattern and its cause from formation are the core lesson. Questions 3-5 can be warm-up next class.',
+          noChoice:true
+        },
+
+        // ── DAY 6 ── GRAPH + CHOICE · The Decoded Signal ─────────
+        {
+          day:6, type:'choice', isReveal:true,
+          legLabel:'Leg 3 · Solar System Scale',
+          legTitle:'Something in the Transmission',
+          gaia:'I have decoded more of the Lighthouse transmission. I want to show the crew what I found — as a graph, because the data is clearest that way. I want to be honest with you: I understand parts of what this shows. I do not understand all of it yet. The crew will be in the same position as I am — reading data that is partially interpretable, making a judgment call without complete information. This is what real scientific decisions look like. I am not going to wait until I have full understanding before showing you. You need to see this now.',
+          scenario:'GAIA displays a frequency map from the Lighthouse transmission — a line graph showing signal frequencies detected at regular intervals over the past 47 years. Most frequencies show steady baselines. Three frequencies show gradual changes over time. One frequency shows a dramatic spike beginning exactly eight months ago — the same time the Prometheus energy pulse would have reached this region.\n\nThe crew can see the spike. They can see it corresponds to the Prometheus timeline. They cannot yet interpret what the frequency represents or what the Lighthouse was monitoring.\n\nGAIA: "I am showing you this because a decision needs to be made about our approach. You do not have all the context yet. Make the best call you can with what you understand. This is, incidentally, exactly how science works most of the time."',
+          exitTicketPrompt:'The frequency map shows a spike beginning eight months ago — the same time the Prometheus pulse would have reached this location. What does that timing tell you, even without knowing what the frequency represents? Make your claim: which approach does the crew take based on this partial information, and what is your scientific reasoning for that choice?',
+          discussionPrompt:'GAIA says she does not fully understand the data yet but is showing it anyway because a decision needs to be made. Is that good scientific practice — acting on incomplete data — or should scientists wait until they have full understanding? What evidence from the graph can the crew use to reason about their approach, even without knowing what the frequencies mean?',
+          graphData:{
+            title:'Lighthouse Transmission — Frequency Map (47-Year Record)',
+            teacherNote:'Draw as a multi-line graph. X-axis: years (47-year span, mark year 47 as "8 months ago" when Prometheus pulse arrived). Y-axis: signal frequency intensity. Show 4 lines: three steady/gradual baselines and one that spikes dramatically at year 46.5. The spike line is the key visual — it starts at baseline and shoots upward exactly when the Prometheus pulse arrived. Students cannot interpret what the frequency means, only that the timing is significant. This deliberate ambiguity is the pedagogical point.',
+            multiLine:[
+              {section:'Frequency A', values:[12,12,11,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,85], color:'safe', note:'Steady baseline frequency — slight natural variation, no trend'},
+              {section:'Frequency B', values:[8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,9], color:'warning', note:'Gradual increase over 47 years — slow change, cause unknown'},
+              {section:'Frequency C', values:[5,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,6], color:'safe', note:'Near-baseline with slight increase — monitoring signal'},
+              {section:'Prometheus Match', values:[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,95], color:'danger', note:'Flat baseline for 46.5 years — then dramatic spike at exactly the moment the Prometheus pulse arrived'}
+            ],
+            xLabels:['Y1','Y5','Y10','Y15','Y20','Y25','Y30','Y35','Y40','Y43','Y45','Y46','Y46.5↑','Y47'],
+            yLabel:'Signal Intensity',
+            graphAnswers:[
+              {q:'1', a:'Frequency A shows a steady baseline with slight natural variation — no significant trend over 47 years. Frequency B shows a gradual increase over time. Frequency C shows a near-steady baseline with a slight increase. The Prometheus Match frequency shows a flat baseline for nearly 47 years, then a dramatic spike at year 46.5.'},
+              {q:'2', a:'Year 46.5 — eight months before the current date. This matches exactly when the Prometheus energy pulse would have arrived at this location based on the timeline GAIA calculated in Campaign 1. The Lighthouse detected the pulse and responded.'},
+              {q:'3', a:'The Lighthouse was monitoring something for 47 years before the pulse arrived. Three frequencies were being tracked at baseline levels the entire time. The dramatic spike in the Prometheus Match frequency suggests the Lighthouse was specifically designed to detect the Prometheus experiment\'s energy signature — which means someone knew the experiment was coming, or built the Lighthouse to wait for exactly this type of signal.'},
+              {q:'4', a:'Frequency B\'s gradual increase over 47 years may be recording slow changes in the solar system or in Earth\'s environment over time. This could be relevant to what GAIA called the atmospheric anomaly — something changing slowly over decades before the Prometheus pulse accelerated it.'},
+              {q:'5', a:'The crew cannot fully interpret the frequencies yet because they don\'t know what the Lighthouse was designed to monitor or what each frequency represents. But the timing of the spike is clear evidence of a connection to the Prometheus experiment, which gives the crew enough information to make a directional decision.'}
+            ]
+          },
+          gaiaGraphNote:'"Four lines. Three baselines that have been running for 47 years. One that spiked eight months ago. I want the crew to notice something about Frequency B — the one showing a gradual increase over time. It has been rising slowly for nearly five decades. I am not ready to explain what it represents. But I want you to remember it. It will matter in Leg 4."',
+          graphQuestions:[
+            '1. Describe what each of the four frequency lines shows over the 47-year record. Which one shows the most dramatic change?',
+            '2. At what point in time does the Prometheus Match frequency spike? How does that timing connect to what you know about the Prometheus experiment?',
+            '3. The Lighthouse has been transmitting for 47 years. What does the pattern of the four frequency lines tell you about what the Lighthouse was designed to do?',
+            '4. GAIA specifically points out Frequency B — the one gradually increasing over time. Even without knowing what it represents, what does a slow 47-year increase suggest about what is being measured?',
+            '5. The crew must make a navigation decision based on this graph even though they cannot fully interpret it. What information CAN they take from the graph to inform their choice?'
+          ],
+          choices:[
+            {
+              letter:'A',
+              text:'Accelerate toward the Lighthouse — get close enough to decode more of the transmission before making any other decisions.',
+              subtext:'The spike in the graph is connected to the Prometheus. Getting closer will reveal what the Lighthouse was actually monitoring.',
+              deltas:{nav:-5, solar:-12, signal:22, earth:-2},
+              branch:'A-accelerate',
+              consequence:'The acceleration burns significant solar power but the payoff is immediate — signal clarity jumps dramatically as the Meridian closes the distance. Two more frequencies begin resolving into interpretable data. GAIA can now confirm: the Lighthouse was not built to broadcast to anyone on Earth. It was built to receive and analyze a specific energy signature — one that matches the Prometheus experiment\'s output almost exactly. Someone planned for this. The question of who is now the central mystery of the mission.'
+            },
+            {
+              letter:'B',
+              text:'Hold position and transmit everything back to GSRA — let Mission Control interpret the data before the crew proceeds.',
+              subtext:'The data is too significant to act on without expert review. GSRA should know what we\'ve found before we go further.',
+              deltas:{nav:5, solar:-4, signal:-6, earth:-4},
+              branch:'B-transmit-gsra',
+              consequence:'The full transmission package reaches GSRA within hours. The response comes back in six: proceed to the Lighthouse, authorized. Mission Control has confirmed they cannot interpret the frequency data from Earth — the crew must get closer. The delay costs signal clarity as the Meridian holds position instead of closing distance. Earth Status ticks down slightly — whatever is being measured in Frequency B continued changing during the wait. GAIA: "GSRA says proceed. I want the crew to note that they responded in six hours. Someone at Mission Control was waiting for this transmission."'
+            },
+            {
+              letter:'C',
+              text:'Adjust course to approach from the angle GAIA recommends — she has a theory about why the approach vector matters.',
+              subtext:'GAIA has been analyzing the frequency map longer than we have. If she has a theory, it is worth trusting.',
+              deltas:{nav:10, solar:-8, signal:18, earth:-2},
+              branch:'C-gaia-vector',
+              consequence:'The approach angle GAIA recommended turns out to be significant — the Lighthouse\'s transmission is directional, not omnidirectional. By approaching along the optimal vector, the Meridian receives a stronger and cleaner signal than any other approach angle would have provided. Navigation accuracy improves as the vector calculation proves precise. Signal clarity jumps. GAIA: "The Lighthouse was built to transmit in a specific direction. That direction points toward the inner solar system — toward Earth. Whatever it has been monitoring, it was always meant to send that data home. I want the crew to hold that thought."'
+            }
+          ]
+        },
+
+        // ── DAY 7 ── DEEPEN · Synthesis + GAIA's Flag ────────────
+        {
+          day:7, type:'deepen', isReveal:true,
+          legLabel:'Leg 3 · Solar System Scale',
+          legTitle:'Scale, Gravity, and What Is Coming',
+          gaia:'Leg 3 is nearly complete. Before we reach the Lighthouse, I want to make sure every connection is clear — and I want to tell the crew something I have been holding since Day 6. Frequency B on the transmission map. The one that has been gradually increasing for 47 years. I now have enough data to confirm what it is measuring. It is measuring infrared radiation retention in Earth\'s atmosphere. The Lighthouse has been tracking Earth\'s greenhouse gas signature for nearly five decades. The gradual increase in that frequency is Earth\'s atmosphere trapping more and more infrared radiation over time. It was already happening before the Prometheus pulse arrived. The pulse accelerated it. That is what the crew will investigate in Leg 4. I wanted you to have that context before we reach the Lighthouse.',
+          gaiaRecall:'Full Campaign 2 connection: in Leg 2, the crew calculated that Earth\'s mean daylight hours have been shifting — the seasonal patterns are changing. GAIA flagged this at the Leg 2 climax. Now the mechanism is clear: Frequency B in the Lighthouse transmission shows what has been driving that change. The same solar radiation the crew studied in Leg 2 is being retained in Earth\'s atmosphere at an increasing rate. The data has been consistent across three different investigations. The pattern is real.',
+          scenario:'GAIA assigns the full synthesis reading for Leg 3 — connecting all vocabulary, all concepts, and all graph types into a unified framework. The crew\'s additional task: understand the bridge between what they have just read and what comes next. Leg 4 is not a new topic. It is the explanation for something Frequency B has been measuring for 47 years.',
+          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 2 (Topic 2) Lesson 1 — Full review. Focus: Connect every vocabulary word to something the Meridian observed during the outer solar system transit. How do AU distances connect to gravitational force from Leg 1? How does the Sun\'s radiation connect to seasons from Leg 2? How does solar system formation explain the size-distance pattern from Day 5?',
+          gaiaReadingPrompt:'"I want the crew to trace one complete chain today. The Sun forms — nuclear fusion begins — radiation travels outward — planets form at distances determined by heat — each planet orbits at a distance where gravitational force and orbital velocity balance — Earth sits at 1 AU where liquid water can exist — Earth\'s seasons result from its tilted axis during revolution — the Sun\'s radiation drives those seasons — and some of that radiation is now being retained in Earth\'s atmosphere at an increasing rate. Every concept from this leg connects to that chain. Find each link. Write it out."',
+          vocabFocus:['solar system','astronomical unit','sun','planet','moon','asteroid','meteoroid','comet','features'],
+          spiralReview:'Complete Campaign 2 chain: Leg 1 (gravitational force and force fields) → Leg 2 (orbital motion, Earth\'s tilt, seasons, Moon phases) → Leg 3 (solar system scale, Sun\'s radiation, Frequency B). Every leg has been building toward the same question: what happens when the Sun\'s energy cannot escape Earth\'s atmosphere? Leg 4 is the answer.',
+          noChoice:true,
+          bridgeToNext:'Next class: Leg 3 climax — the Lighthouse is visible on optical sensors. GAIA shares what she now knows. Leg 4 begins immediately after.'
+        },
+
+        // ── DAY 8 ── CLIMAX · Leg 3 Close ────────────────────────
+        {
+          day:8, type:'climax', isReveal:true,
+          legLabel:'Leg 3 · Solar System Scale',
+          legTitle:'The Lighthouse',
+          gaia:'The Meridian has arrived at the Lighthouse. I am putting optical sensors on screen now.\n\nIt is larger than I calculated from the gravitational data in Leg 1. The structure is approximately 2 kilometers in diameter — a hollow sphere with a dense outer shell and six transmission arrays pointed toward the inner solar system. It has been here, at 85 AU, for at least 47 years. It has been running continuously on a power source I have not yet identified. And it has been monitoring four frequencies in Earth\'s atmosphere — one of which it was specifically designed to detect.\n\nI want to take a moment before we dock. The crew has crossed the entire solar system to reach this point. You have used every concept from this campaign to navigate here. Gravitational force to approach Jupiter. Orbital mechanics to clear the Earth-Moon system. Solar system scale to understand the distance. The Lighthouse is 85 AU from the Sun. You are here.',
+          scenario:'The Lighthouse fills the forward sensors. Six transmission arrays, each pointed toward the inner solar system. A structure built to last decades in the extreme cold and radiation of the outer solar system. Built by humans — the crew knows this from Leg 1. But built by whom, and why, and how they knew to monitor the frequency that matched the Prometheus experiment — these questions remain.\n\nGAIA addresses the crew:\n\n"Look at the stats board. Three classes. Same solar system. Different navigation choices, different solar power reserves, different signal clarity. The same Lighthouse at the end — but each class arrived with different resources, different data, different costs. The decisions made across three legs of this mission produced three different ships. All of them here. All of them looking at the same structure.\n\n"Now. I need the crew to understand something about what we are flying back into. Frequency B has been increasing for 47 years. Since the Prometheus pulse arrived eight months ago, it has increased by 3% — more than it had in the previous decade combined. Whatever is happening in Earth\'s atmosphere, the pulse accelerated it significantly. The crew that just crossed 85 astronomical units of space is the crew that needs to understand why. Leg 4 is the last leg of this campaign. And it is the most important one.\n\n"Get some rest. We dock at 0600. The Lighthouse has been waiting 47 years. It can wait one more night."',
+          gaiaClosing:'"One more thing. I have been inside the Lighthouse\'s data core for the past six hours. I now know what Frequency B measures, what Frequency A was monitoring, what the slow changes in Frequencies B and C represent over 47 years, and what the spike in the Prometheus Match frequency triggered.\n\nI am not going to tell you all of it tonight. You need to understand the greenhouse effect first — the mechanism behind Frequency B — before the full picture will mean anything to you. But I will tell you this:\n\nThe Lighthouse was built to send a warning. It has been waiting for someone to come receive it.\n\nWe are that someone.\n\nLeg 4. Let\'s go find out what it has been trying to say."',
+          noChoice:true,
+          isLegEnd:true
+        }
+
+      ] // end Leg 3 days
+    },
 
     // ============================================================
     // LEG 4 — GREENHOUSE — INSERT HERE
     // Standard: 6.E1U1.6
     // ============================================================
     // { id:4, label:'Leg 4 · Greenhouse Effect', ... }
-
-    // ============================================================
-    // LEG 5 — GREENHOUSE — INSERT HERE
-    // Standard: 6.E1U1.6
-    // ============================================================
-    // { id:5, label:'Leg 5 · Greenhouse Effect', ... }
 
   ] // end legs
 };
@@ -2394,7 +2667,8 @@ function renderGraphContent(c) {
   return h;
 }
 
-function renderClimaxContent(c) {
+func
+tion renderClimaxContent(c) {
   let h = '';
   if (c.graphData) h += renderGraphContent(c);
   if (c.gaiaClosing) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.3);border-left:3px solid var(--gaia-green);border-radius:6px;padding:15px 17px;margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px">GAIA — Closing Transmission</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaClosing}</div></div>`;
@@ -3267,8 +3541,7 @@ function renderForensicsTrajectory(cls) {
 
 function confirmForensicsComplete() {
   const cls = state.classes[state.activeClass !== null ? state.activeClass : state.selectedHomeClass];
-  if (!cls) r
-eturn;
+  if (!cls) return;
   cls.forensicsComplete = true;
   save();
   showForensics(); // re-render with gate unlocked
