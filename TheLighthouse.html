@@ -330,7 +330,7 @@
   .gaia-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gaia-green); box-shadow: 0 0 8px rgba(0,255,136,0.8); animation: gaia-pulse 2s infinite; flex-shrink: 0; }
   @keyframes gaia-pulse { 0%,100%{opacity:1}50%{opacity:.35} }
   .gaia-label { font-family: var(--font-mono); font-size: 10px; color: var(--gaia-green); letter-spacing: .1em; text-transform: uppercase; }
-  .gaia-text { font-family: var(--font-body); font-size: 22px; color: var(--text-primary); line-height: 1.7; }
+  .gaia-text { font-family: var(--font-body); font-size: 24px; color: var(--text-primary); line-height: 1.7; }
   .gaia-text em { color: var(--gaia-green); font-style: italic; }
 
   /* GAIA RECALL BOX — spiral review */
@@ -758,9 +758,15 @@
 
         <!-- PHASE 1: SCENARIO -->
         <div class="phase-panel active" id="phase-story">
-          <div class="gaia-box">
+          <!-- GAIA box — shown for all classes except signal classes on Days 1-2 -->
+          <div class="gaia-box" id="gaia-main-box">
             <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label" id="gaia-transmission-label">GAIA — Transmission</div></div>
             <div class="gaia-text" id="content-gaia">Establishing connection...</div>
+          </div>
+          <!-- MERIDIAN SYSTEMS box — shown only for signal classes on Days 1-2 -->
+          <div class="meridian-box" id="meridian-main-box" style="display:none">
+            <div class="meridian-header"><div class="meridian-indicator"></div><div class="meridian-label">MERIDIAN SYSTEMS</div></div>
+            <div class="meridian-text" id="content-meridian">Navigation status nominal.</div>
           </div>
           <div class="scenario-text" id="content-scenario"></div>
           <div id="content-extra"></div>
@@ -788,9 +794,15 @@
             </div>
             <div class="timer-done-msg" id="exit-timer-done">"Time. Please submit your forms now. We will review the evidence as a crew."</div>
           </div>
-          <div id="exit-ai-box" class="gaia-box">
-            <div class="gaia-header"><div id="exit-ai-dot" class="gaia-dot"></div><div id="exit-ai-label" class="gaia-label">GAIA — To The Crew</div></div>
-            <div id="exit-ai-text" class="gaia-text">Before we decide as a crew, each of you must commit your own thinking. What do you believe? What evidence supports it? What is your reasoning? Science begins with individual thought before collective decision.</div>
+          <!-- GAIA exit ticket box -->
+          <div id="exit-gaia-box" class="gaia-box">
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — To The Crew</div></div>
+            <div class="gaia-text">Before we decide as a crew, each of you must commit your own thinking. What do you believe? What evidence supports it? What is your reasoning? Science begins with individual thought before collective decision.</div>
+          </div>
+          <!-- Meridian exit ticket box -->
+          <div id="exit-meridian-box" class="meridian-box" style="display:none">
+            <div class="meridian-header"><div class="meridian-indicator"></div><div class="meridian-label">MERIDIAN SYSTEMS</div></div>
+            <div class="meridian-text">Each crew member should record their individual analysis before a collective decision is made. Document your observations, the evidence supporting them, and your recommended course of action.</div>
           </div>
         </div>
 
@@ -816,17 +828,29 @@
             </div>
             <div class="timer-done-msg" id="discuss-timer-done">"The evidence has been heard. Scientists consider new information before deciding. Are you ready for the final vote?"</div>
           </div>
-          <div id="discuss-ai-box" class="gaia-box">
-            <div class="gaia-header"><div id="discuss-ai-dot" class="gaia-dot"></div><div id="discuss-ai-label" class="gaia-label">GAIA — Discussion Guide</div></div>
-            <div id="discuss-ai-text" class="gaia-text">A good scientific argument requires three things: a clear claim, specific evidence, and reasoning that connects them. As you listen — do their arguments hold up? Does their evidence actually support their claim?</div>
+          <!-- GAIA discussion box -->
+          <div id="discuss-gaia-box" class="gaia-box">
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — Discussion Guide</div></div>
+            <div class="gaia-text">A good scientific argument requires three things: a clear claim, specific evidence, and reasoning that connects them. As you listen — do their arguments hold up? Does their evidence actually support their claim?</div>
+          </div>
+          <!-- Meridian discussion box -->
+          <div id="discuss-meridian-box" class="meridian-box" style="display:none">
+            <div class="meridian-header"><div class="meridian-indicator"></div><div class="meridian-label">MERIDIAN SYSTEMS</div></div>
+            <div class="meridian-text">Crew members should compare individual analyses. Note where assessments differ and identify which data points support each position. A collective recommendation will be submitted at the end of this phase.</div>
           </div>
         </div>
 
         <!-- PHASE 4: FINAL VOTE -->
         <div class="phase-panel" id="phase-vote">
-          <div id="vote-ai-box" class="gaia-box">
-            <div class="gaia-header"><div id="vote-ai-dot" class="gaia-dot"></div><div id="vote-ai-label" class="gaia-label">GAIA — Final Vote</div></div>
-            <div id="vote-ai-text" class="gaia-text">"New information has been presented. In accordance with scientific protocol — <em>we reconsider</em>. This is the crew's official decision. It will be logged. It will have consequences. Choose carefully."</div>
+          <!-- GAIA vote box -->
+          <div id="vote-gaia-box" class="gaia-box">
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — Final Vote</div></div>
+            <div class="gaia-text">"New information has been presented. In accordance with scientific protocol — <em>we reconsider</em>. This is the crew's official decision. It will be logged. It will have consequences. Choose carefully."</div>
+          </div>
+          <!-- Meridian vote box -->
+          <div id="vote-meridian-box" class="meridian-box" style="display:none">
+            <div class="meridian-header"><div class="meridian-indicator"></div><div class="meridian-label">MERIDIAN SYSTEMS</div></div>
+            <div class="meridian-text">Collective decision required. Select the crew's official course of action. This decision will be logged and implemented. Consequences will be assessed and reported at the start of the next session.</div>
           </div>
         </div>
       </div>
@@ -893,9 +917,15 @@
       <div class="processing-icon">⚙</div>
       <div class="processing-title">DECISION LOGGED</div>
       <div class="processing-subtitle">The Meridian has registered the crew's command.</div>
-      <div class="processing-gaia">
-        <div class="gaia-header" style="margin-bottom:10px"><div id="proc-ai-dot" class="gaia-dot"></div><div id="proc-ai-label" class="gaia-label">GAIA</div></div>
+      <!-- GAIA processing box -->
+      <div class="processing-gaia" id="proc-gaia-box">
+        <div class="gaia-header" style="margin-bottom:10px"><div class="gaia-dot"></div><div class="gaia-label">GAIA</div></div>
         <div class="processing-gaia-text" id="processing-gaia-msg">"Selection received. I am... processing the implications. The ship's systems have registered your decision and are responding accordingly. Whether that response is favorable — well. You'll find out next class."</div>
+      </div>
+      <!-- Meridian processing box -->
+      <div class="processing-meridian" id="proc-meridian-box" style="display:none">
+        <div class="meridian-header" style="margin-bottom:10px"><div class="meridian-indicator"></div><div class="meridian-label">MERIDIAN SYSTEMS</div></div>
+        <div class="processing-meridian-text">Decision logged. Consequence data is pending. Results will be available at the start of the next session. Ship systems are responding to the crew's command. Current stat changes are classified until the next reveal.</div>
       </div>
       <div class="processing-choice-recap">
         <div class="processing-choice-label">The Crew's Decision</div>
@@ -2001,7 +2031,11 @@ function proceedFromReveal() {
     cls.pendingConsequence = null;
   }
   save();
-  launchMission();
+  // Go directly to mission screen without re-checking pendingDeltas
+  state.currentPhase = 'story';
+  state.selectedChoice = null;
+  renderMissionScreen();
+  showScreen('screen-mission');
 }
 
 // ============================================================
@@ -2053,45 +2087,49 @@ function renderMissionScreen() {
 
   // Day 3 reunion — overrides Meridian mode
   if (cls.leg === 1 && cnt.day === 3 && gaiaStatus === 'signal' && cnt.gaiaReunionText) {
-    document.getElementById('gaia-transmission-label').textContent = 'GAIA — Incoming Signal';
     gaiaText = cnt.gaiaReunionText;
     cls.gaiaStatus = 'signal-connected';
     isMeridianMode = false;
     save();
   }
 
-  // Swap GAIA box for Meridian Systems box when in meridian mode
-  const gaiaBoxEl = document.querySelector('.gaia-box, .meridian-box');
-  if (isMeridianMode) {
-    document.getElementById('gaia-transmission-label').textContent = 'MERIDIAN SYSTEMS';
-    if (gaiaBoxEl) {
-      gaiaBoxEl.className = 'meridian-box';
-      gaiaBoxEl.querySelector('.gaia-header').className = 'meridian-header';
-      const dot = gaiaBoxEl.querySelector('.gaia-dot');
-      if (dot) { dot.className = 'meridian-indicator'; }
-      const label = gaiaBoxEl.querySelector('.meridian-label, .gaia-label');
-      if (label) { label.className = 'meridian-label'; label.textContent = 'MERIDIAN SYSTEMS'; }
-      const textEl = gaiaBoxEl.querySelector('.gaia-text');
-      if (textEl) { textEl.className = 'meridian-text'; }
-    }
+  // ── Pure show/hide — no DOM class mutation ever ───────────
+  const showMeridian = isMeridianMode;
+
+  // Main story box
+  const gaiaMainBox = document.getElementById('gaia-main-box');
+  const meridMainBox = document.getElementById('meridian-main-box');
+  if (gaiaMainBox) gaiaMainBox.style.display = showMeridian ? 'none' : '';
+  if (meridMainBox) meridMainBox.style.display = showMeridian ? '' : 'none';
+
+  // Phase panel boxes
+  ['exit','discuss','vote'].forEach(phase => {
+    const g = document.getElementById(phase + '-gaia-box');
+    const m = document.getElementById(phase + '-meridian-box');
+    if (g) g.style.display = showMeridian ? 'none' : '';
+    if (m) m.style.display = showMeridian ? '' : 'none';
+  });
+
+  // Processing screen boxes
+  const procGaia = document.getElementById('proc-gaia-box');
+  const procMerid = document.getElementById('proc-meridian-box');
+  if (procGaia) procGaia.style.display = showMeridian ? 'none' : '';
+  if (procMerid) procMerid.style.display = showMeridian ? '' : 'none';
+
+  // Set content in the visible box
+  if (showMeridian) {
+    const meridText = document.getElementById('content-meridian');
+    if (meridText) meridText.innerHTML = gaiaText;
   } else {
-    document.getElementById('gaia-transmission-label').textContent =
-      (gaiaStatus === 'signal-connected' || gaiaStatus === 'aboard') ? 'GAIA — Transmission' : 'GAIA — Transmission';
-    if (gaiaBoxEl) {
-      gaiaBoxEl.className = 'gaia-box';
-      gaiaBoxEl.querySelector('.meridian-header, .gaia-header').className = 'gaia-header';
-      const indicator = gaiaBoxEl.querySelector('.meridian-indicator, .gaia-dot');
-      if (indicator) { indicator.className = 'gaia-dot'; }
-      const label = gaiaBoxEl.querySelector('.meridian-label, .gaia-label');
-      if (label) { label.className = 'gaia-label'; label.textContent = 'GAIA — Transmission'; }
-      const textEl = gaiaBoxEl.querySelector('.meridian-text, .gaia-text');
-      if (textEl) { textEl.className = 'gaia-text'; }
-    }
+    document.getElementById('content-gaia').innerHTML = gaiaText;
+    const label = document.getElementById('gaia-transmission-label');
+    if (label) label.textContent =
+      (cls.leg === 1 && cnt.day === 3 && cls.gaiaStatus === 'signal-connected')
+        ? 'GAIA — Incoming Signal' : 'GAIA — Transmission';
   }
 
-  document.getElementById('content-gaia').innerHTML = gaiaText;
   // scenarioSignal override for Meridian mode days
-  const scenarioText = isMeridianMode && cnt.scenarioSignal ? cnt.scenarioSignal : cnt.scenario || '';
+  const scenarioText = showMeridian && cnt.scenarioSignal ? cnt.scenarioSignal : cnt.scenario || '';
   document.getElementById('content-scenario').innerHTML = scenarioText.replace(/\n/g, '<br><br>');
 
   const extra = document.getElementById('content-extra');
@@ -2407,10 +2445,10 @@ function renderDoubleBarGraph(gd) {
   // Legend — below chart to avoid overlap
   const legendBaseY = padT + chartH + 34;
   const legendCenterX = padL + chartW / 2;
-  svg += `<rect x="${legendCenterX-120}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[0]}" opacity="0.85" rx="2"/>`;
-  svg += `<text x="${legendCenterX-102}" y="${legendBaseY}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.85)">${labels[0]}</text>`;
-  svg += `<rect x="${legendCenterX+20}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[1]}" opacity="0.85" rx="2"/>`;
-  svg += `<text x="${legendCenterX+38}" y="${legendBaseY}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.85)">${labels[1]}</text>`;
+  svg += `<rect x="${legendCenterX-140}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[0]}" opacity="0.85" rx="2"/>`;
+  svg += `<text x="${legendCenterX-122}" y="${legendBaseY}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.85)">${labels[0]}</text>`;
+  svg += `<rect x="${legendCenterX+40}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[1]}" opacity="0.85" rx="2"/>`;
+  svg += `<text x="${legendCenterX+58}" y="${legendBaseY}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.85)">${labels[1]}</text>`;
 
   // Axes
   svg += `<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
