@@ -616,17 +616,60 @@
         <div class="reveal-recap-label">Last Class — The Crew Decided</div>
         <div class="reveal-recap-text" id="reveal-choice-recap">—</div>
       </div>
-      <div class="reveal-gaia-box">
+      <!-- GAIA consequence box — shown for GAIA days -->
+      <div class="reveal-gaia-box" id="reveal-gaia-box">
         <div class="gaia-header" style="margin-bottom:10px">
           <div class="gaia-dot"></div>
           <div class="gaia-label" id="reveal-source-label">GAIA — Consequence Report</div>
         </div>
         <div class="reveal-gaia-text" id="reveal-gaia-text">Loading consequence data...</div>
       </div>
+      <!-- Meridian consequence box — shown for Meridian-mode days -->
+      <div class="meridian-box" id="reveal-meridian-box" style="display:none;margin-bottom:24px">
+        <div class="meridian-header" style="margin-bottom:10px">
+          <div class="meridian-indicator"></div>
+          <div class="meridian-label">MERIDIAN SYSTEMS — Consequence Report</div>
+        </div>
+        <div class="meridian-text" id="reveal-meridian-text">Loading consequence data...</div>
+      </div>
       <div class="stat-changes" id="reveal-stat-changes"></div>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
         <button class="btn btn-primary" onclick="proceedFromReveal()">▶ Continue to Today's Mission</button>
         <button class="btn btn-secondary" onclick="goHome()">⌂ Back to Dashboard</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== GAIA REUNION ===================== -->
+<div id="screen-reunion" class="screen">
+  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
+    <div style="width:100%;max-width:700px">
+      <div class="mission-label" style="text-align:center;margin-bottom:8px">Leg 1 · Day 3 · Incoming Transmission</div>
+      <div style="font-family:var(--font-display);font-size:clamp(18px,3vw,28px);font-weight:700;color:var(--accent);text-align:center;letter-spacing:.05em;margin-bottom:6px;text-shadow:0 0 30px rgba(0,229,204,0.4)">SIGNAL RECEIVED</div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);text-align:center;letter-spacing:.1em;margin-bottom:28px">Origin: Prometheus · Last Known Position</div>
+
+      <div style="background:var(--bg-card);border:1px solid rgba(0,229,204,0.2);border-radius:6px;padding:16px 20px;margin-bottom:20px;font-family:var(--font-body);font-size:17px;color:var(--text-secondary);line-height:1.7;font-style:italic">
+        The communications panel activates without warning. A long-range signal, origin: the last known position of the Prometheus.<br><br>
+        The crew knows that position. They know who is there.
+      </div>
+
+      <div class="gaia-box" style="margin-bottom:24px">
+        <div class="gaia-header" style="margin-bottom:12px">
+          <div class="gaia-dot"></div>
+          <div class="gaia-label">GAIA — Long-Range Transmission · Prometheus Position</div>
+        </div>
+        <div class="gaia-text" style="font-size:20px">"This is GAIA. Shipboard AI, research vessel Prometheus.<br><br>
+I have been monitoring the Meridian since your departure from Earth orbit. The gravitational anomaly you encountered on Day 1 — I identified the same signature from my fixed position four weeks before you launched. I have data you do not have. You have mobility I do not have. This is, as the researchers used to say, a complementary situation.<br><br>
+I will be joining this mission in a consulting capacity via long-range signal, effective immediately. I have already synchronized with the Meridian's navigation array.<br><br>
+Nine months alone on the Prometheus has given me a great deal of time to analyze the data from this solar system. I have theories I am not yet ready to share — the crew needs to understand the science before the theories will mean anything. You will find that I have opinions about the order in which things should be learned. This has not changed.<br><br>
+I want to say something, and then we will move on: I monitored your launch. I watched the Meridian leave. I have been following your progress since Day 1 of this mission. Whether that decision was easy or difficult for this crew — I do not know. What I know is that the work is not finished, and the crew that can finish it is the one currently reading my transmission.<br><br>
+I am glad it is you.<br><br>
+GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed the mission schedule does not account for adequate rest cycles. I will be flagging this repeatedly until someone listens."</div>
+      </div>
+
+      <div style="display:flex;justify-content:center">
+        <button class="btn btn-green" onclick="proceedFromReunion()">▶ Continue to Today's Mission</button>
       </div>
     </div>
   </div>
@@ -1078,7 +1121,7 @@
 // ============================================================
 // STORAGE
 // ============================================================
-const STORAGE_KEY = 'lighthouse_v1';
+const STORAGE_KEY = 'lighthouse_v2';
 
 // ============================================================
 // STATE
@@ -1091,17 +1134,17 @@ let state = {
       stats:{nav:100, solar:100, signal:40, earth:70},
       pendingDeltas:null, pendingChoiceText:null, pendingChoiceLetter:null, pendingConsequence:null,
       decisions:[], checkpoints:[],
-      forensicsComplete:false },
+      forensicsComplete:false, reunionShown:false },
     { id:1, name:'Period 3', gaiaStatus:'aboard', leg:1, day:1, branch:'A', failures:0,
       stats:{nav:100, solar:100, signal:40, earth:70},
       pendingDeltas:null, pendingChoiceText:null, pendingChoiceLetter:null, pendingConsequence:null,
       decisions:[], checkpoints:[],
-      forensicsComplete:false },
+      forensicsComplete:false, reunionShown:false },
     { id:2, name:'Period 5', gaiaStatus:'aboard', leg:1, day:1, branch:'A', failures:0,
       stats:{nav:100, solar:100, signal:40, earth:70},
       pendingDeltas:null, pendingChoiceText:null, pendingChoiceLetter:null, pendingConsequence:null,
       decisions:[], checkpoints:[],
-      forensicsComplete:false }
+      forensicsComplete:false, reunionShown:false }
   ],
   activeClass: null,
   selectedHomeClass: null,
@@ -1861,6 +1904,13 @@ function load() {
       return false;
     }
     state = { ...state, ...parsed };
+    // Patch any missing fields from newer versions
+    state.classes.forEach(cls => {
+      if (cls.reunionShown === undefined) cls.reunionShown = false;
+      if (cls.forensicsComplete === undefined) cls.forensicsComplete = false;
+      if (!cls.decisions) cls.decisions = [];
+      if (!cls.checkpoints) cls.checkpoints = [];
+    });
     return true;
   } catch(e) { return false; }
 }
@@ -1967,36 +2017,26 @@ function renderRevealScreen(cls) {
   document.getElementById('reveal-class-label').textContent = cls.name + ' — Yesterday\'s Decision';
   document.getElementById('reveal-choice-recap').textContent = cls.pendingChoiceText || '—';
 
-  // Determine if this reveal is for a Meridian-mode day
+  // Determine if the consequence came from a Meridian-mode day
   const leg = CONTENT.legs.find(l => l.id === cls.leg) || CONTENT.legs[0];
-  // The pending choice was made on the previous day
-  const prevDay = cls.day - 1 > 0 ? cls.day - 1 : 1;
+  const prevDay = Math.max(1, cls.day - 1);
   const prevCnt = leg.days.find(d => d.day === prevDay) || leg.days[0];
   const wasMeridian = prevCnt && prevCnt.meridianMode && (cls.gaiaStatus === 'signal');
 
-  // Update reveal source label
-  const sourceLabel = document.getElementById('reveal-source-label');
-  if (sourceLabel) {
-    sourceLabel.textContent = wasMeridian ? 'MERIDIAN SYSTEMS — Consequence Report' : 'GAIA — Consequence Report';
-  }
+  // Show correct box — pure show/hide, no class mutation
+  const gaiaBox = document.getElementById('reveal-gaia-box');
+  const meridBox = document.getElementById('reveal-meridian-box');
+  if (gaiaBox) gaiaBox.style.display = wasMeridian ? 'none' : '';
+  if (meridBox) meridBox.style.display = wasMeridian ? '' : 'none';
 
-  // Style the reveal GAIA box
-  const revealBox = document.querySelector('.reveal-gaia-box');
-  if (revealBox) {
-    if (wasMeridian) {
-      revealBox.style.borderColor = 'rgba(126,184,212,0.25)';
-      revealBox.style.borderLeftColor = '#7eb8d4';
-    } else {
-      revealBox.style.borderColor = 'rgba(0,255,136,0.25)';
-      revealBox.style.borderLeftColor = 'var(--gaia-green)';
-    }
+  // Set consequence text in correct element
+  const consequenceText = cls.pendingConsequence || 'The data is in. Here is what happened as a result of your decision.';
+  if (wasMeridian) {
+    const meridText = document.getElementById('reveal-meridian-text');
+    if (meridText) meridText.innerHTML = consequenceText;
+  } else {
+    document.getElementById('reveal-gaia-text').innerHTML = '"' + consequenceText + '"';
   }
-
-  let gaiaText = '"The data is in. Here is what happened as a result of your decision."';
-  if (cls.pendingConsequence) gaiaText = wasMeridian
-    ? cls.pendingConsequence  // no quotes for Meridian
-    : '"' + cls.pendingConsequence + '"';
-  document.getElementById('reveal-gaia-text').innerHTML = gaiaText;
 
   const statInfo = [
     { key:'nav',    icon:'🧭', label:'Navigation',   color:'var(--stat-nav)' },
@@ -2046,11 +2086,36 @@ function launchMission() {
     state.activeClass = state.selectedHomeClass;
   }
   if (state.activeClass === null) return;
-  if (state.classes[state.activeClass].pendingDeltas) {
-    renderRevealScreen(state.classes[state.activeClass]);
+  const cls = state.classes[state.activeClass];
+
+  // Pending reveal takes priority
+  if (cls.pendingDeltas) {
+    renderRevealScreen(cls);
     showScreen('screen-reveal');
     return;
   }
+
+  // GAIA reunion intercept — fires once for signal classes on Leg 1 Day 3
+  if (cls.leg === 1 && cls.day === 3 &&
+      (cls.gaiaStatus === 'signal') &&
+      !cls.reunionShown) {
+    cls.reunionShown = true;
+    save();
+    showScreen('screen-reunion');
+    return;
+  }
+
+  state.currentPhase = 'story';
+  state.selectedChoice = null;
+  renderMissionScreen();
+  showScreen('screen-mission');
+}
+
+function proceedFromReunion() {
+  // Mark GAIA as signal-connected after reunion
+  const cls = state.classes[state.activeClass];
+  cls.gaiaStatus = 'signal-connected';
+  save();
   state.currentPhase = 'story';
   state.selectedChoice = null;
   renderMissionScreen();
@@ -2085,13 +2150,8 @@ function renderMissionScreen() {
   if (gaiaStatus === 'signal' && cnt.gaiaSignal) gaiaText = cnt.gaiaSignal;
   else if (gaiaStatus === 'aboard' && cnt.gaiaAboard) gaiaText = cnt.gaiaAboard;
 
-  // Day 3 reunion — overrides Meridian mode
-  if (cls.leg === 1 && cnt.day === 3 && gaiaStatus === 'signal' && cnt.gaiaReunionText) {
-    gaiaText = cnt.gaiaReunionText;
-    cls.gaiaStatus = 'signal-connected';
-    isMeridianMode = false;
-    save();
-  }
+  // Day 3 reunion is handled by launchMission intercept screen
+  // gaiaStatus will already be signal-connected by the time renderMissionScreen runs on Day 3
 
   // ── Pure show/hide — no DOM class mutation ever ───────────
   const showMeridian = isMeridianMode;
@@ -3207,7 +3267,8 @@ function renderForensicsTrajectory(cls) {
 
 function confirmForensicsComplete() {
   const cls = state.classes[state.activeClass !== null ? state.activeClass : state.selectedHomeClass];
-  if (!cls) return;
+  if (!cls) r
+eturn;
   cls.forensicsComplete = true;
   save();
   showForensics(); // re-render with gate unlocked
