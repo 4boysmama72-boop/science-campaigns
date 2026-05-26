@@ -330,7 +330,7 @@
   .gaia-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gaia-green); box-shadow: 0 0 8px rgba(0,255,136,0.8); animation: gaia-pulse 2s infinite; flex-shrink: 0; }
   @keyframes gaia-pulse { 0%,100%{opacity:1}50%{opacity:.35} }
   .gaia-label { font-family: var(--font-mono); font-size: 10px; color: var(--gaia-green); letter-spacing: .1em; text-transform: uppercase; }
-  .gaia-text { font-family: var(--font-body); font-size: 24px; color: var(--text-primary); line-height: 1.7; }
+  .gaia-text { font-family: var(--font-body); font-size: 24px; color: rgba(0,255,136,0.92); line-height: 1.7; }
   .gaia-text em { color: var(--gaia-green); font-style: italic; }
 
   /* GAIA RECALL BOX — spiral review */
@@ -428,7 +428,7 @@
   .reveal-recap-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
   .reveal-recap-text { font-family: var(--font-body); font-size: 17px; color: var(--text-secondary); line-height: 1.5; }
   .reveal-gaia-box { background: var(--bg-card); border: 1px solid rgba(0,255,136,0.25); border-left: 3px solid var(--gaia-green); border-radius: 6px; padding: 18px 20px; margin-bottom: 24px; }
-  .reveal-gaia-text { font-family: var(--font-body); font-size: 19px; color: var(--text-primary); line-height: 1.75; }
+  .reveal-gaia-text { font-family: var(--font-body); font-size: 19px; color: rgba(0,255,136,0.9); line-height: 1.75; }
   .reveal-gaia-text em { color: var(--gaia-green); font-style: italic; }
   .reveal-gaia-text strong { color: var(--amber); font-weight: 600; }
   .stat-changes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
@@ -879,9 +879,9 @@
       <div>
         <div class="panel-label">Daily Flow</div>
         <button class="nav-btn" onclick="setPhase('story')">1 · Scenario / Lesson</button>
-        <button class="nav-btn" onclick="setPhase('exit')">2 · Exit Ticket Timer</button>
-        <button class="nav-btn" onclick="setPhase('discuss')">3 · Discussion Timer</button>
-        <button class="nav-btn" onclick="setPhase('vote')">4 · Final Vote</button>
+        <button class="nav-btn" id="nav-exit-btn" onclick="setPhase('exit')">2 · Exit Ticket Timer</button>
+        <button class="nav-btn" id="nav-discuss-btn" onclick="setPhase('discuss')">3 · Discussion Timer</button>
+        <button class="nav-btn" id="nav-vote-btn" onclick="setPhase('vote')">4 · Final Vote</button>
       </div>
       <div class="divider-line"></div>
       <div>
@@ -2592,9 +2592,17 @@ function renderMultiLineGraph(gd) {
 function applyPhaseVisibility(isChoiceDay) {
   const phasebar = document.querySelector('.phase-bar');
   const choicesArea = document.getElementById('choices-area');
+  // Right panel phase nav buttons — steps 2-4
+  const navExitBtn = document.getElementById('nav-exit-btn');
+  const navDiscussBtn = document.getElementById('nav-discuss-btn');
+  const navVoteBtn = document.getElementById('nav-vote-btn');
+
   if (isChoiceDay) {
     if (phasebar) phasebar.querySelectorAll('.phase-step').forEach(el => { el.style.display = ''; });
     if (choicesArea) choicesArea.style.display = '';
+    if (navExitBtn) navExitBtn.style.display = '';
+    if (navDiscussBtn) navDiscussBtn.style.display = '';
+    if (navVoteBtn) navVoteBtn.style.display = '';
   } else {
     if (phasebar) {
       phasebar.querySelectorAll('.phase-step').forEach((el, i) => {
@@ -2602,6 +2610,9 @@ function applyPhaseVisibility(isChoiceDay) {
       });
     }
     if (choicesArea) choicesArea.style.display = 'none';
+    if (navExitBtn) navExitBtn.style.display = 'none';
+    if (navDiscussBtn) navDiscussBtn.style.display = 'none';
+    if (navVoteBtn) navVoteBtn.style.display = 'none';
   }
 }
 
