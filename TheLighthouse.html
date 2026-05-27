@@ -2093,28 +2093,28 @@ const CONTENT = {
             title:'Lighthouse Transmission -- Signal Data (47-Year Record)',
             teacherNote:'Draw as a multi-line graph. X-axis: years (47-year span, mark year 47 as "8 months ago" when Prometheus pulse arrived). Y-axis: signal frequency intensity. Show 4 lines: three steady/gradual baselines and one that spikes dramatically at year 46.5. The spike line is the key visual -- it starts at baseline and shoots upward exactly when the Prometheus pulse arrived. Students cannot interpret what the frequency means, only that the timing is significant. This deliberate ambiguity is the pedagogical point.',
             multiLine:[
-              {section:'Frequency A', values:[12,12,11,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,85], color:'safe', note:'Steady baseline frequency -- slight natural variation, no trend'},
-              {section:'Frequency B', values:[8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,8,9,8,9], color:'warning', note:'Gradual increase over 47 years -- slow change, cause unknown'},
-              {section:'Frequency C', values:[5,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,6], color:'safe', note:'Near-baseline with slight increase -- monitoring signal'},
-              {section:'Prometheus Match', values:[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,95], color:'danger', note:'Flat baseline for 46.5 years -- then dramatic spike at exactly the moment the Prometheus pulse arrived'}
+              {section:'Frequency A', values:[12,12,11,12,12,12,11,12,12,13,12,12,11,12,12,12,13,12,12,11,12,12,12,13,12,12,11,12,12,12,13,12,12,11,12,12,12,13,12,12,11,12,12,12,13,12,12], color:'safe', note:'Steady baseline -- slight natural variation, no trend. Has been this way all 47 years.'},
+              {section:'Frequency B', values:[10,11,12,13,14,15,17,18,19,21,22,23,25,26,28,29,30,32,33,35,36,37,39,40,42,43,44,46,47,48,50,51,52,54,55,56,58,59,60,60,60,60,60,60,60,60,60], color:'warning', note:'Gradual increase over 47 years -- starts at 8, ends at 23. Slow but consistent upward trend.'},
+              {section:'Frequency C', values:[5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5,6,5,5,5], color:'safe', note:'Near-steady baseline with slight variation. No significant trend.'},
+              {section:'Prometheus Match', values:[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,95], color:'danger', note:'Flat at 3 for 46.5 years -- then dramatic spike to 95 when the Prometheus pulse arrived. This is the line that changed everything.'}
             ],
             xLabels:['Y1','Y5','Y10','Y15','Y20','Y25','Y30','Y35','Y40','Y43','Y45','Y46','Y46.5^','Y47'],
             yLabel:'Signal Intensity',
             graphAnswers:[
-              {q:'1', a:'Frequency A shows a steady baseline with slight natural variation -- no significant trend over 47 years. Frequency B shows a gradual increase over time. Frequency C shows a near-steady baseline with a slight increase. The Prometheus Match frequency shows a flat baseline for nearly 47 years, then a dramatic spike at year 46.5.'},
-              {q:'2', a:'Year 46.5 -- eight months before the current date. This matches exactly when the Prometheus energy pulse would have arrived at this location based on the timeline GAIA calculated in Campaign 1. The Lighthouse detected the pulse and responded.'},
-              {q:'3', a:'The Lighthouse was monitoring something for 47 years before the pulse arrived. Three frequencies were being tracked at baseline levels the entire time. The dramatic spike in the Prometheus Match frequency suggests the Lighthouse was specifically designed to detect the Prometheus experiment\'s energy signature -- which means someone knew the experiment was coming, or built the Lighthouse to wait for exactly this type of signal.'},
-              {q:'4', a:'Frequency B\'s gradual increase over 47 years may be recording slow changes in the solar system or in Earth\'s environment over time. This could be relevant to what GAIA called the atmospheric anomaly -- something changing slowly over decades before the Prometheus pulse accelerated it.'},
-              {q:'5', a:'The crew cannot fully interpret the frequencies yet because they don\'t know what the Lighthouse was designed to monitor or what each frequency represents. But the timing of the spike is clear evidence of a connection to the Prometheus experiment, which gives the crew enough information to make a directional decision.'}
+              {q:'1', a:'Frequency A: flat around 12 with slight variation -- no trend. Frequency B: steady rise from 10 to 60 over 47 years -- consistent upward trend. Frequency C: flat around 5-6, no trend. Prometheus Match: flat at 3 for 46 years, then spikes to 95 at year 47. The spike is the most dramatic change.'},
+              {q:'2', a:'The spike happens at year 47 -- 8 months ago, exactly when the Prometheus pulse would have arrived at 85 AU. The Lighthouse detected the pulse and responded. This is direct evidence the Lighthouse was designed to watch for the Prometheus experiment.'},
+              {q:'3', a:'A slow, consistent upward trend over 47 years suggests something has been changing gradually -- not a sudden event, but a steady process. It predates the Prometheus pulse by decades. Whatever Frequency B measures, it was already changing long before the pulse arrived.'},
+              {q:'4', a:'Frequency A and C stay flat -- they monitor stable baselines. Frequency B is different because it shows consistent change over time. GAIA points to it because change is what scientists look for -- rising readings signal something is happening.'},
+              {q:'5', a:'The spike is dramatic and recent -- it demands immediate investigation. The gradual rise is subtle but older -- building for 47 years. The spike explains why the crew is here. The gradual rise may explain something bigger about what they will find when they arrive.'}
             ]
           },
           gaiaGraphNote:'"Four lines on one graph -- the same format you used to compare Section C and Section F on the Prometheus, and to compare Northern and Southern Hemisphere daylight hours in Leg 2. Three lines show baselines. One shows a dramatic spike. Read the lines the same way you always have: what is the trend? Where does it change? What is the shape telling you? Notice Frequency B -- the line showing a gradual increase over 47 years. I am not ready to explain what it represents. But I want you to remember it. It will matter in Leg 4."',
           graphQuestions:[
-            '1. Describe what each of the four frequency lines shows over the 47-year record. Which one shows the most dramatic change?',
-            '2. At what point in time does the Prometheus Match frequency spike? How does that timing connect to what you know about the Prometheus experiment?',
-            '3. The Lighthouse has been transmitting for 47 years. What does the pattern of the four frequency lines tell you about what the Lighthouse was designed to do?',
-            '4. GAIA specifically points out Frequency B -- the one gradually increasing over time. Even without knowing what it represents, what does a slow 47-year increase suggest about what is being measured?',
-            '5. The crew must make a navigation decision based on this graph even though they cannot fully interpret it. What information CAN they take from the graph to inform their choice?'
+            '1. Describe each of the four lines. Which ones stay mostly flat? Which one rises steadily over time? Which one shows a sudden dramatic spike?',
+            '2. The Prometheus Match line is flat at 3 for 46 years, then spikes to 95 at year 47. That spike happened 8 months ago -- the same time the Prometheus pulse would have arrived at this location. What does that timing tell you?',
+            '3. GAIA specifically points out Frequency B -- the line that rises gradually over 47 years. It starts at 8 and ends at 23. Even without knowing what it measures, what does a slow, consistent upward trend over decades suggest?',
+            '4. Frequency A and Frequency C both stay relatively flat. How are they different from Frequency B? Why does GAIA want you to notice Frequency B specifically?',
+            '5. You cannot fully interpret this graph yet. But you can identify patterns. Which pattern -- the spike or the gradual rise -- is more urgent? Which one was already happening before the Prometheus pulse arrived?'
           ],
           choices:[
             {
@@ -2696,8 +2696,8 @@ function renderGraphContent(c) {
   if (c.graphData) {
     const gd = c.graphData;
     h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margin-bottom:14px">`;
-    h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">${
-gd.title}</div>`;
+    h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bot
+tom:12px">${gd.title}</div>`;
 
     // rawDataOnly: show data as formatted cards, not a chart
     if (c.rawDataOnly && gd.bars) {
