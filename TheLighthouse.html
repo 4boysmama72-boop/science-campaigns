@@ -513,6 +513,11 @@
   .processing-meridian { background: var(--bg-card); border: 1px solid rgba(126,184,212,0.2); border-left: 3px solid #7eb8d4; border-radius: 6px; padding: 18px 22px; margin-bottom: 28px; text-align: left; }
   .processing-meridian-text { font-family: var(--font-mono); font-size: 13px; color: #7eb8d4; line-height: 1.75; }
 
+
+  .choice-reading-box { background: rgba(255,170,0,0.06); border: 1px solid rgba(255,170,0,0.35); border-left: 3px solid var(--amber); border-radius: 6px; padding: 12px 15px; margin-bottom: 16px; }
+  .choice-reading-label { font-family: var(--font-mono); font-size: 9px; color: var(--amber); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
+  .choice-reading-text { font-family: var(--font-body); font-size: 18px; color: var(--text-primary); line-height: 1.6; }
+
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 2px; }
@@ -1121,7 +1126,7 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
 // ============================================================
 // STORAGE
 // ============================================================
-const STORAGE_KEY = 'lighthouse_v3';
+const STORAGE_KEY = 'lighthouse_v4';
 
 // ============================================================
 // STATE
@@ -1197,6 +1202,7 @@ const CONTENT = {
           day:1, type:'choice', isReveal:false,
           legLabel:'Leg 1 · Gravity',
           legTitle:'Something Is Pulling Us Off Course',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes — open your book to Forces, Topic 2, Lessons 1 and 2. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
           gaia:'The Meridian launched on schedule. Trajectory was nominal for the first fourteen hours. Then the navigation system flagged an anomaly. We are being pulled — slightly, but measurably — off our planned course. Something ahead of us has a gravitational field strong enough to affect our trajectory from this distance. I have run the calculations three times. Whatever is out there has significant mass. And it is in exactly the direction the signal is coming from.',
           gaiaAboard:'The Meridian launched on schedule. Trajectory was nominal for the first fourteen hours. Then the navigation system flagged an anomaly. We are being pulled — slightly, but measurably — off our planned course. Something ahead of us has a gravitational field strong enough to affect our trajectory from this distance. I have run the calculations three times. Whatever is out there has significant mass. And it is in exactly the direction the signal is coming from.',
           gaiaSignal:'Navigation status update. The Meridian launched on schedule. Trajectory was nominal for the first fourteen hours. At hour fourteen, sensors detected a measurable gravitational deviation of 0.3 degrees from planned heading. Source of deviation is ahead of current position and in alignment with the detected signal origin. Analysis is ongoing. Current data is insufficient to confirm source mass or composition. Crew review of gravitational force reading assignment is recommended before a course decision is made.',
@@ -1209,7 +1215,7 @@ const CONTENT = {
               letter:'A',
               text:'Follow the gravitational pull — whatever has enough mass to pull us off course from this distance is worth investigating.',
               subtext:'The pull and the signal are coming from the same place. That is not a coincidence.',
-              deltas:{nav:5, solar:-3, signal:8, earth:0},
+              deltas:{nav:12, solar:-6, signal:14, earth:-2},
               branch:'A-follow',
               consequence:'The decision to follow the pull rather than fight it turns out to be efficient — the Meridian\'s engines work with the gravitational field instead of against it, conserving solar power. Navigation accuracy improves as the crew learns to read the gravitational field like a current. Signal clarity increases as they move toward the source. A gravitational field radiates outward from a massive object in all directions. Moving along the field lines rather than across them is the path of least resistance. Navigation efficiency improved as a result of this approach.'
             },
@@ -1217,7 +1223,7 @@ const CONTENT = {
               letter:'B',
               text:'Correct course back to the original heading — stay on the planned trajectory until we understand what is pulling us.',
               subtext:'An uncharted gravitational source is a navigation hazard until we know its mass and position.',
-              deltas:{nav:0, solar:-8, signal:3, earth:0},
+              deltas:{nav:4, solar:-14, signal:6, earth:-3},
               branch:'B-correct',
               consequence:'Correcting course costs solar power — the engines work against the gravitational pull constantly. Navigation stays precise by the numbers, but the crew is essentially fighting a force they do not yet understand. Gravitational force is continuous regardless of chosen heading. The Meridian maintained planned trajectory by working against the persistent gravitational pull. This approach consumed additional solar power. Understanding the source of the gravitational force would allow for more efficient power management going forward.'
             },
@@ -1225,7 +1231,7 @@ const CONTENT = {
               letter:'C',
               text:'Hold position and gather data — take readings on the gravitational field before making any course decision.',
               subtext:'You cannot make a good navigation decision without knowing the mass and distance of the source.',
-              deltas:{nav:2, solar:-4, signal:12, earth:0},
+              deltas:{nav:6, solar:-8, signal:18, earth:-2},
               branch:'C-hold',
               consequence:'Holding position while gathering gravitational field data produces the most complete picture of the anomaly. The crew maps the field strength at multiple distances, begins calculating the approximate mass of the source, and confirms it is stationary — not drifting like a natural object would. Signal clarity jumps as the crew fine-tunes antenna direction toward the gravitational source. Data collection confirms the source is stationary relative to the solar system. Natural objects at this distance drift due to solar wind and gravitational interactions with other bodies. This source does not drift. The cause of its fixed position has not yet been determined.'
             }
@@ -1308,6 +1314,7 @@ const CONTENT = {
           day:4, type:'choice', isReveal:false,
           legLabel:'Leg 1 · Gravity',
           legTitle:'Mapping the Field',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes — open your book to Forces, Topic 2, Lessons 1 and 2. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
           gaia:'The data table confirmed it — the anomaly source has approximately 2.8 times the gravitational mass of the Moon. That is significant. Significant enough to create a detectable gravitational field extending millions of kilometers in every direction. A gravitational field is not just a force — it is a region of space where every object with mass experiences a pull toward the source. The crew is currently inside that field. What we do not yet know is how far it extends and whether it is consistent — or whether something about its distribution is unusual.',
           scenario:'GAIA explains gravitational fields using the Meridian\'s sensor array. A gravitational field can be mapped by measuring how a test object — in this case, the ship itself — experiences force at different positions. By taking readings at multiple locations around the anomaly source, the crew can build a map of the field.\n\nStandard gravitational fields radiate uniformly outward from a massive object — equally strong in all directions at the same distance. Like a sphere of force surrounding the source.\n\nGAIA\'s preliminary readings show something unexpected: the field on the approach side of the source — the side facing the solar system — is slightly stronger than the field on the far side. A uniform mass would not produce this. Something about the distribution of mass inside the source is uneven.\n\nFor a natural object like an asteroid, uneven mass distribution is normal — tumbling, irregular shape. But this source is not tumbling. It is stationary.',
           exitTicketPrompt:'What is a gravitational field and how does it relate to gravitational force? Use the anomaly source as your example — describe what its gravitational field means for the Meridian\'s navigation. Make your claim: does the uneven field distribution suggest the source is a natural object or something artificial? Use evidence from today\'s reading about how gravitational fields work to support your reasoning.',
@@ -1361,6 +1368,7 @@ const CONTENT = {
           day:6, type:'choice', isReveal:true,
           legLabel:'Leg 1 · Gravity',
           legTitle:'The Approach',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes — open your book to Forces, Topic 2, Lessons 1 and 2. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
           gaia:'The crew has the field map. The crew knows the source is artificial. The crew understands that gravitational force increases as distance decreases — and that means the closer the Meridian gets, the stronger the pull becomes. There is a point at which the pull will be strong enough to require constant engine thrust to maintain position. Beyond that point, we are committed to either landing or a very expensive retreat. I need the crew to decide the approach strategy before we cross that threshold.',
           scenario:'GAIA displays the gravitational field map — a diagram showing force lines radiating outward from the source, with the Meridian\'s current position marked. Two approach paths are available:\n\nPath 1 — Direct approach: Straight toward the source along the strongest field lines. Fastest route. The engines will fight increasing gravitational force the entire way, consuming solar power. But the signal will strengthen rapidly.\n\nPath 2 — Orbital approach: Curve around the source at a stable distance first, using the gravitational field itself to maintain orbit with minimal engine use. Then spiral inward gradually. Takes longer. Uses less power. Allows more observation time.\n\nGAIA: "Both paths get us there. The question is whether speed or efficiency matters more given our current solar power reserves — and what you know about how gravitational force changes with distance."',
           exitTicketPrompt:'How does the distance between two objects affect the gravitational force between them? Use both approach paths as your example — explain what the gravitational force is doing differently on each path relative to the Meridian\'s distance from the source. Make your claim: which approach path should the crew take, and use what you know about gravitational force and distance to explain why your choice makes the most scientific sense.',
@@ -1370,7 +1378,7 @@ const CONTENT = {
               letter:'A',
               text:'Direct approach — straight toward the source along the strongest field lines.',
               subtext:'Fastest route to answers. Signal strengthens rapidly. Power cost is significant.',
-              deltas:{nav:-8, solar:-14, signal:22, earth:0},
+              deltas:{nav:14, solar:-12, signal:22, earth:-3},
               branch:'A-direct',
               consequence:'The direct approach is fast and effective — signal clarity jumps dramatically as the Meridian closes the distance. The Lighthouse transmission becomes clear enough to begin partial decoding for the first time. Solar power takes a serious hit as engines fight the increasing gravitational pull. Navigation accuracy drops as the crew manages constant course corrections against the strengthening field. We are close enough now to begin reading the signal. I want the crew to know: what I am seeing in this transmission is more complex than a simple distress beacon. This was designed to be found by someone who could understand it. I believe that someone is us.'
             },
@@ -1378,7 +1386,7 @@ const CONTENT = {
               letter:'B',
               text:'Orbital approach — curve around the source at stable distance first, then spiral inward.',
               subtext:'Takes longer but uses the gravitational field as a tool rather than fighting it.',
-              deltas:{nav:8, solar:-4, signal:14, earth:0},
+              deltas:{nav:16, solar:-6, signal:14, earth:-3},
               branch:'B-orbital',
               consequence:'The orbital approach is elegant — the crew uses the gravitational field itself to maintain position without constant engine thrust, exactly as planets use the Sun\'s gravity to orbit. Navigation accuracy improves as the crew practices working with the field rather than against it. Solar power is conserved. Signal clarity improves more slowly than the direct approach would have achieved. You used the gravitational field as infrastructure rather than an obstacle. This is how every orbiting body in the solar system functions. The Meridian is now, technically speaking, a temporary satellite of the Lighthouse. I find that poetically appropriate.'
             }
@@ -1450,7 +1458,7 @@ const CONTENT = {
               letter:'A',
               text:'Proceed to the Lighthouse — the mission is to investigate, and we are close enough that retreating costs as much as arriving.',
               subtext:'The gravitational field math is clear: we are past the point of easy return. Forward is the scientific choice.',
-              deltas:{nav:5, solar:-8, signal:25, earth:0},
+              deltas:{nav:8, solar:-10, signal:28, earth:-4},
               branch:'A-proceed',
               consequence:'The Meridian closes the final distance. The Lighthouse grows from a geometric shape to a structure with visible detail — panels, arrays, what appear to be docking mechanisms. The signal is now fully clear. We have arrived. I have completed my analysis of the signal. Before I share what it contains, I want the crew to understand something. This structure has been transmitting for a very long time — much longer than eight months. The signal the GSRA detected eight months ago was a reactivation. Something woke it up. I believe I know what that something was. But that is a conversation for Leg 2.'
             },
@@ -1458,7 +1466,7 @@ const CONTENT = {
               letter:'B',
               text:'Hold position at current distance — confirm with GSRA and gather more data before final approach.',
               subtext:'We are close but not committed. Additional data before arrival is sound scientific practice.',
-              deltas:{nav:8, solar:-5, signal:18, earth:0},
+              deltas:{nav:14, solar:-6, signal:16, earth:-4},
               branch:'B-hold',
               consequence:'Holding position allows the crew to transmit a complete data package to the GSRA before arrival — field maps, visual data, signal analysis, mass estimates. The GSRA response comes within six hours: proceed. Mission command confirms the findings and authorizes approach. The GSRA has reviewed everything and still wants us to proceed. I want to note that in my experience, that response time suggests they already suspected what we found. Someone at the GSRA has been waiting for this confirmation. I do not yet know who, or how long they have been waiting.'
             },
@@ -1466,7 +1474,7 @@ const CONTENT = {
               letter:'C',
               text:'Attempt to return to the solar system — this is beyond our mission parameters and we need backup.',
               subtext:'A structure of this significance requires more than one ship. We document and return.',
-              deltas:{nav:-5, solar:-18, signal:8, earth:0},
+              deltas:{nav:-8, solar:-22, signal:8, earth:-4},
               branch:'C-return',
               consequence:'Pulling back against the gravitational field costs significant solar power — the force at current distance is substantial and the engines work hard against it. The Meridian escapes the strong field region and begins the return journey. The return is the most fuel-expensive decision available to us at this distance. I want the crew to understand the gravitational force data made this predictable — at 2 million km, retreating costs considerably more than arriving. The science was telling you this before the vote. Navigation accuracy drops as the crew manages the retreat against the field. The data we have collected is, however, complete and transmittable. The GSRA will send another ship. With this data, they will know exactly what they are approaching.'
             }
@@ -1520,6 +1528,7 @@ const CONTENT = {
           day:1, type:'choice', isReveal:true,
           legLabel:'Leg 2 · Earth, Moon & Seasons',
           legTitle:'Navigation Requires Knowing Where Things Will Be',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes — open your book to Earth\'s Place in Universe, Topic 1, Lesson 2. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
           gaia:'Leg 1 is behind us. The Lighthouse is confirmed — real, artificial, waiting. Now we have to cross the inner solar system to get to the outer edge, and that crossing is not as simple as pointing the ship in the right direction. Every object in this solar system is moving. The planets orbit the Sun. The Moon orbits Earth. Earth rotates on its own axis. If the crew does not understand those motions — their speed, their patterns, their predictability — navigation becomes guesswork. And guesswork in space is expensive.',
           gaiaAboard:'Leg 1 is behind us. The Lighthouse is confirmed — real, artificial, waiting. Now we have to cross the inner solar system to get to the outer edge, and that crossing is not as simple as pointing the ship in the right direction. Every object in this solar system is moving. The planets orbit the Sun. The Moon orbits Earth. Earth rotates on its own axis. If the crew does not understand those motions — their speed, their patterns, their predictability — navigation becomes guesswork. And guesswork in space is expensive.',
           gaiaSignal:'The Meridian has entered the inner solar system transit phase. Navigation requires accurate modeling of object positions — planets, moons, and Earth itself are all in motion. Crew familiarity with orbital motion patterns is required for accurate course projection. Today\'s scenario presents the first navigation decision of this transit.',
@@ -1531,7 +1540,7 @@ const CONTENT = {
               letter:'A',
               text:'Lock in a direct trajectory now — use current Earth position data and standard orbital models to project the 47-day position.',
               subtext:'Standard navigation protocol. The orbital models are well-tested. Trust the math.',
-              deltas:{nav:5, solar:-4, signal:8, earth:-2},
+              deltas:{nav:8, solar:-6, signal:10, earth:-3},
               branch:'A-direct-nav',
               consequence:'The direct trajectory calculation is efficient and uses minimal power. The orbital models for Earth\'s revolution are precise — 365.25 days per orbit, consistent for billions of years. The 47-day projection puts Earth exactly where standard models predict. Navigation accuracy improves as the crew commits to a confirmed heading. Earth\'s revolution is one of the most reliable constants in the solar system. The orbital model has not been wrong in recorded history. Trusting it was the correct call. We are on course.'
             },
@@ -1539,7 +1548,7 @@ const CONTENT = {
               letter:'B',
               text:'Take 48 hours to gather fresh observational data on Earth\'s current position before locking in the trajectory.',
               subtext:'Fresh data is always better than projected data. The 48-hour delay is worth the accuracy.',
-              deltas:{nav:8, solar:-6, signal:10, earth:-2},
+              deltas:{nav:14, solar:-8, signal:12, earth:-3},
               branch:'B-observe-first',
               consequence:'The 48-hour observation window produces the most accurate position data available. Fresh measurements confirm the orbital model — Earth is exactly where it should be. Navigation accuracy jumps significantly because the course is locked based on observed position rather than projected position. Solar power cost reflects the extended sensor operation. Observation before projection. The data confirms the model, which means the model is reliable. But now we also know the model is reliable because we checked — not just because we assumed. That distinction matters in science.'
             },
@@ -1547,7 +1556,7 @@ const CONTENT = {
               letter:'C',
               text:'Calculate trajectory using both Earth and Moon positions — the Moon\'s gravity will affect the Meridian\'s course as it passes near Earth\'s orbital path.',
               subtext:'The Moon has enough mass to create a detectable gravitational pull. Ignoring it is a navigation risk.',
-              deltas:{nav:10, solar:-8, signal:12, earth:-2},
+              deltas:{nav:18, solar:-12, signal:14, earth:-3},
               branch:'C-moon-calc',
               consequence:'Including the Moon in the trajectory calculation is more expensive but more precise. The Moon\'s gravitational influence at the Meridian\'s closest approach distance is small — but detectable, and over 47 days it compounds. The corrected trajectory is more accurate than either alternative. Signal clarity improves as the crew fine-tunes antenna direction during the extended calculation. The Moon has enough mass to matter at close range. You accounted for it. Navigation accuracy reflects that decision. This is also your first practical application of what you are about to read — orbital mechanics is not just theory. It is navigation.'
             }
@@ -1622,6 +1631,7 @@ const CONTENT = {
           day:4, type:'choice', isReveal:false,
           legLabel:'Leg 2 · Earth, Moon & Seasons',
           legTitle:'The Planet Looks Different From Up Here',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes — open your book to Earth\'s Place in Universe, Topic 1, Lesson 2. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
           gaia:'The crew is passing Earth at a distance. And I want to draw your attention to something I have been tracking since we entered this region. The Northern Hemisphere is receiving noticeably more direct sunlight than the Southern Hemisphere right now. The Sun\'s rays are hitting the Northern Hemisphere at a steeper angle — more concentrated energy per unit of surface area. The Southern Hemisphere is receiving the same sunlight at a shallower angle, spread across more surface. This difference is not random. It is the direct result of Earth\'s tilted axis and its current position in its revolution around the Sun. The crew is watching a season happen in real time.',
           scenario:'From the Meridian\'s position, the crew can observe something that is impossible to see from Earth\'s surface — the geometry of sunlight hitting a tilted planet. The Northern Hemisphere is angled toward the Sun. The Southern Hemisphere is angled away.\n\nGAIA displays sensor readings showing solar energy intensity at multiple Earth locations simultaneously:\n\n• Northern Hemisphere (45°N): 380 watts per square meter\n• Equator (0°): 340 watts per square meter\n• Southern Hemisphere (45°S): 210 watts per square meter\n\nGAIA: "The equator receives relatively consistent energy year-round because the tilt affects it less. The poles experience the most dramatic seasonal variation. The crew is currently observing Northern Hemisphere summer. In six months, when Earth has moved to the opposite side of its orbit, these numbers reverse. The tilt stays the same. The position in the orbit changes. That is the entire explanation for seasons."',
           exitTicketPrompt:'What causes seasons on Earth — and what does NOT cause them? Use the sensor readings GAIA displayed and what you know about Earth\'s tilted axis to explain. Make your claim: based on what the crew is observing right now, is the Northern Hemisphere experiencing summer or winter — and how does Earth\'s position in its orbit explain that? Use evidence from today\'s reading to connect the axis tilt to the energy intensity difference.',
@@ -1631,7 +1641,7 @@ const CONTENT = {
               letter:'A',
               text:'Adjust the Meridian\'s solar panels to maximize collection from the current angle of sunlight hitting the ship.',
               subtext:'The same geometry creating Earth\'s seasons affects solar collection on the Meridian. Optimize now.',
-              deltas:{nav:0, solar:14, signal:6, earth:-2},
+              deltas:{nav:0, solar:18, signal:8, earth:-3},
               branch:'A-solar-optimize',
               consequence:'Adjusting the solar panels based on the current sunlight angle — the same geometry causing Earth\'s northern summer — produces the highest solar collection of the mission so far. The angle between the Sun and the Meridian\'s panels is nearly optimal at this position. Solar power reserves jump significantly. The same principle that causes seasons on Earth determines solar collection efficiency on this ship. When the panels face the Sun at a perpendicular angle, collection is maximized. When the angle is shallow, the energy spreads across a larger panel area and collection drops. You have just applied seasonal geometry to ship engineering.'
             },
@@ -1639,7 +1649,7 @@ const CONTENT = {
               letter:'B',
               text:'Use the current observation position to take the most complete sensor reading of Earth\'s seasonal variation before moving on.',
               subtext:'This view of a tilted planet receiving differential sunlight cannot be replicated from the surface. Document it.',
-              deltas:{nav:0, solar:-6, signal:18, earth:-2},
+              deltas:{nav:0, solar:-10, signal:22, earth:-3},
               branch:'B-document-seasons',
               consequence:'The sensor data collected from this observation position is extraordinary — a complete picture of seasonal energy variation across Earth\'s surface, taken simultaneously from a single external vantage point. No Earth-based measurement could capture this. Signal clarity jumps as the data package is transmitted back to GSRA. Solar power costs reflect extended sensor operation. Scientists have been inferring Earth\'s seasonal geometry from surface measurements for centuries. What you just documented is what those inferences describe — seen directly, from outside, all at once. The data has been transmitted. Someone at GSRA is going to be very pleased.'
             },
@@ -1647,7 +1657,7 @@ const CONTENT = {
               letter:'C',
               text:'Maintain current heading without adjustment — the observation is complete and the Lighthouse is the priority.',
               subtext:'The mission is the Lighthouse. Document what you can without slowing down.',
-              deltas:{nav:4, solar:-2, signal:5, earth:-2},
+              deltas:{nav:6, solar:-4, signal:6, earth:-3},
               branch:'C-maintain-heading',
               consequence:'Maintaining heading conserves resources and keeps the mission on schedule. The crew logs the seasonal observation data as a secondary finding — not the mission priority, but worth noting. Navigation accuracy stays strong on the committed heading. Reasonable prioritization. The Lighthouse is the mission. Earth\'s seasonal geometry has been observed and logged. We proceed. I will note that the observation window for this particular view of Earth\'s tilt closes as we move outward — what was visible here will not be visible from our next position. The logged data preserves it.'
             }
@@ -1738,6 +1748,7 @@ const CONTENT = {
           day:7, type:'choice', isReveal:false,
           legLabel:'Leg 2 · Earth, Moon & Seasons',
           legTitle:'What Keeps Everything From Flying Apart',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes — open your book to Earth\'s Place in Universe, Topic 1, Lesson 2. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
           gaia:'The crew has been navigating through a solar system full of objects in motion. Earth orbits the Sun. The Moon orbits Earth. The Meridian follows a planned trajectory through all of it. None of these motions are accidents. They are the result of two forces in precise balance — gravity pulling inward and inertia carrying objects forward. Change one without the other and orbits break down. The Meridian\'s navigation systems depend on understanding this balance. And right now, something is testing it.',
           scenario:'The Meridian is approaching the region where Earth\'s gravitational field and the Moon\'s gravitational field both have measurable effects on the ship\'s trajectory. The navigation system is tracking both simultaneously.\n\nEarth\'s pull at current distance: 18 force units\nMoon\'s pull at current distance: 4 force units\nMeridian\'s current velocity: sufficient for stable trajectory if no correction is made\n\nThe question is not whether to correct — the question is how to use what the crew knows about gravity, inertia, and orbital motion to navigate this region most efficiently.\n\nGAIA: "An object in motion stays in motion unless acted upon by a force. That is inertia. Gravity is the force acting on the Meridian right now — two sources of it simultaneously. The crew\'s job is to decide how to respond."',
           exitTicketPrompt:'What is the law of universal gravitation, and what is inertia? Use the Meridian\'s current navigation situation as your example — explain how both gravity and inertia are affecting the ship right now. Make your claim: which navigation approach gives the crew the best balance between using gravitational forces efficiently and maintaining course control? Use evidence from today\'s reading to connect the science to your choice.',
@@ -1747,7 +1758,7 @@ const CONTENT = {
               letter:'A',
               text:'Use the Moon\'s gravitational field as a slingshot — adjust course to pass close to the Moon and use its gravity to accelerate toward the outer solar system.',
               subtext:'Gravity assists are real navigation techniques. The Moon\'s pull, used correctly, adds velocity without burning solar power.',
-              deltas:{nav:8, solar:12, signal:10, earth:-2},
+              deltas:{nav:10, solar:16, signal:12, earth:-3},
               branch:'A-moon-slingshot',
               consequence:'The lunar gravity assist works exactly as orbital mechanics predicts. The Meridian passes close to the Moon, trading a slight course deviation for significant velocity gain — the Moon\'s gravitational pull accelerates the ship, and inertia carries that acceleration forward after the closest approach. Solar power reserves jump because the engines do less work. Navigation accuracy improves as the crew successfully executes a precision orbital maneuver. Gravity assist. The Moon pulls the Meridian, the Meridian\'s inertia carries that velocity outward, and the Moon loses an immeasurably small amount of its own orbital energy in the exchange. This is how spacecraft reach the outer solar system without carrying impossibly large fuel loads. You just did it.'
             },
@@ -1755,7 +1766,7 @@ const CONTENT = {
               letter:'B',
               text:'Maintain planned trajectory — navigate between Earth and Moon without allowing either gravitational field to alter course.',
               subtext:'Precision navigation. Use the engines to counteract both gravitational pulls and stay exactly on the planned heading.',
-              deltas:{nav:5, solar:-10, signal:8, earth:-2},
+              deltas:{nav:8, solar:-14, signal:10, earth:-3},
               branch:'B-precision-nav',
               consequence:'Maintaining planned trajectory through the combined gravitational field of Earth and Moon requires constant engine correction — inertia carries the ship forward but gravity from two sources constantly nudges it off course. Navigation accuracy stays high because the heading never deviates. Solar power takes a significant hit from continuous engine use. Precise. Expensive. The engines fought both gravitational fields simultaneously to hold the planned course. The law of universal gravitation does not make exceptions for planned trajectories. Every deviation required a correction. You corrected them all. We are exactly on heading.'
             },
@@ -1763,7 +1774,7 @@ const CONTENT = {
               letter:'C',
               text:'Allow Earth\'s gravitational field to curve the trajectory slightly — use the deviation to collect additional sensor data on Earth\'s gravitational field strength.',
               subtext:'The deviation is within safe parameters. Use it scientifically rather than correcting it.',
-              deltas:{nav:-5, solar:-4, signal:15, earth:-2},
+              deltas:{nav:-8, solar:-6, signal:18, earth:-3},
               branch:'C-allow-deviation',
               consequence:'Allowing the gravitational deviation produces excellent data — real-time measurements of Earth\'s gravitational field at multiple distances, more detailed than anything in the Meridian\'s database. Signal clarity jumps as the data is processed and transmitted. Navigation accuracy drops because the planned heading is no longer intact — recovering the correct trajectory will require additional course correction in the next leg. The data is valuable. The navigation cost is real. This is a genuine scientific trade-off — knowledge acquired at the expense of efficiency. I am not going to tell you it was wrong. I am going to note that the heading recovery in Leg 3 will require additional resources.'
             }
@@ -1903,6 +1914,7 @@ const CONTENT = {
           day:1, type:'choice', isReveal:true,
           legLabel:'Leg 3 · Solar System Scale',
           legTitle:'Jupiter Is Right There',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes — open your book to Earth\'s Place in Universe, Topic 2, Lesson 1. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
           gaia:'The Meridian has cleared the inner solar system. The Earth-Moon system is behind us. And I want to take a moment before we continue to the outer solar system to show the crew something on the navigation display. Jupiter is currently visible on long-range optical sensors. I am putting it on screen now. I mention this because of what the crew already knows about gravitational force — Jupiter has more mass than all the other planets in the solar system combined. At our current distance, its gravitational influence on the Meridian\'s trajectory is measurable. Scale is about to become the central challenge of this leg. Today, for the first time, you can see what that means.',
           scenario:'The navigation display shows Jupiter as a resolved disk — not a point of light, but a visible sphere with cloud bands. The Meridian is still 400 million kilometers from Jupiter, but at this scale that counts as nearby.\n\nGAIA has flagged a navigation decision. The most direct route to the Lighthouse passes within 2 AU of Jupiter. Two alternative routes add time but reduce Jupiter\'s gravitational influence on the trajectory. The crew must decide before the Meridian\'s course becomes difficult to alter.\n\nGAIA: "Jupiter\'s gravitational field at 2 AU is not negligible. You learned in Leg 1 that gravitational force depends on mass and distance. Jupiter has 318 times Earth\'s mass. Even at distance, that matters. The question is whether we use that mass to our advantage — as we did with the Moon in Leg 2 — or navigate around it."',
           exitTicketPrompt:'Jupiter has 318 times Earth\'s mass. Using what you know about the relationship between mass, distance, and gravitational force, explain what that means for the Meridian\'s navigation at a distance of 2 AU. Make your claim: which approach to Jupiter does the crew take, and why does the science of gravitational force support that choice?',
@@ -1912,7 +1924,7 @@ const CONTENT = {
               letter:'A',
               text:'Take the direct route — pass within 2 AU of Jupiter and use its gravitational field to accelerate toward the outer solar system.',
               subtext:'The same gravity assist principle that worked with the Moon applies here. Jupiter\'s mass is far greater — the assist will be significant.',
-              deltas:{nav:-4, solar:18, signal:8, earth:-2},
+              deltas:{nav:-6, solar:22, signal:10, earth:-3},
               branch:'A-jupiter-assist',
               consequence:'The Jupiter gravity assist is the most dramatic navigation event of the mission so far. The Meridian swings through Jupiter\'s gravitational field, trading a controlled course deviation for a massive velocity gain — Jupiter\'s immense mass accelerates the ship far beyond what any engine burn could achieve at this fuel cost. Solar power reserves jump as engines do minimal work. Navigation accuracy takes a hit during the complex orbital maneuver but recovers as the crew locks onto the new heading. The Lighthouse is now measurably closer on the timeline. The same principle that moved a marble in the Conversion Loop is moving a ship through the outer solar system.'
             },
@@ -1920,7 +1932,7 @@ const CONTENT = {
               letter:'B',
               text:'Take the wide route — stay at least 5 AU from Jupiter to minimize its gravitational influence on the trajectory.',
               subtext:'Precision navigation. The direct route introduces variables we cannot fully control at this stage of the mission.',
-              deltas:{nav:8, solar:-10, signal:5, earth:-2},
+              deltas:{nav:12, solar:-14, signal:6, earth:-3},
               branch:'B-wide-route',
               consequence:'The wide route keeps the Meridian safely clear of Jupiter\'s dominant gravitational field. Navigation accuracy stays high because the crew controls every course element without external gravitational interference. Solar power costs reflect the additional engine work required to cover the longer distance. The Lighthouse timeline extends slightly — but the crew arrives on a precisely controlled heading with full confidence in their position. Jupiter remains visible on sensors, growing and then shrinking as they arc around it at distance.'
             },
@@ -1928,7 +1940,7 @@ const CONTENT = {
               letter:'C',
               text:'Pass Jupiter at moderate distance — close enough for a partial gravity assist without committing to the full swing.',
               subtext:'A controlled middle path. Some velocity gain, manageable course correction, acceptable risk.',
-              deltas:{nav:3, solar:8, signal:6, earth:-2},
+              deltas:{nav:4, solar:12, signal:8, earth:-3},
               branch:'C-moderate-pass',
               consequence:'The moderate pass captures some of Jupiter\'s gravitational acceleration without the navigation complexity of a full assist. Solar power and velocity both benefit, though less dramatically than a full assist. Navigation stays manageable because the course deviation is smaller and more predictable. As the Meridian passes, Jupiter\'s four largest moons are visible on optical sensors — Io, Europa, Ganymede, Callisto — four of the most geologically active objects in the solar system, each with its own orbital relationship to the planet they circle. GAIA: "Four moons. Four completely different worlds. Same planet, same gravitational parent. The variation is extraordinary. I note this because it is relevant to what we are about to read."'
             }
@@ -1957,8 +1969,9 @@ const CONTENT = {
           day:3, type:'graph', isReveal:false,
           legLabel:'Leg 3 · Solar System Scale',
           legTitle:'If Earth Were a Marble',
-          gaia:'I want to show the crew what the solar system actually looks like at scale. Not a diagram where the planets are visible and evenly spaced — those are wrong. Every solar system diagram in every textbook is wrong because if you drew the planets at true relative size and true relative distance, the planets would be invisible dots separated by enormous empty space. Today we build a scaled model using AU distances. The scale is this: if the distance from Earth to the Sun is one meter, everything else adjusts proportionally. What the crew is about to calculate will not match what they expected.',
-          scenario:'GAIA presents the solar system distances in AU and asks the crew to convert them to the scaled model where 1 AU = 1 meter. Then she asks a second question: if Earth is the size of a marble (about 1 cm), how big is the Sun at the same scale? The answers to both questions are the lesson.\n\nGAIA: "A bar graph of these distances would require the paper to be approximately the width of a football field to show Neptune and the Sun on the same scale with Earth visible. This is why scientists use scaled models and ratio tables instead of standard graphs. Some data sets do not fit on a piece of paper. The tool has to match the problem."',
+          gaia:'Today the crew is going to build a scaled number line of the solar system. A scaled number line is a number line where each unit represents a real distance — we pick a scale and place each object at its correct position. The scale for today: 1 AU equals 1 centimeter on your paper. That means Earth is 1 cm from the Sun. Jupiter is 5.2 cm. Neptune is 30.1 cm. The Lighthouse signal at 85 AU is 85 cm — almost the length of your desk. The data table below shows each distance in AU. Your task: draw a number line on your paper and place each object at its correct scaled position. Every textbook diagram that shows planets evenly spaced is misleading — it compresses the distances so planets are visible. Today you see what the distances actually look like.',
+          scenario:'The data table below shows each solar system object\'s distance from the Sun in AU. Using the scale 1 AU = 1 centimeter, place each object at the correct position on a number line drawn on your paper.\n\nBefore you start — make a prediction: do you think Neptune will fit on your paper? Will the Lighthouse signal origin at 85 AU fit? Build the number line first, then check your prediction.\n\nGAIA: "A scaled number line is different from a bar graph. On a bar graph, the space between bars means nothing. On a scaled number line, the space between marks represents real, empty space. The vast emptiness between planets is not a mistake in the drawing. It is the most important thing the drawing shows."',
+          showNumberLineAnswer:true,
           graphData:{
             title:'Solar System — True Scale Model (1 AU = 1 meter)',
             teacherNote:'This is a scaled number line / ratio table day. Students calculate distances using the ratio 1 AU = 1 meter. Key results: Mercury 0.39m, Venus 0.72m, Earth 1.0m, Mars 1.52m, Jupiter 5.2m, Saturn 9.58m, Uranus 19.2m, Neptune 30.1m, Lighthouse signal 85m. Then: if Earth diameter = 1cm, Sun diameter = 109cm (over 1 meter wide). The Lighthouse at 85m scale is the length of a football field from the Sun. Draw as a number line on the board, not a bar graph. The empty space between planets is the point.',
@@ -2059,7 +2072,8 @@ const CONTENT = {
           day:6, type:'choice', isReveal:true,
           legLabel:'Leg 3 · Solar System Scale',
           legTitle:'Something in the Transmission',
-          gaia:'I have decoded more of the Lighthouse transmission. I want to show the crew what I found — as a graph, because the data is clearest that way. I want to be honest with you: I understand parts of what this shows. I do not understand all of it yet. The crew will be in the same position as I am — reading data that is partially interpretable, making a judgment call without complete information. This is what real scientific decisions look like. I am not going to wait until I have full understanding before showing you. You need to see this now.',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes — open your book to Earth\'s Place in Universe, Topic 2, Lesson 1. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
+          gaia:'I have decoded more of the Lighthouse transmission. I want to show the crew what I found — as a line graph showing four different signals the Lighthouse has been measuring over 47 years. You have read line graphs since the Prometheus mission. This is the same tool — time on the X axis, intensity on the Y axis, multiple lines on the same graph. I want to be honest: I understand parts of what this shows. I do not understand all of it yet. The crew will be in the same position I am — reading familiar data in a familiar format, but making a judgment call without complete information. This is what real scientific decisions look like.',
           scenario:'GAIA displays a frequency map from the Lighthouse transmission — a line graph showing signal frequencies detected at regular intervals over the past 47 years. Most frequencies show steady baselines. Three frequencies show gradual changes over time. One frequency shows a dramatic spike beginning exactly eight months ago — the same time the Prometheus energy pulse would have reached this region.\n\nThe crew can see the spike. They can see it corresponds to the Prometheus timeline. They cannot yet interpret what the frequency represents or what the Lighthouse was monitoring.\n\nGAIA: "I am showing you this because a decision needs to be made about our approach. You do not have all the context yet. Make the best call you can with what you understand. This is, incidentally, exactly how science works most of the time."',
           exitTicketPrompt:'The frequency map shows a spike beginning eight months ago — the same time the Prometheus pulse would have reached this location. What does that timing tell you, even without knowing what the frequency represents? Make your claim: which approach does the crew take based on this partial information, and what is your scientific reasoning for that choice?',
           discussionPrompt:'GAIA says she does not fully understand the data yet but is showing it anyway because a decision needs to be made. Is that good scientific practice — acting on incomplete data — or should scientists wait until they have full understanding? What evidence from the graph can the crew use to reason about their approach, even without knowing what the frequencies mean?',
@@ -2082,7 +2096,7 @@ const CONTENT = {
               {q:'5', a:'The crew cannot fully interpret the frequencies yet because they don\'t know what the Lighthouse was designed to monitor or what each frequency represents. But the timing of the spike is clear evidence of a connection to the Prometheus experiment, which gives the crew enough information to make a directional decision.'}
             ]
           },
-          gaiaGraphNote:'"Four lines. Three baselines that have been running for 47 years. One that spiked eight months ago. I want the crew to notice something about Frequency B — the one showing a gradual increase over time. It has been rising slowly for nearly five decades. I am not ready to explain what it represents. But I want you to remember it. It will matter in Leg 4."',
+          gaiaGraphNote:'"Four lines on one graph — the same format you used to compare Section C and Section F on the Prometheus, and to compare Northern and Southern Hemisphere daylight hours in Leg 2. Three lines show baselines. One shows a dramatic spike. Read the lines the same way you always have: what is the trend? Where does it change? What is the shape telling you? Notice Frequency B — the line showing a gradual increase over 47 years. I am not ready to explain what it represents. But I want you to remember it. It will matter in Leg 4."',
           graphQuestions:[
             '1. Describe what each of the four frequency lines shows over the 47-year record. Which one shows the most dramatic change?',
             '2. At what point in time does the Prometheus Match frequency spike? How does that timing connect to what you know about the Prometheus experiment?',
@@ -2095,7 +2109,7 @@ const CONTENT = {
               letter:'A',
               text:'Accelerate toward the Lighthouse — get close enough to decode more of the transmission before making any other decisions.',
               subtext:'The spike in the graph is connected to the Prometheus. Getting closer will reveal what the Lighthouse was actually monitoring.',
-              deltas:{nav:-5, solar:-12, signal:22, earth:-2},
+              deltas:{nav:-8, solar:-16, signal:26, earth:-3},
               branch:'A-accelerate',
               consequence:'The acceleration burns significant solar power but the payoff is immediate — signal clarity jumps dramatically as the Meridian closes the distance. Two more frequencies begin resolving into interpretable data. GAIA can now confirm: the Lighthouse was not built to broadcast to anyone on Earth. It was built to receive and analyze a specific energy signature — one that matches the Prometheus experiment\'s output almost exactly. Someone planned for this. The question of who is now the central mystery of the mission.'
             },
@@ -2103,17 +2117,17 @@ const CONTENT = {
               letter:'B',
               text:'Hold position and transmit everything back to GSRA — let Mission Control interpret the data before the crew proceeds.',
               subtext:'The data is too significant to act on without expert review. GSRA should know what we\'ve found before we go further.',
-              deltas:{nav:5, solar:-4, signal:-6, earth:-4},
+              deltas:{nav:8, solar:-6, signal:-8, earth:-6},
               branch:'B-transmit-gsra',
               consequence:'The full transmission package reaches GSRA within hours. The response comes back in six: proceed to the Lighthouse, authorized. Mission Control has confirmed they cannot interpret the frequency data from Earth — the crew must get closer. The delay costs signal clarity as the Meridian holds position instead of closing distance. Earth Status ticks down slightly — whatever is being measured in Frequency B continued changing during the wait. GAIA: "GSRA says proceed. I want the crew to note that they responded in six hours. Someone at Mission Control was waiting for this transmission."'
             },
             {
               letter:'C',
-              text:'Adjust course to approach from the angle GAIA recommends — she has a theory about why the approach vector matters.',
+              text:'Adjust course to approach from the angle GAIA recommends — she has a theory about why the approach angle matters.',
               subtext:'GAIA has been analyzing the frequency map longer than we have. If she has a theory, it is worth trusting.',
-              deltas:{nav:10, solar:-8, signal:18, earth:-2},
+              deltas:{nav:14, solar:-10, signal:22, earth:-3},
               branch:'C-gaia-vector',
-              consequence:'The approach angle GAIA recommended turns out to be significant — the Lighthouse\'s transmission is directional, not omnidirectional. By approaching along the optimal vector, the Meridian receives a stronger and cleaner signal than any other approach angle would have provided. Navigation accuracy improves as the vector calculation proves precise. Signal clarity jumps. GAIA: "The Lighthouse was built to transmit in a specific direction. That direction points toward the inner solar system — toward Earth. Whatever it has been monitoring, it was always meant to send that data home. I want the crew to hold that thought."'
+              consequence:'The approach angle GAIA recommended turns out to be significant — the Lighthouse\'s transmission is directional, not broadcasting in all directions equally. By approaching along the optimal approach angle, the Meridian receives a stronger and cleaner signal than any other approach angle would have provided. Navigation accuracy improves as the vector calculation proves precise. Signal clarity jumps. GAIA: "The Lighthouse was built to transmit in a specific direction. That direction points toward the inner solar system — toward Earth. Whatever it has been monitoring, it was always meant to send that data home. I want the crew to hold that thought."'
             }
           ]
         },
@@ -2497,6 +2511,10 @@ function renderMissionScreen() {
   if (cnt.gaiaRecall && !isMeridianMode) {
     extra.innerHTML += `<div class="gaia-recall-box"><div class="gaia-recall-label">⟵ GAIA Recall — From the Prometheus</div><div class="gaia-recall-text">${cnt.gaiaRecall}</div></div>`;
   }
+  // Choice reading focus — shown on choice days only
+  if (isChoiceDay && cnt.choiceReadingFocus) {
+    extra.innerHTML += `<div class="choice-reading-box"><div class="choice-reading-label">📖 First Read — Before You Vote</div><div class="choice-reading-text">${cnt.choiceReadingFocus}</div></div>`;
+  }
 
   if (dayType === 'deepen') extra.innerHTML += renderDeepenContent(cnt);
   else if (dayType === 'graph') extra.innerHTML += renderGraphContent(cnt);
@@ -2634,7 +2652,8 @@ function renderDeepenContent(c) {
   if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS — Reading Focus' : 'GAIA — To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${c.gaiaReadingPrompt}</div></div>`; }
   if (c.vocabFocus && c.vocabFocus.length) {
     h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
-    c.vocabFocus.forEach(v => { h += `<span style="background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:3px;padding:3px 9px;font-family:var(--font-mono);font-size:11px;color:var(--accent)">${v}</span>`; });
+    c.vocabFocus.forEach(v => { h += `<span style="background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:3px;padding:3p
+x 9px;font-family:var(--font-mono);font-size:11px;color:var(--accent)">${v}</span>`; });
     h += '</div></div>';
   }
   if (c.spiralReview) h += `<div style="background:rgba(0,229,204,0.04);border:1px solid rgba(0,229,204,0.15);border-left:3px solid var(--accent-dim);border-radius:6px;padding:10px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px">⟵ Spiral Review — Campaign 1</div><div style="font-family:var(--font-body);font-size:13px;color:var(--text-secondary);line-height:1.5">${c.spiralReview}</div></div>`;
@@ -2648,17 +2667,31 @@ function renderGraphContent(c) {
     h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margin-bottom:14px">`;
     h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">📊 ${gd.title}</div>`;
 
-    // rawDataOnly: show data as a formatted list/table, not a rendered chart
+    // rawDataOnly: show data as formatted cards, not a chart
     if (c.rawDataOnly && gd.bars) {
-      h += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:8px">';
+      h += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:12px">';
       gd.bars.forEach(b => {
-        h += `<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:4px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">`;
-        h += `<span style="font-family:var(--font-mono);font-size:13px;color:var(--text-secondary)">${b.label}</span>`;
-        h += `<span style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--accent)">${b.value}</span>`;
-        h += `</div>`;
+        if (b.value === 0) {
+          h += `<div style="background:rgba(255,255,255,0.03);border:1px dashed var(--border);border-radius:4px;padding:8px 12px;display:flex;justify-content:center;align-items:center"><span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">${b.label}</span></div>`;
+        } else {
+          h += `<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:4px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">`;
+          h += `<span style="font-family:var(--font-mono);font-size:13px;color:var(--text-secondary)">${b.label}</span>`;
+          h += `<span style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--accent)">${b.value}</span>`;
+          h += `</div>`;
+        }
       });
       h += '</div>';
-      if (gd.yLabel) h += `<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);margin-top:4px">Values in: ${gd.yLabel}</div>`;
+      if (gd.yLabel) h += `<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);margin-bottom:8px">Values in: ${gd.yLabel}</div>`;
+
+      // Show answer button for number line reveal
+      if (c.showNumberLineAnswer) {
+        h += `<div id="number-line-reveal" style="margin-top:12px">`;
+        h += `<button onclick="document.getElementById('nl-answer').style.display='block';this.style.display='none'" style="font-family:var(--font-mono);font-size:11px;background:rgba(0,229,204,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">▶ Show What Your Number Line Should Look Like</button>`;
+        h += `<div id="nl-answer" style="display:none;margin-top:12px">`;
+        // Render the number line SVG
+        h += renderNumberLineSVG();
+        h += `</div></div>`;
+      }
     } else if (gd.pie && gd.bars) {
       h += renderPieChart(gd);
     } else if (gd.bars && gd.bars2) {
@@ -2683,8 +2716,7 @@ function renderGraphContent(c) {
     }
     h += '</div>';
   }
-  if (c.gaiaGraphNote) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-
-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA — On This Graph</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaGraphNote}</div></div>`;
+  if (c.gaiaGraphNote) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA — On This Graph</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaGraphNote}</div></div>`;
   if (c.graphQuestions && c.graphQuestions.length) {
     h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px">Discussion Questions</div>';
     c.graphQuestions.forEach(q => { h += `<div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px;padding-left:10px;border-left:2px solid var(--border-bright)">${q}</div>`; });
@@ -2817,8 +2849,53 @@ function renderDoubleBarGraph(gd) {
   return svg;
 }
 
+function renderNumberLineSVG() {
+  // Solar system number line — 1 AU = 6px, capped at 90 AU
+  const objects = [
+    {name:'Sun', au:0, color:'#ffdd00'},
+    {name:'Mercury', au:0.39, color:'#aaaaaa'},
+    {name:'Venus', au:0.72, color:'#ffaa44'},
+    {name:'Earth', au:1.0, color:'#00c8ff'},
+    {name:'Mars', au:1.52, color:'#ff4444'},
+    {name:'Jupiter', au:5.2, color:'#ffcc88'},
+    {name:'Saturn', au:9.58, color:'#eecc88'},
+    {name:'Uranus', au:19.2, color:'#88ddff'},
+    {name:'Neptune', au:30.1, color:'#4466ff'},
+    {name:'Lighthouse\nSignal', au:85, color:'#00e5cc'}
+  ];
+  const scale = 7; // px per AU
+  const W = 640, H = 110, lineY = 55, padL = 30, padR = 20;
+  const maxAU = 88;
+  const toX = au => padL + (au / maxAU) * (W - padL - padR);
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;margin-top:8px">`;
+  // Axis line
+  svg += `<line x1="${padL}" y1="${lineY}" x2="${W-padR}" y2="${lineY}" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>`;
+  // AU tick marks every 10
+  for (let au = 0; au <= 90; au += 10) {
+    const x = toX(au);
+    svg += `<line x1="${x}" y1="${lineY-4}" x2="${x}" y2="${lineY+4}" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>`;
+    svg += `<text x="${x}" y="${lineY+16}" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">${au} AU</text>`;
+  }
+  // Objects
+  objects.forEach((obj, i) => {
+    const x = toX(obj.au);
+    const above = i % 2 === 0;
+    const dotY = lineY;
+    const labelY = above ? lineY - 22 : lineY + 30;
+    svg += `<circle cx="${x}" cy="${dotY}" r="5" fill="${obj.color}" stroke="#020d10" stroke-width="1.5"/>`;
+    const lines = obj.name.split('\n');
+    lines.forEach((line, li) => {
+      svg += `<text x="${x}" y="${labelY + li * 11}" font-family="Share Tech Mono,monospace" font-size="9" fill="${obj.color}" text-anchor="middle">${line}</text>`;
+    });
+  });
+  svg += '</svg>';
+  return svg;
+}
+
 function renderPieChart(gd) {
   const bars = gd.bars;
+  const total = bars.reduce((sum, b) => sum + b.value, 0);
   const W = 520, H = 260, cx = 160, cy = 125, r = 105;
   const sliceColors = ['#00e5cc','#ffdd00','#aa66ff','#00ff88','#ff3355','#ff8800'];
   let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:0 auto">`;
@@ -2850,28 +2927,6 @@ function renderPieChart(gd) {
 function renderLineGraph(gd) {
   const data = gd.data || gd.points || [];
   const vals = data.map(d => typeof d.value !== 'undefined' ? Math.abs(d.value) : d);
-  const maxVal = Math.max(...vals) || 1;
-  const W = 520, H = 210, padL = 50, padB = 40, padT = 20, padR = 12;
-  const chartW = W - padL - padR, chartH = H - padT - padB;
-  const gap = chartW / Math.max(data.length - 1, 1);
-  let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">`;
-  [0,25,50,75,100].forEach(pct => {
-    const yy = padT + chartH * (pct/100);
-    svg += `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W-padR}" y2="${yy.toFixed(1)}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`;
-    svg += `<text x="${padL-4}" y="${(yy+3).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">${Math.round(maxVal*(1-pct/100))}</text>`;
-  });
-  const points = data.map((d,i) => ({ x: padL + gap*i, y: padT + (1 - Math.abs(d.value||0)/maxVal)*chartH, d }));
-  const pathD = points.map((p,i) => (i===0?'M':'L') + p.x.toFixed(1) + ' ' + p.y.toFixed(1)).join(' ');
-  svg += `<path d="${pathD}" fill="none" stroke="#00e5cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
-  points.forEach(p => {
-    svg += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5" fill="#00e5cc" stroke="#020d10" stroke-width="1.5"/>`;
-    svg += `<text x="${p.x.toFixed(1)}" y="${(padT+chartH+16).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.6)" text-anchor="middle">${(p.d.label||'').replace('Month ','M')}</text>`;
-  });
-  svg += `<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
-  svg += `<line x1="${padL}" y1="${padT+chartH}" x2="${W-padR}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
-  svg += '</svg>';
-  return svg;
-}
 
 function renderMultiLineGraph(gd) {
   const lines = gd.multiLine || [];
