@@ -3764,9 +3764,18 @@ function toast(msg, type) {
 // BOOT
 // ============================================================
 window.addEventListener('load', () => {
-  const loaded = load();
-  if (loaded && state.configured) showHome();
-  else showScreen('screen-setup');
+  // Show JS is running
+  const btn = document.querySelector('#screen-setup .btn-primary');
+  if (btn) btn.textContent = 'Initialize Mission Control — JS OK →';
+
+  try {
+    const loaded = load();
+    if (loaded && state.configured) showHome();
+    else showScreen('screen-setup');
+  } catch(err) {
+    if (btn) btn.textContent = 'LOAD ERROR: ' + err.message;
+    console.error('Boot error:', err);
+  }
 });
 </script>
 </body>
