@@ -2078,8 +2078,7 @@ const CONTENT = {
           shortDayNote:'Short day: Questions 1 and 2 only. The size-distance pattern and normalization are the core lessons.',
           noChoice:true
         },
-            '1. List the inner planets (closer to the Sun) and their relative diameters. List the outer planets and their relative diameters. What pattern do you notice?',
-            '2. Jupiter is 11.2 times Earth\'s diameter. Saturn is 9.45 times. Why are the outer planets so much larger than the inner planets? Use today\'s reading on solar system formation to explain.',
+
         // -- DAY 6 -- GRAPH + CHOICE . The Decoded Signal ---------
         {
           day:6, type:'choice', isReveal:true,
@@ -2091,7 +2090,7 @@ const CONTENT = {
           exitTicketPrompt:'The line graph shows a spike beginning eight months ago -- the same time the Prometheus pulse would have reached this location. What does that timing tell you, even without knowing what the signal represents? Make your claim: which approach does the crew take based on this partial information, and what is your scientific reasoning for that choice?',
           discussionPrompt:'GAIA says she does not fully understand the data yet but is showing it anyway because a decision needs to be made. Is that good scientific practice -- acting on incomplete data -- or should scientists wait until they have full understanding? What evidence from the graph can the crew use to reason about their approach, even without knowing what the frequencies mean?',
           graphData:{
-            title:'Lighthouse Transmission -- Frequency Map (47-Year Record)',
+            title:'Lighthouse Transmission -- Signal Data (47-Year Record)',
             teacherNote:'Draw as a multi-line graph. X-axis: years (47-year span, mark year 47 as "8 months ago" when Prometheus pulse arrived). Y-axis: signal frequency intensity. Show 4 lines: three steady/gradual baselines and one that spikes dramatically at year 46.5. The spike line is the key visual -- it starts at baseline and shoots upward exactly when the Prometheus pulse arrived. Students cannot interpret what the frequency means, only that the timing is significant. This deliberate ambiguity is the pedagogical point.',
             multiLine:[
               {section:'Frequency A', values:[12,12,11,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,13,12,12,11,12,12,85], color:'safe', note:'Steady baseline frequency -- slight natural variation, no trend'},
@@ -2550,6 +2549,8 @@ function renderMissionScreen() {
   if (dayType === 'deepen') extra.innerHTML += renderDeepenContent(cnt);
   else if (dayType === 'graph') extra.innerHTML += renderGraphContent(cnt);
   else if (dayType === 'climax') extra.innerHTML += renderClimaxContent(cnt);
+  // Choice days may also have graphData (e.g. Leg 3 Day 6 signal graph)
+  else if (dayType === 'choice' && cnt.graphData) extra.innerHTML += renderGraphContent(cnt);
 
   // Exit ticket and discussion only on choice days
   if (isChoiceDay) {
@@ -2667,11 +2668,11 @@ function updateDayTypeBanner(cnt, cls) {
   const leg = CONTENT.legs.find(l => l.id === cls.leg);
   const totalDays = leg ? leg.days.length : 10;
   badge.className = 'day-type-badge';
-  if (dayType === 'choice') { badge.classList.add('badge-choice'); badge.textContent = 'Choice Day'; }
-  else if (dayType === 'deepen') { badge.classList.add('badge-deepen'); badge.textContent = 'Lesson Day'; }
-  else if (dayType === 'graph') { badge.classList.add('badge-graph'); badge.textContent = 'Graph Day'; }
-  else { badge.classList.add('badge-climax'); badge.textContent = 'Leg Milestone'; }
-  desc.textContent = `Day ${cnt.day} of ${totalDays} . Leg ${cls.leg}`;
+  if (dayType === 'choice') { badge.classList.add('badge-choice'); badge.innerHTML = '&#9889; Choice Day'; }
+  else if (dayType === 'deepen') { badge.classList.add('badge-deepen'); badge.innerHTML = '&#128214; Lesson Day'; }
+  else if (dayType === 'graph') { badge.classList.add('badge-graph'); badge.innerHTML = '&#128202; Graph Day'; }
+  else { badge.classList.add('badge-climax'); badge.innerHTML = '&#127937; Leg Milestone'; }
+  desc.textContent = 'Day ' + cnt.day + ' of ' + totalDays + ' - Leg ' + cls.leg;
 }
 
 // ============================================================
@@ -2694,9 +2695,9 @@ function renderGraphContent(c) {
   let h = '';
   if (c.graphData) {
     const gd = c.graphData;
-    h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margi
-n-bottom:14px">`;
-    h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">${gd.title}</div>`;
+    h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margin-bottom:14px">`;
+    h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">${
+gd.title}</div>`;
 
     // rawDataOnly: show data as formatted cards, not a chart
     if (c.rawDataOnly && gd.bars) {
@@ -2868,10 +2869,10 @@ function renderDoubleBarGraph(gd) {
   // Legend - below chart to avoid overlap
   const legendBaseY = padT + chartH + 34;
   const legendCenterX = padL + chartW / 2;
-  svg += `<rect x="${legendCenterX-140}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[0]}" opacity="0.85" rx="2"/>`;
-  svg += `<text x="${legendCenterX-122}" y="${legendBaseY}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.85)">${labels[0]}</text>`;
-  svg += `<rect x="${legendCenterX+40}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[1]}" opacity="0.85" rx="2"/>`;
-  svg += `<text x="${legendCenterX+58}" y="${legendBaseY}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.85)">${labels[1]}</text>`;
+  svg += `<rect x="${legendCenterX-160}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[0]}" opacity="0.85" rx="2"/>`;
+  svg += `<text x="${legendCenterX-142}" y="${legendBaseY}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.85)">${labels[0]}</text>`;
+  svg += `<rect x="${legendCenterX+60}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[1]}" opacity="0.85" rx="2"/>`;
+  svg += `<text x="${legendCenterX+78}" y="${legendBaseY}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.85)">${labels[1]}</text>`;
 
   // Axes
   svg += `<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
@@ -2881,48 +2882,50 @@ function renderDoubleBarGraph(gd) {
 }
 
 function renderNumberLineSVG() {
-  // Solar system number line - 1 AU = 6px, capped at 90 AU
+  // Solar system number line - label only key objects to avoid crowding
   const objects = [
-    {name:'Sun', au:0, color:'#ffdd00'},
-    {name:'Mercury', au:0.39, color:'#aaaaaa'},
-    {name:'Venus', au:0.72, color:'#ffaa44'},
-    {name:'Earth', au:1.0, color:'#00c8ff'},
-    {name:'Mars', au:1.52, color:'#ff4444'},
-    {name:'Jupiter', au:5.2, color:'#ffcc88'},
-    {name:'Saturn', au:9.58, color:'#eecc88'},
-    {name:'Uranus', au:19.2, color:'#88ddff'},
-    {name:'Neptune', au:30.1, color:'#4466ff'},
-    {name:'Lighthouse\nSignal', au:85, color:'#00e5cc'}
+    {name:'Sun', au:0, color:'#ffdd00', label:true, above:true},
+    {name:'Mercury', au:0.39, color:'#aaaaaa', label:false},
+    {name:'Venus', au:0.72, color:'#ffaa44', label:false},
+    {name:'Earth', au:1.0, color:'#00c8ff', label:true, above:false},
+    {name:'Mars', au:1.52, color:'#ff4444', label:false},
+    {name:'Jupiter', au:5.2, color:'#ffcc88', label:true, above:true},
+    {name:'Saturn', au:9.58, color:'#eecc88', label:false},
+    {name:'Uranus', au:19.2, color:'#88ddff', label:false},
+    {name:'Neptune', au:30.1, color:'#4466ff', label:true, above:false},
+    {name:'Lighthouse', au:85, color:'#00e5cc', label:true, above:true}
   ];
-  const scale = 7; // px per AU
-  const W = 640, H = 110, lineY = 55, padL = 30, padR = 20;
+  const W = 680, H = 130, lineY = 65, padL = 40, padR = 30;
   const maxAU = 88;
   const toX = au => padL + (au / maxAU) * (W - padL - padR);
 
   let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;margin-top:8px">`;
-  // Axis line
+  // Axis
   svg += `<line x1="${padL}" y1="${lineY}" x2="${W-padR}" y2="${lineY}" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>`;
   // AU tick marks every 10
   for (let au = 0; au <= 90; au += 10) {
     const x = toX(au);
     svg += `<line x1="${x}" y1="${lineY-4}" x2="${x}" y2="${lineY+4}" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>`;
-    svg += `<text x="${x}" y="${lineY+16}" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">${au} AU</text>`;
+    svg += `<text x="${x}" y="${lineY+18}" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">${au}</text>`;
   }
-  // Objects
-  objects.forEach((obj, i) => {
+  // X axis label
+  svg += `<text x="${W/2}" y="${H-2}" font-family="Share Tech Mono,monospace" font-size="8" fill="rgba(255,255,255,0.3)" text-anchor="middle">AU from Sun (1 AU = Earth-Sun distance)</text>`;
+  // Objects - dots for all, labels only for key ones
+  objects.forEach(obj => {
     const x = toX(obj.au);
-    const above = i % 2 === 0;
-    const dotY = lineY;
-    const labelY = above ? lineY - 22 : lineY + 30;
-    svg += `<circle cx="${x}" cy="${dotY}" r="5" fill="${obj.color}" stroke="#020d10" stroke-width="1.5"/>`;
-    const lines = obj.name.split('\n');
-    lines.forEach((line, li) => {
-      svg += `<text x="${x}" y="${labelY + li * 11}" font-family="Share Tech Mono,monospace" font-size="9" fill="${obj.color}" text-anchor="middle">${line}</text>`;
-    });
+    svg += `<circle cx="${x}" cy="${lineY}" r="${obj.label ? 6 : 3}" fill="${obj.color}" stroke="#020d10" stroke-width="1.5"/>`;
+    if (obj.label) {
+      const labelY = obj.above ? lineY - 20 : lineY + 34;
+      const auY = obj.above ? lineY - 10 : lineY + 44;
+      svg += `<line x1="${x}" y1="${lineY}" x2="${x}" y2="${obj.above ? lineY-14 : lineY+14}" stroke="${obj.color}" stroke-width="1" opacity="0.5"/>`;
+      svg += `<text x="${x}" y="${labelY}" font-family="Share Tech Mono,monospace" font-size="10" fill="${obj.color}" text-anchor="middle">${obj.name}</text>`;
+      svg += `<text x="${x}" y="${auY}" font-family="Share Tech Mono,monospace" font-size="8" fill="rgba(255,255,255,0.4)" text-anchor="middle">${obj.au} AU</text>`;
+    }
   });
   svg += '</svg>';
   return svg;
 }
+
 
 function renderPieChart(gd) {
   const bars = gd.bars;
@@ -3430,15 +3433,16 @@ function populateDayJump() {
   if (!sel || state.activeClass === null) return;
   const cls = state.classes[state.activeClass];
   sel.innerHTML = '<option value="">- Jump to Day -</option>';
-  const typeIcons = {choice:'C', deepen:'L', graph:'G', climax:'M'};
+  const typeIcons = {choice:'&#9889;', deepen:'&#128214;', graph:'&#128202;', climax:'&#127937;'};
   CONTENT.legs.forEach(leg => {
     const group = document.createElement('optgroup');
     group.label = leg.label;
     leg.days.forEach(day => {
       const opt = document.createElement('option');
       opt.value = `${leg.id}:${day.day}`;
-      const icon = typeIcons[day.type] || '.';
-      opt.textContent = `${icon} Day ${day.day} - ${day.legTitle}`;
+      // Use innerHTML for the icon, textContent for the rest
+      const icon = typeIcons[day.type] || '-';
+      opt.innerHTML = icon + ' Day ' + day.day + ' - ' + day.legTitle;
       if (leg.id === cls.leg && day.day === cls.day) opt.selected = true;
       group.appendChild(opt);
     });
