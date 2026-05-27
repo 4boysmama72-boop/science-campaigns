@@ -583,7 +583,6 @@
       <button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="completeSetup()">
         Initialize Mission Control — The Lighthouse →
       </button>
-      <div id="debug-msg" style="margin-top:12px;font-family:monospace;font-size:12px;color:#ff3355;background:rgba(255,0,0,0.1);padding:8px;border-radius:4px;display:none"></div>
     </div>
   </div>
 </div>
@@ -2668,10 +2667,10 @@ function updateDayTypeBanner(cnt, cls) {
 function renderDeepenContent(c) {
   let h = '';
   if (c.readingFocus) h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">📖 Reading Assignment</div><div style="font-family:var(--font-body);font-size:15px;color:var(--text-primary);line-height:1.6">${c.readingFocus}</div></div>`;
-  if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS — Reading Focus' : 'GAIA — To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style
-="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${c.gaiaReadingPrompt}</div></div>`; }
+  if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS — Reading Focus' : 'GAIA — To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${c.gaiaReadingPrompt}</div></div>`; }
   if (c.vocabFocus && c.vocabFocus.length) {
-    h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
+    h += '<div s
+tyle="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
     c.vocabFocus.forEach(v => { h += `<span style="background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:3px;padding:3px 9px;font-family:var(--font-mono);font-size:11px;color:var(--accent)">${v}</span>`; });
     h += '</div></div>';
   }
@@ -3764,19 +3763,10 @@ function toast(msg, type) {
 // ============================================================
 // BOOT
 // ============================================================
-window.onerror = function(msg, src, line, col, err) {
-  var d = document.getElementById('debug-msg');
-  if (d) { d.style.display='block'; d.textContent = 'JS Error: ' + msg + ' (line ' + line + ')'; }
-  return false;
-};
-
 window.addEventListener('load', () => {
   const loaded = load();
   if (loaded && state.configured) showHome();
   else showScreen('screen-setup');
-  // Debug: confirm JS loaded successfully
-  const btn = document.querySelector('#screen-setup .btn-primary');
-  if (btn) btn.textContent = 'Initialize Mission Control — JS OK →';
 });
 </script>
 </body>
