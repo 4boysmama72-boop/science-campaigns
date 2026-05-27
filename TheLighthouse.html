@@ -1121,7 +1121,7 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
 // ============================================================
 // STORAGE
 // ============================================================
-const STORAGE_KEY = 'lighthouse_v2';
+const STORAGE_KEY = 'lighthouse_v3';
 
 // ============================================================
 // STATE
@@ -2168,24 +2168,50 @@ function save() {
 }
 
 function load() {
+  // Try current key first
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return false;
-    const parsed = JSON.parse(raw);
-    if (!parsed.classes || !Array.isArray(parsed.classes) || parsed.classes.length !== 3) {
-      localStorage.removeItem(STORAGE_KEY);
-      return false;
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed.classes && Array.isArray(parsed.classes) && parsed.classes.length === 3) {
+        state = { ...state, ...parsed };
+        // Patch any missing fields
+        state.classes.forEach(cls => {
+          if (cls.reunionShown === undefined) cls.reunionShown = false;
+          if (cls.forensicsComplete === undefined) cls.forensicsComplete = false;
+          if (!cls.decisions) cls.decisions = [];
+          if (!cls.checkpoints) cls.checkpoints = [];
+        });
+        return true;
+      }
     }
-    state = { ...state, ...parsed };
-    // Patch any missing fields from newer versions
-    state.classes.forEach(cls => {
-      if (cls.reunionShown === undefined) cls.reunionShown = false;
-      if (cls.forensicsComplete === undefined) cls.forensicsComplete = false;
-      if (!cls.decisions) cls.decisions = [];
-      if (!cls.checkpoints) cls.checkpoints = [];
-    });
-    return true;
-  } catch(e) { return false; }
+  } catch(e) { /* fall through to old key migration */ }
+
+  // Try migrating from any older key
+  const oldKeys = ['lighthouse_v2','lighthouse_v1'];
+  for (const oldKey of oldKeys) {
+    if (oldKey === STORAGE_KEY) continue;
+    try {
+      const raw = localStorage.getItem(oldKey);
+      if (!raw) continue;
+      const parsed = JSON.parse(raw);
+      if (!parsed.classes || !Array.isArray(parsed.classes) || parsed.classes.length !== 3) continue;
+      state = { ...state, ...parsed };
+      // Patch missing fields
+      state.classes.forEach(cls => {
+        if (cls.reunionShown === undefined) cls.reunionShown = false;
+        if (cls.forensicsComplete === undefined) cls.forensicsComplete = false;
+        if (!cls.decisions) cls.decisions = [];
+        if (!cls.checkpoints) cls.checkpoints = [];
+      });
+      save();
+      localStorage.removeItem(oldKey);
+      toast('Progress migrated from previous version.', 'success');
+      return true;
+    } catch(e) { continue; }
+  }
+
+  return false;
 }
 
 // ============================================================
@@ -2657,7 +2683,8 @@ function renderGraphContent(c) {
     }
     h += '</div>';
   }
-  if (c.gaiaGraphNote) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA — On This Graph</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaGraphNote}</div></div>`;
+  if (c.gaiaGraphNote) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-
+green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA — On This Graph</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaGraphNote}</div></div>`;
   if (c.graphQuestions && c.graphQuestions.length) {
     h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px">Discussion Questions</div>';
     c.graphQuestions.forEach(q => { h += `<div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px;padding-left:10px;border-left:2px solid var(--border-bright)">${q}</div>`; });
@@ -2667,8 +2694,7 @@ function renderGraphContent(c) {
   return h;
 }
 
-func
-tion renderClimaxContent(c) {
+function renderClimaxContent(c) {
   let h = '';
   if (c.graphData) h += renderGraphContent(c);
   if (c.gaiaClosing) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.3);border-left:3px solid var(--gaia-green);border-radius:6px;padding:15px 17px;margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px">GAIA — Closing Transmission</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaClosing}</div></div>`;
