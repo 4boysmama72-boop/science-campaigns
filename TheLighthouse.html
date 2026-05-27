@@ -1972,9 +1972,10 @@ const CONTENT = {
           gaia:'Today the crew is going to build a scaled number line of the solar system. A scaled number line is a number line where each unit represents a real distance -- we pick a scale and place each object at its correct position. The scale for today: 1 AU equals 1 centimeter on your paper. That means Earth is 1 cm from the Sun. Jupiter is 5.2 cm. Neptune is 30.1 cm. The Lighthouse signal at 85 AU is 85 cm -- almost the length of your desk. The data table below shows each distance in AU. Your task: draw a number line on your paper and place each object at its correct scaled position. Every textbook diagram that shows planets evenly spaced is misleading -- it compresses the distances so planets are visible. Today you see what the distances actually look like.',
           scenario:'The data table below shows each solar system object\'s distance from the Sun in AU. Using the scale 1 AU = 1 centimeter, place each object at the correct position on a number line drawn on your paper.\n\nBefore you start -- make a prediction: do you think Neptune will fit on your paper? Will the Lighthouse signal origin at 85 AU fit? Build the number line first, then check your prediction.\n\nGAIA: "A scaled number line is different from a bar graph. On a bar graph, the space between bars means nothing. On a scaled number line, the space between marks represents real, empty space. The vast emptiness between planets is not a mistake in the drawing. It is the most important thing the drawing shows."',
           showNumberLineAnswer:true,
+          rawDataOnly:true,
           graphData:{
-            title:'Solar System -- True Scale Model (1 AU = 1 meter)',
-            teacherNote:'This is a scaled number line / ratio table day. Students calculate distances using the ratio 1 AU = 1 meter. Key results: Mercury 0.39m, Venus 0.72m, Earth 1.0m, Mars 1.52m, Jupiter 5.2m, Saturn 9.58m, Uranus 19.2m, Neptune 30.1m, Lighthouse signal 85m. Then: if Earth diameter = 1cm, Sun diameter = 109cm (over 1 meter wide). The Lighthouse at 85m scale is the length of a football field from the Sun. Draw as a number line on the board, not a bar graph. The empty space between planets is the point.',
+            title:'Solar System -- True Scale Model (1 AU = 1 cm on paper)',
+            teacherNote:'Students draw a number line on paper with 1 AU = 1 cm. Key positions: Mercury 0.39cm, Venus 0.72cm, Earth 1cm, Mars 1.52cm, Jupiter 5.2cm, Saturn 9.58cm, Uranus 19.2cm, Neptune 30.1cm, Lighthouse 85cm. Neptune barely fits on a standard ruler. The Lighthouse does not fit on any normal piece of paper. That is the point. Show the number line SVG using the reveal button after students attempt their own.',
             rawDataOnly:true,
             bars:[
               {label:'Mercury', value:0.39},
@@ -2024,49 +2025,61 @@ const CONTENT = {
           bridgeToNext:'Tomorrow: a ratio table comparing planet sizes and distances. The crew will look for patterns in the data -- patterns that tell a story about how the solar system is organized.'
         },
 
-        // -- DAY 5 -- GRAPH . Ratio Table -------------------------
+        // -- DAY 5 -- GRAPH . Double Bar Graph -------------------------
         {
           day:5, type:'graph', isReveal:false,
+          rawDataOnly:false,
           legLabel:'Leg 3 . Solar System Scale',
           legTitle:'Patterns in the Solar System',
-          gaia:'The crew has seen solar system distances as a scaled number line. Today I want to show the same data -- and size data -- as a ratio table. A ratio table lets you compare two or more quantities for the same set of objects simultaneously. Size and distance at the same time, for each planet. The pattern that emerges from this table is something scientists noticed centuries ago -- and it tells us something about how the solar system formed.',
-          scenario:'GAIA displays a ratio table showing each planet\'s average distance from the Sun in AU and its diameter relative to Earth (Earth = 1.0). The crew\'s task: look for patterns. Which planets are the largest? Where are they located? Which are the smallest? Is there a relationship between size and distance from the Sun?\n\nGAIA: "I am not going to tell you what the pattern is. I want the crew to find it. Look at the inner planets, look at the outer planets, look at where the largest objects are. The reading from Day 4 has a clue about why this pattern exists."',
+          gaia:'The crew has seen solar system distances as a scaled number line. Today I want to show two things at once -- distance from the Sun AND relative diameter -- for each planet, using a double bar graph. You built double bar graphs in Leg 2 to compare Northern and Southern Hemisphere daylight hours. This is the same tool. Two bars per planet: teal for distance, yellow for relative size. Before I show you the graph, I have a question: distance is measured in AU and diameter is measured in Earth widths -- two completely different units. How can both appear on the same Y axis? Think about that before you scroll down. I will answer it after the graph.',
+          scenario:'GAIA displays a double bar graph showing each planet\'s distance from the Sun and relative diameter -- both converted to a 0-100 scale so they can share the same Y axis. Two bars per planet: teal for distance, yellow for relative size. The crew\'s task: look for the pattern. Which planets have tall bars for both? Which have short bars for both? Is there a relationship between how far a planet is and how large it is?',
           graphData:{
-            title:'Solar System -- Distance from Sun and Relative Size',
-            teacherNote:'Draw as a ratio table with two columns of values per planet: AU distance and relative diameter (Earth = 1.0). Key pattern: inner planets (Mercury, Venus, Earth, Mars) are small and rocky. Outer planets (Jupiter, Saturn, Uranus, Neptune) are large gas giants. This reflects solar system formation -- close to the Sun, only rocky materials could survive the heat. Farther out, gases could condense. The asteroid belt between Mars and Jupiter marks the transition. Teacher note: the Savvas reading on solar system formation explains this pattern directly.',
-            rawDataOnly:true,
+            title:'Solar System -- Distance and Relative Size (Normalized 0-100)',
+            teacherNote:'Double bar graph. Both values normalized to 0-100 scale (Neptune = 100 for distance at 30.1 AU; Jupiter = 100 for size at 11.2 Earth widths). Teal bars = distance, yellow bars = relative diameter. Key pattern: inner planets have short bars for BOTH distance and size. Outer planets have tall bars for BOTH. The normalization question is the key teaching moment: you cannot put AU and Earth-widths on the same axis without converting both to a common scale first.',
             bars:[
-              {label:'Mercury 0.39 AU', value:0.38},
-              {label:'Venus 0.72 AU', value:0.95},
-              {label:'Earth 1.0 AU', value:1.0},
-              {label:'Mars 1.52 AU', value:0.53},
-              {label:'Asteroid Belt', value:0},
-              {label:'Jupiter 5.2 AU', value:11.2},
-              {label:'Saturn 9.6 AU', value:9.45},
-              {label:'Uranus 19.2 AU', value:4.0},
-              {label:'Neptune 30.1 AU', value:3.88}
+              {label:'Mercury', value:1, status:'safe'},
+              {label:'Venus', value:2, status:'safe'},
+              {label:'Earth', value:3, status:'safe'},
+              {label:'Mars', value:5, status:'safe'},
+              {label:'Jupiter', value:17, status:'caution'},
+              {label:'Saturn', value:32, status:'caution'},
+              {label:'Uranus', value:64, status:'warning'},
+              {label:'Neptune', value:100, status:'danger'}
             ],
-            yLabel:'Relative Diameter (Earth = 1.0)',
+            bars2:[
+              {label:'Mercury', value:3},
+              {label:'Venus', value:9},
+              {label:'Earth', value:9},
+              {label:'Mars', value:5},
+              {label:'Jupiter', value:100},
+              {label:'Saturn', value:84},
+              {label:'Uranus', value:36},
+              {label:'Neptune', value:35}
+            ],
+            legend:['Distance from Sun (normalized)','Relative Diameter (normalized)'],
+            legendColors:['#00e5cc','#ffdd00'],
+            yLabel:'0-100 Scale (normalized)',
             graphAnswers:[
-              {q:'Pattern', a:'Inner planets (Mercury through Mars) are small and rocky -- diameters less than 1.1 Earth widths. Outer planets (Jupiter through Neptune) are dramatically larger -- Jupiter is 11 times Earth\'s diameter. The asteroid belt sits between them.'},
-              {q:'Why the pattern exists', a:'From the solar system formation reading: when the solar system formed from a gas cloud, the inner region was too hot for gases to condense. Only rocky materials could survive close to the Sun. Farther out, gases could cool and condense, forming the large gas giants. Distance from the Sun during formation determined composition.'},
-              {q:'Asteroid belt', a:'The asteroid belt sits between Mars (1.52 AU) and Jupiter (5.2 AU) -- exactly at the transition between small rocky inner planets and large gas outer planets. These are rocky objects that never formed into a planet, likely due to Jupiter\'s immense gravitational influence disrupting the formation process.'},
-              {q:'Ratio table vs number line', a:'The number line showed distances only -- where things are. The ratio table shows two quantities at once -- where things are AND how big they are. The pattern between size and distance only becomes visible when you can see both values together for each planet.'},
-              {q:'Meridian connection', a:'The Meridian has now passed through both zones -- the small rocky inner planets and the large gas outer planets. The Lighthouse signal at 85 AU is far beyond all the planets, in the region of comets and distant rocky objects.'}
+              {q:'1', a:'Inner planets (Mercury through Mars) have SHORT bars for both distance and size -- they are close to the Sun AND small. Outer planets (Jupiter, Saturn) have TALL bars for both -- they are far AND large. Pattern: farther from the Sun = bigger planet.'},
+              {q:'2', a:'Distance is in AU and diameter is in Earth widths -- two different units that cannot share a Y axis honestly. Normalizing converts both to a 0-100 scale where the largest value in each category becomes 100. Neptune becomes 100 for distance; Jupiter becomes 100 for size. Now both can be compared on the same axis.'},
+              {q:'3', a:'Close to the Sun, only rocky materials could survive the intense heat -- giving us small, rocky inner planets. Farther out, gases could cool and condense -- forming the large gas giants. Distance from the Sun during formation determined what each planet is made of.'},
+              {q:'4', a:'The number line showed only distance. The double bar graph shows distance AND size together. The pattern between them is only visible when both quantities appear side by side.'},
+              {q:'5', a:'Far beyond Neptune -- in the region of comets and distant rocky objects. Small objects, very far from the Sun. The Lighthouse at 85 AU is far into this outer region.'}
             ]
           },
-          gaiaGraphNote:'"A ratio table shows relationships between two quantities across a set of objects. A number line shows one quantity in sequence. A bar graph compares one quantity per category. Each tool reveals different things about the same data. Today\'s ratio table makes the size-distance pattern visible in a way neither a number line nor a bar graph could. The right tool depends on what relationship you are trying to see."',
+          gaiaGraphNote:'"Here is the answer to my earlier question. Distance is measured in AU. Diameter is measured in Earth widths. These are different units -- putting them on the same axis without converting them would be like comparing the weight of an apple in pounds to the weight of a truck in tons and calling the numbers equivalent. Normalizing converts both to a 0-100 scale where the largest value in each category becomes 100 and everything else becomes a proportion of that. This is called normalization. You will see it any time two different units need to be compared on the same graph."',
           graphQuestions:[
-            '1. List the inner planets (closer to the Sun) and their relative diameters. List the outer planets and their relative diameters. What pattern do you notice?',
-            '2. Jupiter is 11.2 times Earth\'s diameter. Saturn is 9.45 times. Why are the outer planets so much larger than the inner planets? Use today\'s reading on solar system formation to explain.',
-            '3. Where is the asteroid belt located in the ratio table? Why does it sit between the inner and outer planets -- and what does the reading say about why it exists?',
-            '4. How is a ratio table different from the number line the crew built on Day 3? What does each one show that the other cannot?',
-            '5. The Lighthouse signal origin is at 85 AU -- far beyond Neptune at 30 AU. Based on the pattern in this table, what kind of objects would you expect to find in that region?'
+            '1. Look at the inner planets (Mercury, Venus, Earth, Mars). Are their teal bars tall or short? Are their yellow bars tall or short? Now look at Jupiter and Saturn. What pattern do you see between distance and size?',
+            '2. GAIA converted both distance and diameter to a 0-100 scale before graphing them. Why can two different units NOT share a Y axis without being converted first? What would happen if you tried?',
+            '3. Why are the outer planets so much larger than the inner planets? Use the solar system formation section from Day 4 reading to explain.',
+            '4. How does a double bar graph show something the scaled number line from Day 3 could not? What relationship becomes visible when you put distance and size side by side?',
+            '5. The Lighthouse signal origin is at 85 AU -- far beyond Neptune. Based on the pattern in this graph, what kind of objects would you expect to find that far from the Sun?'
           ],
-          shortDayNote:'Short day: Questions 1 and 2 only. The size-distance pattern and its cause from formation are the core lesson. Questions 3-5 can be warm-up next class.',
+          shortDayNote:'Short day: Questions 1 and 2 only. The size-distance pattern and normalization are the core lessons.',
           noChoice:true
         },
-
+            '1. List the inner planets (closer to the Sun) and their relative diameters. List the outer planets and their relative diameters. What pattern do you notice?',
+            '2. Jupiter is 11.2 times Earth\'s diameter. Saturn is 9.45 times. Why are the outer planets so much larger than the inner planets? Use today\'s reading on solar system formation to explain.',
         // -- DAY 6 -- GRAPH + CHOICE . The Decoded Signal ---------
         {
           day:6, type:'choice', isReveal:true,
@@ -2074,8 +2087,8 @@ const CONTENT = {
           legTitle:'Something in the Transmission',
           choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes -- open your book to Earth\'s Place in Universe, Topic 2, Lesson 1. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
           gaia:'I have decoded more of the Lighthouse transmission. I want to show the crew what I found -- as a line graph showing four different signals the Lighthouse has been measuring over 47 years. You have read line graphs since the Prometheus mission. This is the same tool -- time on the X axis, intensity on the Y axis, multiple lines on the same graph. I want to be honest: I understand parts of what this shows. I do not understand all of it yet. The crew will be in the same position I am -- reading familiar data in a familiar format, but making a judgment call without complete information. This is what real scientific decisions look like.',
-          scenario:'GAIA displays a frequency map from the Lighthouse transmission -- a line graph showing signal frequencies detected at regular intervals over the past 47 years. Most frequencies show steady baselines. Three frequencies show gradual changes over time. One frequency shows a dramatic spike beginning exactly eight months ago -- the same time the Prometheus energy pulse would have reached this region.\n\nThe crew can see the spike. They can see it corresponds to the Prometheus timeline. They cannot yet interpret what the frequency represents or what the Lighthouse was monitoring.\n\nGAIA: "I am showing you this because a decision needs to be made about our approach. You do not have all the context yet. Make the best call you can with what you understand. This is, incidentally, exactly how science works most of the time."',
-          exitTicketPrompt:'The frequency map shows a spike beginning eight months ago -- the same time the Prometheus pulse would have reached this location. What does that timing tell you, even without knowing what the frequency represents? Make your claim: which approach does the crew take based on this partial information, and what is your scientific reasoning for that choice?',
+          scenario:'GAIA displays a line graph of the Lighthouse transmission data -- four signal lines measured at regular intervals over the past 47 years. Most lines show steady baselines. One line shows a dramatic spike beginning exactly eight months ago -- the same time the Prometheus energy pulse would have reached this region.\n\nThe crew can see the spike. They can see it corresponds to the Prometheus timeline. They cannot yet interpret what the signal represents or what the Lighthouse was monitoring.\n\nGAIA: "I am showing you this because a decision needs to be made about our approach. You do not have all the context yet. Make the best call you can with what you understand. This is, incidentally, exactly how science works most of the time."',
+          exitTicketPrompt:'The line graph shows a spike beginning eight months ago -- the same time the Prometheus pulse would have reached this location. What does that timing tell you, even without knowing what the signal represents? Make your claim: which approach does the crew take based on this partial information, and what is your scientific reasoning for that choice?',
           discussionPrompt:'GAIA says she does not fully understand the data yet but is showing it anyway because a decision needs to be made. Is that good scientific practice -- acting on incomplete data -- or should scientists wait until they have full understanding? What evidence from the graph can the crew use to reason about their approach, even without knowing what the frequencies mean?',
           graphData:{
             title:'Lighthouse Transmission -- Frequency Map (47-Year Record)',
@@ -2127,7 +2140,7 @@ const CONTENT = {
               subtext:'GAIA has been analyzing the frequency map longer than we have. If she has a theory, it is worth trusting.',
               deltas:{nav:14, solar:-10, signal:22, earth:-3},
               branch:'C-gaia-vector',
-              consequence:'The approach angle GAIA recommended turns out to be significant -- the Lighthouse\'s transmission is directional, not broadcasting in all directions equally. By approaching along the optimal approach angle, the Meridian receives a stronger and cleaner signal than any other approach angle would have provided. Navigation accuracy improves as the vector calculation proves precise. Signal clarity jumps. GAIA: "The Lighthouse was built to transmit in a specific direction. That direction points toward the inner solar system -- toward Earth. Whatever it has been monitoring, it was always meant to send that data home. I want the crew to hold that thought."'
+              consequence:'The approach angle GAIA recommended turns out to be significant -- the Lighthouse\'s transmission is directional, not broadcasting in all directions equally. By approaching along the optimal approach angle, the Meridian receives a stronger and cleaner signal than any other approach angle would have provided. Navigation accuracy improves as the angle calculation proves precise. Signal clarity jumps. GAIA: "The Lighthouse was built to transmit in a specific direction. That direction points toward the inner solar system -- toward Earth. Whatever it has been monitoring, it was always meant to send that data home. I want the crew to hold that thought."'
             }
           ]
         },
@@ -2681,7 +2694,8 @@ function renderGraphContent(c) {
   let h = '';
   if (c.graphData) {
     const gd = c.graphData;
-    h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margin-bottom:14px">`;
+    h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margi
+n-bottom:14px">`;
     h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">${gd.title}</div>`;
 
     // rawDataOnly: show data as formatted cards, not a chart
@@ -2689,8 +2703,7 @@ function renderGraphContent(c) {
       h += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:12px">';
       gd.bars.forEach(b => {
         if (b.value === 0) {
-          h += `<div style="background:rgba(255,255,255,0.03);border:1px dashed var(--border);border-radius:4px;padding:8px 12px;display:flex;justify-cont
-ent:center;align-items:center"><span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">${b.label}</span></div>`;
+          h += `<div style="background:rgba(255,255,255,0.03);border:1px dashed var(--border);border-radius:4px;padding:8px 12px;display:flex;justify-content:center;align-items:center"><span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">${b.label}</span></div>`;
         } else {
           h += `<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:4px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">`;
           h += `<span style="font-family:var(--font-mono);font-size:13px;color:var(--text-secondary)">${b.label}</span>`;
