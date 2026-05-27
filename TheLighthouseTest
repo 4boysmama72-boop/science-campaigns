@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthouse Test</title>
+<style>
+body { background: #020d10; color: #e8fff8; font-family: sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+.box { background: #071f24; border: 1px solid #0f3a42; border-radius: 8px; padding: 2rem; width: 400px; }
+input { background: #071f24; border: 1px solid #1a5a66; border-radius: 4px; padding: 10px; color: #e8fff8; width: 100%; box-sizing: border-box; margin-bottom: 12px; font-size: 15px; }
+button { background: #00e5cc; color: #020d10; border: none; border-radius: 4px; padding: 13px 20px; width: 100%; font-size: 14px; font-weight: bold; cursor: pointer; }
+h2 { color: #00e5cc; margin-bottom: 1rem; }
+#home { display: none; text-align: center; }
+#setup { display: block; }
+</style>
+</head>
+<body>
+
+<div id="setup" class="box">
+  <h2>THE LIGHTHOUSE</h2>
+  <p style="color:#6ab8b0;margin-bottom:1rem">Setup Screen</p>
+  <input type="text" id="teacher-name" placeholder="Your name" />
+  <input type="text" id="class1" placeholder="Class 1 name" />
+  <input type="text" id="class2" placeholder="Class 2 name" />
+  <input type="text" id="class3" placeholder="Class 3 name" />
+  <button onclick="completeSetup()">Initialize Mission Control</button>
+  <div id="error-msg" style="color:#ff3355;margin-top:8px;display:none"></div>
+</div>
+
+<div id="home" class="box">
+  <h2>MISSION CONTROL</h2>
+  <p id="welcome-msg" style="color:#6ab8b0"></p>
+  <button onclick="document.getElementById('home').style.display='none';document.getElementById('setup').style.display='block'">Back to Setup</button>
+</div>
+
+<script>
+var STORAGE_KEY = 'lh_test_v1';
+var state = {
+  configured: false,
+  teacher: '',
+  classes: [
+    { name: 'Period 1' },
+    { name: 'Period 3' },
+    { name: 'Period 5' }
+  ]
+};
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) {
+    showError('Save error: ' + e.message);
+  }
+}
+
+function load() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    var parsed = JSON.parse(raw);
+    if (parsed && parsed.configured) {
+      state = parsed;
+      return true;
+    }
+  } catch(e) {}
+  return false;
+}
+
+function showError(msg) {
+  var el = document.getElementById('error-msg');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function completeSetup() {
+  try {
+    var teacher = document.getElementById('teacher-name').value.trim();
+    if (!teacher) { showError('Please enter your name.'); return; }
+    state.configured = true;
+    state.teacher = teacher;
+    state.classes[0].name = document.getElementById('class1').value.trim() || 'Period 1';
+    state.classes[1].name = document.getElementById('class2').value.trim() || 'Period 3';
+    state.classes[2].name = document.getElementById('class3').value.trim() || 'Period 5';
+    save();
+    showHome();
+  } catch(err) {
+    showError('Error: ' + err.message);
+  }
+}
+
+function showHome() {
+  document.getElementById('setup').style.display = 'none';
+  document.getElementById('home').style.display = 'block';
+  document.getElementById('welcome-msg').textContent = 
+    'Welcome, ' + state.teacher + '. Classes: ' + 
+    state.classes.map(function(c) { return c.name; }).join(', ');
+}
+
+window.addEventListener('load', function() {
+  var loaded = load();
+  if (loaded && state.configured) showHome();
+});
+</script>
+</body>
+</html>
