@@ -844,7 +844,7 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
           </div>
           <!-- GAIA exit ticket box -->
           <div id="exit-gaia-box" class="gaia-box">
-            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — To The Crew</div></div>
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA - To The Crew</div></div>
             <div class="gaia-text">Before we decide as a crew, each of you must commit your own thinking. What do you believe? What evidence supports it? What is your reasoning? Science begins with individual thought before collective decision.</div>
           </div>
           <!-- Meridian exit ticket box -->
@@ -2303,9 +2303,9 @@ function renderClassCards() {
     card.innerHTML = `
       <div style="font-family:var(--font-display);font-size:10px;font-weight:700;color:var(--accent-dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px">Class ${i+1}</div>
       <div class="class-name">${cls.name}</div>
-      <div class="class-status">Leg ${cls.leg} · Day ${cls.day} · Branch ${cls.branch}</div>
+      <div class="class-status">Leg ${cls.leg} . Day ${cls.day} . Branch ${cls.branch}</div>
       <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);margin-bottom:6px">${gaiaIcon}</div>
-      ${hasPending ? `<div class="reveal-badge visible">&#9203; Results pending — reveal next class</div>` : ''}
+      ${hasPending ? `<div class="reveal-badge visible">&#9203; Results pending - reveal next class</div>` : ''}
       <div class="class-branch ${branchClass}">${branchText}</div>
       <div class="mini-stats">
         <div class="mini-stat"><div class="mini-stat-label">Nav</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.nav}%;background:var(--stat-nav)"></div></div></div>
@@ -2327,7 +2327,7 @@ function selectClass(i) {
 
 function updateSystemTime() {
   const el = document.getElementById('system-time');
-  if (el) el.textContent = `Mission Control · ${new Date().toLocaleDateString()} · ${new Date().toLocaleTimeString()}`;
+  if (el) el.textContent = `Mission Control . ${new Date().toLocaleDateString()} . ${new Date().toLocaleTimeString()}`;
   setTimeout(updateSystemTime, 1000);
 }
 
@@ -2386,7 +2386,7 @@ function renderRevealScreen(cls) {
     else if (d > 0 && actualChange === 0) { deltaClass = 'delta-neu'; deltaText = 'Already at max'; }
     else if (d > 0) { deltaClass = 'delta-pos'; deltaText = `+${actualChange}%`; }
     else { deltaClass = 'delta-neg'; deltaText = `${actualChange}%`; }
-    return `<div class="stat-change-card"><div class="stat-change-icon">${s.icon}</div><div class="stat-change-body"><div class="stat-change-name">${s.label}</div><div class="stat-change-bar"><div class="stat-change-fill" style="width:${future}%;background:${s.color}"></div></div><div class="stat-change-delta ${deltaClass}">${deltaText} → ${future}%</div></div></div>`;
+    return `<div class="stat-change-card"><div class="stat-change-icon">${s.icon}</div><div class="stat-change-body"><div class="stat-change-name">${s.label}</div><div class="stat-change-bar"><div class="stat-change-fill" style="width:${future}%;background:${s.color}"></div></div><div class="stat-change-delta ${deltaClass}">${deltaText} -> ${future}%</div></div></div>`;
   }).join('');
 }
 
@@ -2527,11 +2527,11 @@ function renderMissionScreen() {
   extra.innerHTML = '';
 
   if (cnt.gaiaRecall && !isMeridianMode) {
-    extra.innerHTML += `<div class="gaia-recall-box"><div class="gaia-recall-label">⟵ GAIA Recall — From the Prometheus</div><div class="gaia-recall-text">${cnt.gaiaRecall}</div></div>`;
+    extra.innerHTML += `<div class="gaia-recall-box"><div class="gaia-recall-label"><- GAIA Recall - From the Prometheus</div><div class="gaia-recall-text">${cnt.gaiaRecall}</div></div>`;
   }
   // Choice reading focus — shown on choice days only
   if (isChoiceDay && cnt.choiceReadingFocus) {
-    extra.innerHTML += `<div class="choice-reading-box"><div class="choice-reading-label">First Read — Before You Vote</div><div class="choice-reading-text">${cnt.choiceReadingFocus}</div></div>`;
+    extra.innerHTML += `<div class="choice-reading-box"><div class="choice-reading-label">First Read - Before You Vote</div><div class="choice-reading-text">${cnt.choiceReadingFocus}</div></div>`;
   }
 
   if (dayType === 'deepen') extra.innerHTML += renderDeepenContent(cnt);
@@ -2540,11 +2540,11 @@ function renderMissionScreen() {
 
   // Exit ticket and discussion only on choice days
   if (isChoiceDay) {
-    if (cnt.exitTicketPrompt) extra.innerHTML += `<div style="background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.2);border-left:3px solid var(--amber);border-radius:6px;padding:13px 15px;margin-top:14px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Exit Ticket Prompt — Phase 2</div><div style="font-family:var(--font-body);font-size:20px;color:var(--text-secondary);line-height:1.6">${cnt.exitTicketPrompt}</div></div>`;
-    if (cnt.discussionPrompt) extra.innerHTML += `<div style="background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.2);border-left:3px solid var(--purple);border-radius:6px;padding:13px 15px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--purple);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Discussion Guide — Phase 3</div><div style="font-family:var(--font-body);font-size:20px;color:var(--text-secondary);line-height:1.6">${cnt.discussionPrompt}</div></div>`;
+    if (cnt.exitTicketPrompt) extra.innerHTML += `<div style="background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.2);border-left:3px solid var(--amber);border-radius:6px;padding:13px 15px;margin-top:14px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Exit Ticket Prompt - Phase 2</div><div style="font-family:var(--font-body);font-size:20px;color:var(--text-secondary);line-height:1.6">${cnt.exitTicketPrompt}</div></div>`;
+    if (cnt.discussionPrompt) extra.innerHTML += `<div style="background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.2);border-left:3px solid var(--purple);border-radius:6px;padding:13px 15px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--purple);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Discussion Guide - Phase 3</div><div style="font-family:var(--font-body);font-size:20px;color:var(--text-secondary);line-height:1.6">${cnt.discussionPrompt}</div></div>`;
   }
 
-  if (cnt.bridgeToNext) extra.innerHTML += `<div style="background:rgba(0,229,204,0.05);border:1px solid rgba(0,229,204,0.15);border-radius:6px;padding:9px 13px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);line-height:1.6">⟶ ${cnt.bridgeToNext}</div></div>`;
+  if (cnt.bridgeToNext) extra.innerHTML += `<div style="background:rgba(0,229,204,0.05);border:1px solid rgba(0,229,204,0.15);border-radius:6px;padding:9px 13px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);line-height:1.6">-> ${cnt.bridgeToNext}</div></div>`;
 
   // ── Update phase panel AI boxes for Meridian vs GAIA ────
   const aiColor = isMeridianMode ? '#7eb8d4' : 'var(--gaia-green)';
@@ -2558,7 +2558,7 @@ function renderMissionScreen() {
   const exitTextEl = document.getElementById('exit-ai-text');
   if (exitBox) exitBox.className = aiBoxClass;
   if (exitDot) exitDot.className = aiDotClass;
-  if (exitLabelEl) exitLabelEl.textContent = isMeridianMode ? 'MERIDIAN SYSTEMS' : 'GAIA — To The Crew';
+  if (exitLabelEl) exitLabelEl.textContent = isMeridianMode ? 'MERIDIAN SYSTEMS' : 'GAIA - To The Crew';
   if (exitTextEl) exitTextEl.className = isMeridianMode ? 'meridian-text' : 'gaia-text';
   if (exitTextEl) exitTextEl.textContent = isMeridianMode
     ? 'Each crew member should record their individual analysis before a collective decision is made. Document your observations, the evidence supporting them, and your recommended course of action.'
@@ -2598,7 +2598,7 @@ function renderMissionScreen() {
   populateDayJump();
   updateTeacherNotePanel(cnt);
 
-  document.getElementById('branch-path').innerHTML = `Leg ${cls.leg} · <span style="color:var(--accent)">Branch ${cls.branch}</span> · Day ${cls.day}`;
+  document.getElementById('branch-path').innerHTML = `Leg ${cls.leg} . <span style="color:var(--accent)">Branch ${cls.branch}</span> . Day ${cls.day}`;
 
   setPhase('story');
   // Apply phase visibility AFTER setPhase so it wins
@@ -2658,7 +2658,7 @@ function updateDayTypeBanner(cnt, cls) {
   else if (dayType === 'deepen') { badge.classList.add('badge-deepen'); badge.textContent = 'Lesson Day'; }
   else if (dayType === 'graph') { badge.classList.add('badge-graph'); badge.textContent = 'Graph Day'; }
   else { badge.classList.add('badge-climax'); badge.textContent = 'Leg Milestone'; }
-  desc.textContent = `Day ${cnt.day} of ${totalDays} · Leg ${cls.leg}`;
+  desc.textContent = `Day ${cnt.day} of ${totalDays} . Leg ${cls.leg}`;
 }
 
 // ============================================================
@@ -2667,14 +2667,14 @@ function updateDayTypeBanner(cnt, cls) {
 function renderDeepenContent(c) {
   let h = '';
   if (c.readingFocus) h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Reading Assignment</div><div style="font-family:var(--font-body);font-size:15px;color:var(--text-primary);line-height:1.6">${c.readingFocus}</div></div>`;
-  if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS — Reading Focus' : 'GAIA — To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${c.gaiaReadingPrompt}</div></div>`; }
+  if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS - Reading Focus' : 'GAIA - To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${c.gaiaReadingPrompt}</div></div>`; }
   if (c.vocabFocus && c.vocabFocus.length) {
-    h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-famil
-y:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
+    h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size
+:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
     c.vocabFocus.forEach(v => { h += `<span style="background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:3px;padding:3px 9px;font-family:var(--font-mono);font-size:11px;color:var(--accent)">${v}</span>`; });
     h += '</div></div>';
   }
-  if (c.spiralReview) h += `<div style="background:rgba(0,229,204,0.04);border:1px solid rgba(0,229,204,0.15);border-left:3px solid var(--accent-dim);border-radius:6px;padding:10px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px">⟵ Spiral Review — Campaign 1</div><div style="font-family:var(--font-body);font-size:13px;color:var(--text-secondary);line-height:1.5">${c.spiralReview}</div></div>`;
+  if (c.spiralReview) h += `<div style="background:rgba(0,229,204,0.04);border:1px solid rgba(0,229,204,0.15);border-left:3px solid var(--accent-dim);border-radius:6px;padding:10px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px"><- Spiral Review - Campaign 1</div><div style="font-family:var(--font-body);font-size:13px;color:var(--text-secondary);line-height:1.5">${c.spiralReview}</div></div>`;
   return h;
 }
 
@@ -2704,7 +2704,7 @@ function renderGraphContent(c) {
       // Show answer button for number line reveal
       if (c.showNumberLineAnswer) {
         h += `<div id="number-line-reveal" style="margin-top:12px">`;
-        h += `<button onclick="document.getElementById('nl-answer').style.display='block';this.style.display='none'" style="font-family:var(--font-mono);font-size:11px;background:rgba(0,229,204,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">▶ Show What Your Number Line Should Look Like</button>`;
+        h += `<button onclick="document.getElementById('nl-answer').style.display='block';this.style.display='none'" style="font-family:var(--font-mono);font-size:11px;background:rgba(0,229,204,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">> Show What Your Number Line Should Look Like</button>`;
         h += `<div id="nl-answer" style="display:none;margin-top:12px">`;
         // Render the number line SVG
         h += renderNumberLineSVG();
@@ -2734,7 +2734,7 @@ function renderGraphContent(c) {
     }
     h += '</div>';
   }
-  if (c.gaiaGraphNote) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA — On This Graph</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaGraphNote}</div></div>`;
+  if (c.gaiaGraphNote) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA - On This Graph</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaGraphNote}</div></div>`;
   if (c.graphQuestions && c.graphQuestions.length) {
     h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px">Discussion Questions</div>';
     c.graphQuestions.forEach(q => { h += `<div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px;padding-left:10px;border-left:2px solid var(--border-bright)">${q}</div>`; });
@@ -2747,12 +2747,12 @@ function renderGraphContent(c) {
 function renderClimaxContent(c) {
   let h = '';
   if (c.graphData) h += renderGraphContent(c);
-  if (c.gaiaClosing) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.3);border-left:3px solid var(--gaia-green);border-radius:6px;padding:15px 17px;margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px">GAIA — Closing Transmission</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaClosing}</div></div>`;
+  if (c.gaiaClosing) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.3);border-left:3px solid var(--gaia-green);border-radius:6px;padding:15px 17px;margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px">GAIA - Closing Transmission</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaClosing}</div></div>`;
   if (c.isLegEnd) {
     const legMatch = c.legLabel ? c.legLabel.match(/Leg\s*(\d+)/i) : null;
     const legNum = legMatch ? parseInt(legMatch[1]) : 1;
     const nextNum = legNum + 1;
-    h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:14px;text-align:center"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:5px">LEG ${legNum} COMPLETE</div><div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)">Use Story Navigation → Next Day to advance to Leg ${nextNum}</div></div>`;
+    h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:14px;text-align:center"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:5px">LEG ${legNum} COMPLETE</div><div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)">Use Story Navigation -> Next Day to advance to Leg ${nextNum}</div></div>`;
   }
   return h;
 }
@@ -2784,7 +2784,7 @@ function renderBarGraph(gd) {
   let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:540px;display:block;margin:0 auto">`;
 
   // Y label — above chart area, clear of all bars
-  svg += `<text x="${padL}" y="${padT - 18}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)">${gd.yLabel||'Value'} →</text>`;
+  svg += `<text x="${padL}" y="${padT - 18}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)">${gd.yLabel||'Value'} -></text>`;
 
   [0,25,50,75,100].forEach(pct => {
     const yy = padT + chartH * (1 - pct/100);
@@ -2825,7 +2825,7 @@ function renderDoubleBarGraph(gd) {
   let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;display:block;margin:0 auto">`;
 
   // Y label above chart
-  svg += `<text x="${padL}" y="${padT - 18}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)">${gd.yLabel||'Value'} →</text>`;
+  svg += `<text x="${padL}" y="${padT - 18}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)">${gd.yLabel||'Value'} -></text>`;
 
   // Grid lines
   [0,25,50,75,100].forEach(pct => {
@@ -3011,7 +3011,7 @@ function renderMultiLineGraph(gd) {
     const spikeIdx = loopLine.values.indexOf(Math.max(...loopLine.values));
     const sx = toX(spikeIdx, loopLine.values.length);
     svg += `<line x1="${sx.toFixed(1)}" y1="${padT}" x2="${sx.toFixed(1)}" y2="${padT+chartH}" stroke="rgba(255,170,0,0.3)" stroke-width="1" stroke-dasharray="3,3"/>`;
-    svg += `<text x="${sx.toFixed(1)}" y="${padT-4}" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,170,0,0.7)" text-anchor="middle">← Pulse</text>`;
+    svg += `<text x="${sx.toFixed(1)}" y="${padT-4}" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,170,0,0.7)" text-anchor="middle"><- Pulse</text>`;
   }
 
   let legendOffset = 0;
@@ -3376,8 +3376,8 @@ function updateTeacherNotePanel(cnt) {
     if (gd.teacherNote) notes.push({label:'Graph Note', text:gd.teacherNote});
     if (gd.graphAnswers) gd.graphAnswers.forEach(a => notes.push({label:`Q${a.q} Answer`, text:a.a}));
     if (gd.datasets) gd.datasets.forEach(ds => {
-      if (ds.answer) notes.push({label:`${ds.id} — Answer`, text:ds.answer});
-      if (ds.hint) notes.push({label:`${ds.id} — Hint`, text:ds.hint});
+      if (ds.answer) notes.push({label:`${ds.id} - Answer`, text:ds.answer});
+      if (ds.hint) notes.push({label:`${ds.id} - Hint`, text:ds.hint});
     });
   }
   if (cnt.shortDayNote) notes.push({label:'Short Day', text:cnt.shortDayNote});
@@ -3405,7 +3405,7 @@ function renderDecisionLog(cls) {
     const impacts = Object.entries(d.deltas || {}).map(([key, val]) =>
       `<span class="impact-tag ${val > 0 ? 'impact-pos' : val < 0 ? 'impact-neg' : 'impact-neu'}">${key} ${val > 0 ? '+' : ''}${val}</span>`
     ).join('');
-    return `<div class="log-entry"><div class="log-date">${d.date} · Leg ${d.leg} Day ${d.day}</div><div class="log-choice">${d.choiceText}</div><div class="log-impact">${impacts}</div></div>`;
+    return `<div class="log-entry"><div class="log-date">${d.date} . Leg ${d.leg} Day ${d.day}</div><div class="log-choice">${d.choiceText}</div><div class="log-impact">${impacts}</div></div>`;
   }).join('');
 }
 
@@ -3425,7 +3425,7 @@ function populateDayJump() {
       const opt = document.createElement('option');
       opt.value = `${leg.id}:${day.day}`;
       const icon = typeIcons[day.type] || '·';
-      opt.textContent = `${icon} Day ${day.day} — ${day.legTitle}`;
+      opt.textContent = `${icon} Day ${day.day} - ${day.legTitle}`;
       if (leg.id === cls.leg && day.day === cls.day) opt.selected = true;
       group.appendChild(opt);
     });
@@ -3564,7 +3564,7 @@ function showForensics() {
           <div>
             <div class="timeline-date">
               <span class="timeline-leg" style="background:${legCol}22;color:${legCol}">Leg ${d.leg}</span>
-              ${d.date} · Day ${d.day}
+              ${d.date} . Day ${d.day}
             </div>
             <div class="timeline-choice">${d.choiceLetter ? d.choiceLetter + '. ' : ''}${d.choiceText}</div>
             <div class="timeline-impact">${impacts}</div>
@@ -3582,7 +3582,7 @@ function showForensics() {
     cls.checkpoints.forEach((cp, i) => {
       const opt = document.createElement('option');
       opt.value = i;
-      opt.textContent = `${cp.label} — Nav:${cp.stats.nav}% Solar:${cp.stats.solar}% Signal:${cp.stats.signal}% Earth:${cp.stats.earth}%`;
+      opt.textContent = `${cp.label} - Nav:${cp.stats.nav}% Solar:${cp.stats.solar}% Signal:${cp.stats.signal}% Earth:${cp.stats.earth}%`;
       cpSelect.appendChild(opt);
     });
   } else {
