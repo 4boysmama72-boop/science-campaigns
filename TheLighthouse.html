@@ -1172,7 +1172,7 @@ const GAIA_BLOCK_MESSAGES = [
 ];
 
 // ============================================================
-// CONTENT — THE LIGHTHOUSE CAMPAIGN
+// CONTENT - THE LIGHTHOUSE CAMPAIGN
 // ============================================================
 const CONTENT = {
   legs: [
@@ -2213,7 +2213,7 @@ function load() {
     } catch(e) { continue; }
   }
 
-  // Nothing usable — fresh start
+  // Nothing usable - fresh start
   return false;
 }
 
@@ -2345,8 +2345,8 @@ function launchReveal() {
 }
 
 function renderRevealScreen(cls) {
-  document.getElementById('reveal-class-label').textContent = cls.name + ' — Yesterday\'s Decision';
-  document.getElementById('reveal-choice-recap').textContent = cls.pendingChoiceText || '—';
+  document.getElementById('reveal-class-label').textContent = cls.name + ' - Yesterday\'s Decision';
+  document.getElementById('reveal-choice-recap').textContent = cls.pendingChoiceText || '-';
 
   // Determine if the consequence came from a Meridian-mode day
   const leg = CONTENT.legs.find(l => l.id === cls.leg) || CONTENT.legs[0];
@@ -2354,7 +2354,7 @@ function renderRevealScreen(cls) {
   const prevCnt = leg.days.find(d => d.day === prevDay) || leg.days[0];
   const wasMeridian = prevCnt && prevCnt.meridianMode && (cls.gaiaStatus === 'signal');
 
-  // Show correct box — pure show/hide, no class mutation
+  // Show correct box - pure show/hide, no class mutation
   const gaiaBox = document.getElementById('reveal-gaia-box');
   const meridBox = document.getElementById('reveal-meridian-box');
   if (gaiaBox) gaiaBox.style.display = wasMeridian ? 'none' : '';
@@ -2382,7 +2382,7 @@ function renderRevealScreen(cls) {
     const future = Math.max(0, Math.min(100, current + d));
     const actualChange = future - current;
     let deltaClass, deltaText;
-    if (d === 0) { deltaClass = 'delta-neu'; deltaText = '—'; }
+    if (d === 0) { deltaClass = 'delta-neu'; deltaText = '-'; }
     else if (d > 0 && actualChange === 0) { deltaClass = 'delta-neu'; deltaText = 'Already at max'; }
     else if (d > 0) { deltaClass = 'delta-pos'; deltaText = `+${actualChange}%`; }
     else { deltaClass = 'delta-neg'; deltaText = `${actualChange}%`; }
@@ -2426,7 +2426,7 @@ function launchMission() {
     return;
   }
 
-  // GAIA reunion intercept — fires once for signal classes on Leg 1 Day 3
+  // GAIA reunion intercept - fires once for signal classes on Leg 1 Day 3
   if (cls.leg === 1 && cls.day === 3 &&
       (cls.gaiaStatus === 'signal') &&
       !cls.reunionShown) {
@@ -2476,7 +2476,7 @@ function renderMissionScreen() {
   const badge = typeLabels[dayType] || '';
   document.getElementById('content-leg-title').innerHTML = cnt.legTitle + ' <span style="font-family:var(--font-mono);font-size:11px;color:var(--accent-dim);font-weight:400">' + badge + '</span>';
 
-  // ── GAIA / MERIDIAN SYSTEMS routing ───────────────────────
+  // -- GAIA / MERIDIAN SYSTEMS routing -----------------------
   let gaiaText = cnt.gaia || '';
   if (gaiaStatus === 'signal' && cnt.gaiaSignal) gaiaText = cnt.gaiaSignal;
   else if (gaiaStatus === 'aboard' && cnt.gaiaAboard) gaiaText = cnt.gaiaAboard;
@@ -2484,7 +2484,7 @@ function renderMissionScreen() {
   // Day 3 reunion is handled by launchMission intercept screen
   // gaiaStatus will already be signal-connected by the time renderMissionScreen runs on Day 3
 
-  // ── Pure show/hide — no DOM class mutation ever ───────────
+  // -- Pure show/hide - no DOM class mutation ever -----------
   const showMeridian = isMeridianMode;
 
   // Main story box
@@ -2516,7 +2516,7 @@ function renderMissionScreen() {
     const label = document.getElementById('gaia-transmission-label');
     if (label) label.textContent =
       (cls.leg === 1 && cnt.day === 3 && cls.gaiaStatus === 'signal-connected')
-        ? 'GAIA — Incoming Signal' : 'GAIA — Transmission';
+        ? 'GAIA - Incoming Signal' : 'GAIA - Transmission';
   }
 
   // scenarioSignal override for Meridian mode days
@@ -2529,7 +2529,7 @@ function renderMissionScreen() {
   if (cnt.gaiaRecall && !isMeridianMode) {
     extra.innerHTML += `<div class="gaia-recall-box"><div class="gaia-recall-label"><- GAIA Recall - From the Prometheus</div><div class="gaia-recall-text">${cnt.gaiaRecall}</div></div>`;
   }
-  // Choice reading focus — shown on choice days only
+  // Choice reading focus - shown on choice days only
   if (isChoiceDay && cnt.choiceReadingFocus) {
     extra.innerHTML += `<div class="choice-reading-box"><div class="choice-reading-label">First Read - Before You Vote</div><div class="choice-reading-text">${cnt.choiceReadingFocus}</div></div>`;
   }
@@ -2546,7 +2546,7 @@ function renderMissionScreen() {
 
   if (cnt.bridgeToNext) extra.innerHTML += `<div style="background:rgba(0,229,204,0.05);border:1px solid rgba(0,229,204,0.15);border-radius:6px;padding:9px 13px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);line-height:1.6">-> ${cnt.bridgeToNext}</div></div>`;
 
-  // ── Update phase panel AI boxes for Meridian vs GAIA ────
+  // -- Update phase panel AI boxes for Meridian vs GAIA ----
   const aiColor = isMeridianMode ? '#7eb8d4' : 'var(--gaia-green)';
   const aiDotClass = isMeridianMode ? 'meridian-indicator' : 'gaia-dot';
   const aiBoxClass = isMeridianMode ? 'meridian-box' : 'gaia-box';
@@ -2571,11 +2571,11 @@ function renderMissionScreen() {
   const discussTextEl = document.getElementById('discuss-ai-text');
   if (discussBox) discussBox.className = aiBoxClass;
   if (discussDot) discussDot.className = aiDotClass;
-  if (discussLabelEl) discussLabelEl.textContent = isMeridianMode ? 'MERIDIAN SYSTEMS' : 'GAIA — Discussion Guide';
+  if (discussLabelEl) discussLabelEl.textContent = isMeridianMode ? 'MERIDIAN SYSTEMS' : 'GAIA - Discussion Guide';
   if (discussTextEl) discussTextEl.className = isMeridianMode ? 'meridian-text' : 'gaia-text';
   if (discussTextEl) discussTextEl.textContent = isMeridianMode
     ? 'Crew members should compare individual analyses. Note where assessments differ and identify which data points support each position. A collective recommendation will be submitted at the end of this phase.'
-    : 'A good scientific argument requires three things: a clear claim, specific evidence, and reasoning that connects them. As you listen — do their arguments hold up? Does their evidence actually support their claim?';
+    : 'A good scientific argument requires three things: a clear claim, specific evidence, and reasoning that connects them. As you listen - do their arguments hold up? Does their evidence actually support their claim?';
 
   // Vote panel
   const voteBox = document.getElementById('vote-ai-box');
@@ -2584,11 +2584,11 @@ function renderMissionScreen() {
   const voteTextEl = document.getElementById('vote-ai-text');
   if (voteBox) voteBox.className = aiBoxClass;
   if (voteDot) voteDot.className = aiDotClass;
-  if (voteLabelEl) voteLabelEl.textContent = isMeridianMode ? 'MERIDIAN SYSTEMS' : 'GAIA — Final Vote';
+  if (voteLabelEl) voteLabelEl.textContent = isMeridianMode ? 'MERIDIAN SYSTEMS' : 'GAIA - Final Vote';
   if (voteTextEl) voteTextEl.className = isMeridianMode ? 'meridian-text' : 'gaia-text';
   if (voteTextEl) voteTextEl.innerHTML = isMeridianMode
     ? 'Collective decision required. Select the crew\'s official course of action. This decision will be logged and implemented. Consequences will be assessed and reported at the start of the next session.'
-    : '"New information has been presented. In accordance with scientific protocol — <em>we reconsider</em>. This is the crew\'s official decision. It will be logged. It will have consequences. Choose carefully."';
+    : '"New information has been presented. In accordance with scientific protocol - <em>we reconsider</em>. This is the crew\'s official decision. It will be logged. It will have consequences. Choose carefully."';
 
   renderChoices(cls, isChoiceDay ? (cnt.choices || []) : []);
   renderStats(cls);
@@ -2622,7 +2622,7 @@ function renderMissionScreen() {
     else { discussDisplay.style.display = 'none'; }
   }
 
-  // Processing screen — use Meridian Systems voice when appropriate
+  // Processing screen - use Meridian Systems voice when appropriate
   const procMsg = document.getElementById('processing-gaia-msg');
   const procDot = document.getElementById('proc-ai-dot');
   const procLabel = document.getElementById('proc-ai-label');
@@ -2634,7 +2634,7 @@ function renderMissionScreen() {
       if (procDot) procDot.className = 'meridian-indicator';
       if (procLabel) procLabel.textContent = 'MERIDIAN SYSTEMS';
     } else {
-      procMsg.textContent = '"Selection received. I am... processing the implications. The ship\'s systems have registered your decision and are responding accordingly. Whether that response is favorable — well. You\'ll find out next class."';
+      procMsg.textContent = '"Selection received. I am... processing the implications. The ship\'s systems have registered your decision and are responding accordingly. Whether that response is favorable - well. You\'ll find out next class."';
       procMsg.parentElement.className = 'processing-gaia';
       procMsg.className = 'processing-gaia-text';
       if (procDot) procDot.className = 'gaia-dot';
@@ -2669,8 +2669,8 @@ function renderDeepenContent(c) {
   if (c.readingFocus) h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Reading Assignment</div><div style="font-family:var(--font-body);font-size:15px;color:var(--text-primary);line-height:1.6">${c.readingFocus}</div></div>`;
   if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS - Reading Focus' : 'GAIA - To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${c.gaiaReadingPrompt}</div></div>`; }
   if (c.vocabFocus && c.vocabFocus.length) {
-    h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size
-:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
+    h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div sty
+le="display:flex;flex-wrap:wrap;gap:5px">';
     c.vocabFocus.forEach(v => { h += `<span style="background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:3px;padding:3px 9px;font-family:var(--font-mono);font-size:11px;color:var(--accent)">${v}</span>`; });
     h += '</div></div>';
   }
@@ -2740,7 +2740,7 @@ function renderGraphContent(c) {
     c.graphQuestions.forEach(q => { h += `<div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px;padding-left:10px;border-left:2px solid var(--border-bright)">${q}</div>`; });
     h += '</div>';
   }
-  // shortDayNote is teacher-panel only — not rendered here
+  // shortDayNote is teacher-panel only - not rendered here
   return h;
 }
 
@@ -2783,7 +2783,7 @@ function renderBarGraph(gd) {
 
   let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:540px;display:block;margin:0 auto">`;
 
-  // Y label — above chart area, clear of all bars
+  // Y label - above chart area, clear of all bars
   svg += `<text x="${padL}" y="${padT - 18}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)">${gd.yLabel||'Value'} -></text>`;
 
   [0,25,50,75,100].forEach(pct => {
@@ -2852,7 +2852,7 @@ function renderDoubleBarGraph(gd) {
     svg += `<text x="${(groupX + groupW/2).toFixed(1)}" y="${(padT+chartH+16).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">${b.label}</text>`;
   });
 
-  // Legend — below chart to avoid overlap
+  // Legend - below chart to avoid overlap
   const legendBaseY = padT + chartH + 34;
   const legendCenterX = padL + chartW / 2;
   svg += `<rect x="${legendCenterX-140}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[0]}" opacity="0.85" rx="2"/>`;
@@ -2868,7 +2868,7 @@ function renderDoubleBarGraph(gd) {
 }
 
 function renderNumberLineSVG() {
-  // Solar system number line — 1 AU = 6px, capped at 90 AU
+  // Solar system number line - 1 AU = 6px, capped at 90 AU
   const objects = [
     {name:'Sun', au:0, color:'#ffdd00'},
     {name:'Mercury', au:0.39, color:'#aaaaaa'},
@@ -3044,12 +3044,12 @@ function renderMultiLineGraph(gd) {
 }
 
 // ============================================================
-// PHASE VISIBILITY — controls what phases are shown
+// PHASE VISIBILITY - controls what phases are shown
 // ============================================================
 function applyPhaseVisibility(isChoiceDay) {
   const phasebar = document.querySelector('.phase-bar');
   const choicesArea = document.getElementById('choices-area');
-  // Right panel phase nav buttons — steps 2-4
+  // Right panel phase nav buttons - steps 2-4
   const navExitBtn = document.getElementById('nav-exit-btn');
   const navDiscussBtn = document.getElementById('nav-discuss-btn');
   const navVoteBtn = document.getElementById('nav-vote-btn');
@@ -3227,7 +3227,7 @@ function executeCommit() {
     branch: choice.branch, deltas: choice.deltas
   });
   cls.day += 1;
-  // Leg boundary — save checkpoint with all leg history
+  // Leg boundary - save checkpoint with all leg history
   const leg = CONTENT.legs.find(l => l.id === cls.leg);
   if (!cls.checkpoints) cls.checkpoints = [];
   if (leg && cls.day > leg.days.length) {
@@ -3280,14 +3280,14 @@ function renderStats(cls) {
 function statLabel(key, val) {
   if (key === 'nav') {
     if (val <= 0) return 'Navigation failure';
-    if (val <= 20) return 'Critical — course lost';
+    if (val <= 20) return 'Critical - course lost';
     if (val <= 40) return 'Course corrections needed';
     if (val <= 70) return 'Minor deviations';
     return 'Course nominal';
   }
   if (key === 'solar') {
     if (val <= 0) return 'Power depleted';
-    if (val <= 20) return 'Critical — emergency only';
+    if (val <= 20) return 'Critical - emergency only';
     if (val <= 40) return 'Low reserves';
     if (val <= 70) return 'Adequate collection';
     return 'Collection optimal';
@@ -3381,8 +3381,8 @@ function updateTeacherNotePanel(cnt) {
     });
   }
   if (cnt.shortDayNote) notes.push({label:'Short Day', text:cnt.shortDayNote});
-  if (cnt.bridgeToNext) notes.push({label:'→ Next Class', text:cnt.bridgeToNext});
-  if (cnt.spiralReview) notes.push({label:'⟵ Spiral Review', text:cnt.spiralReview});
+  if (cnt.bridgeToNext) notes.push({label:'-> Next Class', text:cnt.bridgeToNext});
+  if (cnt.spiralReview) notes.push({label:'<- Spiral Review', text:cnt.spiralReview});
   if (notes.length === 0) { panel.style.display = 'none'; return; }
   panel.style.display = 'block';
   panel.innerHTML = '<div class="panel-label">Teacher Notes</div>' +
@@ -3416,7 +3416,7 @@ function populateDayJump() {
   const sel = document.getElementById('day-jump-select');
   if (!sel || state.activeClass === null) return;
   const cls = state.classes[state.activeClass];
-  sel.innerHTML = '<option value="">— Jump to Day —</option>';
+  sel.innerHTML = '<option value="">- Jump to Day -</option>';
   const typeIcons = {choice:'C', deepen:'L', graph:'G', climax:'M'};
   CONTENT.legs.forEach(leg => {
     const group = document.createElement('optgroup');
@@ -3424,7 +3424,7 @@ function populateDayJump() {
     leg.days.forEach(day => {
       const opt = document.createElement('option');
       opt.value = `${leg.id}:${day.day}`;
-      const icon = typeIcons[day.type] || '·';
+      const icon = typeIcons[day.type] || '.';
       opt.textContent = `${icon} Day ${day.day} - ${day.legTitle}`;
       if (leg.id === cls.leg && day.day === cls.day) opt.selected = true;
       group.appendChild(opt);
@@ -3449,10 +3449,10 @@ function togglePresMode() {
   document.body.classList.toggle('presentation-mode');
   const btn = document.getElementById('pres-btn');
   if (document.body.classList.contains('presentation-mode')) {
-    btn.textContent = '⊟ Exit Present';
+    btn.textContent = ' Exit Present';
     if (state.activeClass !== null) updatePresStats(state.classes[state.activeClass]);
   } else {
-    btn.textContent = '⊞ Present';
+    btn.textContent = ' Present';
   }
 }
 
@@ -3477,7 +3477,7 @@ function advanceToNextDay() {
       cls.checkpoints.push({ leg: cls.leg, day: 1, stats: {...cls.stats}, branch: cls.branch, label: `Leg ${cls.leg} Complete` });
       cls.leg += 1; cls.day = 1;
       toast(`Advanced to Leg ${cls.leg}`, 'success');
-    } else { toast('Campaign complete — all legs finished.', 'success'); return; }
+    } else { toast('Campaign complete - all legs finished.', 'success'); return; }
   }
   save();
   renderMissionScreen();
@@ -3517,12 +3517,12 @@ function showForensics() {
   state.activeClass = idx;
   const cls = state.classes[idx];
 
-  // GAIA message — escalates with failure count, calls out intentional destruction
+  // GAIA message - escalates with failure count, calls out intentional destruction
   const msgs = [
     '"The mission has encountered a critical failure. Before we reset, we examine every decision that led here. Every one."',
     '"We have been here before. The data suggests a pattern. Let us identify it before repeating it."',
-    '"Three failures. I have significantly narrowed your future options. But first — and I cannot stress this enough — we are going to figure out why this keeps happening."',
-    '"I want to say something directly. If the crew has been making deliberately poor choices to test the system — you have now assigned yourselves a comprehensive forensic analysis of every decision you made. I hope the experiment was worth it. Let us begin."'
+    '"Three failures. I have significantly narrowed your future options. But first - and I cannot stress this enough - we are going to figure out why this keeps happening."',
+    '"I want to say something directly. If the crew has been making deliberately poor choices to test the system - you have now assigned yourselves a comprehensive forensic analysis of every decision you made. I hope the experiment was worth it. Let us begin."'
   ];
   document.getElementById('forensics-gaia-text').textContent = msgs[Math.min(cls.failures, msgs.length-1)];
 
@@ -3535,7 +3535,7 @@ function showForensics() {
     gate.style.background = 'rgba(0,255,136,0.04)';
     document.getElementById('forensics-gate-text').style.color = 'var(--green)';
     document.getElementById('forensics-gate-text').textContent = 'Forensic analysis complete. Checkpoint reset is available.';
-    gateBtn.textContent = 'Analysis Complete — Reset Available';
+    gateBtn.textContent = 'Analysis Complete - Reset Available';
     gateBtn.classList.add('unlocked');
     checkpointSel.style.display = 'block';
   } else {
@@ -3543,12 +3543,12 @@ function showForensics() {
     gate.style.background = '';
     document.getElementById('forensics-gate-text').style.color = '';
     document.getElementById('forensics-gate-text').textContent = 'Complete the forensic analysis below before the checkpoint becomes available. Review the timeline. Examine the stat trajectory. Complete your CER in the Google Form. Then confirm completion to unlock the checkpoint reset.';
-    gateBtn.textContent = 'We Have Completed the Forensic Analysis — Unlock Checkpoint';
+    gateBtn.textContent = 'We Have Completed the Forensic Analysis - Unlock Checkpoint';
     gateBtn.classList.remove('unlocked');
     checkpointSel.style.display = 'none';
   }
 
-  // Full decision timeline — ALL decisions, color coded by leg
+  // Full decision timeline - ALL decisions, color coded by leg
   const legColors = {'1':'#00e5cc','2':'#ffdd00','3':'#aa66ff','4':'#00ff88','5':'#ff8800'};
   const entries = document.getElementById('timeline-entries');
   const allDecisions = [...cls.decisions].reverse();
@@ -3577,7 +3577,7 @@ function showForensics() {
 
   // Checkpoint selector
   const cpSelect = document.getElementById('checkpoint-select');
-  cpSelect.innerHTML = '<option value="">— Select checkpoint —</option>';
+  cpSelect.innerHTML = '<option value="">- Select checkpoint -</option>';
   if (cls.checkpoints && cls.checkpoints.length > 0) {
     cls.checkpoints.forEach((cp, i) => {
       const opt = document.createElement('option');
@@ -3588,7 +3588,7 @@ function showForensics() {
   } else {
     const opt = document.createElement('option');
     opt.value = 'start';
-    opt.textContent = 'Leg 1, Day 1 — Mission Start';
+    opt.textContent = 'Leg 1, Day 1 - Mission Start';
     cpSelect.appendChild(opt);
   }
 
@@ -3633,7 +3633,7 @@ function renderForensicsTrajectory(cls) {
     svg += `<text x="${padL-4}" y="${(y+4).toFixed(1)}" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.35)" text-anchor="end">${pct}%</text>`;
   });
 
-  // X labels — show leg boundaries
+  // X labels - show leg boundaries
   history.forEach((h, i) => {
     if (i === 0 || h.label.includes('D1') || i === history.length-1) {
       const x = toX(i);
@@ -3766,7 +3766,7 @@ function toast(msg, type) {
 window.addEventListener('load', () => {
   // Show JS is running
   const btn = document.querySelector('#screen-setup .btn-primary');
-  if (btn) btn.textContent = 'Initialize Mission Control — JS OK →';
+  if (btn) btn.textContent = 'Initialize Mission Control - JS OK ->';
 
   try {
     const loaded = load();
