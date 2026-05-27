@@ -1126,7 +1126,7 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
 // ============================================================
 // STORAGE
 // ============================================================
-const STORAGE_KEY = 'lighthouse_v4';
+const STORAGE_KEY = 'lighthouse_v5';
 
 // ============================================================
 // STATE
@@ -2187,37 +2187,25 @@ function load() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      if (parsed.classes && Array.isArray(parsed.classes) && parsed.classes.length === 3) {
+      if (isValidState(parsed)) {
         state = { ...state, ...parsed };
-        // Patch any missing fields
-        state.classes.forEach(cls => {
-          if (cls.reunionShown === undefined) cls.reunionShown = false;
-          if (cls.forensicsComplete === undefined) cls.forensicsComplete = false;
-          if (!cls.decisions) cls.decisions = [];
-          if (!cls.checkpoints) cls.checkpoints = [];
-        });
+        patchMissingFields(state);
         return true;
       }
     }
-  } catch(e) { /* fall through to old key migration */ }
+  } catch(e) { /* fall through */ }
 
   // Try migrating from any older key
-  const oldKeys = ['lighthouse_v2','lighthouse_v1'];
+  const oldKeys = ['lighthouse_v4','lighthouse_v3','lighthouse_v2','lighthouse_v1'];
   for (const oldKey of oldKeys) {
     if (oldKey === STORAGE_KEY) continue;
     try {
       const raw = localStorage.getItem(oldKey);
       if (!raw) continue;
       const parsed = JSON.parse(raw);
-      if (!parsed.classes || !Array.isArray(parsed.classes) || parsed.classes.length !== 3) continue;
+      if (!isValidState(parsed)) continue;
       state = { ...state, ...parsed };
-      // Patch missing fields
-      state.classes.forEach(cls => {
-        if (cls.reunionShown === undefined) cls.reunionShown = false;
-        if (cls.forensicsComplete === undefined) cls.forensicsComplete = false;
-        if (!cls.decisions) cls.decisions = [];
-        if (!cls.checkpoints) cls.checkpoints = [];
-      });
+      patchMissingFields(state);
       save();
       localStorage.removeItem(oldKey);
       toast('Progress migrated from previous version.', 'success');
@@ -2225,7 +2213,32 @@ function load() {
     } catch(e) { continue; }
   }
 
+  // Nothing usable — fresh start
   return false;
+}
+
+function isValidState(parsed) {
+  if (!parsed || !parsed.classes || !Array.isArray(parsed.classes)) return false;
+  if (parsed.classes.length !== 3) return false;
+  // Each class must have the essential fields
+  return parsed.classes.every(cls =>
+    cls && typeof cls.leg === 'number' && typeof cls.day === 'number' &&
+    cls.stats && typeof cls.stats.nav === 'number'
+  );
+}
+
+function patchMissingFields(st) {
+  st.classes.forEach(cls => {
+    if (cls.reunionShown === undefined) cls.reunionShown = false;
+    if (cls.forensicsComplete === undefined) cls.forensicsComplete = false;
+    if (!cls.decisions) cls.decisions = [];
+    if (!cls.checkpoints) cls.checkpoints = [];
+    if (!cls.stats) cls.stats = {nav:100, solar:100, signal:40, earth:70};
+    if (cls.stats.nav === undefined) cls.stats.nav = 100;
+    if (cls.stats.solar === undefined) cls.stats.solar = 100;
+    if (cls.stats.signal === undefined) cls.stats.signal = 40;
+    if (cls.stats.earth === undefined) cls.stats.earth = 70;
+  });
 }
 
 // ============================================================
@@ -2651,9 +2664,9 @@ function renderDeepenContent(c) {
   if (c.readingFocus) h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">📖 Reading Assignment</div><div style="font-family:var(--font-body);font-size:15px;color:var(--text-primary);line-height:1.6">${c.readingFocus}</div></div>`;
   if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS — Reading Focus' : 'GAIA — To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${c.gaiaReadingPrompt}</div></div>`; }
   if (c.vocabFocus && c.vocabFocus.length) {
-    h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
-    c.vocabFocus.forEach(v => { h += `<span style="background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:3px;padding:3p
-x 9px;font-family:var(--font-mono);font-size:11px;color:var(--accent)">${v}</span>`; });
+    h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--fon
+t-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
+    c.vocabFocus.forEach(v => { h += `<span style="background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:3px;padding:3px 9px;font-family:var(--font-mono);font-size:11px;color:var(--accent)">${v}</span>`; });
     h += '</div></div>';
   }
   if (c.spiralReview) h += `<div style="background:rgba(0,229,204,0.04);border:1px solid rgba(0,229,204,0.15);border-left:3px solid var(--accent-dim);border-radius:6px;padding:10px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px">⟵ Spiral Review — Campaign 1</div><div style="font-family:var(--font-body);font-size:13px;color:var(--text-secondary);line-height:1.5">${c.spiralReview}</div></div>`;
