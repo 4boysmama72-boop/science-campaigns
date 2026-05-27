@@ -711,22 +711,22 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
   <!-- PRESENTATION STATS BAR -->
   <div id="pres-stats-bar" style="display:none;background:var(--bg-panel);border-bottom:1px solid var(--border);padding:6px 40px;gap:24px;align-items:center;flex-shrink:0">
     <div class="pres-stat">
-      <span class="pres-stat-label">🧭 Nav</span>
+      <span class="pres-stat-label">Nav</span>
       <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-nav-bar" style="background:var(--stat-nav)"></div></div>
       <span class="pres-stat-val" id="pres-nav-val" style="color:var(--stat-nav)">—</span>
     </div>
     <div class="pres-stat">
-      <span class="pres-stat-label">☀️ Solar</span>
+      <span class="pres-stat-label">Solar</span>
       <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-solar-bar" style="background:var(--stat-solar)"></div></div>
       <span class="pres-stat-val" id="pres-solar-val" style="color:var(--stat-solar)">—</span>
     </div>
     <div class="pres-stat">
-      <span class="pres-stat-label">📡 Signal</span>
+      <span class="pres-stat-label">Signal</span>
       <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-signal-bar" style="background:var(--stat-signal)"></div></div>
       <span class="pres-stat-val" id="pres-signal-val" style="color:var(--stat-signal)">—</span>
     </div>
     <div class="pres-stat">
-      <span class="pres-stat-label">🌍 Earth</span>
+      <span class="pres-stat-label">Earth</span>
       <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-earth-bar" style="background:var(--stat-earth)"></div></div>
       <span class="pres-stat-val" id="pres-earth-val" style="color:var(--stat-earth)">—</span>
     </div>
@@ -738,22 +738,22 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
       <div>
         <div class="panel-label">Mission Dashboard</div>
         <div class="stat-item stat-nav">
-          <div class="stat-header"><div class="stat-name">🧭 Navigation</div><div class="stat-value" id="stat-nav-val">100%</div></div>
+          <div class="stat-header"><div class="stat-name">Navigation</div><div class="stat-value" id="stat-nav-val">100%</div></div>
           <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-nav-bar" style="width:100%"></div></div>
           <div class="stat-sublabel" id="stat-nav-status">Course nominal</div>
         </div>
         <div class="stat-item stat-solar">
-          <div class="stat-header"><div class="stat-name">☀️ Solar Power</div><div class="stat-value" id="stat-solar-val">100%</div></div>
+          <div class="stat-header"><div class="stat-name">Solar Power</div><div class="stat-value" id="stat-solar-val">100%</div></div>
           <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-solar-bar" style="width:100%"></div></div>
           <div class="stat-sublabel" id="stat-solar-status">Collection optimal</div>
         </div>
         <div class="stat-item stat-signal">
-          <div class="stat-header"><div class="stat-name">📡 Signal</div><div class="stat-value" id="stat-signal-val">40%</div></div>
+          <div class="stat-header"><div class="stat-name">Signal</div><div class="stat-value" id="stat-signal-val">40%</div></div>
           <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-signal-bar" style="width:40%"></div></div>
           <div class="stat-sublabel" id="stat-signal-status">Lighthouse signal faint</div>
         </div>
         <div class="stat-item stat-earth">
-          <div class="stat-header"><div class="stat-name">🌍 Earth Status</div><div class="stat-value" id="stat-earth-val">70%</div></div>
+          <div class="stat-header"><div class="stat-name">Earth Status</div><div class="stat-value" id="stat-earth-val">70%</div></div>
           <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-earth-bar" style="width:70%"></div></div>
           <div class="stat-sublabel" id="stat-earth-status">Atmosphere elevated</div>
         </div>
@@ -980,10 +980,10 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
         <div class="processing-choice-text" id="processing-choice-text">—</div>
       </div>
       <div style="display:flex;gap:8px;justify-content:center;margin-bottom:28px;flex-wrap:wrap">
-        <div class="processing-stat-chip">🧭 Navigation — classified</div>
-        <div class="processing-stat-chip">☀️ Solar Power — classified</div>
-        <div class="processing-stat-chip">📡 Signal — classified</div>
-        <div class="processing-stat-chip">🌍 Earth Status — classified</div>
+        <div class="processing-stat-chip">Navigation — classified</div>
+        <div class="processing-stat-chip">Solar Power — classified</div>
+        <div class="processing-stat-chip">Signal — classified</div>
+        <div class="processing-stat-chip">Earth Status — classified</div>
       </div>
       <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);text-align:center;margin-bottom:24px;line-height:1.6">
         Stat changes are pending until next class reveal.<br>Save now and find out what happened tomorrow.
@@ -2295,7 +2295,7 @@ function renderClassCards() {
     const hasPending = !!cls.pendingDeltas;
     const branchClass = cls.failures >= 2 ? 'branch-critical' : cls.failures === 1 ? 'branch-caution' : (cls.day === 1 && cls.leg === 1 && !hasPending) ? 'branch-new' : 'branch-nominal';
     const branchText = cls.failures >= 3 ? 'RESTRICTED' : cls.failures >= 2 ? 'CRITICAL' : cls.failures === 1 ? 'CAUTION' : hasPending ? 'REVEAL READY' : (cls.day === 1 && cls.leg === 1) ? 'NOT STARTED' : 'NOMINAL';
-    const gaiaIcon = cls.gaiaStatus === 'aboard' ? '🟢 GAIA aboard' : '📡 GAIA via signal';
+    const gaiaIcon = cls.gaiaStatus === 'aboard' ? 'GAIA aboard' : 'GAIA via signal';
     const card = document.createElement('div');
     card.className = 'class-card';
     card.id = `class-card-${i}`;
@@ -2305,13 +2305,13 @@ function renderClassCards() {
       <div class="class-name">${cls.name}</div>
       <div class="class-status">Leg ${cls.leg} · Day ${cls.day} · Branch ${cls.branch}</div>
       <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);margin-bottom:6px">${gaiaIcon}</div>
-      ${hasPending ? `<div class="reveal-badge visible">⏳ Results pending — reveal next class</div>` : ''}
+      ${hasPending ? `<div class="reveal-badge visible">&#9203; Results pending — reveal next class</div>` : ''}
       <div class="class-branch ${branchClass}">${branchText}</div>
       <div class="mini-stats">
-        <div class="mini-stat"><div class="mini-stat-label">🧭 Nav</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.nav}%;background:var(--stat-nav)"></div></div></div>
-        <div class="mini-stat"><div class="mini-stat-label">☀️ Solar</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.solar}%;background:var(--stat-solar)"></div></div></div>
-        <div class="mini-stat"><div class="mini-stat-label">📡 Signal</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.signal}%;background:var(--stat-signal)"></div></div></div>
-        <div class="mini-stat"><div class="mini-stat-label">🌍 Earth</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.earth}%;background:var(--stat-earth)"></div></div></div>
+        <div class="mini-stat"><div class="mini-stat-label">Nav</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.nav}%;background:var(--stat-nav)"></div></div></div>
+        <div class="mini-stat"><div class="mini-stat-label">Solar</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.solar}%;background:var(--stat-solar)"></div></div></div>
+        <div class="mini-stat"><div class="mini-stat-label">Signal</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.signal}%;background:var(--stat-signal)"></div></div></div>
+        <div class="mini-stat"><div class="mini-stat-label">Earth</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.earth}%;background:var(--stat-earth)"></div></div></div>
       </div>
     `;
     grid.appendChild(card);
@@ -2370,10 +2370,10 @@ function renderRevealScreen(cls) {
   }
 
   const statInfo = [
-    { key:'nav',    icon:'🧭', label:'Navigation',   color:'var(--stat-nav)' },
-    { key:'solar',  icon:'☀️', label:'Solar Power',   color:'var(--stat-solar)' },
-    { key:'signal', icon:'📡', label:'Signal Clarity', color:'var(--stat-signal)' },
-    { key:'earth',  icon:'🌍', label:'Earth Status',   color:'var(--stat-earth)' }
+    { key:'nav',    icon:'Nav', label:'Navigation',   color:'var(--stat-nav)' },
+    { key:'solar',  icon:'Solar', label:'Solar Power',   color:'var(--stat-solar)' },
+    { key:'signal', icon:'Signal', label:'Signal Clarity', color:'var(--stat-signal)' },
+    { key:'earth',  icon:'Earth', label:'Earth Status',   color:'var(--stat-earth)' }
   ];
   const deltas = cls.pendingDeltas || {};
   document.getElementById('reveal-stat-changes').innerHTML = statInfo.map(s => {
@@ -2472,7 +2472,7 @@ function renderMissionScreen() {
 
   updateDayTypeBanner(cnt, cls);
 
-  const typeLabels = {choice:'⚡ Choice Day', deepen:'📖 Lesson Day', graph:'📊 Graph Day', climax:'🏁 Leg Milestone'};
+  const typeLabels = {choice:'Choice Day', deepen:'Lesson Day', graph:'Graph Day', climax:'Leg Milestone'};
   const badge = typeLabels[dayType] || '';
   document.getElementById('content-leg-title').innerHTML = cnt.legTitle + ' <span style="font-family:var(--font-mono);font-size:11px;color:var(--accent-dim);font-weight:400">' + badge + '</span>';
 
@@ -2531,7 +2531,7 @@ function renderMissionScreen() {
   }
   // Choice reading focus — shown on choice days only
   if (isChoiceDay && cnt.choiceReadingFocus) {
-    extra.innerHTML += `<div class="choice-reading-box"><div class="choice-reading-label">📖 First Read — Before You Vote</div><div class="choice-reading-text">${cnt.choiceReadingFocus}</div></div>`;
+    extra.innerHTML += `<div class="choice-reading-box"><div class="choice-reading-label">First Read — Before You Vote</div><div class="choice-reading-text">${cnt.choiceReadingFocus}</div></div>`;
   }
 
   if (dayType === 'deepen') extra.innerHTML += renderDeepenContent(cnt);
@@ -2654,10 +2654,10 @@ function updateDayTypeBanner(cnt, cls) {
   const leg = CONTENT.legs.find(l => l.id === cls.leg);
   const totalDays = leg ? leg.days.length : 10;
   badge.className = 'day-type-badge';
-  if (dayType === 'choice') { badge.classList.add('badge-choice'); badge.textContent = '⚡ Choice Day'; }
-  else if (dayType === 'deepen') { badge.classList.add('badge-deepen'); badge.textContent = '📖 Lesson Day'; }
-  else if (dayType === 'graph') { badge.classList.add('badge-graph'); badge.textContent = '📊 Graph Day'; }
-  else { badge.classList.add('badge-climax'); badge.textContent = '🏁 Leg Milestone'; }
+  if (dayType === 'choice') { badge.classList.add('badge-choice'); badge.textContent = 'Choice Day'; }
+  else if (dayType === 'deepen') { badge.classList.add('badge-deepen'); badge.textContent = 'Lesson Day'; }
+  else if (dayType === 'graph') { badge.classList.add('badge-graph'); badge.textContent = 'Graph Day'; }
+  else { badge.classList.add('badge-climax'); badge.textContent = 'Leg Milestone'; }
   desc.textContent = `Day ${cnt.day} of ${totalDays} · Leg ${cls.leg}`;
 }
 
@@ -2666,11 +2666,11 @@ function updateDayTypeBanner(cnt, cls) {
 // ============================================================
 function renderDeepenContent(c) {
   let h = '';
-  if (c.readingFocus) h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">📖 Reading Assignment</div><div style="font-family:var(--font-body);font-size:15px;color:var(--text-primary);line-height:1.6">${c.readingFocus}</div></div>`;
+  if (c.readingFocus) h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Reading Assignment</div><div style="font-family:var(--font-body);font-size:15px;color:var(--text-primary);line-height:1.6">${c.readingFocus}</div></div>`;
   if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS — Reading Focus' : 'GAIA — To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${c.gaiaReadingPrompt}</div></div>`; }
   if (c.vocabFocus && c.vocabFocus.length) {
-    h += '<div s
-tyle="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
+    h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-famil
+y:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
     c.vocabFocus.forEach(v => { h += `<span style="background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:3px;padding:3px 9px;font-family:var(--font-mono);font-size:11px;color:var(--accent)">${v}</span>`; });
     h += '</div></div>';
   }
@@ -2683,7 +2683,7 @@ function renderGraphContent(c) {
   if (c.graphData) {
     const gd = c.graphData;
     h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margin-bottom:14px">`;
-    h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">📊 ${gd.title}</div>`;
+    h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">${gd.title}</div>`;
 
     // rawDataOnly: show data as formatted cards, not a chart
     if (c.rawDataOnly && gd.bars) {
@@ -3279,16 +3279,16 @@ function renderStats(cls) {
 
 function statLabel(key, val) {
   if (key === 'nav') {
-    if (val <= 0) return '🚨 Navigation failure';
-    if (val <= 20) return '🚨 Critical — course lost';
-    if (val <= 40) return '⚠ Course corrections needed';
+    if (val <= 0) return 'Navigation failure';
+    if (val <= 20) return 'Critical — course lost';
+    if (val <= 40) return 'Course corrections needed';
     if (val <= 70) return 'Minor deviations';
     return 'Course nominal';
   }
   if (key === 'solar') {
-    if (val <= 0) return '🚨 Power depleted';
-    if (val <= 20) return '🚨 Critical — emergency only';
-    if (val <= 40) return '⚠ Low reserves';
+    if (val <= 0) return 'Power depleted';
+    if (val <= 20) return 'Critical — emergency only';
+    if (val <= 40) return 'Low reserves';
     if (val <= 70) return 'Adequate collection';
     return 'Collection optimal';
   }
@@ -3300,9 +3300,9 @@ function statLabel(key, val) {
     return 'Signal clear';
   }
   if (key === 'earth') {
-    if (val <= 30) return '🚨 Critical atmospheric change';
-    if (val <= 50) return '⚠ Significant warming detected';
-    if (val <= 65) return '⚠ Elevated readings';
+    if (val <= 30) return 'Critical atmospheric change';
+    if (val <= 50) return 'Significant warming detected';
+    if (val <= 65) return 'Elevated readings';
     if (val <= 80) return 'Atmosphere elevated';
     return 'Atmosphere nominal';
   }
@@ -3380,7 +3380,7 @@ function updateTeacherNotePanel(cnt) {
       if (ds.hint) notes.push({label:`${ds.id} — Hint`, text:ds.hint});
     });
   }
-  if (cnt.shortDayNote) notes.push({label:'⏱ Short Day', text:cnt.shortDayNote});
+  if (cnt.shortDayNote) notes.push({label:'Short Day', text:cnt.shortDayNote});
   if (cnt.bridgeToNext) notes.push({label:'→ Next Class', text:cnt.bridgeToNext});
   if (cnt.spiralReview) notes.push({label:'⟵ Spiral Review', text:cnt.spiralReview});
   if (notes.length === 0) { panel.style.display = 'none'; return; }
@@ -3417,7 +3417,7 @@ function populateDayJump() {
   if (!sel || state.activeClass === null) return;
   const cls = state.classes[state.activeClass];
   sel.innerHTML = '<option value="">— Jump to Day —</option>';
-  const typeIcons = {choice:'⚡', deepen:'📖', graph:'📊', climax:'🏁'};
+  const typeIcons = {choice:'C', deepen:'L', graph:'G', climax:'M'};
   CONTENT.legs.forEach(leg => {
     const group = document.createElement('optgroup');
     group.label = leg.label;
@@ -3535,7 +3535,7 @@ function showForensics() {
     gate.style.background = 'rgba(0,255,136,0.04)';
     document.getElementById('forensics-gate-text').style.color = 'var(--green)';
     document.getElementById('forensics-gate-text').textContent = 'Forensic analysis complete. Checkpoint reset is available.';
-    gateBtn.textContent = '✓ Analysis Complete — Reset Available';
+    gateBtn.textContent = 'Analysis Complete — Reset Available';
     gateBtn.classList.add('unlocked');
     checkpointSel.style.display = 'block';
   } else {
@@ -3543,7 +3543,7 @@ function showForensics() {
     gate.style.background = '';
     document.getElementById('forensics-gate-text').style.color = '';
     document.getElementById('forensics-gate-text').textContent = 'Complete the forensic analysis below before the checkpoint becomes available. Review the timeline. Examine the stat trajectory. Complete your CER in the Google Form. Then confirm completion to unlock the checkpoint reset.';
-    gateBtn.textContent = '✓ We Have Completed the Forensic Analysis — Unlock Checkpoint';
+    gateBtn.textContent = 'We Have Completed the Forensic Analysis — Unlock Checkpoint';
     gateBtn.classList.remove('unlocked');
     checkpointSel.style.display = 'none';
   }
@@ -3607,7 +3607,7 @@ function renderForensicsTrajectory(cls) {
   // Build stat history by replaying decisions
   const statKeys = ['nav','solar','signal','earth'];
   const statColors = {nav:'var(--stat-nav)', solar:'var(--stat-solar)', signal:'var(--stat-signal)', earth:'var(--stat-earth)'};
-  const statIcons = {nav:'🧭', solar:'☀️', signal:'📡', earth:'🌍'};
+  const statIcons = {nav:'Nav', solar:'Solar', signal:'Signal', earth:'Earth'};
 
   // Start from initial values and replay
   let current = {nav:100, solar:100, signal:40, earth:70};
