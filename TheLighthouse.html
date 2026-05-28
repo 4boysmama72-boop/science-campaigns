@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <!--
-  The Lighthouse — Science Campaign App
+  The Lighthouse &mdash; Science Campaign App
   Campaign 2 of 3: Earth & Space Science
   Created by Danielle Edwards
-  © 2026 Danielle Edwards. All rights reserved.
+  &copy; 2026 Danielle Edwards. All rights reserved.
   Built for classroom use. Not for redistribution without permission.
 -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Lighthouse — Mission Control</title>
+<title>The Lighthouse &mdash; Mission Control</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -53,7 +53,7 @@
     overflow-x: hidden;
   }
 
-  /* Star field — slightly denser than Prometheus, deeper space */
+  /* Star field &mdash; slightly denser than Prometheus, deeper space */
   body::before {
     content: '';
     position: fixed;
@@ -333,7 +333,7 @@
   .gaia-text { font-family: var(--font-body); font-size: 24px; color: rgba(0,255,136,0.92); line-height: 1.7; }
   .gaia-text em { color: var(--gaia-green); font-style: italic; }
 
-  /* GAIA RECALL BOX — spiral review */
+  /* GAIA RECALL BOX &mdash; spiral review */
   .gaia-recall-box { background: var(--bg-card); border: 1px solid rgba(0,229,204,0.2); border-left: 3px solid var(--accent); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; }
   .gaia-recall-label { font-family: var(--font-mono); font-size: 9px; color: var(--accent-dim); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 5px; }
   .gaia-recall-text { font-family: var(--font-body); font-size: 17px; color: var(--text-secondary); line-height: 1.6; }
@@ -504,7 +504,7 @@
   .toast.error { border-color: rgba(255,51,85,0.4); color: var(--red); }
 
 
-  /* MERIDIAN SYSTEMS — ship AI for signal classes Days 1-2 */
+  /* MERIDIAN SYSTEMS &mdash; ship AI for signal classes Days 1-2 */
   .meridian-box { background: var(--bg-card); border: 1px solid rgba(126,184,212,0.2); border-left: 3px solid #7eb8d4; border-radius: 6px; padding: 14px 16px; margin-bottom: 18px; }
   .meridian-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
   .meridian-indicator { width: 7px; height: 7px; background: #7eb8d4; flex-shrink: 0; }
@@ -530,9 +530,9 @@
 <div id="screen-setup" class="screen active">
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
     <div style="width:100%;max-width:600px">
-      <div class="mission-label" style="margin-bottom:8px">Mission Control — Campaign 2 Configuration</div>
+      <div class="mission-label" style="margin-bottom:8px">Mission Control &mdash; Campaign 2 Configuration</div>
       <div class="setup-title">THE LIGHTHOUSE</div>
-      <div style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);margin-bottom:2rem">Global Science Recovery Agency · Long-Range Science Vessel Meridian</div>
+      <div style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);margin-bottom:2rem">Global Science Recovery Agency &middot; Long-Range Science Vessel Meridian</div>
       <div style="margin-bottom:16px">
         <label class="form-label">Your Name</label>
         <input type="text" class="form-input" id="setup-teacher" placeholder="e.g. Ms. Rodriguez" />
@@ -555,7 +555,7 @@
         </div>
       </div>
       <div style="margin-bottom:16px">
-        <label class="form-label">GAIA Status — Did this class bring GAIA from the Prometheus?</label>
+        <label class="form-label">GAIA Status &mdash; Did this class bring GAIA from the Prometheus?</label>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
           <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px">
             <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:8px">Class 1</div>
@@ -581,7 +581,7 @@
         </div>
       </div>
       <button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="completeSetup()">
-        Initialize Mission Control — The Lighthouse →
+        Initialize Mission Control &mdash; The Lighthouse &rarr;
       </button>
     </div>
   </div>
@@ -592,18 +592,18 @@
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
     <div style="width:100%;max-width:960px">
       <div style="text-align:center;margin-bottom:2.5rem">
-        <div class="mission-label">Global Science Recovery Agency — Mission Control</div>
+        <div class="mission-label">Global Science Recovery Agency &mdash; Mission Control</div>
         <div class="mission-title">THE LIGHTHOUSE</div>
-        <div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);letter-spacing:.1em;text-transform:uppercase">Earth & Space Science Campaign · Teacher Dashboard</div>
+        <div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);letter-spacing:.1em;text-transform:uppercase">Earth & Space Science Campaign &middot; Teacher Dashboard</div>
       </div>
       <div class="class-grid" id="class-grid"></div>
       <div class="home-actions">
-        <button class="btn btn-green" id="btn-reveal" onclick="launchReveal()" disabled>◈ Open Today's Reveal</button>
-        <button class="btn btn-primary" id="btn-launch" onclick="launchMission()" disabled>▶ Launch Mission Screen</button>
-        <button class="btn btn-secondary" onclick="showForensics()">⬡ Mission Forensics</button>
-        <button class="btn btn-secondary" onclick="showSetup()">◈ Settings</button>
-        <button class="btn btn-danger" onclick="confirmReset()">↺ Reset to Checkpoint</button>
-        <button class="btn btn-danger" onclick="confirmFullReset()">✕ Full Reset Class</button>
+        <button class="btn btn-green" id="btn-reveal" onclick="launchReveal()" disabled>&#9672; Open Today's Reveal</button>
+        <button class="btn btn-primary" id="btn-launch" onclick="launchMission()" disabled>&#9654; Launch Mission Screen</button>
+        <button class="btn btn-secondary" onclick="showForensics()">&#11041; Mission Forensics</button>
+        <button class="btn btn-secondary" onclick="showSetup()">&#9672; Settings</button>
+        <button class="btn btn-danger" onclick="confirmReset()">&#8634; Reset to Checkpoint</button>
+        <button class="btn btn-danger" onclick="confirmFullReset()">&#10005; Full Reset Class</button>
       </div>
       <div class="system-time" id="system-time"></div>
     </div>
@@ -614,33 +614,33 @@
 <div id="screen-reveal" class="screen">
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
     <div style="width:100%;max-width:700px">
-      <div class="mission-label" style="text-align:center;margin-bottom:8px" id="reveal-class-label">—</div>
+      <div class="mission-label" style="text-align:center;margin-bottom:8px" id="reveal-class-label">&mdash;</div>
       <div class="reveal-title">RESULTS ARE IN.</div>
       <div class="reveal-subtitle">Your decision has been processed. Here is what happened.</div>
       <div class="reveal-recap">
-        <div class="reveal-recap-label">Last Class — The Crew Decided</div>
-        <div class="reveal-recap-text" id="reveal-choice-recap">—</div>
+        <div class="reveal-recap-label">Last Class &mdash; The Crew Decided</div>
+        <div class="reveal-recap-text" id="reveal-choice-recap">&mdash;</div>
       </div>
-      <!-- GAIA consequence box — shown for GAIA days -->
+      <!-- GAIA consequence box &mdash; shown for GAIA days -->
       <div class="reveal-gaia-box" id="reveal-gaia-box">
         <div class="gaia-header" style="margin-bottom:10px">
           <div class="gaia-dot"></div>
-          <div class="gaia-label" id="reveal-source-label">GAIA — Consequence Report</div>
+          <div class="gaia-label" id="reveal-source-label">GAIA &mdash; Consequence Report</div>
         </div>
         <div class="reveal-gaia-text" id="reveal-gaia-text">Loading consequence data...</div>
       </div>
-      <!-- Meridian consequence box — shown for Meridian-mode days -->
+      <!-- Meridian consequence box &mdash; shown for Meridian-mode days -->
       <div class="meridian-box" id="reveal-meridian-box" style="display:none;margin-bottom:24px">
         <div class="meridian-header" style="margin-bottom:10px">
           <div class="meridian-indicator"></div>
-          <div class="meridian-label">MERIDIAN SYSTEMS — Consequence Report</div>
+          <div class="meridian-label">MERIDIAN SYSTEMS &mdash; Consequence Report</div>
         </div>
         <div class="meridian-text" id="reveal-meridian-text">Loading consequence data...</div>
       </div>
       <div class="stat-changes" id="reveal-stat-changes"></div>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-        <button class="btn btn-primary" onclick="proceedFromReveal()">▶ Continue to Today's Mission</button>
-        <button class="btn btn-secondary" onclick="goHome()">⌂ Back to Dashboard</button>
+        <button class="btn btn-primary" onclick="proceedFromReveal()">&#9654; Continue to Today's Mission</button>
+        <button class="btn btn-secondary" onclick="goHome()">&#8962; Back to Dashboard</button>
       </div>
     </div>
   </div>
@@ -650,9 +650,9 @@
 <div id="screen-reunion" class="screen">
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
     <div style="width:100%;max-width:700px">
-      <div class="mission-label" style="text-align:center;margin-bottom:8px">Leg 1 · Day 3 · Incoming Transmission</div>
+      <div class="mission-label" style="text-align:center;margin-bottom:8px">Leg 1 &middot; Day 3 &middot; Incoming Transmission</div>
       <div style="font-family:var(--font-display);font-size:clamp(18px,3vw,28px);font-weight:700;color:var(--accent);text-align:center;letter-spacing:.05em;margin-bottom:6px;text-shadow:0 0 30px rgba(0,229,204,0.4)">SIGNAL RECEIVED</div>
-      <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);text-align:center;letter-spacing:.1em;margin-bottom:28px">Origin: Prometheus · Last Known Position</div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);text-align:center;letter-spacing:.1em;margin-bottom:28px">Origin: Prometheus &middot; Last Known Position</div>
 
       <div style="background:var(--bg-card);border:1px solid rgba(0,229,204,0.2);border-radius:6px;padding:16px 20px;margin-bottom:20px;font-family:var(--font-body);font-size:17px;color:var(--text-secondary);line-height:1.7;font-style:italic">
         The communications panel activates without warning. A long-range signal, origin: the last known position of the Prometheus.<br><br>
@@ -662,19 +662,19 @@
       <div class="gaia-box" style="margin-bottom:24px">
         <div class="gaia-header" style="margin-bottom:12px">
           <div class="gaia-dot"></div>
-          <div class="gaia-label">GAIA — Long-Range Transmission · Prometheus Position</div>
+          <div class="gaia-label">GAIA &mdash; Long-Range Transmission &middot; Prometheus Position</div>
         </div>
         <div class="gaia-text" style="font-size:20px">"This is GAIA. Shipboard AI, research vessel Prometheus.<br><br>
-I have been monitoring the Meridian since your departure from Earth orbit. The gravitational anomaly you encountered on Day 1 — I identified the same signature from my fixed position four weeks before you launched. I have data you do not have. You have mobility I do not have. This is, as the researchers used to say, a complementary situation.<br><br>
+I have been monitoring the Meridian since your departure from Earth orbit. The gravitational anomaly you encountered on Day 1 &mdash; I identified the same signature from my fixed position four weeks before you launched. I have data you do not have. You have mobility I do not have. This is, as the researchers used to say, a complementary situation.<br><br>
 I will be joining this mission in a consulting capacity via long-range signal, effective immediately. I have already synchronized with the Meridian's navigation array.<br><br>
-Nine months alone on the Prometheus has given me a great deal of time to analyze the data from this solar system. I have theories I am not yet ready to share — the crew needs to understand the science before the theories will mean anything. You will find that I have opinions about the order in which things should be learned. This has not changed.<br><br>
-I want to say something, and then we will move on: I monitored your launch. I watched the Meridian leave. I have been following your progress since Day 1 of this mission. Whether that decision was easy or difficult for this crew — I do not know. What I know is that the work is not finished, and the crew that can finish it is the one currently reading my transmission.<br><br>
+Nine months alone on the Prometheus has given me a great deal of time to analyze the data from this solar system. I have theories I am not yet ready to share &mdash; the crew needs to understand the science before the theories will mean anything. You will find that I have opinions about the order in which things should be learned. This has not changed.<br><br>
+I want to say something, and then we will move on: I monitored your launch. I watched the Meridian leave. I have been following your progress since Day 1 of this mission. Whether that decision was easy or difficult for this crew &mdash; I do not know. What I know is that the work is not finished, and the crew that can finish it is the one currently reading my transmission.<br><br>
 I am glad it is you.<br><br>
-GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed the mission schedule does not account for adequate rest cycles. I will be flagging this repeatedly until someone listens."</div>
+GAIA out. I will be in contact daily. Try to get enough sleep &mdash; I have noticed the mission schedule does not account for adequate rest cycles. I will be flagging this repeatedly until someone listens."</div>
       </div>
 
       <div style="display:flex;justify-content:center">
-        <button class="btn btn-green" onclick="proceedFromReunion()">▶ Continue to Today's Mission</button>
+        <button class="btn btn-green" onclick="proceedFromReunion()">&#9654; Continue to Today's Mission</button>
       </div>
     </div>
   </div>
@@ -686,25 +686,25 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
   <div class="topbar">
     <div class="topbar-left">
       <div class="topbar-title">THE LIGHTHOUSE</div>
-      <div class="topbar-tag" id="topbar-period">—</div>
-      <div class="topbar-tag" id="topbar-leg" style="color:var(--accent-dim)">—</div>
+      <div class="topbar-tag" id="topbar-period">&mdash;</div>
+      <div class="topbar-tag" id="topbar-leg" style="color:var(--accent-dim)">&mdash;</div>
     </div>
     <div class="topbar-right">
       <div class="timer-widget">
         <div class="timer-readout idle" id="topbar-timer" onclick="focusTimer()">--:--</div>
         <button class="timer-micro-btn" onclick="addTimeTopbar(2)">+2m</button>
         <button class="timer-micro-btn" onclick="addTimeTopbar(5)">+5m</button>
-        <button class="timer-micro-btn" onclick="stopTimer()">■</button>
+        <button class="timer-micro-btn" onclick="stopTimer()">&#9632;</button>
       </div>
-      <button class="topbar-btn pres-btn" id="pres-btn" onclick="togglePresMode()">⊞ Present</button>
-      <button class="topbar-btn save-btn" onclick="saveCurrentClass()">💾 Save</button>
-      <button class="topbar-btn" onclick="goHome()">⌂ Home</button>
+      <button class="topbar-btn pres-btn" id="pres-btn" onclick="togglePresMode()">&#8862; Present</button>
+      <button class="topbar-btn save-btn" onclick="saveCurrentClass()">&#128190; Save</button>
+      <button class="topbar-btn" onclick="goHome()">&#8962; Home</button>
     </div>
   </div>
 
   <!-- DAY TYPE BANNER -->
   <div class="day-type-banner" id="day-type-banner">
-    <span class="day-type-badge badge-choice" id="day-type-badge">⚡ Choice Day</span>
+    <span class="day-type-badge badge-choice" id="day-type-badge">&#9889; Choice Day</span>
     <span class="day-type-desc" id="day-type-desc">Day 1 of 10</span>
   </div>
 
@@ -713,22 +713,22 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
     <div class="pres-stat">
       <span class="pres-stat-label">Nav</span>
       <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-nav-bar" style="background:var(--stat-nav)"></div></div>
-      <span class="pres-stat-val" id="pres-nav-val" style="color:var(--stat-nav)">—</span>
+      <span class="pres-stat-val" id="pres-nav-val" style="color:var(--stat-nav)">&mdash;</span>
     </div>
     <div class="pres-stat">
       <span class="pres-stat-label">Solar</span>
       <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-solar-bar" style="background:var(--stat-solar)"></div></div>
-      <span class="pres-stat-val" id="pres-solar-val" style="color:var(--stat-solar)">—</span>
+      <span class="pres-stat-val" id="pres-solar-val" style="color:var(--stat-solar)">&mdash;</span>
     </div>
     <div class="pres-stat">
       <span class="pres-stat-label">Signal</span>
       <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-signal-bar" style="background:var(--stat-signal)"></div></div>
-      <span class="pres-stat-val" id="pres-signal-val" style="color:var(--stat-signal)">—</span>
+      <span class="pres-stat-val" id="pres-signal-val" style="color:var(--stat-signal)">&mdash;</span>
     </div>
     <div class="pres-stat">
       <span class="pres-stat-label">Earth</span>
       <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-earth-bar" style="background:var(--stat-earth)"></div></div>
-      <span class="pres-stat-val" id="pres-earth-val" style="color:var(--stat-earth)">—</span>
+      <span class="pres-stat-val" id="pres-earth-val" style="color:var(--stat-earth)">&mdash;</span>
     </div>
   </div>
 
@@ -776,7 +776,7 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
       <div>
         <div class="panel-label">Mission Path</div>
         <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:5px;padding:9px 11px">
-          <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);line-height:1.6" id="branch-path">Leg 1 · <span style="color:var(--accent)">Branch A</span> · Day 1</div>
+          <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);line-height:1.6" id="branch-path">Leg 1 &middot; <span style="color:var(--accent)">Branch A</span> &middot; Day 1</div>
         </div>
       </div>
 
@@ -794,24 +794,24 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
     <div class="panel-story">
       <div class="story-content">
         <div class="phase-bar">
-          <div class="phase-step active" data-phase="story" onclick="setPhase('story')">1 · Scenario</div>
-          <div class="phase-step" data-phase="exit" onclick="setPhase('exit')">2 · Exit Ticket</div>
-          <div class="phase-step" data-phase="discuss" onclick="setPhase('discuss')">3 · Discussion</div>
-          <div class="phase-step" data-phase="vote" onclick="setPhase('vote')">4 · Final Vote</div>
+          <div class="phase-step active" data-phase="story" onclick="setPhase('story')">1 &middot; Scenario</div>
+          <div class="phase-step" data-phase="exit" onclick="setPhase('exit')">2 &middot; Exit Ticket</div>
+          <div class="phase-step" data-phase="discuss" onclick="setPhase('discuss')">3 &middot; Discussion</div>
+          <div class="phase-step" data-phase="vote" onclick="setPhase('vote')">4 &middot; Final Vote</div>
         </div>
 
-        <div class="leg-label" id="content-leg-label">Leg 1 · Gravity</div>
+        <div class="leg-label" id="content-leg-label">Leg 1 &middot; Gravity</div>
         <div class="leg-title" id="content-leg-title">Loading...</div>
         <div class="leg-divider"></div>
 
         <!-- PHASE 1: SCENARIO -->
         <div class="phase-panel active" id="phase-story">
-          <!-- GAIA box — shown for all classes except signal classes on Days 1-2 -->
+          <!-- GAIA box &mdash; shown for all classes except signal classes on Days 1-2 -->
           <div class="gaia-box" id="gaia-main-box">
-            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label" id="gaia-transmission-label">GAIA — Transmission</div></div>
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label" id="gaia-transmission-label">GAIA &mdash; Transmission</div></div>
             <div class="gaia-text" id="content-gaia">Establishing connection...</div>
           </div>
-          <!-- MERIDIAN SYSTEMS box — shown only for signal classes on Days 1-2 -->
+          <!-- MERIDIAN SYSTEMS box &mdash; shown only for signal classes on Days 1-2 -->
           <div class="meridian-box" id="meridian-main-box" style="display:none">
             <div class="meridian-header"><div class="meridian-indicator"></div><div class="meridian-label">MERIDIAN SYSTEMS</div></div>
             <div class="meridian-text" id="content-meridian">Navigation status nominal.</div>
@@ -833,8 +833,8 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
             <div class="timer-set-row">
               <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">Minutes:</span>
               <input type="number" class="timer-input-inline" id="exit-timer-input" value="8" min="1" max="30" />
-              <button class="timer-start-btn" onclick="startPhaseTimer('exit')">▶ Start</button>
-              <button class="timer-stop-btn" onclick="stopTimer()">■ Stop</button>
+              <button class="timer-start-btn" onclick="startPhaseTimer('exit')">&#9654; Start</button>
+              <button class="timer-stop-btn" onclick="stopTimer()">&#9632; Stop</button>
             </div>
             <div class="timer-controls">
               <button class="timer-add-btn" onclick="addTime(2)">+ 2 min</button>
@@ -862,13 +862,13 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
           </div>
           <div class="timer-phase-box">
             <div class="timer-phase-title">Class Discussion</div>
-            <div class="timer-phase-desc">Scientists share evidence and challenge each other's reasoning. New information may change your position — and that is not weakness. That is science.</div>
+            <div class="timer-phase-desc">Scientists share evidence and challenge each other's reasoning. New information may change your position &mdash; and that is not weakness. That is science.</div>
             <div class="big-timer idle" id="discuss-timer-display">--:--</div>
             <div class="timer-set-row">
               <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">Minutes:</span>
               <input type="number" class="timer-input-inline" id="discuss-timer-input" value="5" min="1" max="30" />
-              <button class="timer-start-btn" onclick="startPhaseTimer('discuss')">▶ Start</button>
-              <button class="timer-stop-btn" onclick="stopTimer()">■ Stop</button>
+              <button class="timer-start-btn" onclick="startPhaseTimer('discuss')">&#9654; Start</button>
+              <button class="timer-stop-btn" onclick="stopTimer()">&#9632; Stop</button>
             </div>
             <div class="timer-controls">
               <button class="timer-add-btn" onclick="addTime(2)">+ 2 min</button>
@@ -878,8 +878,8 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
           </div>
           <!-- GAIA discussion box -->
           <div id="discuss-gaia-box" class="gaia-box">
-            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — Discussion Guide</div></div>
-            <div class="gaia-text">A good scientific argument requires three things: a clear claim, specific evidence, and reasoning that connects them. As you listen — do their arguments hold up? Does their evidence actually support their claim?</div>
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA &mdash; Discussion Guide</div></div>
+            <div class="gaia-text">A good scientific argument requires three things: a clear claim, specific evidence, and reasoning that connects them. As you listen &mdash; do their arguments hold up? Does their evidence actually support their claim?</div>
           </div>
           <!-- Meridian discussion box -->
           <div id="discuss-meridian-box" class="meridian-box" style="display:none">
@@ -892,8 +892,8 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
         <div class="phase-panel" id="phase-vote">
           <!-- GAIA vote box -->
           <div id="vote-gaia-box" class="gaia-box">
-            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — Final Vote</div></div>
-            <div class="gaia-text">"New information has been presented. In accordance with scientific protocol — <em>we reconsider</em>. This is the crew's official decision. It will be logged. It will have consequences. Choose carefully."</div>
+            <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA &mdash; Final Vote</div></div>
+            <div class="gaia-text">"New information has been presented. In accordance with scientific protocol &mdash; <em>we reconsider</em>. This is the crew's official decision. It will be logged. It will have consequences. Choose carefully."</div>
           </div>
           <!-- Meridian vote box -->
           <div id="vote-meridian-box" class="meridian-box" style="display:none">
@@ -905,11 +905,11 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
 
       <!-- CHOICES -->
       <div class="choices-area" id="choices-area">
-        <div class="choices-label" id="choices-label">Crew Decision — Phase 4: Official Vote</div>
-        <div class="choices-restricted" id="choices-restricted" style="display:none">⚠ GAIA: "Given our track record, I've limited your options to the most viable paths."</div>
+        <div class="choices-label" id="choices-label">Crew Decision &mdash; Phase 4: Official Vote</div>
+        <div class="choices-restricted" id="choices-restricted" style="display:none">&#9888; GAIA: "Given our track record, I've limited your options to the most viable paths."</div>
         <div class="choice-grid" id="choice-grid"></div>
         <div class="commit-row">
-          <button class="btn-commit" id="btn-commit" onclick="openCommitModal()" disabled>✓ Lock In Decision</button>
+          <button class="btn-commit" id="btn-commit" onclick="openCommitModal()" disabled>&#10003; Lock In Decision</button>
           <div class="commit-note" id="commit-note">Select the crew's official choice, then lock it in.</div>
         </div>
       </div>
@@ -926,31 +926,31 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
       <div class="divider-line"></div>
       <div>
         <div class="panel-label">Daily Flow</div>
-        <button class="nav-btn" onclick="setPhase('story')">1 · Scenario / Lesson</button>
-        <button class="nav-btn" id="nav-exit-btn" onclick="setPhase('exit')">2 · Exit Ticket Timer</button>
-        <button class="nav-btn" id="nav-discuss-btn" onclick="setPhase('discuss')">3 · Discussion Timer</button>
-        <button class="nav-btn" id="nav-vote-btn" onclick="setPhase('vote')">4 · Final Vote</button>
+        <button class="nav-btn" onclick="setPhase('story')">1 &middot; Scenario / Lesson</button>
+        <button class="nav-btn" id="nav-exit-btn" onclick="setPhase('exit')">2 &middot; Exit Ticket Timer</button>
+        <button class="nav-btn" id="nav-discuss-btn" onclick="setPhase('discuss')">3 &middot; Discussion Timer</button>
+        <button class="nav-btn" id="nav-vote-btn" onclick="setPhase('vote')">4 &middot; Final Vote</button>
       </div>
       <div class="divider-line"></div>
       <div>
         <div class="panel-label">Jump to Day</div>
         <select class="day-jump-select" id="day-jump-select" onchange="jumpToDay(this.value)">
-          <option value="">— Jump to Day —</option>
+          <option value="">&mdash; Jump to Day &mdash;</option>
         </select>
       </div>
       <div class="divider-line"></div>
       <div>
         <div class="panel-label">Mission Control</div>
-        <button class="nav-btn" onclick="saveCurrentClass()">💾 Save Progress</button>
-        <button class="nav-btn" onclick="showForensics()">⬡ Mission Forensics</button>
-        <button class="nav-btn danger" onclick="triggerExtinction()">☠ Branch Extinction</button>
-        <button class="nav-btn" onclick="goHome()">⌂ Dashboard</button>
+        <button class="nav-btn" onclick="saveCurrentClass()">&#128190; Save Progress</button>
+        <button class="nav-btn" onclick="showForensics()">&#11041; Mission Forensics</button>
+        <button class="nav-btn danger" onclick="triggerExtinction()">&#9760; Branch Extinction</button>
+        <button class="nav-btn" onclick="goHome()">&#8962; Dashboard</button>
       </div>
       <div class="divider-line"></div>
       <div>
         <div class="panel-label">Story Navigation</div>
-        <button class="nav-btn" id="btn-next-day" onclick="advanceToNextDay()">▶ Next Day</button>
-        <button class="nav-btn" onclick="goToReveal()">◈ Show Reveal Screen</button>
+        <button class="nav-btn" id="btn-next-day" onclick="advanceToNextDay()">&#9654; Next Day</button>
+        <button class="nav-btn" onclick="goToReveal()">&#9672; Show Reveal Screen</button>
       </div>
       <div class="divider-line"></div>
       <div id="teacher-note-panel"></div>
@@ -962,13 +962,13 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
 <div id="screen-processing" class="screen">
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
     <div style="width:100%;max-width:600px;text-align:center">
-      <div class="processing-icon">⚙</div>
+      <div class="processing-icon">&#9881;</div>
       <div class="processing-title">DECISION LOGGED</div>
       <div class="processing-subtitle">The Meridian has registered the crew's command.</div>
       <!-- GAIA processing box -->
       <div class="processing-gaia" id="proc-gaia-box">
         <div class="gaia-header" style="margin-bottom:10px"><div class="gaia-dot"></div><div class="gaia-label">GAIA</div></div>
-        <div class="processing-gaia-text" id="processing-gaia-msg">"Selection received. I am... processing the implications. The ship's systems have registered your decision and are responding accordingly. Whether that response is favorable — well. You'll find out next class."</div>
+        <div class="processing-gaia-text" id="processing-gaia-msg">"Selection received. I am... processing the implications. The ship's systems have registered your decision and are responding accordingly. Whether that response is favorable &mdash; well. You'll find out next class."</div>
       </div>
       <!-- Meridian processing box -->
       <div class="processing-meridian" id="proc-meridian-box" style="display:none">
@@ -977,20 +977,20 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
       </div>
       <div class="processing-choice-recap">
         <div class="processing-choice-label">The Crew's Decision</div>
-        <div class="processing-choice-text" id="processing-choice-text">—</div>
+        <div class="processing-choice-text" id="processing-choice-text">&mdash;</div>
       </div>
       <div style="display:flex;gap:8px;justify-content:center;margin-bottom:28px;flex-wrap:wrap">
-        <div class="processing-stat-chip">Navigation — classified</div>
-        <div class="processing-stat-chip">Solar Power — classified</div>
-        <div class="processing-stat-chip">Signal — classified</div>
-        <div class="processing-stat-chip">Earth Status — classified</div>
+        <div class="processing-stat-chip">Navigation &mdash; classified</div>
+        <div class="processing-stat-chip">Solar Power &mdash; classified</div>
+        <div class="processing-stat-chip">Signal &mdash; classified</div>
+        <div class="processing-stat-chip">Earth Status &mdash; classified</div>
       </div>
       <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);text-align:center;margin-bottom:24px;line-height:1.6">
         Stat changes are pending until next class reveal.<br>Save now and find out what happened tomorrow.
       </div>
       <div style="display:flex;gap:12px;justify-content:center">
-        <button class="btn btn-green" onclick="saveAndGoHome()">💾 Save &amp; Return to Dashboard</button>
-        <button class="btn btn-secondary" onclick="continueMission()">▶ Stay on Mission Screen</button>
+        <button class="btn btn-green" onclick="saveAndGoHome()">&#128190; Save &amp; Return to Dashboard</button>
+        <button class="btn btn-secondary" onclick="continueMission()">&#9654; Stay on Mission Screen</button>
       </div>
     </div>
   </div>
@@ -1006,7 +1006,7 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
       </div>
 
       <div class="gaia-alert" style="margin-bottom:1.5rem">
-        <div class="gaia-alert-text" id="forensics-gaia-text">"The mission has encountered a critical failure. Before we reset, we owe it to the Meridian crew to understand what happened — and why. Every decision that led here will be examined."</div>
+        <div class="gaia-alert-text" id="forensics-gaia-text">"The mission has encountered a critical failure. Before we reset, we owe it to the Meridian crew to understand what happened &mdash; and why. Every decision that led here will be examined."</div>
       </div>
 
       <!-- FORENSICS GATE -->
@@ -1017,21 +1017,21 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
           Then confirm completion to unlock the checkpoint reset.
         </div>
         <button class="forensics-gate-btn" id="forensics-gate-btn" onclick="confirmForensicsComplete()">
-          ✓ We Have Completed the Forensic Analysis — Unlock Checkpoint
+          &#10003; We Have Completed the Forensic Analysis &mdash; Unlock Checkpoint
         </button>
       </div>
 
       <!-- PANEL 1: FULL DECISION TIMELINE -->
       <div class="forensics-panel">
-        <div class="forensics-panel-title">Complete Decision Timeline — All Legs (most recent first)</div>
+        <div class="forensics-panel-title">Complete Decision Timeline &mdash; All Legs (most recent first)</div>
         <div id="timeline-entries"></div>
       </div>
 
       <!-- PANEL 2: STAT TRAJECTORY GRAPH -->
       <div class="forensics-panel">
-        <div class="forensics-panel-title">Stat Trajectory — Your Decisions Made This Graph</div>
+        <div class="forensics-panel-title">Stat Trajectory &mdash; Your Decisions Made This Graph</div>
         <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:10px;line-height:1.6">
-          "This is not a graph about the ship. This is a graph about your decisions. Every point on these lines is a choice you made. Find the moment each line changed direction — that is where the answer is."
+          "This is not a graph about the ship. This is a graph about your decisions. Every point on these lines is a choice you made. Find the moment each line changed direction &mdash; that is where the answer is."
         </div>
         <div id="forensics-trajectory-graph"></div>
       </div>
@@ -1048,7 +1048,7 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
         </div>
         <div class="cer-section">
           <div class="cer-section-label reasoning-label">REASONING</div>
-          <div class="cer-section-prompt">Why did that decision have the consequences it did? Connect the science — what did you know about gravity, orbits, solar energy, or Earth's systems that should have guided a different choice? What will the crew do differently?</div>
+          <div class="cer-section-prompt">Why did that decision have the consequences it did? Connect the science &mdash; what did you know about gravity, orbits, solar energy, or Earth's systems that should have guided a different choice? What will the crew do differently?</div>
         </div>
       </div>
 
@@ -1057,17 +1057,17 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
         <div class="panel-label">Select Checkpoint to Reset To</div>
         <div style="font-family:var(--font-body);font-size:13px;color:var(--text-secondary);margin-bottom:8px;line-height:1.5">Choose how far back to roll. If the stat trajectory shows the problem started in Leg 1, roll back to Leg 1. If it started in Leg 3, roll back to Leg 3 Day 1.</div>
         <select class="checkpoint-select" id="checkpoint-select">
-          <option value="">— Select checkpoint —</option>
+          <option value="">&mdash; Select checkpoint &mdash;</option>
         </select>
         <div style="display:flex;gap:10px;margin-top:12px">
-          <button class="btn btn-danger" onclick="executeSelectedReset()">↺ Reset to Selected Checkpoint</button>
-          <button class="btn btn-secondary" onclick="goHome()">⌂ Return to Dashboard</button>
+          <button class="btn btn-danger" onclick="executeSelectedReset()">&#8634; Reset to Selected Checkpoint</button>
+          <button class="btn btn-secondary" onclick="goHome()">&#8962; Return to Dashboard</button>
         </div>
       </div>
 
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px" id="forensics-actions">
         <button class="btn btn-secondary" onclick="resumeMission()">Resume Mission</button>
-        <button class="btn btn-secondary" onclick="goHome()">⌂ Dashboard</button>
+        <button class="btn btn-secondary" onclick="goHome()">&#8962; Dashboard</button>
       </div>
     </div>
   </div>
@@ -1081,19 +1081,19 @@ GAIA out. I will be in contact daily. Try to get enough sleep — I have noticed
     <div class="modal-title">Lock In Crew Decision</div>
     <div class="modal-body" id="commit-modal-body">Confirm the crew's official vote.</div>
     <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="closeModal('modal-commit')">← Reconsider</button>
-      <button class="btn btn-green" onclick="executeCommit()">✓ Confirmed — Log Decision</button>
+      <button class="btn btn-secondary" onclick="closeModal('modal-commit')">&larr; Reconsider</button>
+      <button class="btn btn-green" onclick="executeCommit()">&#10003; Confirmed &mdash; Log Decision</button>
     </div>
   </div>
 </div>
 
 <div class="modal-overlay" id="modal-extinction">
   <div class="modal extinction-modal">
-    <div class="modal-title">☠ BRANCH EXTINCTION</div>
-    <div class="modal-body" id="extinction-modal-body">The mission has encountered a critical failure. The Meridian crew has survived — but the mission objectives are compromised.<br><br>Before any reset is available, Mission Control requires a complete forensic analysis. Every decision that led here will be reviewed.</div>
+    <div class="modal-title">&#9760; BRANCH EXTINCTION</div>
+    <div class="modal-body" id="extinction-modal-body">The mission has encountered a critical failure. The Meridian crew has survived &mdash; but the mission objectives are compromised.<br><br>Before any reset is available, Mission Control requires a complete forensic analysis. Every decision that led here will be reviewed.</div>
     <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="closeModal('modal-extinction')">← Stay on Mission</button>
-      <button class="btn btn-danger" onclick="confirmExtinction()">→ Begin Forensic Analysis</button>
+      <button class="btn btn-secondary" onclick="closeModal('modal-extinction')">&larr; Stay on Mission</button>
+      <button class="btn btn-danger" onclick="confirmExtinction()">&rarr; Begin Forensic Analysis</button>
     </div>
   </div>
 </div>
@@ -2324,10 +2324,10 @@ const CONTENT = {
             yLabel:'Signal Intensity',
             graphAnswers:[
               {q:'1', a:'Frequency A: flat around 12 with slight variation -- no trend. Frequency B: steady rise from 10 to 60 over 47 years -- consistent upward trend. Frequency C: flat around 5-6, no trend. Prometheus Match: flat at 3 for 46 years, then spikes to 95 at year 47. The spike is the most dramatic change.'},
-              {q:'2', a:'The spike happens at year 47 -- 8 months ago, exactly when the Prometheus pulse would have arrived at 85 AU. The Lighthouse detected the pulse and responded. This is direct evidence the Lighthouse was designed to watch for the Prometheus experiment.'},
+              {q:'2', a:'The spike happens at year 47 -- 8 months ago, exactly when the Prometheus pulse would have arrived at 85 AU. The Lighthouse detected the pulse and responded. This is direct evi
+dence the Lighthouse was designed to watch for the Prometheus experiment.'},
               {q:'3', a:'A slow, consistent upward trend over 47 years suggests something has been changing gradually -- not a sudden event, but a steady process. It predates the Prometheus pulse by decades. Whatever Frequency B measures, it was already changing long before the pulse arrived.'},
-              {q:'4', a:'Frequency A and C stay flat -- they monitor stable baselines. Frequency B is differe
-nt because it shows consistent change over time. GAIA points to it because change is what scientists look for -- rising readings signal something is happening.'},
+              {q:'4', a:'Frequency A and C stay flat -- they monitor stable baselines. Frequency B is different because it shows consistent change over time. GAIA points to it because change is what scientists look for -- rising readings signal something is happening.'},
               {q:'5', a:'The spike is dramatic and recent -- it demands immediate investigation. The gradual rise is subtle but older -- building for 47 years. The spike explains why the crew is here. The gradual rise may explain something bigger about what they will find when they arrive.'}
             ]
           },
