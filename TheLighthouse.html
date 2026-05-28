@@ -2480,8 +2480,10 @@ function patchMissingFields(st) {
 // SETUP
 // ============================================================
 function completeSetup() {
+  console.log('completeSetup called');
   try {
     const teacher = document.getElementById('setup-teacher').value.trim();
+    console.log('teacher value:', teacher);
     if (!teacher) { toast('Please enter your name.', 'error'); return; }
     state.configured = true;
     state.teacher = teacher;
@@ -2496,6 +2498,7 @@ function completeSetup() {
   } catch(err) {
     toast('Setup error: ' + err.message, 'error');
     console.error('completeSetup error:', err);
+    alert('Setup error: ' + err.message + ' -- check browser console');
   }
 }
 
