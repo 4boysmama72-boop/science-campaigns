@@ -1785,18 +1785,18 @@ const CONTENT = {
         {
           day:8, type:'deepen', isReveal:true,
           legLabel:'Leg 2 . Earth, Moon & Seasons',
-          legTitle:'Orbital Motion and the Moon\'s Changing Face',
-          gaia:'Yesterday the crew navigated using gravitational force and inertia. Today we read about why those forces produce the specific pattern of orbital motion we observe -- and extend that understanding to the Moon. The Moon orbits Earth for the same reason Earth orbits the Sun: gravity pulling inward, inertia carrying forward, in continuous balance. And as the Moon orbits, its position relative to Earth and Sun changes. From Earth\'s surface, that changing position produces what looks like the Moon\'s changing shape. The Moon does not actually change shape. The crew knows better -- from out here you can see exactly what is happening.',
-          gaiaAboard:'Yesterday the crew navigated using gravitational force and inertia. Today we read about why those forces produce the specific pattern of orbital motion we observe -- and extend that understanding to the Moon. The Moon orbits Earth for the same reason Earth orbits the Sun: gravity pulling inward, inertia carrying forward, in continuous balance. And as the Moon orbits, its position relative to Earth and Sun changes. From Earth\'s surface, that changing position produces what looks like the Moon\'s changing shape. The Moon does not actually change shape. The crew knows better -- from out here you can see exactly what is happening.',
-          gaiaSignal:'Navigation deepen day. Today\'s reading covers gravitational force, inertia, and orbital motion -- with application to both Earth\'s orbit around the Sun and the Moon\'s orbit around Earth. The section on Moon phases extends the orbital mechanics concept to explain apparent shape changes as seen from Earth\'s surface.',
+          legTitle:'What Keeps Everything in Orbit',
+          gaia:'Yesterday the crew navigated using gravitational force and inertia. Today we read about why those forces produce the specific pattern of orbital motion we observe. The Moon orbits Earth for the same reason Earth orbits the Sun: gravity pulling inward, inertia carrying forward, in continuous balance. Understanding this balance is what makes the Meridian\'s navigation through this region possible.',
+          gaiaAboard:'Yesterday the crew navigated using gravitational force and inertia. Today we read about why those forces produce the specific pattern of orbital motion we observe. The Moon orbits Earth for the same reason Earth orbits the Sun: gravity pulling inward, inertia carrying forward, in continuous balance. Understanding this balance is what makes the Meridian\'s navigation through this region possible.',
+          gaiaSignal:'Navigation deepen day. Today\'s reading covers gravitational force, inertia, and orbital motion -- with application to both Earth\'s orbit around the Sun and the Moon\'s orbit around Earth. The section on gravity and inertia explains how these forces combine to produce stable orbital paths.',
           gaiaRecall:'From Leg 1: gravitational force depends on mass and distance. The Moon has 1/81 the mass of Earth -- which is why its gravitational pull on the Meridian during yesterday\'s navigation was only 4 force units compared to Earth\'s 18. Same distance from the Meridian, very different force. Same law. Different mass.',
           scenario:'GAIA assigns the gravity and orbits section of today\'s reading, plus the Moon phases content. The connection between them: Moon phases are a direct result of orbital motion -- the Moon orbiting Earth while Earth orbits the Sun, changing which portion of the Moon\'s sunlit side faces Earth at any given time. From the Meridian\'s external position, the crew can see the Moon\'s full sphere illuminated on one side -- phases are a perspective phenomenon, not a physical change in the Moon.',
           readingFocus:'Savvas Earth\'s Place in Universe, Chapter 1 (Topic 1) Lesson 2 -- Gravity and Orbits, plus Moon Phases content (Standard 6.E2U1.9). Focus: What is the law of universal gravitation? What is inertia? How do both produce orbital motion? How does the Moon\'s orbital position create the appearance of phases from Earth?',
-          gaiaReadingPrompt:'"Law of universal gravitation: every object with mass attracts every other object with mass. The force depends on both masses and the distance between them. You already know this from Leg 1 -- today the reading gives it its formal name. Inertia: an object in motion stays in motion unless a force acts on it. In orbit, gravity IS that force -- constantly redirecting inertia into a curved path instead of a straight line. Moon phases: the Moon does not change shape. It is always a sphere, always half illuminated by the Sun. What changes is which illuminated portion faces Earth as the Moon moves around its orbit. New moon -- illuminated side faces away from Earth. Full moon -- illuminated side faces Earth. Everything in between is geometry."',
+          gaiaReadingPrompt:'"Law of universal gravitation: every object with mass attracts every other object with mass. The force depends on both masses and the distance between them. You already know this from Leg 1 -- today the reading gives it its formal name. Inertia: an object in motion stays in motion unless a force acts on it. In orbit, gravity IS that force -- constantly redirecting inertia into a curved path instead of a straight line. If you removed the Sun\'s gravity, Earth would fly off in a straight line. If you removed Earth\'s orbital velocity, it would fall straight into the Sun. Orbit is what happens when both forces are exactly balanced. The Meridian navigates by understanding that balance precisely."',
           vocabFocus:['gravity','law of universal gravitation','inertia','orbit','revolution'],
           spiralReview:'From Campaign 1 Sector 3: kinetic energy and potential energy are both involved in orbital motion. A satellite in orbit has kinetic energy from its velocity and gravitational potential energy from its height. The balance between them is exactly what GAIA described yesterday -- inertia (kinetic energy) and gravity (potential energy) in continuous exchange. Orbital motion is the Conversion Loop at a solar system scale.',
           noChoice:true,
-          bridgeToNext:'Tomorrow: Moon phase cycle data shown as a stem and leaf plot. Same orbital mechanics you read about today -- shown as a data distribution.'
+          bridgeToNext:'Next class: GAIA has been logging the Moon\'s orbital position every day for 29 days. The crew will organize that data into a stem and leaf plot -- a tool for finding patterns in a large set of numbers.'
         },
 
         // -- DAY 9 -- GRAPH . Stem and Leaf -----------------------
@@ -1805,9 +1805,9 @@ const CONTENT = {
           legLabel:'Leg 2 . Earth, Moon & Seasons',
           legTitle:'The Moon\'s Cycle in Numbers',
           gaia:'The Meridian\'s sensors have been logging the Moon\'s orbital angle -- its position in its orbit around Earth -- every day for the past 29 days. One complete lunar cycle. I am going to give the crew the raw numbers. Your task is to organize them into a stem and leaf plot -- a tool that arranges numbers by their tens digit so the distribution of the data becomes visible. The stems are the tens digits. The leaves are the ones digits. Once you have built it, finding the median is a matter of counting to the middle. I want to see if the crew can build one from scratch.',
-          scenario:'GAIA displays 29 daily measurements of the Moon\'s orbital completion percentage -- how far through its 29.5-day cycle the Moon was on each observation day. The measurements range from 3% (Day 1, just past new moon) to 99% (Day 29, nearly back to new moon).\n\nGAIA: "A stem and leaf plot works by splitting each number into two parts: the tens digit becomes the stem, the ones digit becomes the leaf. All numbers in the same tens group share a stem. The leaves branch out from it. When you finish, the shape of the data -- where values cluster, where they spread -- is visible without drawing a single graph."',
+          scenario:'GAIA displays 29 daily measurements of the Moon\'s orbital position percentage -- how far through one complete orbit around Earth the Moon was on each observation day. The measurements range from 3% (Day 1, just past new moon) to 99% (Day 29, nearly back to new moon).\n\nGAIA: "A stem and leaf plot works by splitting each number into two parts: the tens digit becomes the stem, the ones digit becomes the leaf. All numbers in the same tens group share a stem. The leaves branch out from it. When you finish, the shape of the data -- where values cluster, where they spread -- is visible without drawing a single graph."',
           graphData:{
-            title:'Moon Orbital Completion % -- 29 Daily Observations',
+            title:'Moon Orbital Position % -- 29 Daily Observations',
             teacherNote:'Draw as a stem and leaf plot on the board. Stems: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Leaves branch to the right. Data is roughly evenly distributed 3-99 because we are measuring consecutive days of a continuous cycle -- each day advances roughly 3.4% through the cycle (100%/29.5 days). Key teaching points: (1) stems organize the tens, leaves show the ones; (2) count all values to find the median (29 values, median is the 15th value); (3) the even distribution shows a continuous cycle with no clustering -- unlike seasonal data which clusters at extremes. This contrast with the daylight data is worth discussing.',
             bars:[
               {label:'3', value:3},{label:'7', value:7},{label:'10', value:10},
@@ -1824,10 +1824,10 @@ const CONTENT = {
             yLabel:'Moon Orbital % Complete',
             graphAnswers:[
               {q:'Stem and Leaf', a:'Stems 0-9 (tens digit). Leaves (ones digit): 0|3,7 / 1|0,4,7 / 2|1,4,8 / 3|1,4,8 / 4|1,5,8 / 5|2,5,9 / 6|2,6,9 / 7|2,6,9 / 8|3,6,0 / 9|0,3,7,9. Total: 29 values.'},
-              {q:'Median', a:'29 values -- median is the 15th value when arranged in order. Count from smallest: the 15th value is 52. The median orbital completion is 52% -- approximately the halfway point through the cycle, which corresponds to a full moon (Moon is opposite the Sun from Earth\'s perspective).'},
+              {q:'Median', a:'29 values -- median is the 15th value when arranged in order. Count from smallest: the 15th value is 52. The median orbital position is 52% -- approximately the halfway point through the cycle, which corresponds to a full moon (Moon is opposite the Sun from Earth\'s perspective).'},
               {q:'Distribution', a:'Values are roughly evenly spread from 3 to 99. No clustering at either extreme. This makes sense -- a continuous 29.5-day cycle produces data points that advance steadily, not data that piles up at specific values.'},
               {q:'Contrast with daylight data', a:'Daylight data clustered near the extremes (many values near 9 and 15) because seasons slow down at the solstices. Moon phase data is evenly spread because the Moon\'s orbit is a continuous cycle without seasonal acceleration or deceleration.'},
-              {q:'Phase connection', a:'Day 1 (3%) = new moon, just started. Day 15 (52%) = approximately full moon, halfway through cycle. Day 29 (99%) = nearly back to new moon. The orbital position percentage directly corresponds to which phase is visible from Earth.'}
+              {q:'Pattern', a:'The values spread evenly from 3 to 99 because the Moon moves through its orbit at a consistent rate -- about 3.4% per day. No value is more common than any other. This even spread is what a continuous, consistent cycle looks like as data. The crew will examine this pattern again with a new graph type very soon.'}
             ]
           },
           gaiaGraphNote:'"A stem and leaf plot organizes numbers by splitting them: tens digit is the stem, ones digit is the leaf. All values with the same tens digit share a stem. You can see the distribution -- where values are dense, where they spread -- without drawing bars or plotting points. And you can find the median by counting to the middle value directly from the organized list. Compare the shape of this plot to what the daylight data would look like as a stem and leaf: the daylight data would cluster near 9 and near 15, with a gap in the middle. This Moon data spreads evenly. Different shapes. Different scientific stories."',
@@ -1842,9 +1842,231 @@ const CONTENT = {
           noChoice:true
         },
 
+
+        // -- DAY 10 -- CHOICE . Moon Phases Cold Open ----------------
+        {
+          day:10, type:'choice', isReveal:true,
+          legLabel:'Leg 2 . Earth, Moon & Seasons',
+          legTitle:'We Can See Both Sides of the Story',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes -- open your book to Earth\'s Place in Universe, Topic 1, Lesson 3. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
+          gaia:'The Meridian is passing through the Earth-Moon system. I want the crew to stop for a moment and understand something about where we are right now. Every human who has ever studied the Moon has done it from one place: Earth\'s surface. They can only see the sunlit portion facing them at any given moment. They cannot see the geometry. They cannot see why the Moon looks different from night to night. They can only see the result.\n\nWe are not on Earth\'s surface. We are outside the system. We can see the Earth, the Moon, and the Sun simultaneously. We can see exactly why the Moon appears to change shape -- because from here, the change is not an appearance. It is geometry. And we are watching it happen in real time.',
+          gaiaAboard:'The Meridian is passing through the Earth-Moon system. I want the crew to stop for a moment and understand something about where we are right now. Every human who has ever studied the Moon has done it from one place: Earth\'s surface. They can only see the sunlit portion facing them at any given moment. They cannot see the geometry. They cannot see why the Moon looks different from night to night. They can only see the result.\n\nWe are not on Earth\'s surface. We are outside the system. We can see the Earth, the Moon, and the Sun simultaneously. We can see exactly why the Moon appears to change shape -- because from here, the change is not an appearance. It is geometry. And we are watching it happen in real time.',
+          scenario:'On the observation deck sensors, the crew can see something no Earth-based astronomer ever has: the complete Earth-Moon-Sun system from outside.\n\nThe Moon is a sphere. Half of it is always lit by the Sun -- exactly half, always. That has not changed in four billion years. What changes is which half is facing Earth at any given moment as the Moon moves through its orbit. From Earth\'s surface, observers see different fractions of that lit half. From the Meridian\'s position outside the system, the crew can see the whole picture simultaneously.\n\nGAIA has flagged a decision. The Meridian has a narrow window at its current position to collect the most complete observation data on the Earth-Moon-Sun geometry that has ever been recorded. The decision is how to use that window.',
+          exitTicketPrompt:'From today\'s reading: why does the Moon appear to change shape? Is the Moon actually changing, or is something else changing? Use what you can see from the Meridian\'s position to explain. Make your claim: which observation approach does the crew take, and how does understanding Moon phases support that choice?',
+          discussionPrompt:'GAIA says the Moon\'s apparent shape change is geometry, not a physical change. From Earth\'s surface, people have believed for most of human history that the Moon was actually growing and shrinking. What does seeing the Earth-Moon-Sun system from outside tell you that you could never learn from Earth\'s surface? How does your position as an observer change what you can understand about a system?',
+          choices:[
+            {
+              letter:'A',
+              text:'Use the observation window to document the complete Earth-Moon-Sun geometry -- record the phase visible from Earth simultaneously with our external view.',
+              subtext:'A paired record: what Earth observers see vs. what we see from outside. No astronomer has ever had both perspectives at once.',
+              deltas:{nav:0, solar:-10, signal:22, earth:-2},
+              branch:'A-observe-geometry',
+              consequence:'The paired observation dataset is extraordinary. For every Moon phase visible from Earth, the crew has a simultaneous external record showing exactly how much of the Moon\'s lit half is facing Earth -- and why. The geometry is undeniable. The Moon is a sphere. The Sun lights exactly half. The orbit does the rest. Signal clarity jumps as the complete dataset is transmitted to GSRA. I want to note: this is the first time in human scientific history that a paired internal-external observation of the Earth-Moon system has been recorded. The crew should understand what they just did.'
+            },
+            {
+              letter:'B',
+              text:'Prioritize navigation through the Earth-Moon system and log what observation data we can without slowing down.',
+              subtext:'The Lighthouse is the mission. Document what we can without compromising our heading.',
+              deltas:{nav:10, solar:-4, signal:10, earth:-2},
+              branch:'B-navigate-priority',
+              consequence:'Navigation through the Earth-Moon system stays precise. The crew logs observation data efficiently without extended sensor operation. The Moon\'s geometry is documented -- not as completely as Option A, but adequately. Navigation accuracy benefits from the crew\'s full attention on the course. The partial dataset is still scientifically useful -- it confirms the geometry from multiple positions in the Meridian\'s trajectory. Science made under real constraints is still science.'
+            },
+            {
+              letter:'C',
+              text:'Focus sensors on Earth\'s surface during the observation window -- document what the same Moon phases look like from Earth\'s perspective while we can see both views.',
+              subtext:'The comparison between what Earth observers see and what we see from outside is the most scientifically significant data we can collect here.',
+              deltas:{nav:0, solar:-14, signal:18, earth:4},
+              branch:'C-earth-perspective',
+              consequence:'The surface-perspective data is exactly what makes the paired record scientifically complete. Earth Status ticks up as the crew trains sensors on the home planet -- the first detailed surface readings of the mission from close range. The comparison between Earth-surface phase observations and the Meridian\'s external geometry record is the kind of data that changes how people teach this concept. I am transmitting it to GSRA with a note. Earth Status improved -- it is useful to remember what we are doing this for.'
+            }
+          ]
+        },
+
+        // -- DAY 11 -- DEEPEN . Two Sides of the Moon ----------------
+        {
+          day:11, type:'deepen', isReveal:true,
+          legLabel:'Leg 2 . Earth, Moon & Seasons',
+          legTitle:'One Side Always Lit. One Side Always Facing Earth.',
+          gaia:'Yesterday the crew observed the Earth-Moon system from outside. Today we read about what that observation shows us in detail. I want to start with the most important fact about the Moon -- one that surprises people every time: the Moon rotates. It spins on its own axis, just like Earth does. But it rotates at exactly the same rate it revolves around Earth, which means the same side always faces Earth. Not the same side always faces the Sun -- the same side always faces Earth.\n\nThis is called synchronous rotation. It is not a coincidence. It is the result of tidal forces acting on the Moon over billions of years, gradually slowing its rotation until it matched its orbital period exactly. The Moon was not always this way. Gravity made it this way.',
+          gaiaAboard:'Yesterday the crew observed the Earth-Moon system from outside. Today we read about what that observation shows us in detail. I want to start with the most important fact about the Moon -- one that surprises people every time: the Moon rotates. It spins on its own axis, just like Earth does. But it rotates at exactly the same rate it revolves around Earth, which means the same side always faces Earth. Not the same side always faces the Sun -- the same side always faces Earth.\n\nThis is called synchronous rotation. It is not a coincidence. It is the result of tidal forces acting on the Moon over billions of years, gradually slowing its rotation until it matched its orbital period exactly. The Moon was not always this way. Gravity made it this way.',
+          gaiaRecall:'From Leg 1: gravitational force between two objects depends on their masses and the distance between them. Tidal forces are an extension of this -- when a large object like Earth exerts gravitational force on a smaller object like the Moon, the side of the Moon closest to Earth feels a stronger pull than the far side. Over billions of years, this difference in force across the Moon\'s diameter slowed its rotation. The same physics from Leg 1 explains why the Moon keeps one face toward Earth.',
+          scenario:'GAIA assigns the first section of today\'s reading -- the appearance of the Moon, its two sides, its motions, and the phases. The crew\'s task: connect every concept to what they observed yesterday from the Meridian\'s external position. The synchronous rotation explanation, the phase geometry, the difference between the Moon\'s rotation and revolution -- all of it was visible in yesterday\'s observation data.',
+          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 1 (Topic 1) Lesson 3 -- The Appearance of the Moon: The Two Sides of the Moon, Motions of the Moon, Phases of the Moon. Focus: Why does the same side of the Moon always face Earth? What is the difference between the Moon\'s rotation and revolution? How does the Moon\'s orbital position relative to Earth and Sun create the phases we observe?',
+          gaiaReadingPrompt:'"Three things I want the crew to take from today\'s reading. First: the Moon rotates AND revolves -- two motions, same as Earth. But its rotation period equals its revolution period exactly, so the same face always points toward Earth. Second: the Sun always lights exactly half the Moon. Always. What changes is which half is facing Earth as the Moon orbits. Third: the phase names. New moon -- Moon is between Earth and Sun, lit side faces away from us. Full moon -- Moon is opposite the Sun from Earth, entire lit side faces us. The quarters and crescents and gibbous phases are the geometry between those two extremes. Your reading today gives you the names and positions. Yesterday\'s observation gave you the picture. Connect them."',
+          vocabFocus:['phase','rotation','revolution','orbit'],
+          spiralReview:'From Day 2 of this leg: rotation is spinning on an axis, revolution is traveling around another object. The Moon does both -- but its rotation rate equals its revolution rate, producing synchronous rotation. Earth\'s rotation and revolution rates are very different, which is why we see different faces of the Sun at different times of day. The Moon locks one face toward Earth because gravity equalized its two rates over time.',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: GAIA has been logging Moon phase observations for three complete lunar cycles -- 87 days of data. The crew will use that data to build a new type of graph called a histogram. Make a prediction before next class: if every phase appears equally across a complete lunar cycle, what shape would you expect the graph to have?'
+        },
+
+        // -- DAY 12 -- GRAPH . Histogram 1 . Uniform Distribution ----
+        {
+          day:12, type:'graph', isReveal:false,
+          legLabel:'Leg 2 . Earth, Moon & Seasons',
+          legTitle:'A New Graph Type -- And a Shape That Surprises People',
+          gaia:'I have been logging the Moon\'s illumination percentage -- how much of the Moon\'s lit face is visible from Earth -- every day for 87 days. Three complete lunar cycles. I want to show the crew this data as a histogram.\n\nA histogram is a new graph type. It looks like a bar graph, but it works differently. On a bar graph, each bar represents a category -- like a month, or a planet, or a hemisphere. On a histogram, each bar represents a range of values -- called a bin. The width of each bin is equal. The height of each bar shows how many data points fell into that range.\n\nBefore I show you the histogram, I want the crew to make a prediction. We have 87 observations. The illumination goes from 0% to 100%. If you sorted all 87 values into 8 equal bins, what shape would you expect the histogram to be? Taller in the middle? Taller at the ends? All the same height? Make your prediction first. Then we build it.',
+          scenario:'GAIA displays the 87-day illumination log as raw data cards. The values range from 1 to 99. The crew\'s task: sort them into 8 bins and build the histogram on paper before GAIA reveals the shape.\n\nGAIA: "A histogram asks: how often does each range of values appear? That is a different question from a bar graph, which asks: how big is each category? Learn to tell them apart by asking what each bar represents -- a category or a range. And remember: histogram bars always touch. Bar graph bars do not have to. That visual difference is not an accident. It tells you something about the data."',
+          rawDataOnly:true,
+          graphData:{
+            title:'Moon Illumination % -- 87 Daily Observations (3 Complete Lunar Cycles)',
+            teacherNote:'Students build a histogram on paper using the 87 data values. The 8 bins are: 0-12, 13-25, 26-37, 38-50, 51-62, 63-75, 76-87, 88-100. Each bin should have approximately 10-11 values -- producing a roughly uniform (flat) distribution. CRITICAL teaching point: histogram bars MUST touch each other because the bins are continuous ranges, not separate categories. This is the most common student error. After students build on paper, discuss the shape as a class. The uniformity IS the finding -- every phase is equally common. Bimodal is enrichment only -- do not assess.',
+            bars:[
+              {label:'1', value:1},{label:'4', value:4},{label:'7', value:7},
+              {label:'11', value:11},{label:'14', value:14},{label:'18', value:18},
+              {label:'21', value:21},{label:'25', value:25},{label:'28', value:28},
+              {label:'32', value:32},{label:'35', value:35},{label:'39', value:39},
+              {label:'42', value:42},{label:'46', value:46},{label:'49', value:49},
+              {label:'3', value:3},{label:'6', value:6},{label:'10', value:10},
+              {label:'13', value:13},{label:'17', value:17},{label:'20', value:20},
+              {label:'24', value:24},{label:'27', value:27},{label:'31', value:31},
+              {label:'34', value:34},{label:'38', value:38},{label:'41', value:41},
+              {label:'45', value:45},{label:'48', value:48},{label:'52', value:52},
+              {label:'2', value:2},{label:'5', value:5},{label:'9', value:9},
+              {label:'12', value:12},{label:'16', value:16},{label:'19', value:19},
+              {label:'23', value:23},{label:'26', value:26},{label:'30', value:30},
+              {label:'33', value:33},{label:'37', value:37},{label:'40', value:40},
+              {label:'44', value:44},{label:'47', value:47},{label:'51', value:51},
+              {label:'55', value:55},{label:'58', value:58},{label:'62', value:62},
+              {label:'65', value:65},{label:'69', value:69},{label:'72', value:72},
+              {label:'76', value:76},{label:'79', value:79},{label:'83', value:83},
+              {label:'86', value:86},{label:'90', value:90},{label:'93', value:93},
+              {label:'54', value:54},{label:'57', value:57},{label:'61', value:61},
+              {label:'64', value:64},{label:'68', value:68},{label:'71', value:71},
+              {label:'75', value:75},{label:'78', value:78},{label:'82', value:82},
+              {label:'85', value:85},{label:'89', value:89},{label:'92', value:92},
+              {label:'97', value:97},{label:'99', value:99},{label:'96', value:96},
+              {label:'53', value:53},{label:'56', value:56},{label:'60', value:60},
+              {label:'63', value:63},{label:'67', value:67},{label:'70', value:70},
+              {label:'74', value:74},{label:'77', value:77},{label:'81', value:81},
+              {label:'84', value:84},{label:'88', value:88},{label:'91', value:91},{label:'95', value:95}
+            ],
+            yLabel:'Moon Illumination %',
+            graphAnswers:[
+              {q:'Histogram vs bar graph', a:'On a bar graph, each bar is a category (a month, a planet, a hemisphere). Bars do not have to touch because the categories are separate. On a histogram, each bar is a RANGE of values (0-12%, 13-25%, etc.). The bars MUST touch because the ranges are continuous -- there is no gap between 12% and 13%. The touching bars are the visual signal that this is a histogram.'},
+              {q:'Bin counts', a:'Each bin should have approximately 10-11 values. Bin 1 (0-12%): ~11 values. Bin 2 (13-25%): ~11. Bin 3 (26-37%): ~11. Bin 4 (38-50%): ~11. Bin 5 (51-62%): ~11. Bin 6 (63-75%): ~11. Bin 7 (76-87%): ~11. Bin 8 (88-100%): ~11. All bars are approximately the same height.'},
+              {q:'Distribution shape', a:'Uniform -- all bars are approximately the same height. No bin has significantly more or fewer values than any other. This means no illumination level is more common than any other. Every phase appears equally across 87 days. This is called a uniform distribution.'},
+              {q:'Trend description', a:'No trend -- the data is flat. There is no increase, no decrease, no peak, no valley. When asked to describe the trend in a uniform histogram, the correct answer is: no trend, or uniform distribution. The data does not favor any range over another.'},
+              {q:'Why uniform makes sense', a:'The Moon moves through its cycle at a consistent rate -- about 3.4% per day. It does not slow down near full moon or speed up near new moon. A consistent cycle produces data that spreads evenly across all values. Uniform shape = consistent cycle.'},
+              {q:'Enrichment - bimodal preview', a:'Some distributions have TWO clusters instead of being flat. These are called bimodal distributions. A bimodal histogram has two tall sections with a valley between them. The tidal data the crew will examine in Day 15 produces this shape -- because tides have predictable highs AND predictable lows. Not assessed -- but worth knowing the name.'}
+            ]
+          },
+          gaiaGraphNote:'"The bars on a histogram touch each other. This is not a mistake and it is not optional. It is the visual signal that the x-axis represents a continuous range, not separate categories. When you see bars that touch, you are reading a histogram. When you see gaps between bars, you are reading a bar graph. That visual difference carries meaning. Do not ignore it.\n\nNow look at the shape of your completed histogram. All bars approximately equal height. This is called a uniform distribution. It is the shape you get when no value is more common than any other. The Moon does not have a favorite phase -- its orbit is consistent. The uniform shape tells you that. Naming the trend here: there is no trend. Flat is the finding."',
+          graphQuestions:[
+            '1. What is the difference between a histogram and a bar graph? Name two specific differences -- one about what the bars represent, and one about whether the bars touch.',
+            '2. Sort the 87 data values into 8 bins: 0-12, 13-25, 26-37, 38-50, 51-62, 63-75, 76-87, 88-100. Count the values in each bin and build your histogram on paper. Remember: bars must touch.',
+            '3. Describe the shape of the histogram and name the trend. Is it increasing? Decreasing? Clustered in the middle? Or something else? Use the word uniform in your answer.',
+            '4. Why does a consistent, continuous cycle produce a uniform distribution? What would have to be true about the Moon\'s orbit for the histogram to have a cluster near 100% (full moon)?',
+            '5. Look back at the daylight data from Day 3. If you made a histogram of those 12 values, where would the bars be tallest -- near 9 hours, near 15 hours, or near 12 hours? How would that shape be different from today\'s Moon histogram, and why?'
+          ],
+          shortDayNote:'Short day: Do questions 1 and 2 only. Building the histogram from raw data is the core skill. Describe the shape verbally as a class. Save questions 3-5 for warm-up next class.',
+          noChoice:true
+        },
+
+        // -- DAY 13 -- DEEPEN . Eclipses ------------------------------
+        {
+          day:13, type:'deepen', isReveal:false,
+          legLabel:'Leg 2 . Earth, Moon & Seasons',
+          legTitle:'When the Geometry Lines Up Perfectly',
+          gaia:'The Meridian\'s sensors have just flagged something on the Earth-side optical array. Earth, the Moon, and the Sun have moved into a nearly perfect alignment from our observation position. I am putting the sensor feed on screen now.\n\nWhat the crew is about to read about -- eclipses -- we may be in a position to observe directly. An eclipse is not a random event. It is the most precise possible version of the geometry we have been studying all leg. Phases happen because the Moon orbits Earth while the Sun lights one half of the Moon. Eclipses happen when that orbital path crosses the Earth-Sun line exactly -- close enough that one object\'s shadow falls on another.\n\nFrom Earth\'s surface, an eclipse is dramatic but brief and local. From where we are, the geometry is simply visible. The shadow is a cone extending through space. We can see it.',
+          gaiaAboard:'The Meridian\'s sensors have just flagged something on the Earth-side optical array. Earth, the Moon, and the Sun have moved into a nearly perfect alignment from our observation position. I am putting the sensor feed on screen now.\n\nWhat the crew is about to read about -- eclipses -- we may be in a position to observe directly. An eclipse is not a random event. It is the most precise possible version of the geometry we have been studying all leg. Phases happen because the Moon orbits Earth while the Sun lights one half of the Moon. Eclipses happen when that orbital path crosses the Earth-Sun line exactly -- close enough that one object\'s shadow falls on another.\n\nFrom Earth\'s surface, an eclipse is dramatic but brief and local. From where we are, the geometry is simply visible. The shadow is a cone extending through space. We can see it.',
+          gaiaRecall:'From Day 11: the Moon\'s orbit is tilted slightly relative to Earth\'s orbit around the Sun. This is why eclipses do not happen every month -- if the Moon\'s orbit were perfectly flat relative to Earth\'s, we would have a solar eclipse at every new moon and a lunar eclipse at every full moon. The tilt means the Moon usually passes above or below the Earth-Sun line. Eclipses only happen when the Moon crosses that line at exactly the right moment.',
+          scenario:'GAIA assigns the eclipse section of today\'s reading. The crew\'s task: understand the difference between a solar eclipse and a lunar eclipse using the Meridian\'s external observation position as context. From outside the system, the crew can see both types of shadow -- the Moon\'s shadow falling on Earth (solar eclipse) and Earth\'s shadow falling on the Moon (lunar eclipse). The vocabulary today describes the geometry of those shadows.',
+          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 1 (Topic 1) Lesson 3 -- Eclipses. Focus: What causes a solar eclipse? What causes a lunar eclipse? What is the difference between the umbra and the penumbra? Why do eclipses not happen every month?',
+          gaiaReadingPrompt:'"Two eclipse types. Solar eclipse: Moon passes directly between Earth and Sun. Moon\'s shadow falls on Earth. Only people standing in the umbra -- the darkest, innermost part of the shadow -- see a total solar eclipse. People in the penumbra -- the outer, partial shadow -- see a partial eclipse. Lunar eclipse: Earth passes directly between Moon and Sun. Earth\'s shadow falls on the Moon. Because Earth is much larger than the Moon, lunar eclipses are visible from the entire night side of Earth simultaneously.\n\nUmbra and penumbra. These words come from Latin. Umbra means shadow. Penumbra means almost-shadow. The umbra is the region where all sunlight is blocked. The penumbra is the region where only some sunlight is blocked. Every shadow cast by a round object in sunlight has both. The Moon\'s and Earth\'s are simply large enough to matter."',
+          vocabFocus:['eclipse','umbra','penumbra','phase','significant'],
+          spiralReview:'From Leg 1: gravitational force keeps the Moon in orbit around Earth. The Moon\'s orbital path is what makes eclipses possible -- and also what makes them rare. The same gravitational force that the crew calculated data for in Leg 1 is the force that produces the orbital geometry behind today\'s reading.',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: tides. The same Moon whose shadow the crew just observed is pulling on Earth\'s oceans right now. The connection between eclipse geometry and tidal patterns is the same connection between orbital position and gravitational force.'
+        },
+
+        // -- DAY 14 -- DEEPEN . Tides ---------------------------------
+        {
+          day:14, type:'deepen', isReveal:false,
+          legLabel:'Leg 2 . Earth, Moon & Seasons',
+          legTitle:'The Ocean Knows Where the Moon Is',
+          gaia:'I want the crew to think about something before reading. The Moon is approximately 384,000 kilometers from Earth. From Leg 1, you know that gravitational force depends on mass and distance. The Moon\'s gravitational force on Earth\'s water is real -- measurable, predictable, significant. And because Earth\'s oceans are liquid, they respond to that force by moving.\n\nThis is what a tide is. Not a wave. Not a storm. A tide is the ocean responding to the Moon\'s gravitational pull across the entire planet simultaneously. The water on the side of Earth closest to the Moon is pulled toward the Moon more strongly than the water on the far side. The difference in that force across Earth\'s diameter is enough to raise and lower ocean levels by meters twice per day.\n\nYou calculated the Moon\'s gravitational force in Leg 1 data tables. You are now looking at what that force does to an entire ocean.',
+          gaiaAboard:'I want the crew to think about something before reading. The Moon is approximately 384,000 kilometers from Earth. From Leg 1, you know that gravitational force depends on mass and distance. The Moon\'s gravitational force on Earth\'s water is real -- measurable, predictable, significant. And because Earth\'s oceans are liquid, they respond to that force by moving.\n\nThis is what a tide is. Not a wave. Not a storm. A tide is the ocean responding to the Moon\'s gravitational pull across the entire planet simultaneously. The water on the side of Earth closest to the Moon is pulled toward the Moon more strongly than the water on the far side. The difference in that force across Earth\'s diameter is enough to raise and lower ocean levels by meters twice per day.\n\nYou calculated the Moon\'s gravitational force in Leg 1 data tables. You are now looking at what that force does to an entire ocean.',
+          gaiaRecall:'From Leg 1, Day 3: the Moon\'s gravitational force on a 1,000 kg test object was 11 force units -- significantly less than Earth (40 units) but far more than the Meridian itself (2 units). The Moon has real gravitational force. Earth\'s oceans cover 71% of the planet\'s surface and contain an enormous amount of mass. The Moon\'s gravity, acting on that much water, produces tides that can be meters high. Small force, enormous target.',
+          scenario:'GAIA assigns the tides section of today\'s reading. The crew\'s task: understand why tides happen, why there are two high tides per day, and why the Sun\'s position relative to the Moon changes the tidal pattern. Spring tides happen when the Sun, Moon, and Earth align -- the same alignment that makes eclipses possible. Neap tides happen when the Moon is at a right angle to the Sun-Earth line, which corresponds to the quarter moon phases.',
+          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 1 (Topic 1) Lesson 3 -- Tides: The Moon and Sun, Spring and Neap Tides. Focus: What causes tides? Why does Earth have two high tides and two low tides each day? What is the difference between a spring tide and a neap tide -- and what Moon phase corresponds to each?',
+          gaiaReadingPrompt:'"Two tidal patterns. Spring tide: Sun, Earth, and Moon are aligned -- new moon or full moon phase. The Moon\'s pull and the Sun\'s pull act in the same direction. Combined force = higher high tides and lower low tides. The word spring here has nothing to do with the season. It means to surge.\n\nNeap tide: Moon is at a right angle to the Earth-Sun line -- quarter moon phase. The Moon and Sun pull in perpendicular directions. Their forces partly cancel. Result: smaller high tides, higher low tides. Less extreme.\n\nTwo high tides per day: the Moon pulls water on the near side toward it AND the water on the far side bulges outward because it is being pulled less strongly than Earth\'s solid center is. Earth rotates through both bulges every 24 hours, producing two high tides and two low tides daily. I recognize that the second bulge is counterintuitive. Read it carefully. It is correct."',
+          vocabFocus:['tide','spring tide','neap tide','eclipse','umbra','penumbra','significant'],
+          spiralReview:'From Day 13: eclipses occur when Sun, Moon, and Earth align. Spring tides occur when Sun, Moon, and Earth align. Same geometry, two different effects. The eclipse is about shadows. The spring tide is about combined gravitational force. Same orbital positions. Different phenomena. Same cause.',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: GAIA has 60 days of tidal height data from a coastal Earth monitoring station. The crew will build a second histogram -- same tool as Day 12, but the shape will be completely different. Make your prediction before next class: will tidal height data look uniform like the Moon phase data, or will it cluster somewhere? Where?'
+        },
+
+        // -- DAY 15 -- GRAPH . Histogram 2 . Bimodal Distribution -----
+        {
+          day:15, type:'graph', isReveal:false,
+          legLabel:'Leg 2 . Earth, Moon & Seasons',
+          legTitle:'Same Tool. Completely Different Story.',
+          gaia:'Two days ago the crew built a histogram of Moon illumination data. The shape was uniform -- all bars approximately equal height. Every illumination level was equally common because the Moon moves through its cycle at a consistent rate.\n\nToday I have 60 days of tidal height measurements from a coastal monitoring station on Earth. 240 measurements -- four per day, one every six hours, recording the height of the ocean at that location.\n\nBefore I give you the data: what is your prediction? Tides have high tides and low tides, repeating twice per day. If you recorded tidal heights every six hours for 60 days, which heights would appear most often? Write your prediction before looking at the data. The shape of this histogram is going to surprise at least some of you.',
+          scenario:'GAIA displays 240 tidal height measurements in centimeters, ranging from 18 cm to 312 cm. The crew\'s task: sort the values into 8 bins and build the histogram on paper.\n\nGAIA: "A histogram is still a histogram. The steps are the same as Day 12. Divide the range into equal bins. Count how many values fall in each bin. Draw bars that touch. Read the shape and name the trend. The tool is identical. What changes is what the shape tells you -- and this shape is going to tell a very different story than the Moon phase data did."',
+          rawDataOnly:true,
+          graphData:{
+            title:'Tidal Height (cm) -- 240 Measurements Over 60 Days (Every 6 Hours)',
+            teacherNote:'Students build histogram on paper. Bins: 0-40cm, 41-80, 81-120, 121-160, 161-200, 201-240, 241-280, 281-320. Distribution is bimodal -- tall bars at the low end (0-80cm, low tides) and tall bars at the high end (241-320cm, high tides), with shorter bars in the middle. The ocean moves quickly through middle heights but spends time at the highs and lows. Bimodal is ENRICHMENT vocabulary -- not assessed. Core lesson: same histogram tool, completely different shape, because the data is measuring a different phenomenon. The contrast with the uniform Moon histogram is the whole point.',
+            bars:[
+              {label:'22', value:22},{label:'31', value:31},{label:'19', value:19},{label:'28', value:28},
+              {label:'35', value:35},{label:'24', value:24},{label:'18', value:18},{label:'33', value:33},
+              {label:'27', value:27},{label:'21', value:21},{label:'30', value:30},{label:'25', value:25},
+              {label:'38', value:38},{label:'23', value:23},{label:'29', value:29},{label:'20', value:20},
+              {label:'34', value:34},{label:'26', value:26},{label:'32', value:32},{label:'37', value:37},
+              {label:'55', value:55},{label:'62', value:62},{label:'48', value:48},{label:'71', value:71},
+              {label:'58', value:58},{label:'44', value:44},{label:'67', value:67},{label:'53', value:53},
+              {label:'75', value:75},{label:'49', value:49},{label:'60', value:60},{label:'43', value:43},
+              {label:'105', value:105},{label:'118', value:118},{label:'92', value:92},{label:'130', value:130},
+              {label:'97', value:97},{label:'112', value:112},{label:'88', value:88},{label:'124', value:124},
+              {label:'143', value:143},{label:'157', value:157},{label:'138', value:138},{label:'162', value:162},
+              {label:'149', value:149},{label:'155', value:155},{label:'141', value:141},{label:'160', value:160},
+              {label:'152', value:152},{label:'147', value:147},{label:'158', value:158},{label:'144', value:144},
+              {label:'175', value:175},{label:'168', value:168},{label:'183', value:183},{label:'171', value:171},
+              {label:'179', value:179},{label:'165', value:165},{label:'188', value:188},{label:'172', value:172},
+              {label:'258', value:258},{label:'271', value:271},{label:'245', value:245},{label:'283', value:283},
+              {label:'262', value:262},{label:'249', value:249},{label:'277', value:277},{label:'255', value:255},
+              {label:'268', value:268},{label:'241', value:241},{label:'274', value:274},{label:'259', value:259},
+              {label:'288', value:288},{label:'295', value:295},{label:'302', value:302},{label:'284', value:284},
+              {label:'298', value:298},{label:'291', value:291},{label:'306', value:306},{label:'287', value:287},
+              {label:'309', value:309},{label:'293', value:293},{label:'299', value:299},{label:'312', value:312},
+              {label:'285', value:285},{label:'303', value:303},{label:'296', value:296},{label:'289', value:289},
+              {label:'56', value:56},{label:'63', value:63},{label:'47', value:47},{label:'70', value:70},
+              {label:'52', value:52},{label:'66', value:66},{label:'41', value:41},{label:'73', value:73},
+              {label:'264', value:264},{label:'278', value:278},{label:'251', value:251},{label:'269', value:269},
+              {label:'256', value:256},{label:'272', value:272},{label:'247', value:247},{label:'261', value:261},
+              {label:'19', value:19},{label:'26', value:26},{label:'33', value:33},{label:'22', value:22},
+              {label:'28', value:28},{label:'35', value:35},{label:'21', value:21},{label:'30', value:30},
+              {label:'286', value:286},{label:'293', value:293},{label:'301', value:301},{label:'308', value:308},
+              {label:'290', value:290},{label:'297', value:297},{label:'283', value:283},{label:'295', value:295},
+              {label:'46', value:46},{label:'59', value:59},{label:'53', value:53},{label:'68', value:68},
+              {label:'42', value:42},{label:'61', value:61},{label:'50', value:50},{label:'74', value:74},
+              {label:'263', value:263},{label:'276', value:276},{label:'250', value:250},{label:'271', value:271}
+            ],
+            yLabel:'Tidal Height (cm)',
+            graphAnswers:[
+              {q:'Bin counts (approximate)', a:'Bin 1 (0-40cm): ~40 values -- very tall bar. Bin 2 (41-80cm): ~36 values -- tall bar. Bin 3 (81-120cm): ~12 values -- short bar. Bin 4 (121-160cm): ~16 values -- medium bar. Bin 5 (161-200cm): ~12 values -- short bar. Bin 6 (201-240cm): ~8 values -- short bar. Bin 7 (241-280cm): ~52 values -- very tall bar. Bin 8 (281-320cm): ~64 values -- tallest bar. Two tall clusters at the ends, shorter bars in the middle.'},
+              {q:'Shape and trend', a:'Two clusters -- one at the low end (0-80cm) and one at the high end (241-320cm). The middle bins are shorter. The trend is NOT uniform. The data clusters at two extremes. Enrichment: this shape with two distinct clusters is called bimodal -- bi means two, modal means peak or most common. Not assessed, but worth knowing.'},
+              {q:'Why two clusters', a:'Tides spend more time at high tide and low tide than at middle heights. The ocean rises and falls relatively quickly through the middle heights. It lingers at the extremes. So more measurements land in the high and low bins -- the tide is at those heights longer each day.'},
+              {q:'Comparison to Moon histogram', a:'Moon phase histogram: uniform -- all bars equal, no trend. Tidal histogram: two clusters at extremes, shorter middle. Both are histograms. Both involve the Earth-Moon system. Completely different shapes because the data measures different things. A consistent cycle produces uniform. A system with two distinct states produces clusters.'},
+              {q:'Spring and neap connection', a:'The data includes both spring tides (more extreme -- higher highs, lower lows) and neap tides (less extreme). Spring tides push values into the highest and lowest bins. Neap tides produce values closer to the middle. This is why the histogram is spread across a range rather than two perfect spikes -- the tidal maximum varies with the Moon\'s phase cycle.'},
+              {q:'Enrichment - bimodal', a:'Bimodal distributions appear whenever a system has two distinct states it tends to occupy. Tides: high and low. Body temperature: healthy range and fever. Commute times: before rush hour and during. Any time data has two natural modes -- two most-common values -- the histogram shows two peaks with a valley between them.'}
+            ]
+          },
+          gaiaGraphNote:'"Look at both histograms side by side in your memory. Moon phase data: flat, uniform, no trend. Tidal height data: two tall clusters at the ends, shorter bars in the middle -- not uniform, not a single peak, but two distinct groups.\n\nSame graph type. Same general approach -- sort values into bins, draw touching bars, read the shape, name the trend. Completely different shapes because the data is measuring completely different phenomena.\n\nThis is what histograms are for. They show you the shape of the distribution -- where values pile up, where they are sparse. When the shape is flat, the cycle is consistent. When the shape has clusters, something is pulling the data toward certain values. Your job as a scientist is to read the shape and ask: why does the data look like this?\n\nFor my advanced crew members: statisticians call a shape with two clusters bimodal. You will see this shape again. Remember it."',
+          graphQuestions:[
+            '1. Sort the 240 tidal height values into 8 bins (0-40, 41-80, 81-120, 121-160, 161-200, 201-240, 241-280, 281-320). Count the values in each bin and build your histogram. Remember: bars must touch.',
+            '2. Describe the shape of this histogram and name the trend. Where are the tallest bars? Where are the shortest? How is this shape different from the Moon phase histogram from Day 12?',
+            '3. Why does tidal height data produce this shape? Why do the lowest and highest height ranges have more observations than the middle ranges? Connect your answer to what you know about how tides move.',
+            '4. The Moon phase histogram was uniform. This histogram has two clusters. Both are histograms of data from the same Earth-Moon-Sun system. Why do they have such different shapes?',
+            '5. If you collected tidal data during only a week of spring tides, how would your histogram look different from one collected during only neap tides? Use what you know about spring and neap tides to explain.'
+          ],
+          shortDayNote:'Short day: Do questions 1 and 2 only. Building the histogram and describing the shape is the core skill. The comparison to the Moon phase histogram (question 4) can happen verbally. Save questions 3 and 5 for warm-up next class.',
+          noChoice:true
+        },
+
         // -- DAY 10 -- DEEPEN . Synthesis -------------------------
         {
-          day:10, type:'deepen', isReveal:true,
+          day:16, type:'deepen', isReveal:true,
           legLabel:'Leg 2 . Earth, Moon & Seasons',
           legTitle:'Motion, Light, and Gravity -- The Full Picture',
           gaia:'The crew has covered a great deal in this leg. Rotation. Revolution. Seasons. Solstices and equinoxes. Gravity and inertia. Orbital motion. Moon phases. These are not separate topics. They are one connected system. Earth rotates -- giving us day and night. Earth revolves -- and its tilted axis creates seasons. Gravity and inertia keep Earth in orbit and the Moon in orbit around Earth. The Moon\'s orbital position creates phases. Every piece connects. Today we make sure all the connections are clear before moving on.',
@@ -1862,7 +2084,7 @@ const CONTENT = {
 
         // -- DAY 11 -- CLIMAX . Leg 2 Close -----------------------
         {
-          day:11, type:'climax', isReveal:true,
+          day:17, type:'climax', isReveal:true,
           legLabel:'Leg 2 . Earth, Moon & Seasons',
           legTitle:'Past the Earth-Moon System',
           gaia:'The Meridian has cleared the Earth-Moon system. Behind us: the planet where the Prometheus experiment began, the Moon whose orbital mechanics you now understand, and the inner solar system that makes up almost everything humanity has ever known or observed directly. Ahead: the outer solar system. Distances that will require a completely different way of thinking about scale. And the Lighthouse, whose signal is now noticeably stronger than when we entered this leg.\n\nI want to acknowledge what the crew has done in Leg 2. You navigated through a region where two gravitational fields acted on the ship simultaneously. You observed seasonal geometry from outside the planet -- something no scientist on Earth\'s surface can do. You worked with data at three levels: raw numbers, statistical measures, and two different graph types. And you connected orbital mechanics to the Moon phases that Earth\'s inhabitants have been observing for all of human history without being able to see exactly why they happen.\n\nYou now know why.',
@@ -2104,7 +2326,8 @@ const CONTENT = {
               {q:'1', a:'Frequency A: flat around 12 with slight variation -- no trend. Frequency B: steady rise from 10 to 60 over 47 years -- consistent upward trend. Frequency C: flat around 5-6, no trend. Prometheus Match: flat at 3 for 46 years, then spikes to 95 at year 47. The spike is the most dramatic change.'},
               {q:'2', a:'The spike happens at year 47 -- 8 months ago, exactly when the Prometheus pulse would have arrived at 85 AU. The Lighthouse detected the pulse and responded. This is direct evidence the Lighthouse was designed to watch for the Prometheus experiment.'},
               {q:'3', a:'A slow, consistent upward trend over 47 years suggests something has been changing gradually -- not a sudden event, but a steady process. It predates the Prometheus pulse by decades. Whatever Frequency B measures, it was already changing long before the pulse arrived.'},
-              {q:'4', a:'Frequency A and C stay flat -- they monitor stable baselines. Frequency B is different because it shows consistent change over time. GAIA points to it because change is what scientists look for -- rising readings signal something is happening.'},
+              {q:'4', a:'Frequency A and C stay flat -- they monitor stable baselines. Frequency B is differe
+nt because it shows consistent change over time. GAIA points to it because change is what scientists look for -- rising readings signal something is happening.'},
               {q:'5', a:'The spike is dramatic and recent -- it demands immediate investigation. The gradual rise is subtle but older -- building for 47 years. The spike explains why the crew is here. The gradual rise may explain something bigger about what they will find when they arrive.'}
             ]
           },
@@ -2696,8 +2919,7 @@ function renderGraphContent(c) {
   if (c.graphData) {
     const gd = c.graphData;
     h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margin-bottom:14px">`;
-    h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bot
-tom:12px">${gd.title}</div>`;
+    h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">${gd.title}</div>`;
 
     // rawDataOnly: show data as formatted cards, not a chart
     if (c.rawDataOnly && gd.bars) {
