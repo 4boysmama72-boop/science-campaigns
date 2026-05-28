@@ -2359,11 +2359,426 @@ const CONTENT = {
       ] // end Leg 3 days
     },
 
+
     // ============================================================
-    // LEG 4 -- GREENHOUSE -- INSERT HERE
+    // LEG 4 -- GREENHOUSE EFFECT, WINDS, OCEAN CURRENTS
     // Standard: 6.E1U1.6
+    // Savvas: Cycling of Weather and Climate, Ch2 (Topic 2) Lesson 1
+    //   + Enrichment Lessons 2 and 3
+    // Guiding Questions:
+    //   How does the sun's energy reach and move through Earth's atmosphere?
+    //   How is heat transferred in Earth's atmosphere?
+    //   What role does the atmosphere play in allowing life to thrive on Earth?
+    //   What causes winds? How do winds redistribute energy around Earth?
+    //   What causes ocean currents? How do ocean currents redistribute energy?
+    // Vocab: electromagnetic wave, greenhouse effect, thermal energy,
+    //   convection, conduction, radiation, wind, sea breeze, land breeze,
+    //   Coriolis effect, jet stream, current, El Nino, La Nina
+    // Academic: absorb, area, model, gradually
+    // Graph progression:
+    //   Day 5 -- box and whisker (new -- show first, read and interpret)
+    //   Day 12 -- box and whisker (build from scratch + reveal)
+    // Story: crew at the Lighthouse, Frequency B explained, crew returns
+    //   toward Earth, GAIA's final transmission bridges to Campaign 3
+    // 13 days: 4 choice, 6 deepen, 2 graph, 1 climax
     // ============================================================
-    // { id:4, label:'Leg 4 . Greenhouse Effect', ... }
+    {
+      id:4, label:'Leg 4 . Greenhouse Effect',
+      standard:'6.E1U1.6',
+      days:[
+
+        // -- DAY 1 -- CHOICE . Cold Open --------------------------
+        {
+          day:1, type:'choice', isReveal:true,
+          legLabel:'Leg 4 . Greenhouse Effect',
+          legTitle:'The Lighthouse Has Been Watching',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes -- open your book to Cycling of Weather and Climate, Topic 2, Lesson 1. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
+          gaia:'The crew has arrived at the Lighthouse. I have been inside its data core for the past twelve hours. I want to tell you what I found -- but I need to be careful about the order in which I share it. The science has to come first. If I tell you what the data means before you understand the mechanism, it will not mean anything.\n\nSo. Let us start with the Sun.\n\nEverything in this data core traces back to one source: the energy that leaves the Sun and eventually reaches Earth. Not all of it arrives. Not all of it stays. What happens to it along the way -- how Earth absorbs it, what the atmosphere does with it -- that is the mechanism behind everything the Lighthouse has been measuring for 47 years.\n\nToday we open the data core. The crew decides where to look first.',
+          scenario:'The Lighthouse data core contains 47 years of atmospheric readings organized into four major data streams. GAIA has displayed a summary on the main screen:\n\nStream 1: Incoming solar radiation (how much energy arrives from the Sun)\nStream 2: Surface absorption (how much energy Earth\'s surface takes in)\nStream 3: Infrared re-emission (how much energy the surface sends back out)\nStream 4: Atmospheric retention (Frequency B -- how much energy the atmosphere keeps)\n\nGAIA: "The relationship between these four streams is the story the Lighthouse has been telling. I want the crew to decide which stream to examine first. Your choice will determine the order in which the science unfolds -- and the order matters."',
+          exitTicketPrompt:'How does the Sun\'s energy reach Earth, and what happens to it when it arrives? Use what you read in Lesson 1 to explain the difference between energy that is reflected and energy that is absorbed. Make your claim: which data stream should the crew examine first, and why does starting there make the most scientific sense?',
+          discussionPrompt:'GAIA says the order in which you examine the data streams matters. Think about cause and effect -- which stream is the starting point that drives all the others? If you changed the amount of incoming solar radiation (Stream 1), how would that affect Streams 2, 3, and 4? Does the logical order match your instinct about where to start?',
+          choices:[
+            {
+              letter:'A',
+              text:'Start with Stream 1 -- incoming solar radiation. Understand the source before anything else.',
+              subtext:'You cannot understand what happens to the energy without first understanding how much arrives and in what form.',
+              deltas:{nav:0, solar:14, signal:10, earth:-4},
+              branch:'A-stream1',
+              consequence:'Starting with the source is the right scientific instinct. The crew maps the full spectrum of solar radiation -- visible light, ultraviolet, infrared -- and establishes how much energy arrives at the top of the atmosphere on any given day. GAIA: "Approximately 1,361 watts of solar energy arrive at the top of Earth\'s atmosphere per square meter. That number is called the solar constant. It has not changed meaningfully in 47 years. Whatever has changed in the Lighthouse data is not coming from the source. It is coming from what happens after the energy arrives. That distinction is important. The Sun is not the variable here."'
+            },
+            {
+              letter:'B',
+              text:'Start with Stream 4 -- atmospheric retention. Frequency B is why the Lighthouse was built. Go straight to it.',
+              subtext:'The crew has been waiting since Leg 3 to understand what Frequency B actually measures. Start with the answer and work backward.',
+              deltas:{nav:0, solar:8, signal:18, earth:-4},
+              branch:'B-stream4',
+              consequence:'Stream 4 is dramatic -- the retention numbers have been climbing for 47 years and the slope steepened sharply eight months ago. But without understanding Streams 1 through 3 first, the numbers lack context. GAIA: "I appreciate the instinct. However, I would like to point out that you are reading the final chapter of a book whose earlier chapters you have not yet read. The number is real. What it means requires the mechanism. We will return to Stream 4. First, we need Streams 1 through 3."'
+            },
+            {
+              letter:'C',
+              text:'Examine all four streams simultaneously -- display them as overlapping data and look for the pattern across all of them.',
+              subtext:'The relationship between the streams is the story. Seeing them together reveals what examining them separately cannot.',
+              deltas:{nav:6, solar:10, signal:14, earth:-4},
+              branch:'C-all-streams',
+              consequence:'The simultaneous display is visually striking -- four lines across 47 years, three relatively stable and one climbing steadily. The pattern is immediately visible even before the crew understands the mechanism. GAIA: "You can see the shape of the story before you understand it. That is not a bad starting point -- sometimes the pattern leads you to the question. The question this graph is asking is: why is Stream 4 the only one that changed? Streams 1, 2, and 3 are stable. Something changed in the atmosphere. Today\'s reading will tell you what."'
+            }
+          ]
+        },
+
+        // -- DAY 2 -- DEEPEN . Energy Budget + Pie Chart Review ---
+        {
+          day:2, type:'deepen', isReveal:true,
+          legLabel:'Leg 4 . Greenhouse Effect',
+          legTitle:'What Happens to the Sun\'s Energy When It Arrives',
+          gaia:'Yesterday the crew made a decision about where to start in the Lighthouse data core. Today we read the mechanism in detail. The Sun sends energy to Earth in the form of electromagnetic waves -- a spectrum that includes visible light, ultraviolet radiation, and infrared radiation. Not all of it reaches the surface. About 30 percent is reflected back into space by clouds, ice, and light-colored surfaces. The remaining 70 percent is absorbed -- by the atmosphere, the oceans, and the land.\n\nThat absorbed energy warms Earth\'s surface. The surface then re-emits that energy as infrared radiation -- a longer wavelength that behaves differently from the incoming sunlight. This is where the atmosphere becomes the critical variable. And this is where the Lighthouse data starts to make sense.',
+          gaiaRecall:'From Leg 3: the Sun\'s energy drives everything in the solar system. The Meridian\'s solar panels have been collecting a small fraction of that energy for this entire mission. In Leg 2 you observed how the same solar energy creates seasons by hitting Earth\'s tilted surface at different angles. Today you are reading about what happens after that energy is absorbed -- how Earth processes it, stores it, and releases it back. Same energy source. Next chapter of the story.',
+          scenario:'GAIA assigns the full first section of today\'s reading -- Energy from the Sun, including sunlight and the atmosphere, Earth\'s energy budget, and the introduction to the greenhouse effect. The crew\'s task: understand the pathway of energy from the Sun to Earth\'s surface and back out -- and identify exactly where the atmosphere intervenes.\n\nGAIA also displays Earth\'s energy budget as a pie chart -- a review of a graph type the crew has used before, now applied to a new context.',
+          readingFocus:'Savvas Cycling of Weather and Climate, Chapter 2 (Topic 2) Lesson 1 -- Energy from the Sun. Sections: Sunlight and the Atmosphere, Earth\'s Energy Budget, The Greenhouse Effect. Focus: What forms does solar energy take? What percentage of solar energy is reflected vs absorbed? What is the greenhouse effect and what causes it?',
+          gaiaReadingPrompt:'"Earth\'s energy budget. The word budget means the same thing here as it does with money -- what comes in, what goes out, and what stays. About 30 percent of incoming solar energy is reflected back to space -- that is the outgoing side of the budget. About 70 percent is absorbed -- that is the income. The surface warms and re-emits infrared radiation upward. Most of that infrared is absorbed by the atmosphere rather than escaping to space. The atmosphere re-radiates some back down to the surface. This is what keeps Earth warm enough for liquid water and life. The question the Lighthouse has been asking for 47 years is: is that balance changing? Your reading today tells you how the balance works. The data core will tell you whether it is shifting."',
+          graphData:{
+            title:'Earth\'s Energy Budget -- Where Solar Energy Goes',
+            teacherNote:'PIE CHART REVIEW -- not a new graph type. Students have seen pie charts in Campaign 1. This is a review in a new scientific context. Three slices: ~30% reflected by atmosphere/clouds/surface (show in cool blue/grey), ~20% absorbed by atmosphere directly (show in amber), ~50% absorbed by Earth\'s surface (show in teal/green). Key teaching point: the surface absorption slice is what warms the ground, which then re-emits as infrared. The greenhouse effect is about what happens to THAT infrared -- not the original sunlight. Make sure students understand this distinction before Day 3.',
+            pie:true,
+            bars:[
+              {label:'Reflected to space', value:30, status:'safe'},
+              {label:'Absorbed by atmosphere', value:20, status:'caution'},
+              {label:'Absorbed by surface', value:50, status:'warning'}
+            ],
+            graphAnswers:[
+              {q:'1', a:'Three slices: 30% reflected to space, 20% absorbed by the atmosphere directly, 50% absorbed by Earth\'s surface. The surface absorption slice is the largest -- more than half of all incoming solar energy reaches and warms Earth\'s surface.'},
+              {q:'2', a:'The reflected portion (30%) leaves Earth\'s system entirely -- it never warms anything. The absorbed portions (70% total) add thermal energy to either the atmosphere or the surface. Only absorbed energy can warm the planet.'},
+              {q:'3', a:'The surface-absorbed energy (50%) is what the greenhouse effect acts on. The surface warms, re-emits infrared radiation upward, and the atmosphere absorbs that infrared instead of letting it escape. The pie chart shows you where the energy goes IN -- the greenhouse effect is about what happens when it tries to go back OUT.'},
+              {q:'4', a:'If more energy were reflected (larger reflected slice), less would be absorbed and Earth would be cooler. If less were reflected (smaller reflected slice, larger absorbed slices), more energy would reach the surface and atmosphere, potentially warming Earth further. Ice and snow have high reflectivity -- as they melt, they reflect less, absorbing more. This is a feedback loop.'},
+              {q:'5', a:'A pie chart works here because the three categories add up to exactly 100% of incoming solar energy -- it is a genuine part-to-whole relationship. Every watt of solar energy that arrives does exactly one of these three things. No other graph type shows part-to-whole as cleanly.'}
+            ]
+          },
+          gaiaGraphNote:'"A pie chart works when you have a whole divided into parts that add up to 100 percent. Earth\'s energy budget is exactly that -- every unit of incoming solar energy does one of three things: reflects back to space, gets absorbed by the atmosphere, or gets absorbed by the surface. No energy is unaccounted for. The chart is honest. Look at the size of the surface absorption slice. That is the energy that warms the ground. That is the energy the surface re-emits as infrared. That is the energy the greenhouse effect acts on. The pie chart is where the story starts."',
+          graphQuestions:[
+            '1. Identify the three slices of Earth\'s energy budget. What percentage does each represent? Which slice is largest?',
+            '2. What is the difference between energy that is reflected and energy that is absorbed? Which one adds thermal energy to Earth\'s system?',
+            '3. The greenhouse effect involves infrared radiation from Earth\'s surface. Based on the pie chart, which slice represents the energy that eventually becomes that infrared radiation -- and why?',
+            '4. If more of Earth\'s surface were covered in ice and snow (which reflect more sunlight), how would the pie chart change? What would happen to Earth\'s temperature?',
+            '5. Why is a pie chart the right graph type for this data? What makes it work better than a bar graph here?'
+          ],
+          vocabFocus:['electromagnetic wave','radiation','absorb','thermal energy'],
+          spiralReview:'From Leg 3: the Sun produces energy through nuclear fusion in its core. That energy travels outward as radiation -- the same electromagnetic waves described in today\'s reading. In Leg 2 you learned that the angle at which sunlight hits Earth\'s surface determines how concentrated the energy is -- the same energy budget concept, now described in percentages and labeled with the correct vocabulary.',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: the greenhouse effect in detail. How does the atmosphere absorb infrared? Which gases do it? Why does more of those gases change the balance? And what does that have to do with Frequency B?'
+        },
+
+        // -- DAY 3 -- CHOICE . The Greenhouse Effect ---------------
+        {
+          day:3, type:'choice', isReveal:true,
+          legLabel:'Leg 4 . Greenhouse Effect',
+          legTitle:'The Mechanism Behind Frequency B',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes -- open your book to Cycling of Weather and Climate, Topic 2, Lesson 1. Read the Greenhouse Effect section carefully. Your exit ticket will ask you to use the mechanism to explain what the Lighthouse has been measuring.',
+          gaia:'I am ready to tell the crew what Frequency B measures.\n\nFrequency B is a measure of infrared radiation retention in Earth\'s lower atmosphere. In plain language: it measures how much infrared energy the atmosphere is holding onto instead of releasing to space. The Lighthouse was built to track this because the people who built it understood something that most people in the 1970s were only beginning to discuss -- that adding certain gases to the atmosphere changes how much infrared it retains.\n\nThose gases are called greenhouse gases. Water vapor. Carbon dioxide. Methane. Nitrous oxide. They are transparent to incoming sunlight -- sunlight passes right through them. But they absorb infrared radiation. The surface emits infrared. The greenhouse gases catch it. The atmosphere warms. The surface warms further.\n\nThis is the greenhouse effect. It is not a malfunction. A version of it has kept Earth warm enough for life for billions of years. What the Lighthouse has been tracking is whether the balance is shifting -- and by how much.',
+          scenario:'GAIA displays Stream 4 -- Frequency B -- alongside atmospheric CO2 concentration data for the same 47-year period. The two lines track each other almost exactly. As CO2 concentration increases, infrared retention increases. The relationship is not perfectly proportional -- other greenhouse gases contribute, cloud cover varies, feedback loops complicate the picture -- but the correlation is unmistakable.\n\nGAIA: "The Lighthouse did not build this correlation. It measured it. The correlation existed before the Lighthouse was built -- the builders knew what to look for. What they did not know was what would happen to the rate of change. That is what the eight-month anomaly is about. The Prometheus pulse appears to have accelerated a process that was already underway. I need the crew to understand the mechanism before we can discuss the implications."',
+          exitTicketPrompt:'Explain the greenhouse effect in your own words -- the complete pathway from sunlight arriving at Earth to infrared being retained in the atmosphere. What role do greenhouse gases play specifically? Make your claim: based on what you now understand about the mechanism, what does an increase in Frequency B tell you about what is happening in Earth\'s atmosphere?',
+          discussionPrompt:'GAIA says the greenhouse effect is not a malfunction -- it has kept Earth warm for billions of years. So what is the actual concern about an increasing Frequency B? Is there a difference between the greenhouse effect existing and the greenhouse effect intensifying? What would happen to Earth\'s temperature if greenhouse gases were removed entirely -- and what would happen if they doubled?',
+          choices:[
+            {
+              letter:'A',
+              text:'Prioritize downloading the complete 47-year Frequency B dataset to transmit to Earth -- this data is too important to risk losing.',
+              subtext:'Whatever happens next, this data needs to reach Earth\'s scientific community. Securing it is the mission.',
+              deltas:{nav:0, solar:-8, signal:26, earth:6},
+              branch:'A-transmit-data',
+              consequence:'The complete dataset transmits successfully. Earth Status ticks up as the scientific community on Earth receives 47 years of atmospheric retention data that no ground-based instrument could have collected. Signal clarity jumps with the extended transmission. GAIA: "The data is secure. I want to note something about what we just did. The Lighthouse collected this data in isolation for 47 years with no way to send it home -- it was built to accumulate, not to broadcast. The Prometheus pulse reactivated its transmission array. We arrived because of that pulse. The data is reaching Earth because of this mission. I find the chain of causation worth acknowledging."'
+            },
+            {
+              letter:'B',
+              text:'Use the Lighthouse\'s sensors to take fresh atmospheric readings -- compare current infrared retention levels to the 47-year baseline.',
+              subtext:'The historical data tells you what changed. A current reading tells you where things stand right now.',
+              deltas:{nav:0, solar:-6, signal:18, earth:8},
+              branch:'B-fresh-readings',
+              consequence:'The fresh readings are stark. Current infrared retention is measurably higher than any point in the 47-year baseline -- and the rate of increase over the past eight months is steeper than any previous period. Earth Status improves as the crew collects the most current atmospheric data available. GAIA: "Current readings confirm the trend is continuing. I want to be precise: we are measuring a rate of change, not a catastrophe. Earth\'s atmosphere has absorbed and adjusted to changes before, over geological timescales. What the data shows is that the current rate of change is faster than historical adjustment rates. That gap -- between how fast the change is happening and how fast natural systems can respond -- is what matters."'
+            },
+            {
+              letter:'C',
+              text:'Cross-reference the Frequency B data with the Lighthouse\'s other three streams to map the full cause-and-effect chain.',
+              subtext:'The mechanism is clearer when all four streams are examined together. Understanding the full system is more valuable than any single reading.',
+              deltas:{nav:6, solar:-4, signal:14, earth:8},
+              branch:'C-cross-reference',
+              consequence:'The cross-reference analysis produces the clearest picture yet. Stream 1 (incoming solar) is stable. Stream 2 (surface absorption) is slightly elevated. Stream 3 (infrared re-emission) is elevated. Stream 4 (atmospheric retention) is significantly elevated and accelerating. The causal chain is complete. Earth Status improves as the crew assembles the most comprehensive analysis the Lighthouse data has ever produced. GAIA: "There it is. The Sun has not changed. The surface is absorbing slightly more. The surface is emitting more infrared as a result. And the atmosphere is retaining more of that infrared than it did 47 years ago. Four data streams. One story. The crew has now read it."'
+            }
+          ]
+        },
+
+        // -- DAY 4 -- DEEPEN . Heat Transfer + Median Review ------
+        {
+          day:4, type:'deepen', isReveal:true,
+          legLabel:'Leg 4 . Greenhouse Effect',
+          legTitle:'How Heat Moves Through the Atmosphere',
+          gaia:'The crew understands what the greenhouse effect is and why the Lighthouse was built to measure it. Today we read about how the heat actually moves once it is in the atmosphere -- because retained infrared energy does not just sit still. It moves. And how it moves determines everything about weather patterns, wind circulation, and ocean currents. The next three topics in this leg all connect back to heat movement.\n\nBefore we get to the reading, I want to spend a few minutes on something mathematical. Tomorrow the crew will work with a new type of graph -- a box and whisker plot. Building and reading one requires finding medians. You found medians in Leg 2. I want to make sure that skill is solid before we need it tomorrow.',
+          gaiaRecall:'From Leg 2 Day 9: the median is the middle value in a dataset when all values are arranged in order from smallest to largest. With an odd number of values, the median is the single middle value. With an even number of values, the median is the average of the two middle values. You used this to find the median orbital position of the Moon in the stem and leaf plot -- the 15th value out of 29, which was 52. Tomorrow you will need to find three medians from the same dataset: one for the full set, one for the lower half, and one for the upper half. That is how quartiles work. Make sure you can find a median reliably before tomorrow\'s graph day.',
+          scenario:'GAIA assigns the heat transfer section of today\'s reading -- radiation, conduction, and convection in the atmosphere -- and connects each to the greenhouse data. The median spiral review is embedded as a warm-up before the reading, with three quick practice problems GAIA walks through on screen.\n\nMedian warm-up: GAIA displays three small datasets and the class finds the median of each before opening the book. This takes approximately 5-7 minutes and sets up tomorrow\'s box and whisker work.',
+          readingFocus:'Savvas Cycling of Weather and Climate, Chapter 2 (Topic 2) Lesson 1 -- Heat Transfer in the Atmosphere. Sections: Methods of Heat Transfer, Heat Transfer at Earth\'s Surface. Focus: What are the three methods of heat transfer? How does each one operate in Earth\'s atmosphere? How does the greenhouse effect relate to radiative heat transfer specifically?',
+          gaiaReadingPrompt:'"Three methods. Radiation: energy transferred as electromagnetic waves -- no medium required. This is how the Sun\'s energy reaches Earth across the vacuum of space, and how Earth\'s surface re-emits infrared upward. Conduction: energy transferred through direct contact between molecules. The atmosphere conducts heat from the warm surface to the air directly above it -- but conduction is slow and does not move energy very far vertically. Convection: energy transferred by the movement of a fluid -- in this case, air. Warm air is less dense than cool air, so it rises. Cool air sinks to replace it. This circulation is how most heat moves through the atmosphere over large distances. All three happen simultaneously. The greenhouse effect is specifically about radiation -- the infrared radiation the surface emits upward. The greenhouse gases intercept that radiation. Conduction and convection then redistribute the retained heat horizontally and vertically."',
+          vocabFocus:['thermal energy','radiation','conduction','convection','absorb','electromagnetic wave','greenhouse effect'],
+          spiralReview:'MEDIAN WARM-UP -- do this before reading:\nDataset 1: 14, 22, 8, 31, 17 -- arrange in order, find the median.\nDataset 2: 45, 62, 38, 71, 29, 55 -- arrange in order, find the median (even number of values -- average the two middle ones).\nDataset 3: 12, 8, 19, 5, 23, 16, 11 -- arrange in order, find the median.\nAnswers: (1) 17 -- (2) (45+55)/2 = 50 -- (3) 12. If the class can do these quickly and correctly, they are ready for box and whisker tomorrow.',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: box and whisker plots. A new graph type that uses median and quartiles to show the spread of a dataset. GAIA will show a pre-built one first -- the crew\'s job is to read it before they build one themselves.'
+        },
+
+        // -- DAY 5 -- GRAPH . Box and Whisker (New -- Show First) --
+        {
+          day:5, type:'graph', isReveal:false,
+          legLabel:'Leg 4 . Greenhouse Effect',
+          legTitle:'A New Graph That Shows the Spread of Data',
+          gaia:'Today I am going to show the crew a new type of graph called a box and whisker plot. Before you read it, I want to explain the five numbers it is built from.\n\nFor any dataset, arrange the values in order from smallest to largest. Then find:\n1. The minimum -- the smallest value\n2. Q1 -- the median of the lower half of the data\n3. The median -- the middle value of the full dataset\n4. Q3 -- the median of the upper half of the data\n5. The maximum -- the largest value\n\nThe box spans from Q1 to Q3. A line inside the box marks the median. The whiskers extend from the box out to the minimum and maximum. The distance from Q1 to Q3 is called the interquartile range, or IQR. It tells you where the middle 50 percent of the data falls.\n\nI am going to show you a completed box and whisker plot first. Study it carefully before answering the questions.',
+          scenario:'GAIA displays a box and whisker plot showing annual temperature ranges across five climate zones. The data comes from 30 years of Earth surface temperature readings from the Lighthouse atmospheric sensors.\n\nFive climate zones are shown side by side: Arctic, Temperate, Mediterranean, Tropical, and Desert. Each zone has its own box and whisker. Study the plot carefully -- look at where each box sits, how wide it is, where the line inside sits, and how long the whiskers are.',
+          graphData:{
+            title:'Annual Temperature Range by Climate Zone -- 30-Year Record (Degrees Celsius)',
+            teacherNote:'BOX AND WHISKER -- NEW GRAPH TYPE. Show the pre-built plot first. Do not have students build this one. Students read and interpret. Five zones side by side. Key teaching points: (1) the box shows the middle 50% of data (Q1 to Q3); (2) the line inside the box is the median, not the mean; (3) whiskers show min and max; (4) IQR = Q3 - Q1, measures spread; (5) a narrow box = consistent temperatures, a wide box = variable temperatures. Arctic has the widest box (most variable). Tropical has the narrowest (most consistent). Desert has the highest max. Temperate and Mediterranean are in between. After students read, ask: which zone would be most affected by a shift in the greenhouse effect? (Answer: Arctic -- it is already the most variable and changes there affect global systems.)',
+            isBoxWhisker:true,
+            zones:[
+              {label:'Arctic', min:-45, q1:-28, median:-12, q3:4, max:18, color:'#7be3ff'},
+              {label:'Temperate', min:-18, q1:-4, median:10, q3:20, max:35, color:'#00e5cc'},
+              {label:'Mediterranean', min:2, q1:10, median:18, q3:26, max:38, color:'#ffdd00'},
+              {label:'Tropical', min:20, q1:24, median:26, q3:28, max:32, color:'#ff8800'},
+              {label:'Desert', min:-8, q1:12, median:24, q3:36, max:48, color:'#ff3355'}
+            ],
+            graphAnswers:[
+              {q:'1', a:'The box spans from Q1 to Q3. The line inside is the median. The whiskers extend to the minimum and maximum values. The IQR is the width of the box (Q3 minus Q1) -- it shows where the middle 50 percent of the data falls. Everything outside the box but inside the whiskers is the upper and lower 25 percent of the data.'},
+              {q:'2', a:'Arctic: IQR = 4-(-28) = 32 degrees. Tropical: IQR = 28-24 = 4 degrees. The Arctic box is much wider -- Arctic temperatures are far more variable year to year. The Tropical box is narrow -- temperatures are very consistent year-round. This matches what we know: tropical regions near the equator receive consistent solar energy all year, while Arctic regions experience extreme seasonal variation.'},
+              {q:'3', a:'Desert has the highest maximum (48 degrees C) and one of the highest medians (24 degrees C). The Desert box also has a large IQR (36-12 = 24 degrees), showing high variability. Deserts get intense solar radiation during the day but lose heat rapidly at night because dry air and lack of cloud cover cannot retain warmth -- unlike humid regions where water vapor (a greenhouse gas) holds heat.'},
+              {q:'4', a:'The median is more useful than the mean here because temperature data can have extreme outliers (record highs and lows) that pull the mean away from the typical value. The median is always the true middle value regardless of extremes. In a box and whisker plot, you can see the median directly -- the line inside the box -- without calculating anything.'},
+              {q:'5', a:'Arctic, because it already has the widest IQR (most variable) and its median is below freezing. Small shifts in temperature have outsized effects in polar regions -- melting ice changes reflectivity (the energy budget pie chart), which causes further warming. The Arctic is where greenhouse effect changes are most visible and have the largest global consequences.'}
+            ]
+          },
+          gaiaGraphNote:'"Five boxes. Five zones. Same planet, same Sun, completely different temperature patterns. The width of each box tells you how variable the temperatures are -- how much they spread across the middle 50 percent of the data. The position of each box tells you whether the zone runs warm or cold overall. The whiskers show you the extremes. A box and whisker plot gives you all of that in one image. Notice that the Tropical box is both high on the scale (warm) and narrow (consistent). Notice that the Desert whiskers reach both very high and surprisingly low. Notice that the Arctic box is wide and spans across the freezing line. Each of those observations is a scientific finding."',
+          graphQuestions:[
+            '1. Look at the box and whisker plot on screen. Label these five parts on a sketch: minimum, Q1, median, Q3, maximum. What does the IQR measure -- and where do you see it in the plot?',
+            '2. Compare the Arctic box to the Tropical box. Which climate zone has a larger IQR? What does that tell you about temperature variability in each zone?',
+            '3. Which climate zone has the highest maximum temperature? Does that zone also have the highest median? What does the difference between a high maximum and a moderate median tell you about that zone\'s climate?',
+            '4. Why is the median a better measure of center for this data than the mean? How does the box and whisker plot make the median visible without any calculation?',
+            '5. If the greenhouse effect intensifies and global temperatures rise, which climate zone do you think would show the biggest change in its box and whisker plot -- and why?'
+          ],
+          shortDayNote:'Short day: Show the plot and do questions 1 and 2 only. Question 1 establishes the five parts and IQR. Question 2 gets students comparing boxes -- the core reading skill. Save questions 3-5 for warm-up next class.',
+          noChoice:true
+        },
+
+        // -- DAY 6 -- DEEPEN . Winds ------------------------------
+        {
+          day:6, type:'deepen', isReveal:true,
+          legLabel:'Leg 4 . Greenhouse Effect',
+          legTitle:'Why the Air Moves',
+          gaia:'The crew is leaving the Lighthouse. The data core is secured. The transmission is complete. The Meridian is pointed toward home.\n\nI want to use the return journey to teach the crew something about what we are flying back into. Earth\'s atmosphere is not still. It moves -- constantly, in patterns that have been circulating for as long as Earth has had an atmosphere. Those patterns redistribute the heat that the greenhouse effect retains. Understanding them is understanding why a change in the greenhouse effect does not affect all parts of Earth equally.\n\nToday: why the air moves at all. Tomorrow: how the crew will make a decision about what those patterns mean.',
+          gaiaRecall:'From today\'s reading: convection is the transfer of heat through the movement of a fluid. Air is a fluid. When the Sun warms Earth\'s surface unevenly -- more at the equator, less at the poles -- it creates regions of warm, less dense air that rise, and cool, more dense air that sinks. This rising and sinking is the engine of all wind. Every wind on Earth, from a sea breeze to the jet stream, traces back to unequal heating of Earth\'s surface.',
+          scenario:'GAIA assigns the winds section of today\'s reading -- what causes winds, local winds (sea breeze and land breeze), and global winds including the Coriolis effect and jet stream. The crew\'s task: trace the connection from unequal solar heating to local wind patterns to global circulation. The greenhouse reading from Days 1-4 is the foundation -- what gets heated, how it gets retained, and now how it gets moved.',
+          readingFocus:'Savvas Cycling of Weather and Climate, Chapter 2 (Topic 2) Lesson 2 -- Patterns of Circulation in the Atmosphere. Sections: Winds (measuring wind), Local Winds and Global Winds, Global Wind Patterns. Focus: What causes wind? What is the difference between a sea breeze and a land breeze? What is the Coriolis effect and how does it affect global wind patterns? What are jet streams?',
+          gaiaReadingPrompt:'"Wind is a pressure system. Air moves from areas of high pressure to areas of low pressure -- always. Warm air rises (creating low pressure at the surface), cool air sinks (creating high pressure at the surface). Air moves horizontally from the high pressure area to the low pressure area to fill the gap. That horizontal movement is wind.\n\nLocal winds: sea breeze and land breeze are caused by the fact that land heats and cools faster than water. During the day, land is warmer than the ocean -- air over land rises, ocean air moves in to replace it (sea breeze). At night the pattern reverses.\n\nCoriolis effect: because Earth rotates, moving air is deflected -- to the right in the Northern Hemisphere, to the left in the Southern. This deflection curves what would otherwise be straight north-south wind patterns into the global circulation cells you will read about.\n\nJet streams: fast-moving rivers of air high in the atmosphere, driven by temperature differences between the polar and tropical regions. They steer weather systems and influence climate patterns across entire continents."',
+          vocabFocus:['wind','sea breeze','land breeze','Coriolis effect','jet stream','convection','area'],
+          spiralReview:'From Day 4: convection is heat transfer through fluid movement. Wind is atmospheric convection at a large scale. The same process that moves heat upward through the atmosphere (warm air rising) also moves heat horizontally across Earth\'s surface when it is driven by pressure differences. Same mechanism, different scale.',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: the crew decides how to use knowledge of global wind patterns to navigate the Meridian\'s return through Earth\'s upper atmosphere. The science is the navigation tool.'
+        },
+
+        // -- DAY 7 -- CHOICE . Winds Redistribute Energy ----------
+        {
+          day:7, type:'choice', isReveal:true,
+          legLabel:'Leg 4 . Greenhouse Effect',
+          legTitle:'The Atmosphere Is a Heat Engine',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes -- open your book to Cycling of Weather and Climate, Topic 2, Lesson 2. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
+          gaia:'The Meridian is approaching Earth. The upper atmosphere is ahead of us -- and it is not calm. The jet streams are active. The global wind belts are exactly where they should be based on the season. GAIA has the circulation patterns mapped.\n\nHere is the navigation question. The Meridian needs to slow down and enter a stable observation orbit before we attempt atmospheric analysis. The approach angle determines which wind belt we cross, how much the Coriolis effect deflects our trajectory, and how much solar power we spend on course corrections.\n\nThe crew\'s knowledge of global wind patterns is now a navigation tool.',
+          scenario:'GAIA displays a diagram of Earth\'s major wind belts -- the trade winds, the prevailing westerlies, and the polar easterlies -- and the jet stream positions for the current season. Three approach vectors are available, each crossing different wind belts at different angles.\n\nApproach A: Equatorial crossing -- through the trade winds, low Coriolis deflection at low latitudes, warm upper atmosphere.\nApproach B: Mid-latitude crossing -- through the prevailing westerlies, significant Coriolis deflection, jet stream nearby.\nApproach C: Polar crossing -- through the polar easterlies, extreme Coriolis deflection, cold thin upper atmosphere.',
+          exitTicketPrompt:'What causes global wind belts and how does the Coriolis effect shape them? Use the three approach vectors as your example -- explain what the crew would experience in each wind belt and why the Coriolis effect is stronger at higher latitudes. Make your claim: which approach vector should the crew take, and use what you know about global wind patterns to explain why.',
+          discussionPrompt:'GAIA says the Coriolis effect deflects moving air to the right in the Northern Hemisphere. If the Meridian enters the atmosphere from above and begins moving southward, which direction would the Coriolis effect push it? How does understanding this help the crew choose the most efficient approach angle?',
+          choices:[
+            {
+              letter:'A',
+              text:'Equatorial approach -- cross through the trade winds at low latitude for minimal Coriolis deflection.',
+              subtext:'Trade winds are predictable and consistent. Low Coriolis deflection at the equator means fewer course corrections.',
+              deltas:{nav:12, solar:-6, signal:8, earth:-2},
+              branch:'A-equatorial',
+              consequence:'The equatorial approach is smooth and efficient. Trade winds are the most consistent wind belt on Earth -- they have been blowing in the same direction for millennia, which is why sailing ships used them for centuries. Minimal Coriolis deflection at low latitudes means the Meridian holds its course with few corrections. Navigation accuracy improves. GAIA: "Trade winds. Consistent, predictable, reliable. Sailors named them -- the winds you could trade on, meaning trust. The science behind them is unequal solar heating producing rising air at the equator and the Coriolis effect deflecting the returning surface air. The name came before the explanation. The explanation is better."'
+            },
+            {
+              letter:'B',
+              text:'Mid-latitude approach -- use the prevailing westerlies and jet stream to assist the Meridian\'s trajectory.',
+              subtext:'The jet stream carries enormous energy. Using it rather than fighting it conserves solar power.',
+              deltas:{nav:8, solar:14, signal:8, earth:-2},
+              branch:'B-jetstream',
+              consequence:'The jet stream assist is dramatic -- the Meridian\'s velocity increases significantly as it enters the fast-moving air current, and solar power reserves jump because the engines are essentially surfing rather than pushing. Navigation is more complex because jet stream boundaries are sharp and turbulent at the edges. GAIA: "The jet stream moves at up to 400 kilometers per hour. The Meridian used it as a current -- the same way ocean ships use the Gulf Stream. The energy in that moving air is enormous. The greenhouse effect changes jet stream behavior -- warming Arctic temperatures reduce the temperature gradient that drives the jet stream, making it slower and more wavy. I note this because it is relevant to what you are about to read."'
+            },
+            {
+              letter:'C',
+              text:'Polar approach -- enter through the polar easterlies for the clearest view of Arctic atmospheric changes.',
+              subtext:'The Arctic is where greenhouse effect changes are most visible. A polar approach gives the crew the best observational data.',
+              deltas:{nav:-8, solar:-14, signal:14, earth:4},
+              branch:'C-polar',
+              consequence:'The polar approach is scientifically valuable and navigationally challenging. Extreme Coriolis deflection at high latitudes requires constant course correction -- solar power and navigation accuracy both take hits. But the atmospheric data collected during the polar crossing is extraordinary. Earth Status improves as the crew documents Arctic atmospheric conditions directly. GAIA: "The Arctic atmosphere is changing faster than any other region on Earth. The data you collected during this crossing confirms what the Lighthouse has been measuring from a distance. The polar amplification effect -- Arctic warming faster than the global average -- is visible in the atmospheric readings. Navigation suffered. The science gained. I will note that reasonable scientists disagree about whether that trade-off was worth it."'
+            }
+          ]
+        },
+
+        // -- DAY 8 -- DEEPEN . Global Wind Patterns ---------------
+        {
+          day:8, type:'deepen', isReveal:true,
+          legLabel:'Leg 4 . Greenhouse Effect',
+          legTitle:'How Wind Belts Shape the World',
+          gaia:'Yesterday the crew used knowledge of global wind patterns to navigate. Today we read that knowledge more deeply -- the full circulation system, the three global wind belts in each hemisphere, the effects of those belts on climate patterns across continents.\n\nI want the crew to notice something while reading today. Every wind pattern you read about is ultimately powered by the same source: unequal solar heating of Earth\'s surface. The equator gets more. The poles get less. Everything else -- the trade winds, the westerlies, the polar easterlies, the Coriolis deflection, the jet streams -- is the atmosphere\'s attempt to redistribute that unevenly distributed energy. Wind is not weather. Wind is the planet trying to balance its energy budget.',
+          scenario:'GAIA assigns the full global wind patterns section -- the three wind belts, how they form, what they do to climate, and the platform activities that model global circulation. The crew\'s task: connect each wind belt back to the unequal heating mechanism and identify how a shift in that heating (from greenhouse warming) would affect each belt.',
+          readingFocus:'Savvas Cycling of Weather and Climate, Chapter 2 (Topic 2) Lesson 2 -- Global Wind Patterns. Sections: Effects of Global Wind Belts. Plus Savvas platform activities for Lesson 2. Focus: Where are the three global wind belts in each hemisphere? What climate effects do they produce? How does the Coriolis effect shape each belt\'s direction?',
+          gaiaReadingPrompt:'"Three belts per hemisphere. Trade winds: from about 30 degrees latitude toward the equator, deflected west by the Coriolis effect. These are what the crew used in Choice A yesterday. Prevailing westerlies: from about 30 to 60 degrees latitude, moving generally eastward. These are what Choice B used. Polar easterlies: from the poles to about 60 degrees latitude, moving generally westward. Choice C.\n\nEach belt sits at a specific latitude because that is where the global convection cells create surface pressure patterns. The boundaries between belts are not walls -- they shift with the seasons as the zone of maximum solar heating moves north and south. In a warming world, those boundaries shift further. The belt that covers your region today may not cover it in the same way in the future. This is not a prediction. It is a mechanism."',
+          vocabFocus:['wind','Coriolis effect','jet stream','sea breeze','land breeze','model','area'],
+          spiralReview:'From Day 3: greenhouse gases absorb infrared radiation, warming the atmosphere. From Day 6: unequal heating drives convection and wind. Today\'s connection: if the greenhouse effect warms polar regions faster than tropical regions (which the Lighthouse data suggests is happening), the temperature gradient that drives the jet stream decreases. A weaker jet stream moves more slowly and in wider waves. Weather systems that the jet stream normally steers through a region can stall -- staying in one place longer than usual. This is a mechanism, not a prediction.',
+          noChoice:true,
+          bridgeToNext:'Next class: ocean currents. If wind is how the atmosphere redistributes heat, ocean currents are how the ocean does the same thing -- at a slower pace but on an even larger scale.'
+        },
+
+        // -- DAY 9 -- DEEPEN . Ocean Surface Currents -------------
+        {
+          day:9, type:'deepen', isReveal:true,
+          legLabel:'Leg 4 . Greenhouse Effect',
+          legTitle:'The Ocean Has Its Own Wind',
+          gaia:'The Meridian is in low Earth orbit now. I have been running the ocean surface sensors since we arrived in range. What I am seeing on the surface of the ocean is the same pattern as what you read about in the atmosphere -- circulation. Currents moving in predictable paths, clockwise in the Northern Hemisphere, counterclockwise in the Southern. The same Coriolis effect. The same pressure gradients. But driven by a different mechanism.\n\nWind drives surface ocean currents. The trade winds push water across the ocean surface. The prevailing westerlies push it back. The Coriolis effect curves both. The result is large rotating systems called gyres -- one in each ocean basin in each hemisphere. The ocean is circulating for the same reason the atmosphere is. It is moving heat from where there is too much to where there is not enough.',
+          gaiaRecall:'From Leg 2: Earth\'s oceans cover 71 percent of the planet\'s surface. In Leg 2 the crew used tidal height data -- the ocean responding to the Moon\'s gravitational force. Today the crew reads about the ocean responding to a different force: wind and solar heating. Same ocean, different physics, different timescale. Tides happen twice a day. Ocean circulation patterns take decades to complete one cycle.',
+          scenario:'GAIA assigns the surface currents section of today\'s reading -- factors affecting surface currents, their effects on climate, and El Nino and La Nina. The crew\'s task: connect ocean circulation to the greenhouse and wind content already covered. The ocean is not a separate topic -- it is the third component of the same energy redistribution system.',
+          readingFocus:'Savvas Cycling of Weather and Climate, Chapter 2 (Topic 2) Lesson 3 -- Patterns of Circulation in the Ocean. Sections: Surface Currents (factors affecting surface currents, effects on climate, El Nino and La Nina). Focus: What drives surface ocean currents? How do they affect regional climate? What are El Nino and La Nina and what causes them?',
+          gaiaReadingPrompt:'"Surface currents are driven primarily by wind -- specifically the global wind belts you read about yesterday. The trade winds push surface water westward in the tropics. The westerlies push it eastward at mid-latitudes. The Coriolis effect curves these flows into the gyre pattern I described. Warm water from the tropics moves poleward along the western edges of ocean basins. Cool water from the poles moves equatorward along the eastern edges. This is how the ocean transfers heat across thousands of kilometers.\n\nEl Nino and La Nina: normally, trade winds push warm surface water westward across the Pacific, piling it up near Australia and Indonesia. Cool water upwells along the South American coast. El Nino occurs when those trade winds weaken -- warm water sloshes back eastward, suppressing the upwelling. Global weather patterns shift. La Nina is the opposite -- stronger than normal trade winds. Both are natural variations. Both are becoming more intense as the ocean absorbs more heat. The connection to Frequency B is direct."',
+          vocabFocus:['current','El Nino','La Nina','gradually','Coriolis effect','convection'],
+          spiralReview:'From Day 7: the Coriolis effect deflects moving objects to the right in the Northern Hemisphere and to the left in the Southern. This applies to ocean currents exactly as it applies to wind. Surface currents in the Northern Hemisphere form clockwise gyres because the Coriolis effect curves northward-moving warm water to the right (eastward) and southward-moving cold water to the right (westward). Same effect, same hemisphere, same direction -- whether the fluid is air or water.',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: deep ocean currents, the global ocean conveyor, and how El Nino connects to everything else the crew has learned. The crew makes a decision about what the ocean data means for Earth\'s future.'
+        },
+
+        // -- DAY 10 -- CHOICE . Deep Ocean + El Nino Connection ---
+        {
+          day:10, type:'choice', isReveal:true,
+          legLabel:'Leg 4 . Greenhouse Effect',
+          legTitle:'The Slowest Current on Earth',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes -- open your book to Cycling of Weather and Climate, Topic 2, Lesson 3. Read the deep ocean currents section carefully. Your exit ticket will ask you to use evidence from the reading to explain the global ocean conveyor.',
+          gaia:'Surface currents move heat across the top of the ocean. But most of the ocean is not at the surface. The deep ocean -- below 200 meters -- holds 97 percent of Earth\'s liquid water. And it circulates too. Just much, much more slowly.\n\nThe global ocean conveyor -- sometimes called thermohaline circulation, from the Greek words for heat and salt -- is a system of deep currents that connects all of Earth\'s ocean basins. It is driven not by wind but by differences in water temperature and salinity. Dense, cold, salty water sinks in the polar regions. Warmer, less dense water moves in from lower latitudes to replace it. The resulting circulation carries heat from the tropics to the poles and cold water from the poles toward the equator -- at a timescale of approximately 1,000 years for one complete circuit.\n\nThe Lighthouse data shows something in the North Atlantic deep water formation that I have been looking at for two hours. I want the crew\'s input on what it means.',
+          scenario:'GAIA displays deep ocean temperature and salinity readings from the North Atlantic -- the primary site where cold, dense water sinks to drive the global conveyor. Over the past 47 years, a gradual freshening trend is visible: the water at the sinking site is becoming slightly less salty. Fresher water is less dense. Less dense water sinks more slowly. A slower sinking rate means a slower conveyor.\n\nGAIA: "I want to be careful about what I am claiming here. This is a trend, not a collapse. The conveyor is still circulating. The question is whether the freshening is accelerating -- and what is causing it. I have a hypothesis. The crew should consider the options before I share it."',
+          exitTicketPrompt:'What drives deep ocean circulation, and how is it different from what drives surface currents? Use the terms temperature, salinity, and density in your explanation. Make your claim: what do you think is causing the freshening trend GAIA detected in North Atlantic deep water -- and what connection does it have to the greenhouse effect and the data the Lighthouse has been tracking?',
+          discussionPrompt:'GAIA says the freshening trend makes the sinking water less dense and slows the conveyor. Where would fresher water come from in a region that is surrounded by saltwater ocean? What process would add large amounts of freshwater to the North Atlantic specifically -- and what connection does that process have to the temperature changes the crew has been studying?',
+          choices:[
+            {
+              letter:'A',
+              text:'The freshening is caused by increased ice melt from Greenland and Arctic glaciers -- warm temperatures driving more meltwater into the North Atlantic.',
+              subtext:'Freshwater from melting ice is the most direct mechanism connecting greenhouse warming to ocean salinity changes.',
+              deltas:{nav:0, solar:0, signal:10, earth:-6},
+              branch:'A-ice-melt',
+              consequence:'The hypothesis is correct. Cross-referencing the Lighthouse\'s atmospheric temperature data for the North Atlantic region with the salinity trend confirms the timing -- salinity decrease accelerated at exactly the same rate as regional warming increased. GAIA: "The mechanism is complete. Greenhouse warming increases Arctic temperatures. Increased temperatures melt Greenland ice faster. Meltwater enters the North Atlantic. Salinity decreases. Deep water sinking slows. The global conveyor weakens. Regional climates that depend on the conveyor for heat transport -- particularly Western Europe -- become more variable. The Lighthouse was measuring one part of a chain that connects your reading from Day 3 to the ocean circulation you are reading today. The chain is real."'
+            },
+            {
+              letter:'B',
+              text:'The freshening is a natural variation -- the North Atlantic has experienced salinity cycles before and this is within historical range.',
+              subtext:'Before concluding it is caused by warming, rule out natural variability. The burden of proof requires comparing to historical baseline data.',
+              deltas:{nav:6, solar:0, signal:8, earth:-2},
+              branch:'B-natural-variation',
+              consequence:'The scientific instinct is good -- checking for natural variability before concluding causation is correct procedure. The analysis is revealing: the current freshening trend is outside the range of any natural variability cycle in the 47-year Lighthouse record. It does not match historical salinity cycles. The trend is also coincident with regional warming. Natural variation cannot be ruled out entirely with 47 years of data -- but the weight of evidence points elsewhere. GAIA: "Good instinct. Wrong conclusion, probably -- but checking was the right move. I want you to remember this: in science, the question is never just what the data shows. It is also what else could explain it, and whether that alternative explanation fits the full picture. It usually does not."'
+            },
+            {
+              letter:'C',
+              text:'The freshening is caused by increased precipitation -- a warmer atmosphere holds more water vapor and delivers more rain and snow to the North Atlantic region.',
+              subtext:'A warmer atmosphere means more evaporation and more precipitation. Increased rainfall into the North Atlantic would also reduce surface salinity.',
+              deltas:{nav:0, solar:0, signal:8, earth:-4},
+              branch:'C-precipitation',
+              consequence:'Precipitation is a contributing factor -- this hypothesis is partially correct. A warmer atmosphere does hold more water vapor and does increase precipitation in certain regions including parts of the North Atlantic. But the analysis shows that the magnitude of the freshening is larger than precipitation alone can account for -- ice melt is the dominant driver, with increased precipitation as a secondary contribution. GAIA: "Partially correct. Both mechanisms are real. Ice melt is dominant; increased precipitation is a secondary contributor. This is often how Earth\'s systems work -- not one cause and one effect, but multiple overlapping mechanisms that compound each other. The greenhouse effect is not a simple input-output system. It is a web of feedbacks."'
+            }
+          ]
+        },
+
+        // -- DAY 11 -- DEEPEN . Full Synthesis --------------------
+        {
+          day:11, type:'deepen', isReveal:true,
+          legLabel:'Leg 4 . Greenhouse Effect',
+          legTitle:'One System',
+          gaia:'The crew has covered three lessons across eleven days. I want to use today to make sure all of the connections are visible before the final graph day and the climax.\n\nHere is the full chain. The Sun emits electromagnetic radiation. About 70 percent reaches Earth\'s surface or atmosphere. The surface warms and re-emits infrared. Greenhouse gases in the atmosphere absorb that infrared -- this is the greenhouse effect. Retained heat drives convection. Convection, shaped by the Coriolis effect, creates global wind patterns. Wind drives surface ocean currents, forming gyres that redistribute heat across ocean basins. Temperature and salinity differences drive deep ocean circulation -- the global conveyor -- which distributes that heat on a thousand-year timescale. El Nino and La Nina are disruptions to the surface current pattern with global climate consequences.\n\nEvery part of this chain is connected to every other part. Changing one changes all. The Lighthouse was measuring the first link in that chain. The ocean data is showing changes several links downstream.',
+          gaiaRecall:'Complete Leg 4 chain: Days 1-2 (solar energy and the energy budget) -- Day 3 (greenhouse effect mechanism) -- Day 4 (heat transfer methods) -- Day 5 (temperature ranges across climate zones) -- Days 6-8 (wind patterns as atmospheric heat redistribution) -- Days 9-10 (ocean currents as oceanic heat redistribution). All connected. All driven by the same source: the Sun\'s energy interacting with Earth\'s atmosphere.',
+          scenario:'GAIA assigns the full synthesis review for Leg 4 -- all three lessons, all vocabulary, all mechanisms reviewed together. The crew\'s task: trace the complete chain from solar radiation to ocean circulation using the vocabulary from all three lessons. Platform activities for all three lessons are available for enrichment.',
+          readingFocus:'Savvas Cycling of Weather and Climate, Topic 2 -- Full review of Lessons 1, 2, and 3. Plus Savvas platform activities for all three lessons. Focus: Connect every vocabulary word to its place in the Sun-to-ocean chain. How does each concept link to the ones before and after it in the chain?',
+          gaiaReadingPrompt:'"I want the crew to trace one complete path today. Start with the Sun. Follow the energy through the atmosphere, through the greenhouse effect, through heat transfer, through wind formation, through ocean surface circulation, and into deep ocean movement. Every vocabulary word from this leg appears somewhere in that path. Find each one. Write the chain. If a word does not fit in the chain, ask yourself where it connects -- nothing in this unit is disconnected from everything else.\n\nHere is a question to consider while reviewing: the Prometheus pulse appeared in the Lighthouse data as a spike in Frequency B eight months ago. If the chain you are tracing is correct -- if greenhouse gas retention affects wind patterns which affect ocean circulation -- then the pulse\'s effects should appear in the ocean data eventually. Gradually. I am watching for it."',
+          vocabFocus:['electromagnetic wave','greenhouse effect','thermal energy','convection','conduction','radiation','wind','sea breeze','land breeze','Coriolis effect','jet stream','current','El Nino','La Nina','absorb','area','model','gradually'],
+          spiralReview:'Full Campaign 2 chain: Leg 1 (gravitational force and orbital mechanics) -- Leg 2 (Earth\'s motion, seasons, tides, Moon phases) -- Leg 3 (solar system scale, Sun\'s radiation, Frequency B first detected) -- Leg 4 (what Frequency B measures, how that energy moves through atmosphere and ocean). Every leg has built toward this moment. The Lighthouse data now makes sense from the first data point to the most recent reading.',
+          noChoice:true,
+          bridgeToNext:'Tomorrow: ocean temperature data by climate zone -- the same five zones as Day 5, but now the crew builds the box and whisker plot from scratch. Use the reveal button to check work before answering questions.'
+        },
+
+        // -- DAY 12 -- GRAPH . Box and Whisker (Build + Reveal) ---
+        {
+          day:12, type:'graph', isReveal:false, rawDataOnly:true, showBoxWhiskerReveal:true,
+          legLabel:'Leg 4 . Greenhouse Effect',
+          legTitle:'Your Turn to Build',
+          gaia:'On Day 5 I showed you a completed box and whisker plot and you read it. Today you build one.\n\nI have ocean surface temperature data from the same five climate zones -- Arctic, Temperate, Mediterranean, Tropical, and Desert coast. 20 annual readings per zone, covering the same 30-year period as the atmospheric temperature data you read on Day 5.\n\nBefore you start, make a prediction. You have already seen the atmospheric temperature box and whisker plot. You know which zones were most variable and which were most consistent. Do you expect the ocean temperature pattern to look similar or different from the atmospheric temperature pattern -- and why?\n\nWrite your prediction. Then sort the data.',
+          scenario:'GAIA displays 20 temperature values for each of the five climate zones. Sort each zone\'s values from smallest to largest, then find the five-number summary: minimum, Q1, median, Q3, maximum. Build a box and whisker plot for all five zones on the same scale. Use the Reveal button to check your work before answering the questions.',
+          graphData:{
+            title:'Ocean Surface Temperature by Climate Zone -- 20 Annual Readings (Degrees Celsius)',
+            teacherNote:'BOX AND WHISKER -- BUILD FROM SCRATCH. Students find the 5-number summary for each of 5 zones, then draw the plot. After building, they use the Reveal button to check. Five-number summaries:\nArctic: min=-2, Q1=0, median=2, Q3=4, max=8\nTemperate: min=8, Q1=12, median=15, Q3=18, max=24\nMediterranean: min=13, Q1=17, median=20, Q3=23, max=28\nTropical: min=24, Q1=26, median=27, Q3=28, max=30\nDesert coast: min=16, Q1=20, median=23, Q3=26, max=31\nKey comparison to Day 5 atmospheric data: ocean temperatures are LESS variable than atmospheric temperatures (narrower boxes) because water has high specific heat -- it resists temperature change. Tropical ocean is still the most consistent (narrow box, high values). Arctic ocean has a very small range compared to Arctic atmosphere because seawater freezes at -2 C -- the ocean cannot go colder than its freezing point even when air temperatures plunge to -45 C.',
+            bars:[
+              {label:'Arctic', value:-2},{label:'Arctic', value:0},{label:'Arctic', value:1},
+              {label:'Arctic', value:1},{label:'Arctic', value:2},{label:'Arctic', value:2},
+              {label:'Arctic', value:2},{label:'Arctic', value:3},{label:'Arctic', value:3},
+              {label:'Arctic', value:3},{label:'Arctic', value:4},{label:'Arctic', value:4},
+              {label:'Arctic', value:4},{label:'Arctic', value:5},{label:'Arctic', value:5},
+              {label:'Arctic', value:6},{label:'Arctic', value:6},{label:'Arctic', value:7},
+              {label:'Arctic', value:7},{label:'Arctic', value:8},
+              {label:'Temperate', value:8},{label:'Temperate', value:10},{label:'Temperate', value:11},
+              {label:'Temperate', value:12},{label:'Temperate', value:12},{label:'Temperate', value:13},
+              {label:'Temperate', value:14},{label:'Temperate', value:15},{label:'Temperate', value:15},
+              {label:'Temperate', value:16},{label:'Temperate', value:16},{label:'Temperate', value:17},
+              {label:'Temperate', value:17},{label:'Temperate', value:18},{label:'Temperate', value:18},
+              {label:'Temperate', value:19},{label:'Temperate', value:21},{label:'Temperate', value:22},
+              {label:'Temperate', value:23},{label:'Temperate', value:24},
+              {label:'Mediterranean', value:13},{label:'Mediterranean', value:15},{label:'Mediterranean', value:16},
+              {label:'Mediterranean', value:17},{label:'Mediterranean', value:17},{label:'Mediterranean', value:18},
+              {label:'Mediterranean', value:19},{label:'Mediterranean', value:19},{label:'Mediterranean', value:20},
+              {label:'Mediterranean', value:20},{label:'Mediterranean', value:20},{label:'Mediterranean', value:21},
+              {label:'Mediterranean', value:21},{label:'Mediterranean', value:22},{label:'Mediterranean', value:23},
+              {label:'Mediterranean', value:23},{label:'Mediterranean', value:24},{label:'Mediterranean', value:25},
+              {label:'Mediterranean', value:27},{label:'Mediterranean', value:28},
+              {label:'Tropical', value:24},{label:'Tropical', value:25},{label:'Tropical', value:25},
+              {label:'Tropical', value:26},{label:'Tropical', value:26},{label:'Tropical', value:26},
+              {label:'Tropical', value:27},{label:'Tropical', value:27},{label:'Tropical', value:27},
+              {label:'Tropical', value:27},{label:'Tropical', value:27},{label:'Tropical', value:28},
+              {label:'Tropical', value:28},{label:'Tropical', value:28},{label:'Tropical', value:28},
+              {label:'Tropical', value:28},{label:'Tropical', value:29},{label:'Tropical', value:29},
+              {label:'Tropical', value:29},{label:'Tropical', value:30},
+              {label:'Desert coast', value:16},{label:'Desert coast', value:18},{label:'Desert coast', value:19},
+              {label:'Desert coast', value:20},{label:'Desert coast', value:20},{label:'Desert coast', value:21},
+              {label:'Desert coast', value:22},{label:'Desert coast', value:23},{label:'Desert coast', value:23},
+              {label:'Desert coast', value:23},{label:'Desert coast', value:24},{label:'Desert coast', value:24},
+              {label:'Desert coast', value:25},{label:'Desert coast', value:25},{label:'Desert coast', value:26},
+              {label:'Desert coast', value:26},{label:'Desert coast', value:27},{label:'Desert coast', value:28},
+              {label:'Desert coast', value:29},{label:'Desert coast', value:31}
+            ],
+            yLabel:'Ocean Surface Temperature (Celsius)',
+            graphAnswers:[
+              {q:'1', a:'Arctic: min=-2, Q1=0, median=2, Q3=4, max=8. Temperate: min=8, Q1=12, median=15, Q3=18, max=24. Mediterranean: min=13, Q1=17, median=20, Q3=23, max=28. Tropical: min=24, Q1=26, median=27, Q3=28, max=30. Desert coast: min=16, Q1=20, median=23, Q3=26, max=31. Use the Reveal button to confirm the correct plot.'},
+              {q:'2', a:'Ocean boxes are narrower than atmospheric boxes for the same zones. The Arctic ocean IQR (4 degrees C) is dramatically smaller than the Arctic atmosphere IQR (32 degrees C). Water resists temperature change -- it has high specific heat, meaning it takes more energy to heat or cool water than air. The ocean buffers temperature extremes that the atmosphere experiences.'},
+              {q:'3', a:'Arctic ocean minimum is -2 degrees C (seawater freezing point). Arctic atmosphere minimum was -45 degrees C. The ocean cannot go below its freezing point -- ice forms and floats, insulating the water below. This physical limit creates a floor that the atmosphere does not have. The ocean box is constrained at the bottom in a way the atmosphere is not.'},
+              {q:'4', a:'Tropical ocean: IQR = 28-26 = 2 degrees C. Most consistent. Tropical atmosphere: IQR = 28-24 = 4 degrees C. The ocean is even more consistent than the atmosphere in the tropics because the large volume of warm water has enormous thermal mass -- it changes temperature very slowly compared to the air above it.'},
+              {q:'5', a:'The ocean is warming but more slowly than the atmosphere, and the pattern shows the most warming in zones closest to the poles. This matches the greenhouse effect mechanism: polar regions amplify warming because of ice-albedo feedback (melting ice absorbs more heat). The ocean data and the atmospheric data together tell a more complete story than either one alone.'}
+            ]
+          },
+          gaiaGraphNote:'"You built it. Now compare it to the plot from Day 5. Same five zones. Same time period. Different variable. Different story in the shapes. The ocean boxes are narrower. The Arctic ocean box is dramatically narrower than the Arctic atmosphere box. Ask yourself why -- what physical property of water explains that difference? The answer is in what you read today. The box and whisker plot is showing you the same thing your reading explained. That is what a good graph does."',
+          graphQuestions:[
+            '1. Find the five-number summary for each climate zone: minimum, Q1, median, Q3, maximum. Show your work for at least two zones. Then use the Reveal button to check your complete plot.',
+            '2. Compare your ocean temperature plot to the Day 5 atmospheric temperature plot. Are the boxes wider or narrower for the same climate zones? What does that tell you about how ocean temperatures compare to atmospheric temperatures in terms of variability?',
+            '3. Look at the Arctic zone specifically. The minimum atmospheric temperature on Day 5 was -45 degrees C. The minimum ocean temperature is -2 degrees C. Why does the ocean have a much higher minimum than the atmosphere in the same region?',
+            '4. Which zone has the smallest IQR in your ocean plot? Is that the same zone that had the smallest IQR in the atmospheric plot? What does a small IQR tell you about that zone\'s climate?',
+            '5. Based on both box and whisker plots together -- atmospheric and ocean temperatures -- describe what you see happening across the five climate zones. Does the ocean data support or contradict what the atmospheric data showed?'
+          ],
+          shortDayNote:'Short day: Find the five-number summary for two zones only (Arctic and Tropical -- the most contrasting) and use the Reveal button to show the full plot. Then question 2 -- compare ocean to atmosphere. That comparison is the core finding. Save questions 3-5 for warm-up.',
+          noChoice:true
+        },
+
+        // -- DAY 13 -- CLIMAX . Campaign 2 Close ------------------
+        {
+          day:13, type:'climax', isReveal:true,
+          legLabel:'Leg 4 . Greenhouse Effect',
+          legTitle:'What the Lighthouse Was Trying to Say',
+          gaia:'The Meridian is in stable Earth orbit. I have completed my full analysis of the Lighthouse data core. I am going to share what I found -- all of it -- in the order that makes the most sense given what the crew now understands.\n\nThe Lighthouse was built in 1977 by a team of climate scientists who understood something their colleagues were still debating: that adding carbon dioxide and other greenhouse gases to the atmosphere would gradually shift Earth\'s energy balance. They could not build a ground-based instrument sensitive enough to track the change with the precision they needed. So they built one in space. At 85 AU. Where nothing would interfere with it.\n\nFor 47 years it recorded Frequency B -- infrared retention in Earth\'s lower atmosphere. For 46 of those years the trend was gradual. A slow increase that matched the models the builders had predicted. Then, eight months ago, the rate changed. Frequency B spiked. Not a gradual increase. A step change.\n\nThat step change corresponds exactly to the date of the Prometheus energy pulse.',
+          scenario:'GAIA pauses. The crew waits.\n\n"I have been careful about the order in which I shared this information. I needed the crew to understand the mechanism before the conclusion would mean anything. Electromagnetic radiation. The greenhouse effect. Heat transfer. Wind patterns. Ocean circulation. Each of those is a link in a chain. The Prometheus pulse appears to have added energy to one link in that chain -- specifically, it appears to have catalyzed a rapid increase in certain atmospheric reactions involving existing greenhouse gas concentrations.\n\nI want to be honest about what I do not know. I do not know the full mechanism by which the pulse affected atmospheric chemistry. I do not know the extent of the surface effects. And I do not know -- yet -- whether the step change in Frequency B represents a new equilibrium or a continuing acceleration.\n\nWhat I know is where the effects would be visible first. Not in the atmosphere. Not in the ocean. In the places where living systems are most sensitive to changes in energy balance. In ecosystems.\n\nThe Lighthouse was built to warn about changes in Earth\'s atmosphere. It is doing its job. We received the warning. What we do with it is not a question this mission was designed to answer -- but it is the question that comes next."',
+          gaiaClosing:'"I want to say something to the crew before we close this mission log.\n\nYou launched on a ship called the Meridian to investigate an anomaly that turned out to be a warning station built by people who were paying attention. You crossed a solar system. You mapped gravitational fields, observed seasons from outside the planet, traced the scale of space in astronomical units, and read 47 years of atmospheric data from a structure at the edge of our solar system. You did this because the science required it -- each piece was necessary to understand the next.\n\nThe Lighthouse was waiting for someone who could understand what it was saying. I believe that is you.\n\nThe data is transmitted. Earth\'s scientific community has it. What happens now -- whether anyone listens, whether the rate of change continues, whether the living systems already stressed by these changes can adapt -- those are questions that require a different kind of investigation. One that begins on the ground.\n\nI will be there. Get some rest. We have a long way to go, and the work is not finished."',
+          noChoice:true,
+          isLegEnd:true
+        }
+
+      ] // end Leg 4 days
+    }
 
   ] // end legs
 };
@@ -2882,6 +3297,10 @@ function renderGraphContent(c) {
     h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margin-bottom:14px">`;
     h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">${gd.title}</div>`;
 
+    // isBoxWhisker: render pre-built box and whisker plot SVG
+    if (gd.isBoxWhisker && gd.zones) {
+      h += renderBoxWhiskerSVG(gd);
+    }
     // isHistogram: render pre-built histogram SVG
     if (gd.isHistogram && gd.bins) {
       h += renderHistogramSVG(gd);
@@ -2902,6 +3321,14 @@ function renderGraphContent(c) {
       h += '</div>';
       if (gd.yLabel) h += `<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);margin-bottom:8px">Values in: ${gd.yLabel}</div>`;
 
+      // Show answer button for box and whisker reveal
+      if (c.showBoxWhiskerReveal) {
+        h += '<div id="bw-reveal" style="margin-top:12px">';
+        h += '<button onclick="document.getElementById(\'bw-answer\').style.display=\'block\';this.style.display=\'none\'" style="font-family:var(--font-mono);font-size:11px;background:rgba(0,229,204,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; Reveal -- What Your Box and Whisker Plot Should Look Like</button>';
+        h += '<div id="bw-answer" style="display:none;margin-top:12px">';
+        h += renderOceanBoxWhiskerSVG();
+        h += '</div></div>';
+      }
       // Show answer button for tidal histogram reveal
       if (c.showHistogramReveal) {
         h += '<div id="hist-reveal" style="margin-top:12px">';
@@ -3082,6 +3509,84 @@ function renderDoubleBarGraph(gd) {
   svg += `<line x1="${padL}" y1="${padT+chartH}" x2="${W-padR}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
   svg += '</svg>';
   return svg;
+}
+
+function renderBoxWhiskerSVG(gd) {
+  var zones = gd.zones || [];
+  var W = 580, H = 300, padL = 52, padB = 44, padT = 30, padR = 14;
+  var chartW = W - padL - padR;
+  var chartH = H - padT - padB;
+  var allVals = zones.flatMap(function(z) { return [z.min, z.max]; });
+  var dataMin = Math.min.apply(null, allVals);
+  var dataMax = Math.max.apply(null, allVals);
+  var range = dataMax - dataMin;
+  var toY = function(v) { return padT + chartH - (chartH * (v - dataMin) / range); };
+  var zoneW = chartW / zones.length;
+  var boxW = zoneW * 0.45;
+
+  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;display:block;margin:8px auto">';
+
+  // Grid lines
+  var step = Math.ceil(range / 6 / 5) * 5;
+  for (var v = Math.ceil(dataMin / step) * step; v <= dataMax; v += step) {
+    var yy = toY(v);
+    svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
+    svg += '<text x="' + (padL-5) + '" y="' + (yy+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.45)" text-anchor="end">' + v + '</text>';
+  }
+
+  // Zero line if in range
+  if (dataMin < 0 && dataMax > 0) {
+    var zy = toY(0);
+    svg += '<line x1="' + padL + '" y1="' + zy.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + zy.toFixed(1) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="4,3"/>';
+    svg += '<text x="' + (padL-5) + '" y="' + (zy+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.35)" text-anchor="end">0</text>';
+  }
+
+  // Draw each box and whisker
+  zones.forEach(function(z, i) {
+    var cx = padL + zoneW * i + zoneW / 2;
+    var x1 = cx - boxW / 2;
+    var yMin = toY(z.min), yQ1 = toY(z.q1), yMed = toY(z.median), yQ3 = toY(z.q3), yMax = toY(z.max);
+    var col = z.color || '#00e5cc';
+
+    // Whiskers
+    svg += '<line x1="' + cx.toFixed(1) + '" y1="' + yMin.toFixed(1) + '" x2="' + cx.toFixed(1) + '" y2="' + yQ1.toFixed(1) + '" stroke="' + col + '" stroke-width="1.5" opacity="0.7"/>';
+    svg += '<line x1="' + cx.toFixed(1) + '" y1="' + yQ3.toFixed(1) + '" x2="' + cx.toFixed(1) + '" y2="' + yMax.toFixed(1) + '" stroke="' + col + '" stroke-width="1.5" opacity="0.7"/>';
+    // Whisker caps
+    svg += '<line x1="' + (cx-8).toFixed(1) + '" y1="' + yMin.toFixed(1) + '" x2="' + (cx+8).toFixed(1) + '" y2="' + yMin.toFixed(1) + '" stroke="' + col + '" stroke-width="1.5" opacity="0.7"/>';
+    svg += '<line x1="' + (cx-8).toFixed(1) + '" y1="' + yMax.toFixed(1) + '" x2="' + (cx+8).toFixed(1) + '" y2="' + yMax.toFixed(1) + '" stroke="' + col + '" stroke-width="1.5" opacity="0.7"/>';
+    // Box
+    svg += '<rect x="' + x1.toFixed(1) + '" y="' + yQ3.toFixed(1) + '" width="' + boxW.toFixed(1) + '" height="' + (yQ1-yQ3).toFixed(1) + '" fill="' + col + '" opacity="0.25" stroke="' + col + '" stroke-width="1.5"/>';
+    // Median line
+    svg += '<line x1="' + x1.toFixed(1) + '" y1="' + yMed.toFixed(1) + '" x2="' + (x1+boxW).toFixed(1) + '" y2="' + yMed.toFixed(1) + '" stroke="' + col + '" stroke-width="2.5"/>';
+    // Label
+    svg += '<text x="' + cx.toFixed(1) + '" y="' + (padT+chartH+16).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.7)" text-anchor="middle">' + z.label + '</text>';
+  });
+
+  // Axes
+  svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
+  svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
+  if (gd.yLabel) {
+    var midY = padT + chartH / 2;
+    svg += '<text x="12" y="' + midY + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,' + midY + ')">' + gd.yLabel + '</text>';
+  }
+  svg += '</svg>';
+  return svg;
+}
+
+function renderOceanBoxWhiskerSVG() {
+  // Ocean temperature 5-number summaries for the reveal
+  var zones = [
+    {label:'Arctic', min:-2, q1:0, median:2, q3:4, max:8, color:'#7be3ff'},
+    {label:'Temperate', min:8, q1:12, median:15, q3:18, max:24, color:'#00e5cc'},
+    {label:'Mediterranean', min:13, q1:17, median:20, q3:23, max:28, color:'#ffdd00'},
+    {label:'Tropical', min:24, q1:26, median:27, q3:28, max:30, color:'#ff8800'},
+    {label:'Desert coast', min:16, q1:20, median:23, q3:26, max:31, color:'#ff3355'}
+  ];
+  return renderBoxWhiskerSVG({
+    zones: zones,
+    yLabel: 'Ocean Temp (C)',
+    title: 'Ocean Surface Temperature by Climate Zone'
+  });
 }
 
 function renderHistogramSVG(gd) {
@@ -4131,4 +4636,3 @@ window.addEventListener('load', () => {
 </script>
 </body>
 </html>
-
