@@ -1808,7 +1808,7 @@ const CONTENT = {
           scenario:'GAIA displays 29 daily measurements of the Moon\'s orbital position percentage. The measurements range from 3 (Day 1) to 99 (Day 29, nearly back to the start).\n\nThe stems go from 0 to 9 -- one for each tens digit. Write them in a column on the left. Then place each value\'s ones digit as a leaf to the right of the correct stem. When all 29 values are placed, you have your plot. Use the Reveal button to check your work.',
           graphData:{
             title:'Moon Orbital Position % -- 29 Daily Observations',
-            teacherNote:'ANSWER KEY -- Stem and leaf plot: 0|3 7 -- 1|0 4 7 -- 2|1 4 8 -- 3|1 4 8 -- 4|1 5 8 -- 5|2 5 9 -- 6|2 6 9 -- 7|2 6 9 -- 8|3 6 9 -- 9|0 3 7 9. Total: 29 values. SHAPE: uniform (even spread) -- each stem has roughly the same number of leaves. Median = 15th value = 52.',
+            teacherNote:'ANSWER KEY -- Stem and leaf plot: 0|3 7 -- 1|0 4 7 -- 2|1 4 8 -- 3|1 4 8 -- 4|1 5 8 -- 5|2 5 9 -- 6|2 6 9 -- 7|2 6 9 -- 8|3 6 -- 9|0 3 7 9. Total: 29 values (odd count, so median is the single middle value). SHAPE: uniform (even spread) -- stems have 2-4 leaves each, no clustering. Median = 15th value = 52.',
             bars:[
               {label:'3', value:3},{label:'7', value:7},{label:'10', value:10},
               {label:'14', value:14},{label:'17', value:17},{label:'21', value:21},
@@ -1823,7 +1823,7 @@ const CONTENT = {
             ],
             yLabel:'Moon Orbital Position %',
             graphAnswers:[
-              {q:'1', a:'Completed plot -- 0|3 7 -- 1|0 4 7 -- 2|1 4 8 -- 3|1 4 8 -- 4|1 5 8 -- 5|2 5 9 -- 6|2 6 9 -- 7|2 6 9 -- 8|3 6 9 -- 9|0 3 7 9. 29 values total. Use the Reveal button to show the correct plot on screen.'},
+              {q:'1', a:'Completed plot -- 0|3 7 -- 1|0 4 7 -- 2|1 4 8 -- 3|1 4 8 -- 4|1 5 8 -- 5|2 5 9 -- 6|2 6 9 -- 7|2 6 9 -- 8|3 6 -- 9|0 3 7 9. 29 values total (odd number, so the median is one exact middle value, not an average of two). Use the Reveal button to show the correct plot on screen.'},
               {q:'2', a:'29 values -- median is the 15th value from smallest. Stems 0 through 4 account for 14 values (2+3+3+3+3). The 15th value is the first leaf on stem 5: value 52. Median = 52, near the halfway point of the lunar cycle (full moon).'},
               {q:'3', a:'The distribution is uniform (even spread) -- each stem has roughly the same number of leaves, no clustering at either end. This makes sense because the Moon moves at a steady rate of about 3.4% per day. A consistent orbit produces a uniform distribution.'},
               {q:'4', a:'The daylight data would cluster near stem 0 (values around 9 hours) and stem 1 (values around 15 hours) with fewer values in the middle -- because Earth slows near the solstices. This Moon data has an even spread across all stems. Clustered shape vs. uniform shape -- different pattern, different scientific explanation.'},
@@ -1904,10 +1904,10 @@ const CONTENT = {
           legLabel:'Leg 2 . Earth, Moon & Seasons',
           legTitle:'A New Kind of Graph -- The Histogram',
           gaia:'I have been logging the Moon\'s illumination percentage -- how much of the Moon\'s lit face is visible from Earth -- every day for 87 days. Three complete lunar cycles. I want to show the crew this data as a histogram.\n\nA histogram is a new graph type. It looks like a bar graph, but it works differently. On a bar graph, each bar represents a category -- like a month, a planet, or a hemisphere. On a histogram, each bar represents a range of values called a bin. The height of each bar shows how many data points fall into that range.\n\nThe most important rule: histogram bars always touch. No gaps. This is because the bins cover a continuous range -- there is no space between where one bin ends and the next begins. That touching is the visual signal that tells you this is a histogram and not a bar graph.',
-          scenario:'GAIA displays a pre-built histogram of 87 days of Moon illumination data. The illumination values range from 1% to 99%, sorted into 8 bins of equal width.\n\nStudy the histogram on screen before answering the questions. Notice the shape. Notice which bins are taller and which are shorter. Notice that the bars touch.',
+          scenario:'GAIA displays a pre-built histogram of 87 days of Moon illumination data. The illumination values range from 1% to 99%, sorted into 8 bins of equal width.\n\nStudy the histogram on screen carefully before answering the questions. Look at what each bar represents, how tall the bars are relative to each other, and what the overall shape tells you.',
           graphData:{
             title:'Moon Illumination % -- 87 Daily Observations (3 Complete Lunar Cycles)',
-            teacherNote:'This day SHOWS the histogram first, then students read and interpret it. Do not have students build this one -- that comes in Day 15 with a smaller dataset. Key teaching points: (1) bars touch -- continuous ranges, not categories; (2) shape is uniform -- all bars approximately equal height; (3) uniform means no phase is more common than any other; (4) contrast bar graph vs histogram in discussion. The histogram is rendered via the isHistogram:true flag.',
+            teacherNote:'This day SHOWS the histogram first, then students read and interpret it. Do not have students build this one -- that comes in Day 15. DO NOT reveal the shape name (uniform) before students answer questions 1-3. Let them describe what they see first (Q1-2), then Q3 gives them the vocabulary word to apply to their own description. Key teaching points: (1) bars touch -- continuous ranges not categories; (2) shape is uniform -- all bars equal height; (3) uniform means no phase is more common than any other.',
             bins:[
               {label:'1-12%', count:11},{label:'13-25%', count:11},
               {label:'26-37%', count:11},{label:'38-50%', count:11},
@@ -1918,22 +1918,22 @@ const CONTENT = {
             xLabel:'Moon Illumination %',
             isHistogram:true,
             graphAnswers:[
-              {q:'1', a:'Bar graph: bars do NOT touch -- each bar is a separate category. Histogram: bars DO touch -- each bar is a range of values on a continuous scale. The touching bars signal that there are no gaps between ranges. This is the key visual difference.'},
-              {q:'2', a:'All 8 bins have approximately the same count (10-11 days each). The histogram is flat -- no bin is significantly taller or shorter. This is called a uniform distribution.'},
-              {q:'3', a:'Uniform distribution -- flat, even shape. No bin stands out as taller or shorter. This tells us no illumination level is more common than any other. Every phase appears approximately equally over time.'},
+              {q:'1', a:'Bar graph: bars do NOT touch -- each bar is a separate category. Histogram: bars DO touch -- each bar is a range of values on a continuous scale. The touching bars signal that there are no gaps between the ranges. This is the most important visual difference to establish before anything else.'},
+              {q:'2', a:'All 8 bins have approximately the same count (10-11 days each). The bars are all roughly the same height. No bar stands out as significantly taller or shorter. Students should describe this in their own words before being given the vocabulary in Q3.'},
+              {q:'3', a:'Uniform distribution -- all bars equal height, no clustering, no peak, no valley. Students apply the vocabulary to their own description from Q2. It tells us no illumination level is more common than any other -- every phase appears equally often across the 87 days.'},
               {q:'4', a:'The Moon moves through its orbit at a steady rate -- about 3.4% per day. It does not slow near full moon or speed up near new moon. Because the rate is constant, each illumination level gets roughly the same number of days across three cycles. Steady orbit = uniform histogram.'},
-              {q:'5', a:'The daylight histogram would NOT be uniform. It would have taller bars near the extremes (9 hours and 15 hours) and shorter bars in the middle, because Earth slows near the solstices and spends more days at extreme day lengths. Different pattern, different scientific cause.'}
+              {q:'5', a:'The daylight histogram would NOT be uniform. It would have taller bars near the extremes (values around 9 hours and 15 hours) and shorter bars in the middle, because Earth slows near the solstices and spends more days at extreme day lengths. Different pattern, different scientific cause.'}
             ]
           },
-          gaiaGraphNote:'"Look at the shape of this histogram. All bars approximately the same height. Flat across the top. No peak, no valley. Scientists call this a uniform distribution -- uniform meaning even, consistent, no preference for any particular range. The Moon does not linger at full or rush through new. It moves at a steady pace and the histogram shows you that steadiness as a shape. Remember: bars touching is the rule. Histogram bars always touch."',
+          gaiaGraphNote:'"One more thing about histograms before you answer the questions. The bars touch because the data is continuous -- illumination goes from 0% to 100% with no gaps, so the bins have no gaps either. When you see touching bars, you are reading a histogram. When you see gaps between bars, you are reading a bar graph. That visual difference is not an accident. It tells you something about the kind of data being shown."',
           graphQuestions:[
             '1. Look at the histogram on screen. How is it different from a bar graph? Name one difference in what the bars represent and one difference in how the bars are drawn.',
-            '2. Look at the height of each bar. Are some bars much taller than others, or are they all approximately the same height? Describe what you see.',
-            '3. The shape of this histogram is called a uniform distribution. Based on what you see, what does uniform mean when describing a histogram? What does this shape tell you about Moon phases?',
-            '4. Why does Moon illumination data produce a uniform histogram? What would have to be true about the Moon\'s orbit for the bars near 100% to be much taller than the others?',
+            '2. Look at the height of each bar and describe what you see in your own words. Do not use the word uniform yet -- just describe the heights as specifically as you can.',
+            '3. Scientists use the word uniform to describe a distribution where all values appear with about the same frequency. Based on your description in question 2, does this histogram show a uniform distribution? Explain what that tells you about how often each Moon phase appears.',
+            '4. Why does Moon illumination data produce this particular shape? Connect your answer to what you know about how the Moon moves through its orbit.',
             '5. Think about the daylight data from Day 3 -- hours of sunlight ranging from 9 hours in winter to 15 hours in summer. If that data were shown as a histogram, would it be uniform? Where would the taller bars be, and why?'
           ],
-          shortDayNote:'Short day: Show the histogram and do questions 1 and 3 only. Question 1 establishes what a histogram is. Question 3 names the uniform shape. The bar graph contrast can be a verbal discussion. Save questions 4 and 5 for warm-up next class.',
+          shortDayNote:'Short day: Show the histogram and do questions 1 and 2 only. Question 1 establishes what a histogram is. Question 2 gets students describing the shape in their own words -- do NOT give them the word uniform before they answer. Then introduce uniform as the name for what they just described. Save questions 3-5 for warm-up next class.',
           noChoice:true
         },
 
@@ -1973,14 +1973,14 @@ const CONTENT = {
 
         // -- DAY 15 -- GRAPH . Histogram 2 . Bimodal Distribution -----
         {
-          day:15, type:'graph', isReveal:false, rawDataOnly:true,
+          day:15, type:'graph', isReveal:false, rawDataOnly:true, showHistogramReveal:true,
           legLabel:'Leg 2 . Earth, Moon & Seasons',
-          legTitle:'Same Tool. Completely Different Story.',
-          gaia:'Two days ago I showed you a histogram of Moon illumination data. The shape was uniform -- all bars approximately the same height. No clustering. No peak.\n\nToday I have tidal height measurements from a coastal monitoring station on Earth. 60 measurements taken over 30 days -- one reading at high tide and one at low tide each day.\n\nBefore you look at the data, make a prediction. Tides go high and then low, twice per day. If you recorded one high tide and one low tide every day for 30 days, which heights would appear most often? Write your prediction before you start counting.',
-          scenario:'GAIA displays 60 tidal height measurements in centimeters. Values range from about 19 cm at the lowest tides to about 294 cm at the highest.\n\nSort the values into 6 bins and build a histogram on paper:\n0-50 cm -- 51-100 cm -- 101-150 cm -- 151-200 cm -- 201-250 cm -- 251-300 cm\n\nCount how many values fall in each bin. Draw your bars so they touch. Then describe the shape and compare it to the Moon illumination histogram from Day 12.',
+          legTitle:'Same Tool. Your Turn to Build.',
+          gaia:'Two days ago I showed you a histogram of Moon illumination data. You read it, described it, and named its shape.\n\nToday you build one.\n\nI have tidal height measurements from a coastal monitoring station on Earth. 60 measurements taken over 30 days -- one reading at high tide and one at low tide each day. The values range from about 19 cm at the lowest tides to about 294 cm at the highest.\n\nBefore you sort a single number, write down your prediction. Tides go high and then low, twice per day. Based on what you know about tides from Day 14, which height ranges do you think will appear most often? Which will appear least often? Commit to a prediction before you look at the data.',
+          scenario:'GAIA displays 60 tidal height measurements in centimeters.\n\nSort the values into 6 bins and build a histogram on paper:\n0-50 cm -- 51-100 cm -- 101-150 cm -- 151-200 cm -- 201-250 cm -- 251-300 cm\n\nCount how many values fall in each bin. Draw your bars so they touch. Then use the Reveal button to check your work before answering the questions.',
           graphData:{
             title:'Tidal Height (cm) -- 60 Measurements Over 30 Days (One High Tide + One Low Tide Per Day)',
-            teacherNote:'6 bins, 60 data points. Expected bin counts: 0-50: ~15 values. 51-100: ~10 values. 101-150: ~5 values. 151-200: ~5 values. 201-250: ~10 values. 251-300: ~15 values. Shape is bimodal -- two clusters at the extremes, shorter bars in the middle. Bimodal is ENRICHMENT only, not assessed. Core lesson: same histogram tool, very different shape. After students build, ask: why are the middle bins shorter? Answer: tides move quickly through middle heights and spend more time at high and low positions.',
+            teacherNote:'6 bins, 60 data points. Expected bin counts: 0-50: ~15 values. 51-100: ~11 values. 101-150: ~5 values. 151-200: ~5 values. 201-250: ~10 values. 251-300: ~14 values. Shape is bimodal -- two clusters at the extremes with shorter bars in the middle. DO NOT describe the shape before students build and answer questions. Let them discover it. Bimodal is ENRICHMENT only -- not assessed. After they build and check with Reveal, ask: did your prediction match? Why or why not? Core lesson: same histogram tool, completely different shape -- and they figured out why.',
             bars:[
               {label:'28', value:28},{label:'35', value:35},{label:'22', value:22},
               {label:'41', value:41},{label:'19', value:19},{label:'33', value:33},
@@ -2007,22 +2007,22 @@ const CONTENT = {
             ],
             yLabel:'Number of Measurements',
             graphAnswers:[
-              {q:'1', a:'Bin counts: 0-50 cm: 15 values. 51-100 cm: 11 values. 101-150 cm: 5 values. 151-200 cm: 5 values. 201-250 cm: 10 values. 251-300 cm: 14 values. Two tall bars at the extremes, shorter bars in the middle.'},
-              {q:'2', a:'Two clusters -- one at the low end (0-100 cm) and one at the high end (201-300 cm). The middle bins are shorter. This is NOT uniform. It has two groups of tall bars with a valley between them. Enrichment: statisticians call this a bimodal distribution -- bi means two, modal means peak.'},
-              {q:'3', a:'Tides spend more time at high and low positions and move relatively quickly through the middle heights. So more measurements land in the extreme bins. The shape reflects the two natural states the ocean returns to each day.'},
-              {q:'4', a:'Moon histogram: uniform -- flat, all bars equal. The Moon moves at a steady rate, no phase lasts longer than others. Tidal histogram: two clusters at the extremes. Tides have two natural states -- high and low. Same tool, completely different shape, because the data comes from completely different systems.'},
-              {q:'5', a:'During spring tides, the highs are higher and the lows are lower -- the two clusters would shift further apart, more values in the outermost bins. During neap tides, the range is smaller -- the clusters would be closer together toward the middle bins.'}
+              {q:'1', a:'Bin counts: 0-50 cm: 15 values. 51-100 cm: 11 values. 101-150 cm: 5 values. 151-200 cm: 5 values. 201-250 cm: 10 values. 251-300 cm: 14 values. Two tall bars at the extremes with shorter bars in the middle. Use the Reveal button to show the correct histogram so students can compare.'},
+              {q:'2', a:'Two clusters -- one at the low end (0-100 cm) and one at the high end (201-300 cm). The middle bins are shorter. Students should describe this in their own words. This is NOT uniform. Enrichment for advanced students: statisticians call this a bimodal distribution -- bi means two, modal means peak.'},
+              {q:'3', a:'Tides spend more time at high and low positions and move relatively quickly through middle heights. So more measurements fall in the extreme bins. The shape reflects the two natural states the ocean returns to each day -- high tide and low tide.'},
+              {q:'4', a:'Moon histogram: uniform -- flat, all bars equal. The Moon moves at a steady rate, every phase equally common. Tidal histogram: two clusters at the extremes, shorter middle. Tides have two natural states they return to. Same tool, completely different shape, because the data comes from completely different systems.'},
+              {q:'5', a:'During spring tides (new or full moon), highs are higher and lows are lower -- the two clusters shift further apart, with more values in the outermost bins. During neap tides (quarter moon), the range is smaller -- the clusters move closer to the middle.'}
             ]
           },
-          gaiaGraphNote:'"Compare your finished histogram to the Moon illumination histogram from Day 12. That one was flat -- uniform, even across all bins. This one has two clusters at the ends with a gap in the middle. Same graph type. Completely different shape. The shape is the finding. A uniform shape tells you the system is consistent. A shape with two clusters tells you the system has two natural states it returns to. Tides go high, then low, then high again. The histogram shows you those two states."',
+          gaiaGraphNote:'"You built a histogram. Look at the shape. Look at how it compares to the Moon illumination histogram from Day 12. What is the same about these two graphs? What is different? The tool is the same. The shape is not. Ask yourself why -- what is it about tides that produces this particular shape? The data already told you the answer. You just drew it."',
           graphQuestions:[
-            '1. Sort the 60 values into 6 bins: 0-50, 51-100, 101-150, 151-200, 201-250, 251-300. Count the values in each bin. Build your histogram with bars that touch.',
-            '2. Describe the shape of your histogram. Where are the tallest bars? Where are the shortest? How is this shape different from the Moon illumination histogram from Day 12?',
-            '3. Why does tidal data produce this shape? Why do the lowest and highest bins have more values than the middle bins? Connect your answer to how tides move.',
-            '4. Compare the two histograms. Moon data: uniform. Tidal data: two clusters. Both are histograms. Why do they have such different shapes?',
-            '5. If you collected tidal data during only a week of spring tides, how would your histogram look different from one collected during only neap tides?'
+            '1. Sort the 60 values into 6 bins: 0-50, 51-100, 101-150, 151-200, 201-250, 251-300. Count the values in each bin and build your histogram with bars that touch. Then click Reveal to check your work.',
+            '2. Describe the shape of your histogram in your own words. Where are the tallest bars? Where are the shortest? How is this shape different from the Moon illumination histogram from Day 12?',
+            '3. Why does tidal data produce this shape? Connect your answer to what you know about how tides move -- why do the extreme height ranges have more measurements than the middle ranges?',
+            '4. Compare the two histograms. Moon data produced one shape. Tidal data produced a completely different shape. Both are histograms. What does that tell you about what histograms actually show?',
+            '5. If you collected tidal data during only a week of spring tides, how would your histogram look different from one collected during only neap tides? Use what you know about spring and neap tides to explain.'
           ],
-          shortDayNote:'Short day: Questions 1 and 2 only. Build the histogram and describe the shape. The comparison to the Moon histogram (question 4) can be a verbal discussion after question 2. Save questions 3 and 5 for warm-up.',
+          shortDayNote:'Short day: Question 1 (build the histogram) and question 2 (describe the shape) only. After question 1, use Reveal to show the correct histogram. Then question 2 -- students describe in their own words before any shape vocabulary is introduced. The comparison to Day 12 can be a verbal discussion. Save questions 3-5 for warm-up.',
           noChoice:true
         },
 
@@ -2902,6 +2902,14 @@ function renderGraphContent(c) {
       h += '</div>';
       if (gd.yLabel) h += `<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);margin-bottom:8px">Values in: ${gd.yLabel}</div>`;
 
+      // Show answer button for tidal histogram reveal
+      if (c.showHistogramReveal) {
+        h += '<div id="hist-reveal" style="margin-top:12px">';
+        h += '<button onclick="document.getElementById(\'hist-answer\').style.display=\'block\';this.style.display=\'none\'" style="font-family:var(--font-mono);font-size:11px;background:rgba(0,229,204,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; Reveal -- What Your Histogram Should Look Like</button>';
+        h += '<div id="hist-answer" style="display:none;margin-top:12px">';
+        h += renderTidalHistogramSVG();
+        h += '</div></div>';
+      }
       // Show answer button for stem and leaf reveal
       if (c.showStemLeafAnswer) {
         h += '<div id="stem-leaf-reveal" style="margin-top:12px">';
@@ -3123,6 +3131,54 @@ function renderHistogramSVG(gd) {
   return svg;
 }
 
+function renderTidalHistogramSVG() {
+  var bins = [
+    {label:'0-50 cm', count:15},
+    {label:'51-100 cm', count:11},
+    {label:'101-150 cm', count:5},
+    {label:'151-200 cm', count:5},
+    {label:'201-250 cm', count:10},
+    {label:'251-300 cm', count:14}
+  ];
+  var maxCount = 15;
+  var W = 520, H = 260, padL = 48, padB = 58, padT = 30, padR = 14;
+  var chartW = W - padL - padR;
+  var chartH = H - padT - padB;
+  var binW = chartW / bins.length;
+
+  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:8px auto">';
+
+  // Y label
+  svg += '<text x="' + padL + '" y="' + (padT - 10) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)">Number of Measurements -&gt;</text>';
+
+  // Grid lines
+  [0, 5, 10, 15].forEach(function(val) {
+    var yy = padT + chartH * (1 - val / maxCount);
+    svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W - padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
+    svg += '<text x="' + (padL - 5) + '" y="' + (yy + 4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.5)" text-anchor="end">' + val + '</text>';
+  });
+
+  // Bars -- touching
+  bins.forEach(function(bin, i) {
+    var bh = (bin.count / maxCount) * chartH;
+    var x = padL + binW * i;
+    var y = padT + chartH - bh;
+    var col = (i === 0 || i === 1 || i === 4 || i === 5) ? '#00e5cc' : '#2a5a58';
+    svg += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + binW.toFixed(1) + '" height="' + bh.toFixed(1) + '" fill="' + col + '" opacity="0.85"/>';
+    svg += '<text x="' + (x + binW / 2).toFixed(1) + '" y="' + (y - 6).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="' + col + '" text-anchor="middle">' + bin.count + '</text>';
+    var labelX = (x + binW / 2).toFixed(1);
+    var labelY = (padT + chartH + 14).toFixed(1);
+    svg += '<text x="' + labelX + '" y="' + labelY + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.65)" text-anchor="middle" transform="rotate(-25,' + labelX + ',' + labelY + ')">' + bin.label + '</text>';
+  });
+
+  // Axes
+  svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT + chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
+  svg += '<line x1="' + padL + '" y1="' + (padT + chartH) + '" x2="' + (W - padR) + '" y2="' + (padT + chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
+  svg += '<text x="' + (W / 2) + '" y="' + (H - 4) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.3)" text-anchor="middle">Bars touch -- this is a histogram. Brighter bars = extreme tidal heights.</text>';
+  svg += '</svg>';
+  return svg;
+}
+
 function renderStemLeafSVG() {
   // The 29 Moon orbital position values organized into stems 0-9
   var stems = [
@@ -3134,7 +3190,7 @@ function renderStemLeafSVG() {
     {stem:'5', leaves:'2  5  9'},
     {stem:'6', leaves:'2  6  9'},
     {stem:'7', leaves:'2  6  9'},
-    {stem:'8', leaves:'3  6  9'},
+    {stem:'8', leaves:'3  6'},
     {stem:'9', leaves:'0  3  7  9'}
   ];
   var W = 420, rowH = 28, padT = 40, padL = 20;
@@ -3161,7 +3217,7 @@ function renderStemLeafSVG() {
 
   // Footer
   var footY = padT + 14 + (stems.length + 1) * rowH;
-  svg += '<text x="' + (W / 2) + '" y="' + footY + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.35)" text-anchor="middle">29 values total -- median = 15th value = 52 -- uniform distribution</text>';
+  svg += '<text x="' + (W / 2) + '" y="' + footY + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.35)" text-anchor="middle">29 values total  |  median = 15th value = 52  |  uniform (even) distribution</text>';
 
   svg += '</svg>';
   return svg;
