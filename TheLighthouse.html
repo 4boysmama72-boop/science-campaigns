@@ -3354,18 +3354,15 @@ function renderGraphContent(c) {
     if (gd.isBoxWhisker && gd.zones) { h += renderBoxWhiskerSVG(gd); }
     // isHistogram: pre-built histogram SVG
     if (gd.isHistogram && gd.bins) { h += renderHistogramSVG(gd); }
-    if (gd.isBoxWhisker && gd.zones) { h += renderBoxWhiskerSVG(gd); }
-    if (gd.isHistogram && gd.bins) { h += renderHistogramSVG(gd); }
     // rawDataOnly: show data as formatted cards, not a chart
     if (c.rawDataOnly && gd.bars) {
-      h += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:12px">';
+      h += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-bottom:12px">';
       gd.bars.forEach(b => {
         if (b.value === 0) {
-          h += `<div style="background:rgba(255,255,255,0.03);border:1px dashed var(--border);border-radius:4px;padding:8px 12px;display:flex;justify-content:center;align-items:center"><span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">${b.label}</span></div>`;
+          h += `<div style="grid-column:1/-1;background:rgba(0,229,204,0.05);border:1px solid rgba(0,229,204,0.2);border-radius:6px;padding:10px 14px"><span style="font-family:var(--font-mono);font-size:12px;color:var(--accent);letter-spacing:.08em">${b.label}</span></div>`;
         } else {
-          h += `<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:4px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">`;
-          h += `<span style="font-family:var(--font-mono);font-size:13px;color:var(--text-secondary)">${b.label}</span>`;
-          h += `<span style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--accent)">${b.value}</span>`;
+          h += `<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:12px;display:flex;justify-content:center;align-items:center">`;
+          h += `<span style="font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--text-primary);letter-spacing:.02em">${b.value}</span>`;
           h += `</div>`;
         }
       });
