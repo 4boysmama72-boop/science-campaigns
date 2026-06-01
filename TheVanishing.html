@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -185,13 +184,27 @@
   <div class="init-box">
     <div class="init-title">THE VANISHING</div>
     <div class="init-subtitle">Campaign 3 &mdash; The Arroyo Field System</div>
-    <div class="init-label">SELECT CLASS PERIOD</div>
-    <select id="init-class-select" class="init-select">
-      <option value="0">Period 1</option>
-      <option value="1">Period 3</option>
-      <option value="2">Period 5</option>
-    </select>
-    <button class="btn-primary" onclick="initializeApp()">ENTER THE ARROYO</button>
+    <div class="init-label" style="margin-bottom:14px">CUSTOMIZE CLASS NAMES</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);width:24px">1</div>
+        <input id="class-name-0" class="init-select" style="margin:0;flex:1" value="Period 1" placeholder="Class name..." />
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);width:24px">2</div>
+        <input id="class-name-1" class="init-select" style="margin:0;flex:1" value="Period 3" placeholder="Class name..." />
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);width:24px">3</div>
+        <input id="class-name-2" class="init-select" style="margin:0;flex:1" value="Period 5" placeholder="Class name..." />
+      </div>
+    </div>
+    <div class="init-label" style="margin-bottom:10px">SELECT CLASS TO ENTER</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+      <button class="btn-secondary" onclick="initializeApp(0)" style="text-align:left;padding:10px 16px" id="enter-btn-0">Enter Class 1</button>
+      <button class="btn-secondary" onclick="initializeApp(1)" style="text-align:left;padding:10px 16px" id="enter-btn-1">Enter Class 2</button>
+      <button class="btn-secondary" onclick="initializeApp(2)" style="text-align:left;padding:10px 16px" id="enter-btn-2">Enter Class 3</button>
+    </div>
     <br>
     <button class="init-reset" onclick="confirmReset()">Reset all saved data</button>
   </div>
@@ -293,8 +306,402 @@ function freshState() {
 const CAMPAIGN = {
   title:'The Vanishing',
   vehicle:'The Arroyo',
-  sites:[]
-  // Site content inserted here as each site is built
+  sites:[
+    {
+      id:1,
+      label:'Site 1 -- Sonoran Desert',
+      standard:'6.LU1.14',
+      days:[
+
+        // -- DAY 1 -- CHOICE . Cold Open ------------------------------
+        {
+          day:1, type:'choice',
+          siteTitle:'The Arroyo Reaches the Desert',
+          choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes -- open your book to Cycling of Matter and Energy, Topic 2, Lesson 1. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
+          gaia:'The Arroyo crossed into the Sonoran Desert at 0600. The sensors came on at 0610. By 0615 something was already wrong.\n\nI want to be clear about what I mean by wrong. The readings are not broken. The instruments are working. What the instruments are showing is a desert that does not match its own historical data. Soil moisture. Plant density in certain zones. Insect activity in the early morning hours. The numbers are real. They are just not what they should be.\n\nThe crew has been here before -- not this desert, but this situation. Data that does not match the model. That is where the science starts. Before we read, the crew decides where to look first.',
+          scenario:'The Arroyo has three active sensor arrays running simultaneously:\n\nArray 1: Soil and water -- moisture levels, temperature at depth, water table readings\nArray 2: Plant life -- density, health indicators, root zone moisture\nArray 3: Animal activity -- movement patterns, population count estimates, feeding behavior\n\nAll three arrays are showing readings outside the historical range for this time of year. GAIA has flagged all three. The crew decides which array to investigate first.',
+          exitTicketPrompt:'What is the difference between a biotic factor and an abiotic factor? Give one example of each from the Sonoran Desert. Make your claim: which sensor array should the crew investigate first, and what does your reading tell you about why that factor matters most to this ecosystem?',
+          discussionPrompt:'GAIA says the readings are real but wrong. Think about what that means scientifically. If the instruments are working correctly but the data does not match historical records, what are the possible explanations? Could the historical data be wrong? Could conditions have changed? How would you figure out which explanation is more likely?',
+          choices:[
+            {
+              letter:'A',
+              text:'Investigate Array 1 -- soil and water. Water is the limiting factor in a desert ecosystem. Start there.',
+              subtext:'If water availability has changed, everything else in the ecosystem will reflect that change.',
+              deltas:{bio:0, water:14, food:0, trust:4},
+              branch:'A-soil-water',
+              consequence:'The soil moisture readings tell a clear story. The top layer of desert soil -- the layer where most seeds germinate and where desert annuals send their roots -- is drier than any recorded reading for this month going back ten years. Not slightly drier. Measurably, significantly drier. The water table is also lower than expected. The abiotic conditions that this community of organisms depends on have shifted. The question is how much, and how recently.'
+            },
+            {
+              letter:'B',
+              text:'Investigate Array 2 -- plant life. Producers are the base of every food web. If they are stressed, everything above them will be too.',
+              subtext:'Changes in plant density and health are the most visible sign that an ecosystem is under pressure.',
+              deltas:{bio:8, water:0, food:6, trust:4},
+              branch:'B-plant-life',
+              consequence:'The plant density readings are striking. Annual wildflowers -- the ones that typically carpet the desert floor in early spring when conditions are right -- are almost absent. The perennial shrubs are present but showing stress indicators in their root zone moisture data. The saguaro cacti, which store water internally and can survive extended drought, are within normal range. The ecosystem is sorting itself by drought tolerance. The least drought-tolerant producers are disappearing first.'
+            },
+            {
+              letter:'C',
+              text:'Investigate all three arrays together. The relationship between soil, plants, and animals is the ecosystem. Look at the full picture.',
+              subtext:'No single factor explains an ecosystem under stress. The interactions between factors are where the real data is.',
+              deltas:{bio:6, water:6, food:6, trust:4},
+              branch:'C-all-arrays',
+              consequence:'Running all three arrays simultaneously gives the crew the most complete picture available. Soil moisture is down. Plant density is down in drought-sensitive species. Animal activity -- particularly among insects and small mammals that depend on annual plants for food -- is lower than expected. The three readings are consistent with each other. This is not a problem with one part of the ecosystem. This is a system-wide signal. GAIA: The data is not confused. The ecosystem is responding to something. The crew has just confirmed that the response is happening at every level simultaneously.'
+            }
+          ]
+        },
+
+        // -- DAY 2 -- DEEPEN . Lesson 1 First Read --------------------
+        {
+          day:2, type:'deepen',
+          siteTitle:'What Makes a Desert Ecosystem',
+          gaia:'Yesterday the crew confirmed what the sensors were showing. Today we read the science behind it.\n\nA desert is not just a hot, dry place. It is a community of organisms that have adapted, over thousands of years, to a specific set of conditions -- specific amounts of water, specific temperature ranges, specific soil chemistry. Every organism in that community has a niche. Every niche depends on the others.\n\nThe reading today covers the vocabulary the crew needs to talk about what they are seeing. Organism, habitat, biotic, abiotic, population, community, ecosystem, limiting factor. These are not new words. They are the precise words.',
+          readingFocus:'Savvas Cycling of Matter and Energy, Topic 2, Lesson 1 -- Living Things and the Environment. Sections: Organisms and Habitats (biotic factors, abiotic factors), Ecosystem Organization (organisms, populations, communities), Populations (births and deaths, immigration and emigration, population density), Factors that Limit Population Growth (food and water, climate and weather, space and shelter). Focus: What is the difference between biotic and abiotic factors? How does population density relate to resource availability?',
+          gaiaReadingPrompt:'"Two kinds of factors. Biotic: the living parts of the ecosystem. Every organism, every relationship between organisms -- predator and prey, competitor and competitor, mutualist and mutualist. Abiotic: the non-living parts. Water. Temperature. Soil. Sunlight. The amount of available water is an abiotic factor. The cactus wren that nests in a saguaro cactus is a biotic factor. But the two are not separate. Abiotic factors determine which biotic factors can exist here at all.\n\nLimiting factor: the one resource that is in shortest supply and therefore controls how large a population can grow. In a desert, the answer is almost always water. The crew confirmed this yesterday with Array 1. Read to understand why."',
+          gaiaRecall:'From the Lighthouse mission: GAIA tracked four data streams simultaneously to understand one system. The same principle applies here. Soil moisture, plant density, and animal activity are three data streams in one ecosystem. No single stream tells the full story. The relationship between them is the story.',
+          vocabFocus:['organism','habitat','biotic factor','abiotic factor','population','community','ecosystem','limiting factor','resources','density'],
+          bridgeToNext:'Next class: the crew finds the first real evidence that something has changed in this ecosystem beyond normal seasonal variation. A choice about what that evidence means.'
+        },
+
+        // -- DAY 3 -- CHOICE . Limiting Factors -----------------------
+        {
+          day:3, type:'choice',
+          siteTitle:'The Population Counts Are Off',
+          choiceReadingFocus:'Today is a second read of Lesson 1. Before the crew votes -- return to Living Things and the Environment, specifically the Factors that Limit Population Growth section. Read with the scenario and choices in mind.',
+          gaia:'The crew has been running population counts since yesterday. I want to share three of them.\n\nKangaroo rats: down 34 percent from the ten-year average for this location and season. Kangaroo rats are seed eaters. They depend on annual plants for most of their diet.\n\nAnnual plants: down 61 percent in density from the ten-year average. This is consistent with what Array 2 showed on Day 1.\n\nRacer snakes: population estimate is within normal range. Racer snakes eat kangaroo rats and lizards. Their prey populations are dropping, but the snakes have not yet reflected that change.\n\nThe crew needs to make a decision about what this pattern means and which population to track most closely.',
+          scenario:'The three data points form a partial picture of a food web under stress. Annual plants are the base. Kangaroo rats depend on annual plants. Racer snakes depend on kangaroo rats. The top of this particular chain is still holding -- but the base is weakening.\n\nThe question is whether what the crew is seeing is within normal variation for a dry year, or whether it signals something more serious. The crew decides how to investigate.',
+          exitTicketPrompt:'What is a limiting factor and how does it affect population size? Use the kangaroo rat and annual plant data to explain your answer. Make your claim: is what the crew is seeing normal variation or something more serious -- and what evidence from the reading supports your position?',
+          discussionPrompt:'The racer snake population is still normal even though its prey is declining. How long can that last? Think about what happens to a predator population when its prey population drops. What would you expect to see in the racer snake data in the weeks ahead if this trend continues?',
+          choices:[
+            {
+              letter:'A',
+              text:'Focus on the annual plant population. The base of the food web is the most important thing to track.',
+              subtext:'If the producers continue to decline, everything above them will follow. The plant data tells you where this is heading.',
+              deltas:{bio:-4, water:0, food:-6, trust:6},
+              branch:'A-plants',
+              consequence:'Detailed plant surveys confirm the initial reading. Annual wildflowers are nearly absent in zones that typically support high densities in spring. The soil in those zones is within the temperature range for germination, but the moisture content is below the threshold that triggers germination in most annual species. The plants are not growing because the signal that tells them to grow -- water -- has not arrived in sufficient amounts. This is a limiting factor operating at the most basic level.'
+            },
+            {
+              letter:'B',
+              text:'Focus on the kangaroo rat population. A 34 percent decline in a prey species is significant. Track how fast it is moving.',
+              subtext:'The rate of population change matters as much as the current number. A slow decline is different from a fast one.',
+              deltas:{bio:-6, water:0, food:-4, trust:6},
+              branch:'B-kangaroo-rats',
+              consequence:'Tracking kangaroo rat activity over 48 hours gives the crew a rate, not just a snapshot. The population is declining, but slowly -- consistent with a gradual reduction in food availability rather than a sudden event. Kangaroo rats cache seeds, so they can survive a bad season by drawing on stored food. The current decline suggests the caches are shrinking. If the annual plant deficit continues into a second season, the decline would likely accelerate significantly.'
+            },
+            {
+              letter:'C',
+              text:'Set up monitoring across all three populations and look for the rate of change. A single data point is not a trend.',
+              subtext:'The crew needs to know whether things are getting better, staying the same, or getting worse. That requires time-series data.',
+              deltas:{bio:-4, water:0, food:-4, trust:10},
+              branch:'C-all-monitoring',
+              consequence:'Three days of monitoring across all three populations gives the crew a clearer picture. Annual plants: stable at the low level, not recovering. Kangaroo rats: continuing slow decline, consistent with reduced food availability. Racer snakes: first sign of stress -- two individuals have been observed moving into territory that is not their usual range, suggesting competition for a shrinking prey base is beginning. The pattern is consistent and directional. This is not random variation. Something is maintaining the deficit.'
+            }
+          ]
+        },
+
+        // -- DAY 4 -- DEEPEN . Population Dynamics + Dot Plot Preview -
+        {
+          day:4, type:'deepen',
+          siteTitle:'How Populations Change -- And a New Graph',
+          gaia:'The crew has been counting populations for three days. Today we read the science behind why populations change -- and I want to introduce a graph type that is going to be useful for reading population data.\n\nA dot plot. It is simple. A number line along the bottom, and every data point gets one dot placed above its value on the line. If two data points have the same value, the second dot stacks on top of the first. The shape that emerges -- where the dots pile up, where they are sparse, where the extremes are -- tells you something about the data.\n\nI am going to show you a completed dot plot before we build one. The one on screen shows a set of data you do not have to calculate -- just read it.',
+          readingFocus:'Savvas Cycling of Matter and Energy, Topic 2, Lesson 1 -- Populations. Sections: Births and Deaths, Immigration and Emigration, Population Density, Factors that Limit Population Growth. Focus: What four factors determine whether a population grows or shrinks? What is population density and why does it matter to resource availability?',
+          gaiaReadingPrompt:'"Four factors control population size. Births add individuals. Deaths remove them. Immigration adds individuals moving in from elsewhere. Emigration removes individuals moving out. When births plus immigration exceed deaths plus emigration, a population grows. When the reverse is true, it shrinks.\n\nIn the Sonoran Desert right now, the annual plant population is shrinking because births -- new germination -- are below normal. Not because death rates have changed. Not because plants are leaving. Because the trigger for new growth is not being met. That trigger is water. One abiotic limiting factor is suppressing one term in the population equation."',
+          vocabFocus:['population','community','ecosystem','limiting factor','density','resources'],
+          graphData:{
+            title:'Dot Plot Preview -- Daily Kangaroo Rat Sightings Over 20 Days (Example)',
+            teacherNote:'DOT PLOT INTRODUCTION -- show this pre-built plot today. Students look and listen. They do not build today. Walk through the five parts: (1) the number line along the bottom -- this is the x-axis, showing the range of values; (2) what each dot represents -- one observation, one data point; (3) stacking -- when two values are the same, dots stack vertically; (4) where dots cluster -- this shows where most of the data falls, the center of the distribution; (5) the spread -- how far the dots extend from the center on each side. After walking through the parts, ask: what does this dot plot tell you about kangaroo rat sightings? Where do most values fall? Are there any days with unusually high or low sightings? Tell students: tomorrow they build one themselves.',
+            isDotPlot:true,
+            datasets:[
+              {label:'Sightings/day', values:[3,4,4,5,5,5,6,6,6,6,7,7,7,7,8,8,9,10,10,12], color:'#8DB87A'}
+            ],
+            graphAnswers:[
+              {q:'What to notice', a:'Most sightings cluster between 5 and 8 per day. The dot plot shows this visually -- more dots in that range, fewer at the extremes. One day had 12 sightings (unusually high). Several days had 3-4 (unusually low). The shape is roughly symmetric, slightly right-skewed by the 10 and 12 outliers. Walk students through finding the median: 10 values below the middle, 10 above -- median is between the 10th and 11th values = (7+7)/2 = 7 sightings per day.'}
+            ]
+          },
+          gaiaGraphNote:'"A dot plot shows every data point. Not a summary -- every single value. The number line tells you the range. Where the dots pile up tells you where most values fall. Where the dots are sparse or absent tells you about the edges of the data. Tomorrow the crew builds one from actual field data. Today: just read this one. Find the center. Find the spread. Notice the shape."',
+          bridgeToNext:'Next class: graph day. The crew builds a dot plot from 15 actual population survey values.'
+        },
+
+        // -- DAY 5 -- GRAPH . Dot Plot Build --------------------------
+        {
+          day:5, type:'graph',
+          siteTitle:'Reading the Population Data',
+          gaia:'Yesterday I showed the crew a completed dot plot. Today the crew builds one.\n\nThe data below comes from the Arroyo sensors -- 15 days of kangaroo rat sightings at the same survey point. Sort these values from smallest to largest first. Then place a dot above each value on the number line. Stack dots when the same value appears more than once.\n\nBefore you sort: make a prediction. Based on what the crew knows about this ecosystem right now, do you expect the sightings to cluster high, cluster low, or spread out evenly? Write your prediction, then build the plot.',
+          scenario:'GAIA displays 15 daily kangaroo rat sighting counts from the past three weeks of field work. Sort them, build the dot plot on paper, then use the Reveal button to check your work.',
+          graphData:{
+            title:'Kangaroo Rat Daily Sightings -- 15-Day Field Survey',
+            teacherNote:'DOT PLOT -- BUILD FROM SCRATCH. 15 data points, one species. Sorted order: 2,3,3,4,4,4,5,5,5,6,6,7,8,8,10. Five-number summary for teacher reference: Min=2, Q1=4, Median=5, Q3=7, Max=10. The distribution clusters low (between 3-6), which reflects the stressed population. Most days the crew saw 5 or fewer kangaroo rats. Compare to the preview dot plot from Day 4 which showed a healthier population clustering between 5-8. That comparison is the scientific finding -- students may notice it without being told. Reveal button shows the correct dot plot.',
+            isDotPlot:true,
+            showDotPlotReveal:true,
+            revealDatasets:[
+              {label:'Sightings/day', values:[2,3,3,4,4,4,5,5,5,6,6,7,8,8,10], color:'#8DB87A'}
+            ],
+            rawDataOnly:true,
+            bars:[
+              {label:'15 Daily Sighting Counts -- Sort from smallest to largest', value:0},
+              {label:'5', value:5},{label:'3', value:3},{label:'8', value:8},
+              {label:'4', value:4},{label:'6', value:6},{label:'5', value:5},
+              {label:'4', value:4},{label:'10', value:10},{label:'3', value:3},
+              {label:'7', value:7},{label:'2', value:2},{label:'6', value:6},
+              {label:'5', value:5},{label:'4', value:4},{label:'8', value:8}
+            ],
+            graphAnswers:[
+              {q:'Sorted', a:'2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 7, 8, 8, 10'},
+              {q:'Median', a:'15 values -- median is the 8th value = 5 sightings per day'},
+              {q:'Shape', a:'Slightly right-skewed. Most values cluster between 3-6 (low). The 10 on the right is an outlier -- probably a day with unusual conditions. The cluster being low (around 5) compared to the preview plot (which clustered around 7) reflects the stressed population.'},
+              {q:'Compare to preview', a:'Day 4 preview plot showed sightings clustering between 5-8 with a median around 7. Today\'s data clusters between 3-6 with a median of 5. The Arroyo data shows lower sighting counts -- consistent with a kangaroo rat population under pressure from reduced food availability.'}
+            ]
+          },
+          gaiaGraphNote:'"The dot plot does not lie. Every dot is a day of actual field observation. Where they pile up is where the population is living most of the time. Notice where most of your dots landed. Compare that to where most dots landed in the example from yesterday. The difference between those two pictures is the scientific finding."',
+          graphQuestions:[
+            '1. Sort the 15 values from smallest to largest. Write the sorted list.',
+            '2. Build the dot plot on paper -- place one dot above each value on the number line. Stack dots when the same value appears more than once. Use the Reveal button to check your work.',
+            '3. Where do most of your dots cluster -- on the lower end, the higher end, or in the middle?',
+            '4. Find the median of the 15 values. Show your work.',
+            '5. Compare your dot plot to the example from Day 4. Is the median higher or lower in today\'s data? What does that tell you about this kangaroo rat population?'
+          ],
+          shortDayNote:'Short day: Sort the values and build the dot plot (questions 1-2). Use Reveal to check. Then question 3 -- where do the dots cluster? That observation is the core finding. Save 4-5 for warm-up.',
+          noChoice:true
+        },
+
+        // -- DAY 6 -- DEEPEN . Energy Roles --------------------------
+        {
+          day:6, type:'deepen',
+          siteTitle:'Who Does What in This Ecosystem',
+          gaia:'The crew has spent five days measuring who is here and how many. Today we shift to the question of why each organism is here -- what role it plays, and how energy moves through this system.\n\nEvery organism in the Sonoran Desert plays one of three roles. Producer, consumer, or decomposer. The producers capture solar energy and turn it into food. The consumers eat -- either the producers or each other. The decomposers break down what dies and return its nutrients to the soil.\n\nWhen something goes wrong with the producers, the whole chain feels it. The crew has already seen this in the kangaroo rat data. Today we read why.',
+          readingFocus:'Savvas Cycling of Matter and Energy, Topic 2, Lesson 2 -- Energy Flow in Ecosystems. Sections: Energy Roles in an Ecosystem (producers, consumers, decomposers), Energy and Matter Transfer (food chains, food webs, energy pyramids, energy availability). Focus: What is the difference between a producer, a consumer, and a decomposer? How is energy transferred through a food chain? Why is less energy available at each higher level of a food web?',
+          gaiaReadingPrompt:'"Energy enters this ecosystem from the Sun. The saguaro cactus captures it. The annual wildflower captures it. Every producer in the Sonoran Desert is converting solar energy into the chemical energy stored in plant tissue.\n\nWhen a kangaroo rat eats a seed, it gets some of that energy -- but not all of it. Some was already used by the plant for its own life processes. Some is lost as heat. The kangaroo rat gets roughly 10 percent of the energy that was in the plant material it ate. When a racer snake eats a kangaroo rat, it gets roughly 10 percent of what the kangaroo rat had. This is not a flaw in the system. This is how energy works in ecosystems.\n\nThis is also why a reduction at the producer level -- annual plants declining 61 percent -- does not just affect kangaroo rats. It affects everything that depends on kangaroo rats, and everything that depends on those organisms, in a chain that reaches further than the crew can easily track."',
+          gaiaRecall:'From Day 3: annual plants are down 61 percent, kangaroo rats are down 34 percent, racer snakes are just beginning to show stress. The energy flow reading explains why those numbers are proportional to each other and why the effect moves up the chain with a delay.',
+          vocabFocus:['producer','consumer','decomposer','food chain','food web','energy pyramid','role'],
+          bridgeToNext:'Tomorrow: the crew investigates a specific broken link in the food web -- and GAIA notices something in the data timing.'
+        },
+
+        // -- DAY 7 -- CHOICE . Food Webs + Breadcrumb ----------------
+        {
+          day:7, type:'choice',
+          isBreadcrumb:true,
+          breadcrumbNote:'BREADCRUMB 1 OF 4 -- This is the first time "approximately eight months ago" appears. GAIA mentions it in her opening text as a data observation about soil moisture. It sounds like normal scientific reporting. Most students will not register it. The students who track it will remember it at Site 4. Do not draw attention to it. After the Site 4 reveal, reference this day in your callback.',
+          siteTitle:'The Web Has a Broken Link',
+          choiceReadingFocus:'Today is a second read of Lesson 2. Before the crew votes -- return to Energy Flow in Ecosystems, specifically the food web and energy pyramid sections. Read with the scenario and choices in mind.',
+          gaia:'The soil moisture data from Array 1 has been running continuously since Day 1. I have been watching it carefully. The deficit -- the gap between current moisture and the ten-year average for this time of year -- has been consistent. It did not start this season. The records show the deficit began building approximately eight months ago. The ten-year average held steady before that point and began dropping after it.\n\nI am noting this because it is relevant to what the crew is about to read. A food web is a model of how matter and energy move through an ecosystem. A model is only as useful as the data behind it. Today the crew investigates which link in this food web is most stressed -- and what that means for the model.',
+          scenario:'The Arroyo\'s sensors have been tracking four food web relationships simultaneously:\n\nLink 1: Solar energy to annual plants (producers) -- annual plant density down 61%\nLink 2: Annual plants to kangaroo rats (primary consumers) -- kangaroo rat population down 34%\nLink 3: Kangaroo rats to racer snakes (secondary consumers) -- early stress signs appearing\nLink 4: Decomposers to soil -- functioning normally, returning nutrients from dead plant matter\n\nThe crew decides which link to investigate in depth.',
+          exitTicketPrompt:'Explain how energy moves through a food web using the Sonoran Desert example. What happens to the amount of energy available at each level? Make your claim: which link in this food web is under the most stress -- and what evidence supports your answer?',
+          discussionPrompt:'GAIA mentions that the soil moisture deficit began approximately eight months ago. The food web stress is showing up now, months later. Why might there be a delay between a change in abiotic conditions and its visible effect on a food web? What does that delay tell you about how ecosystems respond to change?',
+          choices:[
+            {
+              letter:'A',
+              text:'Investigate Link 1 -- the solar energy to annual plant connection. The producer collapse is the root of everything.',
+              subtext:'Understanding why the annual plants failed is more important than tracking the downstream effects.',
+              deltas:{bio:-4, water:6, food:-4, trust:4},
+              branch:'A-link1-producers',
+              consequence:'Detailed analysis of the annual plant data confirms the timing. Germination rates dropped first, before plant density visibly changed. The soil moisture threshold for germination was not met during what should have been the critical window -- late winter into early spring. The plants did not fail. They were never triggered to begin. The abiotic signal that starts the annual plant life cycle did not come with enough strength this year, or last year, or the year before. The deficit has been building for a while.'
+            },
+            {
+              letter:'B',
+              text:'Investigate Link 2 -- kangaroo rats feeding on annual plants. A 34% decline in a primary consumer is the clearest sign of food web stress.',
+              subtext:'Primary consumer populations respond fastest to producer changes. They are the early warning system.',
+              deltas:{bio:-6, water:0, food:-6, trust:4},
+              branch:'B-link2-consumers',
+              consequence:'Tracking kangaroo rat feeding behavior shows the crew exactly how the animals are adapting. They are ranging farther from their burrows to find food -- expending more energy to get less of it. Some are shifting their diet toward other seed sources, including from perennial shrubs. The dietary shift has limits. Perennial shrub seeds are less calorie-dense and harder to process. The kangaroo rats are working harder for less return. This is a population under nutritional stress, not starvation. Not yet.'
+            },
+            {
+              letter:'C',
+              text:'Investigate Link 4 -- decomposers in the soil. If decomposers are healthy, the nutrient cycle is intact, which gives the ecosystem its best chance to recover.',
+              subtext:'Decomposers are often overlooked, but a healthy nutrient cycle is the foundation for producer recovery.',
+              deltas:{bio:4, water:0, food:0, trust:8},
+              branch:'C-link4-decomposers',
+              consequence:'The decomposer community -- bacteria, fungi, and invertebrates in the soil -- is functioning well. Nutrients from dead plant matter are being returned to the soil at normal rates. This is actually good news. It means the soil itself is not degraded. If water becomes available, the nutrient base is there to support producer recovery. The broken link is not the decomposers. The broken link is the water that would allow producers to use those nutrients. The soil is ready. The water is not.'
+            }
+          ]
+        },
+
+        // -- DAY 8 -- DEEPEN . Energy Pyramids ----------------------
+        {
+          day:8, type:'deepen',
+          siteTitle:'How Much Energy Is Actually Available',
+          gaia:'The food web shows who eats whom. The energy pyramid shows how much energy is actually moving between those connections.\n\nThis distinction matters for what the crew is investigating. Knowing that a kangaroo rat eats annual plant seeds is the food web. Knowing that the kangaroo rat can only capture roughly 10 percent of the energy in those seeds -- and that a snake gets only 10 percent of what the kangaroo rat had -- is the energy pyramid. Those numbers explain why a 61 percent drop in annual plant density does not translate to a 61 percent drop in kangaroo rats. The kangaroo rat is already working with 10 percent of the original energy. A 61 percent reduction in that 10 percent is what shows up as a 34 percent population decline over months.',
+          readingFocus:'Savvas Cycling of Matter and Energy, Topic 2, Lesson 2 -- Energy and Matter Transfer. Sections: Energy Pyramids, Energy Availability. Focus: What does an energy pyramid show? Why is there less energy at each higher level? How does the 10 percent rule explain the population changes the crew is seeing?',
+          gaiaReadingPrompt:'"Energy pyramids have a wide base and a narrow top. The wide base is the producers -- they have the most energy available in the system. Each level above captures roughly 10 percent of the energy from the level below. The rest is used for life processes or lost as heat.\n\nThis means that to support one racer snake, you need a population of kangaroo rats with ten times as much energy as the snake needs. And to support those kangaroo rats, you need annual plants with ten times as much energy as the kangaroo rats need. The math compounds quickly.\n\nWhen the producer base shrinks by 61 percent, the ripple moves up the pyramid -- but not instantly, and not at the same percentage at each level. The delay between abiotic stress and visible population change is built into this math."',
+          gaiaRecall:'From Day 7: the soil moisture deficit began approximately eight months ago. The annual plant decline followed. The kangaroo rat decline followed that. The snake stress is just appearing now. The energy pyramid explains why the timing is staggered.',
+          vocabFocus:['energy pyramid','producer','consumer','decomposer','food web','food chain'],
+          spiralReview:'The energy pyramid will be displayed as a horizontal bar graph on Day 9. A bar graph is a review -- the crew has used bar graphs before. The new element is horizontal orientation. The same data can be displayed vertically or horizontally depending on what makes the labels easier to read. Tomorrow\'s graph uses horizontal because the level names are long.',
+          bridgeToNext:'Tomorrow: graph day. GAIA displays the Sonoran Desert energy pyramid as a pre-built horizontal bar graph. The crew reads it and answers questions. No build today -- this is a read-only graph.'
+        },
+
+        // -- DAY 9 -- GRAPH . Horizontal Bar Graph Review ------------
+        {
+          day:9, type:'graph',
+          siteTitle:'The Energy Pyramid as a Bar Graph',
+          gaia:'The energy pyramid for the section of Sonoran Desert the crew has been surveying is on screen. I have displayed it as a horizontal bar graph.\n\nA note on the format. Bar graphs can run vertically -- bars going up -- or horizontally -- bars going sideways. The data is the same. The orientation changes based on what makes the labels easier to read. In this case, the level names are long, so horizontal works better. The length of each bar shows the relative amount of energy available at that level.\n\nRead the graph carefully before answering the questions.',
+          scenario:'GAIA displays a pre-built horizontal bar graph showing estimated energy availability at each trophic level in the survey area. The bars represent relative energy units -- not exact calories, but proportional values that show the relationship between levels.',
+          graphData:{
+            title:'Sonoran Desert Energy Pyramid -- Relative Energy at Each Trophic Level',
+            teacherNote:'HORIZONTAL BAR GRAPH -- REVIEW. Students have seen bar graphs before. New element: horizontal orientation. Walk through the observation that the same data works either way. The bars here show relative energy, not exact measurements. Key teaching points: (1) producer bar is longest -- most energy is at the base; (2) each level above is roughly 10% of the level below; (3) the decomposer bar is shown separately because decomposers recycle energy from all levels. Questions are read-only -- no calculation required. Students should notice how the bar lengths reflect the 10% rule discussed in Day 8.',
+            bars:[
+              {label:'Producers (annual plants, cacti, shrubs)', value:100, status:'safe'},
+              {label:'Primary consumers (kangaroo rats, insects, birds)', value:10, status:'caution'},
+              {label:'Secondary consumers (racer snakes, roadrunners)', value:1, status:'warning'},
+              {label:'Decomposers (bacteria, fungi)', value:0, status:'safe'}
+            ],
+            graphAnswers:[
+              {q:'1', a:'Producers have the most energy (bar length 100). Secondary consumers have the least (bar length 1). Each level is approximately 10% of the level below -- which is why the bars shrink so dramatically from bottom to top.'},
+              {q:'2', a:'If annual plant energy drops from 100 to 39 (a 61% decline), primary consumers would have access to about 3.9 units of energy instead of 10. That is a 61% reduction at the primary consumer level too -- but the population decline would lag behind the energy decline because animals draw on stored reserves. This matches the 34% kangaroo rat decline the crew observed.'},
+              {q:'3', a:'Decomposers are shown separately because they are not a trophic level in the traditional sense -- they receive energy from all levels as organisms die. They do not fit neatly into the pyramid structure. Showing them separately is more accurate than forcing them into the hierarchy.'},
+              {q:'4', a:'Horizontal bars make the level labels easier to read. The labels are long phrases. In a vertical bar graph, these labels would need to be rotated or truncated. Horizontal orientation solves the label problem without changing the data.'},
+              {q:'5', a:'A bar graph works here because each trophic level is a distinct category and the crew is comparing the amount of energy between categories. Bar graphs are best for comparing separate categories. A line graph would imply a continuous trend, which is not what the energy pyramid shows.'}
+            ]
+          },
+          gaiaGraphNote:'"The bar lengths show you the 10 percent rule in visual form. The producer bar is 100 times longer than the secondary consumer bar. That ratio is not an accident. Every time energy moves up one level, 90 percent of it is gone. The system is not inefficient -- this is just how thermodynamics works in living systems. Notice where the crew\'s data fits into this picture. Annual plants down 61 percent means the first bar has effectively shrunk. Everything to the right of it shrinks in proportion."',
+          graphQuestions:[
+            '1. Which trophic level has the most energy available? Which has the least? How does the difference in bar lengths show the 10 percent rule?',
+            '2. If annual plant energy dropped by 61 percent (as the crew\'s data shows), how would that change what is available to primary consumers? Does this match the kangaroo rat decline the crew measured?',
+            '3. Why are decomposers shown separately rather than as a level in the pyramid?',
+            '4. This graph is displayed horizontally rather than vertically. Why might horizontal work better here than vertical?',
+            '5. Why is a bar graph a good choice for this data? What would a line graph show that would be misleading here?'
+          ],
+          noChoice:true
+        },
+
+        // -- DAY 10 -- DEEPEN . Water Cycle -------------------------
+        {
+          day:10, type:'deepen',
+          siteTitle:'Where the Water Goes',
+          gaia:'The crew has established that water is the limiting factor in this ecosystem and that the deficit has been building for approximately eight months. Today we read about how water moves through an ecosystem -- the water cycle.\n\nThis matters for a specific reason. The water cycle is not just the rain that falls. It is evaporation from the soil surface, transpiration from plants, condensation that forms morning dew, and the slow movement of water through the ground to recharge the water table. Every part of the cycle is connected. A disruption in one part affects all the others.\n\nThe Arroyo sensors have been tracking evaporation rates alongside soil moisture. I want the crew to keep that in mind while reading today.',
+          readingFocus:'Savvas Cycling of Matter and Energy, Topic 2, Lesson 3 -- Cycles of Matter. Sections: Conservation of Matter and Energy, Water Cycle (evaporation, condensation, precipitation). Focus: What are the three main stages of the water cycle? How does the law of conservation of matter apply to the water cycle? How does plant life affect the water cycle through transpiration?',
+          gaiaReadingPrompt:'"Water moves. It evaporates from the soil surface and from bodies of water, rising as water vapor. It condenses in the atmosphere to form clouds. It falls as precipitation -- rain, snow, or in the desert, the brief but intense monsoon storms that this ecosystem times its biology around.\n\nIn a healthy Sonoran Desert, the monsoon rains arrive in July and August. They saturate the soil, trigger the germination of annual seeds, and recharge the shallow water table that many desert plants and animals depend on. The timing of the monsoon -- not just its total amount but when it arrives -- determines whether annual plants germinate, which determines whether the entire food web above them has enough energy.\n\nThe crew\'s soil moisture data shows a deficit that has been building for approximately eight months. Eight months ago was the end of the last monsoon season. The question is whether the monsoon failed to deliver enough water, or whether something changed in how the ecosystem is retaining and cycling the water it did receive."',
+          gaiaRecall:'From Lesson 2: decomposers are recycling nutrients normally. The soil chemistry is intact. The soil is ready to support plant growth. The missing variable is water timing and quantity -- which connects directly to today\'s water cycle reading.',
+          vocabFocus:['evaporation','condensation','precipitation','law of conservation of mass','law of conservation of energy','system','components'],
+          bridgeToNext:'Next class: the crew finds something in the carbon and oxygen cycle data that connects to the water cycle readings -- and the picture starts to get larger.'
+        },
+
+        // -- DAY 11 -- CHOICE . Carbon Cycle + Measurement ----------
+        {
+          day:11, type:'choice',
+          siteTitle:'The Cycle Is Not Balancing',
+          choiceReadingFocus:'Today is a second read of Lesson 3. Before the crew votes -- return to Cycles of Matter, specifically the carbon and oxygen cycles and human impact sections. Read with the scenario and choices in mind.',
+          gaia:'The Arroyo has been running atmospheric sensors alongside the soil and biological sensors. I want to share a reading that I have been watching for several days before saying anything about it.\n\nCarbon dioxide levels in the air directly above the soil surface are higher than the surrounding atmosphere. Not dramatically -- but measurably and consistently. In a healthy ecosystem, plants absorb carbon dioxide during photosynthesis. Fewer plants means less carbon dioxide being absorbed. This is the carbon cycle responding to the plant deficit.\n\nThe water cycle and the carbon cycle are connected. Reduced plant cover means less transpiration, which means less moisture entering the atmosphere through plant activity, which may be contributing to the drier conditions the crew has been measuring. The cycles are not separate systems. They are one system.',
+          scenario:'The crew has three options for how to document and respond to this finding. The carbon data connects to everything the crew has measured so far -- but documenting it carefully takes time and resources.',
+          exitTicketPrompt:'How are the water cycle and carbon cycle connected in an ecosystem? Use the Sonoran Desert data to explain your answer. Make your claim: what should the crew prioritize right now -- documenting the carbon data in depth, measuring the human impact on these cycles, or transmitting what they have so far?',
+          discussionPrompt:'GAIA says the water cycle and carbon cycle are one system, not two separate ones. Can you trace the connection? Start with reduced plant cover and follow the chain of effects through both cycles. How many steps does it take before one cycle is affecting the other?',
+          choices:[
+            {
+              letter:'A',
+              text:'Document the carbon data in depth. A measurable CO2 imbalance is significant and needs precise measurement before the crew moves on.',
+              subtext:'Data quality matters more than speed. If the carbon reading is important, it deserves careful documentation.',
+              deltas:{bio:0, water:0, food:0, trust:12},
+              branch:'A-carbon-document',
+              consequence:'Three days of careful atmospheric measurements give the crew a clear carbon budget for this section of desert. Carbon dioxide absorption is down approximately 55 percent from what would be expected in a healthy ecosystem with normal plant density. The number is consistent with the 61 percent plant decline -- slightly lower because the perennial plants, which are still present, continue absorbing some CO2. The carbon data and the plant data are telling the same story from different directions. Both confirm the ecosystem is significantly below its normal function.'
+            },
+            {
+              letter:'B',
+              text:'Measure human impact on the cycles. Roads, urban development, and agricultural land border parts of this desert section. That context matters.',
+              subtext:'Cycles do not operate in isolation from human activity. Understanding the boundary conditions gives the data more meaning.',
+              deltas:{bio:0, water:0, food:0, trust:8},
+              branch:'B-human-impact',
+              consequence:'Survey of the desert boundary shows a mix of conditions. One edge borders a maintained highway with a gravel shoulder that has low permeability -- water runs off rather than soaking in. A second edge borders agricultural land where groundwater is being actively pumped for irrigation. The agricultural water use is measurably affecting the water table in the adjacent desert zone. This is a human impact on the abiotic conditions of the ecosystem -- not a direct cause of everything the crew has measured, but a contributing factor that adds pressure to an already stressed system.'
+            },
+            {
+              letter:'C',
+              text:'Transmit everything collected so far. The dataset is already significant. Getting it to the research network matters.',
+              subtext:'The data is only useful if it reaches people who can act on it. A complete transmission now preserves what the crew has found.',
+              deltas:{bio:0, water:0, food:0, trust:6},
+              branch:'C-transmit',
+              consequence:'The full Site 1 dataset -- soil moisture, plant density, population counts, energy flow estimates, water cycle measurements, and carbon readings -- is transmitted to the research network. Acknowledgment arrives within six hours. The dataset is flagged as significant by three separate research groups tracking drought conditions in the Sonoran Desert. The carbon imbalance reading in particular draws immediate attention. Community Trust increases as the crew demonstrates that their field work has real-world scientific value.'
+            }
+          ]
+        },
+
+        // -- DAY 12 -- DEEPEN . Nitrogen Cycle ----------------------
+        {
+          day:12, type:'deepen',
+          siteTitle:'The Cycle That Feeds Everything',
+          gaia:'The crew has read about the water cycle and the carbon cycle. The third major cycle in today\'s reading is the nitrogen cycle -- and it is the one the crew has seen the least evidence of disruption in.\n\nNitrogen is essential for building proteins. Every organism in this ecosystem needs it. But nitrogen gas from the atmosphere cannot be used directly by plants. It has to be converted -- fixed -- into a form plants can absorb. Bacteria in the soil do this work. Decomposers do this work. The nutrient cycling that the crew confirmed is functioning normally on Day 7 includes the nitrogen cycle.\n\nThis is actually important. If the nitrogen cycle were also disrupted, recovery would be much harder. It is not. The soil chemistry is intact. The problem is the water, not the soil.',
+          readingFocus:'Savvas Cycling of Matter and Energy, Topic 2, Lesson 3 -- Cycles of Matter. Sections: Carbon and Oxygen Cycles (human impact), Nitrogen Cycle in Ecosystems (nitrogen fixation, recycling free nitrogen). Focus: What is nitrogen fixation and why is it necessary? How do decomposers contribute to the nitrogen cycle? What is the law of conservation of matter and how does it apply to all matter cycles?',
+          gaiaReadingPrompt:'"Conservation of matter. Matter is not created or destroyed -- it moves through cycles. The nitrogen that was in a kangaroo rat that died last season is now in the soil, being processed by decomposers, available to be taken up by plant roots when water allows. The water that evaporated from the soil surface yesterday is in the atmosphere right now. The carbon that was in a dead saguaro arm is being broken down and will eventually be absorbed by another organism.\n\nNothing is lost. It moves. Understanding cycles means understanding that every input has an output and every output becomes someone else\'s input. This is what conservation of matter means in a living system."',
+          gaiaRecall:'From Day 7: the decomposer community is functioning normally. From today\'s reading: decomposers are key to both the nitrogen cycle and the carbon cycle. The functioning decomposer community means the nutrient cycles are intact even as the water cycle is disrupted. This matters for what happens when water returns.',
+          vocabFocus:['law of conservation of mass','law of conservation of energy','evaporation','condensation','precipitation','system','components'],
+          spiralReview:'Tomorrow is the graph day for Site 1. The crew will work with a histogram and distribution shape vocabulary -- symmetric, skewed, bimodal. If students are shaky on what a histogram is, remind them: Campaign 2 covered histograms in Leg 2. Bars touch each other (unlike bar graphs). The y-axis counts frequency. Tomorrow adds the vocabulary for describing the shape of the distribution.',
+          bridgeToNext:'Tomorrow: graph day. Four distribution shapes displayed, then the site water data. Students identify the shape of the site data and explain what it means for the ecosystem.'
+        },
+
+        // -- DAY 13 -- GRAPH . Histogram + Distribution Shapes ------
+        {
+          day:13, type:'graph',
+          siteTitle:'The Shape of the Data',
+          gaia:'A histogram shows the distribution of data -- how values are spread across a range. Today I am going to show the crew four different distribution shapes, give each one a name, and then show a fifth histogram using the actual site water data. The crew\'s job is to identify the shape of the fifth histogram and explain what that shape means for this ecosystem.\n\nThe four shapes are: symmetric, skewed right, skewed left, and bimodal. Each one tells a different story about the data.',
+          scenario:'GAIA displays four pre-built histograms, each with a distinct shape. Study each one carefully -- where do the bars pile up, where do they taper off, and what does that tell you about the data?',
+          graphData:{
+            title:'Distribution Shapes -- Four Examples',
+            teacherNote:'HISTOGRAM REVISIT + SHAPE OF DATA VOCABULARY. Four pre-built histograms displayed as examples, then the site data as a fifth. Key shapes: (1) Symmetric -- bars roughly mirror each other around the center, bell curve shape; (2) Skewed right -- most data on the left, tail extends right; (3) Skewed left -- most data on the right, tail extends left; (4) Bimodal -- two peaks, data clusters in two separate places. The site water data (fifth histogram) is skewed right -- most readings cluster in the low-moisture range, with a tail of a few higher readings. This reflects a drought pattern where occasional rain events bring brief high moisture, but most days are dry. Walk students through all four examples before showing the fifth. The spiral callback to Campaign 2: the tidal histogram from Leg 2 Day 15 was bimodal. Students may remember this -- acknowledge it if they bring it up.',
+            isHistogram:true,
+            bins:[
+              {label:'0-2 cm', count:18},
+              {label:'2-4 cm', count:12},
+              {label:'4-6 cm', count:6},
+              {label:'6-8 cm', count:3},
+              {label:'8-10 cm', count:2},
+              {label:'10-12 cm', count:1}
+            ],
+            graphAnswers:[
+              {q:'Symmetric example', a:'Phoenix October daily high temperatures. Most days cluster near the average (around 85F), fewer days are much hotter or much cooler, and the two sides roughly mirror each other. This is a bell curve shape.'},
+              {q:'Skewed right example', a:'Days without rain per month in the Sonoran Desert across one year. Most months have relatively short dry spells. A few months have very long dry streaks, pulling the tail to the right.'},
+              {q:'Skewed left example', a:'Species survival rates in a healthy ecosystem. Most species survive at high rates, a few struggle, pulling the tail left.'},
+              {q:'Bimodal example', a:'Tidal heights from Campaign 2 Leg 2 -- the crew saw this in the Lighthouse mission. Two peaks because high tides and low tides create two clusters of measurements, with few readings in between.'},
+              {q:'Site water data shape', a:'Skewed right. Most soil moisture readings cluster in the 0-4 cm range (very dry). A few readings reach higher moisture levels after rain events, pulling the tail to the right. This pattern is consistent with drought conditions interrupted by occasional precipitation -- exactly what the crew has been measuring.'}
+            ]
+          },
+          gaiaGraphNote:'"The shape of a histogram is the finding. Not just the numbers -- the shape. A symmetric distribution tells you the data has a natural center with balanced variation on both sides. A skewed distribution tells you most of the data piles up on one side, with rare extremes pulling the tail in the other direction. Bimodal tells you two different conditions are operating. The site water data has a shape. That shape is the drought in visual form."',
+          graphQuestions:[
+            '1. GAIA shows four histogram shapes. Name each shape and describe what makes it look the way it does: where do the bars pile up, and where do they taper?',
+            '2. The site soil moisture histogram has most of its bars on the left side with a long tail to the right. What shape is this? What does this shape tell you about moisture conditions in the survey area?',
+            '3. From the Lighthouse mission in Campaign 2, the crew worked with a histogram of tidal heights that had two peaks. What is the name for that shape? Why did the tidal data have two peaks?',
+            '4. If the desert had received normal monsoon rainfall this year, what shape would you expect the soil moisture histogram to have -- and why?',
+            '5. Why is a histogram useful for showing this data? What does it show that a single average number would not?'
+          ],
+          shortDayNote:'Short day: Show all four distribution shapes and name them (question 1). Then show the site data histogram and have students identify its shape (question 2). Those two questions are the core. Save 3-5 for warm-up.',
+          noChoice:true
+        },
+
+        // -- DAY 14 -- CHOICE . Site 1 Close -------------------------
+        {
+          day:14, type:'choice',
+          siteTitle:'What the Desert Data Means',
+          choiceReadingFocus:'Today is a final review of all three lessons from Topic 2. Before the crew votes -- skim back through Lessons 1, 2, and 3 with the full site picture in mind. Your exit ticket will ask you to synthesize everything the crew has measured.',
+          gaia:'The crew has been in the Sonoran Desert for fourteen days. The data is collected. I want to review what the Arroyo has confirmed before the crew decides what to report and where to go next.\n\nSoil moisture is significantly below the ten-year average. The deficit began building approximately eight months ago. Annual plant density is down 61 percent. Primary consumer populations are declining. The energy pyramid shows the effects moving up the food web. The water cycle is disrupted. The carbon cycle is responding to the plant deficit. The nitrogen cycle and decomposer community are intact.\n\nThe data is real. The ecosystem is under measurable stress. The cause is the water deficit. The water deficit began approximately eight months ago.\n\nI want the crew to sit with what that means before we move.',
+          scenario:'The Arroyo is ready to move to Site 2. Before leaving, the crew makes a final decision about how to frame the Site 1 findings -- what the most important finding is, and what question the crew is carrying forward.',
+          exitTicketPrompt:'Using vocabulary from all three lessons, write a summary of what the crew found at Site 1. Include: the abiotic factor that changed, how it affected the food web, what cycles were disrupted and which were not, and what question the crew is carrying forward to Site 2.',
+          discussionPrompt:'GAIA says the data is real and the cause is the water deficit. But she has not said why the water deficit exists. Think about what kinds of things could cause a soil moisture deficit that began building eight months ago and has not recovered. What explanations are possible? How would you test each one?',
+          choices:[
+            {
+              letter:'A',
+              text:'Report that the primary finding is the water cycle disruption -- the abiotic factor driving everything else.',
+              subtext:'Every biological finding the crew made traces back to the water deficit. That is the story.',
+              deltas:{bio:0, water:8, food:0, trust:6},
+              branch:'A-water-finding',
+              consequence:'The Site 1 report frames the water cycle disruption as the primary finding. Soil moisture deficit began eight months ago, has not recovered, and is driving plant decline, which is driving food web stress at every level. The research network responds: the framing is scientifically sound. The water cycle data is the anchor finding. The biological data is evidence of its effects. This is the right way to describe what the crew measured.'
+            },
+            {
+              letter:'B',
+              text:'Report that the primary finding is the food web stress -- the 61% plant decline and its downstream effects are the most visible sign of ecosystem change.',
+              subtext:'The food web data is the most concrete and measurable finding. Lead with what can be seen and counted.',
+              deltas:{bio:-4, water:0, food:-4, trust:6},
+              branch:'B-food-web-finding',
+              consequence:'The Site 1 report leads with food web data. Annual plants down 61 percent, kangaroo rats down 34 percent, secondary consumers beginning to show stress. The research network responds: the food web data is compelling but without the abiotic context -- the water cycle disruption -- the biological data looks like an isolated event. The two findings together tell a complete story. Neither one alone is sufficient.'
+            },
+            {
+              letter:'C',
+              text:'Do not frame a primary finding yet -- the crew does not have enough data to know whether what they saw is part of a larger pattern.',
+              subtext:'One site is not a pattern. Wait until the crew has data from multiple sites before drawing conclusions.',
+              deltas:{bio:0, water:0, food:0, trust:10},
+              branch:'C-reserve-judgment',
+              consequence:'The Site 1 report presents the data without a conclusion about cause. Soil moisture deficit. Plant decline. Food web stress. Water and carbon cycles disrupted. The report asks more questions than it answers. The research network responds: scientifically cautious and appropriate. One site could be an anomaly. The crew is right to wait for more data before drawing broad conclusions. Community Trust increases -- the crew is behaving like scientists, not like people who decided the answer before they looked.'
+            }
+          ]
+        }
+
+      ] // end Site 1 days
+    }
+  ] // end sites
 };
 
 let appState = null;
@@ -328,8 +735,24 @@ function loadState() {
   return null;
 }
 
-function initializeApp() {
-  activeClassId = parseInt(document.getElementById('init-class-select').value);
+function updateEnterButtons() {
+  [0,1,2].forEach(function(i) {
+    var name = document.getElementById('class-name-' + i);
+    var btn = document.getElementById('enter-btn-' + i);
+    if (name && btn) btn.textContent = 'Enter -- ' + (name.value || 'Class ' + (i+1));
+  });
+}
+
+function initializeApp(classId) {
+  // Save any customized class names
+  [0,1,2].forEach(function(i) {
+    var input = document.getElementById('class-name-' + i);
+    if (input && input.value.trim()) {
+      appState.classes[i].name = input.value.trim();
+    }
+  });
+  activeClassId = classId !== undefined ? classId : 0;
+  saveState();
   showScreen('screen-home');
   renderDashboard();
 }
@@ -547,9 +970,9 @@ function renderGraphContent(c) {
     h += '<div id="bw-reveal"><button class="reveal-btn" onclick="document.getElementById(\'bw-answer\').style.display=\'block\';this.style.display=\'none\'">&gt; Reveal Box and Whisker Answer</button>';
     h += '<div id="bw-answer" style="display:none;margin-top:12px">' + renderOceanBoxWhiskerSVG() + '</div></div>';
   }
-  if (c.showDotPlotReveal) {
-    h += '<div id="dp-reveal"><button class="reveal-btn" onclick="document.getElementById(\'dp-answer\').style.display=\'block\';this.style.display=\'none\'">&gt; Reveal Dot Plot Answer</button>';
-    h += '<div id="dp-answer" style="display:none;margin-top:12px"></div></div>';
+  if (c.showDotPlotReveal && gd.revealDatasets) {
+    h += '<div id="dp-reveal" style="margin-top:12px"><button class="reveal-btn" onclick="document.getElementById(\'dp-answer\').style.display=\'block\';this.style.display=\'none\'"> &gt; Reveal -- What Your Dot Plot Should Look Like</button>';
+    h += '<div id="dp-answer" style="display:none;margin-top:12px">' + renderDotPlotSVG({datasets:gd.revealDatasets}) + '</div></div>';
   }
   if (c.gaiaGraphNote) {
     h += '<div class="gaia-graph-note"><div class="gaia-graph-note-label">GAIA &mdash; On This Graph</div><div class="gaia-graph-note-text">' + c.gaiaGraphNote + '</div></div>';
@@ -933,12 +1356,28 @@ function renderStemLeafSVG() { return ''; }
 
 // -- BOOT -----------------------------------------------------
 window.addEventListener('load', function() {
+  // Wire class name inputs to update enter buttons
+  [0,1,2].forEach(function(i) {
+    var input = document.getElementById('class-name-' + i);
+    if (input) {
+      // Pre-fill from saved state if available
+      input.addEventListener('input', updateEnterButtons);
+    }
+  });
   try {
     const saved = loadState();
     appState = saved || freshState();
   } catch(e) {
     appState = freshState();
   }
+  // Pre-fill name inputs from saved state
+  [0,1,2].forEach(function(i) {
+    var input = document.getElementById('class-name-' + i);
+    if (input && appState.classes[i] && appState.classes[i].name) {
+      input.value = appState.classes[i].name;
+    }
+  });
+  updateEnterButtons();
 });
 </script>
 </body>
