@@ -3181,6 +3181,7 @@ function renderMissionScreen() {
   }
 
   if (dayType === 'deepen') {
+    if (cnt.medianWarmup) extra.innerHTML += renderMedianWarmup(cnt);
     extra.innerHTML += renderDeepenContent(cnt);
     if (cnt.graphData) extra.innerHTML += renderGraphContent(cnt);
   }
@@ -4227,6 +4228,10 @@ function updateTeacherNotePanel(cnt) {
       if (ds.answer) notes.push({label:`${ds.id} - Answer`, text:ds.answer});
       if (ds.hint) notes.push({label:`${ds.id} - Hint`, text:ds.hint});
     });
+  }
+  if (cnt.medianWarmup && cnt.medianWarmup.problems) {
+    cnt.medianWarmup.problems.forEach(function(p) { notes.push({label:'Warm-Up ' + p.num, text:p.answer}); });
+    if (cnt.medianWarmup.teacherNote) notes.push({label:'Warm-Up Note', text:cnt.medianWarmup.teacherNote});
   }
   if (cnt.medianWarmup && cnt.medianWarmup.problems) {
     cnt.medianWarmup.problems.forEach(function(p) { notes.push({label:'Warm-Up ' + p.num, text:p.answer}); });
