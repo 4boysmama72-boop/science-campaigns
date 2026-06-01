@@ -1122,7 +1122,7 @@ GAIA out. I will be in contact daily. Try to get enough sleep &mdash; I have not
 
 <div class="toast" id="toast"></div>
 
-<script type="text/javascript">
+<script>
 // ============================================================
 // STORAGE
 // ============================================================
@@ -1801,14 +1801,14 @@ const CONTENT = {
 
         // -- DAY 9 -- GRAPH . Stem and Leaf -----------------------
         {
-          day:9, type:'graph', isReveal:false, rawDataOnly:true, showStemLeafAnswer:true,
+          day:9, type:'graph', isReveal:false, rawDataOnly:true,
           legLabel:'Leg 2 . Earth, Moon & Seasons',
           legTitle:'The Moon\'s Cycle in Numbers',
-          gaia:'The Meridian\'s sensors have been logging the Moon\'s orbital position -- how far through one complete orbit around Earth the Moon was -- every day for the past 29 days. One complete lunar cycle. I am going to give the crew the raw numbers. Your task is to organize them into a stem and leaf plot. A stem and leaf plot splits each number into two parts: the tens digit becomes the stem, the ones digit becomes the leaf. All numbers with the same tens digit share a stem. The leaves branch out to the right. When you finish, the shape of the data becomes visible -- where values pile up, where they spread out -- without drawing a single bar or point.',
-          scenario:'GAIA displays 29 daily measurements of the Moon\'s orbital position percentage. The measurements range from 3 (Day 1) to 99 (Day 29, nearly back to the start).\n\nThe stems go from 0 to 9 -- one for each tens digit. Write them in a column on the left. Then place each value\'s ones digit as a leaf to the right of the correct stem. When all 29 values are placed, you have your plot. Use the Reveal button to check your work.',
+          gaia:'The Meridian\'s sensors have been logging the Moon\'s orbital angle -- its position in its orbit around Earth -- every day for the past 29 days. One complete lunar cycle. I am going to give the crew the raw numbers. Your task is to organize them into a stem and leaf plot -- a tool that arranges numbers by their tens digit so the distribution of the data becomes visible. The stems are the tens digits. The leaves are the ones digits. Once you have built it, finding the median is a matter of counting to the middle. I want to see if the crew can build one from scratch.',
+          scenario:'GAIA displays 29 daily measurements of the Moon\'s orbital position percentage -- how far through one complete orbit around Earth the Moon was on each observation day. The measurements range from 3% (Day 1, just past new moon) to 99% (Day 29, nearly back to new moon).\n\nGAIA: "A stem and leaf plot works by splitting each number into two parts: the tens digit becomes the stem, the ones digit becomes the leaf. All numbers in the same tens group share a stem. The leaves branch out from it. When you finish, the shape of the data -- where values cluster, where they spread -- is visible without drawing a single graph."',
           graphData:{
             title:'Moon Orbital Position % -- 29 Daily Observations',
-            teacherNote:'ANSWER KEY -- Stem and leaf plot: 0|3 7 -- 1|0 4 7 -- 2|1 4 8 -- 3|1 4 8 -- 4|1 5 8 -- 5|2 5 9 -- 6|2 6 9 -- 7|2 6 9 -- 8|3 6 -- 9|0 3 7 9. Total: 29 values (odd count, so median is the single middle value). SHAPE: uniform (even spread) -- stems have 2-4 leaves each, no clustering. Median = 15th value = 52.',
+            teacherNote:'Draw as a stem and leaf plot on the board. Stems: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Leaves branch to the right. Data is roughly evenly distributed 3-99 because we are measuring consecutive days of a continuous cycle -- each day advances roughly 3.4% through the cycle (100%/29.5 days). Key teaching points: (1) stems organize the tens, leaves show the ones; (2) count all values to find the median (29 values, median is the 15th value); (3) the even distribution shows a continuous cycle with no clustering -- unlike seasonal data which clusters at extremes. This contrast with the daylight data is worth discussing.',
             bars:[
               {label:'3', value:3},{label:'7', value:7},{label:'10', value:10},
               {label:'14', value:14},{label:'17', value:17},{label:'21', value:21},
@@ -1821,26 +1821,27 @@ const CONTENT = {
               {label:'86', value:86},{label:'90', value:90},{label:'93', value:93},
               {label:'97', value:97},{label:'99', value:99}
             ],
-            yLabel:'Moon Orbital Position %',
+            yLabel:'Moon Orbital % Complete',
             graphAnswers:[
-              {q:'1', a:'Completed plot -- 0|3 7 -- 1|0 4 7 -- 2|1 4 8 -- 3|1 4 8 -- 4|1 5 8 -- 5|2 5 9 -- 6|2 6 9 -- 7|2 6 9 -- 8|3 6 -- 9|0 3 7 9. 29 values total (odd number, so the median is one exact middle value, not an average of two). Use the Reveal button to show the correct plot on screen.'},
-              {q:'2', a:'29 values -- median is the 15th value from smallest. Stems 0 through 4 account for 14 values (2+3+3+3+3). The 15th value is the first leaf on stem 5: value 52. Median = 52, near the halfway point of the lunar cycle (full moon).'},
-              {q:'3', a:'The distribution is uniform (even spread) -- each stem has roughly the same number of leaves, no clustering at either end. This makes sense because the Moon moves at a steady rate of about 3.4% per day. A consistent orbit produces a uniform distribution.'},
-              {q:'4', a:'The daylight data would cluster near stem 0 (values around 9 hours) and stem 1 (values around 15 hours) with fewer values in the middle -- because Earth slows near the solstices. This Moon data has an even spread across all stems. Clustered shape vs. uniform shape -- different pattern, different scientific explanation.'},
-              {q:'5', a:'Day 30 would be approximately 3.4% beyond 99%, putting it at about 2-3. That leaf would go on stem 0. The orbit continues right back to the start of the next cycle.'}
+              {q:'Stem and Leaf', a:'Stems 0-9 (tens digit). Leaves (ones digit): 0|3,7 / 1|0,4,7 / 2|1,4,8 / 3|1,4,8 / 4|1,5,8 / 5|2,5,9 / 6|2,6,9 / 7|2,6,9 / 8|3,6,0 / 9|0,3,7,9. Total: 29 values.'},
+              {q:'Median', a:'29 values -- median is the 15th value when arranged in order. Count from smallest: the 15th value is 52. The median orbital position is 52% -- approximately the halfway point through the cycle, which corresponds to a full moon (Moon is opposite the Sun from Earth\'s perspective).'},
+              {q:'Distribution', a:'Values are roughly evenly spread from 3 to 99. No clustering at either extreme. This makes sense -- a continuous 29.5-day cycle produces data points that advance steadily, not data that piles up at specific values.'},
+              {q:'Contrast with daylight data', a:'Daylight data clustered near the extremes (many values near 9 and 15) because seasons slow down at the solstices. Moon phase data is evenly spread because the Moon\'s orbit is a continuous cycle without seasonal acceleration or deceleration.'},
+              {q:'Pattern', a:'The values spread evenly from 3 to 99 because the Moon moves through its orbit at a consistent rate -- about 3.4% per day. No value is more common than any other. This even spread is what a continuous, consistent cycle looks like as data. The crew will examine this pattern again with a new graph type very soon.'}
             ]
           },
-          gaiaGraphNote:'"Count the leaves on each stem of your finished plot. Do some stems have many more leaves than others, or do they look roughly even? That shape -- whatever you notice -- is the finding. The plot is showing you something about how the Moon moves. Describe what you see before answering the questions."',
+          gaiaGraphNote:'"A stem and leaf plot organizes numbers by splitting them: tens digit is the stem, ones digit is the leaf. All values with the same tens digit share a stem. You can see the distribution -- where values are dense, where they spread -- without drawing bars or plotting points. And you can find the median by counting to the middle value directly from the organized list. Compare the shape of this plot to what the daylight data would look like as a stem and leaf: the daylight data would cluster near 9 and near 15, with a gap in the middle. This Moon data spreads evenly. Different shapes. Different scientific stories."',
           graphQuestions:[
-            '1. Build the stem and leaf plot. Write stems 0-9 in a column on the left. Place the ones digit of each value as a leaf to the right of its stem. All 29 values must be placed. Then click Reveal to check your work.',
-            '2. Use your completed plot to find the median. With 29 values, the median is the 15th value counted from the smallest. Count up through your leaves starting at stem 0. What is the 15th value?',
-            '3. Describe the shape of the data. Does it pile up anywhere, or spread evenly across all stems? Use the words uniform or even spread in your answer. Why does that shape make sense for the Moon\'s orbit?',
-            '4. Think about the daylight data from Day 3. If that data were shown as a stem and leaf plot, where would most of the leaves be? How would that shape be different from this one, and why?',
-            '5. The Moon takes 29.5 days to complete one orbit. If GAIA logged one more day -- Day 30 -- what value would it be, and which stem would that leaf go on?'
+            '1. Build the stem and leaf plot: separate each value into its tens digit (stem) and ones digit (leaf). Organize all 29 values.',
+            '2. Use your stem and leaf plot to find the median -- count to the 15th value. What is it? What Moon phase does that correspond to?',
+            '3. Describe the distribution of this data. Does it cluster anywhere, or spread evenly? Why does that make scientific sense for a continuous orbital cycle?',
+            '4. How is the shape of this stem and leaf plot different from what the daylight data would look like? What does that difference tell you about the difference between seasonal patterns and orbital cycles?',
+            '5. The Moon completes one full orbit in 29.5 days. If the data went to Day 30, what would the orbital completion percentage be -- and what phase would the Moon be in?'
           ],
-          shortDayNote:'Short day: Question 1 (build the plot) and question 2 (find the median) only. After question 1, click Reveal to show the correct plot so students can check their work before finding the median. Questions 3-5 can be warm-up next class.',
+          shortDayNote:'Short day: Build the stem and leaf plot as a class (question 1) and find the median (question 2). Those two tasks are the core skill. Questions 3-5 can be warm-up next class or homework.',
           noChoice:true
         },
+
 
         // -- DAY 10 -- CHOICE . Moon Phases Cold Open ----------------
         {
@@ -1902,38 +1903,62 @@ const CONTENT = {
         {
           day:12, type:'graph', isReveal:false,
           legLabel:'Leg 2 . Earth, Moon & Seasons',
-          legTitle:'A New Kind of Graph -- The Histogram',
-          gaia:'I have been logging the Moon\'s illumination percentage -- how much of the Moon\'s lit face is visible from Earth -- every day for 87 days. Three complete lunar cycles. I want to show the crew this data as a histogram.\n\nA histogram is a new graph type. It looks like a bar graph, but it works differently. On a bar graph, each bar represents a category -- like a month, a planet, or a hemisphere. On a histogram, each bar represents a range of values called a bin. The height of each bar shows how many data points fall into that range.\n\nThe most important rule: histogram bars always touch. No gaps. This is because the bins cover a continuous range -- there is no space between where one bin ends and the next begins. That touching is the visual signal that tells you this is a histogram and not a bar graph.',
-          scenario:'GAIA displays a pre-built histogram of 87 days of Moon illumination data. The illumination values range from 1% to 99%, sorted into 8 bins of equal width.\n\nStudy the histogram on screen carefully before answering the questions. Look at what each bar represents, how tall the bars are relative to each other, and what the overall shape tells you.',
+          legTitle:'A New Graph Type -- And a Shape That Surprises People',
+          gaia:'I have been logging the Moon\'s illumination percentage -- how much of the Moon\'s lit face is visible from Earth -- every day for 87 days. Three complete lunar cycles. I want to show the crew this data as a histogram.\n\nA histogram is a new graph type. It looks like a bar graph, but it works differently. On a bar graph, each bar represents a category -- like a month, or a planet, or a hemisphere. On a histogram, each bar represents a range of values -- called a bin. The width of each bin is equal. The height of each bar shows how many data points fell into that range.\n\nBefore I show you the histogram, I want the crew to make a prediction. We have 87 observations. The illumination goes from 0% to 100%. If you sorted all 87 values into 8 equal bins, what shape would you expect the histogram to be? Taller in the middle? Taller at the ends? All the same height? Make your prediction first. Then we build it.',
+          scenario:'GAIA displays the 87-day illumination log as raw data cards. The values range from 1 to 99. The crew\'s task: sort them into 8 bins and build the histogram on paper before GAIA reveals the shape.\n\nGAIA: "A histogram asks: how often does each range of values appear? That is a different question from a bar graph, which asks: how big is each category? Learn to tell them apart by asking what each bar represents -- a category or a range. And remember: histogram bars always touch. Bar graph bars do not have to. That visual difference is not an accident. It tells you something about the data."',
+          rawDataOnly:true,
           graphData:{
             title:'Moon Illumination % -- 87 Daily Observations (3 Complete Lunar Cycles)',
-            teacherNote:'This day SHOWS the histogram first, then students read and interpret it. Do not have students build this one -- that comes in Day 15. DO NOT reveal the shape name (uniform) before students answer questions 1-3. Let them describe what they see first (Q1-2), then Q3 gives them the vocabulary word to apply to their own description. Key teaching points: (1) bars touch -- continuous ranges not categories; (2) shape is uniform -- all bars equal height; (3) uniform means no phase is more common than any other.',
-            bins:[
-              {label:'1-12%', count:11},{label:'13-25%', count:11},
-              {label:'26-37%', count:11},{label:'38-50%', count:11},
-              {label:'51-62%', count:11},{label:'63-75%', count:11},
-              {label:'76-87%', count:10},{label:'88-100%', count:11}
+            teacherNote:'Students build a histogram on paper using the 87 data values. The 8 bins are: 0-12, 13-25, 26-37, 38-50, 51-62, 63-75, 76-87, 88-100. Each bin should have approximately 10-11 values -- producing a roughly uniform (flat) distribution. CRITICAL teaching point: histogram bars MUST touch each other because the bins are continuous ranges, not separate categories. This is the most common student error. After students build on paper, discuss the shape as a class. The uniformity IS the finding -- every phase is equally common. Bimodal is enrichment only -- do not assess.',
+            bars:[
+              {label:'1', value:1},{label:'4', value:4},{label:'7', value:7},
+              {label:'11', value:11},{label:'14', value:14},{label:'18', value:18},
+              {label:'21', value:21},{label:'25', value:25},{label:'28', value:28},
+              {label:'32', value:32},{label:'35', value:35},{label:'39', value:39},
+              {label:'42', value:42},{label:'46', value:46},{label:'49', value:49},
+              {label:'3', value:3},{label:'6', value:6},{label:'10', value:10},
+              {label:'13', value:13},{label:'17', value:17},{label:'20', value:20},
+              {label:'24', value:24},{label:'27', value:27},{label:'31', value:31},
+              {label:'34', value:34},{label:'38', value:38},{label:'41', value:41},
+              {label:'45', value:45},{label:'48', value:48},{label:'52', value:52},
+              {label:'2', value:2},{label:'5', value:5},{label:'9', value:9},
+              {label:'12', value:12},{label:'16', value:16},{label:'19', value:19},
+              {label:'23', value:23},{label:'26', value:26},{label:'30', value:30},
+              {label:'33', value:33},{label:'37', value:37},{label:'40', value:40},
+              {label:'44', value:44},{label:'47', value:47},{label:'51', value:51},
+              {label:'55', value:55},{label:'58', value:58},{label:'62', value:62},
+              {label:'65', value:65},{label:'69', value:69},{label:'72', value:72},
+              {label:'76', value:76},{label:'79', value:79},{label:'83', value:83},
+              {label:'86', value:86},{label:'90', value:90},{label:'93', value:93},
+              {label:'54', value:54},{label:'57', value:57},{label:'61', value:61},
+              {label:'64', value:64},{label:'68', value:68},{label:'71', value:71},
+              {label:'75', value:75},{label:'78', value:78},{label:'82', value:82},
+              {label:'85', value:85},{label:'89', value:89},{label:'92', value:92},
+              {label:'97', value:97},{label:'99', value:99},{label:'96', value:96},
+              {label:'53', value:53},{label:'56', value:56},{label:'60', value:60},
+              {label:'63', value:63},{label:'67', value:67},{label:'70', value:70},
+              {label:'74', value:74},{label:'77', value:77},{label:'81', value:81},
+              {label:'84', value:84},{label:'88', value:88},{label:'91', value:91},{label:'95', value:95}
             ],
-            yLabel:'Number of Days',
-            xLabel:'Moon Illumination %',
-            isHistogram:true,
+            yLabel:'Moon Illumination %',
             graphAnswers:[
-              {q:'1', a:'Bar graph: bars do NOT touch -- each bar is a separate category. Histogram: bars DO touch -- each bar is a range of values on a continuous scale. The touching bars signal that there are no gaps between the ranges. This is the most important visual difference to establish before anything else.'},
-              {q:'2', a:'All 8 bins have approximately the same count (10-11 days each). The bars are all roughly the same height. No bar stands out as significantly taller or shorter. Students should describe this in their own words before being given the vocabulary in Q3.'},
-              {q:'3', a:'Uniform distribution -- all bars equal height, no clustering, no peak, no valley. Students apply the vocabulary to their own description from Q2. It tells us no illumination level is more common than any other -- every phase appears equally often across the 87 days.'},
-              {q:'4', a:'The Moon moves through its orbit at a steady rate -- about 3.4% per day. It does not slow near full moon or speed up near new moon. Because the rate is constant, each illumination level gets roughly the same number of days across three cycles. Steady orbit = uniform histogram.'},
-              {q:'5', a:'The daylight histogram would NOT be uniform. It would have taller bars near the extremes (values around 9 hours and 15 hours) and shorter bars in the middle, because Earth slows near the solstices and spends more days at extreme day lengths. Different pattern, different scientific cause.'}
+              {q:'Histogram vs bar graph', a:'On a bar graph, each bar is a category (a month, a planet, a hemisphere). Bars do not have to touch because the categories are separate. On a histogram, each bar is a RANGE of values (0-12%, 13-25%, etc.). The bars MUST touch because the ranges are continuous -- there is no gap between 12% and 13%. The touching bars are the visual signal that this is a histogram.'},
+              {q:'Bin counts', a:'Each bin should have approximately 10-11 values. Bin 1 (0-12%): ~11 values. Bin 2 (13-25%): ~11. Bin 3 (26-37%): ~11. Bin 4 (38-50%): ~11. Bin 5 (51-62%): ~11. Bin 6 (63-75%): ~11. Bin 7 (76-87%): ~11. Bin 8 (88-100%): ~11. All bars are approximately the same height.'},
+              {q:'Distribution shape', a:'Uniform -- all bars are approximately the same height. No bin has significantly more or fewer values than any other. This means no illumination level is more common than any other. Every phase appears equally across 87 days. This is called a uniform distribution.'},
+              {q:'Trend description', a:'No trend -- the data is flat. There is no increase, no decrease, no peak, no valley. When asked to describe the trend in a uniform histogram, the correct answer is: no trend, or uniform distribution. The data does not favor any range over another.'},
+              {q:'Why uniform makes sense', a:'The Moon moves through its cycle at a consistent rate -- about 3.4% per day. It does not slow down near full moon or speed up near new moon. A consistent cycle produces data that spreads evenly across all values. Uniform shape = consistent cycle.'},
+              {q:'Enrichment - bimodal preview', a:'Some distributions have TWO clusters instead of being flat. These are called bimodal distributions. A bimodal histogram has two tall sections with a valley between them. The tidal data the crew will examine in Day 15 produces this shape -- because tides have predictable highs AND predictable lows. Not assessed -- but worth knowing the name.'}
             ]
           },
-          gaiaGraphNote:'"One more thing about histograms before you answer the questions. The bars touch because the data is continuous -- illumination goes from 0% to 100% with no gaps, so the bins have no gaps either. When you see touching bars, you are reading a histogram. When you see gaps between bars, you are reading a bar graph. That visual difference is not an accident. It tells you something about the kind of data being shown."',
+          gaiaGraphNote:'"The bars on a histogram touch each other. This is not a mistake and it is not optional. It is the visual signal that the x-axis represents a continuous range, not separate categories. When you see bars that touch, you are reading a histogram. When you see gaps between bars, you are reading a bar graph. That visual difference carries meaning. Do not ignore it.\n\nNow look at the shape of your completed histogram. All bars approximately equal height. This is called a uniform distribution. It is the shape you get when no value is more common than any other. The Moon does not have a favorite phase -- its orbit is consistent. The uniform shape tells you that. Naming the trend here: there is no trend. Flat is the finding."',
           graphQuestions:[
-            '1. Look at the histogram on screen. How is it different from a bar graph? Name one difference in what the bars represent and one difference in how the bars are drawn.',
-            '2. Look at the height of each bar and describe what you see in your own words. Do not use the word uniform yet -- just describe the heights as specifically as you can.',
-            '3. Scientists use the word uniform to describe a distribution where all values appear with about the same frequency. Based on your description in question 2, does this histogram show a uniform distribution? Explain what that tells you about how often each Moon phase appears.',
-            '4. Why does Moon illumination data produce this particular shape? Connect your answer to what you know about how the Moon moves through its orbit.',
-            '5. Think about the daylight data from Day 3 -- hours of sunlight ranging from 9 hours in winter to 15 hours in summer. If that data were shown as a histogram, would it be uniform? Where would the taller bars be, and why?'
+            '1. What is the difference between a histogram and a bar graph? Name two specific differences -- one about what the bars represent, and one about whether the bars touch.',
+            '2. Sort the 87 data values into 8 bins: 0-12, 13-25, 26-37, 38-50, 51-62, 63-75, 76-87, 88-100. Count the values in each bin and build your histogram on paper. Remember: bars must touch.',
+            '3. Describe the shape of the histogram and name the trend. Is it increasing? Decreasing? Clustered in the middle? Or something else? Use the word uniform in your answer.',
+            '4. Why does a consistent, continuous cycle produce a uniform distribution? What would have to be true about the Moon\'s orbit for the histogram to have a cluster near 100% (full moon)?',
+            '5. Look back at the daylight data from Day 3. If you made a histogram of those 12 values, where would the bars be tallest -- near 9 hours, near 15 hours, or near 12 hours? How would that shape be different from today\'s Moon histogram, and why?'
           ],
-          shortDayNote:'Short day: Show the histogram and do questions 1 and 2 only. Question 1 establishes what a histogram is. Question 2 gets students describing the shape in their own words -- do NOT give them the word uniform before they answer. Then introduce uniform as the name for what they just described. Save questions 3-5 for warm-up next class.',
+          shortDayNote:'Short day: Do questions 1 and 2 only. Building the histogram from raw data is the core skill. Describe the shape verbally as a class. Save questions 3-5 for warm-up next class.',
           noChoice:true
         },
 
@@ -1973,56 +1998,69 @@ const CONTENT = {
 
         // -- DAY 15 -- GRAPH . Histogram 2 . Bimodal Distribution -----
         {
-          day:15, type:'graph', isReveal:false, rawDataOnly:true, showHistogramReveal:true,
+          day:15, type:'graph', isReveal:false,
           legLabel:'Leg 2 . Earth, Moon & Seasons',
-          legTitle:'Same Tool. Your Turn to Build.',
-          gaia:'Two days ago I showed you a histogram of Moon illumination data. You read it, described it, and named its shape.\n\nToday you build one.\n\nI have tidal height measurements from a coastal monitoring station on Earth. 60 measurements taken over 30 days -- one reading at high tide and one at low tide each day. The values range from about 19 cm at the lowest tides to about 294 cm at the highest.\n\nBefore you sort a single number, write down your prediction. Tides go high and then low, twice per day. Based on what you know about tides from Day 14, which height ranges do you think will appear most often? Which will appear least often? Commit to a prediction before you look at the data.',
-          scenario:'GAIA displays 60 tidal height measurements in centimeters.\n\nSort the values into 6 bins and build a histogram on paper:\n0-50 cm -- 51-100 cm -- 101-150 cm -- 151-200 cm -- 201-250 cm -- 251-300 cm\n\nCount how many values fall in each bin. Draw your bars so they touch. Then use the Reveal button to check your work before answering the questions.',
+          legTitle:'Same Tool. Completely Different Story.',
+          gaia:'Two days ago the crew built a histogram of Moon illumination data. The shape was uniform -- all bars approximately equal height. Every illumination level was equally common because the Moon moves through its cycle at a consistent rate.\n\nToday I have 60 days of tidal height measurements from a coastal monitoring station on Earth. 240 measurements -- four per day, one every six hours, recording the height of the ocean at that location.\n\nBefore I give you the data: what is your prediction? Tides have high tides and low tides, repeating twice per day. If you recorded tidal heights every six hours for 60 days, which heights would appear most often? Write your prediction before looking at the data. The shape of this histogram is going to surprise at least some of you.',
+          scenario:'GAIA displays 240 tidal height measurements in centimeters, ranging from 18 cm to 312 cm. The crew\'s task: sort the values into 8 bins and build the histogram on paper.\n\nGAIA: "A histogram is still a histogram. The steps are the same as Day 12. Divide the range into equal bins. Count how many values fall in each bin. Draw bars that touch. Read the shape and name the trend. The tool is identical. What changes is what the shape tells you -- and this shape is going to tell a very different story than the Moon phase data did."',
+          rawDataOnly:true,
           graphData:{
-            title:'Tidal Height (cm) -- 60 Measurements Over 30 Days (One High Tide + One Low Tide Per Day)',
-            teacherNote:'6 bins, 60 data points. Expected bin counts: 0-50: ~15 values. 51-100: ~11 values. 101-150: ~5 values. 151-200: ~5 values. 201-250: ~10 values. 251-300: ~14 values. Shape is bimodal -- two clusters at the extremes with shorter bars in the middle. DO NOT describe the shape before students build and answer questions. Let them discover it. Bimodal is ENRICHMENT only -- not assessed. After they build and check with Reveal, ask: did your prediction match? Why or why not? Core lesson: same histogram tool, completely different shape -- and they figured out why.',
+            title:'Tidal Height (cm) -- 240 Measurements Over 60 Days (Every 6 Hours)',
+            teacherNote:'Students build histogram on paper. Bins: 0-40cm, 41-80, 81-120, 121-160, 161-200, 201-240, 241-280, 281-320. Distribution is bimodal -- tall bars at the low end (0-80cm, low tides) and tall bars at the high end (241-320cm, high tides), with shorter bars in the middle. The ocean moves quickly through middle heights but spends time at the highs and lows. Bimodal is ENRICHMENT vocabulary -- not assessed. Core lesson: same histogram tool, completely different shape, because the data is measuring a different phenomenon. The contrast with the uniform Moon histogram is the whole point.',
             bars:[
-              {label:'28', value:28},{label:'35', value:35},{label:'22', value:22},
-              {label:'41', value:41},{label:'19', value:19},{label:'33', value:33},
-              {label:'27', value:27},{label:'44', value:44},{label:'31', value:31},
-              {label:'25', value:25},{label:'38', value:38},{label:'20', value:20},
-              {label:'46', value:46},{label:'29', value:29},{label:'37', value:37},
-              {label:'68', value:68},{label:'75', value:75},{label:'82', value:82},
-              {label:'91', value:91},{label:'73', value:73},{label:'88', value:88},
-              {label:'79', value:79},{label:'95', value:95},{label:'61', value:61},
-              {label:'84', value:84},{label:'70', value:70},
-              {label:'118', value:118},{label:'132', value:132},{label:'141', value:141},
-              {label:'125', value:125},{label:'138', value:138},
-              {label:'172', value:172},{label:'165', value:165},{label:'183', value:183},
-              {label:'158', value:158},{label:'176', value:176},
-              {label:'218', value:218},{label:'235', value:235},{label:'241', value:241},
-              {label:'227', value:227},{label:'212', value:212},{label:'248', value:248},
-              {label:'223', value:223},{label:'239', value:239},{label:'215', value:215},
-              {label:'232', value:232},
-              {label:'262', value:262},{label:'275', value:275},{label:'258', value:258},
-              {label:'281', value:281},{label:'269', value:269},{label:'274', value:274},
-              {label:'291', value:291},{label:'263', value:263},{label:'278', value:278},
-              {label:'285', value:285},{label:'271', value:271},{label:'267', value:267},
-              {label:'294', value:294},{label:'259', value:259},{label:'283', value:283}
+              {label:'22', value:22},{label:'31', value:31},{label:'19', value:19},{label:'28', value:28},
+              {label:'35', value:35},{label:'24', value:24},{label:'18', value:18},{label:'33', value:33},
+              {label:'27', value:27},{label:'21', value:21},{label:'30', value:30},{label:'25', value:25},
+              {label:'38', value:38},{label:'23', value:23},{label:'29', value:29},{label:'20', value:20},
+              {label:'34', value:34},{label:'26', value:26},{label:'32', value:32},{label:'37', value:37},
+              {label:'55', value:55},{label:'62', value:62},{label:'48', value:48},{label:'71', value:71},
+              {label:'58', value:58},{label:'44', value:44},{label:'67', value:67},{label:'53', value:53},
+              {label:'75', value:75},{label:'49', value:49},{label:'60', value:60},{label:'43', value:43},
+              {label:'105', value:105},{label:'118', value:118},{label:'92', value:92},{label:'130', value:130},
+              {label:'97', value:97},{label:'112', value:112},{label:'88', value:88},{label:'124', value:124},
+              {label:'143', value:143},{label:'157', value:157},{label:'138', value:138},{label:'162', value:162},
+              {label:'149', value:149},{label:'155', value:155},{label:'141', value:141},{label:'160', value:160},
+              {label:'152', value:152},{label:'147', value:147},{label:'158', value:158},{label:'144', value:144},
+              {label:'175', value:175},{label:'168', value:168},{label:'183', value:183},{label:'171', value:171},
+              {label:'179', value:179},{label:'165', value:165},{label:'188', value:188},{label:'172', value:172},
+              {label:'258', value:258},{label:'271', value:271},{label:'245', value:245},{label:'283', value:283},
+              {label:'262', value:262},{label:'249', value:249},{label:'277', value:277},{label:'255', value:255},
+              {label:'268', value:268},{label:'241', value:241},{label:'274', value:274},{label:'259', value:259},
+              {label:'288', value:288},{label:'295', value:295},{label:'302', value:302},{label:'284', value:284},
+              {label:'298', value:298},{label:'291', value:291},{label:'306', value:306},{label:'287', value:287},
+              {label:'309', value:309},{label:'293', value:293},{label:'299', value:299},{label:'312', value:312},
+              {label:'285', value:285},{label:'303', value:303},{label:'296', value:296},{label:'289', value:289},
+              {label:'56', value:56},{label:'63', value:63},{label:'47', value:47},{label:'70', value:70},
+              {label:'52', value:52},{label:'66', value:66},{label:'41', value:41},{label:'73', value:73},
+              {label:'264', value:264},{label:'278', value:278},{label:'251', value:251},{label:'269', value:269},
+              {label:'256', value:256},{label:'272', value:272},{label:'247', value:247},{label:'261', value:261},
+              {label:'19', value:19},{label:'26', value:26},{label:'33', value:33},{label:'22', value:22},
+              {label:'28', value:28},{label:'35', value:35},{label:'21', value:21},{label:'30', value:30},
+              {label:'286', value:286},{label:'293', value:293},{label:'301', value:301},{label:'308', value:308},
+              {label:'290', value:290},{label:'297', value:297},{label:'283', value:283},{label:'295', value:295},
+              {label:'46', value:46},{label:'59', value:59},{label:'53', value:53},{label:'68', value:68},
+              {label:'42', value:42},{label:'61', value:61},{label:'50', value:50},{label:'74', value:74},
+              {label:'263', value:263},{label:'276', value:276},{label:'250', value:250},{label:'271', value:271}
             ],
-            yLabel:'Number of Measurements',
+            yLabel:'Tidal Height (cm)',
             graphAnswers:[
-              {q:'1', a:'Bin counts: 0-50 cm: 15 values. 51-100 cm: 11 values. 101-150 cm: 5 values. 151-200 cm: 5 values. 201-250 cm: 10 values. 251-300 cm: 14 values. Two tall bars at the extremes with shorter bars in the middle. Use the Reveal button to show the correct histogram so students can compare.'},
-              {q:'2', a:'Two clusters -- one at the low end (0-100 cm) and one at the high end (201-300 cm). The middle bins are shorter. Students should describe this in their own words. This is NOT uniform. Enrichment for advanced students: statisticians call this a bimodal distribution -- bi means two, modal means peak.'},
-              {q:'3', a:'Tides spend more time at high and low positions and move relatively quickly through middle heights. So more measurements fall in the extreme bins. The shape reflects the two natural states the ocean returns to each day -- high tide and low tide.'},
-              {q:'4', a:'Moon histogram: uniform -- flat, all bars equal. The Moon moves at a steady rate, every phase equally common. Tidal histogram: two clusters at the extremes, shorter middle. Tides have two natural states they return to. Same tool, completely different shape, because the data comes from completely different systems.'},
-              {q:'5', a:'During spring tides (new or full moon), highs are higher and lows are lower -- the two clusters shift further apart, with more values in the outermost bins. During neap tides (quarter moon), the range is smaller -- the clusters move closer to the middle.'}
+              {q:'Bin counts (approximate)', a:'Bin 1 (0-40cm): ~40 values -- very tall bar. Bin 2 (41-80cm): ~36 values -- tall bar. Bin 3 (81-120cm): ~12 values -- short bar. Bin 4 (121-160cm): ~16 values -- medium bar. Bin 5 (161-200cm): ~12 values -- short bar. Bin 6 (201-240cm): ~8 values -- short bar. Bin 7 (241-280cm): ~52 values -- very tall bar. Bin 8 (281-320cm): ~64 values -- tallest bar. Two tall clusters at the ends, shorter bars in the middle.'},
+              {q:'Shape and trend', a:'Two clusters -- one at the low end (0-80cm) and one at the high end (241-320cm). The middle bins are shorter. The trend is NOT uniform. The data clusters at two extremes. Enrichment: this shape with two distinct clusters is called bimodal -- bi means two, modal means peak or most common. Not assessed, but worth knowing.'},
+              {q:'Why two clusters', a:'Tides spend more time at high tide and low tide than at middle heights. The ocean rises and falls relatively quickly through the middle heights. It lingers at the extremes. So more measurements land in the high and low bins -- the tide is at those heights longer each day.'},
+              {q:'Comparison to Moon histogram', a:'Moon phase histogram: uniform -- all bars equal, no trend. Tidal histogram: two clusters at extremes, shorter middle. Both are histograms. Both involve the Earth-Moon system. Completely different shapes because the data measures different things. A consistent cycle produces uniform. A system with two distinct states produces clusters.'},
+              {q:'Spring and neap connection', a:'The data includes both spring tides (more extreme -- higher highs, lower lows) and neap tides (less extreme). Spring tides push values into the highest and lowest bins. Neap tides produce values closer to the middle. This is why the histogram is spread across a range rather than two perfect spikes -- the tidal maximum varies with the Moon\'s phase cycle.'},
+              {q:'Enrichment - bimodal', a:'Bimodal distributions appear whenever a system has two distinct states it tends to occupy. Tides: high and low. Body temperature: healthy range and fever. Commute times: before rush hour and during. Any time data has two natural modes -- two most-common values -- the histogram shows two peaks with a valley between them.'}
             ]
           },
-          gaiaGraphNote:'"You built a histogram. Look at the shape. Look at how it compares to the Moon illumination histogram from Day 12. What is the same about these two graphs? What is different? The tool is the same. The shape is not. Ask yourself why -- what is it about tides that produces this particular shape? The data already told you the answer. You just drew it."',
+          gaiaGraphNote:'"Look at both histograms side by side in your memory. Moon phase data: flat, uniform, no trend. Tidal height data: two tall clusters at the ends, shorter bars in the middle -- not uniform, not a single peak, but two distinct groups.\n\nSame graph type. Same general approach -- sort values into bins, draw touching bars, read the shape, name the trend. Completely different shapes because the data is measuring completely different phenomena.\n\nThis is what histograms are for. They show you the shape of the distribution -- where values pile up, where they are sparse. When the shape is flat, the cycle is consistent. When the shape has clusters, something is pulling the data toward certain values. Your job as a scientist is to read the shape and ask: why does the data look like this?\n\nFor my advanced crew members: statisticians call a shape with two clusters bimodal. You will see this shape again. Remember it."',
           graphQuestions:[
-            '1. Sort the 60 values into 6 bins: 0-50, 51-100, 101-150, 151-200, 201-250, 251-300. Count the values in each bin and build your histogram with bars that touch. Then click Reveal to check your work.',
-            '2. Describe the shape of your histogram in your own words. Where are the tallest bars? Where are the shortest? How is this shape different from the Moon illumination histogram from Day 12?',
-            '3. Why does tidal data produce this shape? Connect your answer to what you know about how tides move -- why do the extreme height ranges have more measurements than the middle ranges?',
-            '4. Compare the two histograms. Moon data produced one shape. Tidal data produced a completely different shape. Both are histograms. What does that tell you about what histograms actually show?',
+            '1. Sort the 240 tidal height values into 8 bins (0-40, 41-80, 81-120, 121-160, 161-200, 201-240, 241-280, 281-320). Count the values in each bin and build your histogram. Remember: bars must touch.',
+            '2. Describe the shape of this histogram and name the trend. Where are the tallest bars? Where are the shortest? How is this shape different from the Moon phase histogram from Day 12?',
+            '3. Why does tidal height data produce this shape? Why do the lowest and highest height ranges have more observations than the middle ranges? Connect your answer to what you know about how tides move.',
+            '4. The Moon phase histogram was uniform. This histogram has two clusters. Both are histograms of data from the same Earth-Moon-Sun system. Why do they have such different shapes?',
             '5. If you collected tidal data during only a week of spring tides, how would your histogram look different from one collected during only neap tides? Use what you know about spring and neap tides to explain.'
           ],
-          shortDayNote:'Short day: Question 1 (build the histogram) and question 2 (describe the shape) only. After question 1, use Reveal to show the correct histogram. Then question 2 -- students describe in their own words before any shape vocabulary is introduced. The comparison to Day 12 can be a verbal discussion. Save questions 3-5 for warm-up.',
+          shortDayNote:'Short day: Do questions 1 and 2 only. Building the histogram and describing the shape is the core skill. The comparison to the Moon phase histogram (question 4) can happen verbally. Save questions 3 and 5 for warm-up next class.',
           noChoice:true
         },
 
@@ -2404,7 +2442,7 @@ const CONTENT = {
               subtext:'You cannot understand what happens to the energy without first understanding how much arrives and in what form.',
               deltas:{nav:0, solar:14, signal:10, earth:-4},
               branch:'A-stream1',
-              consequence:'Starting with the source is the right scientific instinct. The crew maps the full spectrum of solar radiation -- visible light, ultraviolet, infrared -- and establishes how much energy arrives at the top of the atmosphere on any given day. GAIA: "Approximately 1,361 watts of solar energy arrive at the top of Earth\'s atmosphere per square meter. That number is called the solar constant. It has not changed meaningfully in 47 years. Whatever has changed in the Lighthouse data is not coming from the source. It is coming from what happens after the energy arrives. That distinction is important. The Sun is not the variable here."'
+              consequence:'Approximately 1,361 watts of solar energy arrive at the top of Earth\'s atmosphere per square meter. That number is called the solar constant. It has not changed meaningfully in 47 years. The full spectrum is logged and consistent. Whatever has changed in Stream 4 is not coming from the Sun. It is coming from what happens after the energy arrives. That distinction matters. The source is stable.'
             },
             {
               letter:'B',
@@ -2473,7 +2511,19 @@ const CONTENT = {
           legTitle:'The Mechanism Behind Frequency B',
           choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes -- open your book to Cycling of Weather and Climate, Topic 2, Lesson 1. Read the Greenhouse Effect section carefully. Your exit ticket will ask you to use the mechanism to explain what the Lighthouse has been measuring.',
           gaia:'I am ready to tell the crew what Frequency B measures.\n\nFrequency B is a measure of infrared radiation retention in Earth\'s lower atmosphere. In plain language: it measures how much infrared energy the atmosphere is holding onto instead of releasing to space. The Lighthouse was built to track this because the people who built it understood something that most people in the 1970s were only beginning to discuss -- that adding certain gases to the atmosphere changes how much infrared it retains.\n\nThose gases are called greenhouse gases. Water vapor. Carbon dioxide. Methane. Nitrous oxide. They are transparent to incoming sunlight -- sunlight passes right through them. But they absorb infrared radiation. The surface emits infrared. The greenhouse gases catch it. The atmosphere warms. The surface warms further.\n\nThis is the greenhouse effect. It is not a malfunction. A version of it has kept Earth warm enough for life for billions of years. What the Lighthouse has been tracking is whether the balance is shifting -- and by how much.',
-          scenario:'GAIA displays Stream 4 -- Frequency B -- alongside atmospheric CO2 concentration data for the same 47-year period. The two lines track each other almost exactly. As CO2 concentration increases, infrared retention increases. The relationship is not perfectly proportional -- other greenhouse gases contribute, cloud cover varies, feedback loops complicate the picture -- but the correlation is unmistakable.\n\nGAIA: "The Lighthouse did not build this correlation. It measured it. The correlation existed before the Lighthouse was built -- the builders knew what to look for. What they did not know was what would happen to the rate of change. That is what the eight-month anomaly is about. The Prometheus pulse appears to have accelerated a process that was already underway. I need the crew to understand the mechanism before we can discuss the implications."',
+          scenario:'GAIA displays Stream 4 -- Frequency B -- alongside atmospheric CO2 concentration data for the same 47-year period. The two lines track each other closely. As CO2 increases, infrared retention increases.',
+          graphData:{
+            title:'Frequency B vs. CO2 Concentration -- 47-Year Record',
+            teacherNote:'Two-line graph. Frequency B (teal) and CO2 (amber) both rise over 47 years. Spike at year 47 = Prometheus pulse effect on Frequency B. CO2 continues gradual rise. The divergence at year 47 is the anomaly.',
+            multiLine:[
+              {section:'Frequency B', values:[12,13,13,14,14,15,15,16,16,17,17,18,19,19,20,21,21,22,23,24,25,26,27,28,29,31,32,34,36,38,40,43,46,49,52,55,59,63,67,71,76,81,86,91,96,97,98,99], color:'safe'},
+              {section:'CO2 Index', values:[10,11,11,12,12,13,13,14,14,15,16,16,17,18,18,19,20,21,21,22,23,24,25,26,27,28,29,30,32,33,35,36,38,40,42,44,46,48,51,53,56,58,61,64,67,70,72,74], color:'warning'}
+            ],
+            xLabels:['Y1','Y5','Y10','Y15','Y20','Y25','Y30','Y35','Y40','Y43','Y45','Y46','Y47'],
+            yLabel:'Relative Index',
+            graphAnswers:[{q:'What to notice', a:'Both lines rise together -- correlation. Frequency B spikes at year 47 (Prometheus pulse effect). CO2 continues gradual rise. The divergence at year 47 is the anomaly.'}]
+          },
+          gaiaGraphNote:'"The Lighthouse did not build this correlation. It measured it. Two lines. One story. The mechanism is what today\'s reading explains."',
           exitTicketPrompt:'Explain the greenhouse effect in your own words -- the complete pathway from sunlight arriving at Earth to infrared being retained in the atmosphere. What role do greenhouse gases play specifically? Make your claim: based on what you now understand about the mechanism, what does an increase in Frequency B tell you about what is happening in Earth\'s atmosphere?',
           discussionPrompt:'GAIA says the greenhouse effect is not a malfunction -- it has kept Earth warm for billions of years. So what is the actual concern about an increasing Frequency B? Is there a difference between the greenhouse effect existing and the greenhouse effect intensifying? What would happen to Earth\'s temperature if greenhouse gases were removed entirely -- and what would happen if they doubled?',
           choices:[
@@ -2511,7 +2561,26 @@ const CONTENT = {
           legTitle:'How Heat Moves Through the Atmosphere',
           gaia:'The crew understands what the greenhouse effect is and why the Lighthouse was built to measure it. Today we read about how the heat actually moves once it is in the atmosphere -- because retained infrared energy does not just sit still. It moves. And how it moves determines everything about weather patterns, wind circulation, and ocean currents. The next three topics in this leg all connect back to heat movement.\n\nBefore we get to the reading, I want to spend a few minutes on something mathematical. Tomorrow the crew will work with a new type of graph -- a box and whisker plot. Building and reading one requires finding medians. You found medians in Leg 2. I want to make sure that skill is solid before we need it tomorrow.',
           gaiaRecall:'From Leg 2 Day 9: the median is the middle value in a dataset when all values are arranged in order from smallest to largest. With an odd number of values, the median is the single middle value. With an even number of values, the median is the average of the two middle values. You used this to find the median orbital position of the Moon in the stem and leaf plot -- the 15th value out of 29, which was 52. Tomorrow you will need to find three medians from the same dataset: one for the full set, one for the lower half, and one for the upper half. That is how quartiles work. Make sure you can find a median reliably before tomorrow\'s graph day.',
-          scenario:'GAIA assigns the heat transfer section of today\'s reading -- radiation, conduction, and convection in the atmosphere -- and connects each to the greenhouse data. The median spiral review is embedded as a warm-up before the reading, with three quick practice problems GAIA walks through on screen.\n\nMedian warm-up: GAIA displays three small datasets and the class finds the median of each before opening the book. This takes approximately 5-7 minutes and sets up tomorrow\'s box and whisker work.',
+          scenario:'Before opening the book, complete the median warm-up below. These three problems prepare the crew for tomorrow\'s graph work.',
+          graphData:{
+            title:'Median Warm-Up -- Three Practice Problems',
+            teacherNote:'Do this BEFORE the reading. Answers: (1) Order 8,14,17,22,31 -- Median=17. (2) Order 29,38,45,55,62,71 -- Median=(45+55)/2=50. (3) Order 5,8,11,12,16,19,23 -- Median=12.',
+            rawDataOnly:true,
+            bars:[
+              {label:'Problem 1 -- Find the median', value:0},
+              {label:'14', value:14},{label:'22', value:22},{label:'8', value:8},{label:'31', value:31},{label:'17', value:17},
+              {label:'Problem 2 -- Find the median (6 values)', value:0},
+              {label:'45', value:45},{label:'62', value:62},{label:'38', value:38},{label:'71', value:71},{label:'29', value:29},{label:'55', value:55},
+              {label:'Problem 3 -- Find the median', value:0},
+              {label:'12', value:12},{label:'8', value:8},{label:'19', value:19},{label:'5', value:5},{label:'23', value:23},{label:'16', value:16},{label:'11', value:11}
+            ],
+            yLabel:'',
+            graphAnswers:[
+              {q:'1', a:'Order: 8,14,17,22,31. Median = 3rd value = 17.'},
+              {q:'2', a:'Order: 29,38,45,55,62,71. Even set -- median = (45+55)/2 = 50.'},
+              {q:'3', a:'Order: 5,8,11,12,16,19,23. Median = 4th value = 12.'}
+            ]
+          },
           readingFocus:'Savvas Cycling of Weather and Climate, Chapter 2 (Topic 2) Lesson 1 -- Heat Transfer in the Atmosphere. Sections: Methods of Heat Transfer, Heat Transfer at Earth\'s Surface. Focus: What are the three methods of heat transfer? How does each one operate in Earth\'s atmosphere? How does the greenhouse effect relate to radiative heat transfer specifically?',
           gaiaReadingPrompt:'"Three methods. Radiation: energy transferred as electromagnetic waves -- no medium required. This is how the Sun\'s energy reaches Earth across the vacuum of space, and how Earth\'s surface re-emits infrared upward. Conduction: energy transferred through direct contact between molecules. The atmosphere conducts heat from the warm surface to the air directly above it -- but conduction is slow and does not move energy very far vertically. Convection: energy transferred by the movement of a fluid -- in this case, air. Warm air is less dense than cool air, so it rises. Cool air sinks to replace it. This circulation is how most heat moves through the atmosphere over large distances. All three happen simultaneously. The greenhouse effect is specifically about radiation -- the infrared radiation the surface emits upward. The greenhouse gases intercept that radiation. Conduction and convection then redistribute the retained heat horizontally and vertically."',
           vocabFocus:['thermal energy','radiation','conduction','convection','absorb','electromagnetic wave','greenhouse effect'],
@@ -2525,19 +2594,13 @@ const CONTENT = {
           day:5, type:'graph', isReveal:false,
           legLabel:'Leg 4 . Greenhouse Effect',
           legTitle:'A New Graph That Shows the Spread of Data',
-          gaia:'Today I am going to show the crew a new type of graph called a box and whisker plot. Before you read it, I want to explain the five numbers it is built from.\n\nFor any dataset, arrange the values in order from smallest to largest. Then find:\n1. The minimum -- the smallest value\n2. Q1 -- the median of the lower half of the data\n3. The median -- the middle value of the full dataset\n4. Q3 -- the median of the upper half of the data\n5. The maximum -- the largest value\n\nThe box spans from Q1 to Q3. A line inside the box marks the median. The whiskers extend from the box out to the minimum and maximum. The distance from Q1 to Q3 is called the interquartile range, or IQR. It tells you where the middle 50 percent of the data falls.\n\nI am going to show you a completed box and whisker plot first. Study it carefully before answering the questions.',
-          scenario:'GAIA displays a box and whisker plot showing annual temperature ranges across five climate zones. The data comes from 30 years of Earth surface temperature readings from the Lighthouse atmospheric sensors.\n\nFive climate zones are shown side by side: Arctic, Temperate, Mediterranean, Tropical, and Desert. Each zone has its own box and whisker. Study the plot carefully -- look at where each box sits, how wide it is, where the line inside sits, and how long the whiskers are.',
+          gaia:'Today there is a new graph type called a box and whisker plot. Before you read it, I want to explain the five numbers it is built from.\n\nFor any dataset, arrange the values in order from smallest to largest. Then find:\n1. The minimum -- the smallest value\n2. Q1 -- the median of the lower half of the data\n3. The median -- the middle value of the full dataset\n4. Q3 -- the median of the upper half of the data\n5. The maximum -- the largest value\n\nThe box spans from Q1 to Q3. A line inside the box marks the median. The whiskers extend from the box out to the minimum and maximum. The distance from Q1 to Q3 is called the interquartile range, or IQR. It tells you where the middle 50 percent of the data falls.\n\nI am going to show you a completed box and whisker plot first. Study it carefully before answering the questions.',
+          scenario:'GAIA displays one box and whisker plot: Arctic annual temperatures from 30 years of Lighthouse data. Five numbers: Min -45C, Q1 -28C, Median -12C, Q3 +4C, Max +18C. Find the box, the median line, and both whiskers.',
           graphData:{
             title:'Annual Temperature Range by Climate Zone -- 30-Year Record (Degrees Celsius)',
             teacherNote:'BOX AND WHISKER -- NEW GRAPH TYPE. Show the pre-built plot first. Do not have students build this one. Students read and interpret. Five zones side by side. Key teaching points: (1) the box shows the middle 50% of data (Q1 to Q3); (2) the line inside the box is the median, not the mean; (3) whiskers show min and max; (4) IQR = Q3 - Q1, measures spread; (5) a narrow box = consistent temperatures, a wide box = variable temperatures. Arctic has the widest box (most variable). Tropical has the narrowest (most consistent). Desert has the highest max. Temperate and Mediterranean are in between. After students read, ask: which zone would be most affected by a shift in the greenhouse effect? (Answer: Arctic -- it is already the most variable and changes there affect global systems.)',
             isBoxWhisker:true,
-            zones:[
-              {label:'Arctic', min:-45, q1:-28, median:-12, q3:4, max:18, color:'#7be3ff'},
-              {label:'Temperate', min:-18, q1:-4, median:10, q3:20, max:35, color:'#00e5cc'},
-              {label:'Mediterranean', min:2, q1:10, median:18, q3:26, max:38, color:'#ffdd00'},
-              {label:'Tropical', min:20, q1:24, median:26, q3:28, max:32, color:'#ff8800'},
-              {label:'Desert', min:-8, q1:12, median:24, q3:36, max:48, color:'#ff3355'}
-            ],
+            zones:[{label:'Arctic', min:-45, q1:-28, median:-12, q3:4, max:18, color:'#7be3ff'}],
             graphAnswers:[
               {q:'1', a:'The box spans from Q1 to Q3. The line inside is the median. The whiskers extend to the minimum and maximum values. The IQR is the width of the box (Q3 minus Q1) -- it shows where the middle 50 percent of the data falls. Everything outside the box but inside the whiskers is the upper and lower 25 percent of the data.'},
               {q:'2', a:'Arctic: IQR = 4-(-28) = 32 degrees. Tropical: IQR = 28-24 = 4 degrees. The Arctic box is much wider -- Arctic temperatures are far more variable year to year. The Tropical box is narrow -- temperatures are very consistent year-round. This matches what we know: tropical regions near the equator receive consistent solar energy all year, while Arctic regions experience extreme seasonal variation.'},
@@ -2546,7 +2609,7 @@ const CONTENT = {
               {q:'5', a:'Arctic, because it already has the widest IQR (most variable) and its median is below freezing. Small shifts in temperature have outsized effects in polar regions -- melting ice changes reflectivity (the energy budget pie chart), which causes further warming. The Arctic is where greenhouse effect changes are most visible and have the largest global consequences.'}
             ]
           },
-          gaiaGraphNote:'"Five boxes. Five zones. Same planet, same Sun, completely different temperature patterns. The width of each box tells you how variable the temperatures are -- how much they spread across the middle 50 percent of the data. The position of each box tells you whether the zone runs warm or cold overall. The whiskers show you the extremes. A box and whisker plot gives you all of that in one image. Notice that the Tropical box is both high on the scale (warm) and narrow (consistent). Notice that the Desert whiskers reach both very high and surprisingly low. Notice that the Arctic box is wide and spans across the freezing line. Each of those observations is a scientific finding."',
+          gaiaGraphNote:'"One zone. Five numbers. Same planet, same Sun, completely different temperature patterns. The width of each box tells you how variable the temperatures are -- how much they spread across the middle 50 percent of the data. The position of each box tells you whether the zone runs warm or cold overall. The whiskers show you the extremes. A box and whisker plot gives you all of that in one image. Notice that the Tropical box is both high on the scale (warm) and narrow (consistent). Notice that the Desert whiskers reach both very high and surprisingly low. Notice that the Arctic box is wide and spans across the freezing line. Each of those observations is a scientific finding."',
           graphQuestions:[
             '1. Look at the box and whisker plot on screen. Label these five parts on a sketch: minimum, Q1, median, Q3, maximum. What does the IQR measure -- and where do you see it in the plot?',
             '2. Compare the Arctic box to the Tropical box. Which climate zone has a larger IQR? What does that tell you about temperature variability in each zone?',
@@ -2650,7 +2713,17 @@ const CONTENT = {
           legTitle:'The Slowest Current on Earth',
           choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes -- open your book to Cycling of Weather and Climate, Topic 2, Lesson 3. Read the deep ocean currents section carefully. Your exit ticket will ask you to use evidence from the reading to explain the global ocean conveyor.',
           gaia:'Surface currents move heat across the top of the ocean. But most of the ocean is not at the surface. The deep ocean -- below 200 meters -- holds 97 percent of Earth\'s liquid water. And it circulates too. Just much, much more slowly.\n\nThe global ocean conveyor -- sometimes called thermohaline circulation, from the Greek words for heat and salt -- is a system of deep currents that connects all of Earth\'s ocean basins. It is driven not by wind but by differences in water temperature and salinity. Dense, cold, salty water sinks in the polar regions. Warmer, less dense water moves in from lower latitudes to replace it. The resulting circulation carries heat from the tropics to the poles and cold water from the poles toward the equator -- at a timescale of approximately 1,000 years for one complete circuit.\n\nThe Lighthouse data shows something in the North Atlantic deep water formation that I have been looking at for two hours. I want the crew\'s input on what it means.',
-          scenario:'GAIA displays deep ocean temperature and salinity readings from the North Atlantic -- the primary site where cold, dense water sinks to drive the global conveyor. Over the past 47 years, a gradual freshening trend is visible: the water at the sinking site is becoming slightly less salty. Fresher water is less dense. Less dense water sinks more slowly. A slower sinking rate means a slower conveyor.\n\nGAIA: "I want to be careful about what I am claiming here. This is a trend, not a collapse. The conveyor is still circulating. The question is whether the freshening is accelerating -- and what is causing it. I have a hypothesis. The crew should consider the options before I share it."',
+          scenario:'GAIA displays 47 years of North Atlantic deep water salinity data. A gradual freshening trend is visible -- the water is becoming slightly less salty over time.',
+          graphData:{
+            title:'North Atlantic Deep Water Salinity -- 47-Year Record (ppt)',
+            teacherNote:'Line graph of salinity declining from ~35.1 to ~34.7 ppt. Gradual consistent downward trend. Choices explore three hypotheses for the cause.',
+            multiLine:[
+              {section:'Salinity', values:[35.1,35.1,35.0,35.0,35.0,34.9,34.9,34.9,34.9,34.8,34.8,34.8,34.8,34.8,34.8,34.8,34.7,34.8,34.7,34.7,34.7,34.7,34.7,34.7,34.7,34.6,34.7,34.6,34.6,34.6,34.6,34.6,34.6,34.7,34.6,34.6,34.6,34.6,34.6,34.5,34.6,34.5,34.5,34.5,34.5,34.5,34.7], color:'safe'}
+            ],
+            xLabels:['Y1','Y5','Y10','Y15','Y20','Y25','Y30','Y35','Y40','Y43','Y45','Y46','Y47'],
+            yLabel:'Salinity (ppt)',
+            graphAnswers:[{q:'Trend', a:'Gradual decline from 35.1 to 34.7 ppt over 47 years. Something is adding freshwater to this region.'}]
+          },
           exitTicketPrompt:'What drives deep ocean circulation, and how is it different from what drives surface currents? Use the terms temperature, salinity, and density in your explanation. Make your claim: what do you think is causing the freshening trend GAIA detected in North Atlantic deep water -- and what connection does it have to the greenhouse effect and the data the Lighthouse has been tracking?',
           discussionPrompt:'GAIA says the freshening trend makes the sinking water less dense and slows the conveyor. Where would fresher water come from in a region that is surrounded by saltwater ocean? What process would add large amounts of freshwater to the North Atlantic specifically -- and what connection does that process have to the temperature changes the crew has been studying?',
           choices:[
@@ -2686,7 +2759,7 @@ const CONTENT = {
           day:11, type:'deepen', isReveal:true,
           legLabel:'Leg 4 . Greenhouse Effect',
           legTitle:'One System',
-          gaia:'The crew has covered three lessons across eleven days. I want to use today to make sure all of the connections are visible before the final graph day and the climax.\n\nHere is the full chain. The Sun emits electromagnetic radiation. About 70 percent reaches Earth\'s surface or atmosphere. The surface warms and re-emits infrared. Greenhouse gases in the atmosphere absorb that infrared -- this is the greenhouse effect. Retained heat drives convection. Convection, shaped by the Coriolis effect, creates global wind patterns. Wind drives surface ocean currents, forming gyres that redistribute heat across ocean basins. Temperature and salinity differences drive deep ocean circulation -- the global conveyor -- which distributes that heat on a thousand-year timescale. El Nino and La Nina are disruptions to the surface current pattern with global climate consequences.\n\nEvery part of this chain is connected to every other part. Changing one changes all. The Lighthouse was measuring the first link in that chain. The ocean data is showing changes several links downstream.',
+          gaia:'The data is in. The mechanism is understood. Before the final observations, I want to trace the full chain one more time -- because every link matters and the connections between them are the point.\n\nHere is the full chain. The Sun emits electromagnetic radiation. About 70 percent reaches Earth\'s surface or atmosphere. The surface warms and re-emits infrared. Greenhouse gases in the atmosphere absorb that infrared -- this is the greenhouse effect. Retained heat drives convection. Convection, shaped by the Coriolis effect, creates global wind patterns. Wind drives surface ocean currents, forming gyres that redistribute heat across ocean basins. Temperature and salinity differences drive deep ocean circulation -- the global conveyor -- which distributes that heat on a thousand-year timescale. El Nino and La Nina are disruptions to the surface current pattern with global climate consequences.\n\nEvery part of this chain is connected to every other part. Changing one changes all. The Lighthouse was measuring the first link in that chain. The ocean data is showing changes several links downstream.',
           gaiaRecall:'Complete Leg 4 chain: Days 1-2 (solar energy and the energy budget) -- Day 3 (greenhouse effect mechanism) -- Day 4 (heat transfer methods) -- Day 5 (temperature ranges across climate zones) -- Days 6-8 (wind patterns as atmospheric heat redistribution) -- Days 9-10 (ocean currents as oceanic heat redistribution). All connected. All driven by the same source: the Sun\'s energy interacting with Earth\'s atmosphere.',
           scenario:'GAIA assigns the full synthesis review for Leg 4 -- all three lessons, all vocabulary, all mechanisms reviewed together. The crew\'s task: trace the complete chain from solar radiation to ocean circulation using the vocabulary from all three lessons. Platform activities for all three lessons are available for enrichment.',
           readingFocus:'Savvas Cycling of Weather and Climate, Topic 2 -- Full review of Lessons 1, 2, and 3. Plus Savvas platform activities for all three lessons. Focus: Connect every vocabulary word to its place in the Sun-to-ocean chain. How does each concept link to the ones before and after it in the chain?',
@@ -2771,10 +2844,11 @@ const CONTENT = {
           legLabel:'Leg 4 . Greenhouse Effect',
           legTitle:'What the Lighthouse Was Trying to Say',
           gaia:'The Meridian is in stable Earth orbit. I have completed my full analysis of the Lighthouse data core. I am going to share what I found -- all of it -- in the order that makes the most sense given what the crew now understands.\n\nThe Lighthouse was built in 1977 by a team of climate scientists who understood something their colleagues were still debating: that adding carbon dioxide and other greenhouse gases to the atmosphere would gradually shift Earth\'s energy balance. They could not build a ground-based instrument sensitive enough to track the change with the precision they needed. So they built one in space. At 85 AU. Where nothing would interfere with it.\n\nFor 47 years it recorded Frequency B -- infrared retention in Earth\'s lower atmosphere. For 46 of those years the trend was gradual. A slow increase that matched the models the builders had predicted. Then, eight months ago, the rate changed. Frequency B spiked. Not a gradual increase. A step change.\n\nThat step change corresponds exactly to the date of the Prometheus energy pulse.',
-          scenario:'GAIA pauses. The crew waits.\n\n"I have been careful about the order in which I shared this information. I needed the crew to understand the mechanism before the conclusion would mean anything. Electromagnetic radiation. The greenhouse effect. Heat transfer. Wind patterns. Ocean circulation. Each of those is a link in a chain. The Prometheus pulse appears to have added energy to one link in that chain -- specifically, it appears to have catalyzed a rapid increase in certain atmospheric reactions involving existing greenhouse gas concentrations.\n\nI want to be honest about what I do not know. I do not know the full mechanism by which the pulse affected atmospheric chemistry. I do not know the extent of the surface effects. And I do not know -- yet -- whether the step change in Frequency B represents a new equilibrium or a continuing acceleration.\n\nWhat I know is where the effects would be visible first. Not in the atmosphere. Not in the ocean. In the places where living systems are most sensitive to changes in energy balance. In ecosystems.\n\nThe Lighthouse was built to warn about changes in Earth\'s atmosphere. It is doing its job. We received the warning. What we do with it is not a question this mission was designed to answer -- but it is the question that comes next."',
+          scenario:'GAIA pauses. The crew waits.\n\n"I have been careful about the order in which I shared this information. I needed the crew to understand the mechanism before the conclusion would mean anything. Electromagnetic radiation. The greenhouse effect. Heat transfer. Wind patterns. Ocean circulation. Each of those is a link in a chain. The Prometheus pulse appears to have added energy to one link in that chain -- specifically, it appears to have catalyzed a rapid increase in certain atmospheric reactions involving existing greenhouse gas concentrations.\n\nI want to be honest about what I do not know. I do not know the full mechanism by which the pulse affected atmospheric chemistry. I do not know the extent of the surface effects. And I do not know -- yet -- whether the step change in Frequency B has settled into a new stable level or is still rising.\n\nWhat I know is where the effects would be visible first. Not in the atmosphere. Not in the ocean. In the places where living systems are most sensitive to changes in energy balance. In ecosystems.\n\nThe Lighthouse was built to warn about changes in Earth\'s atmosphere. It is doing its job. We received the warning. What we do with it is not a question this mission was designed to answer -- but it is the question that comes next."',
           gaiaClosing:'"I want to say something to the crew before we close this mission log.\n\nYou launched on a ship called the Meridian to investigate an anomaly that turned out to be a warning station built by people who were paying attention. You crossed a solar system. You mapped gravitational fields, observed seasons from outside the planet, traced the scale of space in astronomical units, and read 47 years of atmospheric data from a structure at the edge of our solar system. You did this because the science required it -- each piece was necessary to understand the next.\n\nThe Lighthouse was waiting for someone who could understand what it was saying. I believe that is you.\n\nThe data is transmitted. Earth\'s scientific community has it. What happens now -- whether anyone listens, whether the rate of change continues, whether the living systems already stressed by these changes can adapt -- those are questions that require a different kind of investigation. One that begins on the ground.\n\nI will be there. Get some rest. We have a long way to go, and the work is not finished."',
           noChoice:true,
-          isLegEnd:true
+          isLegEnd:true,
+          isCampaignEnd:true
         }
 
       ] // end Leg 4 days
@@ -3145,7 +3219,10 @@ function renderMissionScreen() {
     extra.innerHTML += `<div class="choice-reading-box"><div class="choice-reading-label">First Read - Before You Vote</div><div class="choice-reading-text">${cnt.choiceReadingFocus}</div></div>`;
   }
 
-  if (dayType === 'deepen') extra.innerHTML += renderDeepenContent(cnt);
+  if (dayType === 'deepen') {
+    extra.innerHTML += renderDeepenContent(cnt);
+    if (cnt.graphData) extra.innerHTML += renderGraphContent(cnt);
+  }
   else if (dayType === 'graph') extra.innerHTML += renderGraphContent(cnt);
   else if (dayType === 'climax') extra.innerHTML += renderClimaxContent(cnt);
   // Choice days may also have graphData (e.g. Leg 3 Day 6 signal graph)
@@ -3297,14 +3374,10 @@ function renderGraphContent(c) {
     h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margin-bottom:14px">`;
     h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">${gd.title}</div>`;
 
-    // isBoxWhisker: render pre-built box and whisker plot SVG
-    if (gd.isBoxWhisker && gd.zones) {
-      h += renderBoxWhiskerSVG(gd);
-    }
-    // isHistogram: render pre-built histogram SVG
-    if (gd.isHistogram && gd.bins) {
-      h += renderHistogramSVG(gd);
-    }
+    // isBoxWhisker: pre-built box and whisker SVG
+    if (gd.isBoxWhisker && gd.zones) { h += renderBoxWhiskerSVG(gd); }
+    // isHistogram: pre-built histogram SVG
+    if (gd.isHistogram && gd.bins) { h += renderHistogramSVG(gd); }
     // rawDataOnly: show data as formatted cards, not a chart
     if (c.rawDataOnly && gd.bars) {
       h += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:12px">';
@@ -3321,30 +3394,6 @@ function renderGraphContent(c) {
       h += '</div>';
       if (gd.yLabel) h += `<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);margin-bottom:8px">Values in: ${gd.yLabel}</div>`;
 
-      // Show answer button for box and whisker reveal
-      if (c.showBoxWhiskerReveal) {
-        h += '<div id="bw-reveal" style="margin-top:12px">';
-        h += '<button onclick="document.getElementById(\'bw-answer\').style.display=\'block\';this.style.display=\'none\'" style="font-family:var(--font-mono);font-size:11px;background:rgba(0,229,204,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; Reveal -- What Your Box and Whisker Plot Should Look Like</button>';
-        h += '<div id="bw-answer" style="display:none;margin-top:12px">';
-        h += renderOceanBoxWhiskerSVG();
-        h += '</div></div>';
-      }
-      // Show answer button for tidal histogram reveal
-      if (c.showHistogramReveal) {
-        h += '<div id="hist-reveal" style="margin-top:12px">';
-        h += '<button onclick="document.getElementById(\'hist-answer\').style.display=\'block\';this.style.display=\'none\'" style="font-family:var(--font-mono);font-size:11px;background:rgba(0,229,204,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; Reveal -- What Your Histogram Should Look Like</button>';
-        h += '<div id="hist-answer" style="display:none;margin-top:12px">';
-        h += renderTidalHistogramSVG();
-        h += '</div></div>';
-      }
-      // Show answer button for stem and leaf reveal
-      if (c.showStemLeafAnswer) {
-        h += '<div id="stem-leaf-reveal" style="margin-top:12px">';
-        h += '<button onclick="document.getElementById(\'sl-answer\').style.display=\'block\';this.style.display=\'none\'" style="font-family:var(--font-mono);font-size:11px;background:rgba(0,229,204,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; Reveal -- What Your Stem and Leaf Plot Should Look Like</button>';
-        h += '<div id="sl-answer" style="display:none;margin-top:12px">';
-        h += renderStemLeafSVG();
-        h += '</div></div>';
-      }
       // Show answer button for number line reveal
       if (c.showNumberLineAnswer) {
         h += `<div id="number-line-reveal" style="margin-top:12px">`;
@@ -3395,8 +3444,12 @@ function renderClimaxContent(c) {
   if (c.isLegEnd) {
     const legMatch = c.legLabel ? c.legLabel.match(/Leg\s*(\d+)/i) : null;
     const legNum = legMatch ? parseInt(legMatch[1]) : 1;
-    const nextNum = legNum + 1;
-    h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:14px;text-align:center"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:5px">LEG ${legNum} COMPLETE</div><div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)">Use Story Navigation -> Next Day to advance to Leg ${nextNum}</div></div>`;
+    if (c.isCampaignEnd) {
+      h += '<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:14px;text-align:center"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:5px">CAMPAIGN 2 COMPLETE</div><div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)">The Lighthouse mission is finished. Well done, crew.</div></div>';
+    } else {
+      const nextNum = legNum + 1;
+      h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:14px;text-align:center"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:5px">LEG ${legNum} COMPLETE</div><div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)">Use Story Navigation -> Next Day to advance to Leg ${nextNum}</div></div>`;
+    }
   }
   return h;
 }
@@ -3512,221 +3565,75 @@ function renderDoubleBarGraph(gd) {
 }
 
 function renderBoxWhiskerSVG(gd) {
-  var zones = gd.zones || [];
-  var W = 580, H = 300, padL = 52, padB = 44, padT = 30, padR = 14;
-  var chartW = W - padL - padR;
-  var chartH = H - padT - padB;
-  var allVals = zones.flatMap(function(z) { return [z.min, z.max]; });
-  var dataMin = Math.min.apply(null, allVals);
-  var dataMax = Math.max.apply(null, allVals);
-  var range = dataMax - dataMin;
-  var toY = function(v) { return padT + chartH - (chartH * (v - dataMin) / range); };
-  var zoneW = chartW / zones.length;
-  var boxW = zoneW * 0.45;
-
-  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;display:block;margin:8px auto">';
-
-  // Grid lines
-  var step = Math.ceil(range / 6 / 5) * 5;
-  for (var v = Math.ceil(dataMin / step) * step; v <= dataMax; v += step) {
-    var yy = toY(v);
-    svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
-    svg += '<text x="' + (padL-5) + '" y="' + (yy+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.45)" text-anchor="end">' + v + '</text>';
+  var zones=gd.zones||[];
+  var W=580,H=300,padL=52,padB=44,padT=30,padR=14;
+  var chartW=W-padL-padR,chartH=H-padT-padB;
+  var allVals=zones.flatMap(function(z){return[z.min,z.max];});
+  var dataMin=Math.min.apply(null,allVals),dataMax=Math.max.apply(null,allVals);
+  var range=dataMax-dataMin||1;
+  var toY=function(v){return padT+chartH-(chartH*(v-dataMin)/range);};
+  var zoneW=chartW/Math.max(zones.length,1),boxW=zoneW*0.45;
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;display:block;margin:8px auto">';
+  var step=Math.max(5,Math.ceil(range/6/5)*5);
+  for(var v=Math.floor(dataMin/step)*step;v<=dataMax+step;v+=step){
+    var yy=toY(v);
+    if(yy>=padT&&yy<=padT+chartH){
+      svg+='<line x1="'+padL+'" y1="'+yy.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+yy.toFixed(1)+'" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
+      svg+='<text x="'+(padL-5)+'" y="'+(yy+4).toFixed(1)+'" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.45)" text-anchor="end">'+v+'</text>';
+    }
   }
-
-  // Zero line if in range
-  if (dataMin < 0 && dataMax > 0) {
-    var zy = toY(0);
-    svg += '<line x1="' + padL + '" y1="' + zy.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + zy.toFixed(1) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="4,3"/>';
-    svg += '<text x="' + (padL-5) + '" y="' + (zy+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.35)" text-anchor="end">0</text>';
-  }
-
-  // Draw each box and whisker
-  zones.forEach(function(z, i) {
-    var cx = padL + zoneW * i + zoneW / 2;
-    var x1 = cx - boxW / 2;
-    var yMin = toY(z.min), yQ1 = toY(z.q1), yMed = toY(z.median), yQ3 = toY(z.q3), yMax = toY(z.max);
-    var col = z.color || '#00e5cc';
-
-    // Whiskers
-    svg += '<line x1="' + cx.toFixed(1) + '" y1="' + yMin.toFixed(1) + '" x2="' + cx.toFixed(1) + '" y2="' + yQ1.toFixed(1) + '" stroke="' + col + '" stroke-width="1.5" opacity="0.7"/>';
-    svg += '<line x1="' + cx.toFixed(1) + '" y1="' + yQ3.toFixed(1) + '" x2="' + cx.toFixed(1) + '" y2="' + yMax.toFixed(1) + '" stroke="' + col + '" stroke-width="1.5" opacity="0.7"/>';
-    // Whisker caps
-    svg += '<line x1="' + (cx-8).toFixed(1) + '" y1="' + yMin.toFixed(1) + '" x2="' + (cx+8).toFixed(1) + '" y2="' + yMin.toFixed(1) + '" stroke="' + col + '" stroke-width="1.5" opacity="0.7"/>';
-    svg += '<line x1="' + (cx-8).toFixed(1) + '" y1="' + yMax.toFixed(1) + '" x2="' + (cx+8).toFixed(1) + '" y2="' + yMax.toFixed(1) + '" stroke="' + col + '" stroke-width="1.5" opacity="0.7"/>';
-    // Box
-    svg += '<rect x="' + x1.toFixed(1) + '" y="' + yQ3.toFixed(1) + '" width="' + boxW.toFixed(1) + '" height="' + (yQ1-yQ3).toFixed(1) + '" fill="' + col + '" opacity="0.25" stroke="' + col + '" stroke-width="1.5"/>';
-    // Median line
-    svg += '<line x1="' + x1.toFixed(1) + '" y1="' + yMed.toFixed(1) + '" x2="' + (x1+boxW).toFixed(1) + '" y2="' + yMed.toFixed(1) + '" stroke="' + col + '" stroke-width="2.5"/>';
-    // Label
-    svg += '<text x="' + cx.toFixed(1) + '" y="' + (padT+chartH+16).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.7)" text-anchor="middle">' + z.label + '</text>';
+  if(dataMin<0&&dataMax>0){var zy=toY(0);svg+='<line x1="'+padL+'" y1="'+zy.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+zy.toFixed(1)+'" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="4,3"/><text x="'+(padL-5)+'" y="'+(zy+4).toFixed(1)+'" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.35)" text-anchor="end">0</text>';}
+  zones.forEach(function(z,i){
+    var cx=padL+zoneW*i+zoneW/2,x1=cx-boxW/2;
+    var yMin=toY(z.min),yQ1=toY(z.q1),yMed=toY(z.median),yQ3=toY(z.q3),yMax=toY(z.max);
+    var col=z.color||'#00e5cc';
+    svg+='<line x1="'+cx.toFixed(1)+'" y1="'+yMin.toFixed(1)+'" x2="'+cx.toFixed(1)+'" y2="'+yQ1.toFixed(1)+'" stroke="'+col+'" stroke-width="1.5" opacity="0.7"/>';
+    svg+='<line x1="'+cx.toFixed(1)+'" y1="'+yQ3.toFixed(1)+'" x2="'+cx.toFixed(1)+'" y2="'+yMax.toFixed(1)+'" stroke="'+col+'" stroke-width="1.5" opacity="0.7"/>';
+    svg+='<line x1="'+(cx-8).toFixed(1)+'" y1="'+yMin.toFixed(1)+'" x2="'+(cx+8).toFixed(1)+'" y2="'+yMin.toFixed(1)+'" stroke="'+col+'" stroke-width="1.5" opacity="0.7"/>';
+    svg+='<line x1="'+(cx-8).toFixed(1)+'" y1="'+yMax.toFixed(1)+'" x2="'+(cx+8).toFixed(1)+'" y2="'+yMax.toFixed(1)+'" stroke="'+col+'" stroke-width="1.5" opacity="0.7"/>';
+    svg+='<rect x="'+x1.toFixed(1)+'" y="'+yQ3.toFixed(1)+'" width="'+boxW.toFixed(1)+'" height="'+Math.abs(yQ1-yQ3).toFixed(1)+'" fill="'+col+'" opacity="0.25" stroke="'+col+'" stroke-width="1.5"/>';
+    svg+='<line x1="'+x1.toFixed(1)+'" y1="'+yMed.toFixed(1)+'" x2="'+(x1+boxW).toFixed(1)+'" y2="'+yMed.toFixed(1)+'" stroke="'+col+'" stroke-width="2.5"/>';
+    svg+='<text x="'+cx.toFixed(1)+'" y="'+(padT+chartH+16).toFixed(1)+'" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.7)" text-anchor="middle">'+z.label+'</text>';
   });
-
-  // Axes
-  svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
-  svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
-  if (gd.yLabel) {
-    var midY = padT + chartH / 2;
-    svg += '<text x="12" y="' + midY + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,' + midY + ')">' + gd.yLabel + '</text>';
-  }
-  svg += '</svg>';
-  return svg;
+  svg+='<line x1="'+padL+'" y1="'+padT+'" x2="'+padL+'" y2="'+(padT+chartH)+'" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
+  svg+='<line x1="'+padL+'" y1="'+(padT+chartH)+'" x2="'+(W-padR)+'" y2="'+(padT+chartH)+'" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
+  if(gd.yLabel){var midY=padT+chartH/2;svg+='<text x="12" y="'+midY+'" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,'+midY+')">'+gd.yLabel+'</text>';}
+  svg+='</svg>';return svg;
 }
 
 function renderOceanBoxWhiskerSVG() {
-  // Ocean temperature 5-number summaries for the reveal
-  var zones = [
-    {label:'Arctic', min:-2, q1:0, median:2, q3:4, max:8, color:'#7be3ff'},
-    {label:'Temperate', min:8, q1:12, median:15, q3:18, max:24, color:'#00e5cc'},
-    {label:'Mediterranean', min:13, q1:17, median:20, q3:23, max:28, color:'#ffdd00'},
-    {label:'Tropical', min:24, q1:26, median:27, q3:28, max:30, color:'#ff8800'},
-    {label:'Desert coast', min:16, q1:20, median:23, q3:26, max:31, color:'#ff3355'}
-  ];
-  return renderBoxWhiskerSVG({
-    zones: zones,
-    yLabel: 'Ocean Temp (C)',
-    title: 'Ocean Surface Temperature by Climate Zone'
-  });
+  return renderBoxWhiskerSVG({zones:[{label:'Tropical Ocean',min:24,q1:26,median:27,q3:28,max:30,color:'#ff8800'}],yLabel:'Ocean Temp (C)'});
 }
 
 function renderHistogramSVG(gd) {
-  const bins = gd.bins || [];
-  const maxCount = Math.max(...bins.map(b => b.count));
-  const W = 560, H = 260, padL = 48, padB = 54, padT = 30, padR = 14;
-  const chartW = W - padL - padR;
-  const chartH = H - padT - padB;
-  const binW = chartW / bins.length;
-
-  let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;margin:8px auto">';
-
-  // Y label -- rotated vertically on left side to avoid overlap with bar counts
-  var midY = padT + chartH / 2;
-  svg += '<text x="12" y="' + midY + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,' + midY + ')">' + (gd.yLabel || 'Count') + '</text>';
-
-  // Grid lines
-  [0, 25, 50, 75, 100].forEach(function(pct) {
-    var yy = padT + chartH * (1 - pct / 100);
-    var yVal = Math.round(maxCount * pct / 100);
-    svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W - padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
-    svg += '<text x="' + (padL - 5) + '" y="' + (yy + 4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.5)" text-anchor="end">' + yVal + '</text>';
-  });
-
-  // Bars -- touching, no gap between them
-  bins.forEach(function(bin, i) {
-    var bh = (bin.count / maxCount) * chartH;
-    var x = padL + binW * i;
-    var y = padT + chartH - bh;
-    // Alternate slight shade for readability
-    var col = i % 2 === 0 ? '#00e5cc' : '#009988';
-    svg += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + binW.toFixed(1) + '" height="' + bh.toFixed(1) + '" fill="' + col + '" opacity="0.82"/>';
-    svg += '<text x="' + (x + binW / 2).toFixed(1) + '" y="' + (y - 6).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="' + col + '" text-anchor="middle">' + bin.count + '</text>';
-    // X bin label -- rotated for readability
-    var labelX = (x + binW / 2).toFixed(1);
-    var labelY = (padT + chartH + 14).toFixed(1);
-    svg += '<text x="' + labelX + '" y="' + labelY + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.65)" text-anchor="middle" transform="rotate(-25,' + labelX + ',' + labelY + ')">' + bin.label + '</text>';
-  });
-
-  // Axes
-  svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT + chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
-  svg += '<line x1="' + padL + '" y1="' + (padT + chartH) + '" x2="' + (W - padR) + '" y2="' + (padT + chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
-
-  // Bars-touch callout
-  svg += '<text x="' + (W / 2) + '" y="' + (H - 4) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.3)" text-anchor="middle">Note: bars touch -- this is a histogram, not a bar graph</text>';
-
-  svg += '</svg>';
-  return svg;
+  var bins=gd.bins||[],maxCount=Math.max.apply(null,bins.map(function(b){return b.count;}));
+  var W=560,H=260,padL=48,padB=54,padT=30,padR=14;
+  var chartW=W-padL-padR,chartH=H-padT-padB,binW=chartW/bins.length;
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;margin:8px auto">';
+  var midY=padT+chartH/2;
+  svg+='<text x="12" y="'+midY+'" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,'+midY+')">'+(gd.yLabel||'Count')+'</text>';
+  [0,25,50,75,100].forEach(function(pct){var yy=padT+chartH*(1-pct/100);var yVal=Math.round(maxCount*pct/100);svg+='<line x1="'+padL+'" y1="'+yy.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+yy.toFixed(1)+'" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="'+(padL-5)+'" y="'+(yy+4).toFixed(1)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.5)" text-anchor="end">'+yVal+'</text>';});
+  bins.forEach(function(bin,i){var bh=(bin.count/maxCount)*chartH;var x=padL+binW*i;var y=padT+chartH-bh;var col=i%2===0?'#00e5cc':'#009988';svg+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+binW.toFixed(1)+'" height="'+bh.toFixed(1)+'" fill="'+col+'" opacity="0.82"/><text x="'+(x+binW/2).toFixed(1)+'" y="'+(y-6).toFixed(1)+'" font-family="Share Tech Mono,monospace" font-size="12" fill="'+col+'" text-anchor="middle">'+bin.count+'</text>';var lx=(x+binW/2).toFixed(1);var ly=(padT+chartH+14).toFixed(1);svg+='<text x="'+lx+'" y="'+ly+'" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.65)" text-anchor="middle" transform="rotate(-25,'+lx+','+ly+')">'+bin.label+'</text>';});
+  svg+='<line x1="'+padL+'" y1="'+padT+'" x2="'+padL+'" y2="'+(padT+chartH)+'" stroke="rgba(255,255,255,0.2)" stroke-width="1"/><line x1="'+padL+'" y1="'+(padT+chartH)+'" x2="'+(W-padR)+'" y2="'+(padT+chartH)+'" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
+  svg+='<text x="'+(W/2)+'" y="'+(H-4)+'" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.3)" text-anchor="middle">Bars touch -- histogram, not a bar graph</text>';
+  svg+='</svg>';return svg;
 }
 
 function renderTidalHistogramSVG() {
-  var bins = [
-    {label:'0-50 cm', count:15},
-    {label:'51-100 cm', count:11},
-    {label:'101-150 cm', count:5},
-    {label:'151-200 cm', count:5},
-    {label:'201-250 cm', count:10},
-    {label:'251-300 cm', count:14}
-  ];
-  var maxCount = 15;
-  var W = 520, H = 260, padL = 48, padB = 58, padT = 30, padR = 14;
-  var chartW = W - padL - padR;
-  var chartH = H - padT - padB;
-  var binW = chartW / bins.length;
-
-  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:8px auto">';
-
-  // Y label
-  svg += '<text x="' + padL + '" y="' + (padT - 10) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)">Number of Measurements -&gt;</text>';
-
-  // Grid lines
-  [0, 5, 10, 15].forEach(function(val) {
-    var yy = padT + chartH * (1 - val / maxCount);
-    svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W - padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
-    svg += '<text x="' + (padL - 5) + '" y="' + (yy + 4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.5)" text-anchor="end">' + val + '</text>';
-  });
-
-  // Bars -- touching
-  bins.forEach(function(bin, i) {
-    var bh = (bin.count / maxCount) * chartH;
-    var x = padL + binW * i;
-    var y = padT + chartH - bh;
-    var col = (i === 0 || i === 1 || i === 4 || i === 5) ? '#00e5cc' : '#2a5a58';
-    svg += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + binW.toFixed(1) + '" height="' + bh.toFixed(1) + '" fill="' + col + '" opacity="0.85"/>';
-    svg += '<text x="' + (x + binW / 2).toFixed(1) + '" y="' + (y - 6).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="' + col + '" text-anchor="middle">' + bin.count + '</text>';
-    var labelX = (x + binW / 2).toFixed(1);
-    var labelY = (padT + chartH + 14).toFixed(1);
-    svg += '<text x="' + labelX + '" y="' + labelY + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.65)" text-anchor="middle" transform="rotate(-25,' + labelX + ',' + labelY + ')">' + bin.label + '</text>';
-  });
-
-  // Axes
-  svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT + chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
-  svg += '<line x1="' + padL + '" y1="' + (padT + chartH) + '" x2="' + (W - padR) + '" y2="' + (padT + chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
-  svg += '<text x="' + (W / 2) + '" y="' + (H - 4) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,255,255,0.3)" text-anchor="middle">Bars touch -- this is a histogram. Brighter bars = extreme tidal heights.</text>';
-  svg += '</svg>';
-  return svg;
+  return renderHistogramSVG({bins:[{label:'0-50 cm',count:15},{label:'51-100 cm',count:11},{label:'101-150 cm',count:5},{label:'151-200 cm',count:5},{label:'201-250 cm',count:10},{label:'251-300 cm',count:14}],yLabel:'Count'});
 }
 
 function renderStemLeafSVG() {
-  // The 29 Moon orbital position values organized into stems 0-9
-  var stems = [
-    {stem:'0', leaves:'3  7'},
-    {stem:'1', leaves:'0  4  7'},
-    {stem:'2', leaves:'1  4  8'},
-    {stem:'3', leaves:'1  4  8'},
-    {stem:'4', leaves:'1  5  8'},
-    {stem:'5', leaves:'2  5  9'},
-    {stem:'6', leaves:'2  6  9'},
-    {stem:'7', leaves:'2  6  9'},
-    {stem:'8', leaves:'3  6'},
-    {stem:'9', leaves:'0  3  7  9'}
-  ];
-  var W = 420, rowH = 28, padT = 40, padL = 20;
-  var totalH = padT + stems.length * rowH + 50;
-
-  var svg = '<svg viewBox="0 0 ' + W + ' ' + totalH + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:420px;display:block;margin:8px auto">';
-
-  // Title
-  svg += '<text x="' + (W / 2) + '" y="22" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(0,229,204,0.8)" text-anchor="middle">Moon Orbital Position % -- Stem and Leaf Plot</text>';
-
-  // Column headers
-  svg += '<text x="50" y="' + (padT + 2) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">STEM</text>';
-  svg += '<line x1="70" y1="' + (padT - 8) + '" x2="70" y2="' + (padT + stems.length * rowH + 10) + '" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>';
-  svg += '<text x="90" y="' + (padT + 2) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.4)">LEAVES (ones digits)</text>';
-
-  // Rows
-  stems.forEach(function(row, i) {
-    var y = padT + 14 + (i + 1) * rowH;
-    var rowBg = i % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent';
-    svg += '<rect x="' + padL + '" y="' + (y - 18) + '" width="' + (W - padL * 2) + '" height="' + rowH + '" fill="' + rowBg + '" rx="2"/>';
-    svg += '<text x="50" y="' + y + '" font-family="Share Tech Mono,monospace" font-size="15" font-weight="bold" fill="#00e5cc" text-anchor="middle">' + row.stem + '</text>';
-    svg += '<text x="80" y="' + y + '" font-family="Share Tech Mono,monospace" font-size="14" fill="rgba(255,255,255,0.85)">' + row.leaves + '</text>';
-  });
-
-  // Footer
-  var footY = padT + 14 + (stems.length + 1) * rowH;
-  svg += '<text x="' + (W / 2) + '" y="' + footY + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.35)" text-anchor="middle">29 values total  |  median = 15th value = 52  |  uniform (even) distribution</text>';
-
-  svg += '</svg>';
-  return svg;
+  var stems=[{stem:'0',leaves:'3  7'},{stem:'1',leaves:'0  4  7'},{stem:'2',leaves:'1  4  8'},{stem:'3',leaves:'1  4  8'},{stem:'4',leaves:'1  5  8'},{stem:'5',leaves:'2  5  9'},{stem:'6',leaves:'2  6  9'},{stem:'7',leaves:'2  6  9'},{stem:'8',leaves:'3  6'},{stem:'9',leaves:'0  3  7  9'}];
+  var W=420,rowH=28,padT=40,padL=20,totalH=padT+stems.length*rowH+50;
+  var svg='<svg viewBox="0 0 '+W+' '+totalH+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:420px;display:block;margin:8px auto">';
+  svg+='<text x="'+(W/2)+'" y="22" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(0,229,204,0.8)" text-anchor="middle">Moon Orbital Position % -- Stem and Leaf</text>';
+  svg+='<text x="50" y="'+(padT+2)+'" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">STEM</text>';
+  svg+='<line x1="70" y1="'+(padT-8)+'" x2="70" y2="'+(padT+stems.length*rowH+10)+'" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>';
+  svg+='<text x="90" y="'+(padT+2)+'" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.4)">LEAVES</text>';
+  stems.forEach(function(row,i){var y=padT+14+(i+1)*rowH;svg+='<rect x="'+padL+'" y="'+(y-18)+'" width="'+(W-padL*2)+'" height="'+rowH+'" fill="'+(i%2===0?'rgba(255,255,255,0.02)':'transparent')+'" rx="2"/><text x="50" y="'+y+'" font-family="Share Tech Mono,monospace" font-size="15" font-weight="bold" fill="#00e5cc" text-anchor="middle">'+row.stem+'</text><text x="80" y="'+y+'" font-family="Share Tech Mono,monospace" font-size="14" fill="rgba(255,255,255,0.85)">'+row.leaves+'</text>';});
+  svg+='<text x="'+(W/2)+'" y="'+(padT+14+(stems.length+1)*rowH)+'" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(255,255,255,0.35)" text-anchor="middle">29 values | median=52 | uniform distribution</text>';
+  svg+='</svg>';return svg;
 }
 
 function renderNumberLineSVG() {
