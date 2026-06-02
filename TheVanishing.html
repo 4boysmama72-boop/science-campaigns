@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  The Vanishing &mdash; Science Campaign App
+  The Lighthouse &mdash; Science Campaign App
   Campaign 3 of 3: Life Science
   Created by Danielle Edwards
   &copy; 2026 Danielle Edwards. All rights reserved.
@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Vanishing &mdash; Mission Control</title>
+<title>The Vanishing &mdash; Campaign 3</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -530,9 +530,9 @@
 <div id="screen-setup" class="screen active">
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
     <div style="width:100%;max-width:600px">
-      <div class="mission-label" style="margin-bottom:8px">Mission Control &mdash; Campaign 2 Configuration</div>
+      <div class="mission-label" style="margin-bottom:8px">Field Research System &mdash; Campaign 3</div>
       <div class="setup-title">THE VANISHING</div>
-      <div style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);margin-bottom:2rem">Global Science Recovery Agency &middot; Long-Range Science Vessel Meridian</div>
+      <div style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);margin-bottom:2rem">The Arroyo Field Research Platform</div>
       <div style="margin-bottom:16px">
         <label class="form-label">Your Name</label>
         <input type="text" class="form-input" id="setup-teacher" placeholder="e.g. Ms. Rodriguez" />
@@ -555,27 +555,27 @@
         </div>
       </div>
       <div style="margin-bottom:16px">
-        <label class="form-label">GAIA Status &mdash; Did this class bring GAIA from the Arroyo?</label>
+        
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
           <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px">
             <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:8px">Class 1</div>
             <select class="day-jump-select" id="setup-gaia1">
-              <option value="aboard">GAIA aboard Meridian</option>
-              <option value="signal">GAIA on Arroyo (signal)</option>
+              <option value="aboard">GAIA aboard Arroyo</option>
+              <option value="signal">GAIA Field System</option>
             </select>
           </div>
           <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px">
             <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:8px">Class 2</div>
             <select class="day-jump-select" id="setup-gaia2">
-              <option value="aboard">GAIA aboard Meridian</option>
-              <option value="signal">GAIA on Arroyo (signal)</option>
+              <option value="aboard">GAIA aboard Arroyo</option>
+              <option value="signal">GAIA Field System</option>
             </select>
           </div>
           <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px">
             <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:8px">Class 3</div>
             <select class="day-jump-select" id="setup-gaia3">
-              <option value="aboard">GAIA aboard Meridian</option>
-              <option value="signal">GAIA on Arroyo (signal)</option>
+              <option value="aboard">GAIA aboard Arroyo</option>
+              <option value="signal">GAIA Field System</option>
             </select>
           </div>
         </div>
@@ -592,7 +592,7 @@
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
     <div style="width:100%;max-width:960px">
       <div style="text-align:center;margin-bottom:2.5rem">
-        <div class="mission-label">Global Science Recovery Agency &mdash; Mission Control</div>
+        <div class="mission-label">Global The Arroyo &mdash; Field Research Platform</div>
         <div class="mission-title">THE VANISHING</div>
         <div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);letter-spacing:.1em;text-transform:uppercase">Life Science Campaign &middot; Teacher Dashboard</div>
       </div>
@@ -918,7 +918,7 @@ GAIA out. I will be in contact daily. Try to get enough sleep &mdash; I have not
     <!-- RIGHT PANEL -->
     <div class="panel-right">
       <div>
-        <div class="panel-label">GAIA Status</div>
+        
         <div id="gaia-alerts">
           <div class="gaia-alert"><div class="gaia-alert-text">"All systems monitored. Awaiting crew input."</div></div>
         </div>
@@ -1134,17 +1134,17 @@ let state = {
   teacher: '',
   classes: [
     { id:0, name:'Period 1', site:1, day:1, branch:'A', failures:0,
-      stats:{nav:75, solar:55, signal:65, earth:50},
+      stats:{bio:75, water:55, food:65, trust:50},
       pendingDeltas:null, pendingChoiceText:null, pendingChoiceLetter:null, pendingConsequence:null,
       decisions:[], checkpoints:[],
       forensicsComplete:false, reunionShown:false },
     { id:1, name:'Period 3', site:1, day:1, branch:'A', failures:0,
-      stats:{nav:75, solar:55, signal:65, earth:50},
+      stats:{bio:75, water:55, food:65, trust:50},
       pendingDeltas:null, pendingChoiceText:null, pendingChoiceLetter:null, pendingConsequence:null,
       decisions:[], checkpoints:[],
       forensicsComplete:false, reunionShown:false },
     { id:2, name:'Period 5', site:1, day:1, branch:'A', failures:0,
-      stats:{nav:75, solar:55, signal:65, earth:50},
+      stats:{bio:75, water:55, food:65, trust:50},
       pendingDeltas:null, pendingChoiceText:null, pendingChoiceLetter:null, pendingConsequence:null,
       decisions:[], checkpoints:[],
       forensicsComplete:false, reunionShown:false }
@@ -1388,7 +1388,7 @@ const CAMPAIGN = {
         {
           day:8, type:'deepen',
           siteTitle:'How Much Energy Is Actually Available',
-          gaia:'The food web shows who eats whom. The energy pyramid shows how much energy is actually moving between those connections.\n\nThis distinction matters for what the crew is investigating. Knowing that a kangaroo rat eats annual plant seeds is the food web. Knowing that the kangaroo rat can only capture roughly 10 percent of the energy in those seeds -- and that a snake gets only 10 percent of what the kangaroo rat had -- is the energy pyramid. Those numbers explain why a 61 percent drop in annual plant density does not translate to a 61 percent drop in kangaroo rats. The kangaroo rat is already working with 10 percent of the original energy. A 61 percent reduction in that 10 percent is what shows up as a 34 percent population decline over months.',
+          gaia:'The food web shows who eats whom. The energy pyramid shows how much energy is actually moving between those connections.\n\nThis distinction matters for what the crew is investigating. Knowing that a kangaroo rat eats annual plant seeds is the food web. Knowing that the kangaroo rat can only capture roughly 10 percent of the energy in those seeds -- and that a snake gets only 10 percent of what the kangaroo rat had -- is the energy pyramid. Here is a way to think about what happens next. Imagine the energy in a plant as a full bucket of water. When a kangaroo rat eats that plant, it only gets to keep about one cup from that bucket. The rest is used up just keeping the animal alive and warm. When a racer snake eats the kangaroo rat, it only gets one cup from what the kangaroo rat had.\n\nThis is why the crew is seeing what it is seeing. The annual plants are the bucket. When the bucket gets smaller because of the water deficit, every cup above it gets smaller too. The kangaroo rats have less. The snakes have less. The whole chain feels it, one step at a time.',
           readingFocus:'Savvas Cycling of Matter and Energy, Topic 2, Lesson 2 -- Energy and Matter Transfer. Sections: Energy Pyramids, Energy Availability. Focus: What does an energy pyramid show? Why is there less energy at each higher level? How does the 10 percent rule explain the population changes the crew is seeing?',
           gaiaReadingPrompt:'"Energy pyramids have a wide base and a narrow top. The wide base is the producers -- they have the most energy available in the system. Each level above captures roughly 10 percent of the energy from the level below. The rest is used for life processes or lost as heat.\n\nThis means that to support one racer snake, you need a population of kangaroo rats with ten times as much energy as the snake needs. And to support those kangaroo rats, you need annual plants with ten times as much energy as the kangaroo rats need. The math compounds quickly.\n\nWhen the producer base shrinks by 61 percent, the ripple moves up the pyramid -- but not instantly, and not at the same percentage at each level. The delay between abiotic stress and visible population change is built into this math."',
           gaiaRecall:'From Day 7: the soil moisture deficit began approximately eight months ago. The annual plants declined first. The kangaroo rats followed. The snake stress is just appearing now. Today\'s reading explains why the effects move up the chain one step at a time, with a delay between each level.',
@@ -1527,7 +1527,7 @@ const CAMPAIGN = {
               {q:'Skewed right example', a:'Days without rain per month in the Sonoran Desert across one year. Most months have relatively short dry spells. A few months have very long dry streaks, pulling the tail to the right.'},
               {q:'Skewed left example', a:'Species survival rates in a healthy ecosystem. Most species survive at high rates, a few struggle, pulling the tail left.'},
               {q:'Bimodal example', a:'Tidal heights from Campaign 2 Leg 2 -- the crew saw this in the Lighthouse mission. Two peaks because high tides and low tides create two clusters of measurements, with few readings in between.'},
-              {q:'Site water data shape', a:'Skewed right. Most soil moisture readings cluster in the 0-4 cm range (very dry). A few readings reach higher moisture levels after rain events, pulling the tail to the right. This pattern is consistent with drought conditions interrupted by occasional precipitation -- exactly what the crew has been measuring.'}
+              {q:'Site water data shape', a:'Skewed right. Most soil moisture readings cluster in the 0-4 cm range (very dry). A few readings reach higher moisture levels after rain events, pulling the tail to the right. This pattern is consistent with drought conditions interrupted by occasional precipitation -- exactly what the crew has been measuring.'}, {q:'Q5', a:'The histogram shows how often different values occur across a range. A single average number (like the mean) hides this shape entirely -- it would just give one number and you would not know whether the data was symmetric, skewed, or bimodal. The histogram shows the full story of the data distribution.'}
             ]
           },
           gaiaGraphNote:'"The shape of a histogram is the finding. Not just the numbers -- the shape. A symmetric distribution tells you the data has a natural center with balanced variation on both sides. A skewed distribution tells you most of the data piles up on one side, with rare extremes pulling the tail in the other direction. Bimodal tells you two different conditions are operating. The site water data has a shape. That shape is the drought in visual form."',
@@ -1581,6 +1581,15 @@ const CAMPAIGN = {
 
       ] // end Site 1 days
     }
+
+    // ============================================================
+    // SITE 2 -- RIPARIAN CORRIDOR -- INSERT HERE
+    // Standard: L2U1.13 | Days: 10 | Breadcrumb: Day 4
+    // Climax: Day 10 (fire reveal) | Delta range: 8-18
+    // Poison pill: Day 3 (competition/predation)
+    // S2D1 opens with S1D14 consequence woven into GAIA opening
+    // ============================================================
+
   ] // end sites
 };
 
@@ -1635,7 +1644,7 @@ function isValidState(parsed) {
   // Each class must have the essential fields
   return parsed.classes.every(cls =>
     cls && typeof cls.site === 'number' && typeof cls.day === 'number' &&
-    cls.stats && typeof cls.stats.nav === 'number'
+    cls.stats && typeof cls.stats.bio === 'number'
   );
 }
 
@@ -1646,10 +1655,10 @@ function patchMissingFields(st) {
     if (!cls.decisions) cls.decisions = [];
     if (!cls.checkpoints) cls.checkpoints = [];
     if (!cls.stats) cls.stats = {nav:100, solar:100, signal:40, earth:70};
-    if (cls.stats.nav === undefined) cls.stats.nav = 100;
-    if (cls.stats.solar === undefined) cls.stats.solar = 100;
-    if (cls.stats.signal === undefined) cls.stats.signal = 40;
-    if (cls.stats.earth === undefined) cls.stats.earth = 70;
+    if (cls.stats.bio === undefined) cls.stats.bio = 100;
+    if (cls.stats.water === undefined) cls.stats.water = 100;
+    if (cls.stats.food === undefined) cls.stats.food = 40;
+    if (cls.stats.trust === undefined) cls.stats.trust = 70;
   });
 }
 
@@ -1719,10 +1728,10 @@ function renderClassCards() {
       <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);margin-bottom:6px">      ${hasPending ? `<div class="reveal-badge visible">&#9203; Results pending - reveal next class</div>` : ''}
       <div class="class-branch ${branchClass}">${branchText}</div>
       <div class="mini-stats">
-        <div class="mini-stat"><div class="mini-stat-label">Bio</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.nav}%;background:var(--stat-bio)"></div></div></div>
-        <div class="mini-stat"><div class="mini-stat-label">Water</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.solar}%;background:var(--stat-water)"></div></div></div>
-        <div class="mini-stat"><div class="mini-stat-label">Food</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.signal}%;background:var(--stat-food)"></div></div></div>
-        <div class="mini-stat"><div class="mini-stat-label">Trust</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.earth}%;background:var(--stat-trust)"></div></div></div>
+        <div class="mini-stat"><div class="mini-stat-label">Bio</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.bio}%;background:var(--stat-bio)"></div></div></div>
+        <div class="mini-stat"><div class="mini-stat-label">Water</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.water}%;background:var(--stat-water)"></div></div></div>
+        <div class="mini-stat"><div class="mini-stat-label">Food</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.food}%;background:var(--stat-food)"></div></div></div>
+        <div class="mini-stat"><div class="mini-stat-label">Trust</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.trust}%;background:var(--stat-trust)"></div></div></div>
       </div>
     `;
     grid.appendChild(card);
@@ -1781,10 +1790,10 @@ function renderRevealScreen(cls) {
   }
 
   const statInfo = [
-    { key:'nav',    icon:'Bio', label:'Biodiversity',   color:'var(--stat-bio)' },
-    { key:'solar',  icon:'Water', label:'Water Avail',   color:'var(--stat-water)' },
-    { key:'signal', icon:'Food', label:'Food Supply', color:'var(--stat-food)' },
-    { key:'earth',  icon:'Trust', label:'Community Trust',   color:'var(--stat-trust)' }
+    { key:'bio',    icon:'Bio', label:'Biodiversity Index', color:'var(--stat-bio)' },
+    { key:'water',  icon:'Water', label:'Water Availability', color:'var(--stat-water)' },
+    { key:'food', icon:'Food', label:'Food Stability', color:'var(--stat-food)' },
+    { key:'trust',  icon:'Trust', label:'Community Trust',   color:'var(--stat-trust)' }
   ];
   const deltas = cls.pendingDeltas || {};
   document.getElementById('reveal-stat-changes').innerHTML = statInfo.map(s => {
@@ -2136,8 +2145,28 @@ function renderGraphContent(c) {
       h += renderPieChart(gd);
     } else if (gd.bars && gd.bars2) {
       h += renderDoubleBarGraph(gd);
+    } else if (c.rawDataOnly && gd.bars) {
+      // rawDataOnly: show as data cards, not a bar graph
+      h += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px;margin-bottom:14px">';
+      gd.bars.forEach(function(b) {
+        if (b.value === 0) {
+          h += '<div style="grid-column:1/-1;background:rgba(232,150,60,0.06);border:1px solid var(--amber-dim);border-radius:6px;padding:8px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber)">' + b.label + '</div>';
+        } else {
+          h += '<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:14px 8px;display:flex;justify-content:center;align-items:center;font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--text-primary)">' + b.value + '</div>';
+        }
+      });
+      h += '</div>';
+    } else if (gd.isHorizontalBar && gd.bars) {
+      h += renderHorizontalBarSVG(gd);
     } else if (gd.bars) {
       h += renderBarGraph(gd);
+    }
+    // Dot plot reveal button
+    if (c.showDotPlotReveal && gd && gd.revealDatasets) {
+      h += '<div style="margin-top:12px"><button onclick="document.getElementById(\'dp-answer\').style.display=\'block\';this.style.display=\'none\'" style="font-family:var(--font-mono);font-size:11px;background:rgba(141,184,122,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; Reveal -- What Your Dot Plot Should Look Like</button>';
+      h += '<div id="dp-answer" style="display:none;margin-top:12px">' + renderDotPlotSVG({datasets:gd.revealDatasets}) + '</div></div>';
+    }
+    if (false) {
     } else if (gd.isHorizontalBar && gd.bars) {
       h += renderHorizontalBarSVG(gd);
     } else if (gd.isDotPlot && gd.datasets) {
@@ -2822,7 +2851,7 @@ function updateTeacherNotePanel(cnt) {
   if (cnt.graphData) {
     const gd = cnt.graphData;
     if (gd.teacherNote) notes.push({label:'Graph Note', text:gd.teacherNote});
-    if (gd.graphAnswers) gd.graphAnswers.forEach(a => notes.push({label:`Q${a.q} Answer`, text:a.a}));
+    if (gd.graphAnswers) gd.graphAnswers.forEach(function(a, i) { notes.push({label:'Q' + (i+1) + ' -- ' + a.q, text:a.a}); });
     if (gd.datasets) gd.datasets.forEach(ds => {
       if (ds.answer) notes.push({label:`${ds.id} - Answer`, text:ds.answer});
       if (ds.hint) notes.push({label:`${ds.id} - Hint`, text:ds.hint});
@@ -3031,7 +3060,7 @@ function showForensics() {
     cls.checkpoints.forEach((cp, i) => {
       const opt = document.createElement('option');
       opt.value = i;
-      opt.textContent = `${cp.label} - Nav:${cp.stats.nav}% Solar:${cp.stats.solar}% Signal:${cp.stats.signal}% Earth:${cp.stats.earth}%`;
+      opt.textContent = `${cp.label} - Nav:${cp.stats.bio}% Solar:${cp.stats.water}% Signal:${cp.stats.food}% Earth:${cp.stats.trust}%`;
       cpSelect.appendChild(opt);
     });
   } else {
@@ -3224,7 +3253,7 @@ window.addEventListener('load', () => {
 
 function renderDotPlotSVG(gd) {
   var datasets = gd.datasets || [];
-  var W=560, padL=70, padR=20, padT=20, rowH=100, dotR=7, padB=40;
+  var W=560, padL=100, padR=20, padT=20, rowH=100, dotR=7, padB=40;
   var H = padT + rowH * datasets.length + padB;
   var allVals = datasets.reduce(function(a,d){return a.concat(d.values);}, []);
   var dataMin = Math.min.apply(null,allVals), dataMax = Math.max.apply(null,allVals);
