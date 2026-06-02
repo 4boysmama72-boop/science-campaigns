@@ -266,21 +266,21 @@
   .stat-bar-fill::after { content: ''; position: absolute; top: 0; right: 0; width: 3px; height: 100%; background: rgba(255,255,255,0.35); border-radius: 2px; }
   .stat-sublabel { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-top: 3px; letter-spacing: .04em; }
 
-  .stat-nav .stat-name { color: var(--stat-bio); }
-  .stat-nav .stat-value { color: var(--stat-bio); }
-  .stat-nav .stat-bar-fill { background: linear-gradient(90deg,#004a44,var(--stat-bio)); box-shadow: 0 0 6px rgba(0,229,204,0.4); }
+  .stat-bio .stat-name { color: var(--stat-bio); }
+  .stat-bio .stat-value { color: var(--stat-bio); }
+  .stat-bio .stat-bar-fill { background: linear-gradient(90deg,#004a44,var(--stat-bio)); box-shadow: 0 0 6px rgba(0,229,204,0.4); }
 
-  .stat-solar .stat-name { color: var(--stat-water); }
-  .stat-solar .stat-value { color: var(--stat-water); }
-  .stat-solar .stat-bar-fill { background: linear-gradient(90deg,#554400,var(--stat-water)); box-shadow: 0 0 6px rgba(255,221,0,0.4); }
+  .stat-water .stat-name { color: var(--stat-water); }
+  .stat-water .stat-value { color: var(--stat-water); }
+  .stat-water .stat-bar-fill { background: linear-gradient(90deg,#554400,var(--stat-water)); box-shadow: 0 0 6px rgba(255,221,0,0.4); }
 
-  .stat-signal .stat-name { color: var(--stat-food); }
-  .stat-signal .stat-value { color: var(--stat-food); }
-  .stat-signal .stat-bar-fill { background: linear-gradient(90deg,#440066,var(--stat-food)); box-shadow: 0 0 6px rgba(170,102,255,0.4); }
+  .stat-food .stat-name { color: var(--stat-food); }
+  .stat-food .stat-value { color: var(--stat-food); }
+  .stat-food .stat-bar-fill { background: linear-gradient(90deg,#440066,var(--stat-food)); box-shadow: 0 0 6px rgba(170,102,255,0.4); }
 
-  .stat-earth .stat-name { color: var(--stat-trust); }
-  .stat-earth .stat-value { color: var(--stat-trust); }
-  .stat-earth .stat-bar-fill { background: linear-gradient(90deg,#114433,var(--stat-trust)); box-shadow: 0 0 6px rgba(68,204,136,0.4); }
+  .stat-trust .stat-name { color: var(--stat-trust); }
+  .stat-trust .stat-value { color: var(--stat-trust); }
+  .stat-trust .stat-bar-fill { background: linear-gradient(90deg,#114433,var(--stat-trust)); box-shadow: 0 0 6px rgba(68,204,136,0.4); }
 
   .stat-warning .stat-bar-fill { animation: flicker 2s infinite; }
   .stat-critical .stat-bar-fill { animation: flicker 0.5s infinite; }
@@ -532,7 +532,7 @@
     <div style="width:100%;max-width:600px">
       <div class="mission-label" style="margin-bottom:8px">Field Research System &mdash; Campaign 3</div>
       <div class="setup-title">THE VANISHING</div>
-      <div style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);margin-bottom:2rem">The Arroyo Field Research Platform</div>
+      <div style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);margin-bottom:2rem">Global Science Recovery Agency &middot; The Arroyo Field Research Platform</div>
       <div style="margin-bottom:16px">
         <label class="form-label">Your Name</label>
         <input type="text" class="form-input" id="setup-teacher" placeholder="e.g. Ms. Rodriguez" />
@@ -554,34 +554,19 @@
           </div>
         </div>
       </div>
-      <div style="margin-bottom:16px">
-        
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
-          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px">
-            <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:8px">Class 1</div>
-            <select class="day-jump-select" id="setup-gaia1">
-              <option value="aboard">GAIA aboard Arroyo</option>
-              <option value="signal">GAIA Field System</option>
-            </select>
-          </div>
+      
           <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px">
             <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:8px">Class 2</div>
-            <select class="day-jump-select" id="setup-gaia2">
-              <option value="aboard">GAIA aboard Arroyo</option>
-              <option value="signal">GAIA Field System</option>
-            </select>
+            
           </div>
           <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px">
             <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:8px">Class 3</div>
-            <select class="day-jump-select" id="setup-gaia3">
-              <option value="aboard">GAIA aboard Arroyo</option>
-              <option value="signal">GAIA Field System</option>
-            </select>
+            
           </div>
         </div>
       </div>
       <button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="completeSetup()">
-        The Vanishing &mdash; Field Research System &rarr;
+        Initialize Mission Control &mdash; The Lighthouse &rarr;
       </button>
     </div>
   </div>
@@ -592,7 +577,7 @@
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
     <div style="width:100%;max-width:960px">
       <div style="text-align:center;margin-bottom:2.5rem">
-        <div class="mission-label">Global The Arroyo &mdash; Field Research Platform</div>
+        <div class="mission-label">The Arroyo &mdash; Field Research Platform</div>
         <div class="mission-title">THE VANISHING</div>
         <div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);letter-spacing:.1em;text-transform:uppercase">Life Science Campaign &middot; Teacher Dashboard</div>
       </div>
@@ -629,7 +614,7 @@
         </div>
         <div class="reveal-gaia-text" id="reveal-gaia-text">Loading consequence data...</div>
       </div>
-      <!-- GAIA consequence box &mdash; shown for field days -->
+      <!-- Meridian consequence box &mdash; shown for Meridian-mode days -->
       <div class="meridian-box" id="reveal-meridian-box" style="display:none;margin-bottom:24px">
         <div class="meridian-header" style="margin-bottom:10px">
           <div class="meridian-indicator"></div>
@@ -737,25 +722,25 @@ GAIA out. I will be in contact daily. Try to get enough sleep &mdash; I have not
     <div class="panel-stats">
       <div>
         <div class="panel-label">Mission Dashboard</div>
-        <div class="stat-item stat-nav">
-          <div class="stat-header"><div class="stat-name">Navigation</div><div class="stat-value" id="stat-nav-val">100%</div></div>
-          <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-nav-bar" style="width:100%"></div></div>
-          <div class="stat-sublabel" id="stat-nav-status">Course nominal</div>
+        <div class="stat-item stat-bio">
+          <div class="stat-header"><div class="stat-name">Navigation</div><div class="stat-value" id="stat-bio-val">100%</div></div>
+          <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-bio-bar" style="width:100%"></div></div>
+          <div class="stat-sublabel" id="stat-bio-status">Course nominal</div>
         </div>
-        <div class="stat-item stat-solar">
-          <div class="stat-header"><div class="stat-name">Solar Power</div><div class="stat-value" id="stat-solar-val">100%</div></div>
-          <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-solar-bar" style="width:100%"></div></div>
-          <div class="stat-sublabel" id="stat-solar-status">Collection optimal</div>
+        <div class="stat-item stat-water">
+          <div class="stat-header"><div class="stat-name">Solar Power</div><div class="stat-value" id="stat-water-val">100%</div></div>
+          <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-water-bar" style="width:100%"></div></div>
+          <div class="stat-sublabel" id="stat-water-status">Collection optimal</div>
         </div>
-        <div class="stat-item stat-signal">
-          <div class="stat-header"><div class="stat-name">Food</div><div class="stat-value" id="stat-signal-val">40%</div></div>
-          <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-signal-bar" style="width:40%"></div></div>
-          <div class="stat-sublabel" id="stat-signal-status">Lighthouse signal faint</div>
+        <div class="stat-item stat-food">
+          <div class="stat-header"><div class="stat-name">Food</div><div class="stat-value" id="stat-food-val">40%</div></div>
+          <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-food-bar" style="width:40%"></div></div>
+          <div class="stat-sublabel" id="stat-food-status">Lighthouse signal faint</div>
         </div>
-        <div class="stat-item stat-earth">
-          <div class="stat-header"><div class="stat-name">Earth Status</div><div class="stat-value" id="stat-earth-val">70%</div></div>
-          <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-earth-bar" style="width:70%"></div></div>
-          <div class="stat-sublabel" id="stat-earth-status">Atmosphere elevated</div>
+        <div class="stat-item stat-trust">
+          <div class="stat-header"><div class="stat-name">Earth Status</div><div class="stat-value" id="stat-trust-val">70%</div></div>
+          <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-trust-bar" style="width:70%"></div></div>
+          <div class="stat-sublabel" id="stat-trust-status">Atmosphere elevated</div>
         </div>
       </div>
 
@@ -918,7 +903,7 @@ GAIA out. I will be in contact daily. Try to get enough sleep &mdash; I have not
     <!-- RIGHT PANEL -->
     <div class="panel-right">
       <div>
-        
+        <div class="panel-label">GAIA Status</div>
         <div id="gaia-alerts">
           <div class="gaia-alert"><div class="gaia-alert-text">"All systems monitored. Awaiting crew input."</div></div>
         </div>
@@ -970,7 +955,9 @@ GAIA out. I will be in contact daily. Try to get enough sleep &mdash; I have not
         <div class="gaia-header" style="margin-bottom:10px"><div class="gaia-dot"></div><div class="gaia-label">GAIA</div></div>
         <div class="processing-gaia-text" id="processing-gaia-msg">"Selection received. I am... processing the implications. The ship's systems have registered your decision and are responding accordingly. Whether that response is favorable &mdash; well. You'll find out next class."</div>
       </div>
-      
+      <!-- Meridian processing box -->
+      <div class="processing-meridian" id="proc-meridian-box" style="display:none">
+        <div class="meridian-header" style="margin-bottom:10px"><div class="meridian-indicator"></div><div class="meridian-label">MERIDIAN SYSTEMS</div></div>
         <div class="processing-meridian-text">Decision logged. Consequence data is pending. Results will be available at the start of the next session. Ship systems are responding to the crew's command. Current stat changes are classified until the next reveal.</div>
       </div>
       <div class="processing-choice-recap">
@@ -1288,6 +1275,12 @@ const CAMPAIGN = {
             ]
           },
           gaiaGraphNote:'"A dot plot shows every data point. Not a summary -- every single value. The number line tells you the range. Where the dots pile up tells you where most values fall. Where the dots are sparse or absent tells you about the edges of the data. Tomorrow the crew builds one from actual field data. Today: just read this one. Find the center. Find the spread. Notice the shape."',
+          graphQuestions:[
+            '1. Where do most dots cluster -- toward the left, right, or in the middle of the number line?',
+            '2. What is the highest number of sightings on any single day? What is the lowest?',
+            '3. Count all the dots. There are 20 data points. The median is between the 10th and 11th value when ordered. What is the median number of sightings per day?',
+            '4. Tomorrow the crew builds a dot plot from actual Arroyo field data. Predict: will the field data show higher or lower sighting counts than this example -- and why?'
+          ],
           bridgeToNext:'Next class: graph day. The crew builds a dot plot from 15 actual population survey values.'
         },
 
@@ -1337,9 +1330,9 @@ const CAMPAIGN = {
         {
           day:6, type:'deepen',
           siteTitle:'Who Does What in This Ecosystem',
-          gaia:'The crew has spent five days measuring who is here and how many. Today we read about why each organism is here -- what role it plays, and how energy moves through this ecosystem.\n\nEvery organism in the Sonoran Desert plays one of three roles. Producer, consumer, or decomposer. The producers -- plants and cacti -- capture energy from the Sun and store it in their tissues. The consumers eat the producers or eat each other. The decomposers break down what dies and return its nutrients to the soil.\n\nWhen the producer base shrinks, the whole chain feels it. The crew has already seen this in the kangaroo rat data. Today we read why.',
+          gaia:'The crew has spent five days measuring who is here and how many. Today we shift to the question of why each organism is here -- what role it plays, and how energy moves through this system.\n\nEvery organism in the Sonoran Desert plays one of three roles. Producer, consumer, or decomposer. The producers capture solar energy and turn it into food. The consumers eat -- either the producers or each other. The decomposers break down what dies and return its nutrients to the soil.\n\nWhen something goes wrong with the producers, the whole chain feels it. The crew has already seen this in the kangaroo rat data. Today we read why.',
           readingFocus:'Savvas Cycling of Matter and Energy, Topic 2, Lesson 2 -- Energy Flow in Ecosystems. Sections: Energy Roles in an Ecosystem (producers, consumers, decomposers), Energy and Matter Transfer (food chains, food webs, energy pyramids, energy availability). Focus: What is the difference between a producer, a consumer, and a decomposer? How is energy transferred through a food chain? Why is less energy available at each higher level of a food web?',
-          gaiaReadingPrompt:'"Energy enters this ecosystem from the Sun. Every producer -- every plant, every cactus, every wildflower -- captures some of that energy and stores it in its leaves, seeds, and stems.\n\nHere is a way to think about what happens next. Imagine the energy in a plant as a full bucket of water. When a kangaroo rat eats that plant, it only keeps about one cup from the bucket. The rest is used up just keeping the animal alive and warm. When a racer snake eats the kangaroo rat, it only keeps about one cup from what the kangaroo rat had.\n\nThis is why the crew is seeing what it is seeing. The annual plants -- the producers -- are the bucket. When the bucket gets smaller because of the water deficit, every cup above it gets smaller too. The kangaroo rats have less. The snakes have less. The whole chain feels it, one level at a time."',
+          gaiaReadingPrompt:'"Energy enters this ecosystem from the Sun. The saguaro cactus captures it. The annual wildflower captures it. Every producer in the Sonoran Desert is converting solar energy into the chemical energy stored in plant tissue.\n\nWhen a kangaroo rat eats a seed, it gets some of that energy -- but not all of it. Some was already used by the plant for its own life processes. Some is lost as heat. The kangaroo rat gets roughly 10 percent of the energy that was in the plant material it ate. When a racer snake eats a kangaroo rat, it gets roughly 10 percent of what the kangaroo rat had. This is not a flaw in the system. This is how energy works in ecosystems.\n\nThis is also why a reduction at the producer level -- annual plants declining 61 percent -- does not just affect kangaroo rats. It affects everything that depends on kangaroo rats, and everything that depends on those organisms, in a chain that reaches further than the crew can easily track."',
           gaiaRecall:'From Day 3: annual plants are down 61 percent, kangaroo rats are down 34 percent, racer snakes are just beginning to show stress. The energy flow reading explains why those numbers are proportional to each other and why the effect moves up the chain with a delay.',
           vocabFocus:['producer','consumer','decomposer','food chain','food web','energy pyramid','role'],
           bridgeToNext:'Tomorrow: the crew investigates a specific broken link in the food web -- and GAIA notices something in the data timing.'
@@ -1388,10 +1381,10 @@ const CAMPAIGN = {
         {
           day:8, type:'deepen',
           siteTitle:'How Much Energy Is Actually Available',
-          gaia:'The food web shows who eats whom. The energy pyramid shows how much energy is actually moving between those connections.\n\nThis distinction matters for what the crew is investigating. Knowing that a kangaroo rat eats annual plant seeds is the food web. Knowing that the kangaroo rat can only capture roughly 10 percent of the energy in those seeds -- and that a snake gets only 10 percent of what the kangaroo rat had -- is the energy pyramid. Here is a way to think about what happens next. Imagine the energy in a plant as a full bucket of water. When a kangaroo rat eats that plant, it only gets to keep about one cup from that bucket. The rest is used up just keeping the animal alive and warm. When a racer snake eats the kangaroo rat, it only gets one cup from what the kangaroo rat had.\n\nThis is why the crew is seeing what it is seeing. The annual plants are the bucket. When the bucket gets smaller because of the water deficit, every cup above it gets smaller too. The kangaroo rats have less. The snakes have less. The whole chain feels it, one step at a time.',
+          gaia:'The food web shows who eats whom. The energy pyramid shows how much energy is actually moving between those connections.\n\nThis distinction matters for what the crew is investigating. Knowing that a kangaroo rat eats annual plant seeds is the food web. Knowing that the kangaroo rat can only capture roughly 10 percent of the energy in those seeds -- and that a snake gets only 10 percent of what the kangaroo rat had -- is the energy pyramid. Here is a way to think about what happens next. Imagine the energy in a plant as a full bucket of water. When a kangaroo rat eats that plant, it only gets to keep about one cup from that bucket. The rest is used up just keeping the animal alive and warm. When a racer snake eats the kangaroo rat, it only gets about one cup from what the kangaroo rat had. This is why the whole chain feels it when the plants decline -- the bucket gets smaller, so every cup above it gets smaller too.',
           readingFocus:'Savvas Cycling of Matter and Energy, Topic 2, Lesson 2 -- Energy and Matter Transfer. Sections: Energy Pyramids, Energy Availability. Focus: What does an energy pyramid show? Why is there less energy at each higher level? How does the 10 percent rule explain the population changes the crew is seeing?',
           gaiaReadingPrompt:'"Energy pyramids have a wide base and a narrow top. The wide base is the producers -- they have the most energy available in the system. Each level above captures roughly 10 percent of the energy from the level below. The rest is used for life processes or lost as heat.\n\nThis means that to support one racer snake, you need a population of kangaroo rats with ten times as much energy as the snake needs. And to support those kangaroo rats, you need annual plants with ten times as much energy as the kangaroo rats need. The math compounds quickly.\n\nWhen the producer base shrinks by 61 percent, the ripple moves up the pyramid -- but not instantly, and not at the same percentage at each level. The delay between abiotic stress and visible population change is built into this math."',
-          gaiaRecall:'From Day 7: the soil moisture deficit began approximately eight months ago. The annual plants declined first. The kangaroo rats followed. The snake stress is just appearing now. Today\'s reading explains why the effects move up the chain one step at a time, with a delay between each level.',
+          gaiaRecall:'From Day 7: the soil moisture deficit began approximately eight months ago. The annual plant decline followed. The kangaroo rat decline followed that. The snake stress is just appearing now. The energy pyramid explains why the timing is staggered.',
           vocabFocus:['energy pyramid','producer','consumer','decomposer','food web','food chain'],
           spiralReview:'The energy pyramid will be displayed as a horizontal bar graph on Day 9. A bar graph is a review -- the crew has used bar graphs before. The new element is horizontal orientation. The same data can be displayed vertically or horizontally depending on what makes the labels easier to read. Tomorrow\'s graph uses horizontal because the level names are long.',
           bridgeToNext:'Tomorrow: graph day. GAIA displays the Sonoran Desert energy pyramid as a pre-built horizontal bar graph. The crew reads it and answers questions. No build today -- this is a read-only graph.'
@@ -1405,8 +1398,8 @@ const CAMPAIGN = {
           scenario:'GAIA displays a pre-built horizontal bar graph showing estimated energy availability at each trophic level in the survey area. The bars represent relative energy units -- not exact calories, but proportional values that show the relationship between levels.',
           graphData:{
             title:'Sonoran Desert Energy Pyramid -- Relative Energy at Each Trophic Level',
-            teacherNote:'HORIZONTAL BAR GRAPH -- REVIEW. Students have seen bar graphs before. This is the FIRST TIME they see it horizontal. Point out that the same data can go either direction -- horizontal works better here because the labels are long. Bars show relative energy, not exact calories. Key teaching points: (1) producer bar is longest -- most energy at the base; (2) each level above is roughly one-tenth of the level below (the bucket/cup idea from today\'s reading); (3) decomposers shown separately -- they recycle energy from all levels and do not fit neatly into the hierarchy. Questions are read-only, no calculation required.',
             isHorizontalBar:true,
+            teacherNote:'HORIZONTAL BAR GRAPH -- REVIEW. Students have seen bar graphs before. New element: horizontal orientation. Walk through the observation that the same data works either way. The bars here show relative energy, not exact measurements. Key teaching points: (1) producer bar is longest -- most energy is at the base; (2) each level above is roughly 10% of the level below; (3) the decomposer bar is shown separately because decomposers recycle energy from all levels. Questions are read-only -- no calculation required. Students should notice how the bar lengths reflect the 10% rule discussed in Day 8.',
             bars:[
               {label:'Producers (annual plants, cacti, shrubs)', value:100, status:'safe'},
               {label:'Primary consumers (kangaroo rats, insects, birds)', value:10, status:'caution'},
@@ -1436,9 +1429,9 @@ const CAMPAIGN = {
         {
           day:10, type:'deepen',
           siteTitle:'Where the Water Goes',
-          gaia:'The crew has established that water is the limiting factor in this ecosystem and that the deficit has been building for approximately eight months. Today we read about how water moves through an ecosystem -- the water cycle.\n\nThis matters for a specific reason. The water cycle is not just the rain that falls. It is evaporation from the soil surface, condensation that forms clouds, and precipitation that returns water to the ground. Plants are also part of the cycle -- they release water vapor through their leaves as part of normal life processes. Every part of the cycle is connected. When one part is disrupted, the others feel it.\n\nThe Arroyo sensors have been tracking evaporation rates alongside soil moisture. I want the crew to keep that in mind while reading today.',
+          gaia:'The crew has established that water is the limiting factor in this ecosystem and that the deficit has been building for approximately eight months. Today we read about how water moves through an ecosystem -- the water cycle.\n\nThis matters for a specific reason. The water cycle is not just the rain that falls. It is evaporation from the soil surface, condensation that forms clouds, precipitation that falls as rain, and the slow movement of water through the ground to recharge the water table. Plants release water vapor through their leaves as part of normal life processes, making them part of the cycle too. Every part of the cycle is connected. A disruption in one part affects all the others.\n\nThe Arroyo sensors have been tracking evaporation rates alongside soil moisture. I want the crew to keep that in mind while reading today.',
           readingFocus:'Savvas Cycling of Matter and Energy, Topic 2, Lesson 3 -- Cycles of Matter. Sections: Conservation of Matter and Energy, Water Cycle (evaporation, condensation, precipitation). Focus: What are the three main stages of the water cycle? How does the law of conservation of matter apply to the water cycle? How does plant life affect the water cycle?',
-          gaiaReadingPrompt:'"Water moves through this ecosystem in a cycle. It evaporates from the soil surface, rises as water vapor, condenses to form clouds, and falls as precipitation. Plants are part of this cycle too -- they release water vapor through their leaves as part of staying alive. When plant density drops, less water moves through this part of the cycle.\n\nIn a healthy Sonoran Desert, the monsoon rains arrive in July and August. They saturate the soil, trigger the germination of annual seeds, and recharge the water table. The timing of the monsoon -- not just the total amount but when it arrives -- determines whether annual plants germinate. That determines whether the food web has enough energy.\n\nThe crew\'s soil moisture data shows a deficit that has been building for approximately eight months. Eight months ago was the end of the last monsoon season. The question is whether the monsoon failed to deliver enough water, or whether something changed in how the ecosystem is holding onto the water it did receive."',
+          gaiaReadingPrompt:'"Water moves. It evaporates from the soil surface and from bodies of water, rising as water vapor. It condenses in the atmosphere to form clouds. It falls as precipitation -- rain, snow, or in the desert, the brief but intense monsoon storms that this ecosystem times its biology around.\n\nIn a healthy Sonoran Desert, the monsoon rains arrive in July and August. They saturate the soil, trigger the germination of annual seeds, and recharge the shallow water table that many desert plants and animals depend on. The timing of the monsoon -- not just its total amount but when it arrives -- determines whether annual plants germinate, which determines whether the entire food web above them has enough energy.\n\nThe crew\'s soil moisture data shows a deficit that has been building for approximately eight months. Eight months ago was the end of the last monsoon season. The question is whether the monsoon failed to deliver enough water, or whether something changed in how the ecosystem is retaining and cycling the water it did receive."',
           gaiaRecall:'From Lesson 2: decomposers are recycling nutrients normally. The soil chemistry is intact. The soil is ready to support plant growth. The missing variable is water timing and quantity -- which connects directly to today\'s water cycle reading.',
           vocabFocus:['evaporation','condensation','precipitation','law of conservation of mass','law of conservation of energy','system','components'],
           bridgeToNext:'Next class: the crew finds something in the carbon and oxygen cycle data that connects to the water cycle readings -- and the picture starts to get larger.'
@@ -1502,16 +1495,16 @@ const CAMPAIGN = {
           scenario:'GAIA displays four pre-built histograms, each with a distinct shape. Study each one carefully -- where do the bars pile up, where do they taper off, and what does that tell you about the data?',
           graphData:{
             title:'Distribution Shapes -- Four Examples Then Your Site Data',
-            teacherNote:'HISTOGRAM REVISIT + SHAPE OF DATA VOCABULARY. Show all four shape examples one at a time using the pre-built shapes below. Name each shape and describe it. Then show the site water data histogram as the fifth. Key shapes: (1) SYMMETRIC -- bars roughly mirror the center, bell curve; (2) SKEWED RIGHT -- most data piles up on the left, tail extends right; (3) SKEWED LEFT -- most data on the right, tail extends left; (4) BIMODAL -- two peaks, two clusters. The site water data is SKEWED RIGHT -- drought conditions with occasional rain events. Spiral callback: the Campaign 2 tidal histogram was bimodal (two tide levels). Students may remember -- acknowledge if they bring it up.',
+            teacherNote:'HISTOGRAM REVISIT + SHAPE OF DATA. Show all four shape examples before revealing the site data histogram. Shapes: (1) SYMMETRIC -- bars mirror the center, bell curve; (2) SKEWED RIGHT -- most data left, tail right; (3) SKEWED LEFT -- most data right, tail left; (4) BIMODAL -- two peaks. Site water data is SKEWED RIGHT (drought + occasional rain). Spiral callback: Campaign 2 tidal histogram was bimodal.',
             isHistogram:true,
             shapes:[
-              {name:'Symmetric', description:'Bars build up in the middle and taper evenly on both sides. Data has a natural center. Example: daily high temperatures in October.',
+              {name:'Symmetric', description:'Bars build up in the middle and taper evenly on both sides. Most data is near the center. Example: daily high temperatures in October.',
                bins:[{label:'60-65',count:2},{label:'65-70',count:5},{label:'70-75',count:10},{label:'75-80',count:14},{label:'80-85',count:10},{label:'85-90',count:5},{label:'90-95',count:2}]},
-              {name:'Skewed Right', description:'Most data piles up on the left. A long tail extends to the right. Example: days without rain per month -- most months have short dry spells, a few have very long ones.',
+              {name:'Skewed Right', description:'Most data piles up on the left. A long tail extends to the right. Example: days without rain per month -- most months have short dry spells.',
                bins:[{label:'0-5',count:18},{label:'5-10',count:12},{label:'10-15',count:8},{label:'15-20',count:5},{label:'20-25',count:3},{label:'25-30',count:1}]},
-              {name:'Skewed Left', description:'Most data piles up on the right. A long tail extends to the left. Example: species survival rates -- most species survive at high rates, a few struggle.',
+              {name:'Skewed Left', description:'Most data piles up on the right. A long tail extends to the left. Example: species survival rates -- most species survive at high rates.',
                bins:[{label:'0-20',count:1},{label:'20-40',count:2},{label:'40-60',count:4},{label:'60-70',count:8},{label:'70-80',count:14},{label:'80-90',count:18}]},
-              {name:'Bimodal', description:'Two peaks. Data clusters in two separate places with a gap between them. Example: tidal heights -- high tides and low tides create two clusters.',
+              {name:'Bimodal', description:'Two peaks. Data clusters in two separate places. Example: tidal heights from Campaign 2 -- high tides and low tides create two clusters.',
                bins:[{label:'0-50',count:15},{label:'51-100',count:11},{label:'101-150',count:5},{label:'151-200',count:5},{label:'201-250',count:10},{label:'251-300',count:14}]}
             ],
             bins:[
@@ -1527,7 +1520,7 @@ const CAMPAIGN = {
               {q:'Skewed right example', a:'Days without rain per month in the Sonoran Desert across one year. Most months have relatively short dry spells. A few months have very long dry streaks, pulling the tail to the right.'},
               {q:'Skewed left example', a:'Species survival rates in a healthy ecosystem. Most species survive at high rates, a few struggle, pulling the tail left.'},
               {q:'Bimodal example', a:'Tidal heights from Campaign 2 Leg 2 -- the crew saw this in the Lighthouse mission. Two peaks because high tides and low tides create two clusters of measurements, with few readings in between.'},
-              {q:'Site water data shape', a:'Skewed right. Most soil moisture readings cluster in the 0-4 cm range (very dry). A few readings reach higher moisture levels after rain events, pulling the tail to the right. This pattern is consistent with drought conditions interrupted by occasional precipitation -- exactly what the crew has been measuring.'}, {q:'Q5', a:'The histogram shows how often different values occur across a range. A single average number (like the mean) hides this shape entirely -- it would just give one number and you would not know whether the data was symmetric, skewed, or bimodal. The histogram shows the full story of the data distribution.'}
+              {q:'Site water data shape', a:'Skewed right. Most soil moisture readings cluster in the 0-4 cm range (very dry). A few readings reach higher moisture levels after rain events, pulling the tail to the right. This pattern is consistent with drought conditions interrupted by occasional precipitation -- exactly what the crew has been measuring.'}, {q:'Q5 -- Why histogram', a:'A histogram shows the full distribution -- how often different values occur across a range. A single average hides this entirely. The histogram shows whether data is symmetric, skewed, or bimodal. That shape is the scientific finding.'}
             ]
           },
           gaiaGraphNote:'"The shape of a histogram is the finding. Not just the numbers -- the shape. A symmetric distribution tells you the data has a natural center with balanced variation on both sides. A skewed distribution tells you most of the data piles up on one side, with rare extremes pulling the tail in the other direction. Bimodal tells you two different conditions are operating. The site water data has a shape. That shape is the drought in visual form."',
@@ -1549,7 +1542,7 @@ const CAMPAIGN = {
           choiceReadingFocus:'Today is a final review of all three lessons from Topic 2. Before the crew votes -- skim back through Lessons 1, 2, and 3 with the full site picture in mind. Your exit ticket will ask you to synthesize everything the crew has measured.',
           gaia:'The crew has been in the Sonoran Desert for fourteen days. The data is collected. I want to review what the Arroyo has confirmed before the crew decides what to report and where to go next.\n\nSoil moisture is significantly below the ten-year average. The deficit began building approximately eight months ago. Annual plant density is down 61 percent. Primary consumer populations are declining. The energy pyramid shows the effects moving up the food web. The water cycle is disrupted. The carbon cycle is responding to the plant deficit. The nitrogen cycle and decomposer community are intact.\n\nThe data is real. The ecosystem is under measurable stress. The cause is the water deficit. The water deficit began approximately eight months ago.\n\nI want the crew to sit with what that means before we move.',
           scenario:'The Arroyo is ready to move to Site 2. Before leaving, the crew makes a final decision about how to frame the Site 1 findings -- what the most important finding is, and what question the crew is carrying forward.',
-          exitTicketPrompt:'CER -- Claim: Which decision should the crew make about how to frame their Site 1 findings, and why? Evidence: What from the Lessons 1-3 reading supports this? Reasoning: How does your evidence connect to your claim?\n\nIn your evidence, include: the abiotic factor that changed, how it affected the food web, what cycles were disrupted and which were not, and what question the crew is carrying into Site 2.',
+          exitTicketPrompt:'CER -- Claim: Which decision should the crew make about how to frame the Site 1 findings, and why? Evidence: What from the Lessons 1, 2, and 3 reading supports this? Reasoning: How does your evidence connect to your claim? Include in your response: the abiotic factor that changed, how it affected the food web, what cycles were disrupted and which were not, and what question the crew is carrying into Site 2.',
           discussionPrompt:'GAIA says the data is real and the cause is the water deficit. But she has not said why the water deficit exists. Think about what kinds of things could cause a soil moisture deficit that began building eight months ago and has not recovered. What explanations are possible? How would you test each one?',
           choices:[
             {
@@ -1558,7 +1551,7 @@ const CAMPAIGN = {
               subtext:'Every biological finding the crew made traces back to the water deficit. That is the story.',
               deltas:{bio:0, water:8, food:0, trust:6},
               branch:'A-water-finding',
-              consequence:'The Site 1 report frames the water cycle disruption as the primary finding. Soil moisture deficit began eight months ago, has not recovered, and is driving plant decline, which is driving food web stress at every level. The research network responds: the framing is scientifically sound. The water cycle data is the anchor finding. The biological data is evidence of its effects. This is the right way to describe what the crew measured. The full consequences of this decision will be visible when the crew arrives at Site 2.'
+              consequence:'The Site 1 report frames the water cycle disruption as the primary finding. Soil moisture deficit began eight months ago, has not recovered, and is driving plant decline, which is driving food web stress at every level. The research network responds: the framing is scientifically sound. The water cycle data is the anchor finding. The biological data is evidence of its effects. This is the right way to describe what the crew measured.'
             },
             {
               letter:'B',
@@ -1566,7 +1559,7 @@ const CAMPAIGN = {
               subtext:'The food web data is the most concrete and measurable finding. Lead with what can be seen and counted.',
               deltas:{bio:-4, water:0, food:-4, trust:6},
               branch:'B-food-web-finding',
-              consequence:'The Site 1 report leads with food web data. Annual plants down 61 percent, kangaroo rats down 34 percent, secondary consumers beginning to show stress. The research network responds: the food web data is compelling but without the abiotic context -- the water cycle disruption -- the biological data looks like an isolated event. The two findings together tell a complete story. Neither one alone is sufficient. The full consequences of this decision will be visible when the crew arrives at Site 2.'
+              consequence:'The Site 1 report leads with food web data. Annual plants down 61 percent, kangaroo rats down 34 percent, secondary consumers beginning to show stress. The research network responds: the food web data is compelling but without the abiotic context -- the water cycle disruption -- the biological data looks like an isolated event. The two findings together tell a complete story. Neither one alone is sufficient.'
             },
             {
               letter:'C',
@@ -1574,22 +1567,13 @@ const CAMPAIGN = {
               subtext:'One site is not a pattern. Wait until the crew has data from multiple sites before drawing conclusions.',
               deltas:{bio:0, water:0, food:0, trust:10},
               branch:'C-reserve-judgment',
-              consequence:'The Site 1 report presents the data without a conclusion about cause. Soil moisture deficit. Plant decline. Food web stress. Water and carbon cycles disrupted. The report asks more questions than it answers. The research network responds: scientifically cautious and appropriate. One site could be an anomaly. The crew is right to wait for more data before drawing broad conclusions. Community Trust increases. The full consequences of this decision will be visible when the crew arrives at Site 2.'
+              consequence:'The Site 1 report presents the data without a conclusion about cause. Soil moisture deficit. Plant decline. Food web stress. Water and carbon cycles disrupted. The report asks more questions than it answers. The research network responds: scientifically cautious and appropriate. One site could be an anomaly. The crew is right to wait for more data before drawing broad conclusions. Community Trust increases -- the crew is behaving like scientists, not like people who decided the answer before they looked.'
             }
           ]
         }
 
       ] // end Site 1 days
     }
-
-    // ============================================================
-    // SITE 2 -- RIPARIAN CORRIDOR -- INSERT HERE
-    // Standard: L2U1.13 | Days: 10 | Breadcrumb: Day 4
-    // Climax: Day 10 (fire reveal) | Delta range: 8-18
-    // Poison pill: Day 3 (competition/predation)
-    // S2D1 opens with S1D14 consequence woven into GAIA opening
-    // ============================================================
-
   ] // end sites
 };
 
@@ -1716,7 +1700,7 @@ function renderClassCards() {
     const hasPending = !!cls.pendingDeltas;
     const branchClass = cls.failures >= 2 ? 'branch-critical' : cls.failures === 1 ? 'branch-caution' : (cls.day === 1 && cls.site === 1 && !hasPending) ? 'branch-new' : 'branch-nominal';
     const branchText = cls.failures >= 3 ? 'RESTRICTED' : cls.failures >= 2 ? 'CRITICAL' : cls.failures === 1 ? 'CAUTION' : hasPending ? 'REVEAL READY' : (cls.day === 1 && cls.site === 1) ? 'NOT STARTED' : 'NOMINAL';
-    
+    const gaiaIcon = cls.gaiaStatus === 'aboard' ? 'GAIA aboard' : 'GAIA via signal';
     const card = document.createElement('div');
     card.className = 'class-card';
     card.id = `class-card-${i}`;
@@ -1725,7 +1709,8 @@ function renderClassCards() {
       <div style="font-family:var(--font-display);font-size:10px;font-weight:700;color:var(--accent-dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px">Class ${i+1}</div>
       <div class="class-name">${cls.name}</div>
       <div class="class-status">Site ${cls.site} . Day ${cls.day} . Branch ${cls.branch}</div>
-      <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);margin-bottom:6px">      ${hasPending ? `<div class="reveal-badge visible">&#9203; Results pending - reveal next class</div>` : ''}
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);margin-bottom:6px">${gaiaIcon}</div>
+      ${hasPending ? `<div class="reveal-badge visible">&#9203; Results pending - reveal next class</div>` : ''}
       <div class="class-branch ${branchClass}">${branchText}</div>
       <div class="mini-stats">
         <div class="mini-stat"><div class="mini-stat-label">Bio</div><div class="mini-stat-bar"><div class="mini-stat-fill" style="width:${cls.stats.bio}%;background:var(--stat-bio)"></div></div></div>
@@ -1772,17 +1757,17 @@ function renderRevealScreen(cls) {
   const leg = CAMPAIGN.sites.find(l => l.id === cls.site) || CAMPAIGN.sites[0];
   const prevDay = Math.max(1, cls.day - 1);
   const prevCnt = leg.days.find(d => d.day === prevDay) || leg.days[0];
-  const wasSpecial = prevCnt && prevCnt.aroyyoMode && (cls.gaiaStatus === 'signal');
+  const wasMeridian = prevCnt && prevCnt.meridianMode && (cls.gaiaStatus === 'signal');
 
   // Show correct box - pure show/hide, no class mutation
   const gaiaBox = document.getElementById('reveal-gaia-box');
   const meridBox = document.getElementById('reveal-meridian-box');
-  if (gaiaBox) gaiaBox.style.display = wasSpecial ? 'none' : '';
-  if (meridBox) meridBox.style.display = wasSpecial ? '' : 'none';
+  if (gaiaBox) gaiaBox.style.display = wasMeridian ? 'none' : '';
+  if (meridBox) meridBox.style.display = wasMeridian ? '' : 'none';
 
   // Set consequence text in correct element
   const consequenceText = cls.pendingConsequence || 'The data is in. Here is what happened as a result of your decision.';
-  if (wasSpecial) {
+  if (wasMeridian) {
     const meridText = document.getElementById('reveal-meridian-text');
     if (meridText) meridText.innerHTML = consequenceText;
   } else {
@@ -1790,9 +1775,9 @@ function renderRevealScreen(cls) {
   }
 
   const statInfo = [
-    { key:'bio',    icon:'Bio', label:'Biodiversity Index', color:'var(--stat-bio)' },
-    { key:'water',  icon:'Water', label:'Water Availability', color:'var(--stat-water)' },
-    { key:'food', icon:'Food', label:'Food Stability', color:'var(--stat-food)' },
+    { key:'bio',    icon:'Bio', label:'Biodiversity',   color:'var(--stat-bio)' },
+    { key:'water',  icon:'Water', label:'Water Quality',   color:'var(--stat-water)' },
+    { key:'food', icon:'Food', label:'Food Supply', color:'var(--stat-food)' },
     { key:'trust',  icon:'Trust', label:'Community Trust',   color:'var(--stat-trust)' }
   ];
   const deltas = cls.pendingDeltas || {};
@@ -1884,7 +1869,7 @@ function renderMissionScreen() {
   const dayType = cnt.type || 'choice';
   const isChoiceDay = dayType === 'choice' && !cnt.noChoice && cnt.choices && cnt.choices.length > 0;
   const gaiaStatus = cls.gaiaStatus || 'aboard';
-  let isMeridianMode = cnt.aroyyoMode && (gaiaStatus === 'signal');
+  let isMeridianMode = cnt.meridianMode && (gaiaStatus === 'signal');
 
   document.getElementById('topbar-period').textContent = cls.name;
   document.getElementById('topbar-leg').textContent = cnt.siteLabel || cnt.legLabel || '';
@@ -1894,7 +1879,7 @@ function renderMissionScreen() {
 
   const typeLabels = {choice:'Choice Day', deepen:'Lesson Day', graph:'Graph Day', climax:'Leg Milestone'};
   const badge = typeLabels[dayType] || '';
-  document.getElementById('content-leg-title').innerHTML = (cnt.siteTitle || cnt.legTitle || 'Day ' + cls.day) + ' <span style="font-family:var(--font-mono);font-size:11px;color:var(--accent-dim);font-weight:400">' + badge + '</span>';
+  document.getElementById('content-leg-title').innerHTML = (cnt.siteTitle || cnt.legTitle || '') + ' <span style="font-family:var(--font-mono);font-size:11px;color:var(--accent-dim);font-weight:400">' + badge + '</span>';
 
   // -- GAIA / MERIDIAN SYSTEMS routing -----------------------
   let gaiaText = cnt.gaia || '';
@@ -1954,10 +1939,7 @@ function renderMissionScreen() {
     extra.innerHTML += `<div class="choice-reading-box"><div class="choice-reading-label">First Read - Before You Vote</div><div class="choice-reading-text">${cnt.choiceReadingFocus}</div></div>`;
   }
 
-  if (dayType === 'deepen') {
-    extra.innerHTML += renderDeepenContent(cnt);
-    if (cnt.graphData) extra.innerHTML += renderGraphContent(cnt);
-  }
+  if (dayType === 'deepen') { extra.innerHTML += renderDeepenContent(cnt); if (cnt.graphData) extra.innerHTML += renderGraphContent(cnt); }
   else if (dayType === 'graph') extra.innerHTML += renderGraphContent(cnt);
   else if (dayType === 'climax') extra.innerHTML += renderClimaxContent(cnt);
   // Choice days may also have graphData (e.g. Leg 3 Day 6 signal graph)
@@ -2092,7 +2074,7 @@ function updateDayTypeBanner(cnt, cls) {
 function renderDeepenContent(c) {
   let h = '';
   if (c.readingFocus) h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Reading Assignment</div><div style="font-family:var(--font-body);font-size:15px;color:var(--text-primary);line-height:1.6">${c.readingFocus}</div></div>`;
-  if (c.gaiaReadingPrompt) { const isMerid = c.aroyyoMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS - Reading Focus' : 'GAIA - To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${c.gaiaReadingPrompt}</div></div>`; }
+  if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS - Reading Focus' : 'GAIA - To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${c.gaiaReadingPrompt}</div></div>`; }
   if (c.vocabFocus && c.vocabFocus.length) {
     h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
     c.vocabFocus.forEach(v => { h += `<span style="background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:3px;padding:3px 9px;font-family:var(--font-mono);font-size:11px;color:var(--accent)">${v}</span>`; });
@@ -2109,44 +2091,9 @@ function renderGraphContent(c) {
     h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margin-bottom:14px">`;
     h += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">${gd.title}</div>`;
 
-    // rawDataOnly: show data as formatted cards, not a chart
-    if (c.rawDataOnly && gd.bars) {
-      h += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:12px">';
-      gd.bars.forEach(b => {
-        if (b.value === 0) {
-          h += `<div style="background:rgba(255,255,255,0.03);border:1px dashed var(--border);border-radius:4px;padding:8px 12px;display:flex;justify-content:center;align-items:center"><span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim)">${b.label}</span></div>`;
-        } else {
-          h += `<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:4px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">`;
-          h += `<span style="font-family:var(--font-mono);font-size:13px;color:var(--text-secondary)">${b.label}</span>`;
-          h += `<span style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--accent)">${b.value}</span>`;
-          h += `</div>`;
-        }
-      });
-      h += '</div>';
-      if (gd.yLabel) h += `<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);margin-bottom:8px">Values in: ${gd.yLabel}</div>`;
-
-      // Show answer button for number line reveal
-      if (c.showDotPlotReveal && gd && gd.revealDatasets) {
-      h += `<div id="dp-reveal" style="margin-top:12px">
-        <button onclick="document.getElementById('dp-answer').style.display='block';this.style.display='none'" style="font-family:var(--font-mono);font-size:11px;background:rgba(141,184,122,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; Reveal -- What Your Dot Plot Should Look Like</button>
-        <div id="dp-answer" style="display:none;margin-top:12px">${renderDotPlotSVG({datasets:gd.revealDatasets})}</div>
-      </div>`;
-    }
-    
-        if (c.showNumberLineAnswer) {
-        h += `<div id="number-line-reveal" style="margin-top:12px">`;
-        h += `<button onclick="document.getElementById('nl-answer').style.display='block';this.style.display='none'" style="font-family:var(--font-mono);font-size:11px;background:rgba(0,229,204,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">> Show What Your Number Line Should Look Like</button>`;
-        h += `<div id="nl-answer" style="display:none;margin-top:12px">`;
-        // Render the number line SVG
-        h += renderNumberLineSVG();
-        h += `</div></div>`;
-      }
-    } else if (gd.pie && gd.bars) {
-      h += renderPieChart(gd);
-    } else if (gd.bars && gd.bars2) {
-      h += renderDoubleBarGraph(gd);
-    } else if (c.rawDataOnly && gd.bars) {
-      // rawDataOnly: show as data cards, not a bar graph
+    if (gd.isHorizontalBar && gd.bars) {
+      h += renderHorizontalBarSVG(gd);
+    } else if ((c.rawDataOnly || gd.rawDataOnly) && gd.bars) {
       h += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px;margin-bottom:14px">';
       gd.bars.forEach(function(b) {
         if (b.value === 0) {
@@ -2156,19 +2103,6 @@ function renderGraphContent(c) {
         }
       });
       h += '</div>';
-    } else if (gd.isHorizontalBar && gd.bars) {
-      h += renderHorizontalBarSVG(gd);
-    } else if (gd.bars) {
-      h += renderBarGraph(gd);
-    }
-    // Dot plot reveal button
-    if (c.showDotPlotReveal && gd && gd.revealDatasets) {
-      h += '<div style="margin-top:12px"><button onclick="document.getElementById(\'dp-answer\').style.display=\'block\';this.style.display=\'none\'" style="font-family:var(--font-mono);font-size:11px;background:rgba(141,184,122,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; Reveal -- What Your Dot Plot Should Look Like</button>';
-      h += '<div id="dp-answer" style="display:none;margin-top:12px">' + renderDotPlotSVG({datasets:gd.revealDatasets}) + '</div></div>';
-    }
-    if (false) {
-    } else if (gd.isHorizontalBar && gd.bars) {
-      h += renderHorizontalBarSVG(gd);
     } else if (gd.isDotPlot && gd.datasets) {
       h += renderDotPlotSVG(gd);
     } else if (gd.isHistogram) {
@@ -2193,26 +2127,26 @@ function renderGraphContent(c) {
       h += renderBoxWhiskerSVG(gd);
     } else if (gd.multiLine) {
       h += renderMultiLineGraph(gd);
-    } else if (gd.data) {
-      h += renderLineGraph(gd);
+    } else if (gd.pie) {
+      h += renderPieChart(gd);
+    } else if (gd.bars) {
+      h += renderBarGraph(gd);
     }
-    // Data table if present
-    if (gd.dataTable) {
-      h += '<div style="margin-top:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Data Table</div>';
-      h += '<table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:14px">';
-      h += '<tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:6px 8px;color:var(--text-dim)">Object</th><th style="text-align:left;padding:6px 8px;color:var(--text-dim)">Mass</th><th style="text-align:right;padding:6px 8px;color:var(--text-dim)">Force</th></tr>';
-      gd.dataTable.forEach((row, i) => {
-        const bg = i % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent';
-        h += `<tr style="background:${bg}"><td style="padding:6px 8px;color:var(--text-secondary)">${row.object}</td><td style="padding:6px 8px;color:var(--text-secondary)">${row.mass}</td><td style="padding:6px 8px;text-align:right;color:var(--accent)">${row.force}</td></tr>`;
-      });
-      h += '</table></div>';
+
+    // Dot plot reveal button
+    if (c.showDotPlotReveal && gd && gd.revealDatasets) {
+      h += '<div style="margin-top:12px"><button onclick="document.getElementById(\'dp-answer\').style.display=\'block\';this.style.display=\'none\'" style="font-family:var(--font-mono);font-size:11px;background:rgba(141,184,122,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; Reveal -- What Your Dot Plot Should Look Like</button>';
+      h += '<div id="dp-answer" style="display:none;margin-top:12px">' + renderDotPlotSVG({datasets:gd.revealDatasets}) + '</div></div>';
     }
+
     h += '</div>';
   }
+
   if (c.gaiaGraphNote) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA - On This Graph</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaGraphNote}</div></div>`;
-  if (c.graphQuestions && c.graphQuestions.length) {
+  const gqs = c.graphQuestions || (c.graphData && c.graphData.graphQuestions);
+  if (gqs && gqs.length) {
     h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px">Discussion Questions</div>';
-    c.graphQuestions.forEach(q => { h += `<div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px;padding-left:10px;border-left:2px solid var(--border-bright)">${q}</div>`; });
+    gqs.forEach(q => { h += `<div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px;padding-left:10px;border-left:2px solid var(--border-bright)">${q}</div>`; });
     h += '</div>';
   }
   // shortDayNote is teacher-panel only - not rendered here
@@ -2739,49 +2673,61 @@ function goToReveal() {
 // ============================================================
 function renderStats(cls) {
   const s = cls.stats;
-  ['nav','solar','signal','earth'].forEach(key => {
-    const val = Math.max(0, Math.min(100, s[key]));
-    document.getElementById(`stat-${key}-val`).textContent = val + '%';
-    document.getElementById(`stat-${key}-bar`).style.width = val + '%';
-    const item = document.querySelector(`.stat-${key}`);
-    item.classList.remove('stat-warning','stat-critical');
-    if (val <= 20) item.classList.add('stat-critical');
-    else if (val <= 30) item.classList.add('stat-warning');
+  ['bio','water','food','trust'].forEach(function(key) {
+    const val = Math.max(0, Math.min(100, s[key] || 0));
+    const valEl = document.getElementById('stat-' + key + '-val');
+    const barEl = document.getElementById('stat-' + key + '-bar');
+    const item = document.querySelector('.stat-' + key);
+    if (valEl) valEl.textContent = val + '%';
+    if (barEl) barEl.style.width = val + '%';
+    if (item) {
+      item.classList.remove('stat-warning','stat-critical');
+      if (val <= 20) item.classList.add('stat-critical');
+      else if (val <= 40) item.classList.add('stat-warning');
+    }
   });
-  document.getElementById('stat-nav-status').textContent = statLabel('nav', s.nav);
-  document.getElementById('stat-solar-status').textContent = statLabel('solar', s.solar);
-  document.getElementById('stat-signal-status').textContent = statLabel('signal', s.signal);
-  document.getElementById('stat-earth-status').textContent = statLabel('earth', s.earth);
+  const bioSt = document.getElementById('stat-bio-status');
+  const waterSt = document.getElementById('stat-water-status');
+  const foodSt = document.getElementById('stat-food-status');
+  const trustSt = document.getElementById('stat-trust-status');
+  if (bioSt) bioSt.textContent = statLabel('bio', s.bio || 0);
+  if (waterSt) waterSt.textContent = statLabel('water', s.water || 0);
+  if (foodSt) foodSt.textContent = statLabel('food', s.food || 0);
+  if (trustSt) trustSt.textContent = statLabel('trust', s.trust || 0);
 }
 
 function statLabel(key, val) {
-  if (key === 'nav') {
-    if (val <= 0) return 'Navigation failure';
-    if (val <= 20) return 'Critical - course lost';
-    if (val <= 40) return 'Course corrections needed';
-    if (val <= 70) return 'Minor deviations';
-    return 'Course nominal';
+  if (key === 'bio') {
+    if (val <= 0) return 'Ecosystem collapse';
+    if (val <= 20) return 'Critical -- collapse imminent';
+    if (val <= 40) return 'Severe species loss';
+    if (val <= 60) return 'Biodiversity stressed';
+    if (val <= 80) return 'Ecosystem under pressure';
+    return 'Biodiversity stable';
   }
-  if (key === 'solar') {
-    if (val <= 0) return 'Power depleted';
-    if (val <= 20) return 'Critical - emergency only';
-    if (val <= 40) return 'Low reserves';
-    if (val <= 70) return 'Adequate collection';
-    return 'Collection optimal';
+  if (key === 'water') {
+    if (val <= 0) return 'Water crisis';
+    if (val <= 20) return 'Critical water deficit';
+    if (val <= 40) return 'Severe water shortage';
+    if (val <= 60) return 'Water deficit active';
+    if (val <= 80) return 'Water availability reduced';
+    return 'Water availability adequate';
   }
-  if (key === 'signal') {
-    if (val <= 10) return 'Signal lost';
-    if (val <= 30) return 'Signal very faint';
-    if (val <= 50) return 'Lighthouse signal faint';
-    if (val <= 75) return 'Signal strengthening';
-    return 'Signal clear';
+  if (key === 'food') {
+    if (val <= 0) return 'Food web collapse';
+    if (val <= 20) return 'Critical -- starvation cascade';
+    if (val <= 40) return 'Food web severely disrupted';
+    if (val <= 60) return 'Food supply under pressure';
+    if (val <= 80) return 'Food stability reduced';
+    return 'Food web stable';
   }
-  if (key === 'earth') {
-    if (val <= 30) return 'Critical atmospheric change';
-    if (val <= 50) return 'Significant warming detected';
-    if (val <= 65) return 'Elevated readings';
-    if (val <= 80) return 'Atmosphere elevated';
-    return 'Atmosphere nominal';
+  if (key === 'trust') {
+    if (val <= 0) return 'Mission credibility lost';
+    if (val <= 20) return 'Critical trust deficit';
+    if (val <= 40) return 'Community confidence low';
+    if (val <= 60) return 'Trust building slowly';
+    if (val <= 80) return 'Community trust adequate';
+    return 'Community trust strong';
   }
   return 'Nominal';
 }
@@ -2900,10 +2846,10 @@ function populateDayJump() {
     group.label = leg.label;
     leg.days.forEach(day => {
       const opt = document.createElement('option');
-      opt.value = leg.id + ':' + day.day;
+      opt.value = `${leg.id}:${day.day}`;
       // Use innerHTML for the icon, textContent for the rest
       const icon = typeIcons[day.type] || '-';
-      const bc = day.isBreadcrumb ? ' &#129360;' : ''; opt.innerHTML = icon + bc + ' Day ' + day.day + ' - ' + (day.siteTitle || day.legTitle || '');
+      opt.innerHTML = icon + ' Day ' + day.day + ' - ' + day.legTitle;
       if (leg.id === cls.site && day.day === cls.day) opt.selected = true;
       group.appendChild(opt);
     });
@@ -3060,7 +3006,7 @@ function showForensics() {
     cls.checkpoints.forEach((cp, i) => {
       const opt = document.createElement('option');
       opt.value = i;
-      opt.textContent = `${cp.label} - Nav:${cp.stats.bio}% Solar:${cp.stats.water}% Signal:${cp.stats.food}% Earth:${cp.stats.trust}%`;
+      opt.textContent = `${cp.label} - Nav:${cp.stats.nav}% Solar:${cp.stats.solar}% Signal:${cp.stats.signal}% Earth:${cp.stats.earth}%`;
       cpSelect.appendChild(opt);
     });
   } else {
@@ -3248,134 +3194,63 @@ window.addEventListener('load', () => {
 });
 
 // ============================================================
-// SVG RENDERERS -- Campaign 3 additions
+// SVG RENDERERS -- Campaign 3
 // ============================================================
 
 function renderDotPlotSVG(gd) {
-  var datasets = gd.datasets || [];
-  var W=560, padL=100, padR=20, padT=20, rowH=100, dotR=7, padB=40;
-  var H = padT + rowH * datasets.length + padB;
-  var allVals = datasets.reduce(function(a,d){return a.concat(d.values);}, []);
-  var dataMin = Math.min.apply(null,allVals), dataMax = Math.max.apply(null,allVals);
-  var chartW = W - padL - padR;
-  var toX = function(v){return padL + chartW*(v-dataMin)/(dataMax-dataMin||1);};
-  var svg = '<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;margin:8px auto">';
-  var step = Math.max(1, Math.round((dataMax-dataMin)/10));
-  for(var v=dataMin; v<=dataMax+0.1; v+=step){
-    var x=toX(v);
-    svg += '<line x1="'+x.toFixed(1)+'" y1="'+padT+'" x2="'+x.toFixed(1)+'" y2="'+(H-padB)+'" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>';
-    svg += '<text x="'+x.toFixed(1)+'" y="'+(H-padB+16)+'" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(212,197,169,0.6)" text-anchor="middle">'+Math.round(v)+'</text>';
-  }
-  datasets.forEach(function(ds, di){
-    var baseY = padT + rowH*di + rowH - dotR - 10;
-    var col = ds.color || '#8DB87A';
-    svg += '<text x="'+(padL-6)+'" y="'+baseY+'" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(212,197,169,0.8)" text-anchor="end">'+ds.label+'</text>';
-    svg += '<line x1="'+padL+'" y1="'+(baseY+dotR+4)+'" x2="'+(W-padR)+'" y2="'+(baseY+dotR+4)+'" stroke="rgba(212,197,169,0.15)" stroke-width="1"/>';
-    var counts = {};
-    ds.values.forEach(function(v){ counts[v] = (counts[v]||0) + 1; });
-    Object.keys(counts).forEach(function(key){
-      var val=parseFloat(key), count=counts[key], x=toX(val);
-      for(var c=0; c<count; c++){
-        var cy = baseY - c*(dotR*2+2);
-        svg += '<circle cx="'+x.toFixed(1)+'" cy="'+cy.toFixed(1)+'" r="'+dotR+'" fill="'+col+'" opacity="0.85"/>';
-      }
-    });
-  });
-  svg += '</svg>';
-  return svg;
+  var datasets=gd.datasets||[], W=560, padL=100, padR=20, padT=20, rowH=100, dotR=7, padB=40;
+  var H=padT+rowH*datasets.length+padB;
+  var allVals=datasets.reduce(function(a,d){return a.concat(d.values);}, []);
+  var dataMin=Math.min.apply(null,allVals), dataMax=Math.max.apply(null,allVals), chartW=W-padL-padR;
+  var toX=function(v){return padL+chartW*(v-dataMin)/(dataMax-dataMin||1);};
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;margin:8px auto">';
+  var step=Math.max(1,Math.round((dataMax-dataMin)/10));
+  for(var v=dataMin;v<=dataMax+0.1;v+=step){var x=toX(v);svg+='<line x1="'+x.toFixed(1)+'" y1="'+padT+'" x2="'+x.toFixed(1)+'" y2="'+(H-padB)+'" stroke="rgba(255,255,255,0.05)" stroke-width="1"/><text x="'+x.toFixed(1)+'" y="'+(H-padB+16)+'" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(212,197,169,0.6)" text-anchor="middle">'+Math.round(v)+'</text>';}
+  datasets.forEach(function(ds,di){var baseY=padT+rowH*di+rowH-dotR-10,col=ds.color||'#8DB87A';svg+='<text x="'+(padL-6)+'" y="'+baseY+'" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(212,197,169,0.8)" text-anchor="end">'+ds.label+'</text><line x1="'+padL+'" y1="'+(baseY+dotR+4)+'" x2="'+(W-padR)+'" y2="'+(baseY+dotR+4)+'" stroke="rgba(212,197,169,0.15)" stroke-width="1"/>';var counts={};ds.values.forEach(function(v){counts[v]=(counts[v]||0)+1;});Object.keys(counts).forEach(function(key){var val=parseFloat(key),count=counts[key],x=toX(val);for(var c=0;c<count;c++){var cy=baseY-c*(dotR*2+2);svg+='<circle cx="'+x.toFixed(1)+'" cy="'+cy.toFixed(1)+'" r="'+dotR+'" fill="'+col+'" opacity="0.85"/>';}});});
+  svg+='</svg>';return svg;
 }
 
 function renderHistogramSVG(gd) {
-  var bins=gd.bins||[], maxCount=Math.max.apply(null,bins.map(function(b){return b.count;}));
-  var W=560,H=260,padL=48,padB=54,padT=30,padR=14;
-  var chartW=W-padL-padR,chartH=H-padT-padB,binW=chartW/bins.length;
+  var bins=gd.bins||[],maxCount=Math.max.apply(null,bins.map(function(b){return b.count;}));
+  var W=560,H=260,padL=48,padB=54,padT=30,padR=14,chartW=W-padL-padR,chartH=H-padT-padB,binW=chartW/bins.length;
   var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;margin:8px auto">';
-  var midY=padT+chartH/2;
-  svg+='<text x="12" y="'+midY+'" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(212,197,169,0.4)" text-anchor="middle" transform="rotate(-90,12,'+midY+')">'+(gd.yLabel||'Count')+'</text>';
-  [0,25,50,75,100].forEach(function(pct){
-    var yy=padT+chartH*(1-pct/100);
-    var yVal=Math.round(maxCount*pct/100);
-    svg+='<line x1="'+padL+'" y1="'+yy.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+yy.toFixed(1)+'" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
-    svg+='<text x="'+(padL-5)+'" y="'+(yy+4).toFixed(1)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(212,197,169,0.5)" text-anchor="end">'+yVal+'</text>';
-  });
-  bins.forEach(function(bin,i){
-    var bh=(bin.count/maxCount)*chartH,x=padL+binW*i,y=padT+chartH-bh;
-    var col=i%2===0?'#8DB87A':'#5a8048';
-    svg+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+binW.toFixed(1)+'" height="'+bh.toFixed(1)+'" fill="'+col+'" opacity="0.82"/>';
-    svg+='<text x="'+(x+binW/2).toFixed(1)+'" y="'+(y-6).toFixed(1)+'" font-family="Share Tech Mono,monospace" font-size="12" fill="'+col+'" text-anchor="middle">'+bin.count+'</text>';
-    var lx=(x+binW/2).toFixed(1),ly=(padT+chartH+14).toFixed(1);
-    svg+='<text x="'+lx+'" y="'+ly+'" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(212,197,169,0.65)" text-anchor="middle" transform="rotate(-25,'+lx+','+ly+')">'+bin.label+'</text>';
-  });
-  svg+='<line x1="'+padL+'" y1="'+padT+'" x2="'+padL+'" y2="'+(padT+chartH)+'" stroke="rgba(212,197,169,0.2)" stroke-width="1"/>';
-  svg+='<line x1="'+padL+'" y1="'+(padT+chartH)+'" x2="'+(W-padR)+'" y2="'+(padT+chartH)+'" stroke="rgba(212,197,169,0.2)" stroke-width="1"/>';
-  svg+='<text x="'+(W/2)+'" y="'+(H-4)+'" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(212,197,169,0.3)" text-anchor="middle">Bars touch -- this is a histogram</text>';
-  svg+='</svg>';
-  return svg;
+  var midY=padT+chartH/2;svg+='<text x="12" y="'+midY+'" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(212,197,169,0.4)" text-anchor="middle" transform="rotate(-90,12,'+midY+')">'+(gd.yLabel||'Count')+'</text>';
+  [0,25,50,75,100].forEach(function(pct){var yy=padT+chartH*(1-pct/100),yVal=Math.round(maxCount*pct/100);svg+='<line x1="'+padL+'" y1="'+yy.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+yy.toFixed(1)+'" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="'+(padL-5)+'" y="'+(yy+4).toFixed(1)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(212,197,169,0.5)" text-anchor="end">'+yVal+'</text>';});
+  bins.forEach(function(bin,i){var bh=(bin.count/maxCount)*chartH,x=padL+binW*i,y=padT+chartH-bh,col=i%2===0?'#8DB87A':'#5a8048';svg+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+binW.toFixed(1)+'" height="'+bh.toFixed(1)+'" fill="'+col+'" opacity="0.82"/><text x="'+(x+binW/2).toFixed(1)+'" y="'+(y-6).toFixed(1)+'" font-family="Share Tech Mono,monospace" font-size="12" fill="'+col+'" text-anchor="middle">'+bin.count+'</text>';var lx=(x+binW/2).toFixed(1),ly=(padT+chartH+14).toFixed(1);svg+='<text x="'+lx+'" y="'+ly+'" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(212,197,169,0.65)" text-anchor="middle" transform="rotate(-25,'+lx+','+ly+')">'+bin.label+'</text>';});
+  svg+='<line x1="'+padL+'" y1="'+padT+'" x2="'+padL+'" y2="'+(padT+chartH)+'" stroke="rgba(212,197,169,0.2)" stroke-width="1"/><line x1="'+padL+'" y1="'+(padT+chartH)+'" x2="'+(W-padR)+'" y2="'+(padT+chartH)+'" stroke="rgba(212,197,169,0.2)" stroke-width="1"/>';
+  svg+='<text x="'+(W/2)+'" y="'+(H-4)+'" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(212,197,169,0.3)" text-anchor="middle">Bars touch -- histogram</text>';
+  svg+='</svg>';return svg;
 }
 
 function renderBoxWhiskerSVG(gd) {
-  // HORIZONTAL -- box and whisker along the x-axis
-  var zones=gd.zones||[], W=580, padL=80, padR=30, padT=30, rowH=110;
-  var H=padT+rowH*zones.length+40, chartW=W-padL-padR;
+  var zones=gd.zones||[], W=580, padL=80, padR=30, padT=30, rowH=110, H=padT+rowH*zones.length+40, chartW=W-padL-padR;
   var allVals=zones.reduce(function(a,z){return a.concat([z.min,z.max]);},[]);
   var dataMin=Math.min.apply(null,allVals),dataMax=Math.max.apply(null,allVals),range=dataMax-dataMin||1;
   var toX=function(v){return padL+chartW*(v-dataMin)/range;};
   var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;display:block;margin:8px auto">';
   var step=Math.max(5,Math.ceil(range/8/5)*5);
-  for(var v=Math.floor(dataMin/step)*step;v<=dataMax+1;v+=step){
-    var x=toX(v);
-    if(x>=padL-1&&x<=W-padR+1){
-      svg+='<line x1="'+x.toFixed(1)+'" y1="'+padT+'" x2="'+x.toFixed(1)+'" y2="'+(H-24)+'" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
-      svg+='<text x="'+x.toFixed(1)+'" y="'+(H-8)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(212,197,169,0.5)" text-anchor="middle">'+v+'</text>';
-    }
-  }
-  if(dataMin<0&&dataMax>0){var zx=toX(0);svg+='<line x1="'+zx.toFixed(1)+'" y1="'+padT+'" x2="'+zx.toFixed(1)+'" y2="'+(H-24)+'" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="4,3"/>';}
-  zones.forEach(function(z,i){
-    var cy=padT+rowH*i+rowH/2,bH=36;
-    var xMin=toX(z.min),xQ1=toX(z.q1),xMed=toX(z.median),xQ3=toX(z.q3),xMax=toX(z.max);
-    var col=z.color||'#8DB87A';
-    svg+='<text x="'+(padL-10)+'" y="'+(cy+5)+'" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(212,197,169,0.8)" text-anchor="end">'+z.label+'</text>';
-    svg+='<line x1="'+xMin.toFixed(1)+'" y1="'+cy+'" x2="'+xQ1.toFixed(1)+'" y2="'+cy+'" stroke="'+col+'" stroke-width="2.5" opacity="0.8"/>';
-    svg+='<line x1="'+xMin.toFixed(1)+'" y1="'+(cy-12)+'" x2="'+xMin.toFixed(1)+'" y2="'+(cy+12)+'" stroke="'+col+'" stroke-width="2.5" opacity="0.8"/>';
-    svg+='<line x1="'+xQ3.toFixed(1)+'" y1="'+cy+'" x2="'+xMax.toFixed(1)+'" y2="'+cy+'" stroke="'+col+'" stroke-width="2.5" opacity="0.8"/>';
-    svg+='<line x1="'+xMax.toFixed(1)+'" y1="'+(cy-12)+'" x2="'+xMax.toFixed(1)+'" y2="'+(cy+12)+'" stroke="'+col+'" stroke-width="2.5" opacity="0.8"/>';
-    svg+='<rect x="'+xQ1.toFixed(1)+'" y="'+(cy-bH/2)+'" width="'+(xQ3-xQ1).toFixed(1)+'" height="'+bH+'" fill="'+col+'" opacity="0.2" stroke="'+col+'" stroke-width="2"/>';
-    svg+='<line x1="'+xMed.toFixed(1)+'" y1="'+(cy-bH/2)+'" x2="'+xMed.toFixed(1)+'" y2="'+(cy+bH/2)+'" stroke="'+col+'" stroke-width="3.5"/>';
-    svg+='<text x="'+xMin.toFixed(1)+'" y="'+(cy-bH/2-8)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="'+col+'" text-anchor="middle">'+z.min+'</text>';
-    svg+='<text x="'+xQ1.toFixed(1)+'" y="'+(cy+bH/2+16)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="'+col+'" text-anchor="middle">Q1='+z.q1+'</text>';
-    svg+='<text x="'+xMed.toFixed(1)+'" y="'+(cy-bH/2-8)+'" font-family="Share Tech Mono,monospace" font-size="12" font-weight="bold" fill="'+col+'" text-anchor="middle">Med='+z.median+'</text>';
-    svg+='<text x="'+xQ3.toFixed(1)+'" y="'+(cy+bH/2+16)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="'+col+'" text-anchor="middle">Q3='+z.q3+'</text>';
-    svg+='<text x="'+xMax.toFixed(1)+'" y="'+(cy-bH/2-8)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="'+col+'" text-anchor="middle">'+z.max+'</text>';
-  });
-  svg+='</svg>';
-  return svg;
+  for(var v=Math.floor(dataMin/step)*step;v<=dataMax+1;v+=step){var x=toX(v);if(x>=padL-1&&x<=W-padR+1){svg+='<line x1="'+x.toFixed(1)+'" y1="'+padT+'" x2="'+x.toFixed(1)+'" y2="'+(H-24)+'" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="'+x.toFixed(1)+'" y="'+(H-8)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(212,197,169,0.5)" text-anchor="middle">'+v+'</text>';}}
+  zones.forEach(function(z,i){var cy=padT+rowH*i+rowH/2,bH=36,xMin=toX(z.min),xQ1=toX(z.q1),xMed=toX(z.median),xQ3=toX(z.q3),xMax=toX(z.max),col=z.color||'#8DB87A';svg+='<text x="'+(padL-10)+'" y="'+(cy+5)+'" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(212,197,169,0.8)" text-anchor="end">'+z.label+'</text><line x1="'+xMin.toFixed(1)+'" y1="'+cy+'" x2="'+xQ1.toFixed(1)+'" y2="'+cy+'" stroke="'+col+'" stroke-width="2.5" opacity="0.8"/><line x1="'+xMin.toFixed(1)+'" y1="'+(cy-12)+'" x2="'+xMin.toFixed(1)+'" y2="'+(cy+12)+'" stroke="'+col+'" stroke-width="2.5" opacity="0.8"/><line x1="'+xQ3.toFixed(1)+'" y1="'+cy+'" x2="'+xMax.toFixed(1)+'" y2="'+cy+'" stroke="'+col+'" stroke-width="2.5" opacity="0.8"/><line x1="'+xMax.toFixed(1)+'" y1="'+(cy-12)+'" x2="'+xMax.toFixed(1)+'" y2="'+(cy+12)+'" stroke="'+col+'" stroke-width="2.5" opacity="0.8"/><rect x="'+xQ1.toFixed(1)+'" y="'+(cy-bH/2)+'" width="'+(xQ3-xQ1).toFixed(1)+'" height="'+bH+'" fill="'+col+'" opacity="0.2" stroke="'+col+'" stroke-width="2"/><line x1="'+xMed.toFixed(1)+'" y1="'+(cy-bH/2)+'" x2="'+xMed.toFixed(1)+'" y2="'+(cy+bH/2)+'" stroke="'+col+'" stroke-width="3.5"/><text x="'+xMin.toFixed(1)+'" y="'+(cy-bH/2-8)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="'+col+'" text-anchor="middle">'+z.min+'</text><text x="'+xQ1.toFixed(1)+'" y="'+(cy+bH/2+16)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="'+col+'" text-anchor="middle">Q1='+z.q1+'</text><text x="'+xMed.toFixed(1)+'" y="'+(cy-bH/2-8)+'" font-family="Share Tech Mono,monospace" font-size="12" font-weight="bold" fill="'+col+'" text-anchor="middle">Med='+z.median+'</text><text x="'+xQ3.toFixed(1)+'" y="'+(cy+bH/2+16)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="'+col+'" text-anchor="middle">Q3='+z.q3+'</text><text x="'+xMax.toFixed(1)+'" y="'+(cy-bH/2-8)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="'+col+'" text-anchor="middle">'+z.max+'</text>';});
+  svg+='</svg>';return svg;
 }
 
 function renderHorizontalBarSVG(gd) {
-  // Horizontal bar graph -- for energy pyramid and other long-label data
-  var bars=gd.bars||[];
-  var W=560,padL=240,padR=60,padT=20,padB=20,rowH=48;
+  var bars=gd.bars||[], W=580, padL=290, padR=50, padT=20, padB=20, rowH=48;
   var H=padT+rowH*bars.length+padB;
-  var maxVal=Math.max.apply(null,bars.map(function(b){return b.value;}));
+  var maxVal=Math.max.apply(null,bars.filter(function(b){return b.value>0;}).map(function(b){return b.value;}));
   var chartW=W-padL-padR;
-  var toW=function(v){return chartW*(v/maxVal);};
+  var toW=function(v){return maxVal>0?chartW*(v/maxVal):0;};
   var colMap={safe:'#8DB87A',caution:'#5bc4e8',warning:'#E8963C',danger:'#cc4433'};
-  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;margin:8px auto">';
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;display:block;margin:8px auto">';
   bars.forEach(function(b,i){
-    var y=padT+rowH*i,barY=y+8,barH=rowH-16;
-    var col=colMap[b.status]||'#8DB87A';
-    var bw=toW(b.value);
-    // Label
-    svg+='<text x="'+(padL-8)+'" y="'+(y+rowH/2+5)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(212,197,169,0.8)" text-anchor="end">'+b.label+'</text>';
-    // Bar background
+    if(b.value===0)return;
+    var y=padT+rowH*i,barY=y+8,barH=rowH-16,col=colMap[b.status]||'#8DB87A',bw=toW(b.value);
+    svg+='<text x="'+(padL-8)+'" y="'+(y+rowH/2+5)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(212,197,169,0.85)" text-anchor="end">'+b.label+'</text>';
     svg+='<rect x="'+padL+'" y="'+barY+'" width="'+chartW+'" height="'+barH+'" fill="rgba(255,255,255,0.03)" rx="3"/>';
-    // Bar fill
     svg+='<rect x="'+padL+'" y="'+barY+'" width="'+bw.toFixed(1)+'" height="'+barH+'" fill="'+col+'" opacity="0.82" rx="3"/>';
-    // Value label
     svg+='<text x="'+(padL+bw+6).toFixed(1)+'" y="'+(y+rowH/2+5)+'" font-family="Share Tech Mono,monospace" font-size="12" fill="'+col+'">'+b.value+'</text>';
   });
-  svg+='</svg>';
-  return svg;
+  svg+='</svg>';return svg;
 }
 
 </script>
