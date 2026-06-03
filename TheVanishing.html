@@ -566,7 +566,7 @@
         </div>
       </div>
       <button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="completeSetup()">
-        Initialize Mission Control &mdash; The Lighthouse &rarr;
+        Enter The Arroyo &rarr;
       </button>
     </div>
   </div>
@@ -1667,9 +1667,13 @@ function completeSetup() {
     state.classes[0].name = document.getElementById('setup-class1').value.trim() || 'Period 1';
     state.classes[1].name = document.getElementById('setup-class2').value.trim() || 'Period 3';
     state.classes[2].name = document.getElementById('setup-class3').value.trim() || 'Period 5';
-    state.classes[0].gaiaStatus = document.getElementById('setup-gaia1').value;
-    state.classes[1].gaiaStatus = document.getElementById('setup-gaia2').value;
-    state.classes[2].gaiaStatus = document.getElementById('setup-gaia3').value;
+    state.classes[0].gaiaStatus = 'aboard';
+    state.classes[1].gaiaStatus = 'aboard';
+    state.classes[2].gaiaStatus = 'aboard';
+    // GAIA is always aboard in The Vanishing -- no status selection needed
+    state.classes[0].gaiaStatus = 'aboard';
+    state.classes[1].gaiaStatus = 'aboard';
+    state.classes[2].gaiaStatus = 'aboard';
     save();
     showHome();
   } catch(err) {
@@ -1683,9 +1687,8 @@ function showSetup() {
   document.getElementById('setup-class1').value = state.classes[0].name;
   document.getElementById('setup-class2').value = state.classes[1].name;
   document.getElementById('setup-class3').value = state.classes[2].name;
-  document.getElementById('setup-gaia1').value = state.classes[0].gaiaStatus || 'aboard';
-  document.getElementById('setup-gaia2').value = state.classes[1].gaiaStatus || 'aboard';
-  document.getElementById('setup-gaia3').value = state.classes[2].gaiaStatus || 'aboard';
+
+
   showScreen('screen-setup');
 }
 
