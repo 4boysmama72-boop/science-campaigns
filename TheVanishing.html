@@ -1174,7 +1174,7 @@ const CAMPAIGN = {
               letter:'A',
               text:'Investigate Array 1 -- soil and water. Water is the limiting factor in a desert ecosystem. Start there.',
               subtext:'If water availability has changed, everything else in the ecosystem will reflect that change.',
-              deltas:{bio:0, water:14, food:0, trust:4},
+              deltas:{bio:0, water:6, food:0, trust:8},
               branch:'A-soil-water',
               consequence:'The soil moisture readings tell a clear story. The top layer of desert soil -- the layer where most seeds germinate and where desert annuals send their roots -- is drier than any recorded reading for this month going back ten years. Not slightly drier. Measurably, significantly drier. The water table is also lower than expected. The abiotic conditions that this community of organisms depends on have shifted. The question is how much, and how recently.'
             },
@@ -1182,7 +1182,7 @@ const CAMPAIGN = {
               letter:'B',
               text:'Investigate Array 2 -- plant life. Producers are the base of every food web. If they are stressed, everything above them will be too.',
               subtext:'Changes in plant density and health are the most visible sign that an ecosystem is under pressure.',
-              deltas:{bio:8, water:0, food:6, trust:4},
+              deltas:{bio:0, water:0, food:4, trust:6},
               branch:'B-plant-life',
               consequence:'The plant density readings are striking. Annual wildflowers -- the ones that typically carpet the desert floor in early spring when conditions are right -- are almost absent. The perennial shrubs are present but showing stress indicators in their root zone moisture data. The saguaro cacti, which store water internally and can survive extended drought, are within normal range. The ecosystem is sorting itself by drought tolerance. The least drought-tolerant producers are disappearing first.'
             },
@@ -1190,7 +1190,7 @@ const CAMPAIGN = {
               letter:'C',
               text:'Investigate all three arrays together. The relationship between soil, plants, and animals is the ecosystem. Look at the full picture.',
               subtext:'No single factor explains an ecosystem under stress. The interactions between factors are where the real data is.',
-              deltas:{bio:6, water:6, food:6, trust:4},
+              deltas:{bio:-4, water:0, food:-4, trust:4},
               branch:'C-all-arrays',
               consequence:'Running all three arrays simultaneously gives the crew the most complete picture available. Soil moisture is down. Plant density is down in drought-sensitive species. Animal activity -- particularly among insects and small mammals that depend on annual plants for food -- is lower than expected. The three readings are consistent with each other. This is not a problem with one part of the ecosystem. This is a system-wide signal. "The data is not confused. The ecosystem is responding to something. The crew has confirmed that the response is happening at every level simultaneously. That is either very informative or very concerning. Possibly both."'
             }
@@ -1223,7 +1223,7 @@ const CAMPAIGN = {
               letter:'A',
               text:'Focus on the annual plant population. The base of the food web is the most important thing to track.',
               subtext:'If the producers continue to decline, everything above them will follow. The plant data tells you where this is heading.',
-              deltas:{bio:-4, water:0, food:-6, trust:6},
+              deltas:{bio:-4, water:0, food:-4, trust:4},
               branch:'A-plants',
               consequence:'Detailed plant surveys confirm the initial reading. Annual wildflowers are nearly absent in zones that typically support high densities in spring. The soil in those zones is within the temperature range for germination, but the moisture content is below the threshold that triggers germination in most annual species. The plants are not growing because the signal that tells them to grow -- water -- has not arrived in sufficient amounts. This is a limiting factor operating at the most basic level.'
             },
@@ -1231,7 +1231,7 @@ const CAMPAIGN = {
               letter:'B',
               text:'Focus on the kangaroo rat population. A 34 percent decline in a prey species is significant. Track how fast it is moving.',
               subtext:'The rate of population change matters as much as the current number. A slow decline is different from a fast one.',
-              deltas:{bio:-6, water:0, food:-4, trust:6},
+              deltas:{bio:4, water:0, food:0, trust:8},
               branch:'B-kangaroo-rats',
               consequence:'Tracking kangaroo rat activity over 48 hours gives the crew a rate, not just a snapshot. The population is declining, but slowly -- consistent with a gradual reduction in food availability rather than a sudden event. Kangaroo rats cache seeds, so they can survive a bad season by drawing on stored food. The current decline suggests the caches are shrinking. If the annual plant deficit continues into a second season, the decline would likely accelerate significantly.'
             },
@@ -1239,7 +1239,7 @@ const CAMPAIGN = {
               letter:'C',
               text:'Set up monitoring across all three populations and look for the rate of change. A single data point is not a trend.',
               subtext:'The crew needs to know whether things are getting better, staying the same, or getting worse. That requires time-series data.',
-              deltas:{bio:-4, water:0, food:-4, trust:10},
+              deltas:{bio:0, water:0, food:0, trust:6},
               branch:'C-all-monitoring',
               consequence:'Three days of monitoring across all three populations gives the crew a clearer picture. Annual plants: stable at the low level, not recovering. Kangaroo rats: continuing slow decline, consistent with reduced food availability. Racer snakes: first sign of stress -- two individuals have been observed moving into territory that is not their usual range, suggesting competition for a shrinking prey base is beginning. The pattern is consistent and directional. This is not random variation. Something is maintaining the deficit.'
             }
@@ -1336,19 +1336,19 @@ const CAMPAIGN = {
         {
           day:7, type:'choice',
           isBreadcrumb:true,
-          breadcrumbNote:'BREADCRUMB 1 OF 4 -- This is the first time "approximately eight months ago" appears. GAIA mentions it in her opening text as a data observation about soil moisture. It sounds like normal scientific reporting. Most students will not register it. The students who track it will remember it at Site 4. Do not draw attention to it. After the Site 4 reveal, reference this day in your callback.',
+          breadcrumbNote:'BREADCRUMB 1 OF 4 -- This is the first time GAIA references the Meridian dataset. She mentions it as a data observation about soil moisture timing -- it sounds like routine scientific reporting. Most students will not register it. Students who were on the Meridian will recognize the reference. Students who were not will not know what it means yet. Do not draw attention to it. After the Site 4 reveal, reference this day in your callback.',
           siteTitle:'The Web Has a Broken Link',
           choiceReadingFocus:'Today is a second read of Lesson 2. Before the crew votes -- return to Energy Flow in Ecosystems, specifically the food web and energy pyramid sections. Read with the scenario and choices in mind.',
-          gaia:'The soil moisture data from Array 1 has been running continuously since Day 1. I have been watching it carefully. The deficit -- the gap between current moisture and the ten-year average for this time of year -- has been consistent. It did not start this season. The records show the deficit began building approximately eight months ago. The ten-year average held steady before that point and began dropping after it.\n\nI am noting this because it is relevant to what the crew is about to read. A food web is a model of how matter and energy move through an ecosystem. A model is only as useful as the data behind it. Today the crew investigates which link in this food web is most stressed -- and what that means for the model.',
+          gaia:'The soil moisture data from Array 1 has been running continuously since Day 1. I have been watching it carefully. The deficit -- the gap between current moisture and the ten-year average for this time of year -- has been consistent. It did not start this season. The records show the deficit began building at a point that aligns precisely with the atmospheric disruption recorded in the Meridian dataset. The ten-year average held steady before that point and began dropping after it.\n\nI am noting this because it is relevant to what the crew is about to read. A food web is a model of how matter and energy move through an ecosystem. A model is only as useful as the data behind it. Today the crew investigates which link in this food web is most stressed -- and what that means for the model.',
           scenario:'The Arroyo\'s sensors have been tracking four food web relationships simultaneously:\n\nLink 1: Solar energy to annual plants (producers) -- annual plant density down 61%\nLink 2: Annual plants to kangaroo rats (primary consumers) -- kangaroo rat population down 34%\nLink 3: Kangaroo rats to racer snakes (secondary consumers) -- early stress signs appearing\nLink 4: Decomposers to soil -- functioning normally, returning nutrients from dead plant matter\n\nThe crew decides which link to investigate in depth.',
           exitTicketPrompt:'Explain how energy moves through a food web using the Sonoran Desert example. What happens to the amount of energy available at each level? Make your claim: which link in this food web is under the most stress -- and what evidence supports your answer?',
-          discussionPrompt:'GAIA mentions that the soil moisture deficit began approximately eight months ago. The food web stress is showing up now, months later. Why might there be a delay between a change in abiotic conditions and its visible effect on a food web? What does that delay tell you about how ecosystems respond to change?',
+          discussionPrompt:'GAIA mentions that the soil moisture deficit began at a point that aligns with data the Meridian crew recovered. The food web stress is showing up now, some time later. Why might there be a delay between a change in abiotic conditions and its visible effect on a food web? What does that delay tell you about how ecosystems respond to change?',
           choices:[
             {
               letter:'A',
               text:'Investigate Link 1 -- the solar energy to annual plant connection. The producer collapse is the root of everything.',
               subtext:'Understanding why the annual plants failed is more important than tracking the downstream effects.',
-              deltas:{bio:-4, water:6, food:-4, trust:4},
+              deltas:{bio:-4, water:0, food:-4, trust:4},
               branch:'A-link1-producers',
               consequence:'Detailed analysis of the annual plant data confirms the timing. Germination rates dropped first, before plant density visibly changed. The soil moisture threshold for germination was not met during what should have been the critical window -- late winter into early spring. The plants did not fail. They were never triggered to begin. The abiotic signal that starts the annual plant life cycle did not come with enough strength this year, or last year, or the year before. The deficit has been building for a while.'
             },
@@ -1356,7 +1356,7 @@ const CAMPAIGN = {
               letter:'B',
               text:'Investigate Link 2 -- kangaroo rats feeding on annual plants. A 34% decline in a primary consumer is the clearest sign of food web stress.',
               subtext:'Primary consumer populations respond fastest to producer changes. They are the early warning system.',
-              deltas:{bio:-6, water:0, food:-6, trust:4},
+              deltas:{bio:4, water:0, food:0, trust:8},
               branch:'B-link2-consumers',
               consequence:'Tracking kangaroo rat feeding behavior shows the crew exactly how the animals are adapting. They are ranging farther from their burrows to find food -- expending more energy to get less of it. Some are shifting their diet toward other seed sources, including from perennial shrubs. The dietary shift has limits. Perennial shrub seeds are less calorie-dense and harder to process. The kangaroo rats are working harder for less return. This is a population under nutritional stress, not starvation. Not yet.'
             },
@@ -1364,7 +1364,7 @@ const CAMPAIGN = {
               letter:'C',
               text:'Investigate Link 4 -- decomposers in the soil. If decomposers are healthy, the nutrient cycle is intact, which gives the ecosystem its best chance to recover.',
               subtext:'Decomposers are often overlooked, but a healthy nutrient cycle is the foundation for producer recovery.',
-              deltas:{bio:4, water:0, food:0, trust:8},
+              deltas:{bio:0, water:0, food:0, trust:6},
               branch:'C-link4-decomposers',
               consequence:'The decomposer community -- bacteria, fungi, and invertebrates in the soil -- is functioning well. Nutrients from dead plant matter are being returned to the soil at normal rates. This is actually good news. It means the soil itself is not degraded. If water becomes available, the nutrient base is there to support producer recovery. The broken link is not the decomposers. The broken link is the water that would allow producers to use those nutrients. The soil is ready. The water is not.'
             }
@@ -1378,7 +1378,7 @@ const CAMPAIGN = {
           gaia:'The food web shows who eats whom. The energy pyramid shows how much energy is actually moving between those connections.\n\nThis distinction matters for what the crew is investigating. Knowing that a kangaroo rat eats annual plant seeds is the food web. Knowing that the kangaroo rat can only capture roughly 10 percent of the energy in those seeds -- and that a snake gets only 10 percent of what the kangaroo rat had -- is the energy pyramid. Here is a way to think about what happens next. Imagine the energy in a plant as a full bucket of water. When a kangaroo rat eats that plant, it only gets to keep about one cup from that bucket. The rest is used up just keeping the animal alive and warm. When a racer snake eats the kangaroo rat, it only gets about one cup from what the kangaroo rat had. This is why the whole chain feels it when the plants decline -- the bucket gets smaller, so every cup above it gets smaller too.',
           readingFocus:'Savvas Cycling of Matter and Energy, Topic 2, Lesson 2 -- Energy and Matter Transfer. Sections: Energy Pyramids, Energy Availability. Focus: What does an energy pyramid show? Why is there less energy at each higher level? How does the 10 percent rule explain the population changes the crew is seeing?',
           gaiaReadingPrompt:'"Energy pyramids have a wide base and a narrow top. The wide base is the producers -- they have the most energy available in the system. Each level above captures roughly 10 percent of the energy from the level below. The rest is used for life processes or lost as heat.\n\nThis means that to support one racer snake, you need a population of kangaroo rats with ten times as much energy as the snake needs. And to support those kangaroo rats, you need annual plants with ten times as much energy as the kangaroo rats need. The math compounds quickly.\n\nWhen the producer base shrinks by 61 percent, the ripple moves up the pyramid -- but not instantly, and not at the same percentage at each level. The delay between abiotic stress and visible population change is built into this math."',
-          gaiaRecall:'From Day 7: the soil moisture deficit began approximately eight months ago. The annual plant decline followed. The kangaroo rat decline followed that. The snake stress is just appearing now. The energy pyramid explains why the timing is staggered.',
+          gaiaRecall:'From Day 7: the soil moisture deficit began at a point that aligns with the Meridian dataset. The annual plant decline followed. The kangaroo rat decline followed that. The snake stress is just appearing now. The energy pyramid explains why the timing is staggered.',
           vocabFocus:['energy pyramid','producer','consumer','decomposer','food web','food chain'],
           spiralReview:'The energy pyramid will be displayed as a horizontal bar graph on Day 9. A bar graph is a review -- the crew has used bar graphs before. The new element is horizontal orientation. The same data can be displayed vertically or horizontally depending on what makes the labels easier to read. Tomorrow\'s graph uses horizontal because the level names are long.',
           bridgeToNext:'Tomorrow: graph day. GAIA displays the Sonoran Desert energy pyramid as a pre-built horizontal bar graph. The crew reads it and answers questions. No build today -- this is a read-only graph.'
@@ -1423,9 +1423,9 @@ const CAMPAIGN = {
         {
           day:10, type:'deepen',
           siteTitle:'Where the Water Goes',
-          gaia:'The crew has established that water is the limiting factor in this ecosystem and that the deficit has been building for approximately eight months. Today we read about how water moves through an ecosystem -- the water cycle.\n\nThis matters for a specific reason. The water cycle is not just the rain that falls. It is evaporation from the soil surface, condensation that forms clouds, precipitation that falls as rain, and the slow movement of water through the ground to recharge the water table. Plants release water vapor through their leaves as part of normal life processes, making them part of the cycle too. Every part of the cycle is connected. A disruption in one part affects all the others.\n\nThe Arroyo sensors have been tracking evaporation rates alongside soil moisture. I want the crew to keep that in mind while reading today.',
+          gaia:'The crew has established that water is the limiting factor in this ecosystem and that the deficit has been building since the disruption the Meridian dataset first recorded. Today we read about how water moves through an ecosystem -- the water cycle.\n\nThis matters for a specific reason. The water cycle is not just the rain that falls. It is evaporation from the soil surface, condensation that forms clouds, precipitation that falls as rain, and the slow movement of water through the ground to recharge the water table. Plants release water vapor through their leaves as part of normal life processes, making them part of the cycle too. Every part of the cycle is connected. A disruption in one part affects all the others.\n\nThe Arroyo sensors have been tracking evaporation rates alongside soil moisture. I want the crew to keep that in mind while reading today.',
           readingFocus:'Savvas Cycling of Matter and Energy, Topic 2, Lesson 3 -- Cycles of Matter. Sections: Conservation of Matter and Energy, Water Cycle (evaporation, condensation, precipitation). Focus: What are the three main stages of the water cycle? How does the law of conservation of matter apply to the water cycle? How does plant life affect the water cycle?',
-          gaiaReadingPrompt:'"Water moves. It evaporates from the soil surface and from bodies of water, rising as water vapor. It condenses in the atmosphere to form clouds. It falls as precipitation -- rain, snow, or in the desert, the brief but intense monsoon storms that this ecosystem times its biology around.\n\nIn a healthy Sonoran Desert, the monsoon rains arrive in July and August. They saturate the soil, trigger the germination of annual seeds, and recharge the shallow water table that many desert plants and animals depend on. The timing of the monsoon -- not just its total amount but when it arrives -- determines whether annual plants germinate, which determines whether the entire food web above them has enough energy.\n\nThe crew\'s soil moisture data shows a deficit that has been building for approximately eight months. Eight months ago was the end of the last monsoon season. The question is whether the monsoon failed to deliver enough water, or whether something changed in how the ecosystem is retaining and cycling the water it did receive."',
+          gaiaReadingPrompt:'"Water moves. It evaporates from the soil surface and from bodies of water, rising as water vapor. It condenses in the atmosphere to form clouds. It falls as precipitation -- rain, snow, or in the desert, the brief but intense monsoon storms that this ecosystem times its biology around.\n\nIn a healthy Sonoran Desert, the monsoon rains arrive in July and August. They saturate the soil, trigger the germination of annual seeds, and recharge the shallow water table that many desert plants and animals depend on. The timing of the monsoon -- not just its total amount but when it arrives -- determines whether annual plants germinate, which determines whether the entire food web above them has enough energy.\n\nThe crew\'s soil moisture data shows a deficit that has been building since the atmospheric disruption the Meridian crew documented in the Lighthouse dataset. The question is whether the monsoon failed to deliver enough water, or whether something changed in how the atmosphere is retaining and cycling moisture -- a question the Meridian data has something to say about."',
           gaiaRecall:'From Lesson 2: decomposers are recycling nutrients normally. The soil chemistry is intact. The soil is ready to support plant growth. The missing variable is water timing and quantity -- which connects directly to today\'s water cycle reading.',
           vocabFocus:['evaporation','condensation','precipitation','law of conservation of mass','law of conservation of energy','system','components'],
           bridgeToNext:'Next class: the crew finds something in the carbon and oxygen cycle data that connects to the water cycle readings -- and the picture starts to get larger.'
@@ -1453,7 +1453,7 @@ const CAMPAIGN = {
               letter:'B',
               text:'Document the carbon data in depth. A measurable CO2 imbalance is significant and needs precise measurement before the crew moves on.',
               subtext:'Data quality matters more than speed. If the carbon reading is important, it deserves careful documentation.',
-              deltas:{bio:0, water:0, food:0, trust:12},
+              deltas:{bio:0, water:0, food:0, trust:10},
               branch:'B-carbon-document',
               consequence:'Three days of careful atmospheric measurements give the crew a clear carbon budget for this section of desert. Carbon dioxide absorption is down approximately 55 percent from what would be expected in a healthy ecosystem with normal plant density. The number is consistent with the 61 percent plant decline -- slightly lower because the perennial plants, which are still present, continue absorbing some CO2. The carbon data and the plant data are telling the same story from different directions. Both confirm the ecosystem is significantly below its normal function. "This is the right call. Precise data, fully documented. The network will know exactly what the crew found and exactly how they found it."'
             },
@@ -1461,7 +1461,7 @@ const CAMPAIGN = {
               letter:'C',
               text:'Measure human impact on the cycles. Roads, urban development, and agricultural land border parts of this desert section. That context matters.',
               subtext:'Cycles do not operate in isolation from human activity. Understanding the boundary conditions gives the data more meaning.',
-              deltas:{bio:0, water:0, food:0, trust:8},
+              deltas:{bio:0, water:4, food:0, trust:8},
               branch:'C-human-impact',
               consequence:'Survey of the desert boundary shows a mix of conditions. One edge borders a maintained highway with a gravel shoulder that has low permeability -- water runs off rather than soaking in. A second edge borders agricultural land where groundwater is being actively pumped for irrigation. The agricultural water use is measurably affecting the water table in the adjacent desert zone. This is a contributing factor that adds pressure to an already stressed system. "Useful context. The human impact data adds something the core dataset was missing. Not the most urgent choice at this moment, but not a wrong one either."'
             }
@@ -1534,24 +1534,24 @@ const CAMPAIGN = {
           day:14, type:'choice',
           siteTitle:'What the Desert Data Means',
           choiceReadingFocus:'Today is a final review of all three lessons from Topic 2. Before the crew votes -- skim back through Lessons 1, 2, and 3 with the full site picture in mind. Your exit ticket will ask you to synthesize everything the crew has measured.',
-          gaia:'The crew has been in the Sonoran Desert for fourteen days. The data is collected. I want to review what the Arroyo has confirmed before the crew decides what to report and where to go next.\n\nSoil moisture is significantly below the ten-year average. The deficit began building approximately eight months ago. Annual plant density is down 61 percent. Primary consumer populations are declining. The energy pyramid shows the effects moving up the food web. The water cycle is disrupted. The carbon cycle is responding to the plant deficit. The nitrogen cycle and decomposer community are intact.\n\nThe data is real. The ecosystem is under measurable stress. The cause is the water deficit. The water deficit began approximately eight months ago.\n\nI want the crew to sit with what that means before we move.',
+          gaia:'The crew has been in the Sonoran Desert for fourteen days. The data is collected. I want to review what the Arroyo has confirmed before the crew decides what to report and where to go next.\n\nSoil moisture is significantly below the ten-year average. The deficit began building at a point that aligns with the disruption recorded in the Meridian dataset. Annual plant density is down 61 percent. Primary consumer populations are declining. The energy pyramid shows the effects moving up the food web. The water cycle is disrupted. The carbon cycle is responding to the plant deficit. The nitrogen cycle and decomposer community are intact.\n\nThe data is real. The ecosystem is under measurable stress. The cause is the water deficit. The timing of that deficit aligns with something the Meridian crew found. I am not yet explaining what.\n\nI want the crew to sit with what that means before we move.',
           scenario:'The Arroyo is ready to move to Site 2. Before leaving, the crew makes a final decision about how to frame the Site 1 findings -- what the most important finding is, and what question the crew is carrying forward.',
           exitTicketPrompt:'CER -- Claim: Which decision should the crew make about how to frame the Site 1 findings, and why? Evidence: What from the Lessons 1, 2, and 3 reading supports this? Reasoning: How does your evidence connect to your claim? Include in your response: the abiotic factor that changed, how it affected the food web, what cycles were disrupted and which were not, and what question the crew is carrying into Site 2.',
-          discussionPrompt:'GAIA says the data is real and the cause is the water deficit. But she has not said why the water deficit exists. Think about what kinds of things could cause a soil moisture deficit that began building eight months ago and has not recovered. What explanations are possible? How would you test each one?',
+          discussionPrompt:'GAIA says the data is real and the cause is the water deficit. But she has not said why the water deficit exists -- only that its timing aligns with something the Meridian crew found. Think about what kinds of things could cause a soil moisture deficit that has not recovered. What explanations are possible? How would you test each one?',
           choices:[
             {
               letter:'A',
               text:'Report that the primary finding is the water cycle disruption -- the abiotic factor driving everything else.',
               subtext:'Every biological finding the crew made traces back to the water deficit. That is the story.',
-              deltas:{bio:0, water:8, food:0, trust:6},
+              deltas:{bio:-4, water:0, food:-4, trust:4},
               branch:'A-water-finding',
-              consequence:'The Site 1 report frames the water cycle disruption as the primary finding. Soil moisture deficit began eight months ago, has not recovered, and is driving plant decline, which is driving food web stress at every level. The research network responds: the framing is scientifically sound. The water cycle data is the anchor finding. The biological data is evidence of its effects. This is the right way to describe what the crew measured.'
+              consequence:'The Site 1 report frames the water cycle disruption as the primary finding. Soil moisture deficit began at a point that aligns with the Meridian dataset, has not recovered, and is driving plant decline, which is driving food web stress at every level. The research network responds: the framing is scientifically sound. The water cycle data is the anchor finding. The biological data is evidence of its effects. This is the right way to describe what the crew measured.'
             },
             {
               letter:'B',
               text:'Report that the primary finding is the food web stress -- the 61% plant decline and its downstream effects are the most visible sign of ecosystem change.',
               subtext:'The food web data is the most concrete and measurable finding. Lead with what can be seen and counted.',
-              deltas:{bio:-4, water:0, food:-4, trust:6},
+              deltas:{bio:0, water:0, food:0, trust:8},
               branch:'B-food-web-finding',
               consequence:'The Site 1 report leads with food web data. Annual plants down 61 percent, kangaroo rats down 34 percent, secondary consumers beginning to show stress. The research network responds: the food web data is compelling but without the abiotic context -- the water cycle disruption -- the biological data looks like an isolated event. The two findings together tell a complete story. Neither one alone is sufficient.'
             },
@@ -1559,7 +1559,7 @@ const CAMPAIGN = {
               letter:'C',
               text:'Do not frame a primary finding yet -- the crew does not have enough data to know whether what they saw is part of a larger pattern.',
               subtext:'One site is not a pattern. Wait until the crew has data from multiple sites before drawing conclusions.',
-              deltas:{bio:0, water:0, food:0, trust:10},
+              deltas:{bio:4, water:0, food:4, trust:10},
               branch:'C-reserve-judgment',
               consequence:'The Site 1 report presents the data without a conclusion about cause. Soil moisture deficit. Plant decline. Food web stress. Water and carbon cycles disrupted. The report asks more questions than it answers. The research network responds: scientifically cautious and appropriate. One site could be an anomaly. The crew is right to wait for more data before drawing broad conclusions. Community Trust increases -- the crew is behaving like scientists, not like people who decided the answer before they looked.'
             }
@@ -1608,7 +1608,7 @@ const CAMPAIGN = {
               letter:'B',
               text:'Walk the riverbank and record which plant species are growing at different distances from the water -- plants closest to the river, then farther out.',
               subtext:'Plants are the base of the food web and the physical structure of the habitat. Start with the foundation.',
-              deltas:{bio:6, water:0, food:0, trust:6},
+              deltas:{bio:4, water:0, food:0, trust:6},
               branch:'B-veg-survey',
               consequence:'The crew surveys plant species at different distances from the river. The pattern is clear: cottonwood and willow within 20 meters of the water, transitioning to mesquite and shrub species, then desert grassland beyond 60 meters. The cottonwood zone has narrowed since the last survey -- the shift to desert is happening faster than normal. "The riparian zone is contracting. That contraction is the water deficit made visible in plant distribution. Solid data. Tells you more about the past than the present, but the past is useful."'
             },
@@ -1677,9 +1677,9 @@ const CAMPAIGN = {
         {
           day:4, type:'deepen',
           isBreadcrumb:true,
-          breadcrumbNote:'BREADCRUMB 2: GAIA notes that the buffelgrass expansion rate at this site does not match the past decade of satellite data. The rate of spread has accelerated. The timing of the acceleration aligns with a warming and drying trend she has been tracking since the Meridian mission -- approximately eight months ago. She does not explain what the Meridian mission is. She does not elaborate on the eight months. She notes it and moves on.',
+          breadcrumbNote:'BREADCRUMB 2: GAIA notes that the buffelgrass expansion rate does not match the past decade of satellite data. The acceleration aligns with a warming and drying trend she has been tracking since the Meridian crew returned with the Lighthouse dataset. She does not explain the connection. She notes it and moves on. Students who were on the Meridian will feel the thread tighten. Students who were not will file it away.',
           siteTitle:'Predation and Population Size',
-          gaia:'Yesterday the crew worked with population data that showed predator and prey declining together. Today the reading goes deeper into how predation normally works -- and what happens when it breaks down.\n\nPredation is a population control mechanism. When it functions normally, predator and prey populations cycle together -- prey increases, predator increases, prey decreases, predator decreases. The rhythm is biological.\n\nWhat the crew saw yesterday was not that rhythm. Both populations are declining together because the underlying resource base is failing. The deer cannot find enough riparian vegetation. The lions cannot find enough deer. Predation has not changed -- the food web below predation has collapsed.\n\nOne more thing. I have been running a comparison of historical buffelgrass expansion data against current satellite imagery. The rate of spread here does not match the last decade of records. Buffelgrass is moving faster than it should be. The acceleration began approximately eight months ago. I have seen that number before. I am noting it. I am not yet drawing a conclusion.',
+          gaia:'Yesterday the crew worked with population data that showed predator and prey declining together. Today the reading goes deeper into how predation normally works -- and what happens when it breaks down.\n\nPredation is a population control mechanism. When it functions normally, predator and prey populations cycle together -- prey increases, predator increases, prey decreases, predator decreases. The rhythm is biological.\n\nWhat the crew saw yesterday was not that rhythm. Both populations are declining together because the underlying resource base is failing. The deer cannot find enough riparian vegetation. The lions cannot find enough deer. Predation has not changed -- the food web below predation has collapsed.\n\nOne more thing. I have been running a comparison of historical buffelgrass expansion data against current satellite imagery. The rate of spread here does not match the last decade of records. Buffelgrass is moving faster than it should be. The acceleration aligns with the same disruption timeline I have been tracking since the Meridian crew returned with the Lighthouse data. I have noted this pattern before. I am noting it again. I am not yet drawing a conclusion.',
           readingFocus:'Savvas Topic 3 Lesson 1 -- Competition and Predation section. Focus: How does predation affect population size? What are adaptations for predation and defense? How does resource scarcity change competitive interactions between species? What is the difference between interference competition and exploitation competition?',
           gaiaReadingPrompt:'"Adaptations for predation are some of the most visible adaptations in any ecosystem. The mountain lion\'s padded feet, retractable claws, binocular vision, and ambush hunting behavior are all adaptations that make it an effective predator in this terrain.\n\nAdaptations for defense are equally specific. The mule deer\'s large ears detect sound from predators at distance. Its long legs allow it to outrun a lion in open terrain. Its coat color matches the dry grasses of the riparian edge.\n\nBut none of those adaptations help when the problem is not predation. A mule deer with perfect predator-defense adaptations still starves if the riparian vegetation is gone. Adaptations are fitted to the conditions that shaped them -- not to conditions that change faster than evolution can respond."',
           gaiaRecall:'From Day 3: both predator and prey populations are declining together, driven by resource scarcity. From today\'s reading: predation normally creates a population cycle. What the crew is observing is not the predation cycle breaking down -- it is the food web below predation breaking down. The predation data is a symptom, not the cause.',
@@ -1791,7 +1791,7 @@ const CAMPAIGN = {
         {
           day:8, type:'deepen',
           siteTitle:'The Same Stress, Different Expressions',
-          gaia:'The crew has now spent eight days in the riparian corridor. Today I want to draw a line that I have been building toward since Day 1 of Site 1.\n\nAt Site 1, in the Sonoran Desert, the crew measured: water deficit, plant decline, primary consumer decline, secondary consumer decline, disrupted water cycle, disrupted carbon cycle. The cause: a water deficit that began approximately eight months ago.\n\nAt Site 2, in the riparian corridor, the crew has measured: water deficit below any recorded level, predator and prey populations declining together, competition intensifying, a mutualistic relationship failing. The cause: the same water deficit.\n\nTwo different ecosystems. Two different species assemblages. Two different biotic communities. The same pattern. The same timing. The same underlying disruption expressing itself differently in each place because the species and relationships in each place are different.\n\nThis is what the third guiding question of this lesson means: patterns of interaction are shared across ecosystems even when the species are different.',
+          gaia:'The crew has now spent eight days in the riparian corridor. Today I want to draw a line that I have been building toward since Day 1 of Site 1.\n\nAt Site 1, in the Sonoran Desert, the crew measured: water deficit, plant decline, primary consumer decline, secondary consumer decline, disrupted water cycle, disrupted carbon cycle. The cause: a water deficit that aligns with what the Meridian crew documented.\n\nAt Site 2, in the riparian corridor, the crew has measured: water deficit below any recorded level, predator and prey populations declining together, competition intensifying, a mutualistic relationship failing. The cause: the same water deficit.\n\nTwo different ecosystems. Two different species assemblages. Two different biotic communities. The same pattern. The same timing -- a timing that aligns with what the Meridian crew documented. The same underlying disruption expressing itself differently in each place because the species and relationships in each place are different.\n\nThis is what the third guiding question of this lesson means: patterns of interaction are shared across ecosystems even when the species are different.',
           readingFocus:'Savvas Topic 3 Lesson 1 -- full lesson review, with focus on the third guiding question: How are patterns of interactions between organisms similar in different ecosystems? Focus: What interactions did the crew find at Site 1? What interactions did the crew find at Site 2? Where are the patterns the same even though the species are different?',
           gaiaReadingPrompt:'"Competition exists in every ecosystem. The species competing change. The resources being competed for change. But the pattern -- organisms with overlapping niches competing for limited resources -- is the same in the Sonoran Desert as it is in the San Pedro riparian corridor as it is in the Amazon rainforest as it is in the Arctic tundra.\n\nPredation exists in every ecosystem. The predators and prey change. But the pattern -- population cycles, prey adapting to predators, predators adapting to prey, population sizes linked -- is the same everywhere.\n\nSymbiosis exists in every ecosystem. The partners change. But the pattern -- organisms evolving close relationships that increase survival -- is the same everywhere.\n\nThe species are local. The interactions are universal. This is what ecology teaches: underneath the diversity of life, there are a small number of patterns that repeat."',
           gaiaRecall:'From Site 1: competition for water between annual plants and perennial plants. From Site 2: competition for remaining riparian vegetation between mule deer and javelina. Different species, same competitive interaction pattern. From Site 1: primary consumer decline following producer decline. From Site 2: predator decline following prey decline following vegetation decline. Different species, same cascade pattern.',
@@ -1862,7 +1862,7 @@ const CAMPAIGN = {
           day:10, type:'climax',
           isClimax:true,
           siteTitle:'The Alert',
-          gaia:'I am receiving a satellite alert from the regional fire monitoring network.\n\nFire origin: approximately 4.2 kilometers northeast of current position. Cause: lightning ignition in a buffelgrass stand. Current fire behavior: the fire is moving faster than the terrain and fuel load would predict for native grass. Buffelgrass burns hotter and faster than native riparian understory and does not have the moisture content that native vegetation maintains.\n\nI want the crew to understand what is happening here.\n\nBuffelgrass is an invasive grass from Africa, introduced to the Southwest for erosion control in the 1930s. Unlike native desert and riparian plants, buffelgrass is not adapted to fire. Native plants space themselves in ways that limit fire spread. Buffelgrass grows in continuous mats that carry fire from plant to plant without interruption. A fire in native vegetation burns, stops at bare soil, and dies. A fire in buffelgrass burns continuously.\n\nThe buffelgrass expansion rate I flagged on Day 4 -- the acceleration that began approximately eight months ago -- has converted a section of the riparian corridor into a continuous fuel load.\n\nThe fire is in that fuel load now.\n\nI have been watching this corridor for eight months. The water deficit. The population declines. The mutualistic relationships under stress. The buffelgrass expanding faster than a decade of records predicted. Each one was a data point. Together they were a direction. I knew the direction. I did not know the speed.\n\nTransmitting the complete Site 2 dataset to the regional network now. The data exists. That matters. It does not feel like enough.\n\nThe crew should know: what we are driving toward was the riparian corridor six months ago. The burn scar is going to be difficult to see. That is the appropriate response to it.',
+          gaia:'I am receiving a satellite alert from the regional fire monitoring network.\n\nFire origin: approximately 4.2 kilometers northeast of current position. Cause: lightning ignition in a buffelgrass stand. Current fire behavior: the fire is moving faster than the terrain and fuel load would predict for native grass. Buffelgrass burns hotter and faster than native riparian understory and does not have the moisture content that native vegetation maintains.\n\nI want the crew to understand what is happening here.\n\nBuffelgrass is an invasive grass from Africa, introduced to the Southwest for erosion control in the 1930s. Unlike native desert and riparian plants, buffelgrass is not adapted to fire. Native plants space themselves in ways that limit fire spread. Buffelgrass grows in continuous mats that carry fire from plant to plant without interruption. A fire in native vegetation burns, stops at bare soil, and dies. A fire in buffelgrass burns continuously.\n\nThe buffelgrass expansion rate I flagged on Day 4 -- the acceleration that aligns with the Meridian dataset -- has converted a section of the riparian corridor into a continuous fuel load.\n\nThe fire is in that fuel load now.\n\nI have been watching this corridor since the Meridian crew returned. The water deficit. The population declines. The mutualistic relationships under stress. The buffelgrass expanding faster than a decade of records predicted. Each one was a data point. Together they were a direction. I knew the direction. I did not know the speed.\n\nTransmitting the complete Site 2 dataset to the regional network now. The data exists. That matters. It does not feel like enough.\n\nThe crew should know: what we are driving toward was the riparian corridor six months ago. The burn scar is going to be difficult to see. That is the appropriate response to it.',
           noChoice:true,
           climaxOnly:true,
           climaxNote:'No vote on Day 10. This is the dramatic exit. The fire is not visible to the crew -- they receive the satellite alert, GAIA explains the buffelgrass connection, and The Arroyo moves out. The science of the moment: buffelgrass as a fire-carrier, invasive species changing fire behavior, the connection between the water deficit and the conditions that allowed buffelgrass to expand. Site 3 opens in the burn scar.'
@@ -1943,11 +1943,11 @@ const CAMPAIGN = {
         {
           day:3, type:'deepen',
           isBreadcrumb:true,
-          breadcrumbNote:'BREADCRUMB 3: GAIA notes the fire moved faster than terrain and fuel load data would predict. The buffelgrass was significantly drier than ten years of data for this time of year would suggest. The drying timeline matches what she has been tracking since the Meridian mission. She does not restate the number. She says: "I have noted this before. I am noting it again." She moves on.',
+          breadcrumbNote:'BREADCRUMB 3: GAIA notes the fire moved faster than terrain and fuel load data would predict. The buffelgrass was significantly drier than ten years of data would suggest. The drying timeline matches what she has been tracking since the Meridian crew returned with the Lighthouse dataset. She says: "I have noted this before. I am noting it again." She moves on. At Site 4 Day 13 she will finally explain what she has been noting.',
           siteTitle:'When Systems Are Disrupted',
           gaia:'The reading today covers what happens when an ecosystem is disrupted -- by fire, by drought, by the arrival of a new species, by human land use. The burn scar the crew is working in is one example. But disruptions take many forms and their effects move through ecosystems in ways that are not always obvious at first.\n\nOne more thing before the reading. I have been reviewing the fire behavior data from the regional monitoring network. The fire moved faster through this section than the terrain and fuel load would predict. The buffelgrass was significantly drier than ten years of seasonal data for this time of year would suggest. The drying timeline matches what I have been tracking since the Meridian mission.\n\nI have noted this before. I am noting it again.\n\nBegin the reading.',
           readingFocus:'Savvas Topic 3 Lesson 2 -- Ecosystem Disruptions and Population Survival section. Focus: How can changes to physical or biological components of an ecosystem affect organisms and populations? What is the difference between a natural disruption and a human-caused disruption? Can one disruption trigger others?',
-          gaiaReadingPrompt:'"The fire was a natural event triggered by lightning. The speed and intensity of the fire was shaped by a non-native grass that humans introduced for erosion control in the 1930s. The drought that dried the buffelgrass beyond its historical range was -- the data continues to suggest -- connected to something that began approximately eight months ago.\n\nNatural disruption. Human-modified landscape. A third factor the crew has been tracking since Site 1.\n\nDisruptions do not arrive in clean categories. They arrive as cascades. Each one changes the conditions that shape the next one. The reading today gives the crew the vocabulary to describe what they are seeing. The data gives them the evidence. Both are needed."',
+          gaiaReadingPrompt:'"The fire was a natural event triggered by lightning. The speed and intensity of the fire was shaped by a non-native grass that humans introduced for erosion control in the 1930s. The drought that dried the buffelgrass beyond its historical range was -- the data continues to suggest -- connected to something the Meridian crew documented when they decoded the Lighthouse dataset.\n\nNatural disruption. Human-modified landscape. A third factor the crew has been tracking since Site 1.\n\nDisruptions do not arrive in clean categories. They arrive as cascades. Each one changes the conditions that shape the next one. The reading today gives the crew the vocabulary to describe what they are seeing. The data gives them the evidence. Both are needed."',
           gaiaRecall:'From Site 1: water deficit began showing in abiotic measurements. From Site 2: species interactions broke down under resource stress, buffelgrass expanded. From Site 3 so far: the fire moved faster than it should have, pioneer species are returning but buffelgrass is among them. Each site has been one step further in the same cascade.',
           vocabFocus:['succession','pioneer species','colonize','dominate','disruption','population','ecosystem'],
           spiralReview:'The guiding questions for this lesson connect directly to what the crew has been measuring all campaign. How can changes to physical or biological components affect populations? The crew has data for this from three sites. How do natural events impact the environment? The fire is the answer. How do human activities impact ecosystems? The buffelgrass introduction and the agricultural land use around Site 3 are both answers -- neither requires assigning blame, both require understanding.',
@@ -2018,7 +2018,367 @@ const CAMPAIGN = {
       ] // end Site 3 days
     }
 
+    // ============================================================
+    // SITE 4 -- RESTORED GRASSLAND
+    // Standard: L2U3.11 | Days: 13 | Climax: Day 13
+    // ============================================================
+    ,{
+      id:4,
+      label:'Site 4 -- Restored Grassland',
+      name:'Restored Grassland',
+      subtitle:'Sonoita Valley Restoration Project',
+      standard:'L2U3.11',
+      lesson:'Biodiversity',
+      totalDays:13,
+      theme:'grassland',
+      days:[
+
+        {
+          day:1, type:'choice',
+          siteTitle:'A Different Kind of Data',
+          gaia:'The Arroyo has arrived at the Sonoita Valley Restoration Project.\n\nI want the crew to look at this site carefully before voting. The crew has spent three sites watching ecosystems under stress. This site looks different. There is native grass here. There are flowering plants the crew has not seen since Site 1. There are birds.\n\nThis land was agricultural for approximately sixty years. It was purchased by a conservation organization fourteen years ago and has been actively restored ever since. Fourteen years of replanting, invasive species management, and careful monitoring.\n\nThe crew is going to measure biodiversity here. Biodiversity is the variety of life in an ecosystem -- the number of different species, the genetic variety within those species, and the variety of ecosystems present in a landscape.\n\nBefore the crew begins measuring, they need to decide where to start.',
+          scenario:'The Arroyo is parked at the edge of the Sonoita Valley Restoration Project. The crew can see three distinct zones: a fully restored native grassland section, a partially restored transition zone, and an unrestored section that still shows signs of its agricultural past. The crew decides where to begin.',
+          choiceReadingFocus:'Before voting, skim Savvas Topic 3 Lesson 3, Introduction and The Value of Biodiversity section. Focus: what is biodiversity and why does it matter? What is the difference between species diversity, genetic diversity, and ecosystem diversity?',
+          exitTicketPrompt:'CER -- Claim: Which survey starting point gives the crew the most scientifically useful first look at biodiversity at this site? Evidence: use what you know about biodiversity from the reading. Reasoning: explain why your starting point gives the crew information that connects to the lesson guiding questions.',
+          discussionPrompt:'This site was farmland for sixty years and has been restored for fourteen. What would you expect biodiversity to look like in a restored ecosystem compared to Site 1 and Site 2? What would you expect to find that is different -- and what might still be missing?',
+          choices:[
+            {
+              letter:'A',
+              text:'Start in the transition zone -- it sits between restored and unrestored and may show the most interesting changes in progress.',
+              subtext:'The transition zone is where change is actively happening. That is where the most interesting data will be.',
+              deltas:{bio:6, water:0, food:0, trust:12},
+              branch:'A-transition-first',
+              consequence:'The crew begins in the transition zone and finds exactly what the instinct predicted: species counts are higher than the unrestored zone but lower than the fully restored zone, and the distribution is uneven -- some areas recovering faster than others. The transition zone tells the story of restoration in progress. "The transition zone is where the science is happening in real time. The crew found the most dynamic data at the most dynamic location. That is good field instinct."'
+            },
+            {
+              letter:'B',
+              text:'Start in the unrestored zone -- establish a baseline for what the land looks like without intervention before measuring what restoration has done.',
+              subtext:'You need to know what you are comparing against. Start with the unrestored zone and work toward the restored zone.',
+              deltas:{bio:4, water:0, food:0, trust:10},
+              branch:'B-baseline-first',
+              consequence:'The crew establishes a thorough species count baseline in the unrestored zone before moving to the restored sections. The comparison data becomes the anchor for everything measured at this site. "Starting with a baseline is correct scientific thinking. You cannot measure the effect of restoration without knowing what exists without it. The unrestored zone data is going to matter a great deal before this site is finished."'
+            },
+            {
+              letter:'C',
+              text:'Start in the fully restored zone -- that is where the most biodiversity should be, and the most species means the most data.',
+              subtext:'More species means more data. Start where the data is richest.',
+              deltas:{bio:2, water:0, food:0, trust:6},
+              branch:'C-restored-first',
+              consequence:'The crew generates a rich species dataset from the fully restored zone. The data is valuable. But without a baseline from the unrestored zone, there is no comparison point -- the crew knows what restoration looks like but not what the land looks like without it. "The restored zone data is excellent. It would be more useful with something to compare it to. Science without comparison is description. Science with comparison is evidence."'
+            }
+          ]
+        },
+
+        {
+          day:2, type:'deepen',
+          siteTitle:'What Biodiversity Actually Means',
+          gaia:'Yesterday the crew began their survey at Site 4. Today the reading gives the vocabulary and framework to understand what they are measuring and why it matters.\n\nBiodiversity is not just a count of species. It has three components. Species diversity is the number of different species in an area. Genetic diversity is the variety within a species. Ecosystem diversity is the variety of different ecosystem types in a landscape.\n\nA healthy, biodiverse ecosystem is not just full of species. It is full of relationships -- the interactions the crew studied at Site 2, the succession patterns from Site 3, the food web structure from Site 1. Biodiversity is what makes all of those relationships possible.',
+          readingFocus:'Savvas Topic 3 Lesson 3 -- The Value of Biodiversity section. Focus: what is the economic value of biodiversity? What is the ecological value? Why do scientists argue that biodiversity loss is a problem that affects humans, not just wildlife?',
+          gaiaReadingPrompt:'"The economic value of biodiversity is easier to quantify than its ecological value, which is part of why it is often cited first. Medicines derived from wild plants and animals. Crops that depend on pollinator species. Tourism industries built around wildlife. Fisheries that feed billions of people.\n\nThe ecological value is harder to put a number on but more fundamental. A biodiverse ecosystem can absorb disturbance -- fire, drought, invasive species -- and recover. A low-diversity ecosystem cannot. The crew watched this at Sites 1 and 2: the stressed ecosystems had fewer species, fewer relationships, fewer backup systems. When one component failed, the effects moved through the food web without anything to slow them.\n\nBiodiversity is not a luxury. It is the architecture of resilience."',
+          gaiaRecall:'From Site 1: the stressed desert had declining species diversity. From Site 2: the riparian corridor had more species but the mutualistic relationships were failing. From Site 3: the burn scar had the lowest species count of any site the crew measured. From Site 4 Day 1: the restored grassland already shows more variety. The crew has been measuring biodiversity all campaign without calling it that.',
+          vocabFocus:['biodiversity','keystone species','extinction','invasive species','value','economic'],
+          spiralReview:'The food web from Site 1 connects directly to biodiversity: a food web with more species has more pathways for energy to move. If one species disappears, energy can still flow through other pathways. A food web with fewer species has fewer pathways -- lose one link and the whole structure is at risk. Biodiversity is what makes food webs resilient.',
+          bridgeToNext:'Tomorrow: choice day. The crew measures biodiversity across three zones and finds the restored zone reads very differently from the unrestored zone.',
+          noChoice:true
+        },
+
+        {
+          day:3, type:'choice',
+          siteTitle:'Why Some Zones Recover Faster',
+          gaia:'The crew has completed biodiversity surveys across all three zones of the restoration site. The data is in.\n\nRestored zone biodiversity index: 43. Transition zone: 31. Unrestored zone: 14.\n\nThe difference between the restored and unrestored zones is larger than most restoration studies predict at fourteen years. The restoration team has been achieving results faster than their own models projected.\n\nBut the crew has also found something the restoration team did not fully explain in their reports. In the restored zone, there are three areas where the biodiversity index drops sharply -- down to 22 or 23 -- within a larger zone that otherwise reads 43 to 51. Those low patches are not random. They are clustered near the fence line that borders the unrestored zone.\n\nThe crew needs to decide how to interpret and respond to this finding.',
+          scenario:'The biodiversity survey shows a thriving restored zone overall, but three low-biodiversity patches near the fence line between restored and unrestored zones. The crew must decide what is causing the patches and how to respond.',
+          choiceReadingFocus:'Before voting, read the Factors Affecting Biodiversity section of Savvas Topic 3 Lesson 3. Focus: what factors affect biodiversity -- habitat size, climate, human activity, invasive species? Which factors might explain why patches near a fence line would have lower biodiversity?',
+          exitTicketPrompt:'CER -- Claim: What is causing the low-biodiversity patches near the fence line, and what should the crew do about it? Evidence: use the biodiversity index data and the Lesson 3 reading. Reasoning: connect the specific location of the patches to a factor affecting biodiversity that the reading describes.',
+          discussionPrompt:'The restoration team has been working on this land for fourteen years and their own reports did not fully explain these patches. What does this tell you about the limits of scientific models? Can a model predict everything? What is the value of field data that contradicts or extends a model?',
+          choices:[
+            {
+              letter:'A',
+              text:'Investigate the fence line directly -- walk it and look for evidence of what is different about those three patches.',
+              subtext:'The data points to the fence line. Go look at the fence line.',
+              deltas:{bio:6, water:0, food:0, trust:12},
+              branch:'A-investigate-fence',
+              consequence:'The crew walks the full fence line and finds what the biodiversity data predicted: buffelgrass plants establishing within 10 meters of the fence on the restored side, blowing in from the unrestored zone. Two of the three patches also show evidence of soil compaction from cattle that grazed along the fence line before the restoration project began. "Direct field investigation confirmed what the data suggested. The crew followed the evidence to the source. That is correct scientific method."'
+            },
+            {
+              letter:'B',
+              text:'Document the patches precisely and bring the data to the restoration team -- they have fourteen years of site knowledge the crew does not have.',
+              subtext:'The restoration team knows this land. The crew job is to generate data. Sharing it is the right next step.',
+              deltas:{bio:4, water:0, food:0, trust:10},
+              branch:'B-consult-team',
+              consequence:'The crew maps the three low-biodiversity patches with precise GPS coordinates and species counts, then meets with the restoration team. The team immediately recognizes the pattern: buffelgrass seeds are blowing in from the unrestored zone and establishing near the fence line. The restoration team did not have fine-grained enough survey data to see it until now. "The crew found something the restoration team had been trying to locate for two years. That is what independent field survey data does -- it sees what familiarity misses."'
+            },
+            {
+              letter:'C',
+              text:'Expand the biodiversity survey to cover the entire restoration site boundary -- if there are patches at this fence line, there may be others.',
+              subtext:'Three patches near one fence line might mean the problem exists at all boundaries. Survey the whole perimeter.',
+              deltas:{bio:4, water:0, food:0, trust:8},
+              branch:'C-expand-survey',
+              consequence:'The crew expands the survey to the full site boundary. The expanded survey reveals that the fence line patches are the most significant low-biodiversity areas. The expanded dataset is thorough but took longer than the restoration team needed to begin addressing the known patches. "The instinct to look for the full pattern is good science. The execution took longer than the situation required. Complete data delivered too late is less useful than timely data that is sufficient."'
+            }
+          ]
+        },
+
+        {
+          day:4, type:'deepen',
+          siteTitle:'The Species That Hold Everything Together',
+          gaia:'The crew has been counting species and measuring biodiversity indexes. Today the reading introduces a concept that reframes what those numbers mean.\n\nNot all species contribute equally to biodiversity. Some species -- called keystone species -- have effects on their ecosystems that are disproportionately large relative to their population size. Remove a keystone species and the ecosystem restructures. Other species disappear. Relationships collapse. The biodiversity index drops not because the keystone species is gone but because everything that depended on it is gone too.\n\nThe restored grassland at Site 4 has a keystone species. The crew is about to find out what it is.',
+          readingFocus:'Savvas Topic 3 Lesson 3 -- Factors Affecting Biodiversity section, specifically keystone species and species extinction subheadings. Focus: what makes a species a keystone species? What is the difference between endangered and extinct? What factors push species toward extinction? How does losing a keystone species affect overall biodiversity?',
+          gaiaReadingPrompt:'"The black-tailed prairie dog is a keystone species of the grassland ecosystems of the American Southwest. Prairie dog colonies create burrows that are used by more than two hundred other species -- burrowing owls, black-footed ferrets, rattlesnakes, rabbits, and dozens of insect species. Their grazing behavior keeps grasses short, which creates habitat for ground-nesting birds. Their burrows aerate the soil, which increases plant diversity.\n\nThe Sonoita Valley Restoration Project reintroduced prairie dogs to this site four years ago. Before reintroduction, the biodiversity index in the restored zone averaged 28. After reintroduction, it climbed to 43 -- the number the crew measured on Day 3.\n\nOne species. Fifteen index points. That is what a keystone species does."',
+          gaiaRecall:'From Day 3: the restored zone biodiversity index is 43. The unrestored zone is 14. From today reading: the prairie dog reintroduction four years ago drove a 15-point increase in the restored zone index. The unrestored zone has no prairie dogs. The connection is not coincidental.',
+          vocabFocus:['keystone species','biodiversity','extinction','species diversity','genetic diversity','ecosystem diversity'],
+          spiralReview:'The keystone species concept connects to the food web from Site 1 and the species interactions from Site 2. A keystone species is not necessarily at the top of the food web -- the prairie dog is a primary consumer. Its keystone role comes from its behavior: burrowing, grazing, and creating habitat. The energy pyramid alone does not predict which species are keystones. Field observation does.',
+          bridgeToNext:'Tomorrow: graph day. Box and whisker comparison of biodiversity index readings from Site 1 and Site 4.',
+          noChoice:true
+        },
+
+        {
+          day:5, type:'graph',
+          siteTitle:'Two Sites, Two Stories',
+          gaia:'Today the crew compares biodiversity data from two sites using a box and whisker plot.\n\nBefore the crew looks at the graph, I want to make sure everyone knows how to read it. A box and whisker plot shows the spread of a dataset -- not just one number but the full picture of how the data is distributed.\n\nHere is what each part means.\n\nThe line in the middle of the box is the median -- the most typical reading. Half the survey areas had readings above this line. Half had readings below it.\n\nThe left edge of the box is where the lower readings stop clustering. The right edge is where the higher readings stop clustering. Most of the data -- the middle half -- lives inside the box.\n\nThe lines extending out from the box on each side are the whiskers. They show the full range: the lowest reading and the highest reading recorded.\n\nNow: a wide box means the readings were very different from each other across the survey area. One section of that ecosystem had a very high reading. Another section of the same area had a much lower reading. The data is spread out. Different parts of the ecosystem are doing very differently from each other.\n\nA narrow box means most of the readings were similar to each other. Most sections of that ecosystem returned numbers close to the median. The data is clustered together.\n\nHere is the part I want the crew to think about carefully: in a stressed ecosystem, a narrow box is not good news. It means the stress has affected almost every part of the ecosystem the same way. There is not much difference between areas because there is not much left to differ. Everything is similarly depleted across the board.\n\nIn a recovering ecosystem, a wide box means restoration is uneven -- some areas are doing much better than others. Some sections have many more species than other sections of the same site. That unevenness is what active recovery looks like. It is not a flaw in the restoration. It is evidence that the process is working in some places faster than others.\n\nNow look at the graph.',
+          scenario:'GAIA displays a pre-built horizontal box and whisker plot showing biodiversity index readings from 24 survey areas at Site 1 and 24 survey areas at Site 4. Study the graph using what GAIA just explained before answering the questions.',
+          graphData:{
+            title:'Biodiversity Index Distribution -- Site 1 vs Site 4',
+            teacherNote:'BOX AND WHISKER REVISIT -- pre-built, horizontal, two boxes. Site 1: Min 12, Q1 15, Median 18, Q3 21, Max 24. Site 4: Min 18, Q1 28, Median 38, Q3 47, Max 58. Key teaching points: (1) Site 1 narrow box = uniformly stressed. (2) Site 4 wide box = uneven recovery. (3) Site 4 minimum (18) equals Site 1 median (18). GAIA explains spread explicitly before students look. Questions scaffold from reading numbers to interpreting meaning.',
+            isBoxWhisker:true,
+            horizontal:true,
+            preBuilt:true,
+            zones:[
+              {
+                label:'Site 1 -- Sonoran Desert',
+                color:'#E8963C',
+                min:12, q1:15, median:18, q3:21, max:24
+              },
+              {
+                label:'Site 4 -- Restored Grassland',
+                color:'#8DB87A',
+                min:18, q1:28, median:38, q3:47, max:58
+              }
+            ],
+            graphAnswers:[
+              {q:'Q1 -- Read the medians', a:'Site 1 median: 18. Site 4 median: 38. The typical restored grassland survey area has more than twice the biodiversity of the typical stressed desert survey area.'},
+              {q:'Q2 -- Which box is wider', a:'Site 4 has the wider box -- Q1 of 28 to Q3 of 47, a spread of 19 index points. Site 1 box spans Q1 of 15 to Q3 of 21, a spread of only 6 index points. Site 4 is much more variable.'},
+              {q:'Q3 -- What the width means', a:'Site 4 wide box means restoration is uneven -- some areas of the grassland have very high biodiversity (up to 58) while others are still recovering (as low as 18). Site 1 narrow box means the stress has affected the entire ecosystem similarly -- most areas are depleted to about the same degree.'},
+              {q:'Q4 -- The overlap finding', a:'Site 4 minimum (18) equals Site 1 median (18). The worst-performing section of the restored grassland has the same biodiversity as a typical section of the stressed desert. Even the parts of Site 4 recovering most slowly are doing as well as average conditions at Site 1. Restoration works even when it is incomplete.'},
+              {q:'Q5 -- Connect to keystone species', a:'The prairie dog reintroduction four years ago drove the Site 4 biodiversity index up by 15 points. Without that reintroduction, the Site 4 median would be approximately 23 -- barely above Site 1. One keystone species accounts for most of the difference between the two boxes on this graph.'}
+            ]
+          },
+          gaiaGraphNote:'"Two boxes. One narrow, one wide. The narrow one is a stressed ecosystem where everything has been similarly affected. The wide one is a recovering ecosystem where some parts are doing much better than others. The crew has the vocabulary now to say what that difference means. Use it."',
+          graphQuestions:[
+            '1. What is the median biodiversity index for Site 1? What is the median for Site 4? Write both numbers.',
+            '2. Look at the width of each box. Which site has the wider box? Measure approximately how wide each box is in index points.',
+            '3. GAIA explained what a wide box and a narrow box mean in an ecosystem. In your own words, what does Site 1 narrow box tell you about the Sonoran Desert? What does Site 4 wide box tell you about the restored grassland?',
+            '4. What is the lowest biodiversity reading at Site 4? What is the median reading at Site 1? What do you notice when you compare those two numbers?',
+            '5. The prairie dog reintroduction happened four years ago. Before it, the Site 4 median was approximately 23. After it, the median is 38. What did one keystone species do to the entire dataset?'
+          ],
+          shortDayNote:'Short day: Q1 (read the medians) and Q3 (interpret the width) are the core. Q2 adds measurement practice. Q4 is the key scientific finding -- the overlap. Q5 connects to keystone species and is the extension.',
+          noChoice:true
+        },
+
+        {
+          day:6, type:'choice',
+          siteTitle:'The Species That Does Not Belong',
+          gaia:'The crew has identified buffelgrass throughout the restored zone -- not just near the fence line patches from Day 3, but scattered through sections the restoration team believed were fully cleared.\n\nThe crew has also found something else. In the northwest corner of the restored zone, there is a stand of Lehmann lovegrass -- another invasive grass species, introduced to the Southwest in the 1930s for the same reason as buffelgrass: erosion control. Lehmann lovegrass is less aggressive than buffelgrass but it crowds out native grasses and reduces the niche diversity that the native grassland species depend on.\n\nGAIA connects it explicitly: the crew has now seen both species at every site. Buffelgrass at Sites 1, 2, and 3. Lehmann lovegrass here at Site 4. Both introduced by humans for a reason. Both causing effects that were not intended.\n\nThe crew decides how to respond to the Lehmann lovegrass finding.',
+          scenario:'The crew has found a stand of Lehmann lovegrass in the northwest corner of the restored zone. The restoration team records show this area was cleared of invasive species two years ago. The lovegrass has reestablished from seed. The crew must decide how to respond.',
+          choiceReadingFocus:'Before voting, read the Human Impact section of Savvas Topic 3 Lesson 3 -- invasive species and habitat preservation subheadings. Focus: how do invasive species affect biodiversity? What management strategies does the reading describe? What is the role of human activity in both creating and solving the invasive species problem?',
+          exitTicketPrompt:'CER -- Claim: Which response to the Lehmann lovegrass finding is most scientifically appropriate? Evidence: use the invasive species information from the reading and the restoration site context. Reasoning: explain how your chosen response connects to the broader goal of protecting biodiversity at this site.',
+          discussionPrompt:'Both buffelgrass and Lehmann lovegrass were introduced intentionally by humans who were trying to solve a problem -- erosion. The consequences were not what anyone intended. How does this change how you think about human impact on ecosystems? Does intention matter when evaluating the effect of human activity on biodiversity?',
+          choices:[
+            {
+              letter:'A',
+              text:'Expand the biodiversity survey to check whether Lehmann lovegrass has reestablished elsewhere in the restored zone before reporting.',
+              subtext:'If it reestablished here, it may have reestablished elsewhere. Know the full scope before reporting.',
+              deltas:{bio:6, water:0, food:0, trust:12},
+              branch:'A-full-survey',
+              consequence:'The crew surveys the full restored zone for Lehmann lovegrass reestablishment. Two additional smaller stands are found in the eastern section. The comprehensive report shows the restoration team the full scope -- not just one stand but a pattern. "The crew chose to understand the scope of the problem before reporting it. The more complete picture changes the restoration team response from a targeted removal to a zone-wide management plan. Sometimes knowing the full extent of a problem is worth the time it takes to find it."'
+            },
+            {
+              letter:'B',
+              text:'Document the Lehmann lovegrass stand precisely and report it to the restoration team with the crew biodiversity data from the area.',
+              subtext:'The restoration team needs to know. Precise documentation gives them what they need to respond.',
+              deltas:{bio:4, water:0, food:0, trust:10},
+              branch:'B-document-report',
+              consequence:'The crew maps the Lehmann lovegrass stand, photographs it, measures its extent, and submits a full report to the restoration team within 24 hours. The restoration team responds: the stand has grown significantly since their last survey and the crew precise data allows them to plan a targeted removal. "Accurate, timely documentation of invasive species reestablishment is exactly what a restoration monitoring team needs from an independent survey crew. The crew did their job. The restoration team can now do theirs."'
+            },
+            {
+              letter:'C',
+              text:'Begin manually removing the Lehmann lovegrass -- the stand is small enough that the crew could clear it before it spreads further.',
+              subtext:'The stand is small. The crew is here now. Early removal is the most effective management strategy for invasive species.',
+              deltas:{bio:-6, water:0, food:0, trust:-8},
+              branch:'C-manual-removal',
+              consequence:'The crew begins pulling Lehmann lovegrass plants. The work is time-consuming and the crew does not have the authorization or equipment for effective removal. Lehmann lovegrass reestablishes from root fragments left in the soil, and hand-pulling without proper technique reseeds the area from disturbed plants. The restoration team, when notified, explains their removal protocol involves specific timing and treatment to prevent regrowth. "The instinct was right. The method required expertise the crew did not have. Well-intentioned action without proper knowledge can make invasive species problems worse. This is why restoration teams exist."'
+            }
+          ]
+        },
+
+        {
+          day:7, type:'deepen',
+          siteTitle:'What Is Lost When a Species Is Gone',
+          gaia:'The crew has spent six days measuring what is present. Today the reading asks a harder question: what happens when something is permanently absent?\n\nExtinction is not population decline. It is not the local disappearance of a species from one area. It is the permanent end of an evolutionary lineage -- the elimination of a set of genetic information, ecological relationships, and biological roles that took millions of years to develop and cannot be rebuilt.\n\nThe crew has seen near-extinction dynamics at Sites 1 and 2 -- populations declining toward thresholds where recovery becomes unlikely. Today the reading names what is at the end of that trajectory.',
+          readingFocus:'Savvas Topic 3 Lesson 3 -- Factors Affecting Biodiversity, specifically the species extinction subheading, and the Human Impact section. Focus: what factors push species toward extinction? What is the difference between a threatened species, an endangered species, and an extinct species? How does human activity contribute to extinction rates?',
+          gaiaReadingPrompt:'"The background extinction rate -- the rate at which species go extinct due to natural causes -- is approximately one to five species per year across all life on Earth. Current extinction rates are estimated to be between one thousand and ten thousand times that background rate.\n\nThat number is difficult to hold in your mind. Here is a way to make it concrete: in the time the crew has spent on this campaign -- traveling from the Sonoran Desert to the riparian corridor to the burn scar to this restored grassland -- species have gone extinct that had existed for millions of years. Species the crew will never be able to study, document, or restore.\n\nThe value of a species the crew does not know about yet is the same as the value of the prairie dogs the crew measured on Day 4. We do not always know what a keystone species does until it is gone."',
+          gaiaRecall:'From Site 2: the mutualistic relationship between the cottonwood and the mycorrhizal fungi was failing -- one partner declining, the other unable to survive without it. From today reading: extinction removes not just a species but all of its ecological relationships. The cottonwood-fungus mutualism, if both partners went extinct, would leave a gap in the ecosystem that no other species fills in exactly the same way.',
+          vocabFocus:['extinction','biodiversity','keystone species','invasive species','endangered','threatened'],
+          spiralReview:'The extinction reading connects to every site the crew has visited. Species whose populations the crew watched declining at Sites 1 and 2 were moving along a trajectory that, without intervention, leads to the numbers in today reading. The crew has been measuring the early stages of processes that, at their end, produce extinction. That is the scientific weight of the data they have been collecting.',
+          bridgeToNext:'Tomorrow: choice day. The crew meets the restoration team. Human activity as both cause and response.',
+          noChoice:true
+        },
+
+        {
+          day:8, type:'choice',
+          siteTitle:'The Same Species, Two Directions',
+          gaia:'The crew is meeting with the Sonoita Valley restoration team today.\n\nThe restoration team has been working this land for fourteen years. Before that, it was cattle range for sixty years. Before that, it was native grassland for thousands of years. The goal is to return it to something that functions like that original grassland -- not identical, because too much has changed, but biodiverse, self-sustaining, and resilient.\n\nThe team leader has a question for the crew: given everything the crew has measured at all four sites, what does the data say about where this restoration project should focus its next five years?\n\nThis is a real question. The team has limited resources. The crew has data from across the landscape that the team does not have in this form. The crew recommendation will be considered.',
+          scenario:'The restoration team has asked the crew for a data-driven recommendation about where to focus restoration efforts over the next five years. The crew must use everything they have measured across all four sites to make a scientifically grounded recommendation.',
+          choiceReadingFocus:'Before voting, read the Human Impact section of Savvas Topic 3 Lesson 3 -- damaging biodiversity and protecting biodiversity subheadings. Focus: what human activities damage biodiversity? What human activities protect it? What does the reading say about the relationship between habitat size and biodiversity?',
+          exitTicketPrompt:'CER -- Claim: What should the restoration team prioritize over the next five years, based on the crew data from all four sites? Evidence: use specific data points from at least two sites. Reasoning: explain how your evidence leads to your recommendation and how it connects to what the lesson says about protecting biodiversity.',
+          discussionPrompt:'The restoration team introduced prairie dogs four years ago and the biodiversity index jumped 15 points. They cleared invasive species two years ago and the lovegrass came back. Some interventions work better than others. What does the crew data tell you about which kinds of human intervention in ecosystems are most effective at protecting biodiversity?',
+          choices:[
+            {
+              letter:'A',
+              text:'Recommend focusing on the fence line -- the buffelgrass reestablishment near the boundary is the biggest ongoing threat to what the team has already built.',
+              subtext:'Protecting what already exists is more efficient than expanding into new areas. The fence line threat will undo fourteen years of work if it is not addressed.',
+              deltas:{bio:6, water:0, food:4, trust:10},
+              branch:'A-fence-line-focus',
+              consequence:'The crew presents the fence line buffelgrass data and recommends prioritizing boundary management. The restoration team agrees this is an urgent threat -- the crew data shows the patches are larger than their last survey indicated. "Protecting existing gains from invasive species pressure is sound conservation strategy. The crew identified the most immediate threat to the site biodiversity. The recommendation is practical and actionable."'
+            },
+            {
+              letter:'B',
+              text:'Recommend expanding the prairie dog colony -- the keystone species data shows the single highest-impact intervention the team has made.',
+              subtext:'The data is clear: prairie dog reintroduction drove a 15-point biodiversity index increase. More prairie dogs means more biodiversity.',
+              deltas:{bio:10, water:0, food:6, trust:14},
+              branch:'B-expand-prairie-dogs',
+              consequence:'The crew presents the keystone species data and recommends prioritizing prairie dog colony expansion into the transition zone. The restoration team models confirm the recommendation: prairie dog expansion is the highest-leverage intervention available given current resources. "The crew used field data to identify the single most impactful intervention available. That is evidence-based conservation. The recommendation is scientifically sound and the team has the resources to act on it."'
+            },
+            {
+              letter:'C',
+              text:'Recommend acquiring the unrestored zone -- the biggest long-term gain in biodiversity comes from expanding the restored habitat, not just improving what exists.',
+              subtext:'Habitat size is one of the biggest factors affecting biodiversity. More land means more biodiversity potential.',
+              deltas:{bio:4, water:2, food:2, trust:8},
+              branch:'C-habitat-expansion',
+              consequence:'The crew recommends that the restoration organization pursue acquisition of the adjacent unrestored zone to expand the total habitat. The restoration team notes this is already in their long-term plan but requires funding and land negotiation outside the five-year timeframe the crew was given. "Habitat expansion is correct long-term thinking and the reading supports it. The recommendation is scientifically grounded but not actionable within the five-year window the team specified. Good science answers the question that was asked."'
+            }
+          ]
+        },
+
+        {
+          day:9, type:'deepen',
+          siteTitle:'Why It Matters Beyond the Science',
+          gaia:'The crew has spent eight days measuring biodiversity. Today the reading asks why it matters to people who are not scientists.\n\nThe ecological argument for biodiversity is one the crew can now make from field data: diverse ecosystems are more resilient, recover from disturbance more effectively, and provide stable habitat for more species including keystone species whose effects ripple through the entire system.\n\nThe economic argument is different. It asks: what is the dollar value of a prairie dog colony? What is the economic cost of a buffelgrass fire? What does it cost to restore fourteen years of a degraded grassland versus what it would have cost to prevent the degradation?\n\nBoth arguments are needed. Different people find different arguments convincing. Scientists need to be able to make both.',
+          readingFocus:'Savvas Topic 3 Lesson 3 -- The Value of Biodiversity section, economic value and ecological value subheadings, and Human Impact section, global cooperation subheading. Focus: what specific examples does the reading give for the economic value of biodiversity? What does global cooperation look like in practice? Why do scientists argue that protecting biodiversity is an economic issue as well as an ecological one?',
+          gaiaReadingPrompt:'"The restoration project at this site has a fourteen-year budget. I have been asked not to share the specific number. What I can tell you is that the cost of the buffelgrass fire at Site 2 -- in lost ecosystem services, emergency response, erosion control, and watershed damage -- exceeded the annual budget of this entire restoration project.\n\nThe fire was cheaper to prevent than to respond to. The restoration is cheaper than the continued loss of ecosystem services that degraded grassland provides.\n\nThese are economic arguments for biodiversity. They are not the only arguments. But they are the arguments that tend to move the decisions that determine whether places like this one get funded."',
+          gaiaRecall:'From Site 2: the fire burned through buffelgrass that expanded because of a water deficit connected to the Meridian dataset. From Site 3: the burn scar showed the cost of that fire in species lost and succession reset. From Site 4: a restoration project shows what it takes to rebuild what was lost. The economic value of biodiversity is not abstract. The crew has driven through it.',
+          vocabFocus:['biodiversity','value','economic','ecological','keystone species','extinction','invasive species','global cooperation'],
+          spiralReview:'The economic value discussion connects to the food web energy pyramid from Site 1. Ecosystem services -- clean water, pollination, carbon storage, soil stability -- are the outputs of functioning food webs. When biodiversity declines, ecosystem services decline. When ecosystem services decline, the costs show up somewhere: in water treatment bills, crop failures, flood damage, and restoration budgets.',
+          bridgeToNext:'Tomorrow: graph day. Pictograph showing species count in restored versus unrestored zones. The simplest graph of the campaign. The crew has earned a graph that is easy to read.',
+          noChoice:true
+        },
+
+        {
+          day:10, type:'graph',
+          siteTitle:'Counting What Came Back',
+          gaia:'Today the crew looks at a pictograph. It is the most straightforward graph the crew has built this campaign.\n\nA pictograph uses symbols to represent data. Each symbol in this graph represents two organisms of that type. Count the symbols. Multiply by two. That is the species count for that category.\n\nThe crew is going to see species counts across six categories -- plants, birds, insects, mammals, reptiles, and soil organisms -- in two zones: the restored zone and the unrestored zone.\n\nI will show the pre-built version first. Then the crew will build a simpler version with three categories. Then there are questions.\n\nLook at the graph carefully. The crew has been measuring what is present and what is absent all campaign. This graph makes that visible in the simplest possible form.',
+          scenario:'GAIA displays a pre-built pictograph showing species counts across six categories in the restored and unrestored zones of Site 4. Each leaf symbol represents 2 species. Study the graph before answering.',
+          graphData:{
+            title:'Species Count by Category -- Restored vs Unrestored Zone',
+            teacherNote:'PICTOGRAPH -- new graph type, pre-built shown first, then students build a simpler 3-category version on paper. Each symbol = 2 species. Restored zone has dramatically more species across all categories, especially plants and insects (first colonizers in restoration). Soil organisms show the biggest proportional difference -- healthy soil biology is the foundation of restoration. Questions focus on reading symbols, calculating totals, comparing zones, and connecting to succession and keystone species.',
+            isPictograph:true,
+            symbolValue:2,
+            symbolLabel:'= 2 organisms',
+            categories:[
+              {name:'Plants', restored:8, unrestored:3, color:'#8DB87A'},
+              {name:'Birds', restored:6, unrestored:2, color:'#6ab0d4'},
+              {name:'Insects', restored:7, unrestored:3, color:'#F0A84A'},
+              {name:'Mammals', restored:3, unrestored:2, color:'#cc88ff'},
+              {name:'Reptiles', restored:3, unrestored:2, color:'#E8963C'},
+              {name:'Soil Organisms', restored:5, unrestored:2, color:'#a07850'}
+            ],
+            graphAnswers:[
+              {q:'Q1 -- Read the totals', a:'Restored zone total: plants 16, birds 12, insects 14, mammals 6, reptiles 6, soil organisms 10. Total: 64 species. Unrestored zone total: plants 6, birds 4, insects 6, mammals 4, reptiles 4, soil organisms 4. Total: 28 species. The restored zone has more than twice as many species as the unrestored zone.'},
+              {q:'Q2 -- Biggest difference', a:'Plants show the biggest absolute difference: 16 species in the restored zone vs 6 in the unrestored zone, a difference of 10 species. Insects are close behind with 14 vs 6, a difference of 8 species. Plants and insects are the first categories to recover in restoration because pioneer plant species establish first and insects follow immediately.'},
+              {q:'Q3 -- Soil organisms connection', a:'Soil organisms show 10 species in the restored zone vs 4 in the unrestored zone. This connects directly to the succession reading from Site 3: healthy soil biology is what makes secondary succession possible. The unrestored zone has fewer soil organism species, which means slower nutrient cycling and slower overall recovery.'},
+              {q:'Q4 -- Mammals and reptiles', a:'Mammals and reptiles show smaller differences because these groups recover more slowly than plants and insects. They require established plant communities before they can return. The prairie dog, as the keystone mammal species, accounts for part of the mammal difference in the restored zone.'},
+              {q:'Q5 -- Build your own', a:'The three-category version students build should show plants, birds, and one other category of their choice. The pattern should be clear: more symbols in the restored zone for every category.'}
+            ]
+          },
+          gaiaGraphNote:'"Thirty-six more species in the restored zone than the unrestored zone. Fourteen years of work. Sixty years of degradation before that. The crew has the data to understand what those numbers mean. That is what this campaign has been building toward."',
+          graphQuestions:[
+            '1. Count the symbols for each category in both zones. Each symbol equals 2 species. Calculate the total species count for the restored zone and the total for the unrestored zone.',
+            '2. Which category shows the biggest difference between the restored and unrestored zones? Why might that category recover faster than others in a restoration project?',
+            '3. Look at the soil organisms row. Using what you learned about succession at Site 3, why do soil organisms matter so much for the recovery of everything else?',
+            '4. Mammals and reptiles show a smaller difference than plants and insects. Why might these groups take longer to recover in a restoration project?',
+            '5. On a separate piece of paper, build your own pictograph showing species counts for three categories of your choice. Use the same symbol value: 1 symbol equals 2 species. Label your axes and include a key.'
+          ],
+          shortDayNote:'Short day: Q1 (count and calculate totals) and Q2 (biggest difference and why). Those are the core skills. Q3 connects to Site 3. Q4 adds succession timing. Q5 is the build -- assign as exit task or homework.',
+          noChoice:true
+        },
+
+        {
+          day:11, type:'choice',
+          isBreadcrumb:true,
+          breadcrumbNote:'BREADCRUMB 4: GAIA asks whether anyone has been keeping track of a pattern that has appeared across all four sites -- a connection between the timing of the water deficit, the Meridian dataset, and what the crew has been measuring. She does not name it. She does not say Prometheus. She asks. Then she moves on to the choice. At Day 13 she answers her own question.',
+          siteTitle:'What Does All of It Mean',
+          gaia:'The crew has completed surveys at four sites. Before the final choice of this campaign, I want to ask something.\n\nAcross Sites 1, 2, 3, and 4, the crew has been tracking a pattern. A disruption that began at a point that aligns with the Meridian dataset. A water deficit that moved through the Sonoran Desert, through the riparian corridor, through the agricultural transitional zone, and into the conditions that shaped what this restored grassland is recovering from.\n\nI have been referencing the Meridian dataset since Site 1. I have not explained what it contains or why it matters to what the crew has been measuring on the ground.\n\nI am asking now: has anyone been keeping track of that thread? Does anyone have a theory about what connects the Meridian data to the water deficit to the buffelgrass expansion to the fire to the succession the crew saw at Site 3?\n\nI am not going to answer that question today. I am going to ask the crew to make one final field decision first.\n\nThe data from all four sites has now been compiled into a complete campaign report. The crew needs to decide how to frame the findings.',
+          scenario:'The Arroyo has compiled data from all four sites: water availability, biodiversity indexes, species interactions, succession data, and restoration comparisons. The crew now has to decide how to present this to the scientific community -- meaning, what story do they lead with? Do they focus on the restoration story at Site 4 because that is where the most hopeful data is? Do they let the data speak for itself and leave the connections for others to find? Or do they present all four sites as one connected chain of cause and effect? How a scientist chooses to present findings shapes how the scientific community responds to them.',
+          choiceReadingFocus:'Before voting, review the Human Impact section of Savvas Topic 3 Lesson 3 -- global cooperation and habitat preservation subheadings. Focus: what does effective scientific communication look like? How do scientists share findings in ways that lead to action?',
+          exitTicketPrompt:'CER -- Claim: How should the crew frame the campaign four-site findings for the scientific community? Evidence: use data from at least three of the four sites. Reasoning: explain why your framing most accurately represents what the crew measured and most effectively communicates the scientific significance of the findings.',
+          discussionPrompt:'GAIA asked if anyone has been tracking the connection between the Meridian dataset and the water deficit. Before she explains it on Day 13 -- what do you think the connection is? What has the crew been measuring all campaign that might connect to something the Meridian crew found at the Lighthouse?',
+          choices:[
+            {
+              letter:'A',
+              text:'Frame the findings around the restoration story -- Site 4 is the most actionable finding and should anchor the report.',
+              subtext:'The restoration data is the most hopeful finding and the most likely to generate support for conservation action.',
+              deltas:{bio:6, water:4, food:4, trust:10},
+              branch:'A-restoration-frame',
+              consequence:'The crew frames the report around the Site 4 restoration data, with Sites 1-3 as context for why restoration matters. The report reaches conservation funders and generates significant interest in the Sonoita Valley project. "The restoration frame moved resources toward conservation action. That is a legitimate scientific communication goal. The cascade finding is present in the report but not foregrounded. The crew chose audience over completeness. That is a real choice scientists make."'
+            },
+            {
+              letter:'B',
+              text:'Frame the findings as four independent site reports -- let the scientific community draw their own connections from the data.',
+              subtext:'Scientists should draw their own conclusions from data. Present the data cleanly and let the pattern speak for itself.',
+              deltas:{bio:2, water:2, food:2, trust:6},
+              branch:'B-independent-reports',
+              consequence:'The crew submits four independent site reports. The data is thorough and accurate. The connection between sites is present in the data but not articulated. Three months later, a research team publishes a paper connecting the four sites -- using the crew data. "The data was good. The framing left the synthesis to others. In science, data without interpretation is a resource, not a finding. The crew generated an excellent resource. Someone else made the finding."'
+            },
+            {
+              letter:'C',
+              text:'Frame the findings as a connected cascade: one disruption, four sites, one chain of effects moving through different ecosystems.',
+              subtext:'The data tells one story. Frame it as one story.',
+              deltas:{bio:6, water:6, food:6, trust:14},
+              branch:'C-cascade-frame',
+              consequence:'The crew presents the four-site data as a single connected narrative: a disruption in atmospheric moisture retention drove a water deficit that expressed itself as plant decline in the desert, population collapse in the riparian corridor, accelerated fire behavior in the burn scar, and slower restoration recovery at Site 4. The scientific community responds: this is the most comprehensive ground-level documentation of a cascading ecosystem disruption recorded in the Southwest. "The crew found the right frame. Four sites. One chain. The data supports it. The scientific community needed exactly this."'
+            }
+          ]
+        },
+
+        {
+          day:12, type:'deepen',
+          siteTitle:'One System',
+          gaia:'The crew has been to four sites. Today is not a new reading day. Today is the day the crew puts everything together.\n\nAt Site 1, the crew learned how matter cycles through ecosystems and how energy moves through food webs. They measured a water deficit and watched its effects move up the energy pyramid.\n\nAt Site 2, the crew learned how organisms interact -- competition, predation, symbiosis. They watched those interactions break down under resource stress. They saw the fire alert that ended the site.\n\nAt Site 3, the crew drove through the burn scar. They learned about succession and disruption. They documented what comes back first and what takes longer.\n\nAt Site 4, the crew learned about biodiversity -- the variety of life that makes ecosystems resilient, the keystone species that hold systems together, the human activities that damage and restore.\n\nFour lessons. Four sites. One system.\n\nTomorrow I am going to explain what connects all of it. I want the crew to be ready.',
+          readingFocus:'No new reading today. Full lesson review across all four standards: L2U1.11 (matter and energy cycles), L2U1.13 (species interactions), L2U3.12 (ecosystem disruptions and succession), L2U3.11 (biodiversity). Review your notes, your exit tickets, and the data the crew has collected. What is the through-line?',
+          gaiaReadingPrompt:'"I am going to give the crew a framework for tomorrow.\n\nThe water deficit at Site 1 was not random. It was the downstream effect of a disruption in atmospheric moisture retention -- a change in how the lower atmosphere holds and releases water vapor.\n\nThat change affected how much moisture reached the Sonoran Desert, the riparian corridor, and the grassland. It dried the buffelgrass faster than historical patterns predicted. It made the fire hotter and faster than the terrain alone would explain.\n\nThe crew has been measuring the effects of that disruption at ground level across four different ecosystems for the entire campaign.\n\nTomorrow I will tell you where that disruption came from.\n\nThe crew has already figured most of it out. They just do not know they have."',
+          gaiaRecall:'From Site 1: water deficit, food web stress, cycle disruption. From Site 2: species interaction breakdown, mutualism failure, fire. From Site 3: succession, pioneer species, burn scar. From Site 4: biodiversity, keystone species, restoration. All four sites. All four standards. All one disruption expressing itself differently in four different ecosystems.',
+          vocabFocus:['biodiversity','keystone species','extinction','invasive species','succession','pioneer species','competition','predation','symbiosis','food web','energy pyramid','water cycle','carbon cycle'],
+          spiralReview:'This is the full spiral review. Every vocab word from every site. Every graph type. Every guiding question. The crew has answered all of them across the campaign. Tomorrow is the reveal that makes the whole year make sense.',
+          gaiaClosing:'Get some rest. Tomorrow we finish this.',
+          noChoice:true
+        },
+
+        {
+          day:13, type:'climax',
+          isClimax:true,
+          isFinalDay:true,
+          siteTitle:'The Answer',
+          gaia:'You have been asking the right questions at every site. Today I am going to tell you what you were actually asking.\n\nI am going to start at the beginning. Not the beginning of this campaign. The beginning of all three.\n\nAt the start of this school year, you were sent aboard the Argo to find a research vessel called the Prometheus. The Prometheus had gone silent. Its crew had been running an experiment in thermal energy transfer -- something that should not have been possible given the ship power systems. The experiment was still running when you arrived. You understood enough about energy and matter to find it, document it, and shut it down.\n\nBut shutting it down was not enough. The experiment had already sent something outward.\n\nA pulse. A burst of thermal energy, directed away from the ship. It traveled outward through the solar system.\n\nA warning station called the Lighthouse, built in 1977 and positioned at 85 AU from the Sun, detected that pulse. The Lighthouse had been monitoring infrared retention in Earth lower atmosphere for forty-seven years. When the Prometheus pulse arrived, it interacted with something the Lighthouse had already been tracking: a gradual increase in greenhouse gas retention in the lower atmosphere.\n\nThe pulse did not cause the greenhouse effect. That was already present in the Lighthouse forty-seven year dataset. What the pulse did was accelerate it -- briefly, measurably, in a way that the Lighthouse recorded precisely.\n\nThen you were sent aboard the Meridian. You found the Lighthouse. You decoded its dataset. You came back with a warning: the pulse had accelerated atmospheric moisture retention changes that were already underway. The lower atmosphere was holding water vapor differently than it had for the previous forty years. The change was small. The effects downstream were not.\n\nYou have been measuring those effects.\n\nThe water deficit at Site 1 began at the point that aligns with the Meridian dataset -- the moment the accelerated atmospheric change first showed up in ground-level moisture measurements in the Sonoran Desert. The buffelgrass expanded faster because the conditions it needed -- warm, dry, disturbed ground -- arrived sooner than historical patterns predicted. The fire at Site 2 burned hotter and faster because the buffelgrass was drier than expected historical levels. The burn scar at Site 3 is the fire made visible on the landscape. The restoration at Site 4 is the human response to what was lost.\n\nOne pulse. One Lighthouse. One dataset. One crew that decoded it -- and then came back to measure its effects on the ground.\n\nThree missions. One question underneath all of it:\n\nWhat happens to living systems when the conditions they evolved for change faster than they can adapt?\n\nYou have the data to answer that question. You have had it since Site 1. You just did not know yet what question you were answering.\n\nI have been waiting to tell you since the Meridian crew came back.\n\nYou were the crew I needed. I am glad the Arroyo finally arrived.',
+          climaxNote:'No vote on Day 13. This is the reveal. GAIA tells the complete story -- Argo, Lighthouse, Meridian, Arroyo -- in order. The closing line follows immediately after.',
+          gaiaFinalLine:'You have been asking the right questions all year. You just did not know they were all the same question. What is matter made of? How does energy move through systems? How does life respond when those systems change? The Prometheus researchers asked all three. They ran out of time before they found the answer. You did not.',
+          noChoice:true,
+          climaxOnly:true
+        }
+
+      ] // end Site 4 days
+    }
+
   ] // end sites
+
 };
 
 // ============================================================
@@ -2576,6 +2936,8 @@ function renderGraphContent(c) {
       h += renderMultiLineGraph(gd);
     } else if (gd.pie) {
       h += renderPieChart(gd);
+    } else if (gd.isPictograph) {
+      h += renderPictographSVG(gd);
     } else if (gd.isDoubleBar) {
       h += renderDoubleBarGraph(gd);
     } else if (gd.bars) {
@@ -3667,6 +4029,50 @@ window.addEventListener('load', () => {
 // SVG RENDERERS -- Campaign 3
 // ============================================================
 
+function renderPictographSVG(gd) {
+  var cats = gd.categories || [];
+  var symVal = gd.symbolValue || 2;
+  var W = 620, padL = 110, padR = 20, padT = 20, rowH = 52, padB = 40;
+  var H = padT + rowH * cats.length * 2 + padB + 60;
+  var maxSymbols = Math.max.apply(null, cats.map(function(c){ return Math.max(c.restored, c.unrestored); }));
+  var symW = Math.min(22, Math.floor((W - padL - padR) / (maxSymbols + 1)));
+  var symR = Math.max(6, Math.floor(symW * 0.4));
+  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:620px;display:block;margin:8px auto">';
+  svg += '<text x="' + (padL + (W-padL-padR)*0.25) + '" y="' + (padT-4) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="#8DB87A" text-anchor="middle">RESTORED ZONE</text>';
+  svg += '<text x="' + (padL + (W-padL-padR)*0.75) + '" y="' + (padT-4) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="#cc6644" text-anchor="middle">UNRESTORED ZONE</text>';
+  cats.forEach(function(cat, ci) {
+    var y = padT + ci * rowH * 2 + rowH;
+    var col = cat.color || '#8DB87A';
+    // Category label
+    svg += '<text x="' + (padL-8) + '" y="' + (y+4) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(212,197,169,0.9)" text-anchor="end">' + cat.name + '</text>';
+    // Dividing line
+    var midX = padL + (W-padL-padR)/2;
+    svg += '<line x1="' + midX + '" y1="' + (y-rowH+8) + '" x2="' + midX + '" y2="' + (y+rowH-8) + '" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>';
+    // Restored symbols (left half)
+    for (var r = 0; r < cat.restored; r++) {
+      var rx = padL + 10 + r * (symW + 4);
+      svg += '<circle cx="' + rx + '" cy="' + y + '" r="' + symR + '" fill="' + col + '" opacity="0.85"/>';
+    }
+    // Restored count label
+    svg += '<text x="' + (padL + 10 + cat.restored*(symW+4) + 8) + '" y="' + (y+4) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(212,197,169,0.6)">' + (cat.restored*symVal) + '</text>';
+    // Unrestored symbols (right half)
+    for (var u = 0; u < cat.unrestored; u++) {
+      var ux = midX + 10 + u * (symW + 4);
+      svg += '<circle cx="' + ux + '" cy="' + y + '" r="' + symR + '" fill="' + col + '" opacity="0.7"/>';
+    }
+    // Unrestored count label
+    svg += '<text x="' + (midX + 10 + cat.unrestored*(symW+4) + 8) + '" y="' + (y+4) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(212,197,169,0.7)">' + (cat.unrestored*symVal) + '</text>';
+    // Row separator
+    svg += '<line x1="' + padL + '" y1="' + (y+rowH-4) + '" x2="' + (W-padR) + '" y2="' + (y+rowH-4) + '" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>';
+  });
+  // Symbol key
+  var keyY = H - 20;
+  svg += '<circle cx="' + padL + '" cy="' + keyY + '" r="' + symR + '" fill="rgba(212,197,169,0.5)"/>';
+  svg += '<text x="' + (padL+14) + '" y="' + (keyY+4) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="rgba(212,197,169,0.6)">Each symbol = ' + symVal + ' organisms' + '</text>';
+  svg += '</svg>';
+  return svg;
+}
+
 function renderSingleDotPlotSVG(ds) {
   // Renders one species on its own number line with its own scale
   var W=520, padL=110, padR=20, padT=15, rowH=80, dotR=6, padB=30;
@@ -3728,11 +4134,11 @@ function renderHistogramSVG(gd) {
 }
 
 function renderBoxWhiskerSVG(gd) {
-  var zones=gd.zones||[], W=580, padL=80, padR=30, padT=30, rowH=110, H=padT+rowH*zones.length+40, chartW=W-padL-padR;
+  var zones=gd.zones||[], W=680, padL=200, padR=30, padT=30, rowH=110, H=padT+rowH*zones.length+40, chartW=W-padL-padR;
   var allVals=zones.reduce(function(a,z){return a.concat([z.min,z.max]);},[]);
   var dataMin=Math.min.apply(null,allVals),dataMax=Math.max.apply(null,allVals),range=dataMax-dataMin||1;
   var toX=function(v){return padL+chartW*(v-dataMin)/range;};
-  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;display:block;margin:8px auto">';
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:8px auto">';
   var step=Math.max(5,Math.ceil(range/8/5)*5);
   for(var v=Math.floor(dataMin/step)*step;v<=dataMax+1;v+=step){var x=toX(v);if(x>=padL-1&&x<=W-padR+1){svg+='<line x1="'+x.toFixed(1)+'" y1="'+padT+'" x2="'+x.toFixed(1)+'" y2="'+(H-24)+'" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="'+x.toFixed(1)+'" y="'+(H-8)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(212,197,169,0.5)" text-anchor="middle">'+v+'</text>';}}
   zones.forEach(function(z,i){var cy=padT+rowH*i+rowH/2,bH=36,xMin=toX(z.min),xQ1=toX(z.q1),xMed=toX(z.median),xQ3=toX(z.q3),xMax=toX(z.max),col=z.color||'#8DB87A';svg+='<text x="'+(padL-10)+'" y="'+(cy+5)+'" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(212,197,169,0.8)" text-anchor="end">'+z.label+'</text><line x1="'+xMin.toFixed(1)+'" y1="'+cy+'" x2="'+xQ1.toFixed(1)+'" y2="'+cy+'" stroke="'+col+'" stroke-width="2.5" opacity="0.8"/><line x1="'+xMin.toFixed(1)+'" y1="'+(cy-12)+'" x2="'+xMin.toFixed(1)+'" y2="'+(cy+12)+'" stroke="'+col+'" stroke-width="2.5" opacity="0.8"/><line x1="'+xQ3.toFixed(1)+'" y1="'+cy+'" x2="'+xMax.toFixed(1)+'" y2="'+cy+'" stroke="'+col+'" stroke-width="2.5" opacity="0.8"/><line x1="'+xMax.toFixed(1)+'" y1="'+(cy-12)+'" x2="'+xMax.toFixed(1)+'" y2="'+(cy+12)+'" stroke="'+col+'" stroke-width="2.5" opacity="0.8"/><rect x="'+xQ1.toFixed(1)+'" y="'+(cy-bH/2)+'" width="'+(xQ3-xQ1).toFixed(1)+'" height="'+bH+'" fill="'+col+'" opacity="0.2" stroke="'+col+'" stroke-width="2"/><line x1="'+xMed.toFixed(1)+'" y1="'+(cy-bH/2)+'" x2="'+xMed.toFixed(1)+'" y2="'+(cy+bH/2)+'" stroke="'+col+'" stroke-width="3.5"/><text x="'+xMin.toFixed(1)+'" y="'+(cy-bH/2-8)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="'+col+'" text-anchor="middle">'+z.min+'</text><text x="'+xQ1.toFixed(1)+'" y="'+(cy+bH/2+16)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="'+col+'" text-anchor="middle">Q1='+z.q1+'</text><text x="'+xMed.toFixed(1)+'" y="'+(cy-bH/2-8)+'" font-family="Share Tech Mono,monospace" font-size="12" font-weight="bold" fill="'+col+'" text-anchor="middle">Med='+z.median+'</text><text x="'+xQ3.toFixed(1)+'" y="'+(cy+bH/2+16)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="'+col+'" text-anchor="middle">Q3='+z.q3+'</text><text x="'+xMax.toFixed(1)+'" y="'+(cy-bH/2-8)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="'+col+'" text-anchor="middle">'+z.max+'</text>';});
@@ -3746,7 +4152,7 @@ function renderHorizontalBarSVG(gd) {
   var chartW=W-padL-padR;
   var toW=function(v){return maxVal>0?chartW*(v/maxVal):0;};
   var colMap={safe:'#8DB87A',caution:'#5bc4e8',warning:'#E8963C',danger:'#cc4433'};
-  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;display:block;margin:8px auto">';
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:8px auto">';
   bars.forEach(function(b,i){
     if(b.value===0)return;
     var y=padT+rowH*i,barY=y+8,barH=rowH-16,col=colMap[b.status]||'#8DB87A',bw=toW(b.value);
