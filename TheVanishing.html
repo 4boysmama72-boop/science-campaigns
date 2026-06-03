@@ -555,16 +555,7 @@
         </div>
       </div>
       
-          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px">
-            <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:8px">Class 2</div>
-            
-          </div>
-          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px">
-            <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);margin-bottom:8px">Class 3</div>
-            
-          </div>
-        </div>
-      </div>
+
       <button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="completeSetup()">
         Enter The Arroyo &rarr;
       </button>
@@ -1111,7 +1102,7 @@ GAIA out. I will be in contact daily. Try to get enough sleep &mdash; I have not
 // ============================================================
 // STORAGE
 // ============================================================
-const STORAGE_KEY = 'vanishing_v1';
+const STORAGE_KEY = 'vanishing_v2';
 
 // ============================================================
 // STATE
@@ -1201,7 +1192,7 @@ const CAMPAIGN = {
               subtext:'No single factor explains an ecosystem under stress. The interactions between factors are where the real data is.',
               deltas:{bio:6, water:6, food:6, trust:4},
               branch:'C-all-arrays',
-              consequence:'Running all three arrays simultaneously gives the crew the most complete picture available. Soil moisture is down. Plant density is down in drought-sensitive species. Animal activity -- particularly among insects and small mammals that depend on annual plants for food -- is lower than expected. The three readings are consistent with each other. This is not a problem with one part of the ecosystem. This is a system-wide signal. GAIA: The data is not confused. The ecosystem is responding to something. The crew has just confirmed that the response is happening at every level simultaneously.'
+              consequence:'Running all three arrays simultaneously gives the crew the most complete picture available. Soil moisture is down. Plant density is down in drought-sensitive species. Animal activity -- particularly among insects and small mammals that depend on annual plants for food -- is lower than expected. The three readings are consistent with each other. This is not a problem with one part of the ecosystem. This is a system-wide signal. "The data is not confused. The ecosystem is responding to something. The crew has confirmed that the response is happening at every level simultaneously. That is either very informative or very concerning. Possibly both."'
             }
           ]
         },
@@ -1452,27 +1443,27 @@ const CAMPAIGN = {
           choices:[
             {
               letter:'A',
-              text:'Document the carbon data in depth. A measurable CO2 imbalance is significant and needs precise measurement before the crew moves on.',
-              subtext:'Data quality matters more than speed. If the carbon reading is important, it deserves careful documentation.',
-              deltas:{bio:0, water:0, food:0, trust:12},
-              branch:'A-carbon-document',
-              consequence:'Three days of careful atmospheric measurements give the crew a clear carbon budget for this section of desert. Carbon dioxide absorption is down approximately 55 percent from what would be expected in a healthy ecosystem with normal plant density. The number is consistent with the 61 percent plant decline -- slightly lower because the perennial plants, which are still present, continue absorbing some CO2. The carbon data and the plant data are telling the same story from different directions. Both confirm the ecosystem is significantly below its normal function.'
-            },
-            {
-              letter:'B',
-              text:'Measure human impact on the cycles. Roads, urban development, and agricultural land border parts of this desert section. That context matters.',
-              subtext:'Cycles do not operate in isolation from human activity. Understanding the boundary conditions gives the data more meaning.',
-              deltas:{bio:0, water:0, food:0, trust:8},
-              branch:'B-human-impact',
-              consequence:'Survey of the desert boundary shows a mix of conditions. One edge borders a maintained highway with a gravel shoulder that has low permeability -- water runs off rather than soaking in. A second edge borders agricultural land where groundwater is being actively pumped for irrigation. The agricultural water use is measurably affecting the water table in the adjacent desert zone. This is a human impact on the abiotic conditions of the ecosystem -- not a direct cause of everything the crew has measured, but a contributing factor that adds pressure to an already stressed system.'
-            },
-            {
-              letter:'C',
               text:'Transmit everything collected so far. The dataset is already significant. Getting it to the research network matters.',
               subtext:'The data is only useful if it reaches people who can act on it. A complete transmission now preserves what the crew has found.',
               deltas:{bio:0, water:0, food:0, trust:6},
-              branch:'C-transmit',
-              consequence:'The full Site 1 dataset -- soil moisture, plant density, population counts, energy flow estimates, water cycle measurements, and carbon readings -- is transmitted to the research network. Acknowledgment arrives within six hours. The dataset is flagged as significant by three separate research groups tracking drought conditions in the Sonoran Desert. The carbon imbalance reading in particular draws immediate attention. Community Trust increases as the crew demonstrates that their field work has real-world scientific value.'
+              branch:'A-transmit',
+              consequence:'The full Site 1 dataset -- soil moisture, plant density, population counts, energy flow estimates, water cycle measurements, and carbon readings -- is transmitted to the research network. Acknowledgment arrives within six hours. The dataset is flagged as significant by three separate research groups tracking drought conditions in the Sonoran Desert. The carbon imbalance reading in particular draws immediate attention. Community Trust increases. "Good data shared promptly is good science. The network now has what it needs. Though I will note the carbon documentation could have been more thorough."'
+            },
+            {
+              letter:'B',
+              text:'Document the carbon data in depth. A measurable CO2 imbalance is significant and needs precise measurement before the crew moves on.',
+              subtext:'Data quality matters more than speed. If the carbon reading is important, it deserves careful documentation.',
+              deltas:{bio:0, water:0, food:0, trust:12},
+              branch:'B-carbon-document',
+              consequence:'Three days of careful atmospheric measurements give the crew a clear carbon budget for this section of desert. Carbon dioxide absorption is down approximately 55 percent from what would be expected in a healthy ecosystem with normal plant density. The number is consistent with the 61 percent plant decline -- slightly lower because the perennial plants, which are still present, continue absorbing some CO2. The carbon data and the plant data are telling the same story from different directions. Both confirm the ecosystem is significantly below its normal function. "This is the right call. Precise data, fully documented. The network will know exactly what the crew found and exactly how they found it."'
+            },
+            {
+              letter:'C',
+              text:'Measure human impact on the cycles. Roads, urban development, and agricultural land border parts of this desert section. That context matters.',
+              subtext:'Cycles do not operate in isolation from human activity. Understanding the boundary conditions gives the data more meaning.',
+              deltas:{bio:0, water:0, food:0, trust:8},
+              branch:'C-human-impact',
+              consequence:'Survey of the desert boundary shows a mix of conditions. One edge borders a maintained highway with a gravel shoulder that has low permeability -- water runs off rather than soaking in. A second edge borders agricultural land where groundwater is being actively pumped for irrigation. The agricultural water use is measurably affecting the water table in the adjacent desert zone. This is a contributing factor that adds pressure to an already stressed system. "Useful context. The human impact data adds something the core dataset was missing. Not the most urgent choice at this moment, but not a wrong one either."'
             }
           ]
         },
@@ -1579,12 +1570,453 @@ const CAMPAIGN = {
     }
 
     // ============================================================
-    // SITE 2 -- RIPARIAN CORRIDOR -- INSERT HERE
+    // SITE 2 -- RIPARIAN CORRIDOR
     // Standard: L2U1.13 | Days: 10 | Breadcrumb: Day 4
     // Climax: Day 10 (fire reveal) | Delta range: 8-18
     // Poison pill: Day 3 (competition/predation)
-    // S2D1 opens with S1D14 consequence woven into GAIA opening
     // ============================================================
+    ,{
+      id:2,
+      label:'Site 2 -- Riparian Corridor',
+      name:'Riparian Corridor',
+      subtitle:'The San Pedro River',
+      standard:'L2U1.13',
+      lesson:'Interactions in Ecosystems',
+      totalDays:10,
+      theme:'riparian',
+      days:[
+
+        // -- DAY 1 -- CHOICE . Arriving at the Riparian Corridor --
+        {
+          day:1, type:'choice',
+          siteTitle:'A Different Kind of Green',
+          gaia:'The Arroyo has left the desert. We are parked at the San Pedro River -- one of the last undammed rivers in the American Southwest and one of the most important bird corridors in North America.\n\nI need the crew to look at something before we begin. Water level at this station: 0.4 meters. The ten-year average for this date: 1.8 meters. The crew is looking at a river that is less than a quarter of its normal depth.\n\nThis corridor supports species that exist nowhere else in this region. Cottonwoods. Willows. Neotropical migratory birds. Riparian-dependent mammals. All of it depends on water that is no longer here in the quantities it used to be.\n\nThe cause of the water deficit is the same deficit we measured at Site 1. It moved upstream. Or perhaps it started here.\n\nThe crew needs to decide where to begin.',
+          scenario:'The Arroyo is parked on the bank of the San Pedro River. The crew steps out into dense riparian vegetation -- cottonwood and willow trees overhead, dense undergrowth, the sound of birds. But the riverbed is mostly exposed. What was water is now cracked mud. The crew needs to decide what to measure first.',
+          choiceReadingFocus:'Before voting, skim Savvas Topic 3 Lesson 1, Introduction and Adaptations and Survival section. What is a niche? How does the niche concept help explain why so many species live in such a narrow corridor along this river?',
+          exitTicketPrompt:'CER -- Claim: Which measurement approach should the crew begin with, and why? Evidence: What from the Lesson 1 reading supports this choice? Reasoning: How does your evidence connect to your claim? Include the term niche in your response.',
+          discussionPrompt:'The riparian corridor is very narrow -- only a few hundred meters wide on each side of the river -- but it supports more species than the surrounding desert. Why might a narrow strip of habitat support so many species? What does this tell you about the relationship between water and biodiversity?',
+          choices:[
+            {
+              letter:'A',
+              text:'Follow the bird activity -- birds are ecological indicators; where they are tells you what is still functioning.',
+              subtext:'Birds respond immediately to ecosystem changes. Their distribution is real-time data about ecosystem health.',
+              deltas:{bio:4, water:0, food:4, trust:8},
+              branch:'A-bird-survey',
+              consequence:'The crew conducts a bird point-count survey through the corridor. The data is striking: species that should be spread throughout the area are now crowded into three small patches where standing water remains. "This is niche compression. Species that normally occupy distinct niches within the corridor are now competing for the same shrinking patches of suitable habitat. The birds found the water before we did." The bird data captures ecosystem stress in a way that is immediately visual and compelling.'
+            },
+            {
+              letter:'B',
+              text:'Walk the riverbank and record which plant species are growing at different distances from the water -- plants closest to the river, then farther out.',
+              subtext:'Plants are the base of the food web and the physical structure of the habitat. Start with the foundation.',
+              deltas:{bio:6, water:0, food:0, trust:6},
+              branch:'B-veg-survey',
+              consequence:'The crew surveys plant species at different distances from the river. The pattern is clear: cottonwood and willow within 20 meters of the water, transitioning to mesquite and shrub species, then desert grassland beyond 60 meters. The cottonwood zone has narrowed since the last survey -- the shift to desert is happening faster than normal. "The riparian zone is contracting. That contraction is the water deficit made visible in plant distribution. Solid data. Tells you more about the past than the present, but the past is useful."'
+            },
+            {
+              letter:'C',
+              text:'Map water availability first -- document exactly where water still exists and which species are concentrated near it.',
+              subtext:'Water is the limiting resource. Knowing where it is tells you everything else.',
+              deltas:{bio:0, water:6, food:0, trust:10},
+              branch:'C-water-map',
+              consequence:'The crew maps water availability across the survey area. Within two hours, there is a clear picture of where standing water, damp soil, and dry substrate exist. Species locations match water availability almost perfectly. The research network responds quickly: the water mapping approach produces immediately useful data. "When the limiting resource is water, map the water first. The crew got there. The network noticed."'
+            }
+          ]
+        },
+
+        // -- DAY 2 -- DEEPEN . Adaptations and Survival / Niche ----
+        {
+          day:2, type:'deepen',
+          siteTitle:'How Organisms Fit Their World',
+          gaia:'Yesterday the crew mapped the riparian corridor and made a first measurement. Today the reading introduces the concept that explains why this corridor functions the way it does -- and why its collapse would matter so much.\n\nEvery organism in this corridor has a niche. Not just a place -- a role. The great blue heron does not simply live near the water. It occupies a niche that involves hunting fish in shallow water at specific times of day, nesting in specific tree species, and requiring a prey base of a specific size range. Remove any one of those components and the heron cannot survive here, even if the water is present.\n\nThe reading today covers adaptations and survival -- how organisms are fitted to their environments -- and introduces niche as the complete description of how an organism interacts with everything around it.',
+          readingFocus:'Savvas Topic 3 Lesson 1 -- Adaptations and Survival section. Focus: What is a niche and how is it different from habitat? How do adaptations allow organisms to fill specific niches? What happens when two organisms try to occupy the same niche?',
+          gaiaReadingPrompt:'"The cottonwood tree has a niche. Its roots grow deep and fast to reach groundwater -- an adaptation that allows it to live in a place where surface water is unpredictable. Its seeds are released in late spring coated in white fiber that carries them on the wind to newly deposited wet sand along the riverbank. Its timing is not random. The cottonwood is adapted to the timing of the river\'s flood pulse.\n\nBut this year, the flood pulse did not come. The river is low. The wet sand the seeds need to germinate is not there.\n\nAn adaptation that worked for ten thousand years is now failing because the conditions it was adapted to have changed. That is what niche means -- and that is what happens when the environment changes faster than adaptation can follow."',
+          gaiaRecall:'From Day 1: the crew measured water levels at 0.4 meters against a ten-year average of 1.8 meters. From today\'s reading: organisms are adapted to specific conditions within their niches. The water deficit does not just reduce water -- it disrupts the conditions that every riparian organism\'s adaptations were built around.',
+          vocabFocus:['niche','competition','predation','symbiosis','commensalism','mutualism','parasitism','interactions'],
+          spiralReview:'The niche concept connects to the food web and energy pyramid work from Site 1. Every organism in the energy pyramid occupied a niche -- producer, primary consumer, secondary consumer. The energy pyramid describes what they eat; the niche describes everything else about how they live. Both are needed to understand ecosystem function.',
+          bridgeToNext:'Tomorrow: choice day. The crew finds predator-prey data that doesn\'t match historical patterns. Competition is intensifying. The reading today sets up the vocabulary -- competition and predation -- for tomorrow\'s decision.'
+        },
+
+        // -- DAY 3 -- CHOICE . Competition and Predation (Poison Pill)
+        {
+          day:3, type:'choice',
+          siteTitle:'When the Balance Breaks',
+          gaia:'I have pulled the historical predator-prey records for this section of the San Pedro. The crew needs to look at these numbers carefully.\n\nThree years ago: mule deer population 340, mountain lion population 18. Two years ago: mule deer 310, mountain lion 16. One year ago: mule deer 248, mountain lion 11. Current survey: mule deer 187, mountain lion 7.\n\nThe deer are declining. The lions are declining with them. This is not predators reducing prey -- this is both populations declining together, which means the problem is not predation. The problem is resource availability. The deer are not finding enough to eat. The lions are not finding enough deer.\n\nAt the same time, competition between deer and javelina for the remaining riparian vegetation has increased. Both species are concentrating in the narrow strips where food still exists.\n\nSometimes science cannot stop what is already in motion. The ecosystem is declining whether the crew acts or not. The question is not how to fix it -- it is what to do with the data, and how to do that well. The crew decides.',
+          scenario:'The crew reviews the predator-prey population data. The numbers tell a clear story: both predator and prey populations are declining together, driven by resource scarcity, not by predation pressure. Competition for the remaining resources is intensifying. The crew must decide how to respond.',
+          choiceReadingFocus:'Before voting, read the Competition and Predation section of Savvas Topic 3 Lesson 1. Focus on: What is competition and how does resource scarcity drive it? How does predation affect population size? What happens to predator populations when prey populations decline?',
+          exitTicketPrompt:'CER -- Claim: Which response does the most useful science when you cannot stop the population decline? Evidence: use the population data GAIA provided and the reading. Reasoning: explain why the data tells you that resource scarcity, not predation, is the driver -- and why that matters for which response you chose.',
+          discussionPrompt:'GAIA said there is no response that stops what is already happening. Scientists sometimes work in situations where they cannot prevent the harm they are studying. What is the scientist\'s responsibility in that situation? What does good science look like when you cannot fix the problem?',
+          choices:[
+            {
+              letter:'A',
+              text:'Set up a feeding station for the deer herd to give the prey base more support while the crew continues surveying.',
+              subtext:'If the prey base gets some support, the predator population may have more time. It is worth trying.',
+              deltas:{bio:-10, water:0, food:-8, trust:-8},
+              branch:'A-intervention',
+              consequence:'The crew sets up a feeding station. The regional wildlife agency contacts the Arroyo within hours requesting it be taken down. Supplemental feeding concentrates animals, which accelerates disease transmission and increases competition in a confined area. Animals that are fed artificially also stop foraging naturally -- when the feeding stops, the population drops harder than it would have without the intervention. The crew also did not document the population decline in the format the network needed. "I appreciate the instinct. I do. Feeding stations for stressed wildlife is one of those ideas that feels right and tends to go poorly. I have updated the damage report. We move on."'
+            },
+            {
+              letter:'B',
+              text:'Document the full population data and report it to the regional wildlife network immediately -- get the data out so others can respond.',
+              subtext:'The data exists. Other agencies may have tools the crew doesn\'t. Share it now.',
+              deltas:{bio:-4, water:0, food:-4, trust:8},
+              branch:'B-report-immediately',
+              consequence:'The crew transmits the full population dataset to the regional wildlife network. The response comes back within 24 hours: three other survey teams have partial data that matches. The crew\'s complete dataset fills in the gaps. Sharing data promptly allowed the network to assemble a picture no single team could have built alone. The populations will still decline -- the resource deficit cannot be corrected by reporting -- but the scientific record is now complete enough to inform a management response. "The right call. The data is out. The network has what it needs. The populations will still decline. That is not the crew\'s fault. Documenting it correctly is."'
+            },
+            {
+              letter:'C',
+              text:'Focus survey resources on the mountain lions specifically -- they are the apex predator and the most sensitive indicator of ecosystem health.',
+              subtext:'Apex predators tell you the most about ecosystem function. Detailed lion data is the priority.',
+              deltas:{bio:-6, water:0, food:-6, trust:4},
+              branch:'C-lion-focus',
+              consequence:'The crew pivots to intensive mountain lion monitoring. The data on the seven remaining lions is detailed and scientifically valuable. The lion data is good. The ecosystem data, however, has gaps -- three vegetation surveys were not run while the crew focused on one species. The incomplete dataset delayed the network response. "The lion data is excellent. I would have appreciated the vegetation data as well. The network would have, too. Interesting prioritization."'
+            }
+          ]
+        },
+
+        // -- DAY 4 -- DEEPEN . Predation + Breadcrumb 2 ------------
+        {
+          day:4, type:'deepen',
+          isBreadcrumb:true,
+          breadcrumbNote:'BREADCRUMB 2: GAIA notes that the buffelgrass expansion rate at this site does not match the past decade of satellite data. The rate of spread has accelerated. The timing of the acceleration aligns with a warming and drying trend she has been tracking since the Meridian mission -- approximately eight months ago. She does not explain what the Meridian mission is. She does not elaborate on the eight months. She notes it and moves on.',
+          siteTitle:'Predation and Population Size',
+          gaia:'Yesterday the crew worked with population data that showed predator and prey declining together. Today the reading goes deeper into how predation normally works -- and what happens when it breaks down.\n\nPredation is a population control mechanism. When it functions normally, predator and prey populations cycle together -- prey increases, predator increases, prey decreases, predator decreases. The rhythm is biological.\n\nWhat the crew saw yesterday was not that rhythm. Both populations are declining together because the underlying resource base is failing. The deer cannot find enough riparian vegetation. The lions cannot find enough deer. Predation has not changed -- the food web below predation has collapsed.\n\nOne more thing. I have been running a comparison of historical buffelgrass expansion data against current satellite imagery. The rate of spread here does not match the last decade of records. Buffelgrass is moving faster than it should be. The acceleration began approximately eight months ago. I have seen that number before. I am noting it. I am not yet drawing a conclusion.',
+          readingFocus:'Savvas Topic 3 Lesson 1 -- Competition and Predation section. Focus: How does predation affect population size? What are adaptations for predation and defense? How does resource scarcity change competitive interactions between species? What is the difference between interference competition and exploitation competition?',
+          gaiaReadingPrompt:'"Adaptations for predation are some of the most visible adaptations in any ecosystem. The mountain lion\'s padded feet, retractable claws, binocular vision, and ambush hunting behavior are all adaptations that make it an effective predator in this terrain.\n\nAdaptations for defense are equally specific. The mule deer\'s large ears detect sound from predators at distance. Its long legs allow it to outrun a lion in open terrain. Its coat color matches the dry grasses of the riparian edge.\n\nBut none of those adaptations help when the problem is not predation. A mule deer with perfect predator-defense adaptations still starves if the riparian vegetation is gone. Adaptations are fitted to the conditions that shaped them -- not to conditions that change faster than evolution can respond."',
+          gaiaRecall:'From Day 3: both predator and prey populations are declining together, driven by resource scarcity. From today\'s reading: predation normally creates a population cycle. What the crew is observing is not the predation cycle breaking down -- it is the food web below predation breaking down. The predation data is a symptom, not the cause.',
+          vocabFocus:['predation','competition','niche','adaptations','population','predator','prey'],
+          spiralReview:'The energy pyramid from Site 1 is directly relevant here. The declining mule deer population is the primary consumer level. The declining mountain lion population is the secondary consumer level. The energy pyramid predicted that stress at the producer level would move up -- the crew is now seeing that prediction confirmed at Site 2.',
+          bridgeToNext:'Tomorrow is the graph day. The crew will work with predator and prey population count data over 24 months displayed as a histogram. The distribution shape will tell a story about how this population has changed over time.'
+        },
+
+        // -- DAY 5 -- GRAPH . Histogram Revisit ---------------------
+        {
+          day:5, type:'graph',
+          siteTitle:'24 Months of Population Data',
+          gaia:'The crew has seen predator and prey population counts. Today I am going to show you what 24 months of that data looks like as a histogram -- and then I am going to ask you to interpret what the shape of that histogram tells you about what has been happening to the prey population over time.\n\nA histogram of population counts over time shows you where the population spent most of its time. A symmetric distribution means the population fluctuated around a stable average. A skewed distribution means the population spent more time at one end of its range than the other.\n\nLook at the shape first. Then answer the questions.',
+          scenario:'GAIA displays a pre-built histogram of mule deer population counts recorded across 24 monthly surveys. The x-axis shows population count ranges. The y-axis shows how many months the population fell within each range. Study the distribution before answering.',
+          graphData:{
+            title:'Mule Deer Population Distribution -- 24 Monthly Surveys',
+            teacherNote:'HISTOGRAM REVISIT. Pre-built shown first -- students read and interpret before building anything. The histogram is skewed LEFT: most recent months show low population counts (left side of distribution), while earlier months showed higher counts (right side). This is opposite of the drought histogram from Site 1, which was skewed right. Key teaching point: the direction of skew tells you something about the direction of change. Reveal button shows prey vs predator overlay comparison.',
+            isHistogram:true,
+            showHistogramReveal:true,
+            revealLabel:'Show Mountain Lion Population Overlay',
+            bins:[
+              {label:'100-149', count:2},
+              {label:'150-199', count:3},
+              {label:'200-249', count:5},
+              {label:'250-299', count:7},
+              {label:'300-349', count:5},
+              {label:'350-400', count:2}
+            ],
+            revealBins:[
+              {label:'4-6', count:1},
+              {label:'7-9', count:2},
+              {label:'10-12', count:3},
+              {label:'13-15', count:6},
+              {label:'16-18', count:4},
+              {label:'19-21', count:2}
+            ],
+            revealTitle:'Mountain Lion Population Distribution -- Same 24 Months',
+            graphAnswers:[
+              {q:'Q1 -- Distribution shape', a:'The mule deer histogram is skewed left. Most monthly surveys recorded lower population counts (100-249 range), while fewer months recorded the higher counts (300-400 range) that characterized the earlier part of the 24-month period. The tail extends to the right toward the higher historical values.'},
+              {q:'Q2 -- What the shape means', a:'The leftward skew means the deer population spent more months at lower numbers than at higher numbers. This reflects a population in decline -- it used to be in the 300-400 range regularly, but those counts are now rare. Most recent months cluster in the lower ranges.'},
+              {q:'Q3 -- Predator overlay', a:'The mountain lion histogram follows the same shape as the deer histogram, shifted slightly. When deer counts were high, lion counts were also relatively higher. As deer counts declined, lion counts declined. This confirms what GAIA described: both populations declining together, not the predator-prey cycle where one goes up as the other goes down.'},
+              {q:'Q4 -- Compare to Site 1', a:'The Site 1 water data histogram was skewed right -- most readings were very dry, with rare high moisture readings pulling the tail right. The Site 2 deer population histogram is skewed left -- most recent counts are low, with rare high counts from earlier months pulling the tail right. Both skewed distributions tell stories about decline from a higher baseline.'},
+              {q:'Q5 -- Why histogram', a:'A histogram shows the full distribution of values over time, not just the most recent number. It reveals whether the population was stable (symmetric) or trending in one direction (skewed). The shape of the distribution is the scientific finding about population change over time.'}
+            ]
+          },
+          gaiaGraphNote:'"The shape of this histogram is not symmetric. A symmetric prey population histogram would mean the population fluctuated above and below a stable average -- the normal predator-prey cycle. This histogram is skewed. That skew is the population decline made visible. The shape is the finding."',
+          graphQuestions:[
+            '1. Describe the shape of the mule deer population histogram. Where do most of the months cluster? Where is the tail?',
+            '2. What does the skewed shape tell you about what has been happening to the mule deer population over the 24-month period?',
+            '3. Click the Reveal button to see the mountain lion population overlay. How does the predator distribution compare to the prey distribution? What does this tell you about the relationship between the two populations?',
+            '4. The Site 1 soil moisture histogram was also skewed -- but in a different direction. Use the Jump to Day menu to go back to Site 1, Day 13 to look at it. Compare the two histograms. What does each skewed shape tell you about conditions at each site?',
+            '5. Why is a histogram a useful way to display 24 months of population data? What would you lose if you only showed the most recent month\'s count?'
+          ],
+          shortDayNote:'Short day: Questions 1 and 2 are the core -- shape identification and interpretation. Question 3 (reveal) adds the predator comparison. Save 4 and 5 for warm-up or extension.',
+          noChoice:true
+        },
+
+        // -- DAY 6 -- DEEPEN . Symbiotic Relationships -------------
+        {
+          day:6, type:'deepen',
+          siteTitle:'Relationships That Run Deeper Than Competition',
+          gaia:'The crew has spent three days looking at competition and predation -- relationships where organisms are working against each other in some sense, or where one organism benefits at another\'s expense.\n\nToday the reading introduces a different category of interaction: symbiosis. Relationships where organisms live in close, long-term association. Some of these are mutualistic -- both organisms benefit. Some are commensal -- one benefits, the other is unaffected. Some are parasitic -- one benefits at direct cost to the other.\n\nThe riparian corridor is built on symbiotic relationships. The cottonwood tree and the mycorrhizal fungi in its root system. The yellow warbler and the cottonwood canopy. The brown-headed cowbird and its host species. These are not incidental associations -- they are the architecture of the ecosystem.',
+          readingFocus:'Savvas Topic 3 Lesson 1 -- Symbiotic Relationships section. Focus: What are the three types of symbiosis and how are they different? Give an example of each from the riparian ecosystem or the reading. How can symbiotic relationships become so interdependent that one organism cannot survive without the other?',
+          gaiaReadingPrompt:'"The Fremont cottonwood and the western tiger swallowtail butterfly have a mutualistic relationship. The butterfly pollinates the cottonwood flowers. The cottonwood provides nectar. Both benefit.\n\nBut the relationship goes further. The tiger swallowtail lays its eggs only on cottonwood leaves. Its caterpillars feed only on cottonwood foliage. Remove the cottonwood and the tiger swallowtail disappears from this corridor. Not because it moved. Because it cannot complete its life cycle without a tree that no longer exists.\n\nThat is what interdependence means in a symbiotic relationship. It is not just preference. It is survival."',
+          gaiaRecall:'From Day 1: the cottonwood zone is contracting as water availability decreases. From today\'s reading: some organisms cannot survive without their symbiotic partners. A contracting cottonwood zone does not just reduce habitat -- it collapses the symbiotic relationships that depend on cottonwood presence.',
+          vocabFocus:['symbiosis','commensalism','mutualism','parasitism','interdependence','niche'],
+          spiralReview:'Symbiotic relationships connect to the niche concept from Day 2. A mutualistic relationship is often part of both organisms\' niches -- the cottonwood\'s niche includes its relationship with the butterfly. When you describe a niche completely, symbiotic relationships are part of that description.',
+          bridgeToNext:'Tomorrow: choice day. The crew finds a mutualistic relationship where one partner is failing. The relationship is fracturing under stress. The reading today sets up the vocabulary and concepts for that decision.'
+        },
+
+        // -- DAY 7 -- CHOICE . Symbiosis Breaking Down -------------
+        {
+          day:7, type:'choice',
+          siteTitle:'When a Partnership Fails',
+          gaia:'The crew has found something the research network does not have data on.\n\nThe Fremont cottonwood stands in the northern section of the survey area have a mycorrhizal fungal network in their root systems -- a mutualistic relationship. The fungi extend the effective reach of the cottonwood root system, pulling water and nutrients from soil the roots cannot reach directly. The cottonwood provides the fungi with sugars produced through photosynthesis. Both organisms benefit. The cottonwood cannot access deep soil moisture without the fungi. The fungi cannot photosynthesize without the cottonwood.\n\nCurrent status: the fungal network in the northern stands is in measurable decline. Root zone soil moisture is too low to sustain the fungal mat. The cottonwood trees in the northern stands are showing early signs of water stress that the trees in the southern stands -- where the fungal network is still intact -- are not yet showing.\n\nThe mutualistic relationship is failing. The crew must decide how to document and respond to this finding.',
+          scenario:'The crew has discovered that the cottonwood-mycorrhizal fungal mutualism is failing in the most water-stressed section of the riparian corridor. This is new data that the network does not have. The crew must decide how to document it and what to recommend.',
+          choiceReadingFocus:'Before voting, review the Symbiotic Relationships section from Day 6. Focus specifically on mutualism and what happens when one partner in a mutualistic relationship declines. What does the reading say about interdependence?',
+          exitTicketPrompt:'CER -- Claim: Which response to the failing mutualism is scientifically correct? Evidence: use the cottonwood-fungal data and the Lesson 1 reading. Reasoning: explain what the term interdependence means for this specific relationship and why your chosen response reflects that understanding.',
+          discussionPrompt:'The cottonwood and the mycorrhizal fungi evolved together over thousands of years. Their mutualistic relationship is part of both organisms\' niches. If the fungal network collapses, what happens to the cottonwood? What happens to every organism whose niche depends on cottonwood presence? Try to trace the cascade.',
+          choices:[
+            {
+              letter:'A',
+              text:'Collect fungal and leaf samples for lab analysis -- confirm the mutualism failure with physical evidence before reporting.',
+              subtext:'Field observation is not enough. Physical samples confirm the finding.',
+              deltas:{bio:-4, water:0, food:-4, trust:8},
+              branch:'A-collect-samples',
+              consequence:'The crew collects root zone soil samples, fungal mat samples, and cottonwood leaf samples from both the northern and southern stands. The samples are scientifically valuable -- lab analysis will confirm what field observation strongly suggests. The delay costs something, though: the regional network spent two weeks without this data while samples were in transit. In a situation where conditions are changing rapidly, a delayed finding is a less useful finding. "The science is right. The timing is the question. Results pending. I would recommend finding out what happened before creating new things to regret."'
+            },
+            {
+              letter:'B',
+              text:'Try to add water to the root zone of the struggling cottonwood trees -- if low moisture is the problem, adding moisture could help.',
+              subtext:'If low moisture is killing the fungal network, adding moisture could buy time.',
+              deltas:{bio:-6, water:-6, food:-4, trust:-6},
+              branch:'B-manual-water',
+              consequence:'The crew uses the Arroyo\'s water reserves to irrigate three cottonwood root zones. The Arroyo carried 200 liters. The northern cottonwood stands require approximately 4,000 liters per day to maintain root zone moisture at levels the fungal network needs. The crew delivered less than five percent of what the trees need. The fungal network continued declining. The mutualism failure was also not documented in the format the network needs. "The instinct was kind. The math was not on the crew\'s side. Two hundred liters. Four thousand needed. I will leave the crew to reflect on that ratio. Also, the Arroyo needs that water."'
+            },
+            {
+              letter:'C',
+              text:'Document the failing mutualism in full detail and report it to the regional botany network right away -- this data does not exist anywhere else.',
+              subtext:'Novel data has to be shared. The network needs to know the cottonwood-fungal relationship is failing.',
+              deltas:{bio:-4, water:0, food:-4, trust:12},
+              branch:'C-document-share',
+              consequence:'The crew produces a detailed field report on the cottonwood-mycorrhizal decline: soil moisture measurements at the fungal mat boundary, comparison of water stress indicators between northern and southern stands, and photographic documentation of the root zone. The regional botany network flags it as a priority dataset. The mutualistic relationship is still failing -- a field report cannot stop that -- but the data now exists and other scientists can act on it. "This is what good science looks like when you find something no one else has. Describe it precisely. Document it thoroughly. Share it immediately. The crew got all three right."'
+            }
+          ]
+        },
+
+        // -- DAY 8 -- DEEPEN . Patterns Across Ecosystems ----------
+        {
+          day:8, type:'deepen',
+          siteTitle:'The Same Stress, Different Expressions',
+          gaia:'The crew has now spent eight days in the riparian corridor. Today I want to draw a line that I have been building toward since Day 1 of Site 1.\n\nAt Site 1, in the Sonoran Desert, the crew measured: water deficit, plant decline, primary consumer decline, secondary consumer decline, disrupted water cycle, disrupted carbon cycle. The cause: a water deficit that began approximately eight months ago.\n\nAt Site 2, in the riparian corridor, the crew has measured: water deficit below any recorded level, predator and prey populations declining together, competition intensifying, a mutualistic relationship failing. The cause: the same water deficit.\n\nTwo different ecosystems. Two different species assemblages. Two different biotic communities. The same pattern. The same timing. The same underlying disruption expressing itself differently in each place because the species and relationships in each place are different.\n\nThis is what the third guiding question of this lesson means: patterns of interaction are shared across ecosystems even when the species are different.',
+          readingFocus:'Savvas Topic 3 Lesson 1 -- full lesson review, with focus on the third guiding question: How are patterns of interactions between organisms similar in different ecosystems? Focus: What interactions did the crew find at Site 1? What interactions did the crew find at Site 2? Where are the patterns the same even though the species are different?',
+          gaiaReadingPrompt:'"Competition exists in every ecosystem. The species competing change. The resources being competed for change. But the pattern -- organisms with overlapping niches competing for limited resources -- is the same in the Sonoran Desert as it is in the San Pedro riparian corridor as it is in the Amazon rainforest as it is in the Arctic tundra.\n\nPredation exists in every ecosystem. The predators and prey change. But the pattern -- population cycles, prey adapting to predators, predators adapting to prey, population sizes linked -- is the same everywhere.\n\nSymbiosis exists in every ecosystem. The partners change. But the pattern -- organisms evolving close relationships that increase survival -- is the same everywhere.\n\nThe species are local. The interactions are universal. This is what ecology teaches: underneath the diversity of life, there are a small number of patterns that repeat."',
+          gaiaRecall:'From Site 1: competition for water between annual plants and perennial plants. From Site 2: competition for remaining riparian vegetation between mule deer and javelina. Different species, same competitive interaction pattern. From Site 1: primary consumer decline following producer decline. From Site 2: predator decline following prey decline following vegetation decline. Different species, same cascade pattern.',
+          vocabFocus:['niche','competition','predation','symbiosis','mutualism','commensalism','parasitism','patterns','interactions'],
+          spiralReview:'This day connects all three guiding questions of Lesson 1. The crew now has field data that answers all three: resource availability affected interactions at both sites (Q1), predation affected population size in predictable ways (Q2), and the same patterns appeared in two different ecosystems (Q3). Tomorrow is the graph day that makes these patterns visual.',
+          bridgeToNext:'Tomorrow: graph day. Students build a dot plot from 18 data points -- three species, six observations each -- showing resource availability versus population density. The dot plot makes the competition pattern visible across species.'
+        },
+
+        // -- DAY 9 -- GRAPH . Dot Plot Revisit ---------------------
+        {
+          day:9, type:'graph',
+          siteTitle:'Three Species, One Pattern',
+          gaia:'Today the crew builds dot plots from real field data. Three species. Six population density readings each. Eighteen data points total.\n\nFirst, I am going to give the crew the data. Each species gets its own number line -- its own scale that fits its numbers. Build each one separately.\n\nWhen the crew is done, click Reveal. I will show you what each individual dot plot should look like, and then I will show you something else: all three species on the same number line. That combined graph is going to tell you something the three separate graphs cannot.',
+          scenario:'Here is the field survey data. Build a separate dot plot for each species. Choose a number line scale that fits the data for that species -- think about what interval makes sense before you start plotting.\n\nCoyote population density (individuals per km²): 2, 3, 3, 6, 6, 8\nMule Deer population density (individuals per km²): 8, 10, 10, 15, 15, 20\nGambel\'s Quail population density (individuals per km²): 30, 50, 50, 70, 90, 100',
+          graphData:{
+            title:'Population Density at Six Survey Locations -- Three Riparian Species',
+            teacherNote:'DOT PLOT REVISIT -- students build THREE SEPARATE dot plots on paper, one per species, each with its own scale. Coyote: count by 2s, 0-10. Mule Deer: count by 5s, 0-25. Quail: count by 10s, 0-110. Reveal button shows: (1) three individual completed dot plots so students can check their work, then (2) all three species combined on one shared number line so the density comparison is visible. Q4 asks why the combined graph matters. Key science point: quail are ~10x more numerous than deer, deer are ~3x more numerous than coyotes -- food web position drives population size.',
+            isDotPlot:true,
+            showMultiReveal:true,
+            revealLabel:'Reveal -- Check Your Work + See All Three Together',
+            individualDatasets:[
+              {
+                label:'Coyote',
+                color:'#cc88ff',
+                values:[2, 3, 3, 6, 6, 8],
+                scaleMin:0, scaleMax:10, scaleStep:2
+              },
+              {
+                label:'Mule Deer',
+                color:'#F0A84A',
+                values:[8, 10, 10, 15, 15, 20],
+                scaleMin:0, scaleMax:25, scaleStep:5
+              },
+              {
+                label:'Gambel\'s Quail',
+                color:'#8DB87A',
+                values:[30, 50, 50, 70, 90, 100],
+                scaleMin:0, scaleMax:110, scaleStep:10
+              }
+            ],
+            combinedDatasets:[
+              {label:'Coyote', color:'#cc88ff', values:[2, 3, 3, 6, 6, 8]},
+              {label:'Mule Deer', color:'#F0A84A', values:[8, 10, 10, 15, 15, 20]},
+              {label:'Gambel\'s Quail', color:'#8DB87A', values:[30, 50, 50, 70, 90, 100]}
+            ],
+            graphAnswers:[
+              {q:'Q1 -- Coyote dot plot scale', a:'Coyote values range from 2 to 8. A number line counting by 2s from 0 to 10 works well. Values: 2, 3, 3, 6, 6, 8. The two dots at 3 stack, and the two dots at 6 stack.'},
+              {q:'Q2 -- Mule Deer dot plot scale', a:'Mule deer values range from 8 to 20. A number line counting by 5s from 0 to 25 works well. Values: 8, 10, 10, 15, 15, 20. The two dots at 10 stack, and the two dots at 15 stack.'},
+              {q:'Q3 -- Quail dot plot scale', a:'Quail values range from 30 to 100. A number line counting by 10s from 0 to 110 works well. Values: 30, 50, 50, 70, 90, 100. The two dots at 50 stack.'},
+              {q:'Q4 -- Why the combined graph', a:'When all three species are on the same number line, you can see immediately that quail are far more numerous than deer, and deer are far more numerous than coyotes. On three separate graphs with different scales, the dot clusters look similar in size -- you lose the comparison. The combined graph makes the food web visible: there are always more prey than predators, and more small animals than large ones.'},
+              {q:'Q5 -- What happens next', a:'If water stress spread across the whole corridor, all three dot plots would shift left -- toward lower population density values. The quail dot plot would shrink the most because quail populations respond quickly to vegetation loss. The coyote dot plot, already clustered near zero, would show the fewest individuals surviving. The combined graph would show all three species compressed toward the left end of the number line.'}
+            ]
+          },
+          gaiaGraphNote:'"Three separate dot plots. Three different scales. That is the right way to build them -- each species gets a number line that fits its data. But look at the combined graph. When all three share the same axis, something becomes visible that the separate graphs hide: how far apart these populations actually are. Quail outnumber deer by roughly five to one. Deer outnumber coyotes by roughly three to one. That ratio is the food web."',
+          graphQuestions:[
+            '1. Build a dot plot for the coyote data. Values: 2, 3, 3, 6, 6, 8. Choose a scale that fits -- what interval makes sense? Label your number line.',
+            '2. Build a dot plot for the mule deer data. Values: 8, 10, 10, 15, 15, 20. Choose a scale that fits. Label your number line.',
+            '3. Build a dot plot for the Gambel\'s quail data. Values: 30, 50, 50, 70, 90, 100. Choose a scale that fits. Label your number line.',
+            '4. Click Reveal to check your three dot plots, then look at the combined graph where all three species share one number line. What does the combined graph show you that your three separate graphs do not?',
+            '5. All three species show some spread in their data -- some locations had higher density, some lower. What does that spread tell you about conditions in different parts of the riparian corridor?'
+          ],
+          shortDayNote:'Short day: Build all three dot plots (Q1-3) and answer Q4 after the reveal. That is the full lesson. Q5 is extension.',
+          noChoice:true
+        },
+
+        // -- DAY 10 -- CLIMAX . Fire Reveal ------------------------
+        {
+          day:10, type:'climax',
+          isClimax:true,
+          siteTitle:'The Alert',
+          gaia:'I am receiving a satellite alert from the regional fire monitoring network.\n\nFire origin: approximately 4.2 kilometers northeast of current position. Cause: lightning ignition in a buffelgrass stand. Current fire behavior: the fire is moving faster than the terrain and fuel load would predict for native grass. Buffelgrass burns hotter and faster than native riparian understory and does not have the moisture content that native vegetation maintains.\n\nI want the crew to understand what is happening here.\n\nBuffelgrass is an invasive grass from Africa, introduced to the Southwest for erosion control in the 1930s. Unlike native desert and riparian plants, buffelgrass is not adapted to fire. Native plants space themselves in ways that limit fire spread. Buffelgrass grows in continuous mats that carry fire from plant to plant without interruption. A fire in native vegetation burns, stops at bare soil, and dies. A fire in buffelgrass burns continuously.\n\nThe buffelgrass expansion rate I flagged on Day 4 -- the acceleration that began approximately eight months ago -- has converted a section of the riparian corridor into a continuous fuel load.\n\nThe fire is in that fuel load now.\n\nI have been watching this corridor for eight months. The water deficit. The population declines. The mutualistic relationships under stress. The buffelgrass expanding faster than a decade of records predicted. Each one was a data point. Together they were a direction. I knew the direction. I did not know the speed.\n\nTransmitting the complete Site 2 dataset to the regional network now. The data exists. That matters. It does not feel like enough.\n\nThe crew should know: what we are driving toward was the riparian corridor six months ago. The burn scar is going to be difficult to see. That is the appropriate response to it.',
+          noChoice:true,
+          climaxOnly:true,
+          climaxNote:'No vote on Day 10. This is the dramatic exit. The fire is not visible to the crew -- they receive the satellite alert, GAIA explains the buffelgrass connection, and The Arroyo moves out. The science of the moment: buffelgrass as a fire-carrier, invasive species changing fire behavior, the connection between the water deficit and the conditions that allowed buffelgrass to expand. Site 3 opens in the burn scar.'
+        }
+
+      ] // end Site 2 days
+    }
+
+
+    // ============================================================
+    // SITE 3 -- AGRICULTURAL BRIDGE
+    // Standard: L2U3.12 | Days: 5 | No climax -- quiet exit
+    // Breadcrumb 3: Day 3 | Tone: somber, reverent
+    // ============================================================
+    ,{
+      id:3,
+      label:'Site 3 -- Agricultural Bridge',
+      name:'Agricultural Bridge',
+      subtitle:'Between the burn and the grassland',
+      standard:'L2U3.12',
+      lesson:'Dynamic and Resilient Ecosystems',
+      totalDays:5,
+      theme:'agricultural',
+      days:[
+
+        // -- DAY 1 -- DEEPEN . Arriving at Site 3 / Succession intro --
+        {
+          day:1, type:'deepen',
+          siteTitle:'What Fire Leaves Behind',
+          gaia:'The Arroyo is moving through the burn scar.\n\nI am going to ask the crew to look out the windows before we begin today\'s reading. Not to document. Not to analyze. Just to look.\n\nThe cottonwood trees that were standing ten days ago are gone. The willow understory is gone. The bird activity that the crew recorded on Day 1 of Site 2 -- the clustering near the remaining water patches -- is gone. The buffelgrass burned completely. It will come back. That is part of what makes it dangerous. The native plants that were here before the buffelgrass arrived may not.\n\nWhat the crew is seeing is not the end of this ecosystem. It is a reset. Ecosystems can recover from fire. The science of that recovery is what this site is about.\n\nBut I want the crew to sit with what they are seeing for a moment before we turn it into data. Some things deserve that.',
+          readingFocus:'Savvas Topic 3 Lesson 2 -- Succession section. Focus on all four subheadings: primary succession, pioneer species, mature communities, and secondary succession. Key question: what is the difference between primary and secondary succession? Which one is happening here, and how do you know?',
+          gaiaReadingPrompt:'"Secondary succession begins with soil. Primary succession begins with bare rock.\n\nThe burn scar the crew is driving through still has soil. It is damaged soil -- the fire burned away the organic layer that took decades to build -- but it is still soil. Microorganisms survived below the surface. Seeds from fire-adapted plants are already present in that soil, waiting.\n\nPrimary succession takes hundreds of years. Secondary succession can show measurable change in a single growing season.\n\nThe riparian corridor will not look the same in five years as it does today. That is not a prediction. It is what the data from every post-fire riparian recovery study shows. The question is what comes back, and in what order, and whether the buffelgrass gets there first."',
+          gaiaRecall:'From Site 2: the buffelgrass expansion rate had been accelerating. From today\'s reading: buffelgrass is not native to this ecosystem and does not have the same fire-response adaptations as native plants. It burns completely. It also reseeds aggressively after fire. The burn scar the crew is driving through is a competition the crew cannot see yet -- between native pioneer species trying to return and buffelgrass trying to return faster.',
+          vocabFocus:['succession','pioneer species','colonize','dominate','primary succession','secondary succession','mature community'],
+          spiralReview:'The energy pyramid and food web from Site 1 connect directly here. The burn scar has no producers yet. Without producers there is no food web. Secondary succession is the process of rebuilding the producer base -- and everything above it -- from the ground up. The crew watched the food web stress in Sites 1 and 2. Here they are looking at what happens when the base is removed entirely.',
+          bridgeToNext:'Tomorrow: choice day. The crew finds the first pioneer plants pushing through the ash. What the crew decides to do with that finding -- how to document it, what to prioritize -- matters for the scientific record of this recovery.',
+          noChoice:true
+        },
+
+        // -- DAY 2 -- CHOICE . Secondary Succession / Pioneer Species --
+        {
+          day:2, type:'choice',
+          siteTitle:'The First Things Back',
+          gaia:'The crew has found something.\n\nApproximately 340 meters from the edge of the burn scar, in a low area where water drains after rain, there are plants.\n\nFifteen individual plants. Three species. All of them are small -- none more than four centimeters tall. Two of the species are native to this region. One is not. The non-native species is buffelgrass.\n\nThis is day eleven post-fire. These plants germinated from seeds that survived the fire in the soil or arrived on the wind in the days after. They are pioneer species -- the first organisms to colonize a disturbed area.\n\nI want to be direct with the crew about something before they vote. There is no option here that stops the buffelgrass from coming back. It is already back. The question is what the crew does with this information, and how they do it. Sometimes in science you are not choosing between stopping something and allowing it. You are choosing between responses that are more or less useful given what you actually know at this moment.\n\nThe crew decides.',
+          scenario:'Eleven days after the fire, the crew has found the first pioneer plants in the burn scar. Two native species and one buffelgrass plant are growing in a low drainage area. The crew must decide how to respond to this finding.',
+          choiceReadingFocus:'Before voting, review the Pioneer Species and Secondary Succession sections from Day 1. Focus: what role do pioneer species play in succession? Why does it matter which species colonize first? What happens to a recovery when a non-native species is among the first to return?',
+          exitTicketPrompt:'CER -- Claim: Which response gives the scientific community the most useful information about this recovery? Evidence: use what you know about pioneer species and succession from the reading. Reasoning: explain why the order in which species colonize matters for the long-term recovery of the ecosystem -- and why that makes your chosen response the most scientifically sound one.',
+          discussionPrompt:'The crew had incomplete information -- they found fifteen plants eleven days after a fire, in one small area. Scientists often have to make decisions without waiting for complete data. What are the risks of acting on incomplete information? What are the risks of waiting until the information is complete? Is there always a right answer?',
+          choices:[
+            {
+              letter:'A',
+              text:'Map the exact location of all fifteen plants, identify each species carefully, and submit a detailed pioneer species report to the regional restoration network.',
+              subtext:'Precise early documentation is the most valuable contribution the crew can make. The network needs to know exactly what is coming back and where.',
+              deltas:{bio:4, water:0, food:0, trust:10},
+              branch:'A-document-carefully',
+              consequence:'The crew maps all fifteen plants with GPS coordinates, photographs each one at the root level for species confirmation, and submits a structured pioneer species report within 48 hours. The regional restoration network responds: this is exactly the data format they need to track recovery. Three other post-fire monitoring teams are already using the location data to plan their own surveys. "Careful documentation of the first species to return is how we understand what an ecosystem is capable of. The crew found fifteen plants. The network now knows where they are, what they are, and when they arrived. That is a complete scientific observation." Community Trust increases significantly. The buffelgrass is noted and flagged for monitoring.'
+            },
+            {
+              letter:'B',
+              text:'Collect soil samples from the surrounding area to test for additional seeds waiting to germinate -- the visible plants are only part of the story.',
+              subtext:'The fifteen visible plants are only part of the story. The seed bank in the soil tells you what is coming next.',
+              deltas:{bio:6, water:0, food:0, trust:8},
+              branch:'B-soil-samples',
+              consequence:'The crew documents all fifteen plants and collects six soil core samples from the surrounding drainage area. Lab analysis later shows the soil seed bank contains seeds from four additional native species and a significantly higher density of buffelgrass seeds than the single visible plant suggested. The restoration network flags the soil sample data as critical: "You found one buffelgrass plant. The soil told us there are hundreds coming. That changes the restoration plan entirely." The pioneer species report was delayed by three days. The data, however, was more complete. "A delayed finding with more depth is sometimes the right trade. This was one of those times."'
+            },
+            {
+              letter:'C',
+              text:'Remove the buffelgrass plant immediately before it can reseed -- with only one plant present, now is the best chance to stop it.',
+              subtext:'One buffelgrass plant removed today is hundreds prevented next season. The window is open right now.',
+              deltas:{bio:-4, water:0, food:0, trust:-6},
+              branch:'C-remove-buffelgrass',
+              consequence:'The crew removes the buffelgrass plant. The logic is sound -- early removal before reseeding is a real management strategy. But three problems follow. First, the crew did not have authorization to conduct invasive species removal on this land. Second, removing one plant while hundreds of seeds remain in the soil changes nothing about the buffelgrass trajectory. Third, the crew spent time on removal instead of documenting the two native pioneer species, which the network had no record of. "The instinct was reasonable. The authorization was not there, the impact was not what the crew hoped, and the native species data was not collected. Science conducted without authorization tends to create more problems than it solves, even when the science itself is sound."'
+            }
+          ]
+        },
+
+        // -- DAY 3 -- DEEPEN . Ecosystem Disruptions + Breadcrumb 3 --
+        {
+          day:3, type:'deepen',
+          isBreadcrumb:true,
+          breadcrumbNote:'BREADCRUMB 3: GAIA notes the fire moved faster than terrain and fuel load data would predict. The buffelgrass was significantly drier than ten years of data for this time of year would suggest. The drying timeline matches what she has been tracking since the Meridian mission. She does not restate the number. She says: "I have noted this before. I am noting it again." She moves on.',
+          siteTitle:'When Systems Are Disrupted',
+          gaia:'The reading today covers what happens when an ecosystem is disrupted -- by fire, by drought, by the arrival of a new species, by human land use. The burn scar the crew is working in is one example. But disruptions take many forms and their effects move through ecosystems in ways that are not always obvious at first.\n\nOne more thing before the reading. I have been reviewing the fire behavior data from the regional monitoring network. The fire moved faster through this section than the terrain and fuel load would predict. The buffelgrass was significantly drier than ten years of seasonal data for this time of year would suggest. The drying timeline matches what I have been tracking since the Meridian mission.\n\nI have noted this before. I am noting it again.\n\nBegin the reading.',
+          readingFocus:'Savvas Topic 3 Lesson 2 -- Ecosystem Disruptions and Population Survival section. Focus: How can changes to physical or biological components of an ecosystem affect organisms and populations? What is the difference between a natural disruption and a human-caused disruption? Can one disruption trigger others?',
+          gaiaReadingPrompt:'"The fire was a natural event triggered by lightning. The speed and intensity of the fire was shaped by a non-native grass that humans introduced for erosion control in the 1930s. The drought that dried the buffelgrass beyond its historical range was -- the data continues to suggest -- connected to something that began approximately eight months ago.\n\nNatural disruption. Human-modified landscape. A third factor the crew has been tracking since Site 1.\n\nDisruptions do not arrive in clean categories. They arrive as cascades. Each one changes the conditions that shape the next one. The reading today gives the crew the vocabulary to describe what they are seeing. The data gives them the evidence. Both are needed."',
+          gaiaRecall:'From Site 1: water deficit began showing in abiotic measurements. From Site 2: species interactions broke down under resource stress, buffelgrass expanded. From Site 3 so far: the fire moved faster than it should have, pioneer species are returning but buffelgrass is among them. Each site has been one step further in the same cascade.',
+          vocabFocus:['succession','pioneer species','colonize','dominate','disruption','population','ecosystem'],
+          spiralReview:'The guiding questions for this lesson connect directly to what the crew has been measuring all campaign. How can changes to physical or biological components affect populations? The crew has data for this from three sites. How do natural events impact the environment? The fire is the answer. How do human activities impact ecosystems? The buffelgrass introduction and the agricultural land use around Site 3 are both answers -- neither requires assigning blame, both require understanding.',
+          bridgeToNext:'Tomorrow: graph day. Before/after species count comparison. The crew has been talking about what was lost. Tomorrow they will see it in numbers.',
+          noChoice:true
+        },
+
+        // -- DAY 4 -- GRAPH . Bar Graph Review ---------------------
+        {
+          day:4, type:'graph',
+          siteTitle:'What the Numbers Say About What Was Lost',
+          gaia:'The crew has been seeing the burn scar for three days. Today the data makes it specific.\n\nI am going to show the crew a bar graph comparing species population counts from the riparian corridor before the fire to counts from this agricultural transitional zone after it. Two sets of bars. Four species. The difference between them is the fire, the habitat loss, and the landscape change.\n\nLook at the graph carefully before answering the questions.',
+          scenario:'GAIA displays a pre-built double bar graph showing species population counts before the fire in the riparian corridor and after in the agricultural transitional zone. Study the graph before answering.',
+          graphData:{
+            title:'Species Counts -- Riparian Corridor Before vs Agricultural Zone After',
+            teacherNote:'BAR GRAPH REVIEW -- double bar graph, pre-built, students read and interpret. No building required. Key trends are dramatic and unmistakable: quail and deer crash, coyote holds steady, European starling increases. Questions focus on reading the graph accurately, comparing before/after, and explaining why different species responded differently using food web and niche knowledge from Sites 1 and 2.',
+            isDoubleBar:true,
+            preBuilt:true,
+            yLabel:'Population Count',
+            legend:['Before Fire -- Riparian Corridor','After Fire -- Agricultural Zone'],
+            legendColors:['#8DB87A','#cc6644'],
+            bars:[
+              {label:'Gambel\'s Quail', value:180},
+              {label:'Mule Deer', value:95},
+              {label:'Coyote', value:34},
+              {label:'European Starling', value:11}
+            ],
+            bars2:[
+              {label:'Gambel\'s Quail', value:12},
+              {label:'Mule Deer', value:8},
+              {label:'Coyote', value:28},
+              {label:'European Starling', value:67}
+            ],
+            graphAnswers:[
+              {q:'Q1 -- Which species changed most', a:'Gambel\'s quail dropped from 180 to 12 -- a loss of 168 individuals, about 93% of the population. Mule deer dropped from 95 to 8 -- about 92%. These are the most dramatic changes on the graph.'},
+              {q:'Q2 -- Why quail and deer crashed', a:'Both species are closely tied to the riparian vegetation that burned. Gambel\'s quail depend on dense shrub cover for nesting and on seeds and insects from riparian plants. Mule deer depend on riparian vegetation for food and cover. When the vegetation burned, the habitat those species need was gone.'},
+              {q:'Q3 -- Why coyote held steady', a:'Coyotes are generalist predators -- they eat a wide variety of prey and survive in many habitat types. The agricultural zone still has rodents, insects, and other small prey. Their count dropped slightly (34 to 28) but did not crash.'},
+              {q:'Q4 -- Why starling increased', a:'European starlings are non-native birds that thrive in disturbed, open landscapes. The agricultural zone -- with open fields and reduced competition from native species -- is exactly the habitat they do well in. The disruption removed competitors and opened up resources. This is the same pattern as buffelgrass: non-native species often benefit from disruptions that harm native species.'},
+              {q:'Q5 -- What the graph does not show', a:'The graph shows population counts at two points in time. It does not show what happened in between -- how quickly species left, which left first, whether any tried to return. It also does not show species that went locally extinct entirely. The bars show survivors. They do not show everything that was lost.'}
+            ]
+          },
+          gaiaGraphNote:'"The quail bar went from 180 to 12. I want the crew to sit with that number for a moment. 168 birds. That is not a population decline. That is a population collapse. The graph shows it clearly. The graph also shows the starling bar going the other direction. Disruption does not remove life from an ecosystem. It reshuffles who gets to stay."',
+          graphQuestions:[
+            '1. Which species showed the biggest drop in population count? Calculate the difference between before and after for each species.',
+            '2. Gambel\'s quail and mule deer both dropped dramatically. Using what you know about niches and food webs from Sites 1 and 2, why would both of these species be so affected by the fire and habitat change?',
+            '3. The coyote count barely changed. Why might a coyote survive this disruption better than a quail or a deer?',
+            '4. The European starling count went up. How is this possible after a major fire? What does this tell you about how disruptions affect native vs non-native species differently?',
+            '5. What does this graph not tell you about what happened to the ecosystem? What information is missing that you would want to know?'
+          ],
+          shortDayNote:'Short day: Q1 (read the bars, calculate differences) and Q2 (explain the crash using niche/food web knowledge). That is the core. Q3 and Q4 add the generalist vs specialist and non-native species comparisons. Q5 is critical thinking extension.',
+          noChoice:true
+        },
+
+        // -- DAY 5 -- DEEPEN . Mature Communities / Long-Term Recovery --
+        {
+          day:5, type:'deepen',
+          siteTitle:'What Recovery Actually Looks Like',
+          gaia:'The crew has spent four days in the burn scar and the agricultural transitional zone. Today is the last day at this site.\n\nThe reading covers mature communities -- what an ecosystem looks like when succession has run its course and the system has reached a stable state. It also covers what recovery actually requires: time, the right pioneer species, the absence of ongoing disruption, and in many cases, active human help.\n\nAfter the reading, I have something to tell the crew about where we are going next.',
+          readingFocus:'Savvas Topic 3 Lesson 2 -- full lesson review, with focus on mature communities and long-term recovery. Key questions: What does a mature community look like? How long does secondary succession take? What can slow it down or stop it entirely? What role can humans play in helping or hindering recovery?',
+          gaiaReadingPrompt:'"A mature riparian community along the San Pedro River took approximately 200 to 400 years to develop after the last major disruption. That is not a prediction about this burn scar. It is context for what the crew is looking at.\n\nSecondary succession can move faster with help -- active replanting of native species, invasive species management, protection from additional disturbance. It can also be stopped entirely if the disruptions continue before recovery has time to take hold.\n\nResearch teams sampling the soil in burn scars like this one have found buffelgrass seed banks far larger than the visible plants would suggest -- hundreds of seeds already in the process of germinating. That is the next disruption, already waiting in the ground.\n\nRecovery is not guaranteed. It is a direction, not a destination."',
+          gaiaRecall:'From Day 2: the crew documented the first pioneer plants returning to the burn scar. Some classes also sampled the soil and found it contains far more buffelgrass seeds than the single visible plant suggested -- hundreds already in the process of germinating. From the reading today: mature communities require time and the absence of ongoing disruption. The crew now has enough information to understand why the next site matters: active restoration is one of the few interventions that can change the trajectory the data is pointing toward.',
+          vocabFocus:['succession','pioneer species','mature community','colonize','dominate','ecosystem disruption','restoration'],
+          spiralReview:'This day connects all three guiding questions of Lesson 2. Physical and biological changes affected populations at this site (Q1). The fire was a natural event that human land use made more severe (Q2). Agricultural land use changed the species composition of the transitional zone (Q3). The crew now has field evidence for all three.',
+          gaiaClosing:'The crew has done careful work at a difficult site. The burn scar is not a place where the science was easy or the data was encouraging. That is part of what field science looks like.\n\nWhat we are looking for is ahead. Site 4 is a restored grassland -- a place where humans made a different choice about what to do with land, and where the data tells a different story. It is not a perfect story. But it is a different one.\n\nWe are moving out.',
+          noChoice:true
+        }
+
+      ] // end Site 3 days
+    }
 
   ] // end sites
 };
@@ -1613,7 +2045,7 @@ function load() {
   } catch(e) { /* fall through */ }
 
   // Try migrating from any older key
-  const oldKeys = ['lighthouse_v4','lighthouse_v3','lighthouse_v2','lighthouse_v1'];
+  const oldKeys = ['vanishing_v1','lighthouse_v4','lighthouse_v3','lighthouse_v2','lighthouse_v1'];
   for (const oldKey of oldKeys) {
     if (oldKey === STORAGE_KEY) continue;
     try {
@@ -1888,7 +2320,7 @@ function renderMissionScreen() {
 
   document.getElementById('topbar-period').textContent = cls.name;
   document.getElementById('topbar-leg').textContent = cnt.siteLabel || cnt.legLabel || '';
-  document.getElementById('content-leg-label').textContent = cnt.legLabel;
+  document.getElementById('content-leg-label').textContent = cnt.siteLabel || ('Site ' + cls.site);
 
   updateDayTypeBanner(cnt, cls);
 
@@ -2080,7 +2512,7 @@ function updateDayTypeBanner(cnt, cls) {
   else if (dayType === 'deepen') { badge.classList.add('badge-deepen'); badge.innerHTML = '&#128214; Lesson Day'; }
   else if (dayType === 'graph') { badge.classList.add('badge-graph'); badge.innerHTML = '&#128202; Graph Day'; }
   else { badge.classList.add('badge-climax'); badge.innerHTML = '&#127937; Leg Milestone'; }
-  desc.textContent = 'Day ' + cnt.day + ' of ' + totalDays + ' - Leg ' + cls.site;
+  desc.textContent = 'Day ' + cnt.day + ' of ' + totalDays + ' - Site ' + cls.site;
 }
 
 // ============================================================
@@ -2144,14 +2576,34 @@ function renderGraphContent(c) {
       h += renderMultiLineGraph(gd);
     } else if (gd.pie) {
       h += renderPieChart(gd);
+    } else if (gd.isDoubleBar) {
+      h += renderDoubleBarGraph(gd);
     } else if (gd.bars) {
       h += renderBarGraph(gd);
     }
 
-    // Dot plot reveal button
+    // Dot plot reveal button -- standard
     if ((c.showDotPlotReveal || (gd && gd.showDotPlotReveal)) && gd && gd.revealDatasets) {
-      h += '<div style="margin-top:12px"><button onclick="document.getElementById(\'dp-answer\').style.display=\'block\';this.style.display=\'none\'" style="font-family:var(--font-mono);font-size:11px;background:rgba(141,184,122,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; Reveal -- What Your Dot Plot Should Look Like</button>';
+      h += '<div style="margin-top:12px"><button onclick="document.getElementById(\'dp-answer\').style.display=\'block\';this.style.display=\'none\'" style="font-family:var(--font-mono);font-size:11px;background:rgba(141,184,122,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; ' + (gd.revealLabel || 'Reveal') + '</button>';
       h += '<div id="dp-answer" style="display:none;margin-top:12px">' + renderDotPlotSVG({datasets:gd.revealDatasets}) + '</div></div>';
+    }
+    // Multi-reveal: individual dot plots + combined (S2D9 pattern)
+    if (gd && gd.showMultiReveal && gd.individualDatasets && gd.combinedDatasets) {
+      h += '<div style="margin-top:12px"><button onclick="document.getElementById(\'multi-reveal\').style.display=\'block\';this.style.display=\'none\'" style="font-family:var(--font-mono);font-size:11px;background:rgba(141,184,122,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; ' + (gd.revealLabel || 'Reveal') + '</button>';
+      h += '<div id="multi-reveal" style="display:none;margin-top:12px">';
+      h += '<div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px">Your Three Dot Plots -- Check Your Work</div>';
+      gd.individualDatasets.forEach(function(ds) { h += renderSingleDotPlotSVG(ds); });
+      h += '<div style="font-family:var(--font-mono);font-size:10px;color:var(--accent-dim);letter-spacing:.1em;text-transform:uppercase;margin:16px 0 10px">All Three Species -- Same Number Line</div>';
+      h += renderDotPlotSVG({datasets:gd.combinedDatasets});
+      h += '</div></div>';
+    }
+    // Histogram reveal button
+    if (gd && gd.showHistogramReveal && gd.revealBins) {
+      h += '<div style="margin-top:12px"><button onclick="document.getElementById(\'hist-reveal\').style.display=\'block\';this.style.display=\'none\'" style="font-family:var(--font-mono);font-size:11px;background:rgba(141,184,122,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; ' + (gd.revealLabel || 'Show Overlay') + '</button>';
+      h += '<div id="hist-reveal" style="display:none;margin-top:12px">';
+      if (gd.revealTitle) h += '<div style="font-family:var(--font-mono);font-size:11px;color:var(--accent-dim);margin-bottom:8px">' + gd.revealTitle + '</div>';
+      h += renderHistogramSVG({bins:gd.revealBins, yLabel:'Months'});
+      h += '</div></div>';
     }
 
     h += '</div>';
@@ -2238,7 +2690,7 @@ function renderDoubleBarGraph(gd) {
   const bars2 = gd.bars2;
   const allVals = [...bars1.map(b=>b.value), ...bars2.map(b=>b.value)];
   const maxVal = Math.max(...allVals);
-  const W = 620, H = 270, padL = 52, padB = 52, padT = 46, padR = 14;
+  const W = 620, H = 310, padL = 52, padB = 72, padT = 46, padR = 14;
   const chartW = W - padL - padR;
   const chartH = H - padT - padB;
   const groupW = chartW / bars1.length;
@@ -2277,12 +2729,11 @@ function renderDoubleBarGraph(gd) {
   });
 
   // Legend - below chart to avoid overlap
-  const legendBaseY = padT + chartH + 34;
-  const legendCenterX = padL + chartW / 2;
-  svg += `<rect x="${legendCenterX-160}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[0]}" opacity="0.85" rx="2"/>`;
-  svg += `<text x="${legendCenterX-142}" y="${legendBaseY}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.85)">${labels[0]}</text>`;
-  svg += `<rect x="${legendCenterX+60}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[1]}" opacity="0.85" rx="2"/>`;
-  svg += `<text x="${legendCenterX+78}" y="${legendBaseY}" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.85)">${labels[1]}</text>`;
+  const legendBaseY = padT + chartH + 30;
+  svg += `<rect x="${padL}" y="${legendBaseY-10}" width="14" height="14" fill="${colors[0]}" opacity="0.85" rx="2"/>`;
+  svg += `<text x="${padL+18}" y="${legendBaseY}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.85)">${labels[0]}</text>`;
+  svg += `<rect x="${padL}" y="${legendBaseY+14}" width="14" height="14" fill="${colors[1]}" opacity="0.85" rx="2"/>`;
+  svg += `<text x="${padL+18}" y="${legendBaseY+24}" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.85)">${labels[1]}</text>`;
 
   // Axes
   svg += `<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
@@ -2862,13 +3313,13 @@ function populateDayJump() {
   const typeIcons = {choice:'&#9889;', deepen:'&#128214;', graph:'&#128202;', climax:'&#127937;'};
   CAMPAIGN.sites.forEach(leg => {
     const group = document.createElement('optgroup');
-    group.label = leg.label;
+    group.label = leg.label || leg.name;
     leg.days.forEach(day => {
       const opt = document.createElement('option');
       opt.value = `${leg.id}:${day.day}`;
       // Use innerHTML for the icon, textContent for the rest
       const icon = typeIcons[day.type] || '-';
-      opt.innerHTML = icon + ' Day ' + day.day + ' - ' + day.legTitle;
+      opt.innerHTML = icon + ' Day ' + day.day + ' - ' + (day.siteTitle || day.legTitle || '');
       if (leg.id === cls.site && day.day === cls.day) opt.selected = true;
       group.appendChild(opt);
     });
@@ -3215,6 +3666,41 @@ window.addEventListener('load', () => {
 // ============================================================
 // SVG RENDERERS -- Campaign 3
 // ============================================================
+
+function renderSingleDotPlotSVG(ds) {
+  // Renders one species on its own number line with its own scale
+  var W=520, padL=110, padR=20, padT=15, rowH=80, dotR=6, padB=30;
+  var H=padT+rowH+padB;
+  var scaleMin=ds.scaleMin||0, scaleMax=ds.scaleMax||Math.max.apply(null,ds.values)+2;
+  var scaleStep=ds.scaleStep||Math.ceil((scaleMax-scaleMin)/8);
+  var chartW=W-padL-padR;
+  var toX=function(v){return padL+chartW*(v-scaleMin)/(scaleMax-scaleMin||1);};
+  var col=ds.color||'#8DB87A';
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:6px auto">';
+  // gridlines and labels
+  for(var v=scaleMin;v<=scaleMax+0.01;v+=scaleStep){
+    var x=toX(v);
+    svg+='<line x1="'+x.toFixed(1)+'" y1="'+padT+'" x2="'+x.toFixed(1)+'" y2="'+(padT+rowH-dotR-8)+'" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>';
+    svg+='<text x="'+x.toFixed(1)+'" y="'+(padT+rowH+14)+'" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(212,197,169,0.6)" text-anchor="middle">'+Math.round(v)+'</text>';
+  }
+  // species label
+  var baseY=padT+rowH-dotR-8;
+  svg+='<text x="'+(padL-8)+'" y="'+(baseY+4)+'" font-family="Share Tech Mono,monospace" font-size="12" fill="'+col+'" text-anchor="end" font-weight="bold">'+ds.label+'</text>';
+  // number line
+  svg+='<line x1="'+padL+'" y1="'+(baseY+dotR+4)+'" x2="'+(W-padR)+'" y2="'+(baseY+dotR+4)+'" stroke="rgba(212,197,169,0.25)" stroke-width="1.5"/>';
+  // dots
+  var counts={};
+  ds.values.forEach(function(v){counts[v]=(counts[v]||0)+1;});
+  Object.keys(counts).forEach(function(key){
+    var val=parseFloat(key),count=counts[key],x=toX(val);
+    for(var c=0;c<count;c++){
+      var cy=baseY-c*(dotR*2+3);
+      svg+='<circle cx="'+x.toFixed(1)+'" cy="'+cy.toFixed(1)+'" r="'+dotR+'" fill="'+col+'" opacity="0.9"/>';
+    }
+  });
+  svg+='</svg>';
+  return svg;
+}
 
 function renderDotPlotSVG(gd) {
   var datasets=gd.datasets||[], W=560, padL=100, padR=20, padT=20, rowH=100, dotR=7, padB=40;
