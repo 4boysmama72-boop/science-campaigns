@@ -1271,7 +1271,10 @@ const CAMPAIGN = {
               {label:'Sightings/day', values:[3,4,4,5,5,5,6,6,6,6,7,7,7,7,8,8,9,10,10,12], color:'#8DB87A'}
             ],
             graphAnswers:[
-              {q:'What to notice', a:'Most sightings cluster between 5 and 8 per day. The dot plot shows this visually -- more dots in that range, fewer at the extremes. One day had 12 sightings (unusually high). Several days had 3-4 (unusually low). The shape is roughly symmetric, slightly right-skewed by the 10 and 12 outliers. Walk students through finding the median: 10 values below the middle, 10 above -- median is between the 10th and 11th values = (7+7)/2 = 7 sightings per day.'}
+              {q:'Q1 -- Where do dots cluster', a:'Most dots cluster in the middle, between 5 and 8 sightings per day. The dot plot shows this visually -- more dots stack up in that range, fewer at the edges.'},
+              {q:'Q2 -- Highest and lowest', a:'Highest: 12 sightings on one day. Lowest: 3 sightings on several days. Range = 12 - 3 = 9.'},
+              {q:'Q3 -- Median', a:'20 data points. Median = average of 10th and 11th values when ordered. Order: 3,3,4,4,5,5,5,6,6,6,6,7,7,7,7,8,8,9,10,10,12. 10th value = 6, 11th value = 6. Median = 6. (Students may say 7 depending on which version of the plot is shown -- accept 6 or 7.)'},
+              {q:'Q4 -- Prediction', a:'Expect students to predict LOWER sightings -- the field data should show a stressed population with fewer kangaroo rats than the healthy baseline example. This prediction sets up the comparison on Day 5.'}
             ]
           },
           gaiaGraphNote:'"A dot plot shows every data point. Not a summary -- every single value. The number line tells you the range. Where the dots pile up tells you where most values fall. Where the dots are sparse or absent tells you about the edges of the data. Tomorrow the crew builds one from actual field data. Today: just read this one. Find the center. Find the spread. Notice the shape."',
