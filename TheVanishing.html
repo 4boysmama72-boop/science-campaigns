@@ -723,22 +723,22 @@ GAIA out. I will be in contact daily. Try to get enough sleep &mdash; I have not
       <div>
         <div class="panel-label">Mission Dashboard</div>
         <div class="stat-item stat-bio">
-          <div class="stat-header"><div class="stat-name">Navigation</div><div class="stat-value" id="stat-bio-val">100%</div></div>
+          <div class="stat-header"><div class="stat-name">Biodiversity</div><div class="stat-value" id="stat-bio-val">100%</div></div>
           <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-bio-bar" style="width:100%"></div></div>
           <div class="stat-sublabel" id="stat-bio-status">Course nominal</div>
         </div>
         <div class="stat-item stat-water">
-          <div class="stat-header"><div class="stat-name">Solar Power</div><div class="stat-value" id="stat-water-val">100%</div></div>
+          <div class="stat-header"><div class="stat-name">Water Avail</div><div class="stat-value" id="stat-water-val">100%</div></div>
           <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-water-bar" style="width:100%"></div></div>
           <div class="stat-sublabel" id="stat-water-status">Collection optimal</div>
         </div>
         <div class="stat-item stat-food">
-          <div class="stat-header"><div class="stat-name">Food</div><div class="stat-value" id="stat-food-val">40%</div></div>
+          <div class="stat-header"><div class="stat-name">Food Stability</div><div class="stat-value" id="stat-food-val">40%</div></div>
           <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-food-bar" style="width:40%"></div></div>
           <div class="stat-sublabel" id="stat-food-status">Lighthouse signal faint</div>
         </div>
         <div class="stat-item stat-trust">
-          <div class="stat-header"><div class="stat-name">Earth Status</div><div class="stat-value" id="stat-trust-val">70%</div></div>
+          <div class="stat-header"><div class="stat-name">Trust</div><div class="stat-value" id="stat-trust-val">70%</div></div>
           <div class="stat-bar-track"><div class="stat-bar-fill" id="stat-trust-bar" style="width:70%"></div></div>
           <div class="stat-sublabel" id="stat-trust-status">Atmosphere elevated</div>
         </div>
@@ -1409,7 +1409,7 @@ const CAMPAIGN = {
             graphAnswers:[
               {q:'1', a:'Producers have the most energy (bar length 100). Secondary consumers have the least (bar length 1). Each level is approximately 10% of the level below -- which is why the bars shrink so dramatically from bottom to top.'},
               {q:'2', a:'If annual plant energy drops from 100 to 39 (a 61% decline), primary consumers would have access to about 3.9 units of energy instead of 10. That is a 61% reduction at the primary consumer level too -- but the population decline would lag behind the energy decline because animals draw on stored reserves. This matches the 34% kangaroo rat decline the crew observed.'},
-              {q:'3', a:'Decomposers are shown separately because they are not a trophic level in the traditional sense -- they receive energy from all levels as organisms die. They do not fit neatly into the pyramid structure. Showing them separately is more accurate than forcing them into the hierarchy.'},
+              {q:'3', a:'Decomposers are not shown as a level above secondary consumers because they do not receive energy from just one level -- they break down matter from every level as organisms die. A pyramid shows energy moving upward through a chain. Decomposers sit outside that chain, which is why they are shown separately.'},
               {q:'4', a:'Horizontal bars make the level labels easier to read. The labels are long phrases. In a vertical bar graph, these labels would need to be rotated or truncated. Horizontal orientation solves the label problem without changing the data.'},
               {q:'5', a:'A bar graph works here because each trophic level is a distinct category and the crew is comparing the amount of energy between categories. Bar graphs are best for comparing separate categories. A line graph would imply a continuous trend, which is not what the energy pyramid shows.'}
             ]
@@ -1418,7 +1418,7 @@ const CAMPAIGN = {
           graphQuestions:[
             '1. Which trophic level has the most energy available? Which has the least? How does the difference in bar lengths show the 10 percent rule?',
             '2. If annual plant energy dropped by 61 percent (as the crew\'s data shows), how would that change what is available to primary consumers? Does this match the kangaroo rat decline the crew measured?',
-            '3. The decomposer bar is much smaller than the others. Why do decomposers have less energy available to them, even though they process matter from every trophic level?',
+            '3. The decomposer bar is shown separately from the main pyramid. Why aren\'t decomposers shown as a level above secondary consumers in the pyramid?',
             '4. This graph is displayed horizontally rather than vertically. Why might horizontal work better here than vertical?',
             '5. Why is a bar graph a good choice for this data? What would a line graph show that would be misleading here?'
           ],
@@ -2809,6 +2809,7 @@ function updateTeacherNotePanel(cnt) {
   const panel = document.getElementById('teacher-note-panel');
   if (!panel) return;
   const notes = [];
+  if (cnt.teacherNote) notes.push({label:'Note', text:cnt.teacherNote});
   if (cnt.graphData) {
     const gd = cnt.graphData;
     if (gd.teacherNote) notes.push({label:'Graph Note', text:gd.teacherNote});
