@@ -697,23 +697,23 @@ GAIA out. I will be in contact daily. Try to get enough sleep &mdash; I have not
   <div id="pres-stats-bar" style="display:none;background:var(--bg-panel);border-bottom:1px solid var(--border);padding:6px 40px;gap:24px;align-items:center;flex-shrink:0">
     <div class="pres-stat">
       <span class="pres-stat-label">Bio</span>
-      <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-nav-bar" style="background:var(--stat-bio)"></div></div>
-      <span class="pres-stat-val" id="pres-nav-val" style="color:var(--stat-bio)">&mdash;</span>
+      <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-bio-bar" style="background:var(--stat-bio)"></div></div>
+      <span class="pres-stat-val" id="pres-bio-val" style="color:var(--stat-bio)">&mdash;</span>
     </div>
     <div class="pres-stat">
       <span class="pres-stat-label">Water</span>
-      <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-solar-bar" style="background:var(--stat-water)"></div></div>
-      <span class="pres-stat-val" id="pres-solar-val" style="color:var(--stat-water)">&mdash;</span>
+      <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-water-bar" style="background:var(--stat-water)"></div></div>
+      <span class="pres-stat-val" id="pres-water-val" style="color:var(--stat-water)">&mdash;</span>
     </div>
     <div class="pres-stat">
       <span class="pres-stat-label">Food</span>
-      <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-signal-bar" style="background:var(--stat-food)"></div></div>
-      <span class="pres-stat-val" id="pres-signal-val" style="color:var(--stat-food)">&mdash;</span>
+      <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-food-bar" style="background:var(--stat-food)"></div></div>
+      <span class="pres-stat-val" id="pres-food-val" style="color:var(--stat-food)">&mdash;</span>
     </div>
     <div class="pres-stat">
       <span class="pres-stat-label">Trust</span>
-      <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-earth-bar" style="background:var(--stat-trust)"></div></div>
-      <span class="pres-stat-val" id="pres-earth-val" style="color:var(--stat-trust)">&mdash;</span>
+      <div class="pres-stat-bar"><div class="pres-stat-fill" id="pres-trust-bar" style="background:var(--stat-trust)"></div></div>
+      <span class="pres-stat-val" id="pres-trust-val" style="color:var(--stat-trust)">&mdash;</span>
     </div>
   </div>
 
@@ -965,10 +965,10 @@ GAIA out. I will be in contact daily. Try to get enough sleep &mdash; I have not
         <div class="processing-choice-text" id="processing-choice-text">&mdash;</div>
       </div>
       <div style="display:flex;gap:8px;justify-content:center;margin-bottom:28px;flex-wrap:wrap">
-        <div class="processing-stat-chip">Navigation &mdash; classified</div>
-        <div class="processing-stat-chip">Solar Power &mdash; classified</div>
-        <div class="processing-stat-chip">Signal &mdash; classified</div>
-        <div class="processing-stat-chip">Earth Status &mdash; classified</div>
+        <div class="processing-stat-chip">Biodiversity &mdash; classified</div>
+        <div class="processing-stat-chip">Water Avail &mdash; classified</div>
+        <div class="processing-stat-chip">Food Stability &mdash; classified</div>
+        <div class="processing-stat-chip">Trust &mdash; classified</div>
       </div>
       <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);text-align:center;margin-bottom:24px;line-height:1.6">
         Stat changes are pending until next class reveal.<br>Save now and find out what happened tomorrow.
@@ -1401,10 +1401,10 @@ const CAMPAIGN = {
             isHorizontalBar:true,
             teacherNote:'HORIZONTAL BAR GRAPH -- REVIEW. Students have seen bar graphs before. New element: horizontal orientation. Walk through the observation that the same data works either way. The bars here show relative energy, not exact measurements. Key teaching points: (1) producer bar is longest -- most energy is at the base; (2) each level above is roughly 10% of the level below; (3) the decomposer bar is shown separately because decomposers recycle energy from all levels. Questions are read-only -- no calculation required. Students should notice how the bar lengths reflect the 10% rule discussed in Day 8.',
             bars:[
-              {label:'Producers (annual plants, cacti, shrubs)', value:100, status:'safe'},
-              {label:'Primary consumers (kangaroo rats, insects, birds)', value:10, status:'caution'},
-              {label:'Secondary consumers (racer snakes, roadrunners)', value:1, status:'warning'},
-              {label:'Decomposers (bacteria, fungi)', value:0, status:'safe'}
+              {label:'Producers (plants, cacti, shrubs)', value:100, status:'safe'},
+              {label:'Primary consumers (kangaroo rats, insects)', value:10, status:'caution'},
+              {label:'Secondary consumers (snakes, roadrunners)', value:1, status:'warning'},
+              {label:'Decomposers (bacteria, fungi)', value:5, status:'safe'}
             ],
             graphAnswers:[
               {q:'1', a:'Producers have the most energy (bar length 100). Secondary consumers have the least (bar length 1). Each level is approximately 10% of the level below -- which is why the bars shrink so dramatically from bottom to top.'},
@@ -1418,7 +1418,7 @@ const CAMPAIGN = {
           graphQuestions:[
             '1. Which trophic level has the most energy available? Which has the least? How does the difference in bar lengths show the 10 percent rule?',
             '2. If annual plant energy dropped by 61 percent (as the crew\'s data shows), how would that change what is available to primary consumers? Does this match the kangaroo rat decline the crew measured?',
-            '3. Why are decomposers shown separately rather than as a level in the pyramid?',
+            '3. The decomposer bar is much smaller than the others. Why do decomposers have less energy available to them, even though they process matter from every trophic level?',
             '4. This graph is displayed horizontally rather than vertically. Why might horizontal work better here than vertical?',
             '5. Why is a bar graph a good choice for this data? What would a line graph show that would be misleading here?'
           ],
@@ -1574,6 +1574,15 @@ const CAMPAIGN = {
 
       ] // end Site 1 days
     }
+
+    // ============================================================
+    // SITE 2 -- RIPARIAN CORRIDOR -- INSERT HERE
+    // Standard: L2U1.13 | Days: 10 | Breadcrumb: Day 4
+    // Climax: Day 10 (fire reveal) | Delta range: 8-18
+    // Poison pill: Day 3 (competition/predation)
+    // S2D1 opens with S1D14 consequence woven into GAIA opening
+    // ============================================================
+
   ] // end sites
 };
 
@@ -1775,9 +1784,9 @@ function renderRevealScreen(cls) {
   }
 
   const statInfo = [
-    { key:'bio',    icon:'Bio', label:'Biodiversity',   color:'var(--stat-bio)' },
-    { key:'water',  icon:'Water', label:'Water Quality',   color:'var(--stat-water)' },
-    { key:'food', icon:'Food', label:'Food Supply', color:'var(--stat-food)' },
+    { key:'bio',    icon:'Bio', label:'Biodiversity Index', color:'var(--stat-bio)' },
+    { key:'water',  icon:'Water', label:'Water Availability', color:'var(--stat-water)' },
+    { key:'food', icon:'Food', label:'Food Stability', color:'var(--stat-food)' },
     { key:'trust',  icon:'Trust', label:'Community Trust',   color:'var(--stat-trust)' }
   ];
   const deltas = cls.pendingDeltas || {};
@@ -2134,7 +2143,7 @@ function renderGraphContent(c) {
     }
 
     // Dot plot reveal button
-    if (c.showDotPlotReveal && gd && gd.revealDatasets) {
+    if ((c.showDotPlotReveal || (gd && gd.showDotPlotReveal)) && gd && gd.revealDatasets) {
       h += '<div style="margin-top:12px"><button onclick="document.getElementById(\'dp-answer\').style.display=\'block\';this.style.display=\'none\'" style="font-family:var(--font-mono);font-size:11px;background:rgba(141,184,122,0.08);border:1px solid var(--accent-dim);color:var(--accent);padding:8px 16px;border-radius:4px;cursor:pointer">&gt; Reveal -- What Your Dot Plot Should Look Like</button>';
       h += '<div id="dp-answer" style="display:none;margin-top:12px">' + renderDotPlotSVG({datasets:gd.revealDatasets}) + '</div></div>';
     }
@@ -2733,31 +2742,34 @@ function statLabel(key, val) {
 }
 
 function updatePresStats(cls) {
-  if (!cls) return;
   const s = cls.stats;
-  ['nav','solar','signal','earth'].forEach(key => {
-    const val = Math.max(0, Math.min(100, s[key]));
-    const bar = document.getElementById(`pres-${key}-bar`);
-    const valEl = document.getElementById(`pres-${key}-val`);
-    if (bar) bar.style.width = val + '%';
+  const map = [
+    {key:'bio',   barId:'pres-bio-bar',   valId:'pres-bio-val'},
+    {key:'water', barId:'pres-water-bar', valId:'pres-water-val'},
+    {key:'food',  barId:'pres-food-bar',  valId:'pres-food-val'},
+    {key:'trust', barId:'pres-trust-bar', valId:'pres-trust-val'},
+  ];
+  map.forEach(function(m) {
+    const val = Math.max(0, Math.min(100, s[m.key] || 0));
+    const barEl = document.getElementById(m.barId);
+    const valEl = document.getElementById(m.valId);
+    if (barEl) barEl.style.width = val + '%';
     if (valEl) valEl.textContent = val + '%';
   });
 }
 
 function checkStatAlerts(cls) {
-  const alerts = [];
   const s = cls.stats;
-  if (s.nav <= 20) alerts.push('"Navigation accuracy is critical. Course corrections are consuming resources we do not have."');
-  if (s.solar <= 20) alerts.push('"Solar power reserves near depletion. Non-essential systems should be suspended."');
-  if (s.signal <= 15) alerts.push('"Signal clarity has dropped to critical levels. We may lose the Lighthouse transmission."');
-  if (s.earth <= 40) alerts.push('"Earth Status readings are deteriorating. Whatever is happening at home is accelerating."');
-  const critCount = [s.nav, s.solar].filter(v => v <= 20).length;
-  if (critCount >= 2) alerts.push('"Two navigation-critical systems are failing simultaneously. This is the failure profile I hoped to avoid."');
-  const box = document.getElementById('gaia-alerts');
-  box.innerHTML = alerts.length
-    ? alerts.map(a => `<div class="gaia-alert" style="margin-bottom:6px"><div class="gaia-alert-text">${a}</div></div>`).join('')
-    : '<div class="gaia-alert"><div class="gaia-alert-text">"All systems monitored. Awaiting crew input."</div></div>';
-  if (s.nav <= 0 || (critCount >= 2 && s.solar <= 0)) triggerExtinction();
+  const alerts = [];
+  if ((s.bio || 0) <= 20) alerts.push('"Biodiversity Index is critical. Ecosystem collapse risk is high."');
+  if ((s.water || 0) <= 20) alerts.push('"Water Availability is at critical levels. Field work may need to be suspended."');
+  if ((s.food || 0) <= 15) alerts.push('"Food Supply Stability has dropped to critical levels. The food web is failing."');
+  if ((s.trust || 0) <= 20) alerts.push('"Community Trust is critically low. The mission credibility is at risk."');
+  const critCount = [s.bio, s.water, s.food, s.trust].filter(function(v){ return (v||0) <= 20; }).length;
+  if (critCount >= 2) alerts.push('"Multiple systems critical. Mission failure is possible."');
+  const alertEl = document.getElementById('stat-alerts');
+  if (alertEl) alertEl.innerHTML = alerts.map(function(a){ return '<div class="stat-alert">' + a + '</div>'; }).join('');
+  if ((s.bio||0) <= 0 || (s.water||0) <= 0 || (s.food||0) <= 0 || (s.trust||0) <= 0 || (critCount >= 2 && (s.bio||0) <= 0)) triggerExtinction();
 }
 
 function updateFailureDots(cls) {
@@ -3006,7 +3018,7 @@ function showForensics() {
     cls.checkpoints.forEach((cp, i) => {
       const opt = document.createElement('option');
       opt.value = i;
-      opt.textContent = `${cp.label} - Nav:${cp.stats.nav}% Solar:${cp.stats.solar}% Signal:${cp.stats.signal}% Earth:${cp.stats.earth}%`;
+      opt.textContent = `${cp.label} - Bio:${cp.stats.bio||0}% Water:${cp.stats.water||0}% Food:${cp.stats.food||0}% Trust:${cp.stats.trust||0}%`;
       cpSelect.appendChild(opt);
     });
   } else {
@@ -3235,7 +3247,7 @@ function renderBoxWhiskerSVG(gd) {
 }
 
 function renderHorizontalBarSVG(gd) {
-  var bars=gd.bars||[], W=580, padL=290, padR=50, padT=20, padB=20, rowH=48;
+  var bars=gd.bars||[], W=580, padL=320, padR=50, padT=20, padB=20, rowH=48;
   var H=padT+rowH*bars.length+padB;
   var maxVal=Math.max.apply(null,bars.filter(function(b){return b.value>0;}).map(function(b){return b.value;}));
   var chartW=W-padL-padR;
