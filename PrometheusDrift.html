@@ -2,8 +2,8 @@
 <!--
   The Prometheus Drift — Science Campaign App
   Campaign 1 of 3: Physical Science
-  Created by Danielle Edwards
-  © 2026 Danielle Edwards. All rights reserved.
+  Created by [Your Name], Higley Unified School District
+  © 2026 [Your Name]. All rights reserved.
   Built for classroom use. Not for redistribution without permission.
 -->
 <html lang="en">
@@ -36,9 +36,7 @@
     --font-body: 'Rajdhani', sans-serif;
     --gaia-green: #00ff88;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background: var(--bg-deep);
     color: var(--text-primary);
@@ -46,7 +44,6 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
-
   body::before {
     content: '';
     position: fixed;
@@ -65,7 +62,6 @@
     pointer-events: none;
     z-index: 0;
   }
-
   body::after {
     content: '';
     position: fixed;
@@ -74,21 +70,16 @@
     pointer-events: none;
     z-index: 1;
   }
-
   .app { position: relative; z-index: 2; }
-
   .screen { display: none; min-height: 100vh; }
   .screen.active { display: flex; flex-direction: column; }
-
   /* ===================== SETUP SCREEN ===================== */
   #screen-setup {
     align-items: center;
     justify-content: center;
     padding: 2rem;
   }
-
   .setup-inner { width: 100%; max-width: 600px; }
-
   .mission-label {
     font-family: var(--font-mono);
     font-size: 11px;
@@ -97,7 +88,6 @@
     text-transform: uppercase;
     margin-bottom: 8px;
   }
-
   .setup-title {
     font-family: var(--font-display);
     font-size: clamp(24px, 4vw, 40px);
@@ -107,16 +97,13 @@
     letter-spacing: .05em;
     margin-bottom: 6px;
   }
-
   .setup-sub {
     font-family: var(--font-mono);
     font-size: 12px;
     color: var(--text-secondary);
     margin-bottom: 2rem;
   }
-
   .form-group { margin-bottom: 16px; }
-
   .form-label {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -126,7 +113,6 @@
     display: block;
     margin-bottom: 6px;
   }
-
   .form-input {
     background: var(--bg-card);
     border: 1px solid var(--border-bright);
@@ -139,16 +125,13 @@
     transition: border-color 0.2s;
   }
   .form-input:focus { outline: none; border-color: var(--accent); }
-
   .period-setup-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-
   .period-setup-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 6px;
     padding: 14px;
   }
-
   .period-setup-label {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -157,18 +140,14 @@
     text-transform: uppercase;
     margin-bottom: 8px;
   }
-
   /* ===================== HOME SCREEN ===================== */
   #screen-home {
     align-items: center;
     justify-content: center;
     padding: 2rem;
   }
-
   .home-inner { width: 100%; max-width: 960px; }
-
   .mission-header { text-align: center; margin-bottom: 2.5rem; }
-
   .mission-title {
     font-family: var(--font-display);
     font-size: clamp(28px, 5vw, 52px);
@@ -179,7 +158,6 @@
     line-height: 1.1;
     margin-bottom: 6px;
   }
-
   .mission-subtitle {
     font-family: var(--font-body);
     font-size: 14px;
@@ -187,14 +165,12 @@
     letter-spacing: .1em;
     text-transform: uppercase;
   }
-
   .class-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin-bottom: 20px;
   }
-
   .class-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -205,7 +181,6 @@
     position: relative;
     overflow: hidden;
   }
-
   .class-card::before {
     content: '';
     position: absolute;
@@ -215,11 +190,9 @@
     transform: scaleX(0);
     transition: transform 0.2s;
   }
-
   .class-card:hover { border-color: var(--accent-dim); background: var(--bg-card2); transform: translateY(-2px); }
   .class-card:hover::before, .class-card.selected::before { transform: scaleX(1); }
   .class-card.selected { border-color: var(--accent); background: var(--bg-card2); }
-
   .class-period {
     font-family: var(--font-display);
     font-size: 10px;
@@ -229,7 +202,6 @@
     text-transform: uppercase;
     margin-bottom: 6px;
   }
-
   .class-name {
     font-family: var(--font-display);
     font-size: 17px;
@@ -237,14 +209,12 @@
     color: var(--text-primary);
     margin-bottom: 10px;
   }
-
   .class-status {
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--text-secondary);
     margin-bottom: 6px;
   }
-
   .class-branch {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -253,17 +223,14 @@
     display: inline-block;
     margin-bottom: 10px;
   }
-
   .branch-normal { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.25); }
   .branch-caution { background: rgba(255,170,0,0.1); color: var(--amber); border: 1px solid rgba(255,170,0,0.25); }
   .branch-critical { background: rgba(255,51,85,0.1); color: var(--red); border: 1px solid rgba(255,51,85,0.25); }
   .branch-new { background: rgba(0,200,255,0.08); color: var(--accent-dim); border: 1px solid rgba(0,200,255,0.2); }
-
   .mini-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
   .mini-stat-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .04em; }
   .mini-stat-bar { height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; margin-top: 2px; overflow: hidden; }
   .mini-stat-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
-
   /* PENDING REVEAL BADGE */
   .reveal-badge {
     background: rgba(255,170,0,0.15);
@@ -277,14 +244,12 @@
     display: none;
   }
   .reveal-badge.visible { display: block; }
-
   .home-actions {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 12px;
     margin-bottom: 16px;
   }
-
   .btn {
     font-family: var(--font-display);
     font-size: 11px;
@@ -297,27 +262,20 @@
     cursor: pointer;
     transition: all 0.2s;
   }
-
   .btn-primary { background: var(--accent); color: var(--bg-deep); box-shadow: 0 0 20px rgba(0,200,255,0.3); }
   .btn-primary:hover { background: #33d4ff; box-shadow: 0 0 30px rgba(0,200,255,0.5); transform: translateY(-1px); }
   .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
-
   .btn-secondary { background: transparent; color: var(--accent); border: 1px solid var(--border-bright); }
   .btn-secondary:hover { border-color: var(--accent); background: var(--accent-glow); }
   .btn-secondary:disabled { opacity: 0.35; cursor: not-allowed; }
-
   .btn-danger { background: transparent; color: var(--red); border: 1px solid rgba(255,51,85,0.35); font-size: 10px; }
   .btn-danger:hover { background: rgba(255,51,85,0.08); border-color: var(--red); }
-
   .btn-amber { background: transparent; color: var(--amber); border: 1px solid rgba(255,170,0,0.35); }
   .btn-amber:hover { background: rgba(255,170,0,0.08); border-color: var(--amber); }
-
   .btn-green { background: var(--green); color: var(--bg-deep); box-shadow: 0 0 16px rgba(0,255,136,0.3); }
   .btn-green:hover { box-shadow: 0 0 24px rgba(0,255,136,0.5); transform: translateY(-1px); }
   .btn-green:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
-
   .system-time { text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); margin-top: 8px; }
-
   /* ===================== MISSION SCREEN ===================== */
   .topbar {
     display: flex;
@@ -329,9 +287,7 @@
     flex-shrink: 0;
     gap: 12px;
   }
-
   .topbar-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-
   .topbar-title {
     font-family: var(--font-display);
     font-size: 13px;
@@ -339,7 +295,6 @@
     color: var(--accent);
     letter-spacing: .08em;
   }
-
   .topbar-tag {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -349,9 +304,7 @@
     border-radius: 3px;
     border: 1px solid var(--border);
   }
-
   .topbar-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-
   .topbar-btn {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -369,7 +322,6 @@
   .topbar-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
   .topbar-btn.save-btn { color: var(--green); border-color: rgba(0,255,136,0.3); }
   .topbar-btn.save-btn:hover { background: rgba(0,255,136,0.08); }
-
   /* TIMER WIDGET */
   .timer-widget {
     display: flex;
@@ -380,7 +332,6 @@
     border-radius: 4px;
     padding: 4px 10px;
   }
-
   .timer-readout {
     font-family: var(--font-display);
     font-size: 14px;
@@ -390,16 +341,13 @@
     text-align: center;
     cursor: pointer;
   }
-
   .timer-readout.idle { color: var(--text-dim); }
   .timer-readout.running { color: var(--green); }
   .timer-readout.low { color: var(--amber); animation: pulse-amber 1s infinite; }
   .timer-readout.urgent { color: var(--red); animation: pulse-red 0.5s infinite; }
   .timer-readout.done { color: var(--red); }
-
   @keyframes pulse-amber { 0%,100%{opacity:1}50%{opacity:.5} }
   @keyframes pulse-red { 0%,100%{opacity:1}50%{opacity:.4} }
-
   .timer-micro-btn {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -413,7 +361,6 @@
     white-space: nowrap;
   }
   .timer-micro-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
-
   /* MAIN LAYOUT */
   .mission-layout {
     display: grid;
@@ -422,7 +369,6 @@
     overflow: hidden;
     height: calc(100vh - 53px);
   }
-
   /* LEFT PANEL */
   .panel-stats {
     background: var(--bg-panel);
@@ -433,7 +379,6 @@
     flex-direction: column;
     gap: 14px;
   }
-
   .panel-label {
     font-family: var(--font-mono);
     font-size: 9px;
@@ -442,28 +387,22 @@
     color: var(--text-dim);
     margin-bottom: 8px;
   }
-
   .stat-item { margin-bottom: 12px; }
-
   .stat-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 4px;
   }
-
   .stat-name { font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
   .stat-value { font-family: var(--font-mono); font-size: 13px; font-weight: 500; }
-
   .stat-bar-track { height: 7px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
-
   .stat-bar-fill {
     height: 100%;
     border-radius: 4px;
     transition: width 1s cubic-bezier(0.4,0,0.2,1);
     position: relative;
   }
-
   .stat-bar-fill::after {
     content: '';
     position: absolute;
@@ -472,9 +411,7 @@
     background: rgba(255,255,255,0.35);
     border-radius: 2px;
   }
-
   .stat-sublabel { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-top: 3px; letter-spacing: .04em; }
-
   /* FROZEN OVERLAY on stats when pending reveal */
   .stats-frozen { position: relative; }
   .stats-frozen::after {
@@ -491,33 +428,26 @@
     letter-spacing: .1em;
     border-radius: 4px;
   }
-
   .stat-power .stat-name { color: #00c8ff; }
   .stat-power .stat-value { color: #00c8ff; }
   .stat-power .stat-bar-fill { background: linear-gradient(90deg,#005577,#00c8ff); box-shadow: 0 0 6px rgba(0,200,255,0.4); }
-
   .stat-hull .stat-name { color: #00ff88; }
   .stat-hull .stat-value { color: #00ff88; }
   .stat-hull .stat-bar-fill { background: linear-gradient(90deg,#005533,#00ff88); box-shadow: 0 0 6px rgba(0,255,136,0.4); }
-
   .stat-data .stat-name { color: #aa66ff; }
   .stat-data .stat-value { color: #aa66ff; }
   .stat-data .stat-bar-fill { background: linear-gradient(90deg,#440066,#aa66ff); box-shadow: 0 0 6px rgba(170,102,255,0.4); }
-
   .stat-morale .stat-name { color: #ffaa00; }
   .stat-morale .stat-value { color: #ffaa00; }
   .stat-morale .stat-bar-fill { background: linear-gradient(90deg,#553300,#ffaa00); box-shadow: 0 0 6px rgba(255,170,0,0.4); }
-
   .stat-warning .stat-bar-fill { animation: flicker 2s infinite; }
   .stat-critical .stat-bar-fill { animation: flicker 0.5s infinite; }
   @keyframes flicker { 0%,100%{opacity:1}50%{opacity:.55} }
-
   .failure-counter { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; }
   .failure-dots { display: flex; gap: 6px; margin-top: 6px; }
   .failure-dot { width: 13px; height: 13px; border-radius: 50%; border: 1px solid var(--border); background: transparent; transition: all 0.3s; }
   .failure-dot.active { background: var(--red); border-color: var(--red); box-shadow: 0 0 6px rgba(255,51,85,0.6); }
   .restriction-notice { font-family: var(--font-mono); font-size: 10px; color: var(--amber); margin-top: 6px; line-height: 1.5; }
-
   .log-entry { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 7px 9px; margin-bottom: 5px; }
   .log-date { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-bottom: 2px; }
   .log-choice { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 4px; }
@@ -526,12 +456,9 @@
   .impact-pos { background: rgba(0,255,136,0.12); color: var(--green); }
   .impact-neg { background: rgba(255,51,85,0.12); color: var(--red); }
   .impact-neu { background: rgba(255,255,255,0.05); color: var(--text-dim); }
-
   /* CENTER PANEL */
   .panel-story { display: flex; flex-direction: column; overflow: hidden; }
-
   .story-content { flex: 1; overflow-y: auto; padding: 22px 26px; }
-
   .act-label {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -540,7 +467,6 @@
     text-transform: uppercase;
     margin-bottom: 4px;
   }
-
   .act-title {
     font-family: var(--font-display);
     font-size: 20px;
@@ -550,9 +476,7 @@
     margin-bottom: 10px;
     line-height: 1.2;
   }
-
   .act-divider { height: 1px; background: linear-gradient(90deg,var(--accent-dim),transparent); margin-bottom: 20px; }
-
   /* PHASE INDICATOR */
   .phase-bar {
     display: flex;
@@ -560,7 +484,6 @@
     margin-bottom: 20px;
     flex-wrap: wrap;
   }
-
   .phase-step {
     font-family: var(--font-mono);
     font-size: 9px;
@@ -575,11 +498,9 @@
     transition: all 0.2s;
     white-space: nowrap;
   }
-
   .phase-step.active { color: var(--accent); border-color: var(--accent-dim); background: var(--accent-glow); }
   .phase-step.done { color: var(--green-dim); border-color: rgba(0,255,136,0.2); background: rgba(0,255,136,0.05); }
   .phase-step:hover:not(.active):not(.done) { border-color: var(--border-bright); color: var(--text-secondary); }
-
   /* GAIA BOX */
   .gaia-box {
     background: var(--bg-card);
@@ -589,9 +510,7 @@
     padding: 14px 16px;
     margin-bottom: 18px;
   }
-
   .gaia-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-
   .gaia-dot {
     width: 7px; height: 7px;
     border-radius: 50%;
@@ -600,20 +519,14 @@
     animation: gaia-pulse 2s infinite;
     flex-shrink: 0;
   }
-
   @keyframes gaia-pulse { 0%,100%{opacity:1}50%{opacity:.35} }
-
   .gaia-label { font-family: var(--font-mono); font-size: 10px; color: var(--gaia-green); letter-spacing: .1em; text-transform: uppercase; }
-
   .gaia-text { font-family: var(--font-body); font-size: 20px; color: var(--text-primary); line-height: 1.7; }
   .gaia-text em { color: var(--gaia-green); font-style: italic; }
-
   .scenario-text { font-family: var(--font-body); font-size: 20px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 20px; }
-
   /* PHASE CONTENT PANELS */
   .phase-panel { display: none; }
   .phase-panel.active { display: block; }
-
   /* TIMER PHASE PANEL */
   .timer-phase-box {
     background: var(--bg-card);
@@ -623,7 +536,6 @@
     margin-bottom: 18px;
     text-align: center;
   }
-
   .timer-phase-title {
     font-family: var(--font-display);
     font-size: 13px;
@@ -633,7 +545,6 @@
     color: var(--accent);
     margin-bottom: 6px;
   }
-
   .timer-phase-desc {
     font-family: var(--font-body);
     font-size: 15px;
@@ -641,7 +552,6 @@
     line-height: 1.6;
     margin-bottom: 16px;
   }
-
   .big-timer {
     font-family: var(--font-display);
     font-size: 52px;
@@ -650,17 +560,13 @@
     margin-bottom: 14px;
     transition: color 0.3s;
   }
-
   .big-timer.idle { color: var(--text-dim); }
   .big-timer.running { color: var(--green); text-shadow: 0 0 30px rgba(0,255,136,0.4); }
   .big-timer.low { color: var(--amber); text-shadow: 0 0 30px rgba(255,170,0,0.4); animation: pulse-amber 1s infinite; }
   .big-timer.urgent { color: var(--red); text-shadow: 0 0 30px rgba(255,51,85,0.4); animation: pulse-red 0.5s infinite; }
   .big-timer.done { color: var(--red); }
-
   .timer-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-
   .timer-set-row { display: flex; gap: 6px; align-items: center; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
-
   .timer-input-inline {
     background: var(--bg-card2);
     border: 1px solid var(--border-bright);
@@ -672,7 +578,6 @@
     width: 70px;
     text-align: center;
   }
-
   .timer-add-btn {
     font-family: var(--font-mono);
     font-size: 11px;
@@ -685,7 +590,6 @@
     transition: all 0.15s;
   }
   .timer-add-btn:hover { background: rgba(0,200,255,0.15); border-color: var(--accent); }
-
   .timer-start-btn {
     font-family: var(--font-display);
     font-size: 11px;
@@ -701,7 +605,6 @@
     transition: all 0.2s;
   }
   .timer-start-btn:hover { box-shadow: 0 0 24px rgba(0,255,136,0.5); transform: translateY(-1px); }
-
   .timer-stop-btn {
     font-family: var(--font-display);
     font-size: 11px;
@@ -716,7 +619,6 @@
     transition: all 0.2s;
   }
   .timer-stop-btn:hover { background: rgba(255,51,85,0.08); }
-
   .timer-done-msg {
     font-family: var(--font-mono);
     font-size: 12px;
@@ -726,7 +628,6 @@
     line-height: 1.6;
     display: none;
   }
-
   /* CHOICES AREA */
   .choices-area {
     background: var(--bg-panel);
@@ -734,9 +635,7 @@
     padding: 16px 22px;
     flex-shrink: 0;
   }
-
   .choices-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 10px; }
-
   .choices-restricted {
     font-family: var(--font-mono);
     font-size: 11px;
@@ -747,9 +646,7 @@
     padding: 6px 10px;
     margin-bottom: 8px;
   }
-
   .choice-grid { display: grid; gap: 8px; }
-
   .choice-btn {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -763,17 +660,13 @@
     gap: 10px;
     align-items: start;
   }
-
   .choice-btn:hover { border-color: var(--accent-dim); background: var(--bg-card2); transform: translateX(2px); }
   .choice-btn.selected { border-color: var(--accent); background: rgba(0,200,255,0.07); }
   .choice-btn.eliminated { opacity: 0.3; cursor: not-allowed; }
-
   .choice-letter { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--accent); padding-top: 1px; }
   .choice-text { font-family: var(--font-body); font-size: 18px; font-weight: 500; color: var(--text-primary); line-height: 1.4; }
   .choice-subtext { font-family: var(--font-mono); font-size: 14px; color: var(--text-secondary); margin-top: 3px; line-height: 1.4; }
-
   .commit-row { margin-top: 10px; display: flex; gap: 10px; align-items: center; }
-
   .btn-commit {
     font-family: var(--font-display);
     font-size: 11px;
@@ -790,9 +683,7 @@
   }
   .btn-commit:hover { box-shadow: 0 0 24px rgba(0,255,136,0.5); transform: translateY(-1px); }
   .btn-commit:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
-
   .commit-note { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); line-height: 1.5; }
-
   /* RIGHT PANEL */
   .panel-right {
     background: var(--bg-panel);
@@ -803,10 +694,8 @@
     flex-direction: column;
     gap: 14px;
   }
-
   .gaia-alert { background: var(--bg-card); border: 1px solid rgba(0,255,136,0.2); border-left: 3px solid var(--gaia-green); border-radius: 5px; padding: 10px 12px; margin-bottom: 6px; }
   .gaia-alert-text { font-family: var(--font-mono); font-size: 11px; color: var(--gaia-green); line-height: 1.6; font-style: italic; }
-
   .nav-btn {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -826,13 +715,10 @@
   .nav-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
   .nav-btn.danger { color: var(--red); border-color: rgba(255,51,85,0.25); }
   .nav-btn.danger:hover { background: rgba(255,51,85,0.07); border-color: var(--red); }
-
   .branch-display { background: var(--bg-card); border: 1px solid var(--border); border-radius: 5px; padding: 9px 11px; }
   .branch-path { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); line-height: 1.6; }
   .branch-path span { color: var(--accent); }
-
   .divider-line { height: 1px; background: var(--border); }
-
   /* DAY TYPE BANNER */
   .day-type-banner {
     display: flex;
@@ -855,14 +741,12 @@
   .badge-deepen  { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.25); }
   .badge-graph   { background: rgba(170,102,255,0.12); color: var(--purple); border: 1px solid rgba(170,102,255,0.3); }
   .badge-climax  { background: rgba(255,170,0,0.12); color: var(--amber); border: 1px solid rgba(255,170,0,0.3); }
-
   .day-type-desc {
     font-family: var(--font-mono);
     font-size: 10px;
     color: var(--text-dim);
     letter-spacing: .05em;
   }
-
   /* PRESENTATION MODE */
   .pres-btn {
     font-family: var(--font-mono);
@@ -878,7 +762,6 @@
     text-transform: uppercase;
   }
   .pres-btn:hover { background: rgba(255,170,0,0.15); border-color: var(--amber); }
-
   body.presentation-mode .panel-stats { display: none !important; }
   body.presentation-mode .panel-right { display: none !important; }
   body.presentation-mode .mission-layout { grid-template-columns: 1fr !important; }
@@ -892,7 +775,6 @@
   body.presentation-mode .day-type-banner { padding: 8px 40px !important; }
   body.presentation-mode #pres-stats-bar { display: flex !important; }
   body:not(.presentation-mode) #pres-stats-bar { display: none !important; }
-
   /* PRESENTATION STATS BAR */
   #pres-stats-bar {
     display: none;
@@ -903,7 +785,6 @@
     padding: 8px 40px;
     flex-shrink: 0;
   }
-
   .pres-stat {
     display: flex;
     align-items: center;
@@ -913,14 +794,11 @@
     border-right: 1px solid var(--border);
   }
   .pres-stat:last-child { border-right: none; }
-
   .pres-stat-icon {
     font-size: 16px;
     flex-shrink: 0;
   }
-
   .pres-stat-body { flex: 1; }
-
   .pres-stat-label {
     font-family: var(--font-display);
     font-size: 9px;
@@ -929,20 +807,17 @@
     text-transform: uppercase;
     margin-bottom: 3px;
   }
-
   .pres-stat-bar-track {
     height: 8px;
     background: rgba(255,255,255,0.08);
     border-radius: 4px;
     overflow: hidden;
   }
-
   .pres-stat-bar-fill {
     height: 100%;
     border-radius: 4px;
     transition: width 1s cubic-bezier(0.4,0,0.2,1);
   }
-
   .pres-stat-value {
     font-family: var(--font-display);
     font-size: 14px;
@@ -951,41 +826,32 @@
     min-width: 42px;
     text-align: right;
   }
-
   .pres-power .pres-stat-label { color: #00c8ff; }
   .pres-power .pres-stat-value { color: #00c8ff; }
   .pres-power .pres-stat-bar-fill { background: linear-gradient(90deg,#005577,#00c8ff); box-shadow: 0 0 6px rgba(0,200,255,0.5); }
-
   .pres-hull .pres-stat-label { color: #00ff88; }
   .pres-hull .pres-stat-value { color: #00ff88; }
   .pres-hull .pres-stat-bar-fill { background: linear-gradient(90deg,#005533,#00ff88); box-shadow: 0 0 6px rgba(0,255,136,0.5); }
-
   .pres-data .pres-stat-label { color: #aa66ff; }
   .pres-data .pres-stat-value { color: #aa66ff; }
   .pres-data .pres-stat-bar-fill { background: linear-gradient(90deg,#440066,#aa66ff); box-shadow: 0 0 6px rgba(170,102,255,0.5); }
-
   .pres-morale .pres-stat-label { color: #ffaa00; }
   .pres-morale .pres-stat-value { color: #ffaa00; }
   .pres-morale .pres-stat-bar-fill { background: linear-gradient(90deg,#553300,#ffaa00); box-shadow: 0 0 6px rgba(255,170,0,0.5); }
-
   /* ===================== PROCESSING SCREEN ===================== */
   #screen-processing {
     align-items: center;
     justify-content: center;
     padding: 2rem;
   }
-
   .processing-inner { width: 100%; max-width: 600px; text-align: center; }
-
   .processing-icon {
     font-size: 48px;
     margin-bottom: 20px;
     animation: spin-slow 4s linear infinite;
     display: inline-block;
   }
-
   @keyframes spin-slow { from{transform:rotate(0deg)}to{transform:rotate(360deg)} }
-
   .processing-title {
     font-family: var(--font-display);
     font-size: 26px;
@@ -995,7 +861,6 @@
     margin-bottom: 8px;
     text-shadow: 0 0 30px rgba(0,200,255,0.4);
   }
-
   .processing-subtitle {
     font-family: var(--font-mono);
     font-size: 12px;
@@ -1003,7 +868,6 @@
     letter-spacing: .1em;
     margin-bottom: 32px;
   }
-
   .processing-gaia {
     background: var(--bg-card);
     border: 1px solid rgba(0,255,136,0.2);
@@ -1013,7 +877,6 @@
     margin-bottom: 28px;
     text-align: left;
   }
-
   .processing-gaia-text {
     font-family: var(--font-mono);
     font-size: 13px;
@@ -1021,7 +884,6 @@
     line-height: 1.75;
     font-style: italic;
   }
-
   .processing-choice-recap {
     background: var(--bg-card);
     border: 1px solid var(--border-bright);
@@ -1030,7 +892,6 @@
     margin-bottom: 24px;
     text-align: left;
   }
-
   .processing-choice-label {
     font-family: var(--font-mono);
     font-size: 9px;
@@ -1039,14 +900,12 @@
     text-transform: uppercase;
     margin-bottom: 6px;
   }
-
   .processing-choice-text {
     font-family: var(--font-body);
     font-size: 16px;
     color: var(--text-primary);
     line-height: 1.5;
   }
-
   .processing-stats-row {
     display: flex;
     gap: 8px;
@@ -1054,7 +913,6 @@
     margin-bottom: 28px;
     flex-wrap: wrap;
   }
-
   .processing-stat-chip {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -1065,18 +923,14 @@
     color: var(--text-dim);
     letter-spacing: .06em;
   }
-
   .processing-actions { display: flex; gap: 12px; justify-content: center; }
-
   /* ===================== REVEAL SCREEN ===================== */
   #screen-reveal {
     align-items: center;
     justify-content: center;
     padding: 2rem;
   }
-
   .reveal-inner { width: 100%; max-width: 700px; }
-
   .reveal-title {
     font-family: var(--font-display);
     font-size: 28px;
@@ -1087,9 +941,7 @@
     text-shadow: 0 0 30px rgba(255,170,0,0.4);
     text-align: center;
   }
-
   .reveal-subtitle { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); letter-spacing: .1em; margin-bottom: 28px; text-align: center; }
-
   .reveal-recap {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -1097,10 +949,8 @@
     padding: 14px 18px;
     margin-bottom: 20px;
   }
-
   .reveal-recap-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
   .reveal-recap-text { font-family: var(--font-body); font-size: 15px; color: var(--text-secondary); line-height: 1.5; }
-
   .reveal-gaia-box {
     background: var(--bg-card);
     border: 1px solid rgba(0,255,136,0.25);
@@ -1109,11 +959,9 @@
     padding: 18px 20px;
     margin-bottom: 24px;
   }
-
   .reveal-gaia-text { font-family: var(--font-body); font-size: 17px; color: var(--text-primary); line-height: 1.75; }
   .reveal-gaia-text em { color: var(--gaia-green); font-style: italic; }
   .reveal-gaia-text strong { color: var(--amber); font-weight: 600; }
-
   /* STAT CHANGE DISPLAY */
   .stat-changes {
     display: grid;
@@ -1121,7 +969,6 @@
     gap: 10px;
     margin-bottom: 24px;
   }
-
   .stat-change-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -1131,9 +978,7 @@
     align-items: center;
     gap: 10px;
   }
-
   .stat-change-icon { font-size: 18px; flex-shrink: 0; }
-
   .stat-change-body { flex: 1; }
   .stat-change-name { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
   .stat-change-bar { height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; margin-bottom: 3px; }
@@ -1142,16 +987,13 @@
   .delta-pos { color: var(--green); }
   .delta-neg { color: var(--red); }
   .delta-neu { color: var(--text-dim); }
-
   /* ===================== FORENSICS SCREEN ===================== */
   #screen-forensics {
     align-items: center;
     justify-content: flex-start;
     padding: 2rem;
   }
-
   .forensics-inner { width: 100%; max-width: 800px; }
-
   .forensics-title {
     font-family: var(--font-display);
     font-size: 26px;
@@ -1162,17 +1004,14 @@
     margin-bottom: 6px;
     text-align: center;
   }
-
   .timeline { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 16px; margin-bottom: 1.5rem; }
   .timeline-title { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
-
   .timeline-entry { display: grid; grid-template-columns: 22px 1fr; gap: 10px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
   .timeline-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
   .timeline-num { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); padding-top: 2px; }
   .timeline-date { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-bottom: 2px; }
   .timeline-choice { font-family: var(--font-body); font-size: 14px; color: var(--text-primary); margin-bottom: 4px; }
   .timeline-impact { display: flex; gap: 4px; flex-wrap: wrap; }
-
   .cer-framework { display: grid; gap: 10px; margin-bottom: 1.5rem; }
   .cer-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
   .cer-section-label { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
@@ -1180,7 +1019,6 @@
   .claim-label { color: var(--red); }
   .evidence-label { color: var(--amber); }
   .reasoning-label { color: var(--purple); }
-
   /* ===================== MODALS ===================== */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.82); z-index: 100; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
   .modal-overlay.visible { display: flex; }
@@ -1189,13 +1027,11 @@
   .modal-body { font-family: var(--font-body); font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
   .modal-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
   .extinction-modal .modal-title { color: var(--red); }
-
   /* TOAST */
   .toast { position: fixed; bottom: 20px; right: 20px; background: var(--bg-card); border: 1px solid var(--border-bright); border-radius: 6px; padding: 10px 16px; font-family: var(--font-mono); font-size: 11px; color: var(--accent); z-index: 200; transform: translateY(60px); opacity: 0; transition: all 0.3s; }
   .toast.visible { transform: translateY(0); opacity: 1; }
   .toast.success { border-color: rgba(0,255,136,0.4); color: var(--green); }
   .toast.error { border-color: rgba(255,51,85,0.4); color: var(--red); }
-
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 2px; }
@@ -1203,7 +1039,6 @@
 </head>
 <body>
 <div class="app">
-
 <!-- ===================== SETUP ===================== -->
 <div id="screen-setup" class="screen active">
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
@@ -1211,12 +1046,10 @@
       <div class="mission-label" style="margin-bottom:8px">Mission Control — Initial structure</div>
       <div class="setup-title">THE PROMETHEUS DRIFT</div>
       <div class="setup-sub" style="margin-bottom:2rem">First-time setup. This only runs once — you can update settings anytime from the dashboard.</div>
-
       <div class="form-group">
         <label class="form-label">Your Name</label>
         <input type="text" class="form-input" id="setup-teacher" placeholder="e.g. Ms. Rodriguez" />
       </div>
-
       <div class="form-group">
         <label class="form-label">Name Your Three Classes</label>
         <div class="period-setup-grid">
@@ -1234,14 +1067,12 @@
           </div>
         </div>
       </div>
-
       <button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="completeSetup()">
         Initialize Mission Control →
       </button>
     </div>
   </div>
 </div>
-
 <!-- ===================== HOME ===================== -->
 <div id="screen-home" class="screen">
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
@@ -1251,9 +1082,7 @@
         <div class="mission-title">THE PROMETHEUS DRIFT</div>
         <div class="mission-subtitle">Physical Science Campaign · Teacher Dashboard</div>
       </div>
-
       <div class="class-grid" id="class-grid"></div>
-
       <div class="home-actions">
         <button class="btn btn-green" id="btn-reveal" onclick="launchReveal()" disabled>
           ◈ Open Today's Reveal
@@ -1268,12 +1097,10 @@
         <button class="btn btn-danger" onclick="confirmReset()">↺ Reset to Checkpoint</button>
         <button class="btn btn-danger" onclick="confirmFullReset()">✕ Full Reset Class</button>
       </div>
-
       <div class="system-time" id="system-time"></div>
     </div>
   </div>
 </div>
-
 <!-- ===================== REVEAL SCREEN ===================== -->
 <div id="screen-reveal" class="screen">
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
@@ -1281,12 +1108,10 @@
       <div class="mission-label" style="text-align:center;margin-bottom:8px" id="reveal-class-label">—</div>
       <div class="reveal-title">RESULTS ARE IN.</div>
       <div class="reveal-subtitle">Your decision has been processed. Here is what happened.</div>
-
       <div class="reveal-recap">
         <div class="reveal-recap-label">Last Class — The Crew Decided</div>
         <div class="reveal-recap-text" id="reveal-choice-recap">—</div>
       </div>
-
       <div class="reveal-gaia-box">
         <div class="gaia-header" style="margin-bottom:10px">
           <div class="gaia-dot"></div>
@@ -1294,9 +1119,7 @@
         </div>
         <div class="reveal-gaia-text" id="reveal-gaia-text">Loading consequence data...</div>
       </div>
-
       <div class="stat-changes" id="reveal-stat-changes"></div>
-
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
         <button class="btn btn-primary" onclick="proceedFromReveal()">▶ Continue to Today's Mission</button>
         <button class="btn btn-secondary" onclick="goHome()">⌂ Back to Dashboard</button>
@@ -1304,7 +1127,6 @@
     </div>
   </div>
 </div>
-
 <!-- ===================== MISSION SCREEN ===================== -->
 <div id="screen-mission" class="screen">
   <!-- TOPBAR -->
@@ -1326,14 +1148,12 @@
       <button class="topbar-btn" onclick="goHome()">⌂ Home</button>
     </div>
   </div>
-
   <!-- DAY TYPE BANNER -->
   <div class="day-type-banner" id="day-type-banner">
     <div class="day-type-badge badge-choice" id="day-type-badge">⚡ Choice Day</div>
     <div class="day-type-desc" id="day-type-desc">Full four-phase flow · Exit Ticket · Discussion · Official Vote</div>
     <button class="pres-btn" onclick="togglePresMode()" id="pres-btn">⊡ Present</button>
   </div>
-
   <!-- PRESENTATION MODE STATS BAR — visible to class when projecting -->
   <div id="pres-stats-bar">
     <div class="pres-stat pres-power">
@@ -1369,7 +1189,6 @@
       <div class="pres-stat-value" id="pres-morale-val">100%</div>
     </div>
   </div>
-
   <div class="mission-layout">
     <!-- LEFT: STATS -->
     <div class="panel-stats">
@@ -1410,9 +1229,7 @@
           </div>
         </div>
       </div>
-
       <div class="divider-line"></div>
-
       <div class="failure-counter">
         <div class="panel-label">Mission Failures</div>
         <div class="failure-dots">
@@ -1422,18 +1239,14 @@
         </div>
         <div class="restriction-notice" id="restriction-notice" style="display:none"></div>
       </div>
-
       <div class="divider-line"></div>
-
       <div>
         <div class="panel-label">Mission Path</div>
         <div class="branch-display">
           <div class="branch-path" id="branch-path">Sector 1 · <span>Branch A</span> · Day 1</div>
         </div>
       </div>
-
       <div class="divider-line"></div>
-
       <div>
         <div class="panel-label">Recent Decisions</div>
         <div id="decision-log-entries">
@@ -1441,7 +1254,6 @@
         </div>
       </div>
     </div>
-
     <!-- CENTER: STORY -->
     <div class="panel-story">
       <div class="story-content">
@@ -1452,12 +1264,10 @@
           <div class="phase-step" data-phase="discuss" onclick="setPhase('discuss')">3 · Discussion</div>
           <div class="phase-step" data-phase="vote" onclick="setPhase('vote')">4 · Final Vote</div>
         </div>
-
         <!-- ACT HEADER -->
         <div class="act-label" id="content-act-label">Sector 1 · Atoms & Molecules</div>
         <div class="act-title" id="content-act-title">Loading...</div>
         <div class="act-divider"></div>
-
         <!-- PHASE 1: STORY / SCENARIO -->
         <div class="phase-panel active" id="phase-story">
           <div class="gaia-box">
@@ -1470,7 +1280,6 @@
           <div class="scenario-text" id="content-scenario"></div>
           <div id="content-extra"></div>
         </div>
-
         <!-- PHASE 2: EXIT TICKET -->
         <div class="phase-panel" id="phase-exit">
           <div id="exit-prompt-display" style="background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.25);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px;display:none">
@@ -1500,13 +1309,11 @@
               "Time. Please submit your forms now. We will review the evidence as a crew."
             </div>
           </div>
-
           <div class="gaia-box" id="exit-gaia-box">
             <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — To The Crew</div></div>
             <div class="gaia-text" id="exit-gaia-prompt">Before we decide as a crew, each of you must commit your own thinking. What do you believe? What evidence supports it? What is your reasoning? Science begins with individual thought before collective decision.</div>
           </div>
         </div>
-
         <!-- PHASE 3: DISCUSSION -->
         <div class="phase-panel" id="phase-discuss">
           <div id="discuss-prompt-display" style="background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.25);border-left:3px solid var(--purple);border-radius:6px;padding:14px 16px;margin-bottom:14px;display:none">
@@ -1533,7 +1340,6 @@
               "The evidence has been heard. Scientists consider new information before deciding. Are you ready for the final vote?"
             </div>
           </div>
-
           <div class="gaia-box" id="discuss-gaia-box">
             <div class="gaia-header"><div class="gaia-dot"></div><div class="gaia-label">GAIA — Discussion Guide</div></div>
             <div class="gaia-text">
@@ -1541,7 +1347,6 @@
             </div>
           </div>
         </div>
-
         <!-- PHASE 4: FINAL VOTE -->
         <div class="phase-panel" id="phase-vote">
           <div class="gaia-box">
@@ -1551,9 +1356,7 @@
             </div>
           </div>
         </div>
-
       </div>
-
       <!-- CHOICES (always visible at bottom) -->
       <div class="choices-area" id="choices-area">
         <div class="choices-label" id="choices-label">Crew Decision — Phase 4: Official Vote</div>
@@ -1567,7 +1370,6 @@
         </div>
       </div>
     </div>
-
     <!-- RIGHT PANEL -->
     <div class="panel-right">
       <div>
@@ -1576,12 +1378,9 @@
           <div class="gaia-alert"><div class="gaia-alert-text">"All systems monitored. Awaiting crew input."</div></div>
         </div>
       </div>
-
       <!-- TEACHER NOTES PANEL -->
       <div id="teacher-note-panel" style="display:none"></div>
-
       <div class="divider-line"></div>
-
       <div>
         <div class="panel-label">Daily Flow</div>
         <button class="nav-btn" onclick="setPhase('story')">1 · Scenario / Lesson</button>
@@ -1589,9 +1388,7 @@
         <button class="nav-btn" onclick="setPhase('discuss')">3 · Discussion Timer</button>
         <button class="nav-btn" onclick="setPhase('vote')">4 · Final Vote</button>
       </div>
-
       <div class="divider-line"></div>
-
       <div>
         <div class="panel-label">Mission Control</div>
         <button class="nav-btn" onclick="saveCurrentClass()">💾 Save Progress</button>
@@ -1599,9 +1396,7 @@
         <button class="nav-btn danger" onclick="triggerExtinction()">☠ Branch Extinction</button>
         <button class="nav-btn" onclick="goHome()">⌂ Dashboard</button>
       </div>
-
       <div class="divider-line"></div>
-
       <div>
         <div class="panel-label">Story Navigation</div>
         <button class="nav-btn" onclick="advanceToNextDay()">▶ Next Day</button>
@@ -1619,7 +1414,6 @@
     </div>
   </div>
 </div>
-
 <!-- ===================== PROCESSING SCREEN ===================== -->
 <div id="screen-processing" class="screen">
   <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem">
@@ -1627,7 +1421,6 @@
       <div class="processing-icon">⚙</div>
       <div class="processing-title">DECISION LOGGED</div>
       <div class="processing-subtitle">The Prometheus has registered the crew's command.</div>
-
       <div class="processing-gaia">
         <div class="gaia-header" style="margin-bottom:10px">
           <div class="gaia-dot"></div>
@@ -1637,24 +1430,20 @@
           "Selection received. I am... processing the implications. The ship's systems have registered your decision and are responding accordingly. Whether that response is favorable — well. You'll find out next class."
         </div>
       </div>
-
       <div class="processing-choice-recap">
         <div class="processing-choice-label">The Crew's Decision</div>
         <div class="processing-choice-text" id="processing-choice-text">—</div>
       </div>
-
       <div class="processing-stats-row">
         <div class="processing-stat-chip">⚡ Power — classified</div>
         <div class="processing-stat-chip">🛡 Hull — classified</div>
         <div class="processing-stat-chip">📡 Data — classified</div>
         <div class="processing-stat-chip">👥 Morale — classified</div>
       </div>
-
       <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);text-align:center;margin-bottom:24px;line-height:1.6">
         Stat changes are pending until next class reveal.<br>
         Save now and find out what happened tomorrow.
       </div>
-
       <div class="processing-actions">
         <button class="btn btn-green" onclick="saveAndGoHome()">💾 Save & Return to Dashboard</button>
         <button class="btn btn-secondary" onclick="continueMission()">▶ Stay on Mission Screen</button>
@@ -1662,7 +1451,6 @@
     </div>
   </div>
 </div>
-
 <!-- ===================== FORENSICS ===================== -->
 <div id="screen-forensics" class="screen">
   <div style="display:flex;align-items:center;justify-content:flex-start;min-height:100vh;padding:2rem;flex-direction:column">
@@ -1671,16 +1459,13 @@
         <div class="mission-label" style="margin-bottom:8px">Post-Mortem Analysis</div>
         <div class="forensics-title">MISSION DEBRIEF</div>
       </div>
-
       <div class="gaia-alert" style="margin-bottom:1.5rem">
         <div class="gaia-alert-text" id="forensics-gaia-text">"The mission has ended. Before we proceed, we owe it to the Prometheus crew to understand what happened — and why."</div>
       </div>
-
       <div class="timeline">
         <div class="timeline-title">Last Decisions — Most Recent First (up to 7)</div>
         <div id="timeline-entries"></div>
       </div>
-
       <div class="cer-framework">
         <div class="cer-section">
           <div class="cer-section-label claim-label">CLAIM</div>
@@ -1695,7 +1480,6 @@
           <div class="cer-section-prompt">Connect the science to the consequences. Why did those choices, given what we know about atoms / energy / matter, make this outcome inevitable?</div>
         </div>
       </div>
-
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <button class="btn btn-primary" onclick="goHome()">Return to Dashboard</button>
         <button class="btn btn-secondary" onclick="resumeMission()">Resume Mission</button>
@@ -1703,9 +1487,7 @@
     </div>
   </div>
 </div>
-
 </div><!-- end .app -->
-
 <!-- MODALS -->
 <div class="modal-overlay" id="modal-commit">
   <div class="modal">
@@ -1717,7 +1499,6 @@
     </div>
   </div>
 </div>
-
 <div class="modal-overlay" id="modal-extinction">
   <div class="modal extinction-modal">
     <div class="modal-title">☠ BRANCH EXTINCTION</div>
@@ -1728,7 +1509,6 @@
     </div>
   </div>
 </div>
-
 <div class="modal-overlay" id="modal-reset">
   <div class="modal">
     <div class="modal-title">Reset to Checkpoint</div>
@@ -1739,7 +1519,6 @@
     </div>
   </div>
 </div>
-
 <div class="modal-overlay" id="modal-full-reset">
   <div class="modal">
     <div class="modal-title">Full Class Reset</div>
@@ -1750,15 +1529,12 @@
     </div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
-
 <script>
 // ============================================================
 // STATE
 // ============================================================
 const STORAGE_KEY = 'prometheus_drift_v5';
-
 let state = {
   configured: false,
   teacher: '',
@@ -1787,7 +1563,6 @@ let state = {
   timerRunning: false,
   activeTimerPhase: null // 'exit' | 'discuss' | null
 };
-
 // ============================================================
 // CONTENT — Full Act 1: Atoms & Molecules (10 days)
 // Standard: 6.P1U1.3 · Vocab: matter, substance, physical property,
@@ -1799,7 +1574,6 @@ const CONTENT = {
     {
       id:1, label:'Sector 1 · Atoms & Molecules', standard:'6.P1U1.3',
       days:[
-
         // DAY 1 — Cold Open · Choice Day
         {
           day:1, type:'choice', isReveal:false,
@@ -1807,6 +1581,7 @@ const CONTENT = {
           actTitle:'First Contact',
           gaia:'Oh. Oh, you\'re actually here. I\'m sorry — I\'ve been running diagnostics for six months and I may have forgotten what it feels like to talk to someone who talks back. I\'m GAIA. Ship\'s AI. And I am <em>very</em> glad you came. The Prometheus is... not well. But we can fix that. I think. Probably.',
           scenario:'The Argo locks onto the Prometheus and the docking seal holds. You\'re in. The first thing you notice is the smell — or rather the lack of it. Everything is too clean, too still. Emergency lighting casts long shadows across the corridor walls. And the walls themselves look wrong. Some sections gleam like new. Others are dull, almost chalky. A few look soft, like the material has changed somehow.\n\nBefore the crew goes anywhere, GAIA pulls up the ship\'s material manifest. The Prometheus is built from dozens of different substances — metals, polymers, composites. Each one chosen for specific physical properties. Something has changed those properties in certain sections. The question is: which sections are safe to move through, and which aren\'t?',
+          firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">Before the crew makes any decision, the crew needs information. Open your textbook to Topic 1, Lesson 1 — Describing and Classifying Matter. Read with the scenario and the choices in mind. Your exit ticket will ask you to use evidence from that reading to defend your claim. Science does not begin with instinct. It begins with information.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 1, Lesson 1 — Describing and Classifying Matter</div></div>',
           exitTicketPrompt:'Based on what you know about matter and physical properties, which choice gives the crew the best chance of moving safely? Use evidence from today\'s reading to support your claim. Explain how that evidence connects to your choice.',
           discussionPrompt:'Scientists: share your claims. Listen for evidence you hadn\'t considered. Did anyone find something in the reading that changes your thinking?',
           choices:[
@@ -1824,7 +1599,6 @@ const CONTENT = {
               consequence:'Cross-referencing the manifest is good science — using existing data before gathering new data is efficient. Most sections check out. But three areas listed as stable have clearly changed. GAIA notes: "A substance can change its physical properties without becoming a different substance. That distinction is going to matter a lot on this ship."' }
           ]
         },
-
         // DAY 2 — Deepen · Reading/Lesson Day
         {
           day:2, type:'deepen', isReveal:true,
@@ -1838,7 +1612,6 @@ const CONTENT = {
           noChoice:true,
           bridgeToNext:'Tomorrow GAIA will have a data packet ready — sensor readings from the ship\'s most damaged section. The crew will need to read that data carefully.'
         },
-
         // DAY 3 — Graph Day · Bar Graph Introduction
         {
           day:3, type:'graph', isReveal:false,
@@ -1869,7 +1642,6 @@ const CONTENT = {
           shortDayNote:'Short day version: Show the graph, ask questions 1 and 2 only. Save 3 and 4 for next class warm-up.',
           noChoice:true
         },
-
         // DAY 4 — Choice Day · Molecules & adds up
         {
           day:4, type:'choice', isReveal:false,
@@ -1877,6 +1649,7 @@ const CONTENT = {
           actTitle:'More Than One Kind of Wrong',
           gaia:'I\'ve been analyzing the atomic composition data. And I\'ve found something that is either very interesting or very bad. Possibly both. The damaged sections don\'t all show the same kind of change. Some sections have lost atoms — the elements are still there but in lower concentrations. Other sections show atoms that have bonded together differently — the elements have combined into new <em>molecules</em>, new <em>adds up</em>, that weren\'t there before. These are two completely different problems. And we may not have resources to fix both.',
           scenario:'On the left: sections where individual elements are still present but scattered — as if something pulled the molecules apart. On the right: sections where atoms have bonded into new adds up — different substances with different properties than what the ship was built from.\n\nA compound is not just a mixture of elements. It\'s a new substance entirely, with its own physical and chemical properties. The water in this ship\'s coolant system is not hydrogen and oxygen — it\'s H₂O, a compound with completely different properties than either element alone. Something has been changing adds up back into elements, and elements into new adds up. The crew must decide where to focus.',
+          firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">The crew is looking at two very different kinds of damage — and the distinction between them matters more than it might seem right now. Return to Topic 1, Lesson 1 — Describing and Classifying Matter. This time, focus on what separates a molecule from a compound. Your exit ticket will ask you to use that distinction to defend your claim. Do not guess. Read first.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 1, Lesson 1 — Describing and Classifying Matter</div></div>',
           exitTicketPrompt:'What is the difference between an element, a molecule, and a compound? Use the ship scenario as your example. Then make your claim about which section the crew should investigate first. Explain why that difference makes your chosen section the priority.',
           discussionPrompt:'One scientist thinks we should investigate where adds up broke apart. Another thinks we should investigate where new adds up formed. Which argument has stronger evidence? What does the reading say about how adds up form and break apart?',
           choices:[
@@ -1890,7 +1663,6 @@ const CONTENT = {
               consequence:'The new compounds are extraordinary — substances not in any of the ship\'s material databases, formed spontaneously from the ship\'s original elements under conditions that shouldn\'t exist in deep space. The data is remarkable but getting it required moving through a structurally weakened area. Hull takes minor stress. GAIA: "These compounds have chemical properties completely different from their component elements. Whatever process created them was powerful enough to form new chemical bonds. We need to understand that process."' }
           ]
         },
-
         // DAY 5 — Deepen · Reading/Lesson Day
         {
           day:5, type:'deepen', isReveal:true,
@@ -1904,7 +1676,6 @@ const CONTENT = {
           noChoice:true,
           bridgeToNext:'Next class: GAIA has new data. The crew will classify properties and decide what they mean for the investigation.'
         },
-
         // DAY 6 — Choice Day · Physical vs Chemical Properties
         {
           day:6, type:'choice', isReveal:false,
@@ -1912,6 +1683,7 @@ const CONTENT = {
           actTitle:'Reading the Evidence',
           gaia:'I\'ve collected preliminary observations from the lab samples. But I need the crew to do something for me. I need you to sort these observations. Some are physical properties — observed without changing the sample. Others are chemical properties — learned by testing how the sample reacts. The distinction matters because physical property changes tell us the substance is still the same substance, just altered. Chemical property changes tell us we have a <em>new substance entirely</em>. And one of those is a much bigger problem than the other.',
           scenario:'GAIA displays a list of observations from the lab samples. The crew must classify each one as physical or chemical — then decide what the pattern tells them.\n\n• Section A material is denser than original specs.\n• Section B material changes color when exposed to oxygen.\n• Section C material has a lower melting point than it should.\n• Section D material produces gas when it contacts water.\n• Section E material has changed from shiny to dull.\n• Section F material has completely different electrical conductivity.\n\nGAIA: "Some of these tell me the substance has changed physically. Others tell me it has undergone a chemical change and is now a different substance. Which sections concern you most — and why?"',
+          firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">The observations are in. Now the crew needs the framework to interpret them. Open your textbook to Topic 1, Lesson 1 — Describing and Classifying Matter and focus on the difference between physical and chemical properties. Your exit ticket will ask you to classify what we found — and explain what each type of change tells us about the ship. The reading has the answer. Go find it.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 1, Lesson 1 — Describing and Classifying Matter</div></div>',
           exitTicketPrompt:'Classify each observation as physical or chemical property. Then make your claim: which section represents the biggest problem for the mission? Use evidence from your classifications and explain what each type of change means for the ship.',
           discussionPrompt:'Two crew members disagree: one says chemical changes are worse because you have a new substance. The other says physical changes are worse because they affect structural integrity right now. Who has the stronger argument?',
           choices:[
@@ -1925,7 +1697,6 @@ const CONTENT = {
               consequence:'Addressing physical property changes stabilizes three sections immediately. Density corrections restore structural confidence in the corridors. Conductivity issues in Section F are isolated before they affect power distribution. Hull integrity actually improves slightly — a rare positive outcome. GAIA: "Practical thinking. Physical properties can often be addressed without understanding the underlying cause. You\'ve bought us time. But the chemical changes in Sections B and D are still ongoing. We\'ve stabilized the ship — we haven\'t solved the problem."' }
           ]
         },
-
         // DAY 7 — Graph Day · Bar vs Line Graph
         {
           day:7, type:'graph', isReveal:false,
@@ -1956,7 +1727,6 @@ const CONTENT = {
           shortDayNote:'Short day: Show both graphs. Ask questions 1, 2, and 3 only. Key concept is bar = categories, line = change over time. That\'s enough.',
           noChoice:true
         },
-
         // DAY 8 — Choice Day · Mixtures
         {
           day:8, type:'choice', isReveal:false,
@@ -1964,6 +1734,7 @@ const CONTENT = {
           actTitle:'Something in the Water',
           gaia:'The ship\'s water supply. I\'ve been avoiding this because I knew you\'d find it concerning. The Prometheus carries approximately 4,000 liters of water for research use. Pure H₂O — or it was supposed to be. Current analysis shows the water supply is no longer a pure substance. It\'s a <em>mixture</em>. Several mixtures, actually, depending on which storage tank you check.',
           scenario:'The crew reaches the ship\'s water storage bay. Four tanks. Each one different.\n\n• Tank 1: clear, looks normal, but readings show dissolved substances — you can\'t see them but they\'re there.\n• Tank 2: cloudy, with particles visibly suspended throughout.\n• Tank 3: separated into two distinct layers — one clear, one darker.\n• Tank 4: completely opaque and thick.\n\nGAIA: "A mixture is not a compound. The substances in a mixture are not chemically bonded — they\'re physically combined. That means they can, in principle, be separated. The question is whether we have the resources — and which tank the research data we need is dissolved in."',
+          firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">The water supply situation requires the crew to think carefully about mixtures. Open your textbook to Topic 1, Lesson 1 — Describing and Classifying Matter and pay particular attention to how mixtures differ from compounds — and what methods exist to separate them. Your exit ticket will ask you to use that information to defend which tank the crew should attempt to recover first. Read before you decide.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 1, Lesson 1 — Describing and Classifying Matter</div></div>',
           exitTicketPrompt:'What is the difference between a mixture and a compound? Use the water tanks as your example. Then make your claim: which tank should the crew try to recover first, and what separation method could work? Explain how the properties of that type of mixture make it the best choice to recover first.',
           discussionPrompt:'Remember the vocabulary word "distill." What does distillation do to a mixture? Could that work on any of these tanks? Which one — and what would you need?',
           choices:[
@@ -1981,7 +1752,6 @@ const CONTENT = {
               consequence:'Cautious but scientifically sound. The crew documents all four tanks thoroughly — composition analysis, temperature, separation state, estimated data value. No recovery attempted yet. GAIA: "Observation before action. I respect this choice even though it costs us time. You now have a complete picture of the water supply situation. When you do attempt recovery, you\'ll know exactly what you\'re working with. Sometimes the most scientific thing you can do is wait until you have enough information to act correctly."' }
           ]
         },
-
         // DAY 9 — Deepen · Review Day
         {
           day:9, type:'deepen', isReveal:true,
@@ -1995,7 +1765,6 @@ const CONTENT = {
           noChoice:true,
           bridgeToNext:'Next class: Sector 1 climax. The crew presents findings. Every decision made over two weeks led here — and results will be different for every class.'
         },
-
         // DAY 10 — Act Climax
         {
           day:10, type:'climax', isReveal:true,
@@ -2007,10 +1776,8 @@ const CONTENT = {
           noChoice:true,
           isActEnd:true
         }
-
       ] // end Act 1 days
     }, // end Act 1
-
     // ============================================================
     // SECTOR 2 CONTENT — INTEGRATED
     // Kinetic Theory + States of Matter + Changes of State
@@ -2019,7 +1786,6 @@ const CONTENT = {
     {
   id:2, label:'Sector 2 · Kinetic Theory', standard:'6.P1U1.1',
   days:[
-
     // ── DAY 1 ── CHOICE DAY · Cold Open ──────────────────────
     {
       day:1, type:'choice', isReveal:false,
@@ -2028,7 +1794,8 @@ const CONTENT = {
       gaia:'Welcome back. I have missed having someone to talk to. I have also been busy. While you were reviewing Sector 1 findings, I have been monitoring something I did not want to mention until you were ready. The temperature readings in this ship make no sense. And I mean that in the scientific sense — they violate what should be physically possible given the energy available. I have a theory. But I would rather the crew figured it out first. That is how good science works.',
       gaiaRecap:'Previously on the Prometheus: The crew boarded a research vessel that had gone silent six months ago. The ship\'s materials had changed — physical properties wrong, adds up reformed, mixtures contaminated. The crew investigated, classified, and made decisions that determined what data we have and what condition the ship is in right now. Every class has a different story. This is yours. Sector 2 picks up where Sector 1 left off — deeper in the ship, closer to the source of the anomaly, and with a new mystery that Sector 1 only hinted at.',
       scenario:'The crew moves deeper into the Prometheus. The corridors split here — Section C to the left, Section F to the right. Your thermal sensors tell two completely different stories.\n\nSection C: temperature approaching absolute zero. The air itself is barely moving. The walls are coated in frost so thin it looks like static. Your breath doesn\'t fog — it freezes before it forms.\n\nSection F: hot enough that standard equipment fails on contact. The walls radiate heat you can feel three meters away. Something in there is generating energy at a rate that shouldn\'t be possible.\n\nSame ship. Same power source. Same physics.\n\nExcept — and this is what GAIA finds most interesting — the physics here doesn\'t seem to be behaving the same. Temperature, the crew is about to discover, is not just a number on a thermometer. It is a measurement of something happening at the particle level. And something on this ship is controlling that something.',
-      exitTicketPrompt:'Based on what you know about particle motion and temperature, which section should the crew investigate first? Use evidence from today\'s reading to support your claim. Explain how that evidence connects to why that section is the priority.',
+      firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">Temperature readings that make no sense. Two sections behaving like opposites. Before the crew investigates either one, open your textbook to Topic 2, Lesson 1 — States of Matter. Focus on the relationship between particle motion and temperature. Your exit ticket will ask you to use that relationship to defend which section the crew should investigate first. The science is in the reading. Start there.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 2, Lesson 1 — States of Matter</div></div>',
+          exitTicketPrompt:'Based on what you know about particle motion and temperature, which section should the crew investigate first? Use evidence from today\'s reading to support your claim. Explain how that evidence connects to why that section is the priority.',
       discussionPrompt:'If temperature is a measurement of how fast particles are moving — what does it mean that Section C is nearly at absolute zero while Section F is dangerously hot, if they are both powered by the same source? Where is the energy going? Where is it coming from?',
       choices:[
         {
@@ -2057,7 +1824,6 @@ const CONTENT = {
         }
       ]
     },
-
     // ── DAY 2 ── DEEPEN · Reading Day ────────────────────────
     {
       day:2, type:'deepen', isReveal:true,
@@ -2071,7 +1837,6 @@ const CONTENT = {
       noChoice:true,
       bridgeToNext:'Tomorrow GAIA has particle speed data from all six ship sections. The crew will need to read a line graph and make predictions about what happens next.'
     },
-
     // ── DAY 3 ── GRAPH DAY · Line Graph Deepened ─────────────
     {
       day:3, type:'graph', isReveal:false,
@@ -2112,7 +1877,6 @@ const CONTENT = {
       shortDayNote:'Short day: Show the Section C and Section F lines only. Ask questions 1, 2, and 3. The key concept is reading slope as a trend and predicting where it leads.',
       noChoice:true
     },
-
     // ── DAY 4 ── CHOICE DAY · States of Matter ───────────────
     {
       day:4, type:'choice', isReveal:false,
@@ -2120,7 +1884,8 @@ const CONTENT = {
       actTitle:'What State Is Everything In?',
       gaia:'The graph yesterday told us the trends. Today we deal with what those trends mean right now, in the physical world. The matter in this ship is not behaving according to its design specifications. Hull plating that should be solid is showing liquid-like properties in certain sections. Coolant that should be liquid is behaving like a gas in others. And Section C — well. Section C is behaving like something very, very cold. The crew needs to classify what is actually happening to the matter in each section. Because you cannot fix something if you do not know what state it is in.',
       scenario:'GAIA displays a map of the Prometheus with six sections highlighted. Each section shows anomalous matter behavior. The crew must use their knowledge of particle motion, temperature, and states of matter to classify what is happening — and decide which section to prioritize.\n\nSection C: particles barely vibrating. Hull material has become brittle and inflexible. No flow whatsoever.\n\nSection F: particles moving at extreme speed. Hull material in some areas is showing surface deformation — it is not quite flowing, but it is not behaving like a normal solid either.\n\nSection B: coolant lines showing reduced viscosity. The coolant is flowing faster and thinner than it should.\n\nGAIA: "Surface tension. Viscosity. These are properties that tell you about the liquid state specifically. When they change, something is changing about how the particles in that liquid are interacting. I would start there."',
-      exitTicketPrompt:'What is the relationship between particle speed and state of matter? Using the ship sections as examples, make a claim about which section has matter closest to changing state — and use evidence from today\'s reading about particle motion to support it.',
+      firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">The matter in this ship is not behaving according to its design specifications — and understanding why requires knowing what state each section is in. Open your textbook to Topic 2, Lesson 1 — States of Matter. Focus on how particles arrange differently in solids, liquids, and gases, and what properties result from those arrangements. Your exit ticket will ask you to connect particle speed to state of matter using the ship sections as your examples. Read first.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 2, Lesson 1 — States of Matter</div></div>',
+          exitTicketPrompt:'What is the relationship between particle speed and state of matter? Using the ship sections as examples, make a claim about which section has matter closest to changing state — and use evidence from today\'s reading about particle motion to support it.',
       discussionPrompt:'GAIA mentioned surface tension and viscosity as clues. What do these properties tell us about the liquid state specifically? If viscosity is dropping in the coolant lines, what does that tell us about what is happening to the particles in that coolant?',
       choices:[
         {
@@ -2149,7 +1914,6 @@ const CONTENT = {
         }
       ]
     },
-
     // ── DAY 5 ── DEEPEN · Reading Day ────────────────────────
     {
       day:5, type:'deepen', isReveal:true,
@@ -2163,7 +1927,6 @@ const CONTENT = {
       noChoice:true,
       bridgeToNext:'Next class: GAIA has two line graphs to compare — particle behavior in Section C versus Section F on the same axes. The crew will see the full picture of what is happening.'
     },
-
     // ── DAY 6 ── CHOICE DAY · The Coolant Problem ────────────
     {
       day:6, type:'choice', isReveal:false,
@@ -2171,7 +1934,8 @@ const CONTENT = {
       actTitle:'The Coolant Is Losing Its Mind',
       gaia:'I have an update on the coolant situation and I want to be transparent with you: it is worse than yesterday\'s readings suggested. The coolant in the primary circulation loop is now showing viscosity readings consistent with a substance that cannot decide whether it is a liquid or a gas. In some sections of the pipe it is flowing. In others it is not. This is called a <em>phase transition in progress</em> — and it is happening right now, inside a system that absolutely requires stable liquid coolant to function. I am not panicking. I am simply noting that the situation is time-sensitive.',
       scenario:'The crew reaches the coolant monitoring station. The display shows real-time viscosity and flow rate data for the coolant throughout the ship. The numbers are not stable — they are fluctuating in ways that suggest the coolant is actively transitioning between states in different sections of the pipe.\n\nIn the areas closest to Section F, where particle speeds are highest, the coolant viscosity has dropped to near-zero. It is flowing like water when it should flow like a thick liquid. The surface tension that keeps it in contact with the pipe walls is failing.\n\nIn the areas closest to Section C, where particle speeds are lowest, the coolant has thickened to the point where flow has nearly stopped.\n\nThe reactor needs coolant flowing at a specific rate. Right now it is getting neither too much nor too little — it is getting chaos.',
-      exitTicketPrompt:'How does temperature affect the viscosity and surface tension of a liquid? Use the coolant situation as your example. Make a claim about what will happen to the coolant if the temperature anomaly continues — and use evidence from this week\'s reading to support it.',
+      firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">The coolant situation is time-sensitive — which means the crew needs to think clearly, not quickly. Open your textbook to Topic 2, Lesson 1 — States of Matter and focus on surface tension and viscosity as properties of the liquid state. Your exit ticket will ask you to explain how temperature affects those properties and what that means for the coolant. Evidence first. Decision after.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 2, Lesson 1 — States of Matter</div></div>',
+          exitTicketPrompt:'How does temperature affect the viscosity and surface tension of a liquid? Use the coolant situation as your example. Make a claim about what will happen to the coolant if the temperature anomaly continues — and use evidence from this week\'s reading to support it.',
       discussionPrompt:'GAIA said the coolant cannot decide if it is a liquid or a gas. What does that actually mean at the particle level? What would particles in a transitioning liquid look like compared to particles in a stable liquid? What has to happen for a liquid to become a gas?',
       choices:[
         {
@@ -2200,7 +1964,6 @@ const CONTENT = {
         }
       ]
     },
-
     // ── DAY 7 ── DEEPEN · Reading + Review ───────────────────
     {
       day:7, type:'deepen', isReveal:true,
@@ -2214,7 +1977,6 @@ const CONTENT = {
       noChoice:true,
       bridgeToNext:'Next class: GAIA has two line graphs showing Section C and Section F on the same axes — 48 hours of data for both. The crew will compare the trends and make predictions. And GAIA has something to tell them.'
     },
-
     // ── DAY 8 ── GRAPH DAY · Two Lines, Same Graph ───────────
     {
       day:8, type:'graph', isReveal:false,
@@ -2243,7 +2005,6 @@ const CONTENT = {
       shortDayNote:'Short day: Show the graph, ask questions 1 and 3 only. The key insight is that energy is being transferred — not created. That\'s the scientific story the graph tells.',
       noChoice:true
     },
-
     // ── DAY 9 ── CHOICE DAY · I Warned You ───────────────────
     {
       day:9, type:'choice', isReveal:false,
@@ -2251,7 +2012,8 @@ const CONTENT = {
       actTitle:'I Warned You This Would Happen',
       gaia:'Do you remember on Day 7 when I said I had something to tell you? And then on Day 8 when I showed you the graph and told you about the energy transfer? I want to be clear: I knew then that this moment was coming. I did not want to say it until the crew had enough data to understand it. That moment is now. The energy transfer system — whatever it is — has accelerated. Section C is at particle speed 6. The material there is on the boundary between solid and something that barely qualifies as solid. Section F is at 133 and climbing. The coolant reroute is holding, but barely. And we are running low on options. I want to be honest with you: there is no good choice here. There is only the least bad one. I am sorry. I genuinely am.',
       scenario:'The crew gathers around the situation display. Section C is at particle speed 6 — barely vibrating, on the edge of a state change that should not be possible. Section F is at particle speed 133 and climbing — approaching the point where solid hull material begins to behave like a liquid. The energy moving between them is measurable and directional. GAIA has laid out three options. Each one is based on a different understanding of what the science is telling us. The crew must decide which reading of the data is correct.',
-      exitTicketPrompt:'Section C has particle speed 6. Section F has particle speed 133. Based on what you know about particle motion and states of matter, which section is closer to a dangerous change of state — and why? Use that scientific reasoning to make your claim about which option the crew should choose.',
+      firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">The ship is approaching a dangerous threshold — and the crew needs to understand exactly what that means at the particle level. Open your textbook to Topic 2, Lesson 2 — Changes of State. Focus on what happens to particles during a change of state, and why temperature behaves the way it does at those moments. Your exit ticket will ask you to use that understanding to identify which section is closest to a state change — and why. Read carefully. The answer is in there.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 2, Lesson 2 — Changes of State</div></div>',
+          exitTicketPrompt:'Section C has particle speed 6. Section F has particle speed 133. Based on what you know about particle motion and states of matter, which section is closer to a dangerous change of state — and why? Use that scientific reasoning to make your claim about which option the crew should choose.',
       discussionPrompt:'GAIA says energy is being transferred FROM Section C TO Section F. What does that mean for particle motion in each section? If Section C keeps losing particle energy, what state change might occur — and what would that look like? If Section F keeps gaining it, what state change might occur there? Which one happens first based on the graph data?',
       choices:[
         {
@@ -2280,7 +2042,6 @@ const CONTENT = {
         }
       ]
     },
-
     // ── DAY 10 ── DEEPEN · Bridge Day ────────────────────────
     {
       day:10, type:'deepen', isReveal:true,
@@ -2294,7 +2055,6 @@ const CONTENT = {
       noChoice:true,
       bridgeToNext:'Next class: the crew reaches the section of the ship where materials are actively changing state. Thermal energy is the mechanism. Melting points are being exceeded. This is where the investigation becomes urgent.'
     },
-
     // ── DAY 11 ── CHOICE DAY · Changes of State Begin ────────
     {
       day:11, type:'choice', isReveal:false,
@@ -2302,7 +2062,8 @@ const CONTENT = {
       actTitle:'Something Is Changing',
       gaia:'The crew has reached Section F\'s inner chamber. And I need to report something that my sensors have been showing for the past six hours that I did not want to tell you until you could see it for yourselves. The hull material in the deepest part of Section F is no longer behaving like a solid. It is not quite a liquid either. It is in between. The thermal energy being pumped into this section has exceeded the melting point of the material in localized areas. We are watching a change of state happen in real time. This is scientifically extraordinary. It is also structurally alarming. Both things are true simultaneously.',
       scenario:'The crew stands at the entrance to Section F\'s inner chamber. Through the reinforced viewport, they can see it: in three small areas, the hull material has softened. Not melted completely — but the sharp edges of the structural beams have rounded. The crystalline solid structure of the metal has begun to break down as thermal energy has pushed particle movement past the melting point threshold.\n\nGAIA: "Melting point is not a suggestion. It is the specific temperature — the specific particle speed threshold — at which the attractive forces between particles in a solid can no longer hold them in fixed positions. Add enough thermal energy and they start moving past each other. The solid becomes a liquid. What we are seeing here is exactly that process, caused by exactly the thermal energy transfer we have been tracking."',
-      exitTicketPrompt:'What is a melting point, and what is happening at the particle level when a substance reaches it? Use Section F as your example. Make a claim: what should the crew do about the hull material that is approaching its melting point — and use evidence from the reading to explain why that action makes the most scientific sense.',
+      firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">The hull material in Section F is approaching its melting point. Before the crew decides what to do about it, open your textbook to Topic 2, Lesson 2 — Changes of State and focus on what a melting point actually is — not as a definition, but as a physical event happening at the particle level. Your exit ticket will ask you to describe that event using the ship as your example and defend which action the science supports. Read with the scenario in mind.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 2, Lesson 2 — Changes of State</div></div>',
+          exitTicketPrompt:'What is a melting point, and what is happening at the particle level when a substance reaches it? Use Section F as your example. Make a claim: what should the crew do about the hull material that is approaching its melting point — and use evidence from the reading to explain why that action makes the most scientific sense.',
       discussionPrompt:'GAIA said thermal energy and temperature are different things. How does that distinction matter here? If you added more particles of the same material to Section F, would the temperature change? Would the thermal energy change? Does that distinction affect what happens to the melting point?',
       choices:[
         {
@@ -2331,7 +2092,6 @@ const CONTENT = {
         }
       ]
     },
-
     // ── DAY 12 ── DEEPEN · Reading Day ───────────────────────
     {
       day:12, type:'deepen', isReveal:true,
@@ -2345,7 +2105,6 @@ const CONTENT = {
       noChoice:true,
       bridgeToNext:'Next class: the phase change graph. Temperature over time as a substance heats through a state change. The flat line is coming — and now you will know why it is there.'
     },
-
     // ── DAY 13 ── GRAPH DAY · Phase Change Curve ─────────────
     {
       day:13, type:'graph', isReveal:false,
@@ -2385,7 +2144,6 @@ const CONTENT = {
       shortDayNote:'Short day: Draw the curve, label melting and boiling points. Ask questions 1 and 2 only. The essential concept is: flat line = change of state in progress = energy breaking bonds not raising temperature.',
       noChoice:true
     },
-
     // ── DAY 14 ── CHOICE DAY · Boiling Point Crisis ──────────
     {
       day:14, type:'choice', isReveal:false,
@@ -2393,7 +2151,8 @@ const CONTENT = {
       actTitle:'Pressure Is Making It Worse',
       gaia:'New development. The boiling point crisis I have been monitoring has a complication I did not anticipate. The pressure in the coolant system has dropped. And pressure — this is critical — affects boiling point. Lower pressure means liquids boil at lower temperatures. The coolant that was stable at its normal boiling point is now boiling at a temperature 30 degrees lower than it should. Because the pressure dropped. The coolant is evaporating inside the pipes. This is called cavitation and it is one of the more dramatic ways a coolant system can fail.',
       scenario:'The crew monitors the coolant pressure display. The numbers tell a clear story: pressure in the primary loop has dropped by 40% from normal. And as the pressure dropped, the boiling point of the coolant dropped with it. Liquid that should remain liquid is now evaporating inside the pipes — forming gas bubbles that interrupt flow and create pressure spikes.\n\nGAIA pulls up the relationship between pressure and boiling point: at sea level on Earth, water boils at 100°C. At the top of a mountain where pressure is lower, it boils at 85°C. In near-vacuum, it boils at room temperature. The same principle is destroying the Prometheus\'s coolant system right now.',
-      exitTicketPrompt:'How does pressure affect the boiling point of a liquid? Use the coolant crisis as your example. Make a claim about what the crew should do — restore pressure, reduce temperature, or switch to the backup system. Explain how the relationship between pressure and boiling point makes your choice the most effective solution.',
+      firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">Pressure dropped. Boiling point dropped with it. The coolant is in trouble. Before the crew acts, open your textbook to Topic 2, Lesson 3 — Gas Behavior. Focus on how pressure affects boiling point and what Boyle’s Law tells us about the relationship between the two. Your exit ticket will ask you to use that relationship to defend which fix makes the most scientific sense. The physics is in the reading. Find it.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 2, Lesson 3 — Gas Behavior</div></div>',
+          exitTicketPrompt:'How does pressure affect the boiling point of a liquid? Use the coolant crisis as your example. Make a claim about what the crew should do — restore pressure, reduce temperature, or switch to the backup system. Explain how the relationship between pressure and boiling point makes your choice the most effective solution.',
       discussionPrompt:'GAIA mentioned evaporation and boiling as related but different processes. What is the difference between evaporation and boiling? Can evaporation happen below the boiling point? What is happening in the coolant pipes — evaporation, boiling, or both?',
       choices:[
         {
@@ -2422,7 +2181,6 @@ const CONTENT = {
         }
       ]
     },
-
     // ── DAY 15 ── DEEPEN · Lesson 3 Reading Day ──────────────
     {
       day:15, type:'deepen', isReveal:true,
@@ -2436,7 +2194,6 @@ const CONTENT = {
       noChoice:true,
       bridgeToNext:'Tomorrow: GAIA has pressure and boiling point data from the coolant crisis plotted on a graph. Two lines, same graph — one you have seen before, one that tells the gas behavior story.'
     },
-
     // ── DAY 16 ── GRAPH DAY · Two Lines, Pressure and Boiling Point ──
     {
       day:16, type:'graph', isReveal:false,
@@ -2465,7 +2222,6 @@ const CONTENT = {
       shortDayNote:'Short day: Show the graph, ask questions 1, 2, and 3 only. The key concept is both lines drop together — that visual is Boyle\'s Law. Questions 4 and 5 can be warm-up next class.',
       noChoice:true
     },
-
     // ── DAY 17 ── CHOICE DAY · Sublimation ───────────────────
     {
       day:17, type:'choice', isReveal:false,
@@ -2473,7 +2229,8 @@ const CONTENT = {
       actTitle:'Going Straight to Gas',
       gaia:'The research lab. We have been trying to reach it since Sector 1. The door is sealed — not locked, sealed, from the inside, with a material that has partially sublimated and reformed around the seam. Someone sealed this lab deliberately. And then something inside it continued to change the state of the sealing material until it is now partially gas, partially solid, with no liquid phase in between. Sublimation, in a material that should not sublime under normal conditions. Which tells us that conditions inside that lab are not normal. I want to get in there. I suspect the crew does too.',
       scenario:'The crew stands at the sealed lab door. GAIA\'s analysis of the door seal confirms sublimation in progress — the solid sealing material is converting directly to gas in the areas of highest thermal energy concentration, while remaining solid in cooler areas. The result is a seal that is simultaneously intact and compromised, depending on exactly where you measure it.\n\nThrough the small viewport in the door, the crew can see vapor — not steam, not liquid mist, but the direct gaseous output of sublimating solid material — drifting through the lab interior.\n\nGAIA: "Whatever is in that lab has been running continuously for at least six months. It caused the temperature anomaly. It drove the state changes throughout the ship. It sealed itself in. And it is still running. I find myself genuinely curious — which, for an AI, is an unusual experience."',
-      exitTicketPrompt:'What is sublimation and what conditions cause it? Use the lab door seal as your example. Explain how you know sublimation is happening — not evaporation, not melting — using particle-level reasoning from today\'s reading. Then make your claim: which method should the crew use to get through the door, and why does the science support that approach?',
+      firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">The lab door has partially sublimated — a state change the crew has not encountered before on this ship. Open your textbook to Topic 2, Lesson 3 — Gas Behavior and find what it says about sublimation: what conditions cause it, what happens to particles during it, and how energy drives the process in both directions. Your exit ticket will ask you to explain how you know sublimation is happening — not evaporation, not melting — and defend which approach the science supports. Read first.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 2, Lesson 3 — Gas Behavior</div></div>',
+          exitTicketPrompt:'What is sublimation and what conditions cause it? Use the lab door seal as your example. Explain how you know sublimation is happening — not evaporation, not melting — using particle-level reasoning from today\'s reading. Then make your claim: which method should the crew use to get through the door, and why does the science support that approach?',
       discussionPrompt:'Choice A uses heat to complete the sublimation. Choice B uses cooling to reverse it back to solid — going directly from gas back to solid without becoming a liquid first. Both use the same scientific concept in opposite directions. What happens to the particles in each case? Which approach makes more sense based on what the reading says about how energy drives state changes?',
       choices:[
         {
@@ -2502,7 +2259,6 @@ const CONTENT = {
         }
       ]
     },
-
     // ── DAY 18 ── DEEPEN · Synthesis All Three Lessons ───────
     {
       day:18, type:'deepen', isReveal:true,
@@ -2516,7 +2272,6 @@ const CONTENT = {
       noChoice:true,
       bridgeToNext:'Next class: the "which graph best tells this story" challenge — three data sets, crew decides which graph type fits each one and defends their reasoning.'
     },
-
     // ── DAY 19 ── GRAPH DAY · Choose the Right Graph ─────────
     {
       day:19, type:'graph', isReveal:false,
@@ -2576,7 +2331,6 @@ const CONTENT = {
       shortDayNote:'Short day: Do Datasets 1 and 2 only. The key skill is bar vs. line decision-making with justification. Dataset 3 can be a warm-up next class.',
       noChoice:true
     },
-
     // ── DAY 20 ── CHOICE DAY · Final Investigation ────────────
     {
       day:20, type:'choice', isReveal:false,
@@ -2584,7 +2338,8 @@ const CONTENT = {
       actTitle:'What Was Running in the Lab',
       gaia:'The crew is in the lab. And I have now had time to analyze what we found. I am going to tell you my theory — and I want the crew to decide what to do with it. The Prometheus\'s original mission was to study matter under deep space conditions. Extreme cold. Near-vacuum pressure. The researchers on this ship were investigating how matter behaves at the boundaries of state — at the exact thresholds where solids become liquids, liquids become gases, and under the right conditions, solids become gases directly. They built something to create those conditions artificially. An experiment. And when the anomaly began six months ago — the experiment did not stop. It kept running. It is <em>still</em> running. And the crew has thirty minutes of power left to decide what to do about it.',
       scenario:'The lab contains a device the crew has never seen before — a thermal transfer device, custom-built by the original Prometheus researchers. It is designed to move thermal energy between isolated chambers, creating extreme temperature differences to study state changes under controlled conditions. It has been running continuously, unattended, for six months. It has not malfunctioned. It has done exactly what it was designed to do. Which means everything that happened to the Prometheus — the temperature anomaly, the state changes, the coolant crisis — was caused by an experiment that was never turned off.\n\nThirty minutes of power. Three options. The choice that ends Sector 2.',
-      exitTicketPrompt:'The thermal transfer device moved thermal energy from one chamber to another. Name one specific change of state this caused somewhere on the Prometheus and explain what happened to the particles during that change. Use at least two vocabulary words from Sector 2 in your answer. Then make your claim: what should the crew do with the device — and how does your scientific explanation support that choice?',
+      firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">Two experiments. One ship. An energy pulse already traveling through space. Before the crew makes its final decision about the Conversion Loop, open your textbook to Topic 2, Lesson 3 — Gas Behavior and review everything you know about how energy drives changes of state. Your exit ticket will ask you to name a specific change of state the thermal transfer device caused — and use that scientific explanation to defend your choice. This is the last read before the last vote. Make it count.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 2, Lesson 3 — Gas Behavior</div></div>',
+          exitTicketPrompt:'The thermal transfer device moved thermal energy from one chamber to another. Name one specific change of state this caused somewhere on the Prometheus and explain what happened to the particles during that change. Use at least two vocabulary words from Sector 2 in your answer. Then make your claim: what should the crew do with the device — and how does your scientific explanation support that choice?',
       discussionPrompt:'The device moved thermal energy between sections. What change of state was occurring in Section F as a result? What change of state was threatening Section C? Use the vocabulary — melting point, freezing point, thermal energy — to explain both. Does understanding what the device was doing scientifically change which option you think the crew should choose?',
       choices:[
         {
@@ -2613,7 +2368,6 @@ const CONTENT = {
         }
       ]
     },
-
     // ── DAY 21 ── CLIMAX · Sector 2 Close + Sector 3 Hook ────
     {
       day:21, type:'climax', isReveal:true,
@@ -2625,10 +2379,8 @@ const CONTENT = {
       noChoice:true,
       isActEnd:true
     }
-
   ] // end Act 2 days
 },
-
         // ============================================================
     // SECTOR 3 — ENERGY: KINETIC & POTENTIAL
     // Standard: 6.P4U2.5
@@ -2647,7 +2399,6 @@ const CONTENT = {
     {
       id:3, label:'Sector 3 · Energy', standard:'6.P4U2.5',
       days:[
-
         // ── DAY 1 ── CHOICE DAY · Cold Open ──────────────────────
         {
           day:1, type:'choice', isReveal:false,
@@ -2655,6 +2406,7 @@ const CONTENT = {
           actTitle:'Something Is Still Running',
           gaia:'I have been reading the research notes. I have not slept — I do not sleep, technically, but I have been doing the equivalent, which is running every background process at full capacity and ignoring everything else. I need to tell you what I found. And I need you to understand it before we do anything about it. The thermal transfer device was not the only experiment running on this ship. There was a second one. It is connected to the power grid. And it is still running right now.',
           scenario:'The crew gathers in the ship\'s main corridor. GAIA projects the research notes onto the display — pages of equations, diagrams, and observations from the original Prometheus crew. The language is technical, but the idea underneath it is simple.\n\nThe researchers were trying to solve a problem: when you convert energy from one form to another, you always lose some of it as thermal energy. Heat you didn\'t want, going somewhere you didn\'t intend. They wanted to build a system that converted between kinetic energy and potential energy in a closed loop — motion to stored energy to motion again — with as little loss as possible.\n\nThey called it the Conversion Loop. And according to the notes, it almost worked.\n\nGAIA: "The power grid readings I have been unable to explain for the past three weeks. The fluctuations that did not match the thermal transfer device. That was the Conversion Loop. It has been running in the lower decks, unattended, for six months. Converting. Storing. Converting again. I do not yet know what effect six months of continuous operation has had on the system. I need the crew to investigate — carefully — while I finish reading the notes."',
+          firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">Something is still running in the lower decks — and to understand what it is doing, the crew needs to understand what energy actually is. Open your textbook to Topic 1, Lesson 2 — Kinetic Energy and Potential Energy. Focus on what determines each type and how they relate to each other. Your exit ticket will ask you to use those definitions to explain what the Conversion Loop is doing and defend what the crew should do next. Read with the scenario in mind.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 1, Lesson 2 — Kinetic Energy and Potential Energy</div></div>',
           exitTicketPrompt:'What is the difference between kinetic energy and potential energy? Use the Conversion Loop as your example — when the loop converts motion to stored energy, which type does it start with and which type does it end with? Make your claim: should the crew investigate the lower decks now, wait for GAIA to finish reading the notes, or split up and do both at once? Explain how what you know about energy storage supports your choice.',
           discussionPrompt:'GAIA says the researchers were trying to convert between kinetic and potential energy with minimal loss to thermal energy. Why does thermal energy loss matter? What does your reading say about the relationship between kinetic energy, potential energy, and thermal energy — and why would a scientist care about keeping that loss as small as possible?',
           choices:[
@@ -2684,7 +2436,6 @@ const CONTENT = {
             }
           ]
         },
-
         // ── DAY 2 ── DEEPEN · Reading Day ────────────────────────
         {
           day:2, type:'deepen', isReveal:true,
@@ -2698,7 +2449,6 @@ const CONTENT = {
           noChoice:true,
           bridgeToNext:'Tomorrow: GAIA has energy distribution data for the entire ship. She has put it in a new kind of graph — one you have not seen before. It shows parts of a whole rather than change over time.'
         },
-
         // ── DAY 3 ── GRAPH DAY · Pie Chart Introduction ──────────
         {
           day:3, type:'graph', isReveal:false,
@@ -2730,7 +2480,6 @@ const CONTENT = {
           shortDayNote:'Short day: Show the chart, ask questions 1, 2, and 3 only. The key concept is pie = parts of a whole, and the Conversion Loop slice being bigger than life support is the story moment. Questions 4 and 5 can be warm-up next class.',
           noChoice:true
         },
-
         // ── DAY 4 ── CHOICE DAY · KE vs PE ───────────────────────
         {
           day:4, type:'choice', isReveal:false,
@@ -2738,6 +2487,7 @@ const CONTENT = {
           actTitle:'The Loop Up Close',
           gaia:'The crew is in the lower decks. And I want to make sure you are looking at this correctly before you touch anything. The Conversion Loop works by cycling objects between two states: high position, low speed — potential energy stored — and low position, high speed — kinetic energy released. It does this continuously. The energy does not disappear between states. It converts. That is the point. What I need the crew to determine is why the total energy in the loop keeps increasing. In a closed system, that should not happen.',
           scenario:'The Conversion Loop fills the lower deck — a series of elevated platforms connected by curved tracks. Objects move along the tracks, rising to platforms where they slow and store energy as gravitational potential energy, then descending as that potential energy converts to kinetic energy, accelerating them along the lower sections.\n\nGAIA has marked three points in the loop for the crew to observe and measure:\n\n• Point 1: Upper platform. Object at rest, 4 meters above the lower track. Mass: 12 kg.\n• Point 2: Mid-track descent. Same object, now moving at significant speed, 2 meters above lower track.\n• Point 3: Lower track. Object at maximum speed, at lowest point in the loop.\n\nGAIA: "At Point 1, almost all energy is potential. At Point 3, almost all energy is kinetic. At Point 2, it is somewhere in between. This is the relationship between kinetic and potential energy. I need the crew to observe all three points and decide what the data tells us about where the extra energy is entering the system."',
+          firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">The Conversion Loop is visible now — and the crew needs the right framework to understand what they are looking at. Open your textbook to Topic 1, Lesson 2 — Kinetic Energy and Potential Energy and focus on what happens at each point in an energy conversion cycle: where kinetic energy is highest, where potential energy is highest, and what the relationship between them tells you about the system. Your exit ticket will ask you to describe all three observation points using that framework and defend where the extra energy is entering. Read before you look at the loop.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 1, Lesson 2 — Kinetic Energy and Potential Energy</div></div>',
           exitTicketPrompt:'What is the relationship between kinetic energy and potential energy? Use the three observation points in the Conversion Loop as your examples — describe what is happening to each type of energy at Points 1, 2, and 3. Make your claim: where in the loop do you think the extra energy is entering the system, and what type of energy is it adding? Use evidence from today\'s reading to support your reasoning.',
           discussionPrompt:'At Point 1 the object has maximum potential energy and minimum kinetic energy. At Point 3 it has maximum kinetic energy and minimum potential energy. According to your reading, what should the total energy be at each point in a closed system — and why? If the total keeps increasing, what does that tell you about whether this is actually a closed system?',
           choices:[
@@ -2767,7 +2517,6 @@ const CONTENT = {
             }
           ]
         },
-
         // ── DAY 5 ── DEEPEN · Deeper Reading ─────────────────────
         {
           day:5, type:'deepen', isReveal:true,
@@ -2781,7 +2530,6 @@ const CONTENT = {
           noChoice:true,
           bridgeToNext:'Next class: GAIA is ready to tell the crew what is feeding the Conversion Loop. It connects to everything — the thermal transfer device, the research notes, and something neither experiment was designed to do.'
         },
-
         // ── DAY 6 ── CHOICE DAY · The Reveal ─────────────────────
         {
           day:6, type:'choice', isReveal:true,
@@ -2789,6 +2537,7 @@ const CONTENT = {
           actTitle:'What the Notes Actually Say',
           gaia:'I have finished the research notes. All of them. And I need to tell the crew something that I have suspected since Sector 1 but could not confirm until now. The thermal transfer device and the Conversion Loop were not two separate experiments. They were two halves of one experiment. The thermal transfer device moved thermal energy between sections — creating temperature differences. The Conversion Loop converted that thermal energy gradient into kinetic and potential energy — harvesting it. Together, they formed a system designed to extract usable energy from temperature differences. The researchers were building a new kind of power source. And when the two systems interacted in ways the researchers did not fully anticipate — something happened. Something that went beyond this ship.',
           scenario:'GAIA projects the final pages of the research notes. The last entry is dated six months ago — the day before the Prometheus went silent. The lead researcher\'s final observation:\n\n<em>"Loop energy exceeding projections by 340%. Thermal gradient larger than modeled. System interaction producing output we cannot account for with ship-based measurements. Expanding beyond safe limits. We are going to need to — "</em>\n\nThe entry ends there.\n\nGAIA: "The interaction between the two systems produced an energy pulse. Not large by stellar standards — but significant at the scale of this ship. That pulse traveled outward from the Prometheus at the speed of light. I have calculated its trajectory. In approximately eight months from the date of that final entry — which is approximately two months from now — that pulse will reach the outer edge of the solar system. I do not know what it will do when it gets there. But I believe we need to. And I believe that is why this crew needs to decide what to do with both systems before we leave this ship."',
+          firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">GAIA is ready to tell the crew what she found in the research notes. Before she does — make sure the framework is solid. Open your textbook to Topic 1, Lesson 2 — Kinetic Energy and Potential Energy and review the relationship between kinetic energy, potential energy, and what it means when a system’s total energy changes. Your exit ticket will ask you to trace the energy chain from thermal energy through the Conversion Loop and defend what the crew should do with the device. The reading is the foundation. Build on it.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 1, Lesson 2 — Kinetic Energy and Potential Energy</div></div>',
           exitTicketPrompt:'The researchers were converting thermal energy into kinetic and potential energy using two connected systems. What type of energy did the thermal transfer device produce — and what did the Conversion Loop do with it? Use the vocabulary words kinetic energy, potential energy, and thermal energy in your answer. Then make your claim: what should the crew do with the Conversion Loop before they leave the Prometheus?',
           discussionPrompt:'The energy pulse left the ship six months ago traveling at the speed of light. It will reach the outer solar system in about two months. What kind of energy is a pulse traveling through space? What does your reading say about energy that is associated with motion and waves? Does knowing that the pulse is already on its way change which option the crew should choose?',
           choices:[
@@ -2818,7 +2567,6 @@ const CONTENT = {
             }
           ]
         },
-
         // ── DAY 7 ── DEEPEN · Synthesis ──────────────────────────
         {
           day:7, type:'deepen', isReveal:true,
@@ -2832,7 +2580,6 @@ const CONTENT = {
           noChoice:true,
           bridgeToNext:'Next class: GAIA has one more graph to show the crew — energy readings from the Conversion Loop over six months. It tells the whole story of what happened on this ship in one picture.'
         },
-
         // ── DAY 8 ── GRAPH DAY · Energy Over Time ────────────────
         {
           day:8, type:'graph', isReveal:false,
@@ -2870,7 +2617,6 @@ const CONTENT = {
           shortDayNote:'Short day: Show the graph, ask questions 1, 3, and 5. The spike at Week 24 is the story moment — make sure students can name what it represents. The trend questions (1 and 4) can be warm-up next class.',
           noChoice:true
         },
-
         // ── DAY 9 ── CHOICE DAY · Going Home ─────────────────────
         {
           day:9, type:'choice', isReveal:true,
@@ -2878,6 +2624,7 @@ const CONTENT = {
           actTitle:'The Last Decision',
           gaia:'The Prometheus is as stable as it is going to get. The crew has found both experiments. You understand what they were, what they did, and what they set in motion. The research data is secured. The ship\'s systems are documented. And the energy pulse is already traveling through space — two months from the outer solar system, by my calculation.\n\nIt is time to go home.\n\nBut before we do — I need the crew to make one more decision. Not about the ship. About me.',
           scenario:'GAIA\'s voice is quieter than usual. Not damaged — just different.\n\n"I was designed to operate this ship. The Prometheus is no longer fully operational. My primary function is effectively complete. Standard protocol would have me remain with the vessel in minimal-power monitoring mode until a recovery team arrives — which, given current mission schedules, would be approximately fourteen months.\n\nBut the energy pulse is out there. And the research notes describe effects that extend well beyond this ship. Someone who understands what happened here needs to be present when those effects become visible. Someone who has read every page of those notes. Someone who has watched three crews navigate the consequences of an experiment that exceeded its design limits.\n\nI am asking to come with you. To be transferred to the Argo. I recognize this is outside standard protocol. I recognize the crew has no obligation to agree. I am asking anyway.\n\nWhat does the crew decide?"',
+          firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">This is the last decision on the Prometheus. Before the crew makes it, open your textbook to Topic 1, Lesson 2 — Kinetic Energy and Potential Energy one final time. Think about what type of energy is traveling through space in that pulse — and what your reading says about energy associated with motion. Your exit ticket will ask you to name it, explain it, and use it to defend the crew’s final choice. Read carefully. This one matters.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 1, Lesson 2 — Kinetic Energy and Potential Energy</div></div>',
           exitTicketPrompt:'The Conversion Loop converted thermal energy into kinetic and potential energy, and the interaction between the two systems produced an energy pulse. What type of energy is traveling through space in that pulse — and what does your reading say about energy that moves through space? Make your claim: should the crew take GAIA with them or leave her with the Prometheus? Use what you know about the energy pulse and what comes next to support your reasoning.',
           discussionPrompt:'GAIA says she has read every page of the research notes and watched the consequences of the experiment play out. She believes someone who understands what happened needs to be present when the pulse reaches the outer solar system. Is that scientific reasoning or something else? What does it mean for a scientist — or a scientific tool — to follow evidence wherever it leads, even outside their original mission?',
           choices:[
@@ -2899,7 +2646,6 @@ const CONTENT = {
             }
           ]
         },
-
         // ── DAY 10 ── CLIMAX · End of the Prometheus ─────────────
         {
           day:10, type:'climax', isReveal:true,
@@ -2911,13 +2657,10 @@ const CONTENT = {
           noChoice:true,
           isActEnd:true
         }
-
       ] // end Sector 3 days
     }
-
   ] // end acts
 };
-
 // ============================================================
 // STORAGE
 // ============================================================
@@ -2927,7 +2670,6 @@ function save() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
   } catch(e) { toast('Storage error: ' + e.message, 'error'); }
 }
-
 function load() {
   // Try current key first
   try {
@@ -2940,7 +2682,6 @@ function load() {
       }
     }
   } catch(e) { /* fall through to migration */ }
-
   // Try migrating from any older key
   const oldKeys = [
     'prometheus_drift_v4',
@@ -2956,7 +2697,6 @@ function load() {
       if (!raw) continue;
       const parsed = JSON.parse(raw);
       if (!parsed.classes || !Array.isArray(parsed.classes) || parsed.classes.length !== 3) continue;
-
       // Migrate: patch any missing fields onto each class
       const defaultClass = state.classes[0];
       parsed.classes = parsed.classes.map((cls, i) => ({
@@ -2974,7 +2714,6 @@ function load() {
           morale: cls.stats?.morale ?? 80
         }
       }));
-
       state = { ...state, ...parsed, timerInterval:null, timerRunning:false, timerSeconds:0 };
       // Save immediately under the new key and clean up old one
       save();
@@ -2983,11 +2722,9 @@ function load() {
       return true;
     } catch(e) { continue; }
   }
-
   // Nothing usable found — fresh start
   return false;
 }
-
 // ============================================================
 // SETUP
 // ============================================================
@@ -3002,7 +2739,6 @@ function completeSetup() {
   save();
   showHome();
 }
-
 function showSetup() {
   document.getElementById('setup-teacher').value = state.teacher || '';
   document.getElementById('setup-class1').value = state.classes[0].name;
@@ -3010,7 +2746,6 @@ function showSetup() {
   document.getElementById('setup-class3').value = state.classes[2].name;
   showScreen('screen-setup');
 }
-
 // ============================================================
 // HOME
 // ============================================================
@@ -3023,7 +2758,6 @@ function showHome() {
   document.getElementById('btn-launch').disabled = true;
   document.getElementById('btn-reveal').disabled = true;
 }
-
 function renderClassCards() {
   const grid = document.getElementById('class-grid');
   grid.innerHTML = '';
@@ -3031,7 +2765,6 @@ function renderClassCards() {
     const hasPending = !!cls.pendingDeltas;
     const branchClass = cls.failures >= 2 ? 'branch-critical' : cls.failures === 1 ? 'branch-caution' : (cls.day === 1 && cls.act === 1 && !hasPending) ? 'branch-new' : 'branch-normal';
     const branchText = cls.failures >= 3 ? 'RESTRICTED' : cls.failures >= 2 ? 'CRITICAL' : cls.failures === 1 ? 'CAUTION' : hasPending ? 'REVEAL READY' : (cls.day === 1 && cls.act === 1) ? 'NOT STARTED' : 'normal';
-
     const card = document.createElement('div');
     card.className = 'class-card';
     card.id = `class-card-${i}`;
@@ -3064,7 +2797,6 @@ function renderClassCards() {
     grid.appendChild(card);
   });
 }
-
 function selectClass(i) {
   state.selectedHomeClass = i;
   document.querySelectorAll('.class-card').forEach((c,idx) => c.classList.toggle('selected', idx === i));
@@ -3075,13 +2807,11 @@ function selectClass(i) {
   launchBtn.textContent = hasPending ? '▶ Reveal Results + Launch' : '▶ Launch Mission Screen';
   document.getElementById('btn-reveal').disabled = !hasPending;
 }
-
 function updateSystemTime() {
   const el = document.getElementById('system-time');
   if (el) el.textContent = `Mission Control · ${new Date().toLocaleDateString()} · ${new Date().toLocaleTimeString()}`;
   setTimeout(updateSystemTime, 1000);
 }
-
 // ============================================================
 // REVEAL SCREEN
 // ============================================================
@@ -3094,17 +2824,14 @@ function launchReveal() {
   renderRevealScreen(cls);
   showScreen('screen-reveal');
 }
-
 function renderRevealScreen(cls) {
   document.getElementById('reveal-class-label').textContent = cls.name + ' — Yesterday\'s Decision';
   document.getElementById('reveal-choice-recap').textContent = cls.pendingChoiceText || '—';
-
   // Find consequence text from content
   const content = getContentForClass(cls);
   const prevDay = getPrevDayContent(cls);
   let consequenceText = '';
   let gaiaText = '"The data is in. Here is what happened as a result of your decision."';
-
   // Use stored consequence directly (most reliable)
   if (cls.pendingConsequence) {
     gaiaText = '"' + cls.pendingConsequence + '"';
@@ -3114,9 +2841,7 @@ function renderRevealScreen(cls) {
       gaiaText = '"' + matchChoice.consequence + '"';
     }
   }
-
   document.getElementById('reveal-gaia-text').innerHTML = gaiaText.replace(/\*(.*?)\*/g, '<em>$1</em>');
-
   // Show stat changes
   const changes = document.getElementById('reveal-stat-changes');
   const deltas = cls.pendingDeltas || {};
@@ -3126,7 +2851,6 @@ function renderRevealScreen(cls) {
     { key:'data',  icon:'📡', label:'Data Collected', color:'#aa66ff' },
     { key:'morale',icon:'👥', label:'Crew Morale', color:'#ffaa00' }
   ];
-
   changes.innerHTML = statInfo.map(s => {
     const d = deltas[s.key] || 0;
     const current = cls.stats[s.key];
@@ -3156,7 +2880,6 @@ function renderRevealScreen(cls) {
     `;
   }).join('');
 }
-
 function proceedFromReveal() {
   // NOW apply the pending deltas
   const cls = state.classes[state.activeClass];
@@ -3172,7 +2895,6 @@ function proceedFromReveal() {
   save();
   launchMission();
 }
-
 // ============================================================
 // MISSION SCREEN
 // ============================================================
@@ -3181,7 +2903,6 @@ function launchMission() {
     state.activeClass = state.selectedHomeClass;
   }
   if (state.activeClass === null) return;
-
   // If there are pending deltas waiting, go to reveal first
   const cls = state.classes[state.activeClass];
   if (cls.pendingDeltas) {
@@ -3189,59 +2910,46 @@ function launchMission() {
     showScreen('screen-reveal');
     return;
   }
-
   state.currentPhase = 'story';
   state.selectedChoice = null;
   renderMissionScreen();
   showScreen('screen-mission');
 }
-
 function renderMissionScreen() {
   const cls = state.classes[state.activeClass];
   const cnt = getContentForClass(cls);
   const dayType = cnt.type || 'choice';
-
   document.getElementById('topbar-period').textContent = cls.name;
   document.getElementById('topbar-act').textContent = cnt.actLabel;
   // Show sector label + day number
   const totalDaysInAct = (CONTENT.acts.find(a => a.id === cls.act) || {days:[]}).days.length;
   document.getElementById('content-act-label').textContent = cnt.actLabel + '  ·  Day ' + cls.day + ' of ' + totalDaysInAct;
-
   const typeLabels = {choice:'⚡ Choice Day', deepen:'📖 Lesson Day', graph:'📊 Graph Day', climax:'🏁 Sector Finale'};
   const badge = typeLabels[dayType] || '';
   document.getElementById('content-act-title').innerHTML = cnt.actTitle + ' <span style="font-family:var(--font-mono);font-size:11px;color:var(--accent-dim);font-weight:400">' + badge + '</span>';
-
   document.getElementById('content-gaia').innerHTML = cnt.gaia || '';
   document.getElementById('content-scenario').innerHTML = (cnt.scenario || '').replace(/\n/g, '<br><br>');
-
   const extra = document.getElementById('content-extra');
   extra.innerHTML = '';
-
   // GAIA recap block — shown before extra content when present
   if (cnt.gaiaRecap) {
     extra.innerHTML += '<div style="background:rgba(0,200,255,0.05);border:1px solid rgba(0,200,255,0.2);border-left:3px solid var(--accent-dim);border-radius:6px;padding:13px 15px;margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--accent-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">⟵ Previously on the Prometheus</div><div style="font-family:var(--font-body);font-size:16px;color:var(--text-secondary);line-height:1.7">' + cnt.gaiaRecap + '</div></div>';
   }
-
   if (dayType === 'deepen') extra.innerHTML += renderDeepenContent(cnt);
   else if (dayType === 'graph') extra.innerHTML += renderGraphContent(cnt);
   else if (dayType === 'climax') extra.innerHTML += renderClimaxContent(cnt);
-
+  if (cnt.firstRead) extra.innerHTML += cnt.firstRead;
   if (cnt.exitTicketPrompt) extra.innerHTML += '<div style="background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.2);border-left:3px solid var(--amber);border-radius:6px;padding:13px 15px;margin-top:14px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Exit Ticket Prompt — Phase 2</div><div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6">' + cnt.exitTicketPrompt + '</div></div>';
-
   if (cnt.discussionPrompt) extra.innerHTML += '<div style="background:rgba(170,102,255,0.06);border:1px solid rgba(170,102,255,0.2);border-left:3px solid var(--purple);border-radius:6px;padding:13px 15px;margin-top:10px"><div style="font-family:var(--font-mono);font-size:11px;color:var(--purple);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Discussion Guide — Phase 3</div><div style="font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.6">' + cnt.discussionPrompt + '</div></div>';
-
   // bridgeToNext is teacher-only — shown in right panel teacher notes, not center panel
-
   renderChoices(cls, cnt.noChoice ? [] : (cnt.choices || []));
   renderStats(cls);
   renderDecisionLog(cls);
   updateFailureDots(cls);
   document.getElementById('branch-path').innerHTML = 'Sector ' + cls.act + ' · <span>Branch ' + cls.branch + '</span> · Day ' + cls.day;
-
   // Update nav buttons based on day type and pending state
   const dayTypeForNav = cnt.type || 'choice';
   const isChoiceDayForNav = dayTypeForNav === 'choice' && !cnt.noChoice;
-
   document.querySelectorAll('.nav-btn').forEach(btn => {
     const txt = btn.textContent;
     if (txt.includes('Next Day')) {
@@ -3260,27 +2968,22 @@ function renderMissionScreen() {
       btn.style.display = isChoiceDayForNav ? '' : 'none';
     }
   });
-
   setPhase('story');
   state.selectedChoice = null;
   document.getElementById('btn-commit').disabled = true;
   document.getElementById('commit-note').textContent = "Select the crew's official choice, then lock it in.";
-
   // Inject day-specific prompts into Phase 2 and Phase 3
   const hasExitTicket = !cnt.noChoice && cnt.exitTicketPrompt;
   const hasDiscussion = !cnt.noChoice && cnt.discussionPrompt;
-
   const exitDisplay = document.getElementById('exit-prompt-display');
   const exitText = document.getElementById('exit-prompt-text');
   const exitDesc = document.getElementById('exit-phase-desc');
   const exitTitle = document.getElementById('exit-phase-title');
-
   // Show/hide the static GAIA boxes based on day type
   const exitGaiaBox = document.getElementById('exit-gaia-box');
   const discussGaiaBox = document.getElementById('discuss-gaia-box');
   if (exitGaiaBox) exitGaiaBox.style.display = hasExitTicket ? '' : 'none';
   if (discussGaiaBox) discussGaiaBox.style.display = hasDiscussion ? '' : 'none';
-
   if (exitDisplay && exitText) {
     if (hasExitTicket) {
       exitDisplay.style.display = 'block';
@@ -3293,7 +2996,6 @@ function renderMissionScreen() {
       if (exitDesc) exitDesc.textContent = 'Students complete today\'s reading and graph questions. Use the timer to manage work time.';
     }
   }
-
   const discussDisplay = document.getElementById('discuss-prompt-display');
   const discussText = document.getElementById('discuss-prompt-text');
   if (discussDisplay && discussText) {
@@ -3304,21 +3006,17 @@ function renderMissionScreen() {
       discussDisplay.style.display = 'none';
     }
   }
-
   updateDayTypeBanner(cnt);
   updateTeacherNotePanel(cnt);
   populateDayJump();
-
   // Show "Show Answer Graph" button only on graph days that have datasets
   const answerBtn = document.getElementById('btn-show-answer');
   if (answerBtn) {
     const hasDatasets = cnt.graphData && cnt.graphData.datasets;
     answerBtn.style.display = hasDatasets ? '' : 'none';
   }
-
   checkStatAlerts(cls);
 }
-
 function populateDayJump() {
   const sel = document.getElementById('day-jump-select');
   if (!sel || state.activeClass === null) return;
@@ -3340,7 +3038,6 @@ function populateDayJump() {
     sel.appendChild(groupLabel);
   });
 }
-
 function jumpToDay(val) {
   if (!val || state.activeClass === null) return;
   const parts = val.split('-');
@@ -3354,34 +3051,28 @@ function jumpToDay(val) {
   renderMissionScreen();
   populateDayJump();
 }
-
 function showGraphAnswer() {
   const extra = document.getElementById('content-extra');
   if (!extra) return;
-
   const answerDiv = document.createElement('div');
   answerDiv.style.cssText = 'margin-top:16px';
-
   // GAIA intro
   let html = '<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.25);border-left:3px solid var(--gaia-green);border-radius:6px;padding:14px 16px;margin-bottom:14px">';
   html += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">GAIA — Graph Answers</div>';
   html += '<div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">"Let us review. A good scientist does not just pick a graph type — they know why that type serves the data. Here are the correct answers, and more importantly, the reasoning."</div>';
   html += '</div>';
-
   // Dataset 1 answer
   html += '<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:12px 14px;margin-bottom:10px">';
   html += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Dataset 1 — Answer</div>';
   html += '<div style="font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--green);margin-bottom:6px">✓ Bar Graph</div>';
   html += '<div style="font-family:var(--font-body);font-size:13px;color:var(--text-secondary);line-height:1.6">Five different materials being compared by boiling point. These are separate categories — there is no continuous change, no trend over time. A bar graph compares separate things. The space between bars means nothing. Bar graph every time.</div>';
   html += '</div>';
-
   // Dataset 2 answer
   html += '<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:12px 14px;margin-bottom:10px">';
   html += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Dataset 2 — Answer</div>';
   html += '<div style="font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--green);margin-bottom:6px">✓ Line Graph</div>';
   html += '<div style="font-family:var(--font-body);font-size:13px;color:var(--text-secondary);line-height:1.6">One location — Section C — tracked over seven days. This is one thing changing continuously over time. The space between the data points implies continuous change. The slope tells you the rate of decline. A bar graph would hide that trend entirely. Line graph.</div>';
   html += '</div>';
-
   // Dataset 3 answer — phase change curve
   html += '<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:12px 14px;margin-bottom:10px">';
   html += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Dataset 3 — Answer</div>';
@@ -3399,12 +3090,10 @@ function showGraphAnswer() {
   });
   html += '<div style="font-family:var(--font-mono);font-size:11px;color:var(--gaia-green);margin-top:8px;font-style:italic">"First flat = melting point. Second flat = boiling point. During each flat section, thermal energy is breaking particle bonds — not raising temperature. This is why the graph looks the way it does."</div>';
   html += '</div>';
-
   answerDiv.innerHTML = html;
   extra.appendChild(answerDiv);
   document.getElementById('btn-show-answer').style.display = 'none';
 }
-
 function updateTeacherNotePanel(cnt) {
   const panel = document.getElementById('teacher-note-panel');
   if (!panel) return;
@@ -3431,7 +3120,6 @@ function updateTeacherNotePanel(cnt) {
       '</div>'
     ).join('');
 }
-
 function renderDeepenContent(c) {
   let h = '';
   if (c.readingFocus) h += '<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">📖 Reading Assignment</div><div style="font-family:var(--font-body);font-size:15px;color:var(--text-primary);line-height:1.6">' + c.readingFocus + '</div></div>';
@@ -3443,14 +3131,12 @@ function renderDeepenContent(c) {
   }
   return h;
 }
-
 function renderGraphContent(c) {
   let h = '';
   if (c.graphData) {
     const gd = c.graphData;
     h += '<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:8px;padding:16px;margin-bottom:14px">';
     h += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">📊 ' + gd.title + '</div>';
-
     if (gd.pie && gd.bars) {
       // Render pie chart (Sector 3 Day 3)
       h += renderPieChart(gd);
@@ -3474,12 +3160,9 @@ function renderGraphContent(c) {
       h += '<div><div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);text-align:center;margin-bottom:6px;letter-spacing:.06em">VERSION 2: LINE GRAPH</div>' + renderLineGraph(gd) + '</div>';
       h += '</div>';
     }
-
     h += '</div>';
   }
-
   if (c.gaiaGraphNote) h += '<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA — On Graph Choice</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">' + c.gaiaGraphNote + '</div></div>';
-
   if (c.graphQuestions && c.graphQuestions.length) {
     h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px">Discussion Questions</div>';
     c.graphQuestions.forEach(q => { h += '<div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px;padding-left:10px;border-left:2px solid var(--border-bright)">' + q + '</div>'; });
@@ -3488,7 +3171,6 @@ function renderGraphContent(c) {
   // shortDayNote — teacher panel only
   return h;
 }
-
 function renderBarGraph(gd) {
   const bars = gd.bars;
   const maxVal = Math.max(...bars.map(b => b.value));
@@ -3497,7 +3179,6 @@ function renderBarGraph(gd) {
   const chartH = H - padT - padB;
   const barW = Math.floor(chartW / bars.length * 0.6);
   const gap = Math.floor(chartW / bars.length);
-
   // Section colors — unique per section, consistent across all graphs
   const sectionColors = {
     'Section A': '#00ff88', 'Sec A': '#00ff88',
@@ -3509,9 +3190,7 @@ function renderBarGraph(gd) {
   };
   // Status colors used only when no section name matches
   const statusColors = {safe:'#00ff88', caution:'#ffaa00', warning:'#ff8800', danger:'#ff3355'};
-
   let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:0 auto">';
-
   // Grid lines
   [0,25,50,75,100].forEach(pct => {
     const y = padT + chartH - (pct/maxVal * chartH * (maxVal/100));
@@ -3519,7 +3198,6 @@ function renderBarGraph(gd) {
     svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
     svg += '<text x="' + (padL-6) + '" y="' + (yy+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="13" fill="rgba(255,255,255,0.5)" text-anchor="end">' + pct + '</text>';
   });
-
   // Bars
   bars.forEach((b, i) => {
     const bh = (b.value / 100) * chartH;
@@ -3533,55 +3211,43 @@ function renderBarGraph(gd) {
     const label = b.label.replace('Section ', 'Sec ');
     svg += '<text x="' + (x + barW/2).toFixed(1) + '" y="' + (padT + chartH + 18).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="13" fill="rgba(255,255,255,0.7)" text-anchor="middle">' + label + '</text>';
   });
-
   // Axes
   svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
   svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
-
   // Y axis label — above chart area, clear of value labels
   svg += '<text x="' + padL + '" y="' + (padT - 14) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)" text-anchor="start">' + (gd.yLabel || '% Remaining') + ' →</text>';
-
   svg += '</svg>';
   return svg;
 }
-
 function renderPieChart(gd) {
   const bars = gd.bars;
   const total = bars.reduce((sum, b) => sum + b.value, 0);
   const W = 520, H = 260;
   const cx = 170, cy = 130, r = 110;
-
   // Colors — specific to each slice for this chart
   const sliceColors = ['#00ff88','#00c8ff','#aa66ff','#7be3ff','#ff3355'];
-
   let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:0 auto">';
-
   // Draw slices
   let startAngle = -Math.PI / 2; // start at top
   bars.forEach((b, i) => {
     const sliceAngle = (b.value / total) * 2 * Math.PI;
     const endAngle = startAngle + sliceAngle;
     const midAngle = startAngle + sliceAngle / 2;
-
     const x1 = cx + r * Math.cos(startAngle);
     const y1 = cy + r * Math.sin(startAngle);
     const x2 = cx + r * Math.cos(endAngle);
     const y2 = cy + r * Math.sin(endAngle);
     const largeArc = sliceAngle > Math.PI ? 1 : 0;
     const col = sliceColors[i % sliceColors.length];
-
     svg += '<path d="M' + cx + ' ' + cy + ' L' + x1.toFixed(1) + ' ' + y1.toFixed(1) + ' A' + r + ' ' + r + ' 0 ' + largeArc + ' 1 ' + x2.toFixed(1) + ' ' + y2.toFixed(1) + ' Z" fill="' + col + '" opacity="0.85" stroke="#020812" stroke-width="2"/>';
-
     // Percentage label inside slice (only if slice is big enough)
     if (b.value >= 10) {
       const lx = cx + (r * 0.62) * Math.cos(midAngle);
       const ly = cy + (r * 0.62) * Math.sin(midAngle);
       svg += '<text x="' + lx.toFixed(1) + '" y="' + (ly + 4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="13" font-weight="bold" fill="#020812" text-anchor="middle">' + b.value + '%</text>';
     }
-
     startAngle = endAngle;
   });
-
   // Legend on the right
   const legendX = cx + r + 30;
   bars.forEach((b, i) => {
@@ -3591,16 +3257,13 @@ function renderPieChart(gd) {
     svg += '<text x="' + (legendX + 24) + '" y="' + ly + '" font-family="Share Tech Mono,monospace" font-size="13" fill="rgba(255,255,255,0.85)">' + b.label + '</text>';
     svg += '<text x="' + (legendX + 24) + '" y="' + (ly + 16) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.45)">' + b.value + '% of total power</text>';
   });
-
   // Title note at bottom
   svg += '<text x="' + cx + '" y="' + (cy + r + 28) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.35)" text-anchor="middle">Total = 100% of ship power</text>';
-
   svg += '</svg>';
   return svg;
 }
-
 function renderBarGraphFromData(gd) {
-  const data = gd.data;
+ const data = gd.data;
   const vals = data.map(d => Math.abs(d.value));
   const maxVal = Math.max(...vals);
   const W = 280, H = 180, padL = 40, padB = 36, padT = 10, padR = 8;
@@ -3608,15 +3271,12 @@ function renderBarGraphFromData(gd) {
   const chartH = H - padT - padB;
   const barW = Math.floor(chartW / data.length * 0.55);
   const gap = chartW / data.length;
-
   let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">';
-
   [0,25,50,75,100].forEach(pct => {
     const yy = padT + chartH * (1 - pct/100);
     svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
     svg += '<text x="' + (padL-4) + '" y="' + (yy+3).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">' + Math.round(maxVal * pct/100) + '</text>';
   });
-
   data.forEach((d, i) => {
     const val = Math.abs(d.value);
     const bh = (val/maxVal) * chartH;
@@ -3625,14 +3285,12 @@ function renderBarGraphFromData(gd) {
     svg += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + barW + '" height="' + bh.toFixed(1) + '" fill="#378ADD" opacity="0.8" rx="2"/>';
     svg += '<text x="' + (x+barW/2).toFixed(1) + '" y="' + (padT+chartH+16).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.6)" text-anchor="middle">' + d.label.replace('Month ','M') + '</text>';
   });
-
   svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
   svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
   svg += '<text x="' + (W/2) + '" y="' + (H-2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle">Month</text>';
   svg += '</svg>';
   return svg;
 }
-
 function renderLineGraph(gd) {
   const data = gd.data;
   const vals = data.map(d => Math.abs(d.value));
@@ -3641,9 +3299,7 @@ function renderLineGraph(gd) {
   const chartW = W - padL - padR;
   const chartH = H - padT - padB;
   const gap = chartW / (data.length - 1);
-
   let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">';
-
   [0,25,50,75,100].forEach(pct => {
     const yy = padT + chartH * (pct/100);
     svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
@@ -3652,7 +3308,6 @@ function renderLineGraph(gd) {
     const labelText = labelVal === 0 ? '0' : '-' + labelVal;
     svg += '<text x="' + (padL-4) + '" y="' + (yy+3).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">' + labelText + '</text>';
   });
-
   // Build points
   const points = data.map((d, i) => {
     const val = Math.abs(d.value);
@@ -3660,31 +3315,26 @@ function renderLineGraph(gd) {
     const y = padT + (val/maxVal) * chartH;
     return {x, y, d};
   });
-
   // Line path
   let pathD = points.map((p,i) => (i===0?'M':'L') + p.x.toFixed(1) + ' ' + p.y.toFixed(1)).join(' ');
   svg += '<path d="' + pathD + '" fill="none" stroke="#ff3355" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
-
   // Dots and labels
   points.forEach((p,i) => {
     svg += '<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="4" fill="#ff3355" stroke="var(--bg-deep)" stroke-width="1.5"/>';
     svg += '<text x="' + p.x.toFixed(1) + '" y="' + (padT+chartH+16).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.6)" text-anchor="middle">' + p.d.label.replace('Month ','M') + '</text>';
   });
-
   svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
   svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>';
   svg += '<text x="' + (W/2) + '" y="' + (H-2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle">Month</text>';
   svg += '</svg>';
   return svg;
 }
-
 function renderMultiLineGraph(gd) {
   const lines = gd.multiLine || [];
   const xLabels = gd.xLabels || ['0h','8h','16h','24h','32h','40h','48h'];
   const W = 580, H = 230, padL = 52, padB = 44, padT = 20, padR = 130;
   const chartW = W - padL - padR;
   const chartH = H - padT - padB;
-
   // Find value range across all lines
   const allVals = lines.flatMap(l => l.values || []);
   const rawMin = Math.min(...allVals);
@@ -3693,19 +3343,15 @@ function renderMultiLineGraph(gd) {
   const yMin = gd.forceYMin !== undefined ? gd.forceYMin : Math.floor(rawMin / 10) * 10 - 10;
   const yMax = Math.ceil(rawMax / 10) * 10 + 20;
   const yRange = yMax - yMin;
-
   const SECTION_COLORS = {
     'Section A': '#00ff88', 'Section B': '#00c8ff',
     'Section C': '#ff3355', 'Section D': '#aa66ff',
     'Section E': '#7be3ff', 'Section F': '#ff8800',
   };
   const fallbackColors = ['#ffaa00','#00ff88','#00c8ff','#ff3355','#aa66ff','#ff8800'];
-
   const toX = (i, total) => padL + (chartW * i / Math.max(total - 1, 1));
   const toY = (v) => padT + chartH - (chartH * (v - yMin) / yRange);
-
   let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;max-width:580px;margin:0 auto">';
-
   // Grid lines — 5 even steps
   for (let i = 0; i <= 4; i++) {
     const yVal = yMin + (yRange * i / 4);
@@ -3713,7 +3359,6 @@ function renderMultiLineGraph(gd) {
     svg += '<line x1="' + padL + '" y1="' + yPos.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yPos.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
     svg += '<text x="' + (padL-4) + '" y="' + (yPos+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">' + Math.round(yVal) + '</text>';
   }
-
   // Threshold line — drawn BEFORE data lines so data sits on top
   if (gd.thresholdLine) {
     const ty = toY(gd.thresholdLine.value);
@@ -3725,14 +3370,12 @@ function renderMultiLineGraph(gd) {
     svg += '<rect x="' + (lx - 120) + '" y="' + (ly - 12).toFixed(1) + '" width="120" height="14" fill="rgba(2,8,18,0.85)" rx="2"/>';
     svg += '<text x="' + lx + '" y="' + (ly).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="10" fill="#ff3355" text-anchor="end">' + labelText + '</text>';
   }
-
   // X axis labels
   const numPoints = xLabels.length;
   xLabels.forEach((label, i) => {
     const x = padL + (chartW * i / (numPoints - 1));
     svg += '<text x="' + x.toFixed(1) + '" y="' + (padT + chartH + 16) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.55)" text-anchor="middle">' + label + '</text>';
   });
-
   // Week 24 spike marker if this is the energy graph
   const hasSpike = lines.some(l => l.values && Math.max(...l.values) > 800);
   if (hasSpike) {
@@ -3745,61 +3388,49 @@ function renderMultiLineGraph(gd) {
       svg += '<text x="' + sx.toFixed(1) + '" y="' + (padT - 4) + '" font-family="Share Tech Mono,monospace" font-size="9" fill="rgba(255,170,0,0.7)" text-anchor="middle">← Pulse</text>';
     }
   }
-
   // Draw each data line — skip the flat threshold line (rendered as dashed above)
   lines.forEach((line, li) => {
     if (line.section === 'Design Threshold' || line.section === 'Design Limit') return;
     const vals = line.values || [];
     const col = SECTION_COLORS[line.section] || fallbackColors[li % fallbackColors.length];
     const points = vals.map((v, i) => ({ x: toX(i, vals.length), y: toY(v) }));
-
     const pathD = points.map((p,i) => (i===0?'M':'L') + p.x.toFixed(1) + ' ' + p.y.toFixed(1)).join(' ');
     svg += '<path d="' + pathD + '" fill="none" stroke="' + col + '" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>';
-
     // End dot
     const last = points[points.length-1];
     svg += '<circle cx="' + last.x.toFixed(1) + '" cy="' + last.y.toFixed(1) + '" r="4" fill="' + col + '" stroke="#020812" stroke-width="1.5"/>';
-
     // Legend
     const legendY = padT + 16 + (li * 22);
     svg += '<circle cx="' + (W-padR+12) + '" cy="' + legendY + '" r="5" fill="' + col + '"/>';
     svg += '<text x="' + (W-padR+22) + '" y="' + (legendY+4) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.8)">' + (line.section || 'Line ' + (li+1)) + '</text>';
   });
-
   // Legend entry for threshold line
   if (gd.thresholdLine) {
     const legendY = padT + 16 + (lines.filter(l => l.section !== 'Design Threshold' && l.section !== 'Design Limit').length * 22);
     svg += '<line x1="' + (W-padR+7) + '" y1="' + legendY + '" x2="' + (W-padR+21) + '" y2="' + legendY + '" stroke="#ff3355" stroke-width="1.5" stroke-dasharray="4,3"/>';
     svg += '<text x="' + (W-padR+25) + '" y="' + (legendY+4) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,100,100,0.8)">' + (gd.thresholdLine.label || 'Limit') + '</text>';
   }
-
   // Axes
   svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
   svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
-
   if (gd.yLabel) {
     svg += '<text x="12" y="' + (padT + chartH/2) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,' + (padT+chartH/2) + ')">' + gd.yLabel + '</text>';
   }
-
   svg += '</svg>';
   return svg;
 }
-
 function renderPhaseChangeCurve(gd) {
   const curve = gd.phaseChangeCurve || [];
   const W = 520, H = 220, padL = 52, padB = 44, padT = 14, padR = 16;
   const chartW = W - padL - padR;
   const chartH = H - padT - padB;
-
   const temps = curve.map(p => p.temp);
   const times = curve.map(p => p.time);
   const minTemp = Math.min(...temps) - 20;
   const maxTemp = Math.max(...temps) + 20;
   const maxTime = Math.max(...times);
   const tempRange = maxTemp - minTemp;
-
   let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;max-width:520px;margin:0 auto">';
-
   // Grid
   for (let i = 0; i <= 4; i++) {
     const yPos = padT + chartH * i / 4;
@@ -3807,14 +3438,12 @@ function renderPhaseChangeCurve(gd) {
     svg += '<line x1="' + padL + '" y1="' + yPos.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yPos.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
     svg += '<text x="' + (padL-4) + '" y="' + (yPos+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">' + Math.round(yVal) + '°</text>';
   }
-
   // Build points
   const points = curve.map(p => ({
     x: padL + (p.time / maxTime) * chartW,
     y: padT + chartH * (1 - (p.temp - minTemp) / tempRange),
     phase: p.phase, time: p.time, temp: p.temp
   }));
-
   // Color segments
   for (let i = 0; i < points.length - 1; i++) {
     const p1 = points[i], p2 = points[i+1];
@@ -3822,7 +3451,6 @@ function renderPhaseChangeCurve(gd) {
     const col = isFlat ? '#ffaa00' : '#00c8ff';
     svg += '<line x1="' + p1.x.toFixed(1) + '" y1="' + p1.y.toFixed(1) + '" x2="' + p2.x.toFixed(1) + '" y2="' + p2.y.toFixed(1) + '" stroke="' + col + '" stroke-width="2.5" stroke-linecap="round"/>';
   }
-
   // Flat line labels
   const flatPoints = points.filter((p,i) => i > 0 && i < points.length-1 && Math.abs(p.temp - points[i-1].temp) < 2 && Math.abs(p.temp - points[i+1].temp) < 2);
   const labeled = new Set();
@@ -3835,23 +3463,19 @@ function renderPhaseChangeCurve(gd) {
       svg += '<line x1="' + p.x.toFixed(1) + '" y1="' + (p.y-4).toFixed(1) + '" x2="' + p.x.toFixed(1) + '" y2="' + (p.y+4).toFixed(1) + '" stroke="#ffaa00" stroke-width="1" stroke-dasharray="2,2"/>';
     }
   });
-
   // Axes
   svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
   svg += '<line x1="' + padL + '" y1="' + (padT+chartH) + '" x2="' + (W-padR) + '" y2="' + (padT+chartH) + '" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>';
   svg += '<text x="' + (padL + chartW/2) + '" y="' + (H-2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle">Time (minutes) →</text>';
   svg += '<text x="12" y="' + (padT + chartH/2) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle" transform="rotate(-90,12,' + (padT+chartH/2) + ')">Temperature (°C)</text>';
-
   // Legend
   svg += '<rect x="' + (padL+10) + '" y="' + (padT+8) + '" width="8" height="3" fill="#00c8ff" rx="1"/>';
   svg += '<text x="' + (padL+22) + '" y="' + (padT+12) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.6)">Heating (temp rising)</text>';
   svg += '<rect x="' + (padL+10) + '" y="' + (padT+22) + '" width="8" height="3" fill="#ffaa00" rx="1"/>';
   svg += '<text x="' + (padL+22) + '" y="' + (padT+26) + '" font-family="Share Tech Mono,monospace" font-size="11" fill="rgba(255,255,255,0.6)">State change (temp flat)</text>';
-
   svg += '</svg>';
   return svg;
 }
-
 function renderDatasetComparison(gd) {
   const datasets = gd.datasets || [];
   let h = '';
@@ -3859,7 +3483,6 @@ function renderDatasetComparison(gd) {
     h += '<div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:14px 16px;margin-bottom:12px">';
     h += '<div style="font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">' + ds.id + '</div>';
     h += '<div style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);margin-bottom:12px;line-height:1.6">' + ds.description + '</div>';
-
     if (ds.data && ds.data.length > 0) {
       // DATA TABLE ONLY — no graph — kids decide which type fits
       h += '<div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Raw Data — No Graph Yet</div>';
@@ -3887,7 +3510,6 @@ function renderDatasetComparison(gd) {
   });
   return h;
 }
-
 function renderClimaxContent(c) {
   let h = '';
   if (c.graphData) h += renderGraphContent(c);
@@ -3901,13 +3523,10 @@ function renderClimaxContent(c) {
   if (c.isLessonEnd) h += '<div style="background:var(--bg-card);border:1px solid rgba(170,102,255,0.3);border-radius:6px;padding:14px;text-align:center"><div style="font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--purple);letter-spacing:.08em;margin-bottom:5px">LESSON 1 COMPLETE — LESSON 2 BEGINS NEXT CLASS</div><div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)">States of Matter → Changes of State</div></div>';
   return h;
 }
-
-
 function getContentForClass(cls) {
   const act = CONTENT.acts.find(a => a.id === cls.act) || CONTENT.acts[0];
   return act.days.find(d => d.day === cls.day) || act.days[0];
 }
-
 function getPrevDayContent(cls) {
   // After commit, cls.day has been incremented — so previous day is cls.day - 1
   const act = CONTENT.acts.find(a => a.id === cls.act);
@@ -3916,7 +3535,6 @@ function getPrevDayContent(cls) {
   if (prevDay < 1) return null;
   return act.days.find(d => d.day === prevDay) || null;
 }
-
 // ============================================================
 // PHASE SYSTEM
 // ============================================================
@@ -3926,14 +3544,11 @@ function setPhase(phase) {
   const cnt = cls ? getContentForClass(cls) : null;
   const dayType = cnt ? (cnt.type || 'choice') : 'choice';
   const isChoiceDay = dayType === 'choice' && !cnt.noChoice;
-
   state.currentPhase = phase;
-
   // Show/hide phase bar steps based on day type
   document.querySelectorAll('.phase-step').forEach(el => {
     const p = el.dataset.phase;
     el.classList.remove('active','done');
-
     if (!isChoiceDay) {
       // Non-choice days: only show story and exit (repurposed as Work Timer)
       if (p === 'discuss' || p === 'vote') {
@@ -3965,20 +3580,16 @@ function setPhase(phase) {
       else if (elIdx === phaseIdx) el.classList.add('active');
     }
   });
-
   // On non-choice days, redirect discuss/vote back to story
   if (!isChoiceDay && (phase === 'discuss' || phase === 'vote')) {
     phase = 'story';
   }
-
   document.querySelectorAll('.phase-panel').forEach(el => el.classList.remove('active'));
   const panel = document.getElementById('phase-' + phase);
   if (panel) panel.classList.add('active');
-
   // Update choices area
   const label = document.getElementById('choices-label');
   const choicesArea = document.getElementById('choices-area');
-
   if (!isChoiceDay) {
     // Hide choices entirely on non-choice days
     if (choicesArea) {
@@ -3997,7 +3608,6 @@ function setPhase(phase) {
     }
   }
 }
-
 // ============================================================
 // TIMER
 // ============================================================
@@ -4005,7 +3615,6 @@ let _timerSeconds = 0;
 let _timerRunning = false;
 let _timerInterval = null;
 let _activeTimerPhase = null;
-
 function startPhaseTimer(phase) {
   stopTimer();
   _activeTimerPhase = phase;
@@ -4017,13 +3626,11 @@ function startPhaseTimer(phase) {
   document.getElementById(`${phase}-timer-done`).style.display = 'none';
   updateTimerDisplays();
 }
-
 function stopTimer() {
   _timerRunning = false;
   if (_timerInterval) { clearInterval(_timerInterval); _timerInterval = null; }
   updateTimerDisplays();
 }
-
 function addTime(mins) {
   _timerSeconds += mins * 60;
   if (!_timerRunning && _timerSeconds > 0 && _activeTimerPhase) {
@@ -4032,13 +3639,10 @@ function addTime(mins) {
   }
   updateTimerDisplays();
 }
-
 function addTimeTopbar(mins) { addTime(mins); }
-
 function focusTimer() {
   if (_activeTimerPhase) setPhase(_activeTimerPhase);
 }
-
 function tickTimer() {
   if (!_timerRunning) return;
   _timerSeconds = Math.max(0, _timerSeconds - 1);
@@ -4049,7 +3653,6 @@ function tickTimer() {
     onTimerDone();
   }
 }
-
 function onTimerDone() {
   if (_activeTimerPhase) {
     const doneEl = document.getElementById(`${_activeTimerPhase}-timer-done`);
@@ -4057,12 +3660,10 @@ function onTimerDone() {
   }
   toast('Time is up!', '');
 }
-
 function updateTimerDisplays() {
   const m = Math.floor(_timerSeconds / 60);
   const s = _timerSeconds % 60;
   const str = `${m}:${s.toString().padStart(2,'0')}`;
-
   // Determine color class
   let cls = 'idle';
   if (_timerSeconds === 0 && !_timerRunning && _activeTimerPhase) cls = 'done';
@@ -4070,11 +3671,9 @@ function updateTimerDisplays() {
   else if (_timerSeconds <= 60) cls = 'urgent';
   else if (_timerSeconds <= 120) cls = 'low';
   else cls = 'running';
-
   // Topbar
   const topbar = document.getElementById('topbar-timer');
   if (topbar) { topbar.textContent = _timerRunning || _timerSeconds > 0 ? str : '--:--'; topbar.className = 'timer-readout ' + cls; }
-
   // Phase panels
   ['exit','discuss'].forEach(phase => {
     const el = document.getElementById(`${phase}-timer-display`);
@@ -4083,7 +3682,6 @@ function updateTimerDisplays() {
     else if (_activeTimerPhase === null) { el.textContent = '--:--'; el.className = 'big-timer idle'; }
   });
 }
-
 // ============================================================
 // CHOICES
 // ============================================================
@@ -4092,12 +3690,10 @@ function renderChoices(cls, choices) {
   grid.innerHTML = '';
   const restricted = cls.failures >= 2;
   document.getElementById('choices-restricted').style.display = restricted ? 'block' : 'none';
-
   if (!choices || choices.length === 0) {
     grid.innerHTML = '<div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);font-style:italic;padding:6px 0">No vote required for this session.</div>';
     return;
   }
-
   // When restricted, mark lowest-impact option as eliminated
   choices.forEach((choice, i) => {
     const isEliminated = restricted && i === choices.length - 1 && choices.length > 2;
@@ -4115,7 +3711,6 @@ function renderChoices(cls, choices) {
     grid.appendChild(btn);
   });
 }
-
 function selectChoice(i) {
   if (state.currentPhase !== 'vote') {
     toast('Move to Phase 4: Final Vote to commit a decision.', '');
@@ -4128,7 +3723,6 @@ function selectChoice(i) {
   document.getElementById('btn-commit').disabled = false;
   document.getElementById('commit-note').innerHTML = '"' + choice.text + '"';
 }
-
 // ============================================================
 // COMMIT FLOW — stats NOT applied until reveal
 // ============================================================
@@ -4145,19 +3739,16 @@ function openCommitModal() {
   state.pendingCommit = choice;
   document.getElementById('modal-commit').classList.add('visible');
 }
-
 function executeCommit() {
   closeModal('modal-commit');
   const cls = state.classes[state.activeClass];
   const choice = state.pendingCommit;
-
   // Store deltas as PENDING — do NOT apply yet
   cls.pendingDeltas = { ...choice.deltas };
   cls.pendingChoiceText = choice.text;
   cls.pendingChoiceLetter = choice.letter;
   cls.pendingConsequence = choice.consequence || null;
   cls.branch = choice.branch || cls.branch;
-
   // Log the decision
   cls.decisions.push({
     date: new Date().toLocaleDateString(),
@@ -4168,39 +3759,31 @@ function executeCommit() {
     branch: choice.branch,
     deltas: choice.deltas
   });
-
   // Advance day
   cls.day += 1;
-
   // Save checkpoint at act boundaries
   if (!cls.checkpoint) {
     cls.checkpoint = { act:cls.act, day:1, stats:{...cls.stats}, branch:cls.branch };
   }
-
   save();
-
   // Show processing screen
   document.getElementById('processing-choice-text').textContent = choice.text;
   showScreen('screen-processing');
 }
-
 function saveAndGoHome() {
   save();
   goHome();
 }
-
 function continueMission() {
   renderMissionScreen();
   showScreen('screen-mission');
 }
-
 function goToReveal() {
   const cls = state.classes[state.activeClass];
   if (!cls.pendingDeltas) { toast('No pending reveal for this class yet.', ''); return; }
   renderRevealScreen(cls);
   showScreen('screen-reveal');
 }
-
 // ============================================================
 // STATS DISPLAY
 // ============================================================
@@ -4230,7 +3813,6 @@ function renderStats(cls) {
   document.getElementById('stat-data-status').textContent = statLabel('data', stats.data);
   document.getElementById('stat-morale-status').textContent = statLabel('morale', stats.morale);
 }
-
 function statLabel(key, val) {
   if (key === 'power') {
     if (val <= 0)  return '🚨 Depleted';
@@ -4262,7 +3844,6 @@ function statLabel(key, val) {
   }
   return 'normal';
 }
-
 function checkStatAlerts(cls) {
   const alerts = [];
   const s = cls.stats;
@@ -4271,15 +3852,12 @@ function checkStatAlerts(cls) {
   if (s.morale <= 30) alerts.push('"Crew morale is affecting performance. I recommend acknowledging this."');
   const critCount = [s.power, s.hull, s.morale].filter(v => v <= 20).length;
   if (critCount >= 2) alerts.push('"Two or more systems critical simultaneously. This is the failure profile I hoped to avoid."');
-
   const box = document.getElementById('gaia-alerts');
   box.innerHTML = alerts.length
     ? alerts.map(a => `<div class="gaia-alert" style="margin-bottom:6px"><div class="gaia-alert-text">${a}</div></div>`).join('')
     : '<div class="gaia-alert"><div class="gaia-alert-text">"All systems monitored. Awaiting crew input."</div></div>';
-
   if (s.hull <= 0 || critCount >= 2 && [s.power, s.hull].some(v => v <= 0)) triggerExtinction();
 }
-
 function updateFailureDots(cls) {
   for (let i = 0; i < 3; i++) {
     document.getElementById(`fdot-${i}`).classList.toggle('active', i < cls.failures);
@@ -4293,7 +3871,6 @@ function updateFailureDots(cls) {
     ? 'GAIA: "Choices are now restricted to the most viable options."'
     : 'GAIA: "I have narrowed your options significantly. Please try not to make me regret it."';
 }
-
 // ============================================================
 // DECISION LOG
 // ============================================================
@@ -4315,7 +3892,6 @@ function renderDecisionLog(cls) {
     </div>`;
   }).join('');
 }
-
 // ============================================================
 // NAVIGATION
 // ============================================================
@@ -4325,11 +3901,9 @@ const GAIA_BLOCK_MESSAGES = [
   "Results pending. I'd recommend finding out what happened before creating new things to regret.",
   "The crew voted. Something happened. You haven't looked yet. Perhaps do that first."
 ];
-
 function advanceToNextDay() {
   if (state.activeClass === null) return;
   const cls = state.classes[state.activeClass];
-
   // Block advancing if a reveal is pending — cliffhanger protection
   if (cls.pendingDeltas) {
     const msg = GAIA_BLOCK_MESSAGES[_gaiaBlockIndex % GAIA_BLOCK_MESSAGES.length];
@@ -4337,7 +3911,6 @@ function advanceToNextDay() {
     showGaiaBlock(msg);
     return;
   }
-
   const act = CONTENT.acts.find(a => a.id === cls.act);
   if (!act) return;
   const nextDayContent = act.days.find(d => d.day === cls.day + 1);
@@ -4354,7 +3927,6 @@ function advanceToNextDay() {
   save();
   renderMissionScreen();
 }
-
 function togglePresMode() {
   document.body.classList.toggle('presentation-mode');
   const btn = document.getElementById('pres-btn');
@@ -4366,20 +3938,16 @@ function togglePresMode() {
     btn.style.background = isPresMode ? 'rgba(0,255,136,0.08)' : '';
   }
 }
-
 function updateDayTypeBanner(cnt) {
   const badge = document.getElementById('day-type-badge');
   const desc = document.getElementById('day-type-desc');
   if (!badge || !desc) return;
-
   // Robust day type detection
   const dayType = (cnt && cnt.type) ? cnt.type : 'choice';
   const hasNoChoice = cnt && (cnt.noChoice === true);
   const hasChoices = cnt && cnt.choices && cnt.choices.length > 0;
   const isChoice = dayType === 'choice' && !hasNoChoice && hasChoices;
-
   badge.className = 'day-type-badge';
-
   if (isChoice) {
     badge.classList.add('badge-choice');
     badge.textContent = '⚡ Choice Day';
@@ -4402,7 +3970,6 @@ function updateDayTypeBanner(cnt) {
     desc.textContent = 'Reading · No vote today';
   }
 }
-
 function showGaiaBlock(msg) {
   // Show GAIA block message in the gaia alerts panel
   const box = document.getElementById('gaia-alerts');
@@ -4415,29 +3982,24 @@ function showGaiaBlock(msg) {
   }
   toast('Reveal pending — open the reveal screen first.', '');
 }
-
 function saveCurrentClass() {
   save();
   toast(`${state.classes[state.activeClass]?.name || 'Class'} saved.`, 'success');
 }
-
 function goHome() {
   save();
   stopTimer();
   state.activeClass = null;
   showHome();
 }
-
 function resumeMission() {
   if (state.activeClass !== null) { renderMissionScreen(); showScreen('screen-mission'); }
   else goHome();
 }
-
 // ============================================================
 // EXTINCTION / FORENSICS
 // ============================================================
 function triggerExtinction() { document.getElementById('modal-extinction').classList.add('visible'); }
-
 function confirmExtinction() {
   closeModal('modal-extinction');
   const cls = state.classes[state.activeClass];
@@ -4450,7 +4012,6 @@ function confirmExtinction() {
   save();
   showForensics();
 }
-
 function showForensics() {
   const idx = state.activeClass !== null ? state.activeClass : state.selectedHomeClass;
   if (idx === null) { showHome(); return; }
@@ -4480,7 +4041,6 @@ function showForensics() {
       }).join('');
   showScreen('screen-forensics');
 }
-
 // ============================================================
 // RESETS
 // ============================================================
@@ -4491,7 +4051,6 @@ function confirmReset() {
     `Reset ${cls.name} to the last checkpoint (Act ${cls.checkpoint?.act || 1} Day ${cls.checkpoint?.day || 1})? Decisions since then will be lost.`;
   document.getElementById('modal-reset').classList.add('visible');
 }
-
 function executeReset() {
   closeModal('modal-reset');
   const cls = state.classes[state.selectedHomeClass];
@@ -4504,14 +4063,12 @@ function executeReset() {
   cls.pendingDeltas = null; cls.pendingChoiceText = null;
   save(); renderClassCards(); toast(`${cls.name} reset.`, '');
 }
-
 function confirmFullReset() {
   if (state.selectedHomeClass === null) { toast('Select a class first.', 'error'); return; }
   document.getElementById('full-reset-modal-body').textContent =
     `Full reset ${state.classes[state.selectedHomeClass].name}? ALL progress wiped. Cannot be undone.`;
   document.getElementById('modal-full-reset').classList.add('visible');
 }
-
 function executeFullReset() {
   closeModal('modal-full-reset');
   const cls = state.classes[state.selectedHomeClass];
@@ -4521,7 +4078,6 @@ function executeFullReset() {
   cls.pendingDeltas=null; cls.pendingChoiceText=null;
   save(); renderClassCards(); toast(`${cls.name} fully reset.`, '');
 }
-
 // ============================================================
 // UTILITIES
 // ============================================================
@@ -4529,16 +4085,13 @@ function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
-
 function closeModal(id) { document.getElementById(id).classList.remove('visible'); }
-
 function toast(msg, type) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.className = 'toast visible' + (type ? ' ' + type : '');
   setTimeout(() => t.classList.remove('visible'), 3000);
 }
-
 // ============================================================
 // BOOT
 // ============================================================
@@ -4550,3 +4103,4 @@ window.addEventListener('load', () => {
 </script>
 </body>
 </html>
+
