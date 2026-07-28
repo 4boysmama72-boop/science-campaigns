@@ -2318,17 +2318,6 @@ const CONTENT = {
         }
       ]
     },
-    // ── DAY 19 ── CLIMAX · Sector 2 Close + Sector 3 Hook ────
-    {
-      day:19, type:'climax', isReveal:true,
-      actLabel:'Sector 2 · Changes of State',
-      actTitle:'What the Lab Revealed',
-      gaia:'Sector 2 is complete. The crew entered this sector with a temperature anomaly and no explanation. You leave it with a complete scientific understanding of kinetic theory, states of matter, changes of state — and gas behavior. Three lessons. One continuous chain. Everything that happened on this ship traces back to particle motion, thermal energy, and the laws that govern how matter responds to changing conditions. I want to take a moment to acknowledge what this crew has done. Not the choices — the thinking. The way you read the graphs. The way you connected particle speed to temperature to state to change of state to pressure to boiling point. That is not nothing. That is the whole point.',
-      scenario:'The Prometheus is more stable than it has been since the anomaly began — or it is more compromised, depending on the choices this crew made. Either way, the mission continues.\n\nBefore we go any further, I want to show you something. Pull up the mission board.',
-      gaiaClosing:'"Three classes. Same ship. Same anomaly. Same choices available — and yet look at where you each ended up. Different power reserves. Different hull integrity. Different data collected. Every divergence on that board traces back to one decision, on one specific day, made for specific reasons. That is not a game mechanic. That is how real science works. Different teams. Different methods. Different findings. All valid. All true.\n\nNow. The research lab contained something else. In the back, sealed in a sealed secondary unit that the thermal transfer device never touched — the original crew\'s final research notes. I have begun reading them. I am not going to tell you what they say yet. But I will tell you this: the temperature anomaly was not the only experiment running on this ship. The next system that needs investigating is connected to how this ship stores and transfers energy through its power grid. Kinetic energy. Potential energy. The ability of objects to store the capacity to make things change.\n\nGet some rest. Sector 3 begins next class. And I think — based on what I have read in those notes — you are going to find it very interesting."',
-      noChoice:true,
-      isActEnd:true
-    }
   ] // end Act 2 days
 },
         // ============================================================
@@ -2354,7 +2343,7 @@ const CONTENT = {
           day:1, type:'choice', isReveal:false,
           actLabel:'Sector 3 · Energy',
           actTitle:'Something Is Still Running',
-          gaia:'I have been reading the research notes. I have not slept — I do not sleep, technically, but I have been doing the equivalent, which is running every background process at full capacity and ignoring everything else. I need to tell you what I found. And I need you to understand it before we do anything about it. The thermal transfer device was not the only experiment running on this ship. There was a second one. It is connected to the power grid. And it is still running right now.',
+          gaia:'Sector 2 is complete. The crew entered this sector with a temperature anomaly and no explanation. You leave it with a complete scientific understanding of kinetic theory, states of matter, changes of state, and gas behavior. Three lessons. One continuous chain. Everything that happened on this ship traces back to particle motion, thermal energy, and the laws that govern how matter responds to changing conditions. I want to take a moment to acknowledge what this crew has done. Not the choices — the thinking. The way you read the graphs. The way you connected particle speed to temperature to state to change of state to pressure to boiling point. That is not nothing. That is the whole point. Three classes. Same ship. Same anomaly. Same choices available — and yet look at where you each ended up. Different power reserves. Different hull integrity. Different data collected. Every divergence on that board traces back to one decision, on one specific day, made for specific reasons. That is not a game mechanic. That is how real science works. Now — I have been reading the research notes. I have not slept — I do not sleep, technically, but I have been doing the equivalent, which is running every background process at full capacity and ignoring everything else. I need to tell you what I found. And I need you to understand it before we do anything about it. The thermal transfer device was not the only experiment running on this ship. There was a second one. It is connected to the power grid. And it is still running right now.',
           scenario:'The crew gathers in the ship\'s main corridor. GAIA projects the research notes onto the display — pages of equations, diagrams, and observations from the original Prometheus crew. The language is technical, but the idea underneath it is simple.\n\nThe researchers were trying to solve a problem: when you convert energy from one form to another, you always lose some of it as thermal energy. Heat you didn\'t want, going somewhere you didn\'t intend. They wanted to build a system that converted between kinetic energy and potential energy in a closed loop — motion to stored energy to motion again — with as little loss as possible.\n\nThey called it the Conversion Loop. And according to the notes, it almost worked.\n\nGAIA: "The power grid readings I have been unable to explain for the past three weeks. The fluctuations that did not match the thermal transfer device. That was the Conversion Loop. It has been running in the lower decks, unattended, for six months. Converting. Storing. Converting again. I do not yet know what effect six months of continuous operation has had on the system. I need the crew to investigate — carefully — while I finish reading the notes."',
           firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">Something is still running in the lower decks — and to understand what it is doing, the crew needs to understand what energy actually is. Open your textbook to Topic 1, Lesson 2 — Kinetic Energy and Potential Energy. Focus on what determines each type and how they relate to each other. Your exit ticket will ask you to use those definitions to explain what the Conversion Loop is doing and defend what the crew should do next. Read with the scenario in mind.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 1, Lesson 2 — Kinetic Energy and Potential Energy</div></div>',
           exitTicketPrompt:'What is the difference between kinetic energy and potential energy? Use the Conversion Loop as your example — when the loop converts motion to stored energy, which type does it start with and which type does it end with? Make your claim: should the crew investigate the lower decks now, wait for GAIA to finish reading the notes, or split up and do both at once? Explain how what you know about energy storage supports your choice.',
@@ -3696,8 +3685,17 @@ function executeCommit() {
     branch: choice.branch,
     deltas: choice.deltas
   });
-  // Advance day
+  // Advance day — check whether that day exists in the current sector;
+  // if not, this choice was the sector's last day, so roll into the next sector.
   cls.day += 1;
+  const committedAct = CONTENT.acts.find(a => a.id === cls.act);
+  if (committedAct && !committedAct.days.find(d => d.day === cls.day)) {
+    const nextAct = CONTENT.acts.find(a => a.id === cls.act + 1);
+    if (nextAct) {
+      cls.act += 1;
+      cls.day = 1;
+    }
+  }
   // Save checkpoint at act boundaries
   if (!cls.checkpoint) {
     cls.checkpoint = { act:cls.act, day:1, stats:{...cls.stats}, branch:cls.branch };
@@ -4040,4 +4038,3 @@ window.addEventListener('load', () => {
 </script>
 </body>
 </html>
-
