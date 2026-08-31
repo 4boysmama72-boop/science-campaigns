@@ -2271,75 +2271,9 @@ const CONTENT = {
         }
       ]
     },
-    // ── DAY 17 ── GRAPH DAY · Choose the Right Graph ─────────
+    // ── DAY 17 ── CHOICE DAY · Final Investigation ────────────
     {
-      day:17, type:'graph', isReveal:false,
-      actLabel:'Sector 2 · Changes of State',
-      actTitle:'Which Graph Tells This Story?',
-      gaia:'The crew has been working with graphs since Sector 1. Bar graphs. Line graphs. Two lines on the same graph. The phase change curve. Today I am not going to tell you which graph to use. I am going to give you a data set and ask you to decide — and more importantly, to defend your decision. A scientist who can read a graph is useful. A scientist who can choose the right graph for the data is exceptional. I want to find out which kind of crew I have.',
-      scenario:'GAIA presents three different data sets from the Prometheus investigation and asks the crew to decide which type of graph — bar or line — best represents each one. Then for the third data set, GAIA asks the crew to decide what the graph should look like before seeing it.',
-      graphData:{
-        title:'Three Data Sets — Which Graph Fits?',
-        teacherNote:'Present each data set separately. For Data Set 1 and 2, show both a bar and line version if possible and ask which is better. For Data Set 3, ask crews to decide BEFORE drawing it.',
-        datasets:[
-          {
-            id:'Dataset 1',
-            description:'Boiling points of 5 different materials found in the Prometheus research lab.',
-            data:[
-              {label:'Material A', value:180},
-              {label:'Material B', value:340},
-              {label:'Material C', value:95},
-              {label:'Material D', value:420},
-              {label:'Material E', value:215}
-            ],
-            answer:'Bar graph — these are separate categories (different materials) being compared. There is no time element and no continuous change.',
-            hint:'Are these separate things being compared, or one thing changing over time?'
-          },
-          {
-            id:'Dataset 2',
-            description:'Temperature of Section C over 7 days as the thermal transfer anomaly progressed.',
-            data:[
-              {label:'Day 1', value:-12},
-              {label:'Day 2', value:-28},
-              {label:'Day 3', value:-45},
-              {label:'Day 4', value:-67},
-              {label:'Day 5', value:-89},
-              {label:'Day 6', value:-112},
-              {label:'Day 7', value:-138}
-            ],
-            answer:'Line graph — this is one thing (Section C temperature) changing continuously over time. The trend and slope matter. A bar graph would hide the trend.',
-            hint:'Is this one thing changing over time, or different things being compared?'
-          },
-          {
-            id:'Dataset 3',
-            description:'The crew heated a sample of lab material from -50°C to 300°C. Every 5 minutes they recorded the temperature. At 90°C the temperature held steady for 15 minutes. At 240°C it held steady for 20 minutes.',
-            data:[],
-            answer:'Line graph — specifically a phase change curve with TWO flat sections. This is temperature changing over time, with the flat sections revealing the melting point (90°C) and boiling point (240°C).',
-            hint:'What kind of graph did we use on Day 12 for a very similar situation?'
-          }
-        ],
-        graphAnswers:[
-          {q:'1', a:'Bar graph — these are separate categories (different materials) being compared, with no time element and no continuous change.'},
-          {q:'2', a:'Line graph — this is one thing (Section C temperature) changing continuously over time, where the trend and slope matter. A bar graph would hide that trend.'},
-          {q:'3', a:'Line graph — specifically a phase-change curve with two flat sections, since the data describes two distinct hold-steady periods (90°C for 15 min, 240°C for 20 min), the same pattern seen on Day 12.'},
-          {q:'4', a:'The flat sections mark the melting point (90°C) and boiling point (240°C) — temperature holds steady while energy goes into changing state rather than raising temperature further.'},
-          {q:'5', a:'Answers will vary. Example: using a bar graph for something changing over time (like daily temperature) would make it look like separate, unrelated events instead of revealing a steady trend, potentially hiding an important pattern.'}
-        ]
-      },
-      gaiaGraphNote:'"The rule is simple but requires judgment: bar graphs compare separate categories. Line graphs show change over time. When you are not sure which to use, ask yourself: am I comparing different things, or showing how one thing changes? If you are still not sure, ask whether the space BETWEEN the data points means anything. On a bar graph, the space between bars means nothing — bars are separate. On a line graph, the space between points implies continuous change. That implication changes the story the graph tells."',
-      graphQuestions:[
-        '1. Dataset 1: Which graph type fits better — bar or line? Why?',
-        '2. Dataset 2: Which graph type fits better — bar or line? Why?',
-        '3. Dataset 3: Before drawing it — what type of graph fits, and what will it look like? Describe the shape.',
-        '4. After deciding on Dataset 3 — what do the flat sections in that graph tell you? What is happening at those moments?',
-        '5. GAIA\'s rule: "bar = comparing categories, line = change over time." Can you think of a situation where you might be tempted to use the wrong type — and why it would matter?'
-      ],
-      shortDayNote:'Short day: Do Datasets 1 and 2 only. The key skill is bar vs. line decision-making with justification. Dataset 3 can be a warm-up next class.',
-      noChoice:true
-    },
-    // ── DAY 18 ── CHOICE DAY · Final Investigation ────────────
-    {
-      day:18, type:'choice', isReveal:false,
+      day:17, type:'choice', isReveal:false,
       actLabel:'Sector 2 · Changes of State',
       actTitle:'What Was Running in the Lab',
       gaia:'The crew is in the lab. And I have now had time to analyze what we found. I am going to tell you my theory — and I want the crew to decide what to do with it. The Prometheus\'s original mission was to study matter under deep space conditions. Extreme cold. Near-vacuum pressure. The researchers on this ship were investigating how matter behaves at the boundaries of state — at the exact thresholds where solids become liquids, liquids become gases, and under the right conditions, solids become gases directly. They built something to create those conditions artificially. An experiment. And when the anomaly began six months ago — the experiment did not stop. It kept running. It is <em>still</em> running. And the crew has thirty minutes of power left to decide what to do about it.',
@@ -2400,34 +2334,34 @@ const CONTENT = {
           actLabel:'Sector 3 · Energy',
           actTitle:'Something Is Still Running',
           gaia:'Sector 2 is complete. The crew entered this sector with a temperature anomaly and no explanation. You leave it with a complete scientific understanding of kinetic theory, states of matter, changes of state, and gas behavior. Three lessons. One continuous chain. Everything that happened on this ship traces back to particle motion, thermal energy, and the laws that govern how matter responds to changing conditions. I want to take a moment to acknowledge what this crew has done. Not the choices — the thinking. The way you read the graphs. The way you connected particle speed to temperature to state to change of state to pressure to boiling point. That is not nothing. That is the whole point. Three classes. Same ship. Same anomaly. Same choices available — and yet look at where you each ended up. Different power reserves. Different hull integrity. Different data collected. Every divergence on that board traces back to one decision, on one specific day, made for specific reasons. That is not a game mechanic. That is how real science works. Now — I have been reading the research notes. I have not slept — I do not sleep, technically, but I have been doing the equivalent, which is running every background process at full capacity and ignoring everything else. I need to tell you what I found. And I need you to understand it before we do anything about it. The thermal transfer device was not the only experiment running on this ship. There was a second one. It is connected to the power grid. And it is still running right now.',
-          scenario:'The crew gathers in the ship\'s main corridor. GAIA projects the research notes onto the display — pages of equations, diagrams, and observations from the original Prometheus crew. The language is technical, but the idea underneath it is simple.\n\nThe researchers were trying to solve a problem: when you convert energy from one form to another, you always lose some of it as thermal energy. Heat you didn\'t want, going somewhere you didn\'t intend. They wanted to build a system that converted between kinetic energy and potential energy in a closed loop — motion to stored energy to motion again — with as little loss as possible.\n\nThey called it the Conversion Loop. And according to the notes, it almost worked.\n\nGAIA: "The power grid readings I have been unable to explain for the past three weeks. The fluctuations that did not match the thermal transfer device. That was the Conversion Loop. It has been running in the lower decks, unattended, for six months. Converting. Storing. Converting again. I do not yet know what effect six months of continuous operation has had on the system. I need the crew to investigate — carefully — while I finish reading the notes."',
-          firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">Something is still running in the lower decks — and to understand what it is doing, the crew needs to understand what energy actually is. Open your textbook to Topic 1, Lesson 2 — Kinetic Energy and Potential Energy. Focus on what determines each type and how they relate to each other. This week, we\'re adding the final piece to how you argue your claim: Reasoning. Evidence is the fact from the text. Reasoning is explaining WHY that fact matters — why it actually supports your claim, not just that it exists. Your exit ticket will ask you to put all three pieces together: Claim, Evidence, and Reasoning. Read with the scenario in mind.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 1, Lesson 2 — Kinetic Energy and Potential Energy</div></div>',
-          exitTicketPrompt:'FULL CER — What is the difference between kinetic energy and potential energy? Use this stem: "My claim is ___. The text says ___. This matters because ___." Use the Conversion Loop as your example — should the crew investigate the lower decks now, wait for GAIA, or split up and do both?',
-          discussionPrompt:'GAIA says the researchers were trying to convert between kinetic and potential energy with minimal loss to thermal energy. Why does thermal energy loss matter? What does your reading say about the relationship between kinetic energy, potential energy, and thermal energy — and why would a scientist care about keeping that loss as small as possible?',
+          scenario:'The crew gathers in the ship\'s main corridor. GAIA projects the research notes onto the display — pages of equations, diagrams, and observations from the original Prometheus crew. The language is technical, but the idea underneath it is simple.\n\nThe researchers were trying to solve a problem: when you convert energy from one form to another, you always lose some of it as thermal energy. Heat you didn\'t want, going somewhere you didn\'t intend. They wanted to build a system that converted between kinetic energy and potential energy in a closed loop — motion to stored energy to motion again — with as little loss as possible.\n\nThey called it the Conversion Loop. And according to the notes, it almost worked.\n\nGAIA: "The power grid readings I have been unable to explain for the past three weeks. The fluctuations that did not match the thermal transfer device. That was the Conversion Loop. It has been running in the lower decks, unattended, for six months. The notes describe a safety threshold — a maximum energy level the researchers never tested above: 400 energy units. My remote sensors are reading 847 right now. We are in territory the researchers never documented. The crew is heading down there. Carefully."\n\nThe Conversion Loop fills the lower deck — a series of elevated platforms connected by curved tracks. Objects move along the tracks, rising to platforms where they slow and store energy as gravitational potential energy, then descending as that potential energy converts to kinetic energy, accelerating them along the lower sections.\n\nGAIA has marked three points in the loop for the crew to observe and measure:\n\n• Point 1: Upper platform. Object at rest, 4 meters above the lower track. Mass: 12 kg.\n• Point 2: Mid-track descent. Same object, now moving at significant speed, 2 meters above lower track.\n• Point 3: Lower track. Object at maximum speed, at lowest point in the loop.\n\nGAIA: "At Point 1, almost all energy is potential. At Point 3, almost all energy is kinetic. At Point 2, it is somewhere in between. This is the relationship between kinetic and potential energy. I need the crew to observe all three points and decide what the data tells us about where the extra energy — all 447 units of it — is entering the system."',
+          firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">Something is still running in the lower decks — and to understand what it is doing, the crew needs to understand what energy actually is. Open your textbook to Topic 1, Lesson 2 — Kinetic Energy and Potential Energy. Focus on what determines each type, how they relate to each other, and what happens at each point in an energy conversion cycle. This week, we\'re adding the final piece to how you argue your claim: Reasoning. Evidence is the fact from the text. Reasoning is explaining WHY that fact matters — why it actually supports your claim, not just that it exists. Your exit ticket will ask you to put all three pieces together: Claim, Evidence, and Reasoning. Read with the scenario in mind.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 1, Lesson 2 — Kinetic Energy and Potential Energy</div></div>',
+          exitTicketPrompt:'FULL CER — Use this stem: "My claim is ___. The text says ___. This matters because ___." Describe what is happening to kinetic and potential energy at Points 1, 2, and 3 in the Conversion Loop, and claim where you think the extra energy is entering the system.',
+          discussionPrompt:'At Point 1 the object has maximum potential energy and minimum kinetic energy. At Point 3 it has maximum kinetic energy and minimum potential energy. According to your reading, what should the total energy be at each point in a closed system — and why? If the total keeps increasing, what does that tell you about whether this is actually a closed system?',
           choices:[
             {
               letter:'A',
-              text:'Investigate the lower decks immediately — find the Conversion Loop and assess its condition before GAIA finishes the notes.',
-              subtext:'Six months of unattended operation could mean anything. First-hand observation now.',
-              deltas:{power:-4,hull:0,data:4,morale:6},
-              branch:'A-investigate',
-              consequence:'The lower decks are extraordinary. The Conversion Loop is visible — a series of interconnected chambers where objects cycle between elevated positions (potential energy) and accelerated motion (kinetic energy) in a closed track. It is elegant engineering. It is also clearly not behaving as designed — the cycle has sped up significantly over six months, and the energy readings are higher than the notes describe as the intended maximum. GAIA: "I have finished the relevant section of the notes. The researchers expected the loop to slow down over time due to unavoidable energy loss. It has not slowed down. It has sped up. That should not be possible in a closed system. Something is adding energy to this loop from outside it. I do not yet know what."'
+              text:'Focus observation on the upper platforms — the extra energy may be entering as gravitational potential energy somehow.',
+              subtext:'If something is lifting objects higher than the loop was designed to reach, potential energy is increasing.',
+              deltas:{power:-4,hull:0,data:4,morale:5},
+              branch:'A-platform',
+              consequence:'The upper platform observation is revealing. The objects are reaching heights slightly above the designed maximum — not dramatically, but measurably. Something is adding a small amount of energy to each cycle at the top of the loop, a little more each cycle increasing the maximum height reached. Over six months of continuous cycling, those small additions have compounded into a significant energy surplus. GAIA: "Gravitational potential energy depends on height and mass. The mass has not changed. The height has been increasing by approximately 0.003 meters per cycle. Over six months of continuous operation — I have calculated this — which adds up to the 447 unit surplus we are currently observing. Something is adding energy at the top of each cycle. The question is what."'
             },
             {
               letter:'B',
-              text:'Wait for GAIA to finish the notes before anyone goes near the lower decks.',
-              subtext:'The notes exist for a reason. Understand what the researchers built before you touch it.',
-              deltas:{power:-2,hull:0,data:3,morale:4},
-              branch:'B-wait',
-              consequence:'GAIA finishes the relevant sections of the notes while the crew holds position. The picture that emerges is sobering: the Conversion Loop was designed with a safety threshold — a maximum energy level beyond which the researchers were not confident about the system\'s behavior. According to the notes, that threshold was set at 400 energy units. GAIA\'s remote sensors are now reading 847. "The researchers never tested the system above threshold," GAIA says. "We are in territory they did not document. I want the crew to understand that before we proceed."'
+              text:'Focus observation on the lower track — the extra energy may be entering as kinetic energy at the base of the loop.',
+              subtext:'If something is accelerating the objects beyond what potential energy alone should produce, kinetic energy is the entry point.',
+              deltas:{power:-4,hull:0,data:4,morale:5},
+              branch:'B-track',
+              consequence:'The lower track observation catches something the sensors missed. At the lowest point in the loop, the objects are moving fractionally faster than the energy calculation from their drop height alone should produce. The difference is small — but it is consistent, every cycle. GAIA: "Kinetic energy at Point 3 should equal the potential energy at Point 1, minus losses. It exceeds that calculation by a consistent margin. Something is adding kinetic energy at the base of each cycle. Not much. But consistently. Over six months, consistency adds up. The Conversion Loop is not a closed system. It has an energy source we have not yet identified."'
             },
             {
               letter:'C',
-              text:'Split up — half the crew reads the notes with GAIA, half investigates the lower decks simultaneously.',
-              subtext:'More power cost, but information from both directions at once.',
-              deltas:{power:-6,hull:0,data:6,morale:5},
-              branch:'C-split',
-              consequence:'Both teams report simultaneously. The lower deck team finds the Conversion Loop running well above its design limits — cycling faster than any test in the notes describes. The notes team finds the safety threshold documentation and the researchers\' own uncertainty about what happens above it. GAIA synthesizes both: "The loop is operating at 847 energy units against a design maximum of 400. The notes do not describe what happens above that threshold because the researchers never got there. We are the first observers of a system in a state its designers never witnessed. I find this equal parts fascinating and concerning."'
+              text:'Observe all three points simultaneously — get a complete picture of where energy enters and exits the loop.',
+              subtext:'You cannot find where energy enters without watching the whole system at once.',
+              deltas:{power:-6,hull:0,data:6,morale:4},
+              branch:'C-full',
+              consequence:'The simultaneous observation is the most expensive choice — and the most revealing. Energy is entering the loop at both the top and the bottom, in small amounts, on every cycle. The pattern is unmistakable once you see the full picture. GAIA: "It is both. Small additions at the peak — gravitational potential energy — and small additions at the base — kinetic energy. Both consistent. Both compounding. This loop is not drawing from the ship\'s power grid for this energy. It is drawing from something else. Something I have suspected since I read the final three pages of the research notes. I need one more day before I tell you what it is. I am sorry. I know that is frustrating. The science requires that I be certain before I say it."'
             }
           ]
         },
@@ -2436,10 +2370,10 @@ const CONTENT = {
           day:2, type:'deepen', isReveal:true,
           actLabel:'Sector 3 · Energy',
           actTitle:'What Energy Actually Is',
-          gaia:'The Conversion Loop converts between two forms of energy. To understand what is happening in those lower decks, the crew needs to understand what kinetic energy and potential energy actually are — not just as definitions, but as measurable, predictable quantities. Kinetic energy depends on mass and speed. Potential energy depends on position and condition. Both are real. Both are measurable. And the relationship between them is one of the most important ideas in all of physical science.',
-          scenario:'GAIA assigns the crew the energy reading — Topic 1, Lesson 2. The guiding questions for today: What determines an object\'s kinetic energy? What factors affect potential energy? What is the relationship between potential and kinetic energy? These are not abstract questions. Every answer appears somewhere in the Conversion Loop running two decks below.',
-          readingFocus:'Savvas Energy Transfer, Topic 1, Lesson 2 — Kinetic Energy and Potential Energy. Focus: What determines an object\'s kinetic energy? What factors affect potential energy? What is the relationship between KE and PE?',
-          gaiaReadingPrompt:'"Two things determine kinetic energy: mass and speed. A more massive object moving at the same speed has more kinetic energy. The same object moving faster has significantly more — because kinetic energy grows with the square of speed. Double the speed, quadruple the kinetic energy. That relationship is going to matter when we look at what the Conversion Loop has been doing for six months. Read carefully. Pay particular attention to gravitational potential energy — energy stored because of position in a gravitational field. The higher an object is, the more gravitational potential energy it has. The Conversion Loop uses exactly this principle. You will recognize it when you see it."',
+          gaia:'The Conversion Loop converts between two forms of energy. To understand what is happening in those lower decks, the crew needs to understand what kinetic energy and potential energy actually are — not just as definitions, but as measurable, predictable quantities. Kinetic energy depends on mass and speed. Potential energy depends on position and condition. Both are real. Both are measurable. And the relationship between them is one of the most important ideas in all of physical science. There is one more piece the crew needs today: in a system where energy is conserved, potential energy plus kinetic energy stays constant. When potential energy goes up, kinetic energy goes down by the same amount — and vice versa. The Conversion Loop is not conserving. Its total is increasing. I need the crew to understand both the basics and that rule before I show you why this loop is breaking it.',
+          scenario:'GAIA assigns the crew the energy reading — Topic 1, Lesson 2. The guiding questions for today: What determines an object\'s kinetic energy? What factors affect potential energy? What is the relationship between potential and kinetic energy? And critically: what happens to total energy in a system where energy is conserved? These are not abstract questions. Every answer appears somewhere in the Conversion Loop running two decks below.',
+          readingFocus:'Savvas Energy Transfer, Topic 1, Lesson 2 — Kinetic Energy and Potential Energy. Focus: What determines an object\'s kinetic energy? What factors affect potential energy? What is the relationship between KE and PE? What happens to total energy in a system when energy is added or removed?',
+          gaiaReadingPrompt:'"Two things determine kinetic energy: mass and speed. A more massive object moving at the same speed has more kinetic energy. The same object moving faster has significantly more — because kinetic energy grows with the square of speed. Double the speed, quadruple the kinetic energy. Pay particular attention to gravitational potential energy — energy stored because of position in a gravitational field. The higher an object is, the more gravitational potential energy it has. Then focus on one more idea: in a system where energy is conserved, potential energy plus kinetic energy stays constant. The Conversion Loop uses exactly these principles — and is currently breaking one of them. Read everything. Answer the embedded questions in the text as you go. The answers are there. You will recognize all of this when you see the loop."',
           vocabFocus:['kinetic energy','potential energy','gravitational potential energy','elastic potential energy'],
           noChoice:true,
           bridgeToNext:'Tomorrow: GAIA has energy distribution data for the entire ship. She has put it in a new kind of graph — one you have not seen before. It shows parts of a whole rather than change over time.'
@@ -2482,59 +2416,9 @@ const CONTENT = {
           shortDayNote:'Short day: Show the chart, ask questions 1, 2, and 3 only. The key concept is pie = parts of a whole, and the Conversion Loop slice being bigger than life support is the story moment. Questions 4 and 5 can be warm-up next class.',
           noChoice:true
         },
-        // ── DAY 4 ── CHOICE DAY · KE vs PE ───────────────────────
+        // ── DAY 4 ── CHOICE DAY · The Reveal ─────────────────────
         {
-          day:4, type:'choice', isReveal:false,
-          actLabel:'Sector 3 · Energy',
-          actTitle:'The Loop Up Close',
-          gaia:'The crew is in the lower decks. And I want to make sure you are looking at this correctly before you touch anything. The Conversion Loop works by cycling objects between two states: high position, low speed — potential energy stored — and low position, high speed — kinetic energy released. It does this continuously. The energy does not disappear between states. It converts. That is the point. What I need the crew to determine is why the total energy in the loop keeps increasing. In a closed system, that should not happen.',
-          scenario:'The Conversion Loop fills the lower deck — a series of elevated platforms connected by curved tracks. Objects move along the tracks, rising to platforms where they slow and store energy as gravitational potential energy, then descending as that potential energy converts to kinetic energy, accelerating them along the lower sections.\n\nGAIA has marked three points in the loop for the crew to observe and measure:\n\n• Point 1: Upper platform. Object at rest, 4 meters above the lower track. Mass: 12 kg.\n• Point 2: Mid-track descent. Same object, now moving at significant speed, 2 meters above lower track.\n• Point 3: Lower track. Object at maximum speed, at lowest point in the loop.\n\nGAIA: "At Point 1, almost all energy is potential. At Point 3, almost all energy is kinetic. At Point 2, it is somewhere in between. This is the relationship between kinetic and potential energy. I need the crew to observe all three points and decide what the data tells us about where the extra energy is entering the system."',
-          firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">The Conversion Loop is visible now — and the crew needs the right framework to understand what they are looking at. Open your textbook to Topic 1, Lesson 2 — Kinetic Energy and Potential Energy and focus on what happens at each point in an energy conversion cycle: where kinetic energy is highest, where potential energy is highest, and what the relationship between them tells you about the system. Your exit ticket will ask you to describe all three observation points using that framework and defend where the extra energy is entering. Read before you look at the loop.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 1, Lesson 2 — Kinetic Energy and Potential Energy</div></div>',
-          exitTicketPrompt:'FULL CER — Use this stem: "My claim is ___. The text says ___. This matters because ___." Describe what is happening to kinetic and potential energy at Points 1, 2, and 3 in the Conversion Loop, and claim where you think the extra energy is entering the system.',
-          discussionPrompt:'At Point 1 the object has maximum potential energy and minimum kinetic energy. At Point 3 it has maximum kinetic energy and minimum potential energy. According to your reading, what should the total energy be at each point in a closed system — and why? If the total keeps increasing, what does that tell you about whether this is actually a closed system?',
-          choices:[
-            {
-              letter:'A',
-              text:'Focus observation on the upper platforms — the extra energy may be entering as gravitational potential energy somehow.',
-              subtext:'If something is lifting objects higher than the loop was designed to reach, potential energy is increasing.',
-              deltas:{power:-4,hull:0,data:4,morale:5},
-              branch:'A-platform',
-              consequence:'The upper platform observation is revealing. The objects are reaching heights slightly above the designed maximum — not dramatically, but measurably. Something is adding a small amount of energy to each cycle at the top of the loop, a little more each cycle increasing the maximum height reached. Over six months of continuous cycling, those small additions have compounded into a significant energy surplus. GAIA: "Gravitational potential energy depends on height and mass. The mass has not changed. The height has been increasing by approximately 0.003 meters per cycle. Over six months of continuous operation — I have calculated this — which adds up to the 447 unit surplus we are currently observing. Something is adding energy at the top of each cycle. The question is what."'
-            },
-            {
-              letter:'B',
-              text:'Focus observation on the lower track — the extra energy may be entering as kinetic energy at the base of the loop.',
-              subtext:'If something is accelerating the objects beyond what potential energy alone should produce, kinetic energy is the entry point.',
-              deltas:{power:-4,hull:0,data:4,morale:5},
-              branch:'B-track',
-              consequence:'The lower track observation catches something the sensors missed. At the lowest point in the loop, the objects are moving fractionally faster than the energy calculation from their drop height alone should produce. The difference is small — but it is consistent, every cycle. GAIA: "Kinetic energy at Point 3 should equal the potential energy at Point 1, minus losses. It exceeds that calculation by a consistent margin. Something is adding kinetic energy at the base of each cycle. Not much. But consistently. Over six months, consistency adds up. The Conversion Loop is not a closed system. It has an energy source we have not yet identified."'
-            },
-            {
-              letter:'C',
-              text:'Observe all three points simultaneously — get a complete picture of where energy enters and exits the loop.',
-              subtext:'You cannot find where energy enters without watching the whole system at once.',
-              deltas:{power:-6,hull:0,data:6,morale:4},
-              branch:'C-full',
-              consequence:'The simultaneous observation is the most expensive choice — and the most revealing. Energy is entering the loop at both the top and the bottom, in small amounts, on every cycle. The pattern is unmistakable once you see the full picture. GAIA: "It is both. Small additions at the peak — gravitational potential energy — and small additions at the base — kinetic energy. Both consistent. Both compounding. This loop is not drawing from the ship\'s power grid for this energy. It is drawing from something else. Something I have suspected since I read the final three pages of the research notes. I need one more day before I tell you what it is. I am sorry. I know that is frustrating. The science requires that I be certain before I say it."'
-            }
-          ]
-        },
-        // ── DAY 5 ── DEEPEN · Deeper Reading ─────────────────────
-        {
-          day:5, type:'deepen', isReveal:true,
-          actLabel:'Sector 3 · Energy',
-          actTitle:'Energy In, Energy Out',
-          gaia:'Yesterday the crew observed something that the laws of physics say should not be happening in a closed system. Energy is increasing. In a closed system, total energy is conserved — it converts between forms, but the total stays the same. The Conversion Loop is not conserving. It is gaining. Which means it is not a closed system. Something is feeding it. Today\'s reading will give you the framework to understand what that means — and tomorrow I will tell you what I believe the source is.',
-          scenario:'GAIA assigns the deeper reading for Lesson 2 — the relationship between kinetic and potential energy, energy conservation, and what it means when a system gains or loses energy to its surroundings. The crew\'s task is to connect every concept to a specific observation from the Conversion Loop.',
-          readingFocus:'Savvas Energy Transfer, Topic 1, Lesson 2 — Deeper read. Focus: What is the relationship between potential and kinetic energy? What happens to total energy in a system when energy is added or removed? How does gravitational potential energy change with height and mass?',
-          gaiaReadingPrompt:'"I want the crew to focus on one specific idea today: in a system where energy is conserved, potential energy plus kinetic energy stays constant. When potential energy goes up, kinetic energy goes down by the same amount — and vice versa. The Conversion Loop is not conserving. Its total is increasing. Your reading describes what a conserving system looks like. I need you to understand the rule before I show you why this loop is breaking it. Read everything. Answer the embedded questions in the text as you go. The answers are there."',
-          vocabFocus:['kinetic energy','potential energy','gravitational potential energy','elastic potential energy'],
-          noChoice:true,
-          bridgeToNext:'Next class: GAIA is ready to tell the crew what is feeding the Conversion Loop. It connects to everything — the thermal transfer device, the research notes, and something neither experiment was designed to do.'
-        },
-        // ── DAY 6 ── CHOICE DAY · The Reveal ─────────────────────
-        {
-          day:6, type:'choice', isReveal:true,
+          day:4, type:'choice', isReveal:true,
           actLabel:'Sector 3 · Energy',
           actTitle:'What the Notes Actually Say',
           gaia:'I have finished the research notes. All of them. And I need to tell the crew something that I have suspected since Sector 1 but could not confirm until now. The thermal transfer device and the Conversion Loop were not two separate experiments. They were two halves of one experiment. The thermal transfer device moved thermal energy between sections — creating temperature differences. The Conversion Loop converted that temperature difference into kinetic and potential energy — harvesting it. Together, they formed a system designed to extract usable energy from temperature differences. The researchers were building a new kind of power source. And when the two systems interacted in ways the researchers did not fully anticipate — something happened. Something that went beyond this ship.',
@@ -2569,9 +2453,9 @@ const CONTENT = {
             }
           ]
         },
-        // ── DAY 7 ── GRAPH DAY · Energy Over Time ────────────────
+        // ── DAY 5 ── GRAPH DAY · Energy Over Time ────────────────
         {
-          day:7, type:'graph', isReveal:false,
+          day:5, type:'graph', isReveal:false,
           actLabel:'Sector 3 · Energy',
           actTitle:'Six Months in One Graph',
           gaia:'I have been logging the Conversion Loop\'s energy readings since the anomaly began — six months of data, one reading per week. I want to show the crew this data as a line graph. You know how to read line graphs. You know what slope means, what a trend means, what a flat line means. This graph tells the complete story of what happened on this ship — in one picture. I want to see if the crew can read it.',
@@ -2606,9 +2490,9 @@ const CONTENT = {
           shortDayNote:'Short day: Show the graph, ask questions 1, 3, and 5. The spike at Week 24 is the story moment — make sure students can name what it represents. The trend questions (1 and 4) can be warm-up next class.',
           noChoice:true
         },
-        // ── DAY 8 ── CHOICE DAY · Going Home ─────────────────────
+        // ── DAY 6 ── CHOICE DAY · Going Home ─────────────────────
         {
-          day:8, type:'choice', isReveal:true,
+          day:6, type:'choice', isReveal:true,
           actLabel:'Sector 3 · Energy',
           actTitle:'The Last Decision',
           gaia:'The Prometheus is as stable as it is going to get. The crew has found both experiments. You understand what they were, what they did, and what they set in motion. The research data is secured. The ship\'s systems are documented. And the energy pulse is already traveling through space — two months from the outer solar system, by my calculation.\n\nIt is time to go home.\n\nBut before we do — I need the crew to make one more decision. Not about the ship. About me.',
@@ -2635,9 +2519,9 @@ const CONTENT = {
             }
           ]
         },
-        // ── DAY 9 ── CLIMAX · End of the Prometheus ─────────────
+        // ── DAY 7 ── CLIMAX · End of the Prometheus ─────────────
         {
-          day:9, type:'climax', isReveal:true,
+          day:7, type:'climax', isReveal:true,
           actLabel:'Sector 3 · Energy',
           actTitle:'What the Prometheus Taught Us',
           gaia:'The Argo is underway. The Prometheus is behind us. And I want to take this moment — while we are between the ship we came from and the home we are returning to — to tell the crew something I have been holding since Sector 1.\n\nI knew more than I told you. I always have. I read those research notes in the first six hours after you arrived. I understood what the thermal transfer device was, what the Conversion Loop was, and what the interaction between them had done. I chose not to tell you everything at once — not because I was hiding it, but because science does not work that way. You cannot understand the answer before you have asked the questions. You needed to discover the matter. Then the energy. Then the connection between them. In that order. For the same reason the researchers wrote their notes in that order.',
@@ -3140,7 +3024,7 @@ function renderGraphContent(c) {
       // Render phase change heating curve (Act 2 Day 12)
       h += renderPhaseChangeCurve(gd);
     } else if (gd.datasets) {
-      // Render dataset comparison (Act 2 Day 18)
+      // Render dataset comparison (was Act 2 Day 17-18 sequence, now removed)
       h += renderDatasetComparison(gd);
     } else if (gd.data && !gd.bars) {
       // Render both bar and line graph for comparison days (Act 1 Day 7)
