@@ -1594,15 +1594,15 @@ const CONTENT = {
           choices:[
             { letter:'A', text:'Use the ship\'s sensors to scan for changes in physical properties — melting point, conductivity, and luster — before moving.',
               subtext:'Slow but thorough. You\'ll know exactly which sections are safe before anyone steps in.',
-              deltas:{power:-4,hull:0,data:4,morale:6}, branch:'A-scan',
+              deltas:{power:-4,hull:0,data:6,morale:5}, branch:'A-scan',
               consequence:'The sensor sweep takes time and power — but the data is extraordinary. The scan maps every section and flags twelve areas where physical properties have changed significantly. The melting point of the hull material in Section B is far lower than it should be. Conductivity has spiked near Section F. The luster in Section C — its shine — has gone completely dull. You know exactly where it\'s safe to walk. GAIA is visibly relieved. "This," she says, "is why I wanted a crew."' },
             { letter:'B', text:'Move carefully through the ship and observe physical properties visually — color, texture, and appearance — as you go.',
               subtext:'Saves power. Visual observation is a real scientific tool. But you might miss properties you can\'t see.',
-              deltas:{power:-2,hull:-6,data:2,morale:2}, branch:'B-visual',
+              deltas:{power:-2,hull:-5,data:3,morale:-6}, branch:'B-visual',
               consequence:'Visual observation gets you moving quickly — and you do catch some things. The chalky sections are clearly different in color and luster — the shine is gone. But a corridor that looked fine gives way slightly underfoot. Its melting point had dropped and you couldn\'t see it. Hull takes minor stress. GAIA notes: "Physical properties include more than what the eye can detect. Melting point, conductivity — these require instruments, not just observation."' },
             { letter:'C', text:'Check the ship\'s original material manifest and only enter sections where materials are listed as stable substances.',
               subtext:'Smart use of existing data. But the manifest is six months old — it may not reflect what\'s changed.',
-              deltas:{power:-2,hull:-3,data:2,morale:4}, branch:'C-manifest',
+              deltas:{power:-1,hull:-2,data:2,morale:4}, branch:'C-manifest',
               consequence:'Cross-referencing the manifest is good science — using existing data before gathering new data is efficient. Most sections check out. But three areas listed as stable have clearly changed. GAIA notes: "A substance can change its physical properties without becoming a different substance. That distinction is going to matter a lot on this ship."' }
           ]
         },
@@ -1668,11 +1668,11 @@ const CONTENT = {
           choices:[
             { letter:'A', text:'Investigate the sections where compounds have broken apart into elements.',
               subtext:'If something is breaking chemical bonds, that\'s an energy source we don\'t understand yet.',
-              deltas:{power:-4,hull:0,data:4,morale:3}, branch:'A-breakdown',
+              deltas:{power:-4,hull:0,data:6,morale:4}, branch:'A-breakdown',
               consequence:'The investigation reveals a thermal anomaly — sections of the ship are experiencing temperature extremes that are breaking apart the molecular bonds in compound materials. The ship\'s coolant compounds are reverting to their component elements. GAIA: "The compound doesn\'t just have different properties than its elements — it has different stability thresholds. The temperature required to break H₂O apart is much higher than what should exist in this section. Something is generating heat we can\'t account for yet."' },
             { letter:'B', text:'Investigate the sections where new compounds have formed.',
               subtext:'New compounds forming where they shouldn\'t means a chemical reaction is happening. What\'s causing it?',
-              deltas:{power:-4,hull:-4,data:4,morale:2}, branch:'B-formation',
+              deltas:{power:-3,hull:-4,data:7,morale:-6}, branch:'B-formation',
               consequence:'The new compounds are extraordinary — substances not in any of the ship\'s material databases, formed spontaneously from the ship\'s original elements under conditions that shouldn\'t exist in deep space. The data is remarkable but getting it required moving through a structurally weakened area. Hull takes minor stress. GAIA: "These compounds have chemical properties completely different from their component elements. Whatever process created them was powerful enough to form new chemical bonds. We need to understand that process."' }
           ]
         },
@@ -1714,7 +1714,7 @@ const CONTENT = {
               consequence:'Focusing on chemical changes proves to be the right call. Sections A and E have undergone reactions that produced substances not in any ship database. More concerning: the reactions appear to still be ongoing — slowly, but measurably. GAIA: "A physical change is reversible, in principle. A chemical change produces a new substance with new properties. Reversing it requires another chemical reaction. We have a ship that is slowly becoming something it was not designed to be."' },
             { letter:'B', text:'Prioritize sections showing physical property changes — those affect structural integrity right now.',
               subtext:'A ship with the wrong weight-for-size and wrong conductivity is a ship that might fail around you.',
-              deltas:{power:-2,hull:3,data:3,morale:4}, branch:'B-physical',
+              deltas:{power:-2,hull:3,data:3,morale:0}, branch:'B-physical',
               consequence:'Addressing physical property changes stabilizes three sections immediately. Corrections to the material\'s weight and structural properties restore confidence in the corridors. Conductivity issues in Section F are isolated before they affect power distribution. Hull integrity actually improves slightly — a rare positive outcome. Practical thinking. Physical properties can often be addressed without understanding the underlying cause. You\'ve bought us time. But the chemical changes in Sections A and E are still ongoing. We\'ve stabilized the ship — we haven\'t solved the problem.' }
           ]
         },
@@ -1768,15 +1768,15 @@ const CONTENT = {
           choices:[
             { letter:'A', text:'Attempt to recover Tank 1 — the dissolved mixture most likely contains research data intact.',
               subtext:'Dissolved substances are hardest to separate, but the research samples may be preserved in solution.',
-              deltas:{power:-5,hull:0,data:5,morale:6}, branch:'A-dissolved',
+              deltas:{power:-5,hull:0,data:9,morale:-3}, branch:'A-dissolved',
               consequence:'Tank 1 contains the motherlode. The dissolved mixture holds six months of chemical research data in solution — samples the original crew had been carefully preparing before the anomaly struck. Recovering them requires a distillation process that uses significant power, but the data gain is the highest of the mission so far. GAIA: "Distillation. One of the oldest separation methods humans ever developed. You heat the mixture, the substance with the lower boiling point evaporates first, you collect it separately. The mixture becomes its components again. Elegant."' },
             { letter:'B', text:'Attempt to recover Tank 3 — the separated layers suggest components have already begun to separate naturally.',
               subtext:'If it\'s already separating, you might complete the process with minimal resources.',
-              deltas:{power:-2,hull:0,data:3,morale:8}, branch:'B-separated',
+              deltas:{power:-2,hull:0,data:4,morale:7}, branch:'B-separated',
               consequence:'Smart resource thinking. Tank 3\'s natural separation means the crew can simply drain the two layers separately — no distillation required, minimal power cost. The data recovered is less than Tank 1 would have yielded, but morale jumps. GAIA: "Each substance in a mixture keeps its own properties — they\'re not chemically bonded, just physically combined. That\'s exactly why these two substances settled apart on their own. You didn\'t need to add energy to the system. You let the mixture do the work. I appreciate efficiency."' },
             { letter:'C', text:'Don\'t attempt water recovery yet — catalog all four tanks and plan a full recovery operation.',
               subtext:'Rushing a mixture separation could destroy the very data you\'re trying to recover.',
-              deltas:{power:-2,hull:0,data:2,morale:3}, branch:'C-catalog',
+              deltas:{power:-1,hull:0,data:2,morale:5}, branch:'C-catalog',
               consequence:'Cautious but scientifically sound. The crew documents all four tanks thoroughly — composition analysis, temperature, separation state, estimated data value. No recovery attempted yet. GAIA: "Observation before action. I respect this choice even though it costs us time. You now have a complete picture of the water supply situation. When you do attempt recovery, you\'ll know exactly what you\'re working with. Sometimes the most scientific thing you can do is wait until you have enough information to act correctly."' }
           ]
         },
