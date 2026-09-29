@@ -1797,7 +1797,7 @@ const CONTENT = {
       actTitle:'The Temperature Problem',
       gaia:'Mission Control received our full status report on the Prometheus investigation — Phase 1. The crew\'s findings are logged. The pattern of changes all pointed to a single source, somewhere deeper in the ship, in a section we hadn\'t reached yet — where the temperature was still dropping, where the atoms themselves seemed to be behaving according to rules that shouldn\'t exist. "Sector 1 is complete," I noted then. "You know what this ship is made of. Sector 2 will tell you why it\'s behaving the way it is." One more thing, before we move on: the decisions you made — every choice, every vote, every piece of evidence you argued over — they mattered. The data we have, the hull status, the morale of this crew, the power we have left: all of it reflects your choices. Different crews made different decisions. Different ships are in different conditions. That is not a coincidence. That is science. Welcome back. I have missed having someone to talk to. I have also been busy. While you were reviewing Sector 1 findings, I have been monitoring something I did not want to mention until you were ready. The temperature readings in this ship make no sense. And I mean that in the scientific sense — they violate what should be physically possible given the energy available. I have a theory. But I would rather the crew figured it out first. That is how good science works.',
       gaiaRecap:'Previously on the Prometheus: The crew boarded a research vessel that had gone silent six months ago. The ship\'s materials had changed — physical properties wrong, adds up reformed, mixtures contaminated. The crew investigated, classified, and made decisions that determined what data we have and what condition the ship is in right now. Every class has a different story. This is yours. Sector 2 picks up where Sector 1 left off — deeper in the ship, closer to the source of the anomaly, and with a new mystery that Sector 1 only hinted at.',
-      scenario:'The crew moves deeper into the Prometheus. The corridors split here — Section C to the left, Section F to the right. Your thermal sensors tell two completely different stories.\n\nSection C: temperature approaching absolute zero. The air itself is barely moving. The walls are coated in frost so thin it looks like static. Your breath doesn\'t fog — it freezes before it forms.\n\nSection F: hot enough that standard equipment fails on contact. The walls radiate heat you can feel three meters away. Something in there is generating energy at a rate that shouldn\'t be possible.\n\nSame ship. Same power source. Same physics.\n\nExcept — and this is what GAIA finds most interesting — the physics here doesn\'t seem to be behaving the same. The crew is about to discover something about what these particles are actually doing — and what that tells us about the state matter is in.',
+      scenario:'The crew moves deeper into the Prometheus. The corridors split here — Section C to the left, Section F to the right. Your thermal sensors tell two completely different stories.\n\nSection C: temperature approaching absolute zero — the coldest temperature possible, where particles barely move at all. The air itself is barely moving. The walls are coated in frost so thin it looks like static. Your breath doesn\'t fog — it freezes before it forms.\n\nSection F: hot enough that standard equipment fails on contact. The walls radiate heat you can feel three meters away. Something in there is generating energy at a rate that shouldn\'t be possible.\n\nSame ship. Same power source. Same physics.\n\nExcept — and this is what GAIA finds most interesting — the physics here doesn\'t seem to be behaving the same. The crew is about to discover something about what these particles are actually doing — and what that tells us about the state matter is in.',
       firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">Temperature readings that make no sense. Two sections behaving like opposites. Before the crew investigates either one, open your textbook to Topic 2, Lesson 1 — States of Matter. Focus on how particles are arranged and how they move in solids, liquids, and gases. This week, we\'re adding something new to how you argue your claim: Evidence. That means pointing to something specific from the reading — a fact, a definition, an example — and using it to back up what you choose. Not just "I choose this because it seems right," but "I choose this because the text says ___." Your exit ticket will ask you to do exactly that. The science is in the reading. Start there.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 2, Lesson 1 — States of Matter</div></div>',
           exitTicketPrompt:'CLAIM + EVIDENCE — Which section should the crew investigate first? Use this stem: "My claim is ___. I know this because the text says ___." Find something specific from today\'s reading about how particles are arranged and move in solids, liquids, and gases to fill in the evidence blank.',
       discussionPrompt:'Section C\'s particles are barely moving at all. Section F\'s particles are moving so fast standard equipment fails. Using what you know about how particles behave in solids, liquids, and gases — what does each section\'s particle behavior tell you about what state that matter might be entering? Where might the differences be coming from?',
@@ -1833,7 +1833,7 @@ const CONTENT = {
       day:2, type:'deepen', isReveal:true,
       actLabel:'Sector 2 · States of Matter',
       actTitle:'What Temperature Actually Is',
-      gaia:'Yesterday\'s investigation gave us data. Today I need the crew to build the framework that makes sense of it. Temperature is not heat. Temperature is not energy. Temperature is a <em>measurement</em> of how fast particles are moving. The faster they move, the higher the temperature. The slower they move, the lower. At absolute zero, particles stop moving entirely. That is not just cold. That is the absence of thermal motion. What we found in Section C is approaching that. What we found in Section F is the opposite extreme. Both of these are telling us something about what is happening on this ship at the particle level.',
+      gaia:'Yesterday\'s investigation gave us data. Today I need the crew to build the framework that makes sense of it. Temperature is not heat. Temperature is not energy. Temperature is a <em>measurement</em> of how fast particles are moving. The faster they move, the higher the temperature. The slower they move, the lower. At absolute zero — that\'s -273°C, or -459°F, the coldest anything can possibly get — particles stop moving entirely. That is not just cold. That is the absence of thermal motion. What we found in Section C is approaching that. What we found in Section F is the opposite extreme. Both of these are telling us something about what is happening on this ship at the particle level.',
       scenario:'GAIA has just explained what temperature actually measures. Now the crew needs the foundation underneath that idea: how particles are arranged and how freely they move in solids, liquids, and gases — the reason a solid stays a solid and a gas spreads to fill its container. That distinction is what makes today\'s reading matter.',
       readingFocus:'Savvas Topic 2, Lesson 1 — States of Matter. Focus today: How are particles arranged in a solid, a liquid, and a gas? How freely can they move in each state? What makes each state distinct from the others?',
       gaiaReadingPrompt:'"I\'ve just told you what temperature measures — how fast particles move. Today\'s reading builds the foundation under that. A solid\'s particles are packed tightly and can only vibrate in place. A liquid\'s particles stay in contact but can move past each other. A gas\'s particles are spread far apart and move independently in every direction. Read carefully and know which is which — that distinction is going to matter a great deal very soon. The questions are not optional. I will know."',
@@ -1944,7 +1944,7 @@ const CONTENT = {
       actLabel:'Sector 2 · States of Matter',
       actTitle:'The Coolant Is Losing Its Mind',
       gaia:'I have an update on the coolant situation and I want to be transparent with you: it is worse than yesterday\'s readings suggested. The coolant in the primary circulation loop is now showing viscosity readings consistent with a substance that cannot decide whether it is a liquid or a gas. In some sections of the pipe it is flowing. In others it is not. This is called a <em>phase transition in progress</em> — and it is happening right now, inside a system that absolutely requires stable liquid coolant to function. I am not panicking. I am simply noting that the situation is time-sensitive.',
-      scenario:'The crew reaches the coolant monitoring station. The display shows real-time viscosity and flow rate data for the coolant throughout the ship. The numbers are not stable — they are fluctuating in ways that suggest the coolant is actively transitioning between states in different sections of the pipe.\n\nIn the areas closest to Section F, where particle speeds are highest, the coolant viscosity has dropped to near-zero. It is flowing like water when it should flow like a thick liquid. The surface tension that keeps it in contact with the pipe walls is failing.\n\nIn the areas closest to Section C, where particle speeds are lowest, the coolant has thickened to the point where flow has nearly stopped.\n\nThe reactor needs coolant flowing at a specific rate. Right now it is getting neither too much nor too little — it is getting chaos.',
+      scenario:'The crew reaches the coolant monitoring station. The display shows real-time viscosity and flow rate data for the coolant throughout the ship. The numbers are not stable — they are fluctuating in ways that suggest the coolant is actively transitioning between states in different sections of the pipe.\n\nIn the areas closest to Section F, where particle speeds are highest, the coolant\'s viscosity — its resistance to flowing — has dropped to near-zero. It is flowing like water when it should flow like a thick liquid. The surface tension that keeps it in contact with the pipe walls is failing.\n\nIn the areas closest to Section C, where particle speeds are lowest, the coolant has thickened to the point where flow has nearly stopped.\n\nThe reactor needs coolant flowing at a specific rate. Right now it is getting neither too much nor too little — it is getting chaos.',
       firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">The coolant situation is time-sensitive — which means the crew needs to think clearly, not quickly. Open your textbook to Topic 2, Lesson 1 — States of Matter and focus on surface tension and viscosity as properties of the liquid state. Your exit ticket will ask you to explain how temperature affects those properties and what that means for the coolant. Evidence first. Decision after.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 2, Lesson 1 — States of Matter</div></div>',
           exitTicketPrompt:'CLAIM + EVIDENCE — Using the coolant situation as your example, make a claim about what will happen if the temperature anomaly continues. Use this stem: "My claim is ___. I know this because the text says ___." Find something specific about viscosity or surface tension to fill in the evidence blank.',
       discussionPrompt:'GAIA said the coolant cannot decide if it is a liquid or a gas. What does that actually mean at the particle level? What would particles in a transitioning liquid look like compared to particles in a stable liquid? What has to happen for a liquid to become a gas?',
@@ -1990,7 +1990,7 @@ const CONTENT = {
           {section:'Section F', values:[58,67,79,91,104,118,133], color:'warning', note:'Rising — particle speed increasing'}
         ],
         xLabels:['0h','8h','16h','24h','32h','40h','48h'],
-        yLabel:'Particle Speed (relative units)',
+        yLabel:'Particle Speed',
         graphAnswers:[
           {q:'1', a:'Section C trends steadily downward (45 to 6). Section F trends steadily upward (58 to 133) — they move in opposite directions.'},
           {q:'2', a:'At the 48-hour mark, Section C is at 6 and Section F is at 133. If the trends continue, C would approach its floor near 0, and F would keep climbing by roughly another 10-12 units by hour 56.'},
@@ -2221,7 +2221,7 @@ const CONTENT = {
           {section:'Boiling Pt (°C)', values:[120,113,104,95,85,76,66,58,49,42,35,28], color:'danger', note:'Dropping with pressure — Boyle\'s Law in action'}
         ],
         xLabels:['0h','1h','2h','3h','4h','5h','6h','7h','8h','9h','10h','11h'],
-        yLabel:'Value (see legend: kPa for pressure, °C for boiling point)',
+        yLabel:'Units — See Legend',
         graphAnswers:[
           {q:'1', a:'System pressure drops steadily over the 12 hours, from 100 kPa (about 14.5 psi) down to 24 kPa (about 3.5 psi).'},
           {q:'2', a:'Coolant boiling point also drops steadily, from 120°C (248°F) down to 28°C (82°F), following the same pattern as pressure.'},
@@ -3146,7 +3146,17 @@ function renderPieChart(gd) {
 function renderBarGraphFromData(gd) {
  const data = gd.data;
   const vals = data.map(d => Math.abs(d.value));
-  const maxVal = Math.max(...vals);
+  const rawMax = Math.max(...vals);
+  function niceNum(range, round) {
+    const exp = Math.floor(Math.log10(range || 1));
+    const frac = range / Math.pow(10, exp);
+    let niceFrac;
+    if (round) { niceFrac = frac < 1.5 ? 1 : frac < 3 ? 2 : frac < 7 ? 5 : 10; }
+    else { niceFrac = frac <= 1 ? 1 : frac <= 2 ? 2 : frac <= 5 ? 5 : 10; }
+    return niceFrac * Math.pow(10, exp);
+  }
+  const gridStep = niceNum(rawMax / 4, true);
+  const maxVal = Math.ceil(rawMax / gridStep) * gridStep;
   const W = 280, H = 180, padL = 40, padB = 36, padT = 10, padR = 8;
   const chartW = W - padL - padR;
   const chartH = H - padT - padB;
@@ -3154,13 +3164,13 @@ function renderBarGraphFromData(gd) {
   const gap = chartW / data.length;
   let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">';
   // Zero baseline at TOP (data is negative-trending), matching the line graph's convention exactly
-  [0,25,50,75,100].forEach(pct => {
-    const yy = padT + chartH * (pct/100);
+  for (let gridVal = 0; gridVal <= maxVal + 0.0001; gridVal += gridStep) {
+    const yy = padT + chartH * (gridVal/maxVal);
     svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
-    const labelVal = Math.round(maxVal * (pct/100));
+    const labelVal = Math.round(gridVal);
     const labelText = labelVal === 0 ? '0' : '-' + labelVal;
     svg += '<text x="' + (padL-4) + '" y="' + (yy+3).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">' + labelText + '</text>';
-  });
+  }
   data.forEach((d, i) => {
     const val = Math.abs(d.value);
     const bh = (val/maxVal) * chartH;
@@ -3178,20 +3188,30 @@ function renderBarGraphFromData(gd) {
 function renderLineGraph(gd) {
   const data = gd.data;
   const vals = data.map(d => Math.abs(d.value));
-  const maxVal = Math.max(...vals);
+  const rawMax = Math.max(...vals);
+  function niceNum(range, round) {
+    const exp = Math.floor(Math.log10(range || 1));
+    const frac = range / Math.pow(10, exp);
+    let niceFrac;
+    if (round) { niceFrac = frac < 1.5 ? 1 : frac < 3 ? 2 : frac < 7 ? 5 : 10; }
+    else { niceFrac = frac <= 1 ? 1 : frac <= 2 ? 2 : frac <= 5 ? 5 : 10; }
+    return niceFrac * Math.pow(10, exp);
+  }
+  const gridStep = niceNum(rawMax / 4, true);
+  const maxVal = Math.ceil(rawMax / gridStep) * gridStep;
   const W = 280, H = 180, padL = 40, padB = 36, padT = 10, padR = 8;
   const chartW = W - padL - padR;
   const chartH = H - padT - padB;
   const gap = chartW / (data.length - 1);
   let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">';
-  [0,25,50,75,100].forEach(pct => {
-    const yy = padT + chartH * (pct/100);
+  for (let gridVal = 0; gridVal <= maxVal + 0.0001; gridVal += gridStep) {
+    const yy = padT + chartH * (gridVal/maxVal);
     svg += '<line x1="' + padL + '" y1="' + yy.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yy.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
-    const labelVal = Math.round(maxVal * (pct/100));
+    const labelVal = Math.round(gridVal);
     // Fix: show 0 not -0 at baseline; show negative sign for all other values
     const labelText = labelVal === 0 ? '0' : '-' + labelVal;
     svg += '<text x="' + (padL-4) + '" y="' + (yy+3).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">' + labelText + '</text>';
-  });
+  }
   // Build points
   const points = data.map((d, i) => {
     const val = Math.abs(d.value);
@@ -3324,15 +3344,26 @@ function renderPhaseChangeCurve(gd) {
   const chartH = H - padT - padB;
   const temps = curve.map(p => p.temp);
   const times = curve.map(p => p.time);
-  const minTemp = Math.min(...temps) - 20;
-  const maxTemp = Math.max(...temps) + 20;
+  const rawMinTemp = Math.min(...temps);
+  const rawMaxTemp = Math.max(...temps);
+  function niceNum(range, round) {
+    const exp = Math.floor(Math.log10(range || 1));
+    const frac = range / Math.pow(10, exp);
+    let niceFrac;
+    if (round) { niceFrac = frac < 1.5 ? 1 : frac < 3 ? 2 : frac < 7 ? 5 : 10; }
+    else { niceFrac = frac <= 1 ? 1 : frac <= 2 ? 2 : frac <= 5 ? 5 : 10; }
+    return niceFrac * Math.pow(10, exp);
+  }
+  const tempSpan = Math.max(rawMaxTemp - rawMinTemp, 1);
+  const gridStep = niceNum(tempSpan / 4, true);
+  const minTemp = Math.floor(rawMinTemp / gridStep) * gridStep;
+  const maxTemp = Math.ceil(rawMaxTemp / gridStep) * gridStep;
   const maxTime = Math.max(...times);
   const tempRange = maxTemp - minTemp;
   let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;max-width:520px;margin:0 auto">';
-  // Grid
-  for (let i = 0; i <= 4; i++) {
-    const yPos = padT + chartH * i / 4;
-    const yVal = maxTemp - (tempRange * i / 4);
+  // Grid — nice round temperature steps
+  for (let yVal = minTemp; yVal <= maxTemp + 0.0001; yVal += gridStep) {
+    const yPos = padT + chartH * (1 - (yVal - minTemp) / tempRange);
     svg += '<line x1="' + padL + '" y1="' + yPos.toFixed(1) + '" x2="' + (W-padR) + '" y2="' + yPos.toFixed(1) + '" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
     svg += '<text x="' + (padL-4) + '" y="' + (yPos+4).toFixed(1) + '" font-family="Share Tech Mono,monospace" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="end">' + Math.round(yVal) + '°</text>';
   }
