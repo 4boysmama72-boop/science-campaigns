@@ -1611,11 +1611,11 @@ const CONTENT = {
           day:2, type:'deepen', isReveal:true,
           actLabel:'Sector 1 · Atoms & Molecules',
           actTitle:'What Matter Is Made Of',
-          gaia:'Good. You\'re back. Yesterday\'s decision has given us data — and data is better than guessing. While you were gone I\'ve been thinking about WHY the ship\'s materials changed. And the answer has to start at the smallest possible scale. <em>Atoms.</em> Everything on this ship — every metal panel, every polymer seal, every composite strut — is made of atoms. About 100 different kinds exist in the universe. Something has disrupted their arrangements. To understand what, we need to understand what atoms actually are and how they build into the materials around us.',
-          scenario:'Today I need the crew to build their understanding of matter from the ground up. I\'ve pulled the ship\'s atomic composition database — a record of exactly which atoms make up every material on the Prometheus. But the database is damaged. To reconstruct it, you need to understand the difference between elements, molecules, compounds, and mixtures.',
-          readingFocus:'Savvas Topic 1, Lesson 1 — Describing and Classifying Matter. Focus: What is matter made of? What is an atom? What is an element?',
-          gaiaReadingPrompt:'"While I run the reconstruction process, I need the crew to review the atomic composition briefing. Pay particular attention to the difference between elements and compounds — that distinction is going to become very important. The questions in the briefing are not optional. I will know if you skipped them."',
-          vocabFocus:['matter','atom','element','molecule','compound'],
+          gaia:'Good. You\'re back. Yesterday\'s decision has given us data — and data is better than guessing. While you were gone I\'ve been thinking about WHY the ship\'s materials changed. And the answer has to start at the smallest possible scale. <em>Atoms.</em> Everything on this ship — every metal panel, every polymer seal, every composite strut — is made of atoms. About 100 different kinds exist in the universe. Something has disrupted their arrangements. To understand what, we need to understand what atoms actually are and how they build into the materials around us. But composition alone isn\'t the whole story. This ship\'s matter has been changed at the atomic level, the molecular level, and the compound level — and to understand how, we also need to get precise about <em>properties</em>. Physical properties. Chemical properties. Not as vocabulary words. As diagnostic tools. A substance\'s physical properties tell you what it is without changing it. Its chemical properties tell you how it behaves when it reacts with something else. Both kinds are leaving clues all over this ship.',
+          scenario:'Today I need the crew to build their understanding of matter from the ground up — and then go one layer deeper. I\'ve pulled the ship\'s atomic composition database — a record of exactly which atoms make up every material on the Prometheus. But the database is damaged. To reconstruct it, you need to understand the difference between elements, molecules, compounds, and mixtures. Once you have that foundation, the ship\'s lab also has samples from each damaged section — small amounts of altered materials, carefully contained. Before you can run any tests on them, you need to understand what physical and chemical properties to look for, and what those properties can tell you without destroying the sample.',
+          readingFocus:'Savvas Topic 1, Lesson 1 — Describing and Classifying Matter. Focus: What is matter made of? What is an atom? What is an element? Then: What is the difference between physical and chemical properties? What can each type tell you?',
+          gaiaReadingPrompt:'"While I run the reconstruction process, I need the crew to review the atomic composition briefing. Pay particular attention to the difference between elements and compounds — that distinction is going to become very important. Then, be very clear on one more distinction: observing a physical property does not change the substance. Observing a chemical property — testing how it reacts — might. On a ship with limited resources, that difference matters. The questions in the briefing are not optional. I will know if you skipped them."',
+          vocabFocus:['matter','atom','element','molecule','compound','physical property','chemical property','substance'],
           noChoice:true,
           bridgeToNext:'Tomorrow GAIA will have a data packet ready — sensor readings from the ship\'s most damaged section. The crew will need to read that data carefully.'
         },
@@ -1676,22 +1676,9 @@ const CONTENT = {
               consequence:'The new compounds are extraordinary — substances not in any of the ship\'s material databases, formed spontaneously from the ship\'s original elements under conditions that shouldn\'t exist in deep space. The data is remarkable but getting it required moving through a structurally weakened area. Hull takes minor stress. These compounds have chemical properties completely different from their component elements. Whatever process created them was powerful enough to form new chemical bonds. We need to understand that process.' }
           ]
         },
-        // DAY 5 — Deepen · Reading/Lesson Day
+        // DAY 5 — Choice Day · Physical vs Chemical Properties
         {
-          day:5, type:'deepen', isReveal:true,
-          actLabel:'Sector 1 · Atoms & Molecules',
-          actTitle:'Properties Tell the Story',
-          gaia:'Yesterday\'s findings have given me a great deal to process. The short version: this ship\'s matter has been changed at the atomic level, the molecular level, and the compound level. To understand how, we need to get precise about <em>properties</em>. Physical properties. Chemical properties. Not as vocabulary words. As diagnostic tools. A substance\'s physical properties tell you what it is without changing it. Its chemical properties tell you how it behaves when it reacts with something else. Both kinds are leaving clues all over this ship.',
-          scenario:'I need the crew on a focused reading task today. The ship\'s lab contains samples from each damaged section — small amounts of altered materials, carefully contained. Before you can run any tests on them, you need to understand what physical and chemical properties to look for, and what those properties can tell you without destroying the sample.',
-          readingFocus:'Savvas Topic 1, Lesson 1 — Focus today on physical properties vs chemical properties. What can each type tell you? What are examples of each?',
-          gaiaReadingPrompt:'"I need the crew to be very clear on one distinction: observing a physical property does not change the substance. Observing a chemical property — testing how it reacts — might. On a ship with limited resources, that difference matters. Read carefully. The questions are diagnostic. I\'m using them to assess crew readiness for the next phase of the investigation."',
-          vocabFocus:['physical property','chemical property','substance'],
-          noChoice:true,
-          bridgeToNext:'Next class: GAIA has new data. The crew will classify properties and decide what they mean for the investigation.'
-        },
-        // DAY 6 — Choice Day · Physical vs Chemical Properties
-        {
-          day:6, type:'choice', isReveal:false,
+          day:5, type:'choice', isReveal:false,
           actLabel:'Sector 1 · Atoms & Molecules',
           actTitle:'Reading the Evidence',
           gaia:'I\'ve collected preliminary observations from the lab samples. But I need the crew to do something for me. I need you to sort these observations. Some are physical properties — observed without changing the sample. Others are chemical properties — learned by testing how the sample reacts. The distinction matters because physical property changes tell us the substance is still the same substance, just altered. Chemical property changes tell us we have a <em>new substance entirely</em>. And one of those is a much bigger problem than the other.',
@@ -1718,9 +1705,9 @@ const CONTENT = {
               consequence:'Addressing physical property changes stabilizes three sections immediately. Corrections to the material\'s weight and structural properties restore confidence in the corridors. Conductivity issues in Section F are isolated before they affect power distribution. Hull integrity actually improves slightly — a rare positive outcome. Practical thinking. Physical properties can often be addressed without understanding the underlying cause. You\'ve bought us time. But the chemical changes in Sections A and E are still ongoing. We\'ve stabilized the ship — we haven\'t solved the problem.' }
           ]
         },
-        // DAY 7 — Graph Day · Bar vs Line Graph
+        // DAY 6 — Graph Day · Bar vs Line Graph
         {
-          day:7, type:'graph', isReveal:false,
+          day:6, type:'graph', isReveal:false,
           actLabel:'Sector 1 · Atoms & Molecules',
           actTitle:'The Ship\'s Temperature Record',
           gaia:'I want to show you something. I\'ve been keeping a temperature log for Section C since the anomaly began — "anomaly" just means something strange, something that doesn\'t fit the normal pattern. Six months of data. I\'ve put it into a bar graph — but I\'m not sure that\'s the right choice. Temperature in a single location changing over time... I think there might be a better way to show this. What do you think?',
@@ -1755,9 +1742,9 @@ const CONTENT = {
           shortDayNote:'Short day: Show both graphs. Ask questions 1, 2, and 3 only. Key concept is bar = categories, line = change over time. That\'s enough.',
           noChoice:true
         },
-        // DAY 8 — Choice Day · Mixtures
+        // DAY 7 — Choice Day · Mixtures
         {
-          day:8, type:'choice', isReveal:false,
+          day:7, type:'choice', isReveal:false,
           actLabel:'Sector 1 · Atoms & Molecules',
           actTitle:'Something in the Water',
           gaia:'The ship\'s water supply. I\'ve been avoiding this because I knew you\'d find it concerning. The Prometheus carries approximately 4,000 liters (about 1,057 gallons) of water for research use. Pure H₂O — or it was supposed to be. Current analysis shows the water supply is no longer a pure substance. It\'s a <em>mixture</em>. Several mixtures, actually, depending on which storage tank you check.',
@@ -1833,11 +1820,11 @@ const CONTENT = {
       day:2, type:'deepen', isReveal:true,
       actLabel:'Sector 2 · States of Matter',
       actTitle:'What Temperature Actually Is',
-      gaia:'Yesterday\'s investigation gave us data. Today I need the crew to build the framework that makes sense of it. Temperature is not heat. Temperature is not energy. Temperature is a <em>measurement</em> of how fast particles are moving. The faster they move, the higher the temperature. The slower they move, the lower. At absolute zero — that\'s -273°C, or -459°F, the coldest anything can possibly get — particles stop moving entirely. That is not just cold. That is the absence of thermal motion. What we found in Section C is approaching that. What we found in Section F is the opposite extreme. Both of these are telling us something about what is happening on this ship at the particle level.',
-      scenario:'I\'ve just explained what temperature actually measures. Now you need the foundation underneath that idea: how particles are arranged and how freely they move in solids, liquids, and gases — the reason a solid stays a solid and a gas spreads to fill its container. That distinction is what makes today\'s reading matter.',
-      readingFocus:'Savvas Topic 2, Lesson 1 — States of Matter. Focus today: How are particles arranged in a solid, a liquid, and a gas? How freely can they move in each state? What makes each state distinct from the others?',
-      gaiaReadingPrompt:'"I\'ve just told you what temperature measures — how fast particles move. Today\'s reading builds the foundation under that. A solid\'s particles are packed tightly and can only vibrate in place. A liquid\'s particles stay in contact but can move past each other. A gas\'s particles are spread far apart and move independently in every direction. Read carefully and know which is which — that distinction is going to matter a great deal very soon. The questions are not optional. I will know."',
-      vocabFocus:['solid','liquid','gas','vibrate'],
+      gaia:'Yesterday\'s investigation gave us data. Today I need the crew to build the framework that makes sense of it. Temperature is not heat. Temperature is not energy. Temperature is a <em>measurement</em> of how fast particles are moving. The faster they move, the higher the temperature. The slower they move, the lower. At absolute zero — that\'s -273°C, or -459°F, the coldest anything can possibly get — particles stop moving entirely. That is not just cold. That is the absence of thermal motion. What we found in Section C is approaching that. What we found in Section F is the opposite extreme. Both of these are telling us something about what is happening on this ship at the particle level. But speed alone isn\'t the whole story — I also need the crew to understand why particles arrange themselves the way they do, and how that arrangement produces the properties we can observe. Surface tension. Viscosity. Brittleness. These are not random. They follow directly from particle behavior.',
+      scenario:'I\'ve just explained what temperature actually measures. Now you need the foundation underneath that idea: how particles are arranged and how freely they move in solids, liquids, and gases — the reason a solid stays a solid and a gas spreads to fill its container. I\'m also pulling up the ship\'s material science database — a record of the designed properties of every substance on the Prometheus. Today\'s reading connects particle arrangement to observable properties, building the bridge between the microscopic world of atoms and the macroscopic world of hull plating, coolant flow, and structural integrity.',
+      readingFocus:'Savvas Topic 2, Lesson 1 — States of Matter. Focus today: How are particles arranged in a solid, a liquid, and a gas? How freely can they move in each state? What properties result from those arrangements? Vocab focus: surface tension, viscosity.',
+      gaiaReadingPrompt:'"I\'ve just told you what temperature measures — how fast particles move. Today\'s reading builds the foundation under that. A solid\'s particles are packed tightly and can only vibrate in place. A liquid\'s particles stay in contact but can move past each other. A gas\'s particles are spread far apart and move independently in every direction. Then go further: surface tension is what allows a water strider to walk on water. Viscosity is what makes honey pour slowly and water pour fast. Both are properties of liquids specifically — they emerge from how liquid particles interact with each other while still moving. Read carefully and know which is which — that distinction is going to matter a great deal very soon. The questions are not optional. I will know."',
+      vocabFocus:['solid','liquid','gas','vibrate','surface tension','viscosity'],
       noChoice:true,
       bridgeToNext:'Tomorrow GAIA has particle speed data from all six ship sections. The crew will need to read a line graph and make predictions about what happens next.'
     },
@@ -1925,22 +1912,9 @@ const CONTENT = {
         }
       ]
     },
-    // ── DAY 5 ── DEEPEN · Reading Day ────────────────────────
+    // ── DAY 5 ── CHOICE DAY · The Coolant Problem ────────────
     {
-      day:5, type:'deepen', isReveal:true,
-      actLabel:'Sector 2 · States of Matter',
-      actTitle:'Why Particles Arrange Differently',
-      gaia:'The investigation is revealing patterns. And patterns, as I have said before, are how science begins. Today I need the crew to deepen their understanding of why matter exists in different states — not just that solids have slow particles and gases have fast ones, but what that means for how particles <em>arrange themselves</em> and how that arrangement produces the properties we can observe. Surface tension. Viscosity. Brittleness. These are not random. They follow directly from particle behavior.',
-      scenario:'I\'m pulling up the ship\'s material science database — a record of the designed properties of every substance on the Prometheus. Your reading task today connects particle arrangement to observable properties, building the bridge between the microscopic world of atoms and the macroscopic world of hull plating, coolant flow, and structural integrity.',
-      readingFocus:'Savvas Topic 2, Lesson 1 — States of Matter. Focus today: How do particles arrange differently in solids, liquids, and gases? What properties result from those arrangements? Vocab focus: surface tension, viscosity.',
-      gaiaReadingPrompt:'"Surface tension is what allows a water strider to walk on water. Viscosity is what makes honey pour slowly and water pour fast. Both are properties of liquids specifically — they emerge from how liquid particles interact with each other while still moving. Read carefully. I am particularly interested in whether the crew can explain why a liquid\'s surface tension changes when its temperature changes. That connection is going to matter very soon."',
-      vocabFocus:['surface tension','viscosity','solid','liquid','gas'],
-      noChoice:true,
-      bridgeToNext:'Next class: GAIA has two line graphs to compare — particle behavior in Section C versus Section F on the same axes. The crew will see the full picture of what is happening.'
-    },
-    // ── DAY 6 ── CHOICE DAY · The Coolant Problem ────────────
-    {
-      day:6, type:'choice', isReveal:false,
+      day:5, type:'choice', isReveal:false,
       actLabel:'Sector 2 · States of Matter',
       actTitle:'The Coolant Is Losing Its Mind',
       gaia:'I have an update on the coolant situation and I want to be transparent with you: it is worse than yesterday\'s readings suggested. The coolant in the primary circulation loop is now showing viscosity readings consistent with a substance that cannot decide whether it is a liquid or a gas. In some sections of the pipe it is flowing. In others it is not. This is called a <em>phase transition in progress</em> — and it is happening right now, inside a system that absolutely requires stable liquid coolant to function. I am not panicking. I am simply noting that the situation is time-sensitive.',
@@ -1975,9 +1949,9 @@ const CONTENT = {
         }
       ]
     },
-    // ── DAY 7 ── GRAPH DAY · Two Lines, Same Graph ───────────
+    // ── DAY 6 ── GRAPH DAY · Two Lines, Same Graph ───────────
     {
-      day:7, type:'graph', isReveal:false,
+      day:6, type:'graph', isReveal:false,
       actLabel:'Sector 2 · States of Matter',
       actTitle:'Two Stories, One Graph',
       gaia:'I have updated the particle speed data. 48 hours of readings for Section C and Section F, plotted on the same graph. I want the crew to look at both lines together. Not separately — <em>together</em>. Because when you look at them together, something becomes visible that you cannot see when you look at them one at a time. I also have something to tell you. But I want you to see if you can figure it out from the graph first. That is better science than me just telling you.',
@@ -2010,12 +1984,12 @@ const CONTENT = {
       shortDayNote:'Short day: Show the graph, ask questions 1 and 3 only. The key insight is that energy is being transferred — not created. That\'s the scientific story the graph tells.',
       noChoice:true
     },
-    // ── DAY 8 ── CHOICE DAY · I Warned You ───────────────────
+    // ── DAY 7 ── CHOICE DAY · I Warned You ───────────────────
     {
-      day:8, type:'choice', isReveal:false,
+      day:7, type:'choice', isReveal:false,
       actLabel:'Sector 2 · States of Matter',
       actTitle:'I Warned You This Would Happen',
-      gaia:'Do you remember on Day 7, when I showed you the two lines and said I had something to tell you? Here is what the crew\'s own reasoning should have led you toward: the total particle energy in both sections combined has remained almost perfectly constant for 48 hours. Energy is not being created in Section F. It is being transferred there from Section C. Something on this ship is moving thermal energy from one section to another. On purpose. I did not want to say it until the crew had enough data to understand it. That moment is now. The energy transfer system — whatever it is — has accelerated. Section C is at particle speed 6. The material there is on the boundary between solid and something that barely qualifies as solid. Section F is at 133 and climbing. The coolant reroute is holding, but barely. And we are running low on options. I want to be honest with you: there is no good choice here. There is only the least bad one. I am sorry. I genuinely am.',
+      gaia:'Do you remember on Day 6, when I showed you the two lines and said I had something to tell you? Here is what the crew\'s own reasoning should have led you toward: the total particle energy in both sections combined has remained almost perfectly constant for 48 hours. Energy is not being created in Section F. It is being transferred there from Section C. Something on this ship is moving thermal energy from one section to another. On purpose. I did not want to say it until the crew had enough data to understand it. That moment is now. The energy transfer system — whatever it is — has accelerated. Section C is at particle speed 6. The material there is on the boundary between solid and something that barely qualifies as solid. Section F is at 133 and climbing. The coolant reroute is holding, but barely. And we are running low on options. I want to be honest with you: there is no good choice here. There is only the least bad one. I am sorry. I genuinely am.',
       scenario:'You gather around the situation display. Section C is at particle speed 6 — barely vibrating, on the edge of a state change that should not be possible. Section F is at particle speed 133 and climbing — approaching the point where solid hull material begins to behave like a liquid. The energy moving between them is measurable and directional. I\'ve laid out three options. Each one is based on a different understanding of what the science is telling us. You need to decide which reading of the data is correct.',
       firstRead:'<div style=\"background:rgba(255,170,0,0.06);border:1px solid rgba(255,170,0,0.35);border-left:3px solid var(--amber);border-radius:6px;padding:14px 16px;margin-bottom:14px\"><div style=\"font-family:var(--font-mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px\">GAIA — First Read · Before You Vote</div><div style=\"font-family:var(--font-body);font-size:17px;color:var(--text-primary);line-height:1.7;margin-bottom:10px\">The ship is approaching a dangerous threshold — and the crew needs to understand exactly what that means at the particle level. Open your textbook to Topic 2, Lesson 2 — Changes of State. Focus on what happens to particles during a change of state, and why temperature behaves the way it does at those moments. Your exit ticket will ask you to use that understanding to identify which section is closest to a state change — and why. Read carefully. The answer is in there.</div><div style=\"display:inline-block;background:rgba(255,170,0,0.12);border:1px solid rgba(255,170,0,0.3);border-radius:4px;padding:7px 14px;font-family:var(--font-mono);font-size:12px;color:var(--amber);letter-spacing:.04em\">📖  Topic 2, Lesson 2 — Changes of State</div></div>',
           exitTicketPrompt:'CLAIM + EVIDENCE — Section C has particle speed 6. Section F has particle speed 133. Which section is closer to a dangerous change of state? Use this stem: "My claim is ___. I know this because the text says ___." Use particle motion to fill in the evidence blank.',
@@ -2047,9 +2021,9 @@ const CONTENT = {
         }
       ]
     },
-    // ── DAY 9 ── DEEPEN · Bridge Day ────────────────────────
+    // ── DAY 8 ── DEEPEN · Bridge Day ────────────────────────
     {
-      day:9, type:'deepen', isReveal:true,
+      day:8, type:'deepen', isReveal:true,
       actLabel:'Sector 2 · States of Matter',
       actTitle:'What We Know — And What Comes Next',
       gaia:'The crew has navigated the first half of this sector with data, reasoning, and — I will admit — more grace under pressure than I expected from a rescue crew that has been aboard for this long. Here is what we know: something on this ship is moving thermal energy between sections, changing the states of matter in the affected areas, and actively resisting our attempts to stop it. Here is what we do not know: what it is, where it is exactly, and why it is still running. The second half of this investigation is about those three questions. And it starts with thermal energy — not temperature, not particle speed, but the actual energy itself.',
@@ -2060,9 +2034,9 @@ const CONTENT = {
       noChoice:true,
       bridgeToNext:'Next class: the crew reaches the section of the ship where materials are actively changing state. Thermal energy is the mechanism. Melting points are being exceeded. This is where the investigation becomes urgent.'
     },
-    // ── DAY 10 ── CHOICE DAY · Changes of State Begin ────────
+    // ── DAY 9 ── CHOICE DAY · Changes of State Begin ────────
     {
-      day:10, type:'choice', isReveal:false,
+      day:9, type:'choice', isReveal:false,
       actLabel:'Sector 2 · Changes of State',
       actTitle:'Something Is Changing',
       gaia:'You\'ve reached Section F\'s inner chamber. And I need to report something that my sensors have been showing for the past six hours that I did not want to tell you until you could see it for yourselves. The hull material in the deepest part of Section F is no longer behaving like a solid. It is not quite a liquid either. It is in between. The thermal energy being pumped into this section has exceeded the melting point of the material in localized areas. We are watching a change of state happen in real time. This is scientifically extraordinary. It is also structurally alarming. Both things are true simultaneously.',
@@ -2097,22 +2071,22 @@ const CONTENT = {
         }
       ]
     },
-    // ── DAY 11 ── DEEPEN · Reading Day ───────────────────────
+    // ── DAY 10 ── DEEPEN · Reading Day ───────────────────────
     {
-      day:11, type:'deepen', isReveal:true,
+      day:10, type:'deepen', isReveal:true,
       actLabel:'Sector 2 · Changes of State',
       actTitle:'Thermal Energy and Particle Motion',
       gaia:'Yesterday\'s investigation gave us direct evidence of a change of state in progress. Today I need the crew to build the full theoretical framework around what they saw. Melting point. Freezing point. The role of thermal energy. The difference between adding thermal energy and increasing temperature during a state change — this one is subtle, and it matters. During a change of state, thermal energy is being added but temperature does not rise. The energy goes into breaking particle bonds, not speeding particles up. This is one of the most counterintuitive things in physical science. The graph on Day 12 will make it visible.',
       scenario:'I\'m assigning the full Lesson 2 reading with a specific focus on the mechanism of state changes — what is actually happening at the particle level when a solid melts, when a liquid freezes, and why temperature behaves the way it does during those transitions.',
       readingFocus:'Savvas Topic 2, Lesson 2 — Changes of State. Focus: What happens to particles during a change of state? Why does temperature stay constant during a phase change even when thermal energy is still being added? Vocab: melting point, freezing point, boiling point.',
-      gaiaReadingPrompt:'"Pay particular attention to what happens to temperature during a state change. This is counterintuitive and I want you to sit with it: when you heat ice to its melting point, the temperature stops rising even though you are still adding thermal energy. The energy is going into breaking the bonds between particles — freeing them to move past each other — rather than speeding them up. Temperature only rises again once the state change is complete. This is called latent heat and it is why the phase change graph on Day 12 looks the way it does. Read first. The graph will make more sense when you do."',
+      gaiaReadingPrompt:'"Pay particular attention to what happens to temperature during a state change. This is counterintuitive and I want you to sit with it: when you heat ice to its melting point, the temperature stops rising even though you are still adding thermal energy. The energy is going into breaking the bonds between particles — freeing them to move past each other — rather than speeding them up. Temperature only rises again once the state change is complete. This is called latent heat and it is why the phase change graph on Day 11 looks the way it does. Read first. The graph will make more sense when you do."',
       vocabFocus:['thermal energy','temperature','melting point','freezing point','boiling point','suspend'],
       noChoice:true,
       bridgeToNext:'Next class: the phase change graph. Temperature over time as a substance heats through a state change. The flat line is coming — and now you will know why it is there.'
     },
-    // ── DAY 12 ── GRAPH DAY · Phase Change Curve ─────────────
+    // ── DAY 11 ── GRAPH DAY · Phase Change Curve ─────────────
     {
-      day:12, type:'graph', isReveal:false,
+      day:11, type:'graph', isReveal:false,
       actLabel:'Sector 2 · Changes of State',
       actTitle:'The Flat Line That Changes Everything',
       gaia:'I am going to show you a graph today that looks wrong the first time you see it. A substance is being heated continuously — thermal energy is being added the entire time. And yet the temperature stops rising for a period. Then it rises again. Then it stops again. A scientist who does not understand changes of state would call this a malfunction in the data. A scientist who does understand it will know exactly what they are looking at. I want to find out which kind of scientists are on this crew.',
@@ -2156,9 +2130,9 @@ const CONTENT = {
       shortDayNote:'Short day: Draw the curve, label melting and boiling points. Ask questions 1 and 2 only. The essential concept is: flat line = change of state in progress = energy breaking bonds not raising temperature.',
       noChoice:true
     },
-    // ── DAY 13 ── CHOICE DAY · Boiling Point Crisis ──────────
+    // ── DAY 12 ── CHOICE DAY · Boiling Point Crisis ──────────
     {
-      day:13, type:'choice', isReveal:false,
+      day:12, type:'choice', isReveal:false,
       actLabel:'Sector 2 · Changes of State',
       actTitle:'Pressure Is Making It Worse',
       gaia:'New development. The boiling point crisis I have been monitoring has a complication I did not anticipate. The pressure in the coolant system has dropped. And pressure — this is critical — affects boiling point. Lower pressure means liquids boil at lower temperatures. The coolant that was stable at its normal boiling point is now boiling at a temperature 30 degrees lower than it should. Because the pressure dropped. The coolant is evaporating inside the pipes — boiling where it should still be a stable liquid. That is one of the more dramatic ways a coolant system can fail.',
@@ -2193,26 +2167,26 @@ const CONTENT = {
         }
       ]
     },
-    // ── DAY 14 ── DEEPEN · Lesson 3 Reading Day ──────────────
+    // ── DAY 13 ── DEEPEN · Lesson 3 Reading Day ──────────────
     {
-      day:14, type:'deepen', isReveal:true,
+      day:13, type:'deepen', isReveal:true,
       actLabel:'Sector 2 · Changes of State',
       actTitle:'Gas Behavior — The Last Piece',
       gaia:'Yesterday the coolant boiling point dropped because the pressure dropped. That connection — pressure and boiling point — is part of a bigger picture I have been waiting for the right moment to show you. Gases do not just exist. They respond. Change the temperature and the volume changes. Change the pressure and the boiling point changes. The behavior of gases follows predictable rules — rules that have names, because scientists who figured them out a long time ago deserve credit. Today you are going to read about those rules. And then you are going to recognize them in everything that has been happening on this ship.',
       scenario:'I\'m assigning the Lesson 3 reading — gas behavior. You\'ve already seen what happens when pressure drops and boiling point follows. Now let\'s put the scientific framework around it. The guiding questions for this reading: How do changes in particle motion of a gas affect its physical properties? How are the temperature, pressure, and volume of a gas related to each other?',
       readingFocus:'Savvas Topic 2, Lesson 3 — Gas Behavior. Focus: How do changes in particle motion affect the physical properties of a gas? How are temperature, pressure, and volume related? What do Charles\'s Law and Boyle\'s Law describe?',
-      gaiaReadingPrompt:'"Two laws. Charles\'s Law: when temperature goes up, volume goes up — gas particles move faster and push outward more. Boyle\'s Law: when pressure goes up, volume goes down — squeeze the particles closer together. Both describe the same thing from different angles: gas particles respond to their conditions. The coolant crisis on Day 14 was Boyle\'s Law in action. Pressure dropped. Boiling point dropped. The coolant behaved like a gas when it should have been a liquid. You lived through the experiment. Today you read the chapter that explains it."',
+      gaiaReadingPrompt:'"Two laws. Charles\'s Law: when temperature goes up, volume goes up — gas particles move faster and push outward more. Boyle\'s Law: when pressure goes up, volume goes down — squeeze the particles closer together. Both describe the same thing from different angles: gas particles respond to their conditions. The coolant crisis on Day 12 was Boyle\'s Law in action. Pressure dropped. Boiling point dropped. The coolant behaved like a gas when it should have been a liquid. You lived through the experiment. Today you read the chapter that explains it."',
       vocabFocus:['pressure','Charles\'s Law','Boyle\'s Law','proportional'],
       noChoice:true,
       bridgeToNext:'Tomorrow: GAIA has pressure and boiling point data from the coolant crisis plotted on a graph. Two lines, same graph — one you have seen before, one that tells the gas behavior story.'
     },
-    // ── DAY 15 ── GRAPH DAY · Two Lines, Pressure and Boiling Point ──
+    // ── DAY 14 ── GRAPH DAY · Two Lines, Pressure and Boiling Point ──
     {
-      day:15, type:'graph', isReveal:false,
+      day:14, type:'graph', isReveal:false,
       actLabel:'Sector 2 · Changes of State',
       actTitle:'When Pressure Drops, Everything Drops With It',
       gaia:'I kept a record of the coolant system during the pressure crisis. Pressure in the coolant loop, logged every hour. And alongside it — the boiling point of the coolant at each pressure reading. I have put both on the same graph. Two lines. Same time axis. I want the crew to look at what those two lines do together — because the relationship between them is exactly what Boyle\'s Law predicts. You read the law yesterday. Today you see it.',
-      scenario:'I\'m displaying a two-line graph showing the coolant pressure crisis over 12 hours. You\'ve used two-line graphs before — on Day 7, you compared Section C and Section F particle speeds on the same axes. This graph uses the same format, but tells a different kind of story: instead of two sections going opposite directions, these two lines move in the same direction, at the same time, for a scientific reason.',
+      scenario:'I\'m displaying a two-line graph showing the coolant pressure crisis over 12 hours. You\'ve used two-line graphs before — on Day 6, you compared Section C and Section F particle speeds on the same axes. This graph uses the same format, but tells a different kind of story: instead of two sections going opposite directions, these two lines move in the same direction, at the same time, for a scientific reason.',
       graphData:{
         title:'Coolant System — Pressure and Boiling Point During Crisis',
         teacherNote:'Draw as two-line graph. X-axis: time in hours (0–12). Both lines trend downward together. Section colors not used here — use blue for pressure, red for boiling point. Key teaching moment: both lines drop in parallel, which is what proportional means.',
@@ -2241,9 +2215,9 @@ const CONTENT = {
       shortDayNote:'Short day: Show the graph, ask questions 1, 2, and 3 only. The key concept is both lines drop together — that visual is Boyle\'s Law. Questions 4 and 5 can be warm-up next class.',
       noChoice:true
     },
-    // ── DAY 16 ── CHOICE DAY · Sublimation ───────────────────
+    // ── DAY 15 ── CHOICE DAY · Sublimation ───────────────────
     {
-      day:16, type:'choice', isReveal:false,
+      day:15, type:'choice', isReveal:false,
       actLabel:'Sector 2 · Changes of State',
       actTitle:'Going Straight to Gas',
       gaia:'The research lab. We have been trying to reach it since Sector 1. The door is sealed — not locked, sealed, from the inside, with a material that has partially sublimated and reformed around the seam. Someone sealed this lab deliberately. And then something inside it continued to change the state of the sealing material until it is now partially gas, partially solid, with no liquid phase in between. Sublimation, in a material that should not sublime under normal conditions. Which tells us that conditions inside that lab are not normal. I want to get in there. I suspect the crew does too.',
@@ -2278,9 +2252,9 @@ const CONTENT = {
         }
       ]
     },
-    // ── DAY 17 ── CHOICE DAY · Final Investigation ────────────
+    // ── DAY 16 ── CHOICE DAY · Final Investigation ────────────
     {
-      day:17, type:'choice', isReveal:false,
+      day:16, type:'choice', isReveal:false,
       actLabel:'Sector 2 · Changes of State',
       actTitle:'What Was Running in the Lab',
       gaia:'The crew is in the lab. And I have now had time to analyze what we found. I am going to tell you my theory — and I want the crew to decide what to do with it. The Prometheus\'s original mission was to study matter under deep space conditions. Extreme cold. Near-vacuum pressure. The researchers on this ship were investigating how matter behaves at the boundaries of state — at the exact thresholds where solids become liquids, liquids become gases, and under the right conditions, solids become gases directly. They built something to create those conditions artificially. An experiment. And when the anomaly began six months ago — the experiment did not stop. It kept running. It is <em>still</em> running. And the crew has thirty minutes of power left to decide what to do about it.',
