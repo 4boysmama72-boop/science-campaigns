@@ -516,6 +516,10 @@
 
   .choice-reading-box { background: rgba(255,170,0,0.06); border: 1px solid rgba(255,170,0,0.35); border-left: 3px solid var(--amber); border-radius: 6px; padding: 12px 15px; margin-bottom: 16px; }
   .choice-reading-label { font-family: var(--font-mono); font-size: 9px; color: var(--amber); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
+  .supplement-box { background: rgba(80,160,255,0.07); border: 1px solid rgba(80,160,255,0.35); border-left: 4px solid #5aa8ff; border-radius: 6px; padding: 13px 16px; margin-bottom: 12px; }
+  .supplement-label { font-family: var(--font-mono); font-size: 11px; color: #8cc4ff; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
+  .supplement-title { font-family: var(--font-body); font-size: 21px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; line-height: 1.35; }
+  .supplement-text { font-family: var(--font-body); font-size: 19px; color: var(--text-primary); line-height: 1.6; }
   .choice-reading-text { font-family: var(--font-body); font-size: 18px; color: var(--text-primary); line-height: 1.6; }
 
   ::-webkit-scrollbar { width: 4px; }
@@ -1186,7 +1190,7 @@ const CONTENT = {
     //         parts of Chapter 1 (Topic 1) Lesson 4
     // Guiding Questions:
     //   What factors affect gravity?
-    //   How are gravity and friction related to motion and energy?
+    //   How is gravity related to motion and energy?
     // Vocab: weight | Academic: associate
     // Spiral review: gravitational potential energy, kinetic energy, force field
     // Graph: bar graph (mass vs gravitational force) + data table
@@ -1194,7 +1198,7 @@ const CONTENT = {
     // Story: navigation anomaly Day 1, GAIA signal Day 3 (left-behind classes),
     //        source confirmed artificial Day 9, Lighthouse confirmed Day 10
     // Calculation: qualitative only -- F=Gm1m2/d^2 acknowledged but not solved
-    // Friction: background context only
+    // Friction is not used in this campaign (not in the standards, not needed for the story)
     // ============================================================
     {
       id:1, label:'Leg 1 . Gravity', standard:'6.P2U1.4',
@@ -1206,9 +1210,9 @@ const CONTENT = {
           legLabel:'Leg 1 . Gravity',
           legTitle:'Something Is Pulling Us Off Course',
           choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes -- open your book to Forces, Topic 2, Lessons 1 and 2. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from the reading to support your claim.',
-          gaia:'The Meridian launched on schedule. Trajectory was nominal for the first fourteen hours. Then the navigation system flagged an anomaly. We are being pulled -- slightly, but measurably -- off our planned course. Something ahead of us has a gravitational field strong enough to affect our trajectory from this distance. I have run the calculations three times. Whatever is out there has significant mass. And it is in exactly the direction the signal is coming from.',
-          gaiaAboard:'The Meridian launched on schedule. Trajectory was nominal for the first fourteen hours. Then the navigation system flagged an anomaly. We are being pulled -- slightly, but measurably -- off our planned course. Something ahead of us has a gravitational field strong enough to affect our trajectory from this distance. I have run the calculations three times. Whatever is out there has significant mass. And it is in exactly the direction the signal is coming from.',
-          gaiaSignal:'Navigation status update. The Meridian launched on schedule. Trajectory was nominal for the first fourteen hours. At hour fourteen, sensors detected a measurable gravitational deviation of 0.3 degrees from planned heading. Source of deviation is ahead of current position and in alignment with the detected signal origin. Analysis is ongoing. Current data is insufficient to confirm source mass or composition. Crew review of gravitational force reading assignment is recommended before a course decision is made.',
+          gaia:'The Meridian launched on schedule. Our trajectory -- the path the ship is following through space -- was nominal, meaning exactly as planned, for the first fourteen hours. Then the navigation system flagged an anomaly. We are being pulled -- slightly, but measurably -- off our planned course. Something ahead of us has a gravitational field strong enough to affect our trajectory from this distance. I have run the calculations three times. Whatever is out there has significant mass. And it is in exactly the direction the signal is coming from.',
+          gaiaAboard:'The Meridian launched on schedule. Our trajectory -- the path the ship is following through space -- was nominal, meaning exactly as planned, for the first fourteen hours. Then the navigation system flagged an anomaly. We are being pulled -- slightly, but measurably -- off our planned course. Something ahead of us has a gravitational field strong enough to affect our trajectory from this distance. I have run the calculations three times. Whatever is out there has significant mass. And it is in exactly the direction the signal is coming from.',
+          gaiaSignal:'Navigation status update. The Meridian launched on schedule. Our trajectory -- the path the ship is following through space -- was nominal, meaning exactly as planned, for the first fourteen hours. At hour fourteen, sensors detected a measurable gravitational deviation of 0.3 degrees from planned heading. Source of deviation is ahead of current position and in alignment with the detected signal origin. Analysis is ongoing. Current data is insufficient to confirm source mass or composition. Crew review of gravitational force reading assignment is recommended before a course decision is made.',
           meridianMode:true,
           scenario:'The crew gathers at the navigation console. The deviation is small -- less than 0.3 degrees off the original heading -- but in deep space, a 0.3-degree error compounds over millions of kilometers. Left uncorrected, the Meridian will miss its target entirely.\n\nThe navigation system has identified two possible explanations: a large uncharted asteroid with sufficient mass to create a detectable gravitational field, or something artificial -- something built to stay in a fixed position. Natural objects drift. This one is not drifting.\n\nTo understand what is pulling the ship and whether to correct course or follow the pull, the crew needs to understand what creates gravitational force -- and what factors determine how strong it is. Today\'s reading is not optional. The answer to the navigation question is in it.',
           exitTicketPrompt:'What two factors determine how strong a gravitational force is between two objects? Use the Meridian\'s navigation anomaly as your example -- explain what that tells you about whatever is pulling the ship. Make your claim: should the crew correct course back to the original heading, follow the gravitational pull toward its source, or hold position and gather more data first? Explain how what you know about gravitational force supports your choice.',
@@ -1322,7 +1326,7 @@ const CONTENT = {
           legTitle:'Mapping the Field',
           choiceReadingFocus:'Today is your first read of this lesson. Before the crew votes -- open your book to Forces, Topic 2, Lessons 1 and 2. Read with the scenario and choices in mind. As you read, watch for the electric field and magnetic field examples and notice what they have in common with gravity. Your exit ticket will ask you to use evidence from the reading to support your claim.',
           gaia:'The data table confirmed it -- the anomaly source has approximately 2.8 times the gravitational mass of the Moon. That is significant. Significant enough to create a detectable gravitational field extending millions of kilometers in every direction. Your reading introduced force fields in general: an electric field surrounds an electric charge, and a magnetic field surrounds a magnet. Each one is a region of space where an object can feel a force without being touched. A gravitational field works the same way, and what creates it is mass. A gravitational field is not just a force -- it is a region of space where every object with mass experiences a pull toward the source. The crew is currently inside that field. What we do not yet know is how far it extends and whether it is consistent -- or whether something about its distribution is unusual.',
-          scenario:'I am explaining gravitational fields using the Meridian\'s sensor array. A gravitational field can be mapped by measuring how a test object -- in this case, the ship itself -- experiences force at different positions. By taking readings at multiple locations around the anomaly source, the crew can build a map of the field.\n\nStandard gravitational fields radiate uniformly outward from a massive object -- equally strong in all directions at the same distance. Like a sphere of force surrounding the source.\n\nMy preliminary readings show something unexpected: the field on the approach side of the source -- the side facing the solar system -- is slightly stronger than the field on the far side. A uniform mass would not produce this. Something about the distribution of mass inside the source is uneven.\n\nFor a natural object like an asteroid, uneven mass distribution is normal -- tumbling, irregular shape. But this source is not tumbling. It is stationary.',
+          scenario:'I am explaining gravitational fields using the Meridian\'s sensor array. A gravitational field can be mapped by measuring how a test object -- in this case, the ship itself -- experiences force at different positions. By taking readings at multiple locations around the anomaly source, the crew can build a map of the field.\n\nStandard gravitational fields radiate uniformly outward from a massive object -- equally strong in all directions at the same distance. Like a sphere of force surrounding the source.\n\nMy preliminary readings -- early measurements I am still checking -- show something unexpected: the field on the approach side of the source -- the side facing the solar system -- is slightly stronger than the field on the far side. A uniform mass would not produce this. Something about the distribution of mass inside the source is uneven.\n\nFor a natural object like an asteroid, uneven mass distribution is normal -- tumbling, irregular shape. But this source is not tumbling. It is stationary.',
           exitTicketPrompt:'What is a gravitational field and how does it relate to gravitational force? How is it similar to the electric and magnetic fields you read about? Use the anomaly source as your example -- describe what its gravitational field means for the Meridian\'s navigation. Make your claim: does the uneven field distribution suggest the source is a natural object or something artificial? Use evidence from today\'s reading about how gravitational fields work to support your reasoning.',
           discussionPrompt:'A natural object like an asteroid would have an uneven mass distribution because of its irregular shape -- but it would also be tumbling and drifting. This source is stationary and has an uneven field. What two things does that tell you? Can you think of a reason a stationary object would have uneven mass distribution that a tumbling asteroid would not?',
           choices:[
@@ -1413,16 +1417,16 @@ const CONTENT = {
           ]
         },
 
-        // -- DAY 7 -- DEEPEN . Synthesis + Friction Context --------
+        // -- DAY 7 -- DEEPEN . Gravity, Motion, and Energy --------
         {
           day:7, type:'deepen', isReveal:true,
           legLabel:'Leg 1 . Gravity',
           legTitle:'Gravity, Motion, and Energy',
           gaia:'The crew has been navigating a gravitational field for six days. Before we complete the approach, I want to make sure the connections are clear. Gravity is a force. Forces cause acceleration -- changes in motion. When the Meridian moves toward the Lighthouse, gravitational force accelerates it. When it moves away, the engines must overcome that force. Energy is involved in every one of these interactions. The gravitational potential energy the ship stores as it moves away from the source is the same energy that accelerates it when it moves toward the source. You have seen this before -- in a different context, on a different ship.',
           gaiaRecall:'The Conversion Loop on the Prometheus converted gravitational potential energy to kinetic energy continuously -- objects rising against gravity stored energy, objects descending released it as motion. The Meridian is doing the same thing at a much larger scale. Moving away from the Lighthouse stores gravitational potential energy. Moving toward it converts that stored energy to kinetic energy -- acceleration. The physics is identical. The scale is different.',
-          scenario:'I cover the relationship between gravity, motion, and energy -- and introduce friction as a concept that matters on planetary surfaces even if it is invisible in space. When the crew eventually reaches the Lighthouse and encounters any surface, friction will determine how objects move and stop. In space there is no friction -- which is why the gravitational field is the only force acting on the Meridian. On a surface, both gravity and friction determine motion.',
-          readingFocus:'Savvas Forces, Chapter 1 (Topic 1) Lesson 4 -- Parts of this lesson cover gravity and friction in relation to motion and energy. Focus: How does gravity relate to motion and energy? What is friction and how does it interact with gravity on surfaces? (Note: friction is background context -- you will not be assessed on it separately.)',
-          gaiaReadingPrompt:'"Gravity and friction are both forces that affect motion. In space, only gravity acts on the Meridian -- there is no medium to create friction. On a planetary surface or inside a structure like the Lighthouse, both would be present. Your reading today covers both. Focus most of your energy on the gravity-motion-energy connection -- this is the core concept. The friction section gives you context for what happens when we get inside."',
+          scenario:'I am connecting three ideas the crew has used all week: gravity, motion, and energy. In space, the gravitational field is the force steering the Meridian. Every time the ship moves toward or away from the Lighthouse, energy changes form -- the same kind of energy change the crew studied on the Prometheus.',
+          readingFocus:'Savvas Forces, Chapter 1 (Topic 1) Lesson 4 -- Parts of this lesson cover gravity in relation to motion and energy. Focus: How does gravity relate to motion and energy? What happens to kinetic energy and gravitational potential energy as an object moves toward or away from a source of gravity? (If the lesson has a section on friction, skip it -- we are not using it.)',
+          gaiaReadingPrompt:'"Gravity is a force, and forces change motion. Your reading today connects gravity to motion and to energy. Focus on one question: what happens to a moving object\'s energy as it moves toward or away from something that is pulling on it? That is exactly what the Meridian is doing on this approach. If you see a section on friction, you can skip it."',
           vocabFocus:['gravitational force','weight','mass','kinetic energy','gravitational potential energy'],
           spiralReview:'kinetic energy and gravitational potential energy -- as the Meridian approaches the Lighthouse, GPE decreases and KE increases (the ship accelerates). This is the same energy relationship you studied in the Conversion Loop.',
           noChoice:true,
@@ -1595,14 +1599,16 @@ const CONTENT = {
           day:2, type:'deepen', isReveal:true,
           legLabel:'Leg 2 . Earth, Moon & Seasons',
           legTitle:'How Earth Moves',
-          gaia:'Yesterday the crew made a navigation decision based on Earth\'s motion. Today we go deeper into what that motion actually is. Rotation. Revolution. Two completely different kinds of movement, happening simultaneously, at different speeds, with different effects. Rotation gives us day and night. Revolution gives us the year. Both are happening right now -- and from out here, watching Earth move against the background of stars, both are visible in ways they never are from the surface.',
-          gaiaAboard:'Yesterday the crew made a navigation decision based on Earth\'s motion. Today we go deeper into what that motion actually is. Rotation. Revolution. Two completely different kinds of movement, happening simultaneously, at different speeds, with different effects. Rotation gives us day and night. Revolution gives us the year. Both are happening right now -- and from out here, watching Earth move against the background of stars, both are visible in ways they never are from the surface.',
-          gaiaSignal:'Navigation analysis continues. Today\'s reading covers Earth\'s rotational and revolutionary motion. Focus should be on the difference between these two types of movement, the time each takes to complete one cycle, and how Earth\'s tilted axis affects both.',
+          gaia:'Yesterday the crew made a navigation decision based on Earth\'s motion. Today we go deeper into what that motion actually is. Rotation. Revolution. Two completely different kinds of movement, happening simultaneously, at different speeds, with different effects. Rotation gives us day and night. Revolution gives us the year. Both are happening right now -- and from out here, watching Earth move against the background of stars, both are visible in ways they never are from the surface. The Meridian even relies on this: its star tracker finds our heading by matching patterns of stars. From Earth, those same star patterns seem to move across the sky each night and change with the seasons. Today\'s video and reading explain why.',
+          gaiaAboard:'Yesterday the crew made a navigation decision based on Earth\'s motion. Today we go deeper into what that motion actually is. Rotation. Revolution. Two completely different kinds of movement, happening simultaneously, at different speeds, with different effects. Rotation gives us day and night. Revolution gives us the year. Both are happening right now -- and from out here, watching Earth move against the background of stars, both are visible in ways they never are from the surface. The Meridian even relies on this: its star tracker finds our heading by matching patterns of stars. From Earth, those same star patterns seem to move across the sky each night and change with the seasons. Today\'s video and reading explain why.',
+          gaiaSignal:'Navigation analysis continues. Today\'s reading covers Earth\'s rotational and revolutionary motion. Focus should be on the difference between these two types of movement, the time each takes to complete one cycle, and how Earth\'s tilted axis affects both. Supplement: view the Earth\'s Orbit and Rotation video and complete the two-sentence check on star patterns.',
           gaiaRecall:'In Leg 1 you learned that gravitational force depends on mass and distance -- and that this force keeps objects in orbit. Today you will read about what orbital motion actually looks like for Earth specifically. The gravitational force you already understand is exactly what keeps Earth on its 365-day revolution around the Sun. The same force. A much larger scale.',
-          scenario:'GAIA assigns the first section of today\'s reading -- How Earth Moves. The crew\'s task: understand the difference between rotation and revolution precisely enough to explain why one creates day and night while the other creates the year. From the Meridian\'s position in space, both movements are observable simultaneously -- Earth rotating on its axis while also moving along its orbital path around the Sun.',
-          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 1 (Topic 1) Lesson 2 -- How Earth Moves. Focus: What is rotation? What is revolution? What is Earth\'s axis and how does its tilt affect motion? How long does each type of movement take?',
+          scenario:'GAIA assigns the first section of today\'s reading -- How Earth Moves. The crew\'s task: understand the difference between rotation and revolution precisely enough to explain why one creates day and night while the other creates the year. From the Meridian\'s position in space, both movements are observable simultaneously -- Earth rotating on its axis while also moving along its orbital path around the Sun. I am also assigning a short video and a two-sentence check on how Earth\'s motion changes what we see in the night sky.',
+          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 1 (Topic 1) Lesson 2 -- How Earth Moves. Focus: What is rotation? What is revolution? What is Earth\'s axis and how does its tilt affect motion? How long does each type of movement take? Also read the part of Topic 1, Lesson 1 that mentions constellations.',
+          supplements:[{"label": "Today's Supplement - Watch (part of today's lesson)", "title": "Generation Genius video: Earth's Orbit and Rotation", "text": "Watch it together. Listen for two things:<br>1. What does Earth's rotation make the Sun and the stars appear to do during one day and night?<br>2. What does Earth's revolution change about which constellations we can see during the year?"}, {"label": "Today's Supplement - Read (part of today's lesson)", "title": "Textbook: Topic 1, Lesson 1", "text": "Find the part of Topic 1, Lesson 1 that mentions constellations. A constellation is a group of stars that forms a pattern in the night sky."}, {"label": "Today's Supplement - Show What You Know", "title": "Finish both sentences", "text": "Because Earth rotates, the stars appear to ______ during one night.<br>Because Earth revolves around the Sun, ______ constellations are visible in different seasons."}],
+          teacherPrep:"Standard 6.E2U1.8 (constellations and night-sky patterns move because of rotation and revolution). Use the Generation Genius video 'Earth's Orbit & Rotation' (the constellation segment is the key part) and the constellation section in Topic 1, Lesson 1. Answer key: Rotation makes the stars appear to rise in the east, move across the sky, and set in the west during one night. Revolution changes which constellations are visible: as Earth moves around the Sun, the night side faces a different part of space, so different constellations show in different seasons.",
           gaiaReadingPrompt:'"Two motions. Rotation -- Earth spinning on its own axis, completing one full turn every 24 hours. Revolution -- Earth traveling along its orbital path around the Sun, completing one full loop every 365.25 days. The axis is the imaginary line through Earth\'s poles that rotation happens around. It is tilted -- not straight up and down relative to Earth\'s orbit. That tilt is the most important fact in this entire lesson. Everything about seasons comes from that tilt. Read carefully. The tilt is the answer to more questions than the reading explicitly asks."',
-          vocabFocus:['axis','rotation','revolution','orbit'],
+          vocabFocus:['axis','rotation','revolution','orbit','constellation'],
           spiralReview:'From Leg 1: orbital motion requires gravitational force to maintain -- the same gravitational force between Earth and Sun that you calculated data for is exactly what keeps Earth on its 365-day revolution. Rotation is separate -- Earth spins independently of the gravitational pull that keeps it in orbit.',
           noChoice:true,
           bridgeToNext:'Tomorrow: GAIA has daylight data from multiple Earth locations across all 12 months. Before we graph it, we are going to make sense of the numbers first -- finding patterns in the data before we visualize it.'
@@ -1701,12 +1707,14 @@ const CONTENT = {
           legTitle:'Why Days Get Longer and Shorter',
           gaia:'Yesterday the crew observed a season from space. Today we read about exactly why it works the way it does. The daylight data from Day 3 told you that summer days are longer and winter days are shorter -- the numbers showed it clearly. Today\'s reading explains the mechanism. Earth\'s tilted axis. Solstices at the extremes. Equinoxes in the middle. The data you calculated the mean and range for on Day 3 will make much more sense after today\'s reading.',
           gaiaAboard:'Yesterday the crew observed a season from space. Today we read about exactly why it works the way it does. The daylight data from Day 3 told you that summer days are longer and winter days are shorter -- the numbers showed it clearly. Today\'s reading explains the mechanism. Earth\'s tilted axis. Solstices at the extremes. Equinoxes in the middle. The data you calculated the mean and range for on Day 3 will make much more sense after today\'s reading.',
-          gaiaSignal:'Navigation data update: Meridian is maintaining course through the inner solar system. Today\'s reading covers the mechanisms behind seasonal day length variation -- solstices, equinoxes, and the relationship between axis tilt and the amount of daylight received at different latitudes.',
+          gaiaSignal:'Navigation data update: Meridian is maintaining course through the inner solar system. Today\'s reading covers the mechanisms behind seasonal day length variation -- solstices, equinoxes, and the relationship between axis tilt and the amount of daylight received at different latitudes. Supplement: build and use the planisphere model.',
           gaiaRecall:'On Day 3 you found that the range of daylight hours across the year was 6 hours -- from 9 hours in December to 15 hours in June. Today\'s reading explains exactly why that range exists. The range is not random. It is a direct consequence of Earth\'s 23.5-degree axis tilt. A planet with no tilt would have the same day length year-round -- a range of zero. Earth\'s tilt is what creates that 6-hour difference.',
-          scenario:'GAIA assigns the seasons section of today\'s reading -- day length, solstices, and equinoxes. The crew\'s task: connect the vocabulary to the daylight data they already calculated. June 15th had 15 hours of daylight -- that is close to the summer solstice, the longest day of the year. December 15th had 9 hours -- close to the winter solstice, the shortest. March and September each had 12 hours -- close to the equinoxes, when day and night are nearly equal.',
+          scenario:'GAIA assigns the seasons section of today\'s reading -- day length, solstices, and equinoxes. The crew\'s task: connect the vocabulary to the daylight data they already calculated. June 15th had 15 hours of daylight -- that is close to the summer solstice, the longest day of the year. December 15th had 9 hours -- close to the winter solstice, the shortest. March and September each had 12 hours -- close to the equinoxes, when day and night are nearly equal. Today also has a hands-on model: the crew builds a star wheel and uses it to see how the night sky changes with the seasons.',
           readingFocus:'Savvas Earth\'s Place in Universe, Chapter 1 (Topic 1) Lesson 2 -- The Seasons: Day Length, Solstices, and Equinoxes. Focus: What causes day length to change across the year? What is a solstice and when does it occur? What is an equinox and what makes it different from a solstice?',
+          supplements:[{"label": "Today's Supplement - Build and Use a Model (part of today's lesson)", "title": "Generation Genius activity: Planisphere (star wheel)", "text": "Build the planisphere. It is a model of the night sky that shows which constellations are visible on a given date and time. Use it to answer:<br>1. Which constellations can we see tonight at 9 p.m.?<br>2. Turn the wheel to a date six months from now. Which constellations are visible then?<br>3. What does that tell you about where Earth is in its orbit?"}, {"label": "Today's Supplement - Show What You Know", "title": "Finish the sentence", "text": "Different constellations are visible in different seasons because ______."}],
+          teacherPrep:"Standard 6.E2U1.8 requires students to use a model. Print the Generation Genius planisphere materials ahead of time. Answer key: Six months later, Earth is on the opposite side of its orbit, so the night side faces a different part of space and different constellations are visible. Sentence answer: Earth revolves around the Sun, so at night we face a different direction in space during different seasons.",
           gaiaReadingPrompt:'"Solstice: the two points in Earth\'s orbit where the axis tilt points most directly toward or away from the Sun. Maximum day length difference. Summer solstice in the Northern Hemisphere -- around June 21 -- longest day of the year. Winter solstice -- around December 21 -- shortest day. Equinox: the two points where neither hemisphere is tilted toward or away from the Sun. Day and night are approximately equal. Spring equinox around March 21, fall equinox around September 22. The crew already has data for all of these. The reading gives the words. The numbers from Day 3 gave you the pattern. Connect them."',
-          vocabFocus:['solstice','equinox','axis','rotation','revolution'],
+          vocabFocus:['solstice','equinox','axis','rotation','revolution','constellation'],
           spiralReview:'From Day 3: the mean daylight across the year was 11.9 hours -- close to 12. That near-12-hour average is not a coincidence. Over a full revolution, Earth\'s tilt causes roughly equal amounts of long and short days, which average out near 12. The equinoxes -- exactly 12 hours -- are the anchor points that make this work.',
           noChoice:true,
           bridgeToNext:'Tomorrow: the same daylight data from Day 3, now shown as a double bar graph -- Northern Hemisphere and Southern Hemisphere side by side. The graph will show what today\'s reading describes. Two hemispheres, same planet, opposite seasons.'
@@ -2278,10 +2286,10 @@ const CONTENT = {
           legTitle:'The Star at the Center',
           gaia:'The crew has been focused on distances -- how far everything is from the Sun. Today we read about the Sun itself. At the 1 AU = 1 centimeter scale the crew built yesterday, the Sun would be too small to draw -- less than a tenth of a millimeter wide, smaller than the dot of a sharp pencil. Every planet, every moon, every asteroid in the solar system orbits this object. Its gravitational field -- which the crew learned about in Leg 1 -- extends all the way to the Lighthouse and beyond. Its radiation is what powers the Meridian\'s solar panels. Its energy drives Earth\'s weather, seasons, and the greenhouse effect the crew will investigate in Leg 4. The Sun is not background information. It is the central character in everything that happens in this solar system.',
           gaiaRecall:'From Leg 2: Earth\'s seasons are caused by the tilt of its axis as it revolves around the Sun. The amount of solar energy reaching different parts of Earth varies with that tilt. The Sun\'s radiation -- the energy the crew has been collecting on solar panels -- is the same energy driving those seasonal differences. In Leg 4, the crew will investigate what happens when that energy cannot escape Earth\'s atmosphere. Today\'s reading introduces the source.',
-          scenario:'GAIA assigns the second section of today\'s reading -- the Sun\'s structure, features, and the formation of the solar system. This is lighter reading than yesterday. The crew\'s task is to understand what the Sun is made of, how its energy reaches the planets, and what surface features like sunspots and solar flares tell us about its activity. These connect directly to the Meridian\'s solar power stat -- solar flares affect the ship\'s energy collection.',
-          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 2 (Topic 2) Lesson 1 -- Structure of the Sun, Features of the Sun, Solar System Formation. Focus: What are the layers of the Sun? What are sunspots, prominences, and solar flares -- and how do they affect objects in the solar system? How did the solar system form? Connect each concept to something relevant to the Meridian\'s mission.',
-          gaiaReadingPrompt:'"Three things I want the crew to take from today\'s reading. First: the Sun\'s energy comes from nuclear fusion in its core -- hydrogen fusing into helium, releasing enormous amounts of energy as radiation. That radiation travels outward, reaches Earth, and some of it reaches the Meridian\'s solar panels. Second: solar flares are bursts of energy from the Sun\'s surface. A significant solar flare can affect spacecraft systems -- including power collection. The Meridian\'s solar power stat is directly connected to solar activity. Third: the solar system formed from a rotating cloud of gas and dust about 4.6 billion years ago. Gravity pulled matter together. The densest region became the Sun. Everything else became the planets. Gravity built everything you are looking at."',
-          vocabFocus:['sun','solar system','astronomical unit','features'],
+          scenario:'GAIA assigns the second section of today\'s reading -- the Sun. This is lighter reading than yesterday. The crew\'s task is to understand how big the Sun is compared with the planets, and where its energy comes from and how it reaches them. Both connect directly to the Meridian\'s solar power stat: the farther the ship travels from the Sun, the less energy its panels collect.',
+          readingFocus:'Savvas Earth\'s Place in Universe, Chapter 2 (Topic 2) Lesson 1 -- Structure of the Sun, Features of the Sun, Solar System Formation. Focus: How big is the Sun compared with Earth and the other planets? Where does the Sun\'s energy come from, and how does it reach the planets? How did the solar system form? (Skim the parts about sunspots, prominences, and solar flares -- we are not using them.)',
+          gaiaReadingPrompt:'"Three things I want the crew to take from today\'s reading. First: the Sun is enormous. You could line up about 109 Earths across it, and it holds almost all of the mass in the solar system. That is why everything orbits it. Second: the Sun\'s energy comes from nuclear fusion in its core -- hydrogen fusing into helium, releasing enormous amounts of energy as radiation. That radiation travels outward, reaches Earth, and some of it reaches the Meridian\'s solar panels. The farther from the Sun, the less energy there is to collect. Third: the solar system formed from a rotating cloud of gas and dust about 4.6 billion years ago. Gravity pulled most of that matter into the Sun. Everything else became the planets. Gravity built everything you are looking at."',
+          vocabFocus:['sun','solar system','astronomical unit','nuclear fusion','radiation'],
           spiralReview:'From Campaign 1 Sector 3: the Sun\'s energy is the same solar radiation that drives the greenhouse effect -- thermal energy from the Sun absorbed by Earth\'s surface and then radiated back as infrared. Today you read about where that energy comes from. In Leg 4 you will investigate what happens when it cannot escape.',
           noChoice:true,
           bridgeToNext:'Tomorrow: a ratio table comparing planet sizes and distances. The crew will look for patterns in the data -- patterns that tell a story about how the solar system is organized.'
@@ -3397,6 +3405,9 @@ function renderDeepenContent(c) {
   let h = '';
   if (c.readingFocus) h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Reading Assignment</div><div style="font-family:var(--font-body);font-size:15px;color:var(--text-primary);line-height:1.6">${c.readingFocus}</div></div>`;
   if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS - Reading Focus' : 'GAIA - To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${c.gaiaReadingPrompt}</div></div>`; }
+  if (c.supplements && c.supplements.length) {
+    c.supplements.forEach(function(s) { h += '<div class="supplement-box"><div class="supplement-label">' + s.label + '</div><div class="supplement-title">' + s.title + '</div><div class="supplement-text">' + s.text + '</div></div>'; });
+  }
   if (c.vocabFocus && c.vocabFocus.length) {
     h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px">Vocabulary Focus</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
     c.vocabFocus.forEach(v => { h += `<span style="background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:3px;padding:3px 9px;font-family:var(--font-mono);font-size:11px;color:var(--accent)">${v}</span>`; });
@@ -4202,7 +4213,47 @@ function executeCommit() {
   }
   save();
   document.getElementById('processing-choice-text').textContent = choice.text;
+  // Pick a fresh line now (Meridian Systems voice if the crew has no GAIA aboard).
+  const procMsgEl = document.getElementById('processing-gaia-msg');
+  if (procMsgEl) procMsgEl.textContent = pickProcessingLine(procMsgEl.classList.contains('processing-meridian-text') ? 'meridian' : 'gaia');
   showScreen('screen-processing');
+}
+
+// ============================================================
+// VOTE-RECEIVED MESSAGES - a different line each time, so the
+// moment after "Lock In" does not sound the same every day.
+// None of these hint whether the choice was good or bad.
+// ============================================================
+const GAIA_PROC_LINES = [
+  "Selection received. I am... processing the implications. The ship's systems have registered your decision and are responding accordingly. Whether that response is favorable - well. You'll find out next class.",
+  "Decision locked. There is no undo button. I checked. Twice. We will see what the ship makes of it next class.",
+  "The crew has spoken and the Meridian has listened. Whether either of them was right is a conversation for next class.",
+  "Vote logged. I would tell you what happens next, but I have been advised that suspense builds character. Next class.",
+  "Your command is in. Somewhere in the ship, a number is changing. I will not say which one. Next class.",
+  "Understood. Executing. I recommend not thinking about it too hard until next class. You will think about it anyway.",
+  "Noted, logged, and irreversible. I would offer a prediction, but I am a scientist and I prefer data. The data arrives next class.",
+  "The crew has committed. I respect a committed crew. What happens next is up to physics, and physics does not take questions.",
+  "That is the decision, then. I have filed it and double-checked my filing. Now we wait for the ship to weigh in.",
+  "Selection received. Please enjoy the next few moments of not knowing. They will be gone soon.",
+  "Command accepted. The ship has already begun to respond. Beyond that, I will be standing here looking mysterious until next class.",
+  "Confirmed. If you are nervous, that is a reasonable response. If you are confident, so is that. Either way, we find out next class.",
+  "Your decision is in the log, and the log does not forget. I will have the results ready for you next class.",
+  "Vote received. I have seen the data you based it on, and I have seen what comes next. I am not comparing them out loud. Next class."
+];
+const MERIDIAN_PROC_LINES = [
+  "Decision logged. Consequence data is pending. Results will be available at the start of the next session. Ship systems are responding to the crew's command. Current stat changes are classified until the next reveal.",
+  "Crew command received and recorded. Ship systems are responding. Consequence data is being compiled and will be released at the next session.",
+  "Selection confirmed. The command cannot be reversed. Stat changes are withheld until the next reveal.",
+  "Command accepted. Systems are executing. Results will be released at the start of the next session.",
+  "Vote recorded in the mission log. Consequence data is pending and will be available next session."
+];
+let _lastProcLine = { gaia: -1, meridian: -1 };
+function pickProcessingLine(kind) {
+  const pool = kind === 'meridian' ? MERIDIAN_PROC_LINES : GAIA_PROC_LINES;
+  let i;
+  do { i = Math.floor(Math.random() * pool.length); } while (pool.length > 1 && i === _lastProcLine[kind]);
+  _lastProcLine[kind] = i;
+  return kind === 'meridian' ? pool[i] : '"' + pool[i] + '"';
 }
 
 function saveAndGoHome() { save(); goHome(); }
@@ -4349,6 +4400,7 @@ function updateTeacherNotePanel(cnt) {
   }
   if (cnt.shortDayNote) notes.push({label:'Short Day', text:cnt.shortDayNote});
   if (cnt.bridgeToNext) notes.push({label:'-> Next Class', text:cnt.bridgeToNext});
+  if (cnt.teacherPrep) notes.push({label:'Prep / Answer Key', text:cnt.teacherPrep});
   if (cnt.spiralReview) notes.push({label:'<- Spiral Review', text:cnt.spiralReview});
   if (notes.length === 0) { panel.style.display = 'none'; return; }
   panel.style.display = 'block';
@@ -4486,8 +4538,21 @@ function handleImportFile(event) {
         toast('This backup belongs to a different campaign. Import cancelled. Nothing was changed.', 'error');
         return;
       }
-      if (!isValidState(parsed)) {
-        toast('This file does not look like a Lighthouse backup (expected 3 classes with stats). Import cancelled. Nothing was changed.', 'error');
+      if (!parsed.classes || !Array.isArray(parsed.classes) || parsed.classes.length !== 3) {
+        toast('This file does not look like a valid backup (expected 3 classes). Import cancelled \u2014 nothing was changed.', 'error');
+        return;
+      }
+      const validShape = parsed.classes.every(c =>
+        c && typeof c.name === 'string' &&
+        typeof c.leg === 'number' &&
+        typeof c.day === 'number' &&
+        c.stats && typeof c.stats.nav === 'number' &&
+        typeof c.stats.solar === 'number' &&
+        typeof c.stats.signal === 'number' &&
+        (typeof c.stats.morale === 'number' || typeof c.stats.earth === 'number')
+      );
+      if (!validShape) {
+        toast('This file is missing expected data. Import cancelled to avoid overwriting your current progress.', 'error');
         return;
       }
       if (!confirm('Import this backup? This will REPLACE all current class data with the backup from this file. This cannot be undone.')) {
