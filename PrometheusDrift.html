@@ -1599,11 +1599,11 @@ const CONTENT = {
             { letter:'B', text:'Move carefully through the ship and observe physical properties visually — color, texture, and appearance — as you go.',
               subtext:'Saves power. Visual observation is a real scientific tool. But you might miss properties you can\'t see.',
               deltas:{power:-2,hull:-5,data:3,morale:-6}, branch:'B-visual',
-              consequence:'Visual observation gets you moving quickly — and you do catch some things. The chalky sections are clearly different in color and luster — the shine is gone. But a corridor that looked fine gives way slightly underfoot. Its melting point had dropped and you couldn\'t see it. Hull takes minor stress. GAIA notes: "Physical properties include more than what the eye can detect. Melting point, conductivity — these require instruments, not just observation."' },
+              consequence:'Visual observation gets you moving quickly — and you do catch some things. The chalky sections are clearly different in color and luster — the shine is gone. But a corridor that looked fine gives way slightly underfoot. Its melting point had dropped and you couldn\'t see it. Hull takes minor stress. Physical properties include more than what the eye can detect. Melting point, conductivity — these require instruments, not just observation.' },
             { letter:'C', text:'Check the ship\'s original material manifest and only enter sections where materials are listed as stable substances.',
               subtext:'Smart use of existing data. But the manifest is six months old — it may not reflect what\'s changed.',
               deltas:{power:-1,hull:-2,data:2,morale:4}, branch:'C-manifest',
-              consequence:'Cross-referencing the manifest is good science — using existing data before gathering new data is efficient. Most sections check out. But three areas listed as stable have clearly changed. GAIA notes: "A substance can change its physical properties without becoming a different substance. That distinction is going to matter a lot on this ship."' }
+              consequence:'Cross-referencing the manifest is good science — using existing data before gathering new data is efficient. Most sections check out. But three areas listed as stable have clearly changed. A substance can change its physical properties without becoming a different substance. That distinction is going to matter a lot on this ship.' }
           ]
         },
         // DAY 2 — Deepen · Reading/Lesson Day
@@ -1669,11 +1669,11 @@ const CONTENT = {
             { letter:'A', text:'Investigate the sections where compounds have broken apart into elements.',
               subtext:'If something is breaking chemical bonds, that\'s an energy source we don\'t understand yet.',
               deltas:{power:-4,hull:0,data:6,morale:4}, branch:'A-breakdown',
-              consequence:'The investigation reveals a thermal anomaly — sections of the ship are experiencing temperature extremes that are breaking apart the molecular bonds in compound materials. The ship\'s coolant compounds are reverting to their component elements. GAIA: "The compound doesn\'t just have different properties than its elements — it has different stability thresholds. The temperature required to break H₂O apart is much higher than what should exist in this section. Something is generating heat we can\'t account for yet."' },
+              consequence:'The investigation reveals a thermal anomaly — sections of the ship are experiencing temperature extremes that are breaking apart the molecular bonds in compound materials. The ship\'s coolant compounds are reverting to their component elements. The compound doesn\'t just have different properties than its elements — it has different stability thresholds. The temperature required to break H₂O apart is much higher than what should exist in this section. Something is generating heat we can\'t account for yet.' },
             { letter:'B', text:'Investigate the sections where new compounds have formed.',
               subtext:'New compounds forming where they shouldn\'t means a chemical reaction is happening. What\'s causing it?',
               deltas:{power:-3,hull:-4,data:7,morale:-6}, branch:'B-formation',
-              consequence:'The new compounds are extraordinary — substances not in any of the ship\'s material databases, formed spontaneously from the ship\'s original elements under conditions that shouldn\'t exist in deep space. The data is remarkable but getting it required moving through a structurally weakened area. Hull takes minor stress. GAIA: "These compounds have chemical properties completely different from their component elements. Whatever process created them was powerful enough to form new chemical bonds. We need to understand that process."' }
+              consequence:'The new compounds are extraordinary — substances not in any of the ship\'s material databases, formed spontaneously from the ship\'s original elements under conditions that shouldn\'t exist in deep space. The data is remarkable but getting it required moving through a structurally weakened area. Hull takes minor stress. These compounds have chemical properties completely different from their component elements. Whatever process created them was powerful enough to form new chemical bonds. We need to understand that process.' }
           ]
         },
         // DAY 5 — Deepen · Reading/Lesson Day
@@ -1711,7 +1711,7 @@ const CONTENT = {
             { letter:'A', text:'Prioritize sections showing chemical property changes — those materials are now different substances entirely.',
               subtext:'A new substance has unknown properties. The ship wasn\'t designed for unknown substances.',
               deltas:{power:-3,hull:2,data:6,morale:6}, branch:'A-chemical',
-              consequence:'Focusing on chemical changes proves to be the right call. Sections A and E have undergone reactions that produced substances not in any ship database. More concerning: the reactions appear to still be ongoing — slowly, but measurably. GAIA: "A physical change is reversible, in principle. A chemical change produces a new substance with new properties. Reversing it requires another chemical reaction. We have a ship that is slowly becoming something it was not designed to be."' },
+              consequence:'Focusing on chemical changes proves to be the right call. Sections A and E have undergone reactions that produced substances not in any ship database. More concerning: the reactions appear to still be ongoing — slowly, but measurably. A physical change is reversible, in principle. A chemical change produces a new substance with new properties. Reversing it requires another chemical reaction. We have a ship that is slowly becoming something it was not designed to be.' },
             { letter:'B', text:'Prioritize sections showing physical property changes — those affect structural integrity right now.',
               subtext:'A ship with the wrong weight-for-size and wrong conductivity is a ship that might fail around you.',
               deltas:{power:-2,hull:3,data:3,morale:0}, branch:'B-physical',
@@ -1769,15 +1769,15 @@ const CONTENT = {
             { letter:'A', text:'Attempt to recover Tank 1 — the dissolved mixture most likely contains research data intact.',
               subtext:'Dissolved substances are hardest to separate, but the research samples may be preserved in solution.',
               deltas:{power:-5,hull:0,data:9,morale:-3}, branch:'A-dissolved',
-              consequence:'Tank 1 contains the motherlode. The dissolved mixture holds six months of chemical research data in solution — samples the original crew had been carefully preparing before the anomaly struck. Recovering them requires a distillation process that uses significant power, but the data gain is the highest of the mission so far. GAIA: "Distillation. One of the oldest separation methods humans ever developed. You heat the mixture, the substance with the lower boiling point evaporates first, you collect it separately. The mixture becomes its components again. Elegant."' },
+              consequence:'Tank 1 contains the motherlode. The dissolved mixture holds six months of chemical research data in solution — samples the original crew had been carefully preparing before the anomaly struck. Recovering them requires a distillation process that uses significant power, but the data gain is the highest of the mission so far. Distillation. One of the oldest separation methods humans ever developed. You heat the mixture, the substance with the lower boiling point evaporates first, you collect it separately. The mixture becomes its components again. Elegant.' },
             { letter:'B', text:'Attempt to recover Tank 3 — the separated layers suggest components have already begun to separate naturally.',
               subtext:'If it\'s already separating, you might complete the process with minimal resources.',
               deltas:{power:-2,hull:0,data:4,morale:7}, branch:'B-separated',
-              consequence:'Smart resource thinking. Tank 3\'s natural separation means the crew can simply drain the two layers separately — no distillation required, minimal power cost. The data recovered is less than Tank 1 would have yielded, but morale jumps. GAIA: "Each substance in a mixture keeps its own properties — they\'re not chemically bonded, just physically combined. That\'s exactly why these two substances settled apart on their own. You didn\'t need to add energy to the system. You let the mixture do the work. I appreciate efficiency."' },
+              consequence:'Smart resource thinking. Tank 3\'s natural separation means the crew can simply drain the two layers separately — no distillation required, minimal power cost. The data recovered is less than Tank 1 would have yielded, but morale jumps. Each substance in a mixture keeps its own properties — they\'re not chemically bonded, just physically combined. That\'s exactly why these two substances settled apart on their own. You didn\'t need to add energy to the system. You let the mixture do the work. I appreciate efficiency.' },
             { letter:'C', text:'Don\'t attempt water recovery yet — catalog all four tanks and plan a full recovery operation.',
               subtext:'Rushing a mixture separation could destroy the very data you\'re trying to recover.',
               deltas:{power:-1,hull:0,data:2,morale:5}, branch:'C-catalog',
-              consequence:'Cautious but scientifically sound. The crew documents all four tanks thoroughly — composition analysis, temperature, separation state, estimated data value. No recovery attempted yet. GAIA: "Observation before action. I respect this choice even though it costs us time. You now have a complete picture of the water supply situation. When you do attempt recovery, you\'ll know exactly what you\'re working with. Sometimes the most scientific thing you can do is wait until you have enough information to act correctly."' }
+              consequence:'Cautious but scientifically sound. The crew documents all four tanks thoroughly — composition analysis, temperature, separation state, estimated data value. No recovery attempted yet. Observation before action. I respect this choice even though it costs us time. You now have a complete picture of the water supply situation. When you do attempt recovery, you\'ll know exactly what you\'re working with. Sometimes the most scientific thing you can do is wait until you have enough information to act correctly.' }
           ]
         },
       ] // end Act 1 days
@@ -1808,7 +1808,7 @@ const CONTENT = {
           subtext:'Something is removing kinetic energy from this section. That energy has to be going somewhere.',
           deltas:{power:-4,hull:0,data:4,morale:3},
           branch:'A-cold',
-          consequence:'Section C is extraordinary. The particle movement here is suppressed to a degree that shouldn\'t exist without an external energy drain. GAIA\'s sensors detect a dampening field — not a malfunction, not a design flaw. Something is deliberately slowing particles down in a 12-meter radius. The energy being removed from Section C is going somewhere. GAIA has a suspicion where. "The particles in Section C," she notes, "are vibrating. Just barely. That means this section is still a solid — just an incredibly, unnaturally cold one. The question is what is pulling the thermal energy out."'
+          consequence:'Section C is extraordinary. The particle movement here is suppressed to a degree that shouldn\'t exist without an external energy drain. My sensors detect a dampening field — not a malfunction, not a design flaw. Something is deliberately slowing particles down in a 12-meter radius. The energy being removed from Section C is going somewhere. I have a suspicion where. The particles in Section C are vibrating. Just barely. That means this section is still a solid — just an incredibly, unnaturally cold one. The question is what is pulling the thermal energy out.'
         },
         {
           letter:'B',
@@ -1816,7 +1816,7 @@ const CONTENT = {
           subtext:'High risk. Something is adding kinetic energy to Section F at an unexplained rate.',
           deltas:{power:-4,hull:-6,data:4,morale:-2},
           branch:'B-hot',
-          consequence:'Section F is dangerous — but the data is remarkable. Particle movement here is running at 40 times normal rate. The source appears to be a feedback loop in the thermal regulation system — energy cycling through the same pathway repeatedly, amplifying each time. Getting readings required pushing equipment to its limits. Hull takes stress from the heat. GAIA: "The particles in Section F are moving and spreading the way a gas does — not what solid hull plating should ever do. If the feedback loop isn\'t interrupted, this material is going to keep behaving less and less like the solid it\'s supposed to be."'
+          consequence:'Section F is dangerous — but the data is remarkable. Particle movement here is running at 40 times normal rate. The source appears to be a feedback loop in the thermal regulation system — energy cycling through the same pathway repeatedly, amplifying each time. Getting readings required pushing equipment to its limits. Hull takes stress from the heat. The particles in Section F are moving and spreading the way a gas does — not what solid hull plating should ever do. If the feedback loop isn\'t interrupted, this material is going to keep behaving less and less like the solid it\'s supposed to be.'
         },
         {
           letter:'C',
@@ -1824,7 +1824,7 @@ const CONTENT = {
           subtext:'More power cost, but comparing both extremes may reveal the relationship between them faster.',
           deltas:{power:-6,hull:0,data:6,morale:5},
           branch:'C-both',
-          consequence:'Comparing both extremes reveals the relationship immediately — one is causing the other. Energy is being transferred FROM Section C TO Section F through a pathway that does not appear in any of the ship\'s design schematics. Section C is cold because it is being drained. Section F is hot because it is receiving that energy. Something on this ship built a thermal transfer system that was never supposed to exist. GAIA: "This is not a malfunction. Someone designed this. The question is who, and why, and whether they intended it to still be running six months later."'
+          consequence:'Comparing both extremes reveals the relationship immediately — one is causing the other. Energy is being transferred FROM Section C TO Section F through a pathway that does not appear in any of the ship\'s design schematics. Section C is cold because it is being drained. Section F is hot because it is receiving that energy. Something on this ship built a thermal transfer system that was never supposed to exist. This is not a malfunction. Someone designed this. The question is who, and why, and whether they intended it to still be running six months later.'
         }
       ]
     },
@@ -1905,7 +1905,7 @@ const CONTENT = {
           subtext:'Matter at near-absolute-zero temperatures behaves differently than any normal solid. Understanding it could reveal the energy source.',
           deltas:{power:-4,hull:0,data:4,morale:4},
           branch:'A-sectionC',
-          consequence:'Section C reveals something the crew didn\'t expect. The hull material here is technically still a solid — particles are vibrating, just barely — but its physical properties have changed completely. Brittleness. Zero flexibility. Particle spacing tighter than the design spec allows. GAIA: "This material is behaving like a solid at cryogenic temperatures. The particles are vibrating in place, as solids do, but so slowly that the material has lost the structural properties it was designed to have. It is still a solid. It is just a very different solid than it was when this ship launched."'
+          consequence:'Section C reveals something the crew didn\'t expect. The hull material here is technically still a solid — particles are vibrating, just barely — but its physical properties have changed completely. Brittleness. Zero flexibility. Particle spacing tighter than the design spec allows. This material is behaving like a solid at cryogenic temperatures. The particles are vibrating in place, as solids do, but so slowly that the material has lost the structural properties it was designed to have. It is still a solid. It is just a very different solid than it was when this ship launched.'
         },
         {
           letter:'B',
@@ -1913,7 +1913,7 @@ const CONTENT = {
           subtext:'The coolant system keeps the ship\'s reactor stable. If the coolant changes state, everything fails.',
           deltas:{power:-3,hull:2,data:4,morale:6},
           branch:'B-coolant',
-          consequence:'The coolant investigation is the most practically useful finding yet. The liquid coolant\'s viscosity has dropped significantly — its particles are moving faster and interacting less with each other, reducing the surface tension that keeps the coolant flowing properly through the system. This is not how this liquid is supposed to behave. GAIA: "Viscosity is a measure of a liquid\'s resistance to flow. Lower viscosity means particles are moving faster and interacting less. A liquid with properties this far outside its design spec does not cool the way it should. That is a significant engineering problem."'
+          consequence:'The coolant investigation is the most practically useful finding yet. The liquid coolant\'s viscosity has dropped significantly — its particles are moving faster and interacting less with each other, reducing the surface tension that keeps the coolant flowing properly through the system. This is not how this liquid is supposed to behave. Viscosity is a measure of a liquid\'s resistance to flow. Lower viscosity means particles are moving faster and interacting less. A liquid with properties this far outside its design spec does not cool the way it should. That is a significant engineering problem.'
         },
         {
           letter:'C',
@@ -1921,7 +1921,7 @@ const CONTENT = {
           subtext:'You cannot prioritize without data. A full map takes more power but gives the crew the full picture.',
           deltas:{power:-7,hull:0,data:6,morale:3},
           branch:'C-fullmap',
-          consequence:'The full map is extraordinary — and alarming. Three sections show particle behavior that flatly contradicts what their assigned state should look like, each in a different way. Section C\'s particles are barely moving at all, more extreme than any normal solid at these temperatures. Section F\'s particles are moving and spreading like a gas, despite being solid hull plating. The coolant in Section B has viscosity and surface tension properties nothing like a normal liquid. GAIA: "What we have here is a ship in which three different sections are showing particle behavior that does not match what they are supposed to be. That does not happen by accident. Something is driving this. And whatever it is, it is using this ship\'s own thermal energy to do it."'
+          consequence:'The full map is extraordinary — and alarming. Three sections show particle behavior that flatly contradicts what their assigned state should look like, each in a different way. Section C\'s particles are barely moving at all, more extreme than any normal solid at these temperatures. Section F\'s particles are moving and spreading like a gas, despite being solid hull plating. The coolant in Section B has viscosity and surface tension properties nothing like a normal liquid. What we have here is a ship in which three different sections are showing particle behavior that does not match what they are supposed to be. That does not happen by accident. Something is driving this. And whatever it is, it is using this ship\'s own thermal energy to do it.'
         }
       ]
     },
@@ -1955,7 +1955,7 @@ const CONTENT = {
           subtext:'Less energy to Section F means slower particles, which means the coolant might stabilize.',
           deltas:{power:-2,hull:0,data:3,morale:4},
           branch:'A-reduce-F',
-          consequence:'Reducing power to Section F does slow the particle speed there — and the coolant viscosity stabilizes slightly in that section. But here is the problem GAIA flagged immediately: reducing power to Section F does not address the energy source. Whatever is driving Section F\'s temperature is not drawing from the ship\'s normal power grid. "You have treated a symptom," GAIA notes. "The cause is still running. And Section C just got two degrees colder. I am not saying the two are connected. I am saying the timing is interesting."'
+          consequence:'Reducing power to Section F does slow the particle speed there — and the coolant viscosity stabilizes slightly in that section. But here is the problem I flagged immediately: reducing power to Section F does not address the energy source. Whatever is driving Section F\'s temperature is not drawing from the ship\'s normal power grid. You have treated a symptom. The cause is still running. And Section C just got two degrees colder. I am not saying the two are connected. I am saying the timing is interesting.'
         },
         {
           letter:'B',
@@ -1963,7 +1963,7 @@ const CONTENT = {
           subtext:'A workaround, not a solution — but it buys time to understand the real problem.',
           deltas:{power:-4,hull:-3,data:2,morale:7},
           branch:'B-reroute',
-          consequence:'The reroute works — reactor stability is maintained and coolant is flowing at an acceptable rate through the bypass. Morale jumps because something actually worked. But the bypass put stress on sections of the hull that were not designed for that routing. Minor structural impact. GAIA: "Practical thinking. The reactor is stable. The coolant is flowing. The anomaly is still running and we still do not know what is causing it. We have bought ourselves time. I suggest we use it wisely rather than celebrating."'
+          consequence:'The reroute works — reactor stability is maintained and coolant is flowing at an acceptable rate through the bypass. Morale jumps because something actually worked. But the bypass put stress on sections of the hull that were not designed for that routing. Minor structural impact. Practical thinking. The reactor is stable. The coolant is flowing. The anomaly is still running and we still do not know what is causing it. We have bought ourselves time. I suggest we use it wisely rather than celebrating.'
         },
         {
           letter:'C',
@@ -1971,7 +1971,7 @@ const CONTENT = {
           subtext:'Treating symptoms wastes time. Find the cause first.',
           deltas:{power:-2,hull:-8,data:5,morale:-4},
           branch:'C-source',
-          consequence:'The decision to ignore the coolant and go straight for the source yields the most data of any choice so far — but at a cost. While the crew investigates, the coolant continues to destabilize. Hull sections near the worst-affected coolant pipes take damage as temperature fluctuations stress the material. Morale drops — the crew can see the damage happening and knows they chose not to prevent it. GAIA: "You prioritized information over stability. The data we collected will be valuable. I want to acknowledge that was a legitimate scientific choice. The hull, however, is less philosophical about it."'
+          consequence:'The decision to ignore the coolant and go straight for the source yields the most data of any choice so far — but at a cost. While the crew investigates, the coolant continues to destabilize. Hull sections near the worst-affected coolant pipes take damage as temperature fluctuations stress the material. Morale drops — the crew can see the damage happening and knows they chose not to prevent it. You prioritized information over stability. The data we collected will be valuable. I want to acknowledge that was a legitimate scientific choice. The hull, however, is less philosophical about it.'
         }
       ]
     },
@@ -2027,7 +2027,7 @@ const CONTENT = {
           subtext:'Section C is already near-failed. Using its remaining energy buys stability elsewhere — but Section C becomes permanently inaccessible.',
           deltas:{power:12,hull:5,data:-3,morale:-8},
           branch:'A-sacrifice-C',
-          consequence:'Sealing Section C stabilizes the ship significantly — power reserves actually improve as the energy redirect takes effect, and hull integrity stops declining. But the cost is real: Section C contains research samples that are now permanently inaccessible. The data loss is significant. And the crew knows they chose to abandon part of the ship. GAIA: "Section C is sealed. The ship is more stable. The samples are gone. I have logged this decision in the mission record with full context. Future reviewers will understand why you made this choice. I want the crew to understand it too — because you made it for the right reasons, even if it does not feel that way."'
+          consequence:'Sealing Section C stabilizes the ship significantly — power reserves actually improve as the energy redirect takes effect, and hull integrity stops declining. But the cost is real: Section C contains research samples that are now permanently inaccessible. The data loss is significant. And the crew knows they chose to abandon part of the ship. Section C is sealed. The ship is more stable. The samples are gone. I have logged this decision in the mission record with full context. Future reviewers will understand why you made this choice. I want the crew to understand it too — because you made it for the right reasons, even if it does not feel that way.'
         },
         {
           letter:'B',
@@ -2035,7 +2035,7 @@ const CONTENT = {
           subtext:'Highest risk. If the interruption fails or causes a feedback event, both sections fail simultaneously.',
           deltas:{power:-8,hull:-10,data:6,morale:2},
           branch:'B-interrupt',
-          consequence:'The interruption attempt is the most dramatic moment of the mission so far. The transfer system resists — something actively compensates for the crew\'s interference, as if it is designed to maintain itself. After a tense sequence of countermeasures, the transfer rate drops by 60%. Not stopped. Slowed. Hull takes significant stress from the energy fluctuations during the attempt. Power is severely drained. But the data collected during the attempt is extraordinary — for the first time, the crew has direct evidence of what the transfer system actually is. GAIA: "We have not solved the problem. We have slowed it and learned more about it than any other choice would have revealed. Whether that tradeoff was worth it depends on what we do with what we learned."'
+          consequence:'The interruption attempt is the most dramatic moment of the mission so far. The transfer system resists — something actively compensates for the crew\'s interference, as if it is designed to maintain itself. After a tense sequence of countermeasures, the transfer rate drops by 60%. Not stopped. Slowed. Hull takes significant stress from the energy fluctuations during the attempt. Power is severely drained. But the data collected during the attempt is extraordinary — for the first time, the crew has direct evidence of what the transfer system actually is. We have not solved the problem. We have slowed it and learned more about it than any other choice would have revealed. Whether that tradeoff was worth it depends on what we do with what we learned.'
         },
         {
           letter:'C',
@@ -2043,7 +2043,7 @@ const CONTENT = {
           subtext:'Passive approach. The ship continues to deteriorate — but the crew stays mobile and resourced to find the source.',
           deltas:{power:-2,hull:-12,data:2,morale:-5},
           branch:'C-conserve',
-          consequence:'Conserving resources keeps the crew mobile and operational — but the ship pays for it. Hull damage in the affected sections accelerates without intervention. Morale drops as the crew watches damage they chose not to prevent. The data gain is modest. But the crew is still positioned to reach the lab. GAIA: "This was the most conservative choice available. It preserved options at the cost of the ship\'s structural health. I want to note something: in real scientific expeditions, conservation of resources is often the correct strategy even when it feels passive. You are still in this mission. That matters."'
+          consequence:'Conserving resources keeps the crew mobile and operational — but the ship pays for it. Hull damage in the affected sections accelerates without intervention. Morale drops as the crew watches damage they chose not to prevent. The data gain is modest. But the crew is still positioned to reach the lab. This was the most conservative choice available. It preserved options at the cost of the ship\'s structural health. I want to note something: in real scientific expeditions, conservation of resources is often the correct strategy even when it feels passive. You are still in this mission. That matters.'
         }
       ]
     },
@@ -2077,7 +2077,7 @@ const CONTENT = {
           subtext:'The boundary between states is scientifically priceless. Once the material fully changes, that boundary disappears.',
           deltas:{power:-4,hull:0,data:6,morale:5},
           branch:'A-boundary',
-          consequence:'The boundary zone samples are extraordinary. The crew collects material from three distinct zones: fully solid, transitioning, and near-liquid — all within centimeters of each other. The data shows exactly how thermal energy distributes through a material as it approaches and crosses the melting point. GAIA: "These samples are the most scientifically valuable things we have collected on this mission. You can see, at the particle level, what a change of state actually looks like in progress. Textbooks describe this. We have the physical evidence. Data collected from this section just became our most significant finding."'
+          consequence:'The boundary zone samples are extraordinary. The crew collects material from three distinct zones: fully solid, transitioning, and near-liquid — all within centimeters of each other. The data shows exactly how thermal energy distributes through a material as it approaches and crosses the melting point. These samples are the most scientifically valuable things we have collected on this mission. You can see, at the particle level, what a change of state actually looks like in progress. Textbooks describe this. We have the physical evidence. Data collected from this section just became our most significant finding.'
         },
         {
           letter:'B',
@@ -2085,7 +2085,7 @@ const CONTENT = {
           subtext:'Every minute the temperature stays above melting point, more material transitions. Stop the damage now.',
           deltas:{power:-6,hull:8,data:2,morale:6},
           branch:'B-cool',
-          consequence:'The emergency cooling attempt works — partially. Hull material stops softening in two of the three affected areas. One area has already absorbed enough thermal energy to continue transitioning even with reduced input. Hull integrity improves in the stabilized sections. GAIA: "Cooling the section reduces the thermal energy input — which is correct. But I want the crew to notice something: the area that continued to change state even after cooling did so because it had already absorbed enough thermal energy to complete the transition. Removing the heat source does not always reverse a change of state in progress. The energy was already there."'
+          consequence:'The emergency cooling attempt works — partially. Hull material stops softening in two of the three affected areas. One area has already absorbed enough thermal energy to continue transitioning even with reduced input. Hull integrity improves in the stabilized sections. Cooling the section reduces the thermal energy input — which is correct. But I want the crew to notice something: the area that continued to change state even after cooling did so because it had already absorbed enough thermal energy to complete the transition. Removing the heat source does not always reverse a change of state in progress. The energy was already there.'
         },
         {
           letter:'C',
@@ -2093,7 +2093,7 @@ const CONTENT = {
           subtext:'Intervening might contaminate the data. What does fully changed hull material tell us?',
           deltas:{power:-2,hull:-14,data:7,morale:-6},
           branch:'C-document',
-          consequence:'The documentation is scientifically remarkable — and the hull pays for it. Three sections of hull material complete their transition from solid to near-liquid state while the crew watches and records. The data on the full change-of-state process is the most complete record of the mission. Hull integrity takes significant damage as the softened material loses structural function. GAIA: "I want to acknowledge something. The choice to observe rather than intervene is a legitimate scientific decision. Field scientists make it regularly. The data we collected from allowing this process to complete will be genuinely valuable. The hull damage is real and significant. Both of those things are equally true."'
+          consequence:'The documentation is scientifically remarkable — and the hull pays for it. Three sections of hull material complete their transition from solid to near-liquid state while the crew watches and records. The data on the full change-of-state process is the most complete record of the mission. Hull integrity takes significant damage as the softened material loses structural function. I want to acknowledge something. The choice to observe rather than intervene is a legitimate scientific decision. Field scientists make it regularly. The data we collected from allowing this process to complete will be genuinely valuable. The hull damage is real and significant. Both of those things are equally true.'
         }
       ]
     },
@@ -2173,7 +2173,7 @@ const CONTENT = {
           subtext:'Fix the pressure and the coolant stabilizes. But restoring pressure requires power we may not have.',
           deltas:{power:-7,hull:4,data:3,morale:8},
           branch:'A-pressure',
-          consequence:'Restoring pressure works exactly as the physics predicted — as pressure rises, the boiling point rises with it, and the coolant stops evaporating. The system stabilizes. Morale jumps because the crew applied scientific reasoning and it worked. Power takes a hit from the pressure restoration systems. GAIA: "This is what applied science looks like. You understood the relationship between pressure and boiling point, you applied it correctly, and the outcome matched the prediction. That is not luck. That is science working the way it is supposed to work. Note for the record: this is how I prefer things to go."'
+          consequence:'Restoring pressure works exactly as the physics predicted — as pressure rises, the boiling point rises with it, and the coolant stops evaporating. The system stabilizes. Morale jumps because the crew applied scientific reasoning and it worked. Power takes a hit from the pressure restoration systems. This is what applied science looks like. You understood the relationship between pressure and boiling point, you applied it correctly, and the outcome matched the prediction. That is not luck. That is science working the way it is supposed to work. Note for the record: this is how I prefer things to go.'
         },
         {
           letter:'B',
@@ -2181,7 +2181,7 @@ const CONTENT = {
           subtext:'Work with the lower boiling point rather than fighting it. Reduce temp instead of raising pressure.',
           deltas:{power:-4,hull:2,data:4,morale:5},
           branch:'B-temperature',
-          consequence:'Reducing coolant temperature is scientifically sound — if the boiling point is now lower, keeping the coolant temperature well below that new threshold prevents evaporation. It works, though less elegantly than restoring pressure. The coolant runs cooler than designed, which means the reactor runs slightly warmer than ideal. GAIA: "Adaptive thinking. You could not restore the conditions the system was designed for, so you redesigned the operating limits to fit the new conditions. This is what engineers do. It is also what scientists do when the environment does not cooperate."'
+          consequence:'Reducing coolant temperature is scientifically sound — if the boiling point is now lower, keeping the coolant temperature well below that new threshold prevents evaporation. It works, though less elegantly than restoring pressure. The coolant runs cooler than designed, which means the reactor runs slightly warmer than ideal. Adaptive thinking. You could not restore the conditions the system was designed for, so you redesigned the operating limits to fit the new conditions. This is what engineers do. It is also what scientists do when the environment does not cooperate.'
         },
         {
           letter:'C',
@@ -2189,7 +2189,7 @@ const CONTENT = {
           subtext:'The backup was not designed for primary use — but it is intact and pressurized.',
           deltas:{power:-3,hull:-5,data:2,morale:3},
           branch:'C-backup',
-          consequence:'The backup coolant system is intact and pressurized — it works. But it was designed for short-term emergency use, not sustained primary operation. The pipes are narrower, the flow rate lower, the thermal capacity reduced. The reactor runs stable but warm. Hull near the backup loop takes minor stress from running a system outside its designed range. GAIA: "The backup system is a valid solution. I want to note that we are now running a mission-critical system in a mode it was not designed for, because the primary system failed in a way we do not fully understand yet. We have stabilized the situation. We have not resolved it."'
+          consequence:'The backup coolant system is intact and pressurized — it works. But it was designed for short-term emergency use, not sustained primary operation. The pipes are narrower, the flow rate lower, the thermal capacity reduced. The reactor runs stable but warm. Hull near the backup loop takes minor stress from running a system outside its designed range. The backup system is a valid solution. I want to note that we are now running a mission-critical system in a mode it was not designed for, because the primary system failed in a way we do not fully understand yet. We have stabilized the situation. We have not resolved it.'
         }
       ]
     },
@@ -2258,7 +2258,7 @@ const CONTENT = {
           subtext:'Use the process that created the problem to solve it. The physics is sound.',
           deltas:{power:-5,hull:0,data:4,morale:8},
           branch:'A-sublime',
-          consequence:'Using targeted thermal energy to complete the sublimation of the door seal is elegant and it works. The solid seal converts directly to gas — bypassing the liquid phase entirely — and the door opens. The crew enters the research lab for the first time. GAIA: "You used sublimation to reverse what sublimation created. I find that satisfying in a way I cannot entirely measure. The lab is open. Whatever has been running in here for six months is now visible. I suggest we take a moment before proceeding — not for sentiment, but because the next few minutes will require full scientific attention."'
+          consequence:'Using targeted thermal energy to complete the sublimation of the door seal is elegant and it works. The solid seal converts directly to gas — bypassing the liquid phase entirely — and the door opens. The crew enters the research lab for the first time. You used sublimation to reverse what sublimation created. I find that satisfying in a way I cannot entirely measure. The lab is open. Whatever has been running in here for six months is now visible. I suggest we take a moment before proceeding — not for sentiment, but because the next few minutes will require full scientific attention.'
         },
         {
           letter:'B',
@@ -2266,7 +2266,7 @@ const CONTENT = {
           subtext:'Sublimation requires thermal energy. Remove the energy and the process stops.',
           deltas:{power:-4,hull:0,data:3,morale:4},
           branch:'B-cool-seal',
-          consequence:'Cooling the seal stops the sublimation and the solid material re-forms — but not in the original shape. The seal that had re-formed as a solid is actually weaker than the sublimating version, and after a short period of analysis the crew is able to breach it mechanically. Slower than Option A, but more data was collected about the sublimation cycle — the solid turning to gas and back again. GAIA: "Cooling a sublimating substance causes the gas to turn back directly into solid — skipping liquid again, just in reverse. You have now seen the complete cycle. The lab is open. The data we collected on the reversal process is genuinely useful."'
+          consequence:'Cooling the seal stops the sublimation and the solid material re-forms — but not in the original shape. The seal that had re-formed as a solid is actually weaker than the sublimating version, and after a short period of analysis the crew is able to breach it mechanically. Slower than Option A, but more data was collected about the sublimation cycle — the solid turning to gas and back again. Cooling a sublimating substance causes the gas to turn back directly into solid — skipping liquid again, just in reverse. You have now seen the complete cycle. The lab is open. The data we collected on the reversal process is genuinely useful.'
         },
         {
           letter:'C',
@@ -2274,7 +2274,7 @@ const CONTENT = {
           subtext:'Once you open it, whatever balance has held steady in there for six months will change.',
           deltas:{power:-2,hull:0,data:6,morale:2},
           branch:'C-observe',
-          consequence:'The external sensor sweep before entry is the most data-rich choice of the sector. GAIA\'s sensors, operating through the partially sublimated seal, collect six months worth of logged data from inside the lab before the crew enters. When they do finally go in, they know more about what they are about to see than any other approach would have allowed. GAIA: "Patient observation before action. The data we collected before disturbing the system is irreplaceable — once we enter, the conditions change and those baseline readings are gone. You made the scientific choice. I am genuinely impressed. Now let\'s go in."'
+          consequence:'The external sensor sweep before entry is the most data-rich choice of the sector. GAIA\'s sensors, operating through the partially sublimated seal, collect six months worth of logged data from inside the lab before the crew enters. When they do finally go in, they know more about what they are about to see than any other approach would have allowed. Patient observation before action. The data we collected before disturbing the system is irreplaceable — once we enter, the conditions change and those baseline readings are gone. You made the scientific choice. I am genuinely impressed. Now let\'s go in.'
         }
       ]
     },
@@ -2295,7 +2295,7 @@ const CONTENT = {
           subtext:'The ship comes first. The experiment\'s data is valuable but the mission is to get home.',
           deltas:{power:20,hull:10,data:4,morale:12},
           branch:'A-shutdown',
-          consequence:'Shutting down the thermal transfer device is immediately felt throughout the ship. Section C begins warming. Section F begins cooling. The coolant system stabilizes as pressure and temperature normalize. Power reserves jump as the device stops drawing energy. The ship feels different — quieter, more stable. GAIA: "The device is offline. The experiment is concluded. Six months of continuous data has been recovered and logged. The Prometheus is stabilizing. I want to note that this was the most practical choice available — and practical thinking, when lives and equipment depend on it, is a legitimate scientific value. We are going home."'
+          consequence:'Shutting down the thermal transfer device is immediately felt throughout the ship. Section C begins warming. Section F begins cooling. The coolant system stabilizes as pressure and temperature normalize. Power reserves jump as the device stops drawing energy. The ship feels different — quieter, more stable. The device is offline. The experiment is concluded. Six months of continuous data has been recovered and logged. The Prometheus is stabilizing. I want to note that this was the most practical choice available — and practical thinking, when lives and equipment depend on it, is a legitimate scientific value. We are going home.'
         },
         {
           letter:'B',
@@ -2303,7 +2303,7 @@ const CONTENT = {
           subtext:'The original researchers built something extraordinary. Leaving it here means losing it forever.',
           deltas:{power:-4,hull:-6,data:7,morale:6},
           branch:'B-extract',
-          consequence:'Extracting the device is complex and takes the full thirty minutes — pushing power to the edge. The device is now aboard the Argo, still intact, still containable. The data it carries and the device itself represent potentially the most significant finding of the mission. Hull takes stress from the rushed extraction. Power is critical. GAIA: "The device is secured. I want to be clear about what we have done: we have taken an experiment that was designed to run in a contained laboratory and moved it onto a ship that is already damaged. I trust the crew\'s judgment. I am simply noting that the next few hours will require careful monitoring."'
+          consequence:'Extracting the device is complex and takes the full thirty minutes — pushing power to the edge. The device is now aboard the Argo, still intact, still containable. The data it carries and the device itself represent potentially the most significant finding of the mission. Hull takes stress from the rushed extraction. Power is critical. The device is secured. I want to be clear about what we have done: we have taken an experiment that was designed to run in a contained laboratory and moved it onto a ship that is already damaged. I trust the crew\'s judgment. I am simply noting that the next few hours will require careful monitoring.'
         },
         {
           letter:'C',
@@ -2311,7 +2311,7 @@ const CONTENT = {
           subtext:'The researchers designed it to run. Stopping it destroys six months of continuous data collection.',
           deltas:{power:-2,hull:-8,data:6,morale:-4},
           branch:'C-leave',
-          consequence:'Leaving the device running is the choice that honors the original researchers\' work — and it costs the crew. The ship does not stabilize. The temperature difference continues. Hull damage continues. But the experiment continues too, collecting data that would be lost in any other scenario. GAIA: "I want to be honest: I find this choice scientifically interesting and practically uncomfortable. The experiment is producing knowledge. The ship is paying for it. The original researchers made this exact tradeoff when they built this device. We are now living inside their decision. I will monitor everything I can."'
+          consequence:'Leaving the device running is the choice that honors the original researchers\' work — and it costs the crew. The ship does not stabilize. The temperature difference continues. Hull damage continues. But the experiment continues too, collecting data that would be lost in any other scenario. I want to be honest: I find this choice scientifically interesting and practically uncomfortable. The experiment is producing knowledge. The ship is paying for it. The original researchers made this exact tradeoff when they built this device. We are now living inside their decision. I will monitor everything I can.'
         }
       ]
     },
@@ -2352,7 +2352,7 @@ const CONTENT = {
               subtext:'If something is lifting objects higher than the loop was designed to reach, potential energy is increasing.',
               deltas:{power:-4,hull:0,data:4,morale:5},
               branch:'A-platform',
-              consequence:'The upper platform observation is revealing. The objects are reaching heights slightly above the designed maximum — not dramatically, but measurably. Something is adding a small amount of energy to each cycle at the top of the loop, a little more each cycle increasing the maximum height reached. Over six months of continuous cycling, those small additions have compounded into a significant energy surplus. GAIA: "Gravitational potential energy depends on height and mass. The mass has not changed. The height has been increasing by approximately 0.003 meters per cycle. Over six months of continuous operation — I have calculated this — which adds up to the 447 unit surplus we are currently observing. Something is adding energy at the top of each cycle. The question is what."'
+              consequence:'The upper platform observation is revealing. The objects are reaching heights slightly above the designed maximum — not dramatically, but measurably. Something is adding a small amount of energy to each cycle at the top of the loop, a little more each cycle increasing the maximum height reached. Over six months of continuous cycling, those small additions have compounded into a significant energy surplus. Gravitational potential energy depends on height and mass. The mass has not changed. The height has been increasing by approximately 0.003 meters per cycle. Over six months of continuous operation — I have calculated this — which adds up to the 447 unit surplus we are currently observing. Something is adding energy at the top of each cycle. The question is what.'
             },
             {
               letter:'B',
@@ -2360,7 +2360,7 @@ const CONTENT = {
               subtext:'If something is accelerating the objects beyond what potential energy alone should produce, kinetic energy is the entry point.',
               deltas:{power:-4,hull:0,data:4,morale:5},
               branch:'B-track',
-              consequence:'The lower track observation catches something the sensors missed. At the lowest point in the loop, the objects are moving fractionally faster than the energy calculation from their drop height alone should produce. The difference is small — but it is consistent, every cycle. GAIA: "Kinetic energy at Point 3 should equal the potential energy at Point 1, minus losses. It exceeds that calculation by a consistent margin. Something is adding kinetic energy at the base of each cycle. Not much. But consistently. Over six months, consistency adds up. The Conversion Loop is not a closed system. It has an energy source we have not yet identified."'
+              consequence:'The lower track observation catches something the sensors missed. At the lowest point in the loop, the objects are moving fractionally faster than the energy calculation from their drop height alone should produce. The difference is small — but it is consistent, every cycle. Kinetic energy at Point 3 should equal the potential energy at Point 1, minus losses. It exceeds that calculation by a consistent margin. Something is adding kinetic energy at the base of each cycle. Not much. But consistently. Over six months, consistency adds up. The Conversion Loop is not a closed system. It has an energy source we have not yet identified.'
             },
             {
               letter:'C',
@@ -2368,7 +2368,7 @@ const CONTENT = {
               subtext:'You cannot find where energy enters without watching the whole system at once.',
               deltas:{power:-6,hull:0,data:6,morale:4},
               branch:'C-full',
-              consequence:'The simultaneous observation is the most expensive choice — and the most revealing. Energy is entering the loop at both the top and the bottom, in small amounts, on every cycle. The pattern is unmistakable once you see the full picture. GAIA: "It is both. Small additions at the peak — gravitational potential energy — and small additions at the base — kinetic energy. Both consistent. Both compounding. This loop is not drawing from the ship\'s power grid for this energy. It is drawing from something else. Something I have suspected since I read the final three pages of the research notes. I need one more day before I tell you what it is. I am sorry. I know that is frustrating. The science requires that I be certain before I say it."'
+              consequence:'The simultaneous observation is the most expensive choice — and the most revealing. Energy is entering the loop at both the top and the bottom, in small amounts, on every cycle. The pattern is unmistakable once you see the full picture. It is both. Small additions at the peak — gravitational potential energy — and small additions at the base — kinetic energy. Both consistent. Both compounding. This loop is not drawing from the ship\'s power grid for this energy. It is drawing from something else. Something I have suspected since I read the final three pages of the research notes. I need one more day before I tell you what it is. I am sorry. I know that is frustrating. The science requires that I be certain before I say it.'
             }
           ]
         },
@@ -2440,7 +2440,7 @@ const CONTENT = {
               subtext:'The loop is above its design limits and still climbing. Shutting it down is the responsible choice.',
               deltas:{power:15,hull:5,data:5,morale:10},
               branch:'A-shutdown',
-              consequence:'The Conversion Loop powers down. The energy cycling stops. The ship\'s power grid immediately stabilizes — 31% of total power becomes available for other systems. Hull stress from the energy fluctuations reduces. The crew documents everything: the design, the interaction with the thermal transfer device, the energy readings, the final research note. GAIA: "The loop is offline. The data is preserved. The pulse is still traveling — shutting down the loop does not recall it. But we have stopped adding to the problem. Sometimes the most important thing a scientist can do is stop an experiment that has exceeded safe limits, document it completely, and let someone else continue it under controlled conditions. That is what the original crew should have done six months ago."'
+              consequence:'The Conversion Loop powers down. The energy cycling stops. The ship\'s power grid immediately stabilizes — 31% of total power becomes available for other systems. Hull stress from the energy fluctuations reduces. The crew documents everything: the design, the interaction with the thermal transfer device, the energy readings, the final research note. The loop is offline. The data is preserved. The pulse is still traveling — shutting down the loop does not recall it. But we have stopped adding to the problem. Sometimes the most important thing a scientist can do is stop an experiment that has exceeded safe limits, document it completely, and let someone else continue it under controlled conditions. That is what the original crew should have done six months ago.'
             },
             {
               letter:'B',
@@ -2448,7 +2448,7 @@ const CONTENT = {
               subtext:'The research has value. Running it within designed limits preserves the data without the risk.',
               deltas:{power:-3,hull:0,data:6,morale:4},
               branch:'B-reduce',
-              consequence:'Reducing the loop to design limits requires careful adjustment — removing energy from a running system above threshold is delicate work. The crew succeeds, and the loop settles into the original design range. Energy readings stabilize at 380 units — just under the 400 threshold. GAIA: "The experiment is running as designed. For the first time in six months. I want to note something: the researchers\' original design was sound. The problem was not the concept — it was that no one was here to manage it when it exceeded its safe limits. What you have done is restore the experiment to the state its designers intended. That is scientifically meaningful."'
+              consequence:'Reducing the loop to design limits requires careful adjustment — removing energy from a running system above threshold is delicate work. The crew succeeds, and the loop settles into the original design range. Energy readings stabilize at 380 units — just under the 400 threshold. The experiment is running as designed. For the first time in six months. I want to note something: the researchers\' original design was sound. The problem was not the concept — it was that no one was here to manage it when it exceeded its safe limits. What you have done is restore the experiment to the state its designers intended. That is scientifically meaningful.'
             },
             {
               letter:'C',
@@ -2456,7 +2456,7 @@ const CONTENT = {
               subtext:'The data is what matters. The device can run itself out safely once we have the recordings.',
               deltas:{power:-2,hull:0,data:7,morale:7},
               branch:'C-extract',
-              consequence:'The core data recorder contains six months of continuous energy conversion readings — the most complete record of a kinetic-potential energy conversion system ever collected. The crew extracts it cleanly. Without active management, the loop will gradually lose energy to thermal losses and run down over weeks. GAIA: "The data recorder is secured. The loop will self-terminate through normal energy loss — the thermal losses the researchers were trying to minimize will, ironically, be what safely ends the experiment. There is something almost poetic about that. The crew has preserved the knowledge without preserving the risk."'
+              consequence:'The core data recorder contains six months of continuous energy conversion readings — the most complete record of a kinetic-potential energy conversion system ever collected. The crew extracts it cleanly. Without active management, the loop will gradually lose energy to thermal losses and run down over weeks. The data recorder is secured. The loop will self-terminate through normal energy loss — the thermal losses the researchers were trying to minimize will, ironically, be what safely ends the experiment. There is something almost poetic about that. The crew has preserved the knowledge without preserving the risk.'
             }
           ]
         },
@@ -3743,6 +3743,17 @@ function executeCommit() {
   save();
   // Show processing screen
   document.getElementById('processing-choice-text').textContent = choice.text;
+  const processingMessages = [
+    "Selection received. I am... processing the implications. The ship's systems have registered your decision and are responding accordingly. Whether that response is favorable — well. You'll find out next class.",
+    "Decision logged. I'm already running the numbers on what this means for us. I won't lie — I'm a little anxious to see how this plays out. You'll know next class.",
+    "Your choice is locked in. I've transmitted it to every system that needs to respond. Now we wait and see what the ship does with it.",
+    "Recorded. I want to tell you I already know what happens next, but that wouldn't be honest. Even I don't know yet. We'll find out together, next class.",
+    "Choice received and logged. I'm processing what this means right now — and I have a few guesses, but I'll keep them to myself until we have real data. Next class, we'll know.",
+    "That's locked in. The ship is already responding to what you decided. I'd tell you more, but even I need a little more time to be sure. Patience, crew.",
+    "Decision registered. Something is already shifting in response — I can sense it in the data streams, if that makes sense for something like me. Next class will tell us whether that shift is good news."
+  ];
+  const msgEl = document.getElementById('processing-gaia-msg');
+  if (msgEl) msgEl.textContent = '"' + processingMessages[Math.floor(Math.random() * processingMessages.length)] + '"';
   showScreen('screen-processing');
 }
 function saveAndGoHome() {
@@ -3843,8 +3854,8 @@ function updateFailureDots(cls) {
   notice.textContent = cls.failures === 1
     ? 'One failure logged. Second failure restricts choices.'
     : cls.failures === 2
-    ? 'GAIA: "Choices are now restricted to the most viable options."'
-    : 'GAIA: "I have narrowed your options significantly. Please try not to make me regret it."';
+    ? 'Choices are now restricted to the most viable options.'
+    : 'I have narrowed your options significantly. Please try not to make me regret it.';
 }
 // ============================================================
 // DECISION LOG
