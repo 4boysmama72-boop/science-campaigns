@@ -1286,10 +1286,10 @@ const CONTENT = {
           gaiaSignal:'Navigation AI data presentation follows. Additionally -- a long-range transmission has been received from the Prometheus last known position. Routing now.',
           meridianMode:true,
           gaiaReunionText:'This is GAIA. I have been monitoring the Meridian\'s navigation data since launch from the Prometheus. I still have full sensor capability from my fixed position. The gravitational anomaly you are experiencing -- I have been tracking its source since it first appeared in my long-range sensors four weeks ago. I am transmitting my analysis now. It is good to hear a crew again. I have also been very alone. Now. Let us look at this data together.',
-          scenario:'I am displaying a data table and a bar graph side by side. The data table lists six objects -- the Sun, Jupiter, Earth, the Moon, the Meridian itself, and the unknown anomaly source. For each, it shows the estimated mass and the gravitational force it exerts on a standard 1,000 kg (about 2,200 pounds) test object at a distance of 1,000 km (about 620 miles).\n\nThe bar graph shows the same force values as bars. The pattern is visible immediately in the graph -- but the exact numbers require the table.',
+          scenario:'I am displaying a data table, with a bar graph just below it. The data table lists six objects -- the Sun, Jupiter, Earth, the Moon, the Meridian itself, and the unknown anomaly source. For each, it shows the estimated mass and the gravitational force it exerts on a standard 1,000 kg (about 2,200 pounds) test object at a distance of 1,000 km (about 620 miles).\n\nThe bar graph shows the same force values as the data table, but as bars. The pattern is visible immediately in the graph -- but the exact numbers require the table.',
           graphData:{
             title:'Gravitational Force on a 1,000 kg Object (about 2,200 lb) at a Distance of 1,000 km (about 620 miles)',
-            teacherNote:'Draw as a bar graph with the data table shown separately below or beside it. Use section colors for bars -- assign one color per object, consistent. The key teaching moment: students read the table for exact values, then look at the graph to see the pattern. Sun bar should be dramatically taller than everything else -- emphasize this visually.',
+            teacherNote:'Draw as a bar graph with the data table shown above it. Use section colors for bars -- assign one color per object, consistent. The key teaching moment: students read the table for exact values, then look at the graph to see the pattern. Sun bar should be dramatically taller than everything else -- emphasize this visually.',
             bars:[
               {label:'The Sun', value:98, status:'safe'},
               {label:'Jupiter', value:63, status:'caution'},
@@ -1309,17 +1309,17 @@ const CONTENT = {
             ],
             graphAnswers:[
               {q:'1', a:'The Sun has the greatest gravitational force (98 units). The Meridian has the least (2 units). The pattern is clear in the graph -- taller bar = more mass = more gravitational force.'},
-              {q:'2', a:'The anomaly source (31 units) is between Earth and the Moon in gravitational force. Its estimated mass (about 1/28 of Earth\'s) is larger than the Moon but smaller than Earth.'},
+              {q:'2', a:'The anomaly source (31 units) is between Earth and the Moon in gravitational force, and it is closer to Earth\'s force (40 units) than to the Moon\'s (11 units). Its estimated mass (about 1/28 of Earth\'s) is larger than the Moon but smaller than Earth.'},
               {q:'3', a:'The bar graph shows the pattern quickly -- you can see at a glance that the Sun is much stronger than everything else, and that the anomaly is significant. The data table gives exact numbers for calculating and comparing precisely. You need both.'},
-              {q:'4', a:'The anomaly source has more gravitational force than the Moon (31 vs 11 units). If the Moon can affect Earth\'s tides from 384,000 km (about 239,000 miles) away, an object with nearly 3x the Moon\'s gravitational force could definitely pull the Meridian off course from a significant distance.'},
-              {q:'5', a:'Yes -- if you increased the distance between the Meridian and the anomaly source, the gravitational force pulling the ship would decrease. Greater distance = weaker force. This is why objects far from the Sun are harder to pull into orbit.'}
+              {q:'4', a:'Farther, or at least as far. The anomaly source has nearly 3 times the Moon\'s gravitational force (31 versus 11), so its pull should reach at least as far as the Moon\'s does. That is far enough to pull the Meridian off course from a long distance.'},
+              {q:'5', a:'The force would decrease. Greater distance means a weaker pull. If the Meridian moved closer, the force would increase. Your book says that as distance increases, gravitational force decreases.'}
             ]
           },
           graphQuestions:[
             '1. Which object has the greatest gravitational force on a 1,000 kg (about 2,200 lb) test object? Which has the least? How does the bar graph make this easy to see?',
             '2. Where does the anomaly source fall in the ranking? Is it closer in force to Earth, the Moon, or Jupiter? Use the data table for the exact comparison.',
             '3. Why is it useful to show this data as BOTH a table and a bar graph? What does each one give you that the other does not?',
-            '4. The anomaly source has a gravitational force of 31 units. The Moon has 11 units. If the Moon can affect Earth\'s tides from 384,000 km (about 239,000 miles) away, what does this tell you about how far the anomaly source could be affecting the Meridian?',
+            '4. The anomaly source has a gravitational force of 31 units. The Moon has 11 units. Both numbers are measured the same way, so you can compare them. The Moon\'s gravity is strong enough to move Earth\'s oceans and cause tides from 384,000 km (about 239,000 miles) away. What does that tell you about how far away the anomaly source can pull on the Meridian: closer than that, about the same distance, or farther?',
             '5. According to what you have read about gravitational force and distance: if the Meridian moved farther away from the anomaly source, what would happen to the force pulling the ship? What if it moved closer?'
           ],
           gaiaGraphNote:'"Notice what the bar graph tells you that the table does not: the pattern. At a glance you can see the Sun dominates, the anomaly source is significant, and the Meridian itself barely registers. The table tells you the precise numbers -- 31 units versus 11 units. You need the pattern to understand the story. You need the numbers to reason precisely. A scientist uses both. Always."',
@@ -3515,23 +3515,15 @@ function renderGraphContent(c) {
     } else if (gd.bars && gd.bars2) {
       h += renderDoubleBarGraph(gd);
     } else if (gd.bars) {
+      if (gd.dataTable) h += renderDataTableHtml(gd);
       h += renderBarGraph(gd);
     } else if (gd.multiLine) {
       h += renderMultiLineGraph(gd);
     } else if (gd.data) {
       h += renderLineGraph(gd);
     }
-    // Data table if present
-    if (gd.dataTable) {
-      h += '<div style="margin-top:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Data Table</div>';
-      h += '<table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:14px">';
-      h += '<tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:6px 8px;color:var(--text-dim)">Object</th><th style="text-align:left;padding:6px 8px;color:var(--text-dim)">Mass</th><th style="text-align:right;padding:6px 8px;color:var(--text-dim)">Force</th></tr>';
-      gd.dataTable.forEach((row, i) => {
-        const bg = i % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent';
-        h += `<tr style="background:${bg}"><td style="padding:6px 8px;color:var(--text-primary)">${row.object}</td><td style="padding:6px 8px;color:var(--text-primary)">${row.mass}</td><td style="padding:6px 8px;text-align:right;color:var(--accent)">${row.force}</td></tr>`;
-      });
-      h += '</table></div>';
-    }
+    // Data table (when there is also a bar graph it is drawn ABOVE the graph, see renderDataTableHtml)
+    if (gd.dataTable && !gd.bars) { h += renderDataTableHtml(gd); }
     h += '</div>';
   }
   if (c.gaiaGraphNote) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA - On This Graph</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaGraphNote}</div></div>`;
@@ -3595,6 +3587,19 @@ function niceScale(min, max, maxIntervals, forcedMin, forcedMax) {
   return { min: axisMin, max: axisMax, step: step, decimals: decimals, ticks: ticks };
 }
 function fmtTick(v, sc) { return sc.decimals > 0 ? v.toFixed(sc.decimals) : String(Math.round(v)); }
+
+function renderDataTableHtml(gd) {
+  let h = '';
+    h += '<div style="margin-top:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Data Table</div>';
+    h += '<table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:14px">';
+    h += '<tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:6px 8px;color:var(--text-dim)">Object</th><th style="text-align:left;padding:6px 8px;color:var(--text-dim)">Mass</th><th style="text-align:right;padding:6px 8px;color:var(--text-dim)">Force</th></tr>';
+    gd.dataTable.forEach((row, i) => {
+      const bg = i % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent';
+      h += `<tr style="background:${bg}"><td style="padding:6px 8px;color:var(--text-primary)">${row.object}</td><td style="padding:6px 8px;color:var(--text-primary)">${row.mass}</td><td style="padding:6px 8px;text-align:right;color:var(--accent)">${row.force}</td></tr>`;
+    });
+    h += '</table></div>';
+  return h;
+}
 
 function renderBarGraph(gd) {
   const bars = gd.bars;
