@@ -340,6 +340,7 @@
   .gaia-recall-label { font-family: var(--font-mono); font-size: 9px; color: var(--accent-dim); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 5px; }
   .gaia-recall-text { font-family: var(--font-body); font-size: 19px; color: var(--text-primary); line-height: 1.6; }
 
+  .pgap { display: block; height: 14px; }
   .scenario-text { border-left: 3px solid var(--gaia-green); padding-left: 18px; font-family: var(--font-body); font-size: 22px; color: var(--text-primary); line-height: 1.75; margin-bottom: 20px; }
 
   .phase-panel { display: none; }
@@ -1571,13 +1572,13 @@ const CONTENT = {
           day:1, type:'choice', isReveal:true,
           legLabel:'Leg 2 . Earth, Moon & Seasons',
           legTitle:'Navigation Requires Knowing Where Things Will Be',
-          choiceReadingFocus:'Quick read before the crew votes -- open your book to Earth\'s Place in Universe, Topic 1, Lesson 2 and read the lesson. Look closely at "How Earth Moves" (the paragraphs about rotation and revolution), because your exit ticket answers are there. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from what you read to support your claim.',
+          choiceReadingFocus:'Quick read before the crew votes -- open your book to Earth\'s Place in Universe, Topic 1, Lesson 2 and read the lesson. Look closely at "How Earth Moves" (the paragraphs about rotation and revolution) and "Gravity and Orbits" (the paragraphs about the Moon and Earth), because your exit ticket answers are there. Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from what you read to support your claim.',
           gaia:'Leg 1 is behind us. The Lighthouse is confirmed -- real, artificial, waiting. Now we have to cross the inner solar system to get to the outer edge, and that crossing is not as simple as pointing the ship in the right direction. Every object in this solar system is moving. The planets orbit the Sun. The Moon orbits Earth. Earth rotates on its own axis. If the crew does not understand those motions -- their speed, their patterns, their predictability -- navigation becomes guesswork. And guesswork in space is expensive.',
           gaiaAboard:'Leg 1 is behind us. The Lighthouse is confirmed -- real, artificial, waiting. Now we have to cross the inner solar system to get to the outer edge, and that crossing is not as simple as pointing the ship in the right direction. Every object in this solar system is moving. The planets orbit the Sun. The Moon orbits Earth. Earth rotates on its own axis. If the crew does not understand those motions -- their speed, their patterns, their predictability -- navigation becomes guesswork. And guesswork in space is expensive.',
           gaiaSignal:'The Meridian has entered the inner solar system transit phase. Navigation requires accurate modeling of object positions -- planets, moons, and Earth itself are all in motion. Crew familiarity with orbital motion patterns is required for accurate course projection. Today\'s scenario presents the first navigation decision of this transit.',
           scenario:'The Meridian is crossing the inner solar system. The navigation system needs to project where Earth and the Moon will be at a specific future date -- not where they are right now, but where they will be in 47 days, when the ship\'s trajectory will bring it closest to Earth\'s orbital path.\n\nTo make that projection, the crew needs to understand Earth\'s motion. How fast does Earth rotate? How long does it take to complete one revolution around the Sun? How does the Moon\'s orbit around Earth interact with both of those movements?\n\nI have flagged a choice that needs to be made now, before the navigation calculation is locked in.',
-          exitTicketPrompt:'What is the difference between rotation and revolution? Use Earth as your example. Make your claim: to project where Earth will be in 47 days, which type of motion is more important to calculate precisely -- rotation or revolution -- and why does that matter for the Meridian\'s navigation? Use evidence from today\'s reading to explain your reasoning.',
-          cerWhere:'Earth\'s Place in the Universe, Topic 1, Lesson 2: "How Earth Moves" (the paragraphs about rotation and revolution).',
+          exitTicketPrompt:'What is the difference between rotation and revolution? Use Earth as your example. Make your claim: how should the crew prepare to project where Earth will be in 47 days -- take 48 hours to gather fresh data, lock in a direct trajectory now using standard orbital models, or include the Moon\'s gravity in the calculation? Use what you read about how Earth moves (a rotation takes about 24 hours, a revolution takes one year) and about gravity and orbits to explain why your choice is the best way to project Earth\'s position.',
+          cerWhere:'Earth\'s Place in the Universe, Topic 1, Lesson 2: "How Earth Moves" (the paragraphs about rotation and revolution) and "Gravity and Orbits" (the paragraphs about Earth, the Moon, and gravity).',
           discussionPrompt:'I said navigation requires knowing where things WILL BE, not just where they are. What does that tell you about how rotation and revolution are different kinds of information? One repeats every 24 hours. The other repeats every 365 days. For a 47-day navigation window, which one gives you more useful predictions -- and how does your reading explain why?',
           choices:[
             {
@@ -1684,7 +1685,7 @@ const CONTENT = {
           choiceReadingFocus:'Quick read before the crew votes -- open your book to Earth\'s Place in Universe, Topic 1, Lesson 2 and read the lesson. Look closely at "How Earth Moves" (the paragraph about revolution -- look for when Earth is closest to the sun) and "The Seasons" (the paragraphs about sunlight and tilt, and Figure 3). Read with the scenario and choices in mind. Your exit ticket will ask you to use evidence from what you read to support your claim.',
           gaia:'The crew is passing Earth at a distance. And I want to draw your attention to something I have been tracking since we entered this region. The Northern Hemisphere is receiving noticeably more direct sunlight than the Southern Hemisphere right now. The Sun\'s rays are hitting the Northern Hemisphere at a steeper angle -- more concentrated energy per unit of surface area. The Southern Hemisphere is receiving the same sunlight at a shallower angle, spread across more surface. This difference is not random. It is the direct result of Earth\'s tilted axis and its current position in its revolution around the Sun. The crew is watching a season happen in real time.',
           scenario:'From the Meridian\'s position, the crew can observe something that is impossible to see from Earth\'s surface -- the geometry of sunlight hitting a tilted planet. The Northern Hemisphere is angled toward the Sun. The Southern Hemisphere is angled away.\n\nI am displaying sensor readings showing solar energy intensity at multiple Earth locations simultaneously:\n\n- Northern Hemisphere (45 degrees north latitude): 380 watts per square meter\n- Equator (0 degrees latitude): 340 watts per square meter\n- Southern Hemisphere (45 degrees south latitude): 210 watts per square meter\n\nLatitude tells you how far north or south of the equator a place is: 0 degrees is the equator, and 90 degrees is a pole.\n\nWatts per square meter tells you how much of the Sun\'s energy is landing on each square meter of ground (a square meter is about 11 square feet). The higher the number, the more of the Sun\'s energy is arriving, and more energy arriving means more warming.\n\nThe equator receives relatively consistent energy year-round because the tilt affects it less. The poles experience the most dramatic seasonal variation. In six months, when Earth has moved to the opposite side of its orbit, these numbers reverse. The tilt stays the same. The position in the orbit changes. That is the entire explanation for seasons.',
-          exitTicketPrompt:'What causes seasons on Earth -- and what does NOT cause them? Use the sensor readings GAIA displayed and what you know about Earth\'s tilted axis to explain. Make your claim: based on what the crew is observing right now, is the Northern Hemisphere experiencing summer or winter -- and how does Earth\'s position in its orbit explain that? Use evidence from today\'s reading to connect the axis tilt to the energy intensity difference.',
+          exitTicketPrompt:'What causes seasons on Earth -- and what does NOT cause them? Use the sensor readings GAIA displayed and what you know about Earth\'s tilted axis to explain. Based on what the crew is observing right now, is the Northern Hemisphere experiencing summer or winter, and how does Earth\'s position in its orbit explain that? Make your claim: which action should the crew take -- adjust the solar panels, maintain the current heading, or use the observation position to take the most complete sensor reading? Use what you read about how tilt changes the strength of sunlight in each hemisphere to explain why your choice is the best use of the Meridian\'s position.',
           cerWhere:'Earth\'s Place in the Universe, Topic 1, Lesson 2: "How Earth Moves" (the paragraph about revolution) and "The Seasons" (Figure 3), plus the sensor readings in the scenario.',
           discussionPrompt:'Some people think seasons are caused by Earth being closer to the Sun in summer and farther in winter. Your reading says Earth is closest to the Sun in January. What does that tell you about that idea? What IS causing the difference in energy intensity between the Northern and Southern hemispheres right now? What would change about those sensor readings in six months when Earth has moved to the other side of its orbit?',
           choices:[
@@ -2609,7 +2610,7 @@ const CONTENT = {
             graphAnswers:[{q:'What to notice', a:'Both lines rise together -- correlation. Frequency B spikes at year 47 (Prometheus pulse effect). CO2 continues gradual rise. The divergence at year 47 is the anomaly.'}]
           },
           gaiaGraphNote:'"The Lighthouse did not build this correlation. It measured it. Two lines. One story. The mechanism is what today\'s reading explains."',
-          exitTicketPrompt:'Explain the greenhouse effect in your own words -- the complete pathway from sunlight arriving at Earth to infrared being retained in the atmosphere. What role do greenhouse gases play specifically? Make your claim: based on what you now understand about the mechanism, what does an increase in Frequency B tell you about what is happening in Earth\'s atmosphere?',
+          exitTicketPrompt:'Explain the greenhouse effect in your own words -- the complete pathway from sunlight arriving at Earth to infrared being retained in the atmosphere. What role do greenhouse gases play specifically? Based on what you now understand about the mechanism, what does an increase in Frequency B tell you about what is happening in Earth\'s atmosphere? Make your claim: how should the crew proceed -- take fresh atmospheric readings, download the complete 47-year dataset first, or cross-reference Frequency B with the Lighthouse\'s other data? Use what you read about the greenhouse effect to explain why your choice is the best way to find out what Frequency B is measuring.',
           cerWhere:'Cycling of Weather and Climate, Topic 2, Lesson 1: "Energy from the Sun" (the greenhouse effect paragraphs), plus today\'s graph.',
           discussionPrompt:'I said the greenhouse effect is not a malfunction -- it has kept Earth warm for billions of years. So what is the actual concern about an increasing Frequency B? Is there a difference between the greenhouse effect existing and the greenhouse effect intensifying? What would happen to Earth\'s temperature if greenhouse gases were removed entirely -- and what would happen if they doubled?',
           choices:[
@@ -3265,9 +3266,9 @@ function renderMissionScreen() {
   // Set content in the visible box
   if (showMeridian) {
     const meridText = document.getElementById('content-meridian');
-    if (meridText) meridText.innerHTML = gaiaText;
+    if (meridText) meridText.innerHTML = paras(gaiaText);
   } else {
-    document.getElementById('content-gaia').innerHTML = gaiaText;
+    document.getElementById('content-gaia').innerHTML = paras(gaiaText);
     const label = document.getElementById('gaia-transmission-label');
     if (label) label.textContent =
       (cls.leg === 1 && cnt.day === 3 && cls.gaiaStatus === 'signal-connected')
@@ -3276,7 +3277,7 @@ function renderMissionScreen() {
 
   // scenarioSignal override for Meridian mode days
   const scenarioText = showMeridian && cnt.scenarioSignal ? cnt.scenarioSignal : cnt.scenario || '';
-  document.getElementById('content-scenario').innerHTML = scenarioText.replace(/\n/g, '<br><br>');
+  document.getElementById('content-scenario').innerHTML = paras(scenarioText);
 
   const extra = document.getElementById('content-extra');
   extra.innerHTML = '';
@@ -3449,7 +3450,7 @@ function renderMedianWarmup(c) {
 function renderDeepenContent(c) {
   let h = '';
   if (c.readingFocus) h += `<div style="background:var(--bg-card);border:1px solid var(--border-bright);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Reading Assignment</div><div style="font-family:var(--font-body);font-size:15px;color:var(--text-primary);line-height:1.6">${c.readingFocus}</div></div>`;
-  if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS - Reading Focus' : 'GAIA - To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${c.gaiaReadingPrompt}</div></div>`; }
+  if (c.gaiaReadingPrompt) { const isMerid = c.meridianMode && ((state.activeClass !== null && (state.classes[state.activeClass].gaiaStatus === 'signal'))); const rdColor = isMerid ? '#7eb8d4' : 'var(--gaia-green)'; const rdLabel = isMerid ? 'MERIDIAN SYSTEMS - Reading Focus' : 'GAIA - To The Crew'; h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid ${rdColor};border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:${rdColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">${rdLabel}</div><div style="font-family:var(--font-body);font-size:20px;color:${rdColor};line-height:1.7">${paras(c.gaiaReadingPrompt)}</div></div>`; }
   if (c.supplements && c.supplements.length) {
     c.supplements.forEach(function(s) { h += '<div class="supplement-box"><div class="supplement-label">' + s.label + '</div><div class="supplement-title">' + s.title + '</div><div class="supplement-text">' + s.text + '</div></div>'; });
   }
@@ -3530,7 +3531,7 @@ function renderGraphContent(c) {
     if (gd.dataTable && !gd.bars) { h += renderDataTableHtml(gd); }
     h += '</div>';
   }
-  if (c.gaiaGraphNote) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA - On This Graph</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaGraphNote}</div></div>`;
+  if (c.gaiaGraphNote) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.2);border-left:3px solid var(--gaia-green);border-radius:6px;padding:12px 14px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">GAIA - On This Graph</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--gaia-green);line-height:1.75;font-style:italic">${paras(c.gaiaGraphNote)}</div></div>`;
   if (c.graphQuestions && c.graphQuestions.length) {
     h += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:13px 15px;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px">Discussion Questions</div>';
     c.graphQuestions.forEach(q => { h += `<div style="font-family:var(--font-body);font-size:18px;color:var(--text-primary);line-height:1.6;margin-bottom:8px;padding-left:10px;border-left:2px solid var(--border-bright)">${q}</div>`; });
@@ -3543,7 +3544,7 @@ function renderGraphContent(c) {
 function renderClimaxContent(c) {
   let h = '';
   if (c.graphData) h += renderGraphContent(c);
-  if (c.gaiaClosing) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.3);border-left:3px solid var(--gaia-green);border-radius:6px;padding:15px 17px;margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px">GAIA - Closing Transmission</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--gaia-green);line-height:1.75;font-style:italic">${c.gaiaClosing}</div></div>`;
+  if (c.gaiaClosing) h += `<div style="background:var(--bg-card);border:1px solid rgba(0,255,136,0.3);border-left:3px solid var(--gaia-green);border-radius:6px;padding:15px 17px;margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--gaia-green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px">GAIA - Closing Transmission</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--gaia-green);line-height:1.75;font-style:italic">${paras(c.gaiaClosing)}</div></div>`;
   if (c.isLegEnd) {
     const legMatch = c.legLabel ? c.legLabel.match(/Leg\s*(\d+)/i) : null;
     const legNum = legMatch ? parseInt(legMatch[1]) : 1;
@@ -4401,6 +4402,9 @@ function buildCerHelper(cnt) {
     + '<div class="cer-row"><b>REASONING</b> (why that fact supports your choice): "This supports my choice because ______."</div>'
     + (cnt.cerWhere ? '<div class="cer-row"><b>WHERE TO LOOK:</b> ' + cnt.cerWhere + '</div>' : '');
 }
+
+// Turns the blank lines between paragraphs into one modest gap (previously 4 stacked line breaks in the scene, and none in GAIA boxes).
+function paras(s) { return String(s || '').replace(/\n+/g, '<span class="pgap"></span>'); }
 
 function pickProcessingLine(kind) {
   const pool = kind === 'meridian' ? MERIDIAN_PROC_LINES : GAIA_PROC_LINES;
